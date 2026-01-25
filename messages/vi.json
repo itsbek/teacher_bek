@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "courses": "Khóa học",
+    "about": "Giới thiệu",
+    "testimonials": "Nhận xét",
+    "faq": "Câu hỏi thường gặp",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "badge": "Giáo viên tiếng Anh chuyên nghiệp",
+    "title": "Làm chủ tiếng Anh với sự tự tin",
+    "subtitle": "Các buổi học 1-1 được cá nhân hóa dành cho người Việt Nam, Trung Quốc và Nga. Đạt được sự lưu loát nhanh hơn với các phương pháp đã được chứng minh.",
+    "cta": "Bắt đầu hành trình",
+    "secondary": "Xem khóa học",
+    "stats": {
+      "students": "500+ Học viên",
+      "experience": "10+ Năm kinh nghiệm",
+      "success": "95% Thành công"
+    }
+  },
+  "courses": {
+    "title": "Các khóa học",
+    "subtitle": "Chọn chương trình phù hợp với mục tiêu của bạn",
+    "beginner": {
+      "title": "Nền tảng Sơ cấp",
+      "description": "Xây dựng sự tự tin với từ vựng thiết yếu, ngữ pháp và kỹ năng giao tiếp",
+      "duration": "12 tuần",
+      "level": "A1-A2"
+    },
+    "intermediate": {
+      "title": "Trung cấp Thành thạo",
+      "description": "Mở rộng khả năng với ngữ pháp nâng cao, tiếng Anh thương mại và sự lưu loát văn hóa",
+      "duration": "16 tuần",
+      "level": "B1-B2"
+    },
+    "advanced": {
+      "title": "Cao cấp Xuất sắc",
+      "description": "Hoàn thiện tiếng Anh của bạn cho môi trường chuyên nghiệp, thuyết trình và giao tiếp cấp độ bản ngữ",
+      "duration": "20 tuần",
+      "level": "C1-C2"
+    },
+    "business": {
+      "title": "Tiếng Anh Thương mại",
+      "description": "Đào tạo chuyên môn cho các cuộc họp, đàm phán, email và truyền thông doanh nghiệp",
+      "duration": "12 tuần",
+      "level": "B2+"
+    }
+  },
+  "testimonials": {
+    "title": "Câu chuyện thành công của học viên",
+    "subtitle": "Tham gia cùng hàng trăm học viên thành công trên toàn thế giới"
+  },
+  "cta": {
+    "title": "Sẵn sàng thay đổi tiếng Anh của bạn?",
+    "subtitle": "Chỗ có hạn. Bắt đầu hành trình học tập cá nhân của bạn ngay hôm nay.",
+    "button": "Đặt tư vấn miễn phí"
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "q1": "Buổi học kéo dài bao lâu?",
+    "a1": "Mỗi buổi học kéo dài 60 phút với hướng dẫn tập trung, cá nhân hóa theo mục tiêu của bạn.",
+    "q2": "Bạn sử dụng nền tảng nào?",
+    "a2": "Chúng tôi sử dụng Zoom, Skype hoặc cuộc gọi video WhatsApp tùy theo sở thích của bạn.",
+    "q3": "Bạn có cung cấp buổi học thử không?",
+    "a3": "Có! Đặt buổi tư vấn miễn phí 30 phút để thảo luận về mục tiêu và trải nghiệm phong cách giảng dạy của chúng tôi.",
+    "q4": "Tôi sẽ thấy kết quả nhanh như thế nào?",
+    "a4": "Hầu hết học viên nhận thấy sự cải thiện đáng kể trong vòng 4-6 tuần với sự luyện tập và cống hiến nhất quán.",
+    "q5": "Tôi cần tài liệu gì?",
+    "a5": "Tất cả tài liệu khóa học được cung cấp dưới dạng kỹ thuật số. Bạn chỉ cần một thiết bị có kết nối internet.",
+    "q6": "Tôi có thể đổi lịch học không?",
+    "a6": "Có, với thông báo trước 24 giờ, bạn có thể đổi lịch học để phù hợp với lịch trình của mình."
+  },
+  "footer": {
+    "tagline": "Giáo dục tiếng Anh chuyên nghiệp cho sự thành công toàn cầu",
+    "faq": "Câu hỏi thường gặp",
+    "contact": "Liên hệ",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "email": "Email",
+    "certifications": "Chứng chỉ",
+    "tefl": "Chứng chỉ TEFL",
+    "tesol": "Chứng chỉ TESOL",
+    "experience": "10+ Năm giảng dạy"
+  },
+  "contact": {
+    "title": "Hãy Bắt Đầu Hành Trình Của BẠN",
+    "subtitle": "Chọn cách dễ nhất để BẠN liên hệ với tôi",
+    "form": {
+      "title": "Gửi Tin Nhắn Cho Tôi",
+      "name": "Tên của bạn",
+      "email": "Email của bạn",
+      "phone": "Điện thoại (tùy chọn)",
+      "message": "Nói cho tôi biết về mục tiêu tiếng Anh của bạn",
+      "consent": "Tôi đồng ý với chính sách bảo mật và hiểu rằng dữ liệu của tôi sẽ được xử lý để trả lời yêu cầu của tôi.",
+      "submit": "Gửi Tin Nhắn",
+      "submitting": "Đang gửi...",
+      "success": "Cảm ơn! Tôi sẽ trả lời bạn trong vòng 24 giờ.",
+      "error": "Rất tiếc! Đã xảy ra lỗi. Thử WhatsApp hoặc Telegram?",
+      "required": "Trường này là bắt buộc",
+      "invalidEmail": "Vui lòng nhập email hợp lệ"
+    }
+  }
+}

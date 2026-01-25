@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "home": "主页",
+    "courses": "课程",
+    "about": "关于",
+    "testimonials": "评价",
+    "faq": "常见问题",
+    "contact": "联系"
+  },
+  "hero": {
+    "badge": "专业英语教师",
+    "title": "自信掌握英语",
+    "subtitle": "为越南、中国和俄罗斯说话者设计的个性化一对一课程。通过经过验证的方法更快地实现流利。",
+    "cta": "开始您的旅程",
+    "secondary": "查看课程",
+    "stats": {
+      "students": "500+ 学生",
+      "experience": "10+ 年经验",
+      "success": "95% 成功率"
+    }
+  },
+  "courses": {
+    "title": "课程内容",
+    "subtitle": "选择适合您目标的完美课程",
+    "beginner": {
+      "title": "初级基础",
+      "description": "通过基本词汇、语法和会话技能建立信心",
+      "duration": "12 周",
+      "level": "A1-A2"
+    },
+    "intermediate": {
+      "title": "中级精通",
+      "description": "通过高级语法、商务英语和文化流利度扩展您的能力",
+      "duration": "16 周",
+      "level": "B1-B2"
+    },
+    "advanced": {
+      "title": "高级卓越",
+      "description": "为专业环境、演讲和母语级别的交流完善您的英语",
+      "duration": "20 周",
+      "level": "C1-C2"
+    },
+    "business": {
+      "title": "商务英语",
+      "description": "专门针对会议、谈判、电子邮件和企业沟通的培训",
+      "duration": "12 周",
+      "level": "B2+"
+    }
+  },
+  "testimonials": {
+    "title": "学生成功故事",
+    "subtitle": "加入全球数百名成功学生"
+  },
+  "cta": {
+    "title": "准备好改变您的英语了吗?",
+    "subtitle": "名额有限。今天就开始您的个性化学习之旅。",
+    "button": "预约免费咨询"
+  },
+  "faq": {
+    "title": "常见问题",
+    "q1": "课程时长是多少?",
+    "a1": "每节课为60分钟的专注、个性化指导，根据您的目标量身定制。",
+    "q2": "你们使用什么平台?",
+    "a2": "我们根据您的偏好使用Zoom、Skype或WhatsApp视频通话。",
+    "q3": "你们提供试听课吗?",
+    "a3": "是的!预约30分钟的免费咨询，讨论您的目标并体验我们的教学风格。",
+    "q4": "我多快能看到效果?",
+    "a4": "大多数学生在4-6周内通过持续的练习和奉献精神会注意到显著的进步。",
+    "q5": "我需要什么材料?",
+    "a5": "所有课程材料均以数字方式提供。您只需要一台可以上网的设备。",
+    "q6": "我可以重新安排课程吗?",
+    "a6": "可以，提前24小时通知，您可以重新安排课程以适应您的时间表。"
+  },
+  "footer": {
+    "tagline": "专业的英语教育助力全球成功",
+    "contact": "联系方式",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "email": "电子邮件",
+    "certifications": "资格证书",
+    "tefl": "TEFL认证",
+    "tesol": "TESOL认证",
+    "experience": "10+ 年教学经验"
+  },
+  "contact": {
+    "title": "开启您的学习之旅",
+    "subtitle": "选择最方便的方式联系我",
+    "form": {
+      "title": "给我发消息",
+      "name": "您的姓名",
+      "email": "您的邮箱",
+      "phone": "电话（可选）",
+      "message": "告诉我您的英语学习目标",
+      "consent": "我同意隐私政策，并理解我的数据将被处理以回复我的询问。",
+      "submit": "发送消息",
+      "submitting": "发送中...",
+      "success": "谢谢！我会在24小时内回复您。",
+      "error": "哎呀！出了点问题。试试WhatsApp或Telegram？",
+      "required": "此字段为必填项",
+      "invalidEmail": "请输入有效的电子邮件地址"
+    }
+  }
+}
