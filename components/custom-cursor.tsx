@@ -1,193 +1,168 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const cursorDotRef = useRef<HTMLDivElement>(null);
-  const cursorTextRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
   const [isPointer, setIsPointer] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [cursorText, setCursorText] = useState('');
 
+  // Use motion values for smooth cursor movement
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  // Spring physics for smooth following
+  const springConfig = { damping: 25, stiffness: 400 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
   useEffect(() => {
-    // Check if touch device
+    // Check if touch device - only on client
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
     if (isTouchDevice) {
-      setIsHidden(true);
-      return;
+      return; // Don't mount on touch devices
     }
 
-    const cursor = cursorRef.current;
-    const cursorDot = cursorDotRef.current;
-    const cursorTextEl = cursorTextRef.current;
-    if (!cursor || !cursorDot || !cursorTextEl) return;
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
+    setMounted(true);
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
 
-      // Immediate dot movement
-      gsap.set(cursorDot, {
-        x: mouseX,
-        y: mouseY,
-      });
+      if (!isVisible) {
+        setIsVisible(true);
+      }
     };
 
-    // Smooth cursor follow with RAF
-    const animateCursor = () => {
-      const dx = mouseX - currentX;
-      const dy = mouseY - currentY;
-
-      currentX += dx * 0.15;
-      currentY += dy * 0.15;
-
-      gsap.set(cursor, {
-        x: currentX,
-        y: currentY,
-      });
-
-      gsap.set(cursorTextEl, {
-        x: currentX,
-        y: currentY,
-      });
-
-      requestAnimationFrame(animateCursor);
-    };
-
-    animateCursor();
-
-    const handleMouseEnter = (e: Event) => {
+    const onMouseEnter = (e: Event) => {
       const target = e.target as HTMLElement;
 
       // Check for interactive elements
-      if (
+      const isInteractive =
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         target.closest('a') ||
         target.closest('button') ||
         target.classList.contains('cursor-pointer') ||
-        target.getAttribute('role') === 'button'
-      ) {
+        target.getAttribute('role') === 'button' ||
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA';
+
+      if (isInteractive) {
         setIsPointer(true);
 
         // Check for custom cursor text
-        const customText = target.getAttribute('data-cursor-text') ||
-                          target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
+        const customText =
+          target.getAttribute('data-cursor-text') ||
+          target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
+
         if (customText) {
           setCursorText(customText);
         }
       }
     };
 
-    const handleMouseLeave = () => {
+    const onMouseLeave = () => {
       setIsPointer(false);
       setCursorText('');
     };
 
-    // Hide cursor when leaving window
-    const handleMouseOut = (e: MouseEvent) => {
+    const onMouseOut = (e: MouseEvent) => {
       if (!e.relatedTarget) {
-        gsap.to([cursor, cursorDot, cursorTextEl], {
-          opacity: 0,
-          duration: 0.3,
-        });
+        setIsVisible(false);
       }
     };
 
-    const handleMouseOver = () => {
-      gsap.to([cursor, cursorDot], {
-        opacity: 1,
-        duration: 0.3,
-      });
+    const onMouseOver = () => {
+      setIsVisible(true);
     };
 
-    window.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseout', handleMouseOut);
-    document.addEventListener('mouseover', handleMouseOver);
-
-    // Use event delegation for better performance
-    document.addEventListener('mouseenter', handleMouseEnter, true);
-    document.addEventListener('mouseleave', handleMouseLeave, true);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mouseenter', onMouseEnter, true);
+    document.addEventListener('mouseleave', onMouseLeave, true);
+    document.addEventListener('mouseout', onMouseOut);
+    document.addEventListener('mouseover', onMouseOver);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseout', handleMouseOut);
-      document.removeEventListener('mouseover', handleMouseOver);
-      document.removeEventListener('mouseenter', handleMouseEnter, true);
-      document.removeEventListener('mouseleave', handleMouseLeave, true);
+      document.removeEventListener('mouseenter', onMouseEnter, true);
+      document.removeEventListener('mouseleave', onMouseLeave, true);
+      document.removeEventListener('mouseout', onMouseOut);
+      document.removeEventListener('mouseover', onMouseOver);
     };
-  }, []);
+  }, [cursorX, cursorY, isVisible]);
 
-  if (isHidden) return null;
+  // Don't render on server or touch devices
+  if (!mounted) return null;
 
   return (
     <>
       {/* Main cursor ring */}
-      <div
-        ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference hidden lg:block"
         style={{
-          transform: 'translate(-50%, -50%)',
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%',
         }}
       >
-        <div
-          className="transition-all duration-300 ease-out rounded-full border border-white"
-          style={{
-            width: isPointer ? '50px' : '32px',
-            height: isPointer ? '50px' : '32px',
-            opacity: isPointer ? 0.6 : 1,
+        <motion.div
+          animate={{
+            width: isPointer ? 48 : 32,
+            height: isPointer ? 48 : 32,
+            opacity: isVisible ? (isPointer ? 0.6 : 1) : 0,
           }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="border border-white rounded-full"
         />
-      </div>
+      </motion.div>
 
       {/* Center dot */}
-      <div
-        ref={cursorDotRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference hidden lg:block"
         style={{
-          transform: 'translate(-50%, -50%)',
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
         }}
       >
-        <div
-          className="bg-white rounded-full transition-all duration-200"
-          style={{
-            width: isPointer ? '6px' : '4px',
-            height: isPointer ? '6px' : '4px',
+        <motion.div
+          animate={{
+            width: isPointer ? 6 : 4,
+            height: isPointer ? 6 : 4,
+            opacity: isVisible ? 1 : 0,
           }}
+          transition={{ duration: 0.15 }}
+          className="bg-white rounded-full"
         />
-      </div>
+      </motion.div>
 
       {/* Cursor text label */}
-      <div
-        ref={cursorTextRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
-        style={{
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        <div
-          className={`
-            flex items-center justify-center
-            text-[11px] font-accent tracking-widest uppercase
-            text-primary-foreground bg-primary
-            px-3 py-1.5 rounded
-            transition-all duration-300
-            ${cursorText ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
-          `}
+      {cursorText && (
+        <motion.div
+          className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:block"
           style={{
-            marginTop: '40px',
+            x: cursorXSpring,
+            y: cursorYSpring,
+            translateX: '-50%',
+            translateY: '20px',
           }}
         >
-          {cursorText}
-        </div>
-      </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="px-3 py-1.5 text-[10px] font-mono tracking-widest uppercase bg-primary text-primary-foreground"
+          >
+            {cursorText}
+          </motion.div>
+        </motion.div>
+      )}
     </>
   );
 }

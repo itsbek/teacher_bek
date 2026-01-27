@@ -27,7 +27,7 @@ export function Header() {
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -47,6 +47,7 @@ export function Header() {
 
   const navLinks = [
     { href: `/${locale}#courses`, label: t('courses') },
+    { href: `/${locale}/blog`, label: t('blog') },
     { href: `/${locale}#testimonials`, label: t('testimonials') },
     { href: `/${locale}#faq`, label: t('faq') },
     { href: `/${locale}#contact`, label: t('contact') },
@@ -57,104 +58,166 @@ export function Header() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-background/80 backdrop-blur-lg border-b border-border'
-            : 'bg-transparent'
+            ? 'py-3 md:py-4 bg-background/90 backdrop-blur-xl border-b border-border'
+            : 'py-4 md:py-6 bg-transparent'
         }`}
       >
-        <nav className="container-lg">
-          <div className="flex items-center justify-between h-16 md:h-20">
+        <nav className="container-2xl">
+          <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href={`/${locale}`} className="group flex items-baseline gap-0.5">
-              <span className="font-display text-xl md:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
+            <motion.a
+              href={`/${locale}`}
+              className="group flex items-baseline gap-0.5"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="font-display text-xl md:text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
                 English
               </span>
-              <span className="text-accent font-display text-xl md:text-2xl font-semibold">.</span>
-            </a>
+              <motion.span
+                className="text-primary font-display text-xl md:text-2xl font-bold"
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              >
+                .
+              </motion.span>
+            </motion.a>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link, index) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + index * 0.05 }}
+                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group"
                 >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
-                </a>
+                  <span className="relative z-10">{link.label}</span>
+                  <span className="absolute bottom-1 left-4 right-4 h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                </motion.a>
               ))}
             </div>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 md:gap-3">
               {/* Language Switcher */}
-              <div className="relative hidden md:block">
-                <button
+              <div className="relative">
+                <motion.button
                   onClick={() => setLangMenuOpen(!langMenuOpen)}
-                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-accent tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-mono tracking-wider text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {currentLang.flag}
-                  <ChevronDown className={`w-3 h-3 transition-transform ${langMenuOpen ? 'rotate-180' : ''}`} />
-                </button>
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${langMenuOpen ? 'rotate-180' : ''}`} />
+                </motion.button>
 
                 <AnimatePresence>
                   {langMenuOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute right-0 top-full mt-2 w-40 bg-card border border-border rounded-lg shadow-lg overflow-hidden"
-                    >
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => switchLanguage(lang.code)}
-                          className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 transition-colors ${
-                            locale === lang.code
-                              ? 'bg-primary/10 text-primary'
-                              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
-                          }`}
-                        >
-                          <span className="font-accent text-xs tracking-wider">{lang.flag}</span>
-                          <span>{lang.name}</span>
-                        </button>
-                      ))}
-                    </motion.div>
+                    <>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-40"
+                        onClick={() => setLangMenuOpen(false)}
+                      />
+                      <motion.div
+                        initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute right-0 top-full mt-2 w-40 bg-card border border-border shadow-lg overflow-hidden z-50"
+                      >
+                        {languages.map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => switchLanguage(lang.code)}
+                            className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 transition-colors ${
+                              locale === lang.code
+                                ? 'bg-primary/10 text-primary'
+                                : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                            }`}
+                          >
+                            <span className="font-mono text-xs tracking-wider w-6">{lang.flag}</span>
+                            <span>{lang.name}</span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    </>
                   )}
                 </AnimatePresence>
               </div>
 
               {/* Theme Toggle */}
               {mounted && (
-                <button
+                <motion.button
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg border border-border hover:bg-muted transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="hidden md:flex items-center justify-center w-10 h-10 border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                   aria-label="Toggle theme"
                 >
-                  {theme === 'dark' ? (
-                    <Sun className="w-4 h-4" />
-                  ) : (
-                    <Moon className="w-4 h-4" />
-                  )}
-                </button>
+                  <AnimatePresence mode="wait">
+                    {theme === 'dark' ? (
+                      <motion.div
+                        key="sun"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Sun className="w-4 h-4" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="moon"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Moon className="w-4 h-4" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
               )}
 
               {/* Mobile Menu Button */}
-              <button
+              <motion.button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden flex items-center justify-center w-10 h-10"
+                whileTap={{ scale: 0.95 }}
+                className="lg:hidden flex items-center justify-center w-10 h-10"
                 aria-label="Toggle menu"
               >
-                {mobileMenuOpen ? (
-                  <X className="w-5 h-5" />
-                ) : (
-                  <Menu className="w-5 h-5" />
-                )}
-              </button>
+                <AnimatePresence mode="wait">
+                  {mobileMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                    >
+                      <X className="w-5 h-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                    >
+                      <Menu className="w-5 h-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
             </div>
           </div>
         </nav>
@@ -167,19 +230,20 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden bg-background"
+            className="fixed inset-0 z-40 lg:hidden bg-background"
           >
-            <div className="h-full flex flex-col justify-center items-center px-6 pt-16">
-              <nav className="flex flex-col items-center gap-6 mb-12">
+            <div className="h-full flex flex-col justify-center items-center px-6 pt-20">
+              <nav className="flex flex-col items-center gap-2 mb-12">
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05 }}
-                    className="font-display text-3xl font-semibold text-foreground hover:text-primary transition-colors"
+                    exit={{ opacity: 0, y: 30 }}
+                    transition={{ delay: 0.05 + i * 0.05 }}
+                    className="font-display text-3xl md:text-4xl font-semibold text-foreground hover:text-primary transition-colors py-2"
                   >
                     {link.label}
                   </motion.a>
@@ -188,19 +252,20 @@ export function Header() {
 
               {/* Language Grid */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex gap-2 mb-6"
+                exit={{ opacity: 0, y: 30 }}
+                transition={{ delay: 0.3 }}
+                className="flex gap-2 mb-8"
               >
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => switchLanguage(lang.code)}
-                    className={`px-4 py-2 text-xs font-accent tracking-wider rounded-lg transition-colors ${
+                    className={`px-4 py-2.5 text-xs font-mono tracking-wider transition-all ${
                       locale === lang.code
                         ? 'bg-primary text-primary-foreground'
-                        : 'border border-border text-muted-foreground hover:text-foreground'
+                        : 'border border-border text-muted-foreground hover:text-foreground hover:border-primary/50'
                     }`}
                   >
                     {lang.flag}
@@ -208,17 +273,18 @@ export function Header() {
                 ))}
               </motion.div>
 
-              {/* Theme Toggle */}
+              {/* Theme Toggle Mobile */}
               {mounted && (
                 <motion.button
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ delay: 0.35 }}
                   onClick={() => {
                     setTheme(theme === 'dark' ? 'light' : 'dark');
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-3 px-5 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors border border-border"
                 >
                   {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                   <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>

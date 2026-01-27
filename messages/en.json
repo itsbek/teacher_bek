@@ -1,132 +1,154 @@
 {
   "nav": {
     "home": "Home",
-    "courses": "Courses",
-    "blog": "Blog",
-    "testimonials": "Success Stories",
-    "faq": "FAQ",
-    "contact": "Let's Talk"
+    "courses": "Classes",
+    "blog": "Stories",
+    "testimonials": "Students",
+    "faq": "Questions",
+    "contact": "Say Hello"
   },
   "hero": {
-    "badge": "Your English Teacher",
-    "title": "Let's Make English Click for YOU",
-    "subtitle": "I help Vietnamese, Chinese, and Russian speakers break through to confident, fluent English. No boring drills. No cookie-cutter lessons. Just real results.",
-    "cta": "Start Your Journey",
-    "secondary": "See My Courses",
+    "badge": "English Teacher in Ho Chi Minh City",
+    "title": "Learning English should feel like an adventure",
+    "subtitle": "I'm an English teacher based in Ho Chi Minh City. For the past 3 years, I've been helping students of all ages discover the joy of speaking English - in classrooms across Go Vap, Phu Nhuan, and Binh Thanh.",
+    "cta": "Let's Talk",
+    "secondary": "See How I Teach",
     "stats": {
-      "students": "500+ Students Transformed",
-      "experience": "10+ Years Teaching",
-      "success": "95% Hit Their Goals"
+      "students": "1,000+ Students",
+      "experience": "3 Years in Vietnam",
+      "success": "ILA & Blue Sky Alumni"
     }
   },
   "courses": {
-    "title": "How I Can Help YOU",
-    "subtitle": "Pick the path that matches where you are RIGHT NOW",
+    "title": "How We'll Learn Together",
+    "subtitle": "Every student is different. Here's how I adapt my teaching to meet you where you are.",
     "beginner": {
-      "title": "Beginner Breakthrough",
-      "description": "Let's build your confidence from day one. I'll teach you essential vocabulary, grammar, and conversation skills that actually work in real life.",
-      "duration": "12 weeks",
-      "level": "A1-A2"
+      "title": "First Steps",
+      "description": "For young learners and complete beginners. We build confidence through games, songs, and lots of patience. No pressure, just progress.",
+      "duration": "Flexible",
+      "level": "Beginner"
     },
     "intermediate": {
-      "title": "Intermediate Accelerator",
-      "description": "Ready to level up? I'll help you master advanced grammar, business English, and cultural fluency so you can communicate like a pro.",
-      "duration": "16 weeks",
-      "level": "B1-B2"
+      "title": "Finding Your Voice",
+      "description": "You know some English but want to speak more naturally. We'll focus on real conversations, everyday situations, and building fluency.",
+      "duration": "Ongoing",
+      "level": "Intermediate"
     },
     "advanced": {
-      "title": "Advanced Mastery",
-      "description": "Let's polish your English for professional settings, presentations, and native-level communication. You're closer than you think.",
-      "duration": "20 weeks",
-      "level": "C1-C2"
+      "title": "Polish & Confidence",
+      "description": "For students preparing for exams, interviews, or just wanting to master the language. We refine pronunciation, expand vocabulary, and tackle complex topics.",
+      "duration": "Customized",
+      "level": "Advanced"
     },
     "business": {
-      "title": "Business English Power",
-      "description": "Master meetings, negotiations, emails, and corporate communication. I'll help you speak English like a business leader.",
-      "duration": "12 weeks",
-      "level": "B2+"
+      "title": "Young Learners",
+      "description": "Specialized classes for children aged 4-12. I've taught at kindergartens and primary schools across HCMC - I know how to make learning fun.",
+      "duration": "Weekly",
+      "level": "Ages 4-12"
+    }
+  },
+  "about": {
+    "title": "A Little About Me",
+    "experience": {
+      "title": "My Teaching Journey",
+      "description": "I came to Vietnam 3 years ago and fell in love with teaching here. I've worked at ILA Vietnam, Blue Sky Academy kindergarten, and taught in dozens of public schools across Ho Chi Minh City. Each classroom taught me something new about how people learn.",
+      "places": "ILA Vietnam • Blue Sky Academy • Public Schools across HCMC"
+    },
+    "approach": {
+      "title": "How I Teach",
+      "description": "I believe learning happens best when you're not afraid to make mistakes. My classroom is a safe space to try, fail, laugh, and try again. Whether you're 5 or 50, we'll find the approach that works for you."
+    },
+    "location": {
+      "title": "Where I Teach",
+      "description": "I offer in-person classes in Go Vap, Phu Nhuan, and Binh Thanh districts. I can come to your home, or we can meet at a cafe or library. Online classes are also starting soon for those who prefer learning from home."
     }
   },
   "testimonials": {
-    "title": "Real Students, Real Transformations",
-    "subtitle": "Here's what happens when you commit to YOUR English journey"
+    "title": "From My Students",
+    "subtitle": "Real stories from real people I've had the pleasure of teaching"
   },
   "cta": {
-    "title": "Ready to Transform YOUR English?",
-    "subtitle": "Limited spots available. Let's start YOUR personalized journey today.",
-    "button": "Book Your Free Consultation"
+    "title": "Curious about classes?",
+    "subtitle": "No pressure, no commitments. Let's just have a conversation about your goals.",
+    "button": "Send me a message"
   },
   "faq": {
-    "title": "Questions? I've Got Answers",
-    "q1": "How long are your lessons?",
-    "a1": "Each lesson is 60 minutes of focused, personalized instruction built around YOUR goals and YOUR pace.",
-    "q2": "What platforms do you use?",
-    "a2": "I teach via Zoom, Skype, or WhatsApp video call - whatever works best for YOU. Your comfort = better learning.",
-    "q3": "Do you offer trial lessons?",
-    "a3": "Absolutely! Book a free 30-minute consultation and let's discuss your goals. No pressure, just honest conversation about how I can help.",
-    "q4": "How quickly will I see results?",
-    "a4": "Most of my students notice significant improvement within 4-6 weeks with consistent practice. BUT - everyone's journey is different. I'll help you set realistic goals.",
-    "q5": "What materials do I need?",
-    "a5": "I'll provide all course materials digitally. You just need a device with internet access and the motivation to improve. That's it!",
-    "q6": "Can I reschedule lessons?",
-    "a6": "Life happens - I get it! With 24-hour notice, you can reschedule lessons to fit YOUR schedule. Flexibility matters."
+    "title": "Common Questions",
+    "q1": "Where do you teach?",
+    "a1": "I teach in-person in Go Vap, Phu Nhuan, and Binh Thanh districts in Ho Chi Minh City. I can come to your home, or we can meet somewhere convenient. Online classes are also available.",
+    "q2": "What ages do you teach?",
+    "a2": "Everyone! I've taught kindergarteners at Blue Sky Academy, primary school students, teenagers, and adults. Each age group is different, and I adjust my methods accordingly.",
+    "q3": "How much do lessons cost?",
+    "a3": "It depends on the type of class, location, and frequency. Let's chat about your needs first, and I'll give you a clear quote with no hidden fees.",
+    "q4": "Do you teach groups?",
+    "a4": "Yes! Group classes can be more affordable and often more fun. If you have friends or family who want to learn together, we can arrange something.",
+    "q5": "What's your teaching style?",
+    "a5": "Patient, encouraging, and adaptable. I focus on communication over perfection. We'll use real conversations, games, music, and whatever helps you learn best.",
+    "q6": "Can I try a lesson first?",
+    "a6": "Of course! We can do a short trial session so you can see if we're a good fit. No obligation."
   },
   "blog": {
-    "title": "Learning Resources & Tips",
-    "subtitle": "Practical advice to accelerate YOUR English journey",
+    "title": "Stories & Resources",
+    "subtitle": "Thoughts on learning, teaching, and life in Vietnam",
     "categories": {
-      "all": "All Posts",
-      "teaching": "Teaching Tips",
+      "all": "All",
+      "teaching": "Teaching",
       "parents": "For Parents",
-      "learning": "Learning Strategies",
-      "stories": "Success Stories"
+      "learning": "Learning Tips",
+      "stories": "Student Stories"
     },
-    "readMore": "Read More",
+    "readMore": "Read more",
     "readTime": "min read",
-    "backToBlog": "Back to Blog"
+    "backToBlog": "Back to Stories"
   },
   "contact": {
-    "title": "Let's Start YOUR Journey",
-    "subtitle": "Choose the easiest way for YOU to reach me",
+    "title": "Let's Connect",
+    "subtitle": "Have questions? Want to discuss classes? Just want to say hi? I'd love to hear from you.",
     "form": {
-      "title": "Send Me a Message",
-      "name": "Your Name",
-      "email": "Your Email",
-      "phone": "Phone (optional)",
-      "message": "Tell me about your English goals",
-      "consent": "I agree to the privacy policy and understand my data will be processed to respond to my inquiry.",
+      "title": "Send a Message",
+      "name": "Your name",
+      "email": "Your email",
+      "phone": "Phone or Zalo (optional)",
+      "message": "What would you like to know?",
+      "consent": "I'm happy to receive a reply to this message.",
       "submit": "Send Message",
       "submitting": "Sending...",
-      "success": "Thanks! I'll get back to you within 24 hours.",
-      "error": "Oops! Something went wrong. Try WhatsApp or Telegram?",
+      "success": "Thanks! I'll get back to you soon.",
+      "error": "Something went wrong. Try Zalo or WhatsApp instead?",
       "required": "This field is required",
       "invalidEmail": "Please enter a valid email"
     },
-    "or": "Or reach me instantly",
+    "or": "Or reach out directly",
     "availability": {
-      "flexible": "I work around YOUR timezone - flexible scheduling available",
-      "consultation": "Free 30-minute consultation - no commitment required",
-      "online": "100% online via Zoom, Skype, or WhatsApp - learn from anywhere"
+      "flexible": "Flexible scheduling - mornings, afternoons, or evenings",
+      "consultation": "Free initial chat - let's see if we're a good fit",
+      "online": "In-person in HCMC or online via Zoom"
     },
     "trustBadges": {
-      "response": "I usually respond within 1 hour",
-      "noCommitment": "No commitment required for consultation",
-      "trial": "Free trial lesson available"
+      "response": "Usually reply within a few hours",
+      "noCommitment": "No pressure, just conversation",
+      "trial": "Trial lesson available"
     }
   },
   "footer": {
-    "tagline": "Making YOUR English journey exciting and effective - one lesson at a time",
+    "tagline": "English teacher in Ho Chi Minh City, helping students find their voice since 2021",
     "contact": "Get in Touch",
-    "whatsapp": "WhatsApp Me",
-    "telegram": "Message on Telegram",
-    "email": "Send Email",
-    "certifications": "Credentials",
+    "whatsapp": "WhatsApp",
+    "telegram": "Zalo",
+    "email": "Email",
+    "certifications": "Background",
     "tefl": "TEFL Certified",
-    "tesol": "TESOL Certified",
-    "experience": "10+ Years Teaching Experience",
+    "tesol": "ILA Vietnam Experience",
+    "experience": "1,000+ Students Taught",
     "legal": "Legal",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "quickLinks": "Quick Links"
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "quickLinks": "Quick Links",
+    "location": "Teaching in Go Vap, Phu Nhuan & Binh Thanh"
+  },
+  "location": {
+    "title": "Based in Ho Chi Minh City",
+    "districts": "Go Vap • Phu Nhuan • Binh Thanh",
+    "online": "Online classes coming soon"
   }
 }

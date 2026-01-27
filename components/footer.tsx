@@ -1,152 +1,170 @@
 "use client";
 
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { MessageCircle, Send, Mail } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { MessageCircle, Send, Mail, ArrowUpRight } from 'lucide-react';
 
 export function Footer() {
   const t = useTranslations('footer');
+  const locale = useLocale();
+  const footerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(footerRef, { once: true, margin: "-50px" });
+  const [mounted, setMounted] = useState(false);
 
   const whatsappNumber = "+1234567890";
   const telegramUsername = "your_telegram";
   const email = "hello@englishwithconfidence.com";
 
-  const currentYear = new Date().getFullYear();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Only compute year on client to avoid hydration mismatch
+  const currentYear = mounted ? new Date().getFullYear() : 2025;
 
   const socialLinks = [
-    {
-      name: 'WhatsApp',
-      href: `https://wa.me/${whatsappNumber}`,
-      icon: MessageCircle,
-    },
-    {
-      name: 'Telegram',
-      href: `https://t.me/${telegramUsername}`,
-      icon: Send,
-    },
-    {
-      name: 'Email',
-      href: `mailto:${email}`,
-      icon: Mail,
-    },
+    { name: 'WhatsApp', href: `https://wa.me/${whatsappNumber}`, icon: MessageCircle },
+    { name: 'Zalo', href: `https://zalo.me/${telegramUsername}`, icon: Send },
+    { name: 'Email', href: `mailto:${email}`, icon: Mail },
   ];
 
   const navLinks = [
-    { href: '#courses', label: 'Courses' },
-    { href: '#testimonials', label: 'Testimonials' },
-    { href: '#faq', label: 'FAQ' },
-    { href: '#contact', label: 'Contact' },
+    { href: `/${locale}#courses`, label: 'Courses' },
+    { href: `/${locale}/blog`, label: 'Blog' },
+    { href: `/${locale}#testimonials`, label: 'Testimonials' },
+    { href: `/${locale}#faq`, label: 'FAQ' },
+    { href: `/${locale}#contact`, label: 'Contact' },
   ];
 
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="container-lg py-12 lg:py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
-          {/* Brand Column */}
+    <footer ref={footerRef} className="relative bg-foreground text-background">
+      {/* Top border accent */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+
+      <div className="container-2xl py-16 lg:py-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
+          {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
             className="lg:col-span-2"
           >
-            <a href="#" className="inline-block mb-4">
-              <span className="font-display text-xl font-semibold text-foreground">
-                English<span className="text-accent">.</span>
+            <a href="#" className="inline-flex items-baseline gap-0.5 mb-6 group">
+              <span className="font-display text-2xl font-bold text-background group-hover:text-primary transition-colors">
+                English
               </span>
+              <span className="text-primary font-display text-2xl font-bold">.</span>
             </a>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-background/60 text-sm leading-relaxed max-w-sm mb-8">
               {t('tagline')}
             </p>
 
-            {/* Social Links */}
+            {/* Social */}
             <div className="flex items-center gap-2">
               {socialLinks.map((link, index) => {
                 const Icon = link.icon;
                 return (
-                  <a
+                  <motion.a
                     key={index}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.1 + index * 0.05 }}
+                    whileHover={{ y: -2 }}
+                    className="w-10 h-10 flex items-center justify-center border border-background/20 text-background/60 hover:text-primary hover:border-primary transition-colors"
                     aria-label={link.name}
                   >
                     <Icon className="w-4 h-4" />
-                  </a>
+                  </motion.a>
                 );
               })}
             </div>
           </motion.div>
 
-          {/* Navigation Column */}
+          {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1, duration: 0.6 }}
           >
-            <h4 className="label-sm mb-4">Navigation</h4>
+            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-background/40 mb-6">
+              Navigation
+            </h4>
             <nav className="space-y-3">
               {navLinks.map((link, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={link.href}
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.15 + index * 0.05 }}
+                  className="block text-sm text-background/60 hover:text-primary transition-colors"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </nav>
           </motion.div>
 
-          {/* Certifications Column */}
+          {/* Certifications */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h4 className="label-sm mb-4">{t('certifications')}</h4>
-            <div className="space-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                <span>{t('tefl')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                <span>{t('tesol')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                <span>{t('experience')}</span>
-              </div>
+            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-background/40 mb-6">
+              {t('certifications')}
+            </h4>
+            <div className="space-y-3">
+              {[
+                { label: t('tefl') },
+                { label: t('tesol') },
+                { label: t('experience') },
+              ].map((cert, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 text-sm text-background/60"
+                >
+                  <span className="w-1 h-1 bg-primary" />
+                  <span>{cert.label}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border">
+        {/* Bottom */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.4 }}
+          className="pt-8 border-t border-background/10"
+        >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground">
-              {currentYear} English with Confidence. All rights reserved.
+            <p className="text-xs text-background/40">
+              © {currentYear} English with Confidence. All rights reserved.
             </p>
-
             <div className="flex items-center gap-6">
-              <a
-                href="#"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Terms of Service
-              </a>
+              {[
+                { href: '#', label: 'Privacy' },
+                { href: '#', label: 'Terms' },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="inline-flex items-center gap-1 text-xs text-background/40 hover:text-background transition-colors"
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

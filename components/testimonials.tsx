@@ -1,167 +1,281 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Quote, Star } from 'lucide-react';
+import { motion, useAnimationControls } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { Star } from 'lucide-react';
 
+// Testimonial data
 const testimonials = [
-  {
-    name: "Li Wei",
-    role: "Software Engineer",
-    location: "Beijing",
-    country: "CN",
-    text: "After 6 months of lessons, I passed my IELTS with 8.0! The personalized approach made all the difference. Now I work confidently with international clients.",
-    initials: "LW"
-  },
   {
     name: "Nguyễn Thu Hà",
     role: "Marketing Manager",
-    location: "Ho Chi Minh City",
-    country: "VN",
-    text: "I was nervous about speaking English at work. Now I lead presentations and meetings with confidence. The business English course was exactly what I needed.",
-    initials: "NH"
-  },
-  {
-    name: "Dmitry Sokolov",
-    role: "MBA Student",
-    location: "Moscow",
-    country: "RU",
-    text: "The flexible schedule and focus on practical communication helped me succeed in my MBA program. Highly recommend for busy professionals!",
-    initials: "DS"
-  },
-  {
-    name: "Wang Mei",
-    role: "Student",
-    location: "Shanghai",
-    country: "CN",
-    text: "I started from beginner level and now I study at a UK university! The teaching methods are clear, patient, and very effective.",
-    initials: "WM"
+    location: "Gò Vấp",
+    text: "Now I lead presentations with confidence.",
+    initials: "NH",
   },
   {
     name: "Trần Minh",
     role: "Business Owner",
-    location: "Hanoi",
-    country: "VN",
-    text: "My business expanded internationally thanks to improved English skills. The lessons focused on real-world scenarios I use every day.",
-    initials: "TM"
+    location: "Phú Nhuận",
+    text: "My business expanded internationally.",
+    initials: "TM",
   },
   {
-    name: "Elena Ivanova",
-    role: "Translator",
-    location: "St. Petersburg",
-    country: "RU",
-    text: "Advanced lessons helped me perfect my accent and cultural understanding. Now I work as a professional translator for top companies.",
-    initials: "EI"
-  }
+    name: "Lê Văn Hùng",
+    role: "Parent",
+    location: "Bình Thạnh",
+    text: "My daughter went from shy to confident.",
+    initials: "LH",
+  },
+  {
+    name: "Phạm Thị Mai",
+    role: "University Student",
+    location: "Gò Vấp",
+    text: "Improved my IELTS speaking significantly.",
+    initials: "PM",
+  },
+  {
+    name: "David Chen",
+    role: "Software Engineer",
+    location: "District 7",
+    text: "Perfect for professional communication.",
+    initials: "DC",
+  },
+  {
+    name: "Anna Kozlova",
+    role: "Expat Parent",
+    location: "Thảo Điền",
+    text: "Best English teacher for our kids.",
+    initials: "AK",
+  },
 ];
 
-export function Testimonials() {
-  const t = useTranslations('testimonials');
-
+// Single testimonial card
+function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
   return (
-    <section id="testimonials" className="section">
-      <div className="container-lg">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="label-sm text-primary mb-4 block"
-          >
-            Testimonials
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-foreground mb-4"
-          >
-            {t('title')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-muted-foreground"
-          >
-            {t('subtitle')}
-          </motion.p>
-        </div>
+    <motion.div
+      className="group relative flex-shrink-0 w-[320px] md:w-[380px]"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="relative h-full p-6 md:p-8 bg-[#FDFCF8]/80 dark:bg-[#0A0A0C]/80 backdrop-blur-xl border border-[#0F0F11]/10 dark:border-[#F5F1E8]/10 transition-all duration-500 group-hover:border-[#C85C3F]/30 dark:group-hover:border-[#E88C73]/30 group-hover:shadow-[0_8px_40px_-12px_rgba(200,92,63,0.15)] dark:group-hover:shadow-[0_8px_40px_-12px_rgba(232,140,115,0.15)]">
+        {/* Quote accent line */}
+        <div className="absolute top-0 left-6 md:left-8 w-8 h-[2px] bg-gradient-to-r from-[#C85C3F] to-[#B8956A] dark:from-[#E88C73] dark:to-[#D4B896]" />
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="h-full p-6 lg:p-8 bg-card border border-border rounded-lg hover:border-primary/30 hover:shadow-lg transition-all duration-300">
-                {/* Quote Icon */}
-                <Quote className="w-8 h-8 text-primary/30 mb-4" />
-
-                {/* Testimonial Text */}
-                <p className="text-foreground leading-relaxed mb-6">
-                  "{testimonial.text}"
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 flex items-center justify-center text-xs font-medium bg-primary/10 text-primary rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    {testimonial.initials}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-foreground text-sm truncate">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-xs text-muted-foreground truncate">
-                      {testimonial.role}, {testimonial.location}
-                    </p>
-                  </div>
-                  <span className="text-[10px] font-accent tracking-wider text-muted-foreground">
-                    {testimonial.country}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+        {/* Stars */}
+        <div className="flex gap-0.5 mb-4">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-3 h-3 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
           ))}
         </div>
 
-        {/* Trust Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 pt-12 border-t border-border"
-        >
-          <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
-            {[
-              { value: '4.9/5', label: 'Average Rating', icon: Star },
-              { value: '500+', label: 'Happy Students' },
-              { value: '25+', label: 'Countries' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="flex items-center justify-center gap-2">
-                  {stat.icon && <stat.icon className="w-5 h-5 text-accent fill-accent" />}
-                  <span className="font-display text-3xl md:text-4xl font-semibold text-primary">
-                    {stat.value}
-                  </span>
-                </div>
-                <p className="label-sm mt-2">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+        {/* Quote */}
+        <p className="font-sans text-base md:text-lg text-[#0F0F11] dark:text-[#F5F1E8] leading-relaxed mb-6 line-clamp-2">
+          "{testimonial.text}"
+        </p>
+
+        {/* Author */}
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 flex items-center justify-center text-xs font-mono tracking-wider bg-[#C85C3F] dark:bg-[#E88C73] text-white">
+            {testimonial.initials}
           </div>
-        </motion.div>
+          <div>
+            <p className="font-display text-sm font-semibold text-[#0F0F11] dark:text-[#F5F1E8]">
+              {testimonial.name}
+            </p>
+            <p className="font-mono text-[10px] tracking-wider text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 uppercase">
+              {testimonial.role} · {testimonial.location}
+            </p>
+          </div>
+        </div>
       </div>
+    </motion.div>
+  );
+}
+
+// Infinite marquee component
+function Marquee({ children, reverse = false, pauseOnHover = true }: {
+  children: React.ReactNode;
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+}) {
+  const [isPaused, setIsPaused] = useState(false);
+
+  return (
+    <div
+      className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+      onMouseEnter={() => pauseOnHover && setIsPaused(true)}
+      onMouseLeave={() => pauseOnHover && setIsPaused(false)}
+    >
+      <motion.div
+        className="flex gap-4 md:gap-6 pr-4 md:pr-6"
+        animate={{
+          x: reverse ? ["0%", "-50%"] : ["-50%", "0%"],
+        }}
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        style={{
+          animationPlayState: isPaused ? "paused" : "running",
+        }}
+      >
+        {children}
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+// Animated stat counter
+function StatValue({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [mounted, setMounted] = useState(false);
+  const [displayValue, setDisplayValue] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    const duration = 2000;
+    const steps = 60;
+    const increment = value / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setDisplayValue(value);
+        clearInterval(timer);
+      } else {
+        setDisplayValue(Math.floor(current));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {mounted ? displayValue : 0}{suffix}
+    </span>
+  );
+}
+
+export function Testimonials() {
+  const t = useTranslations('testimonials');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <section id="testimonials" className="relative py-16 md:py-24 overflow-hidden bg-[#FDFCF8] dark:bg-[#0A0A0C]">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0F0F11]/10 dark:via-[#F5F1E8]/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0F0F11]/10 dark:via-[#F5F1E8]/10 to-transparent" />
+      </div>
+
+      {/* Compact Header with Stats */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12">
+          {/* Left: Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-md"
+          >
+            <span className="inline-block font-mono text-[10px] tracking-[0.3em] uppercase text-[#C85C3F] dark:text-[#E88C73] mb-3">
+              Testimonials
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1]" style={{ letterSpacing: '-0.02em' }}>
+              {t('title')}
+            </h2>
+          </motion.div>
+
+          {/* Right: Stats row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-8 md:gap-12"
+          >
+            {/* Stat 1 */}
+            <div className="text-center">
+              <div className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">
+                <StatValue value={1000} suffix="+" />
+              </div>
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
+                Students
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-12 bg-[#0F0F11]/10 dark:bg-[#F5F1E8]/10" />
+
+            {/* Stat 2 */}
+            <div className="text-center">
+              <div className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">
+                <StatValue value={3} />
+              </div>
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
+                Years
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-12 bg-[#0F0F11]/10 dark:bg-[#F5F1E8]/10" />
+
+            {/* Stat 3 - Rating */}
+            <div className="text-center">
+              <div className="flex items-center gap-1 justify-center">
+                <span className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">5.0</span>
+                <Star className="w-5 h-5 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
+              </div>
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
+                Rating
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Infinite Marquee */}
+      {mounted && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <Marquee pauseOnHover>
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={index} testimonial={testimonial} index={index} />
+            ))}
+          </Marquee>
+        </motion.div>
+      )}
+
+      {/* Bottom accent */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="max-w-7xl mx-auto px-4 md:px-8 mt-12 md:mt-16"
+      >
+        <div className="flex items-center justify-center gap-4">
+          <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#0F0F11]/20 dark:to-[#F5F1E8]/20" />
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#0F0F11]/40 dark:text-[#F5F1E8]/40">
+            ILA Vietnam · Blue Sky Academy
+          </span>
+          <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#0F0F11]/20 dark:to-[#F5F1E8]/20" />
+        </div>
+      </motion.div>
     </section>
   );
 }

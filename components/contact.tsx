@@ -1,14 +1,17 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { ContactForm } from './contact-form';
 import { trackCTAClick } from '@/lib/analytics';
-import { MessageCircle, Send, Mail, Clock, Calendar, Video, ArrowRight } from 'lucide-react';
+import { MessageCircle, Send, Mail, ArrowRight, MapPin } from 'lucide-react';
 
 export function Contact() {
   const t = useTranslations('cta');
   const contactT = useTranslations('contact');
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const whatsappNumber = "+1234567890";
   const telegramUsername = "your_telegram";
@@ -18,187 +21,181 @@ export function Contact() {
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      description: "Chat instantly",
+      description: "Quick responses",
+      action: "Chat Now",
       href: `https://wa.me/${whatsappNumber}?text=Hi! I'm interested in English lessons.`,
-      color: "text-[#25D366]",
     },
     {
       icon: Send,
-      label: "Telegram",
-      description: "Message me",
-      href: `https://t.me/${telegramUsername}`,
-      color: "text-[#0088cc]",
+      label: "Zalo",
+      description: "Popular in Vietnam",
+      action: "Message",
+      href: `https://zalo.me/${telegramUsername}`,
     },
     {
       icon: Mail,
       label: "Email",
-      description: email,
+      description: "Detailed inquiries",
+      action: "Send Email",
       href: `mailto:${email}`,
-      color: "text-primary",
     }
   ];
 
   return (
-    <section id="contact" className="section">
-      <div className="container-lg">
-        {/* Main CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden mb-16 lg:mb-24 rounded-2xl"
-        >
-          <div className="relative bg-primary p-10 lg:p-16">
-            <div className="relative z-10 max-w-3xl mx-auto text-center">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="inline-block text-xs font-accent tracking-wider uppercase text-primary-foreground/70 mb-4"
-              >
-                Start Your Journey
-              </motion.span>
+    <section id="contact" ref={sectionRef} className="section relative overflow-hidden bg-muted/30">
+      {/* Top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-primary-foreground mb-4"
-              >
-                {t('title')}
-              </motion.h2>
+      {/* Background decorative element */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 0.015 } : {}}
+        transition={{ duration: 1 }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[25vw] font-bold text-foreground select-none pointer-events-none hidden lg:block"
+      >
+        @
+      </motion.div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="text-lg text-primary-foreground/80 max-w-xl mx-auto mb-8"
-              >
-                {t('subtitle')}
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=Hi! I'd like to book a free consultation.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackCTAClick('contact', 'whatsapp_cta')}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground text-primary font-medium rounded-lg hover:opacity-90 transition-opacity group"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  <span>{t('button')}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Contact Methods Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16 lg:mb-24">
-          {contactMethods.map((method, index) => {
-            const Icon = method.icon;
-            return (
-              <motion.a
-                key={index}
-                href={method.href}
-                target={method.href.startsWith('http') ? "_blank" : undefined}
-                rel={method.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                onClick={() => trackCTAClick('contact', method.label.toLowerCase())}
-                className="group p-6 lg:p-8 border border-border rounded-lg bg-card hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className={`${method.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-display text-lg font-semibold text-foreground mb-1">
-                  {method.label}
-                </h3>
-                <p className="text-sm text-muted-foreground">{method.description}</p>
-              </motion.a>
-            );
-          })}
+      <div className="container-2xl relative">
+        {/* Header */}
+        <div className="max-w-3xl mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="eyebrow mb-6"
+          >
+            Contact
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-foreground mb-6"
+          >
+            {contactT('title')}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-muted-foreground text-lg md:text-xl"
+          >
+            {contactT('subtitle')}
+          </motion.p>
         </div>
 
-        {/* Availability Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 py-8 border-y border-border mb-16 lg:mb-24"
-        >
-          {[
-            { icon: Clock, text: "Flexible scheduling for your timezone" },
-            { icon: Calendar, text: "Free 30-minute consultation" },
-            { icon: Video, text: "Online via Zoom, Skype, or WhatsApp" },
-          ].map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div key={index} className="flex items-center gap-3 text-muted-foreground">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-primary/10">
-                  <Icon className="w-5 h-5 text-primary" />
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left - Contact Methods */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {/* Quick Contact */}
+            <div className="space-y-4 mb-12">
+              {contactMethods.map((method, index) => {
+                const Icon = method.icon;
+                return (
+                  <motion.a
+                    key={method.label}
+                    href={method.href}
+                    target={method.href.startsWith('http') ? "_blank" : undefined}
+                    rel={method.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    onClick={() => trackCTAClick('contact', method.label.toLowerCase())}
+                    whileHover={{ x: 8 }}
+                    className="group flex items-center gap-4 p-4 bg-card border border-border hover:border-primary/30 transition-all duration-300"
+                  >
+                    <div className="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-foreground">{method.label}</p>
+                      <p className="text-sm text-muted-foreground">{method.description}</p>
+                    </div>
+                    <span className="text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                      {method.action}
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </motion.a>
+                );
+              })}
+            </div>
+
+            {/* Location Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="p-6 border border-border bg-card"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 flex items-center justify-center bg-foreground text-background shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
-                <span className="text-sm font-medium">{item.text}</span>
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Teaching in Ho Chi Minh City</p>
+                  <p className="text-muted-foreground text-sm mb-3">
+                    In-person lessons available in select districts.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Gò Vấp', 'Phú Nhuận', 'Bình Thạnh'].map((district) => (
+                      <span
+                        key={district}
+                        className="text-xs font-mono tracking-wide px-2 py-1 bg-muted text-muted-foreground"
+                      >
+                        {district}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            );
-          })}
-        </motion.div>
+            </motion.div>
+          </motion.div>
 
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="text-center mb-10">
-            <span className="label-sm text-primary mb-4 block">Or Send a Message</span>
-            <h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground">
-              {contactT('form.title')}
-            </h3>
-          </div>
-
-          <ContactForm
-            translations={{
-              title: contactT('form.title'),
-              name: contactT('form.name'),
-              email: contactT('form.email'),
-              phone: contactT('form.phone'),
-              message: contactT('form.message'),
-              consent: contactT('form.consent'),
-              submit: contactT('form.submit'),
-              submitting: contactT('form.submitting'),
-              success: contactT('form.success'),
-              error: contactT('form.error'),
-            }}
-          />
-        </motion.div>
+          {/* Right - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="p-6 md:p-8 lg:p-10 border border-border bg-card">
+              <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-6">
+                {contactT('form.title')}
+              </h3>
+              <ContactForm
+                translations={{
+                  title: contactT('form.title'),
+                  name: contactT('form.name'),
+                  email: contactT('form.email'),
+                  phone: contactT('form.phone'),
+                  message: contactT('form.message'),
+                  consent: contactT('form.consent'),
+                  submit: contactT('form.submit'),
+                  submitting: contactT('form.submitting'),
+                  success: contactT('form.success'),
+                  error: contactT('form.error'),
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
 
         {/* Trust Badges */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-3 mt-12"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex flex-wrap justify-center gap-3 mt-16 md:mt-20 pt-12 border-t border-border"
         >
-          {['TEFL Certified', 'TESOL Certified', '10+ Years Experience', '500+ Students'].map((badge, index) => (
+          {['TEFL Certified', '3 Years in Vietnam', 'ILA & Blue Sky', '1000+ Students'].map((badge) => (
             <span
-              key={index}
-              className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-accent tracking-wider text-muted-foreground border border-border rounded-full"
+              key={badge}
+              className="px-4 py-2 text-xs font-mono tracking-wider text-muted-foreground bg-muted border border-border"
             >
-              <span className="w-1.5 h-1.5 bg-accent rounded-full" />
               {badge}
             </span>
           ))}

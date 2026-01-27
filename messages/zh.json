@@ -1,103 +1,123 @@
 {
   "nav": {
-    "home": "主页",
+    "home": "首页",
     "courses": "课程",
-    "about": "关于",
-    "testimonials": "评价",
-    "faq": "常见问题",
+    "blog": "文章",
+    "testimonials": "学员",
+    "faq": "问答",
     "contact": "联系"
   },
   "hero": {
-    "badge": "专业英语教师",
-    "title": "自信掌握英语",
-    "subtitle": "为越南、中国和俄罗斯说话者设计的个性化一对一课程。通过经过验证的方法更快地实现流利。",
-    "cta": "开始您的旅程",
-    "secondary": "查看课程",
+    "badge": "胡志明市英语老师",
+    "title": "学习英语应该像一场冒险",
+    "subtitle": "我是一名在胡志明市的英语老师。过去3年里,我帮助各年龄段的学生发现说英语的乐趣 - 在Go Vap、Phu Nhuan和Binh Thanh的课堂上。",
+    "cta": "联系我",
+    "secondary": "了解我的教学",
     "stats": {
-      "students": "500+ 学生",
-      "experience": "10+ 年经验",
-      "success": "95% 成功率"
+      "students": "1,000+ 学生",
+      "experience": "3年越南经验",
+      "success": "ILA & Blue Sky"
     }
   },
   "courses": {
-    "title": "课程内容",
-    "subtitle": "选择适合您目标的完美课程",
+    "title": "我们如何一起学习",
+    "subtitle": "每个学生都不同。这是我如何调整教学方式来适应你。",
     "beginner": {
-      "title": "初级基础",
-      "description": "通过基本词汇、语法和会话技能建立信心",
-      "duration": "12 周",
-      "level": "A1-A2"
+      "title": "初级起步",
+      "description": "适合初学者。我们通过游戏、歌曲和耐心建立信心。没有压力,只有进步。",
+      "duration": "灵活",
+      "level": "初级"
     },
     "intermediate": {
-      "title": "中级精通",
-      "description": "通过高级语法、商务英语和文化流利度扩展您的能力",
-      "duration": "16 周",
-      "level": "B1-B2"
+      "title": "找到你的声音",
+      "description": "你会一些英语但想说得更自然。我们将专注于真实对话和流利度。",
+      "duration": "持续",
+      "level": "中级"
     },
     "advanced": {
-      "title": "高级卓越",
-      "description": "为专业环境、演讲和母语级别的交流完善您的英语",
-      "duration": "20 周",
-      "level": "C1-C2"
+      "title": "完善与自信",
+      "description": "适合准备考试、面试或想精通语言的学生。我们改善发音,扩展词汇。",
+      "duration": "定制",
+      "level": "高级"
     },
     "business": {
-      "title": "商务英语",
-      "description": "专门针对会议、谈判、电子邮件和企业沟通的培训",
-      "duration": "12 周",
-      "level": "B2+"
+      "title": "少儿英语",
+      "description": "4-12岁儿童的专业课程。我在胡志明市的幼儿园和小学都教过 - 我知道如何让学习变得有趣。",
+      "duration": "每周",
+      "level": "4-12岁"
     }
   },
   "testimonials": {
-    "title": "学生成功故事",
-    "subtitle": "加入全球数百名成功学生"
+    "title": "来自我的学生",
+    "subtitle": "来自我有幸教过的真实人物的真实故事"
   },
   "cta": {
-    "title": "准备好改变您的英语了吗?",
-    "subtitle": "名额有限。今天就开始您的个性化学习之旅。",
-    "button": "预约免费咨询"
+    "title": "想了解课程?",
+    "subtitle": "没有压力,没有承诺。让我们聊聊你的目标。",
+    "button": "发消息"
   },
   "faq": {
     "title": "常见问题",
-    "q1": "课程时长是多少?",
-    "a1": "每节课为60分钟的专注、个性化指导，根据您的目标量身定制。",
-    "q2": "你们使用什么平台?",
-    "a2": "我们根据您的偏好使用Zoom、Skype或WhatsApp视频通话。",
-    "q3": "你们提供试听课吗?",
-    "a3": "是的!预约30分钟的免费咨询，讨论您的目标并体验我们的教学风格。",
-    "q4": "我多快能看到效果?",
-    "a4": "大多数学生在4-6周内通过持续的练习和奉献精神会注意到显著的进步。",
-    "q5": "我需要什么材料?",
-    "a5": "所有课程材料均以数字方式提供。您只需要一台可以上网的设备。",
-    "q6": "我可以重新安排课程吗?",
-    "a6": "可以，提前24小时通知，您可以重新安排课程以适应您的时间表。"
+    "q1": "你在哪里教课?",
+    "a1": "我在胡志明市的Go Vap、Phu Nhuan和Binh Thanh区面对面授课。我可以去你家,或者我们在方便的地方见面。在线课程也可以。",
+    "q2": "你教什么年龄段?",
+    "a2": "所有年龄!我教过幼儿园小朋友、小学生、青少年和成人。每个年龄组都不同,我会相应调整方法。",
+    "q3": "课程多少钱?",
+    "a3": "取决于课程类型、地点和频率。让我们先聊聊你的需求,我会给你一个清晰的报价,没有隐藏费用。",
+    "q4": "你教小组吗?",
+    "a4": "是的!小组课可能更实惠,也更有趣。如果你有朋友或家人想一起学,我们可以安排。",
+    "q5": "你的教学风格是什么?",
+    "a5": "耐心、鼓励、灵活。我注重沟通而非完美。我们会用真实对话、游戏、音乐和任何帮助你学习的东西。",
+    "q6": "可以先试课吗?",
+    "a6": "当然!我们可以做一个短的试听课,看看我们是否合适。没有义务。"
   },
-  "footer": {
-    "tagline": "专业的英语教育助力全球成功",
-    "contact": "联系方式",
-    "whatsapp": "WhatsApp",
-    "telegram": "Telegram",
-    "email": "电子邮件",
-    "certifications": "资格证书",
-    "tefl": "TEFL认证",
-    "tesol": "TESOL认证",
-    "experience": "10+ 年教学经验"
+  "blog": {
+    "title": "文章与资源",
+    "subtitle": "关于学习、教学和越南生活的想法",
+    "categories": {
+      "all": "全部",
+      "teaching": "教学",
+      "parents": "家长",
+      "learning": "学习技巧",
+      "stories": "学生故事"
+    },
+    "readMore": "阅读更多",
+    "readTime": "分钟阅读",
+    "backToBlog": "返回"
   },
   "contact": {
-    "title": "开启您的学习之旅",
-    "subtitle": "选择最方便的方式联系我",
+    "title": "联系我",
+    "subtitle": "有问题?想讨论课程?只是想打个招呼?我很乐意听到你的消息。",
     "form": {
-      "title": "给我发消息",
-      "name": "您的姓名",
-      "email": "您的邮箱",
-      "phone": "电话（可选）",
-      "message": "告诉我您的英语学习目标",
-      "consent": "我同意隐私政策，并理解我的数据将被处理以回复我的询问。",
-      "submit": "发送消息",
+      "title": "发送消息",
+      "name": "你的名字",
+      "email": "你的邮箱",
+      "phone": "电话(可选)",
+      "message": "你想知道什么?",
+      "consent": "我愿意收到回复。",
+      "submit": "发送",
       "submitting": "发送中...",
-      "success": "谢谢！我会在24小时内回复您。",
-      "error": "哎呀！出了点问题。试试WhatsApp或Telegram？",
-      "required": "此字段为必填项",
-      "invalidEmail": "请输入有效的电子邮件地址"
+      "success": "谢谢!我会尽快回复。",
+      "error": "出了点问题。试试WhatsApp?",
+      "required": "必填",
+      "invalidEmail": "请输入有效邮箱"
     }
+  },
+  "footer": {
+    "tagline": "胡志明市英语老师,自2021年起帮助学生找到自己的声音",
+    "contact": "联系",
+    "whatsapp": "WhatsApp",
+    "telegram": "Zalo",
+    "email": "邮箱",
+    "certifications": "背景",
+    "tefl": "TEFL认证",
+    "tesol": "ILA越南经验",
+    "experience": "1,000+学生",
+    "location": "在Go Vap、Phu Nhuan和Binh Thanh授课"
+  },
+  "location": {
+    "title": "位于胡志明市",
+    "districts": "Go Vap • Phu Nhuan • Binh Thanh",
+    "online": "在线课程即将推出"
   }
 }

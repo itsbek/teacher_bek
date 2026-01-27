@@ -1,123 +1,120 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { BookOpen, Monitor, GraduationCap, Briefcase, ArrowRight, Check } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { BookOpen, Users, GraduationCap, Briefcase, ArrowRight } from 'lucide-react';
 import { trackCTAClick } from '@/lib/analytics';
 
-const courseKeys = ['beginner', 'intermediate', 'advanced', 'business'] as const;
-
-const courseIcons = {
-  beginner: BookOpen,
-  intermediate: Monitor,
-  advanced: GraduationCap,
-  business: Briefcase,
-};
+const courseData = [
+  { key: 'beginner', icon: BookOpen, accent: 'from-orange-500 to-amber-500' },
+  { key: 'intermediate', icon: Users, accent: 'from-primary to-orange-400' },
+  { key: 'advanced', icon: GraduationCap, accent: 'from-rose-500 to-primary' },
+  { key: 'business', icon: Briefcase, accent: 'from-amber-500 to-orange-500' },
+] as const;
 
 export function Courses() {
   const t = useTranslations('courses');
-
-  const benefits = [
-    "Personalized curriculum",
-    "Flexible scheduling",
-    "Progress tracking",
-    "Certificate included"
-  ];
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="courses" className="section bg-muted/30">
-      <div className="container-lg">
+    <section ref={sectionRef} id="courses" className="section relative overflow-hidden bg-background">
+      {/* Top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+      {/* Background number */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 0.015 } : {}}
+        transition={{ duration: 1 }}
+        className="absolute -left-[10%] top-1/2 -translate-y-1/2 font-display text-[30vw] font-bold text-foreground select-none pointer-events-none hidden lg:block"
+      >
+        04
+      </motion.div>
+
+      <div className="container-2xl relative">
         {/* Section Header */}
-        <div className="max-w-2xl mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="label-sm text-primary mb-4 block"
+        <div className="max-w-3xl mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="eyebrow mb-6"
           >
             Courses
-          </motion.span>
+          </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-foreground mb-4"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-foreground mb-6"
           >
             {t('title')}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-muted-foreground"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-muted-foreground text-lg md:text-xl"
           >
             {t('subtitle')}
           </motion.p>
         </div>
 
         {/* Course Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {courseKeys.map((key, index) => {
-            const Icon = courseIcons[key];
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+          {courseData.map((course, index) => {
+            const Icon = course.icon;
             return (
               <motion.div
-                key={key}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                key={course.key}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                 className="group"
               >
-                <div className="h-full p-8 lg:p-10 bg-card border border-border rounded-lg hover:border-primary/30 hover:shadow-lg transition-all duration-300">
-                  {/* Card Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs font-accent tracking-wider text-muted-foreground">
+                <div className="card-feature h-full p-6 md:p-8 lg:p-10">
+                  {/* Top Row: Number + Icon */}
+                  <div className="flex items-start justify-between mb-6 md:mb-8">
+                    <span className="font-mono text-xs text-muted-foreground tracking-wider">
                       0{index + 1}
                     </span>
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className={`w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-gradient-to-br ${course.accent}`}
+                    >
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                    </motion.div>
                   </div>
 
-                  {/* Card Title */}
-                  <h3 className="font-display text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {t(`${key}.title`)}
+                  {/* Title */}
+                  <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-3 md:mb-4 group-hover:text-primary transition-colors duration-300">
+                    {t(`${course.key}.title`)}
                   </h3>
 
-                  {/* Card Description */}
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {t(`${key}.description`)}
+                  {/* Description */}
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
+                    {t(`${course.key}.description`)}
                   </p>
 
-                  {/* Meta Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="inline-flex items-center px-3 py-1 text-xs font-accent tracking-wider text-primary bg-primary/10 rounded-full">
-                      {t(`${key}.duration`)}
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
+                    <span className="badge">
+                      {t(`${course.key}.duration`)}
                     </span>
-                    <span className="inline-flex items-center px-3 py-1 text-xs font-accent tracking-wider text-foreground bg-muted rounded-full">
-                      {t(`${key}.level`)}
+                    <span className="tag">
+                      {t(`${course.key}.level`)}
                     </span>
-                  </div>
-
-                  {/* Benefits */}
-                  <div className="space-y-2 mb-8 pt-6 border-t border-border">
-                    {benefits.map((benefit, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>{benefit}</span>
-                      </div>
-                    ))}
                   </div>
 
                   {/* CTA */}
                   <a
                     href="#contact"
-                    onClick={() => trackCTAClick('courses', key)}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
+                    onClick={() => trackCTAClick('courses', course.key)}
+                    className="link-arrow text-sm"
                   >
-                    <span>Get Started</span>
+                    <span>Learn more</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
@@ -126,30 +123,43 @@ export function Courses() {
           })}
         </div>
 
-        {/* Consultation CTA */}
+        {/* CTA Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-12 text-center"
+          transition={{ delay: 0.3 }}
+          className="mt-16 md:mt-24"
         >
-          <div className="inline-block p-8 md:p-12 border-2 border-dashed border-border rounded-lg bg-card/50">
-            <span className="label-sm text-accent mb-4 block">Not Sure?</span>
-            <h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-3">
-              Let's Talk
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Book a free consultation and I'll recommend the perfect course for your goals.
-            </p>
-            <a
-              href="#contact"
-              onClick={() => trackCTAClick('courses', 'consultation')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-accent text-accent-foreground font-medium rounded-lg hover:opacity-90 transition-opacity group"
-            >
-              <span>Free Consultation</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+          <div className="relative p-8 md:p-12 lg:p-16 bg-foreground text-background overflow-hidden">
+            {/* Corner decorations */}
+            <div className="corner-decoration corner-tl top-4 left-4" />
+            <div className="corner-decoration corner-br bottom-4 right-4" />
+
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 md:gap-8">
+              <div className="max-w-lg">
+                <span className="label text-background/60 mb-3 block">Not sure where to start?</span>
+                <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-background mb-3">
+                  Let's Talk
+                </h3>
+                <p className="text-background/70 text-base md:text-lg">
+                  Book a free consultation and I'll recommend the perfect approach for your goals.
+                </p>
+              </div>
+              <motion.a
+                href="#contact"
+                onClick={() => trackCTAClick('courses', 'consultation')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-background text-foreground font-semibold text-base transition-all duration-300 hover:bg-primary hover:text-primary-foreground group shrink-0"
+              >
+                <span>Free Consultation</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+            </div>
           </div>
         </motion.div>
       </div>

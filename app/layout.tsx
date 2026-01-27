@@ -1,62 +1,93 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit, JetBrains_Mono } from "next/font/google";
+import { Playfair_Display, DM_Sans, Space_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
+// Elegant editorial display font
+const playfair = Playfair_Display({
+  subsets: ["latin", "latin-ext", "vietnamese"],
   variable: "--font-display",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+// Modern, highly readable body font
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-sans",
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const outfit = Outfit({
+// Monospace accent for numbers and labels
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-mono",
   display: "swap",
-  weight: ["200", "300", "400", "500", "600"],
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-accent",
-  display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://englishwithconfidence.com'),
   title: {
-    default: "Master English with Confidence | Professional English Teacher",
-    template: "%s | English with Confidence"
+    default: "Giáo viên tiếng Anh tại TP.HCM | English Teacher in Ho Chi Minh City",
+    template: "%s | English Teacher HCMC"
   },
-  description: "Personalized one-on-one English lessons for Vietnamese, Chinese, and Russian speakers. Achieve fluency faster with proven methods from a certified TEFL/TESOL teacher with 10+ years experience.",
-  keywords: ["English teacher", "English lessons", "learn English", "TEFL", "TESOL", "Vietnamese learners", "Chinese learners", "Russian learners", "business English", "online English tutor"],
-  authors: [{ name: "English with Confidence" }],
-  creator: "English with Confidence",
-  publisher: "English with Confidence",
+  description: "Giáo viên tiếng Anh tại Gò Vấp, Phú Nhuận, Bình Thạnh. 3 năm kinh nghiệm tại ILA Vietnam, Blue Sky Academy. Dạy kèm tiếng Anh cho trẻ em và người lớn. English teacher in Ho Chi Minh City with experience at ILA Vietnam and Blue Sky Academy.",
+  keywords: [
+    "giáo viên tiếng Anh Gò Vấp",
+    "dạy tiếng Anh Phú Nhuận",
+    "học tiếng Anh Bình Thạnh",
+    "gia sư tiếng Anh TPHCM",
+    "dạy kèm tiếng Anh quận Gò Vấp",
+    "lớp tiếng Anh cho trẻ em",
+    "giáo viên bản ngữ tiếng Anh",
+    "học tiếng Anh tại nhà TPHCM",
+    "English teacher Ho Chi Minh",
+    "English tutor Saigon",
+    "English teacher Ho Chi Minh City",
+    "English lessons Go Vap",
+    "English tutor Phu Nhuan",
+    "English classes Binh Thanh",
+    "ILA Vietnam teacher",
+    "Blue Sky Academy English",
+    "private English lessons HCMC",
+    "English for kids Saigon",
+    "learn English Ho Chi Minh",
+    "native English teacher Vietnam"
+  ],
+  authors: [{ name: "English Teacher HCMC" }],
+  creator: "English Teacher HCMC",
+  publisher: "English Teacher HCMC",
+  alternates: {
+    languages: {
+      'en': '/en',
+      'vi': '/vi',
+    },
+  },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "vi_VN",
+    alternateLocale: "en_US",
     url: "https://englishwithconfidence.com",
-    siteName: "English with Confidence",
-    title: "Master English with Confidence | Professional English Teacher",
-    description: "Personalized one-on-one English lessons for Vietnamese, Chinese, and Russian speakers.",
+    siteName: "English Teacher HCMC",
+    title: "Giáo viên tiếng Anh tại TP.HCM | English Teacher Ho Chi Minh City",
+    description: "Giáo viên tiếng Anh kinh nghiệm tại Gò Vấp, Phú Nhuận, Bình Thạnh. Dạy kèm cho trẻ em và người lớn.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "English with Confidence"
+        alt: "English Teacher in Ho Chi Minh City"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Master English with Confidence",
-    description: "Personalized English lessons with a certified teacher",
+    title: "English Teacher in Ho Chi Minh City",
+    description: "Dạy tiếng Anh tại Gò Vấp, Phú Nhuận, Bình Thạnh",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -70,6 +101,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'VN-SG',
+    'geo.placename': 'Ho Chi Minh City',
+    'geo.position': '10.8231;106.6297',
+    'ICBM': '10.8231, 106.6297',
+  },
 };
 
 export default function RootLayout({
@@ -79,7 +116,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${cormorantGaramond.variable} ${outfit.variable} ${jetBrainsMono.variable} font-sans antialiased`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "English Teacher HCMC",
+              "description": "Giáo viên tiếng Anh tại TP.HCM - English lessons in Go Vap, Phu Nhuan, Binh Thanh",
+              "url": "https://englishwithconfidence.com",
+              "telephone": "+84",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ho Chi Minh City",
+                "addressRegion": "Ho Chi Minh",
+                "addressCountry": "VN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 10.8231,
+                "longitude": 106.6297
+              },
+              "areaServed": [
+                { "@type": "City", "name": "Go Vap District, Ho Chi Minh City" },
+                { "@type": "City", "name": "Phu Nhuan District, Ho Chi Minh City" },
+                { "@type": "City", "name": "Binh Thanh District, Ho Chi Minh City" }
+              ],
+              "serviceType": ["English Language Teaching", "Private English Lessons", "English Tutoring"],
+              "priceRange": "$$"
+            })
+          }}
+        />
+      </head>
+      <body className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased`}>
         {GA_MEASUREMENT_ID && (
           <>
             <Script

@@ -1,104 +1,131 @@
 {
   "nav": {
     "home": "Trang chủ",
-    "courses": "Khóa học",
-    "about": "Giới thiệu",
-    "testimonials": "Nhận xét",
-    "faq": "Câu hỏi thường gặp",
+    "courses": "Lớp học",
+    "blog": "Bài viết",
+    "testimonials": "Học viên",
+    "faq": "Hỏi đáp",
     "contact": "Liên hệ"
   },
   "hero": {
-    "badge": "Giáo viên tiếng Anh chuyên nghiệp",
-    "title": "Làm chủ tiếng Anh với sự tự tin",
-    "subtitle": "Các buổi học 1-1 được cá nhân hóa dành cho người Việt Nam, Trung Quốc và Nga. Đạt được sự lưu loát nhanh hơn với các phương pháp đã được chứng minh.",
-    "cta": "Bắt đầu hành trình",
-    "secondary": "Xem khóa học",
+    "badge": "Giáo viên tiếng Anh tại TP.HCM",
+    "title": "Học tiếng Anh như một cuộc phiêu lưu",
+    "subtitle": "Tôi là giáo viên tiếng Anh tại Thành phố Hồ Chí Minh. Trong 3 năm qua, tôi đã giúp học viên ở mọi lứa tuổi khám phá niềm vui khi nói tiếng Anh - tại các lớp học ở Gò Vấp, Phú Nhuận và Bình Thạnh.",
+    "cta": "Trò chuyện ngay",
+    "secondary": "Xem cách tôi dạy",
     "stats": {
-      "students": "500+ Học viên",
-      "experience": "10+ Năm kinh nghiệm",
-      "success": "95% Thành công"
+      "students": "1,000+ Học viên",
+      "experience": "3 Năm tại Việt Nam",
+      "success": "ILA & Blue Sky"
     }
   },
   "courses": {
-    "title": "Các khóa học",
-    "subtitle": "Chọn chương trình phù hợp với mục tiêu của bạn",
+    "title": "Cách Chúng Ta Học Cùng Nhau",
+    "subtitle": "Mỗi học viên đều khác nhau. Đây là cách tôi điều chỉnh phương pháp giảng dạy phù hợp với bạn.",
     "beginner": {
-      "title": "Nền tảng Sơ cấp",
-      "description": "Xây dựng sự tự tin với từ vựng thiết yếu, ngữ pháp và kỹ năng giao tiếp",
-      "duration": "12 tuần",
-      "level": "A1-A2"
+      "title": "Bước Đầu Tiên",
+      "description": "Dành cho người mới bắt đầu. Chúng ta xây dựng sự tự tin qua trò chơi, bài hát và nhiều kiên nhẫn. Không áp lực, chỉ có tiến bộ.",
+      "duration": "Linh hoạt",
+      "level": "Cơ bản"
     },
     "intermediate": {
-      "title": "Trung cấp Thành thạo",
-      "description": "Mở rộng khả năng với ngữ pháp nâng cao, tiếng Anh thương mại và sự lưu loát văn hóa",
-      "duration": "16 tuần",
-      "level": "B1-B2"
+      "title": "Tìm Giọng Nói Của Bạn",
+      "description": "Bạn biết tiếng Anh nhưng muốn nói tự nhiên hơn. Chúng ta sẽ tập trung vào hội thoại thực tế và xây dựng sự lưu loát.",
+      "duration": "Liên tục",
+      "level": "Trung cấp"
     },
     "advanced": {
-      "title": "Cao cấp Xuất sắc",
-      "description": "Hoàn thiện tiếng Anh của bạn cho môi trường chuyên nghiệp, thuyết trình và giao tiếp cấp độ bản ngữ",
-      "duration": "20 tuần",
-      "level": "C1-C2"
+      "title": "Hoàn Thiện & Tự Tin",
+      "description": "Dành cho học viên chuẩn bị thi, phỏng vấn hoặc muốn thành thạo ngôn ngữ. Chúng ta cải thiện phát âm và mở rộng vốn từ.",
+      "duration": "Tùy chỉnh",
+      "level": "Nâng cao"
     },
     "business": {
-      "title": "Tiếng Anh Thương mại",
-      "description": "Đào tạo chuyên môn cho các cuộc họp, đàm phán, email và truyền thông doanh nghiệp",
-      "duration": "12 tuần",
-      "level": "B2+"
+      "title": "Lớp Thiếu Nhi",
+      "description": "Lớp học chuyên biệt cho trẻ em 4-12 tuổi. Tôi đã dạy tại các trường mầm non và tiểu học khắp TP.HCM - tôi biết cách làm cho việc học trở nên vui vẻ.",
+      "duration": "Hàng tuần",
+      "level": "4-12 tuổi"
+    }
+  },
+  "about": {
+    "title": "Đôi Nét Về Tôi",
+    "experience": {
+      "title": "Hành Trình Giảng Dạy",
+      "description": "Tôi đến Việt Nam 3 năm trước và yêu thích việc dạy học ở đây. Tôi đã làm việc tại ILA Vietnam, trường mầm non Blue Sky Academy và giảng dạy tại hàng chục trường công lập khắp TP.HCM.",
+      "places": "ILA Vietnam • Blue Sky Academy • Các trường công lập tại TP.HCM"
     }
   },
   "testimonials": {
-    "title": "Câu chuyện thành công của học viên",
-    "subtitle": "Tham gia cùng hàng trăm học viên thành công trên toàn thế giới"
+    "title": "Từ Học Viên Của Tôi",
+    "subtitle": "Câu chuyện thật từ những người tôi đã có vinh dự được dạy"
   },
   "cta": {
-    "title": "Sẵn sàng thay đổi tiếng Anh của bạn?",
-    "subtitle": "Chỗ có hạn. Bắt đầu hành trình học tập cá nhân của bạn ngay hôm nay.",
-    "button": "Đặt tư vấn miễn phí"
+    "title": "Muốn tìm hiểu về lớp học?",
+    "subtitle": "Không áp lực, không cam kết. Hãy cùng trò chuyện về mục tiêu của bạn.",
+    "button": "Gửi tin nhắn"
   },
   "faq": {
-    "title": "Câu hỏi thường gặp",
-    "q1": "Buổi học kéo dài bao lâu?",
-    "a1": "Mỗi buổi học kéo dài 60 phút với hướng dẫn tập trung, cá nhân hóa theo mục tiêu của bạn.",
-    "q2": "Bạn sử dụng nền tảng nào?",
-    "a2": "Chúng tôi sử dụng Zoom, Skype hoặc cuộc gọi video WhatsApp tùy theo sở thích của bạn.",
-    "q3": "Bạn có cung cấp buổi học thử không?",
-    "a3": "Có! Đặt buổi tư vấn miễn phí 30 phút để thảo luận về mục tiêu và trải nghiệm phong cách giảng dạy của chúng tôi.",
-    "q4": "Tôi sẽ thấy kết quả nhanh như thế nào?",
-    "a4": "Hầu hết học viên nhận thấy sự cải thiện đáng kể trong vòng 4-6 tuần với sự luyện tập và cống hiến nhất quán.",
-    "q5": "Tôi cần tài liệu gì?",
-    "a5": "Tất cả tài liệu khóa học được cung cấp dưới dạng kỹ thuật số. Bạn chỉ cần một thiết bị có kết nối internet.",
-    "q6": "Tôi có thể đổi lịch học không?",
-    "a6": "Có, với thông báo trước 24 giờ, bạn có thể đổi lịch học để phù hợp với lịch trình của mình."
+    "title": "Câu Hỏi Thường Gặp",
+    "q1": "Thầy dạy ở đâu?",
+    "a1": "Tôi dạy trực tiếp tại Gò Vấp, Phú Nhuận và Bình Thạnh ở TP.HCM. Tôi có thể đến nhà bạn hoặc chúng ta có thể gặp ở nơi thuận tiện. Lớp học online cũng có sẵn.",
+    "q2": "Thầy dạy độ tuổi nào?",
+    "a2": "Tất cả! Tôi đã dạy trẻ mầm non tại Blue Sky Academy, học sinh tiểu học, thanh thiếu niên và người lớn. Mỗi nhóm tuổi đều khác nhau và tôi điều chỉnh phương pháp phù hợp.",
+    "q3": "Học phí bao nhiêu?",
+    "a3": "Tùy thuộc vào loại lớp, địa điểm và tần suất. Hãy trò chuyện về nhu cầu của bạn trước, và tôi sẽ báo giá rõ ràng không phí ẩn.",
+    "q4": "Thầy có dạy nhóm không?",
+    "a4": "Có! Lớp nhóm có thể tiết kiệm hơn và thường vui hơn. Nếu bạn có bạn bè hoặc gia đình muốn học cùng, chúng ta có thể sắp xếp.",
+    "q5": "Phong cách dạy của thầy như thế nào?",
+    "a5": "Kiên nhẫn, động viên và linh hoạt. Tôi tập trung vào giao tiếp hơn là sự hoàn hảo. Chúng ta sẽ sử dụng hội thoại thực tế, trò chơi, âm nhạc và bất cứ điều gì giúp bạn học tốt nhất.",
+    "q6": "Có thể học thử trước không?",
+    "a6": "Tất nhiên! Chúng ta có thể có một buổi học thử ngắn để bạn xem chúng ta có phù hợp không. Không bắt buộc."
   },
-  "footer": {
-    "tagline": "Giáo dục tiếng Anh chuyên nghiệp cho sự thành công toàn cầu",
-    "faq": "Câu hỏi thường gặp",
-    "contact": "Liên hệ",
-    "whatsapp": "WhatsApp",
-    "telegram": "Telegram",
-    "email": "Email",
-    "certifications": "Chứng chỉ",
-    "tefl": "Chứng chỉ TEFL",
-    "tesol": "Chứng chỉ TESOL",
-    "experience": "10+ Năm giảng dạy"
+  "blog": {
+    "title": "Bài Viết & Tài Nguyên",
+    "subtitle": "Suy nghĩ về việc học, dạy và cuộc sống tại Việt Nam",
+    "categories": {
+      "all": "Tất cả",
+      "teaching": "Giảng dạy",
+      "parents": "Cho phụ huynh",
+      "learning": "Mẹo học",
+      "stories": "Câu chuyện"
+    },
+    "readMore": "Đọc thêm",
+    "readTime": "phút đọc",
+    "backToBlog": "Quay lại"
   },
   "contact": {
-    "title": "Hãy Bắt Đầu Hành Trình Của BẠN",
-    "subtitle": "Chọn cách dễ nhất để BẠN liên hệ với tôi",
+    "title": "Kết Nối",
+    "subtitle": "Có câu hỏi? Muốn thảo luận về lớp học? Chỉ muốn chào hỏi? Tôi rất vui được nghe từ bạn.",
     "form": {
-      "title": "Gửi Tin Nhắn Cho Tôi",
+      "title": "Gửi Tin Nhắn",
       "name": "Tên của bạn",
       "email": "Email của bạn",
-      "phone": "Điện thoại (tùy chọn)",
-      "message": "Nói cho tôi biết về mục tiêu tiếng Anh của bạn",
-      "consent": "Tôi đồng ý với chính sách bảo mật và hiểu rằng dữ liệu của tôi sẽ được xử lý để trả lời yêu cầu của tôi.",
-      "submit": "Gửi Tin Nhắn",
+      "phone": "Số điện thoại hoặc Zalo (tùy chọn)",
+      "message": "Bạn muốn biết điều gì?",
+      "consent": "Tôi sẵn sàng nhận phản hồi cho tin nhắn này.",
+      "submit": "Gửi tin nhắn",
       "submitting": "Đang gửi...",
-      "success": "Cảm ơn! Tôi sẽ trả lời bạn trong vòng 24 giờ.",
-      "error": "Rất tiếc! Đã xảy ra lỗi. Thử WhatsApp hoặc Telegram?",
-      "required": "Trường này là bắt buộc",
+      "success": "Cảm ơn! Tôi sẽ phản hồi sớm.",
+      "error": "Có lỗi xảy ra. Thử Zalo hoặc WhatsApp?",
+      "required": "Trường này bắt buộc",
       "invalidEmail": "Vui lòng nhập email hợp lệ"
     }
+  },
+  "footer": {
+    "tagline": "Giáo viên tiếng Anh tại TP.HCM, giúp học viên tìm giọng nói của mình từ 2021",
+    "contact": "Liên hệ",
+    "whatsapp": "WhatsApp",
+    "telegram": "Zalo",
+    "email": "Email",
+    "certifications": "Kinh nghiệm",
+    "tefl": "Chứng chỉ TEFL",
+    "tesol": "Kinh nghiệm ILA Vietnam",
+    "experience": "1,000+ Học viên đã dạy",
+    "location": "Dạy tại Gò Vấp, Phú Nhuận & Bình Thạnh"
+  },
+  "location": {
+    "title": "Tại Thành phố Hồ Chí Minh",
+    "districts": "Gò Vấp • Phú Nhuận • Bình Thạnh",
+    "online": "Lớp online sắp ra mắt"
   }
 }
