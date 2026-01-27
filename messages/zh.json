@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "首页",
+    "about": "关于我",
     "courses": "课程",
     "blog": "文章",
     "testimonials": "学员",
@@ -10,13 +11,58 @@
   "hero": {
     "badge": "胡志明市英语老师",
     "title": "学习英语应该像一场冒险",
-    "subtitle": "我是一名在胡志明市的英语老师。过去3年里,我帮助各年龄段的学生发现说英语的乐趣 - 在Go Vap、Phu Nhuan和Binh Thanh的课堂上。",
+    "subtitle": "我是一名在胡志明市的英语老师。过去3年里,我帮助超过1700名学生发现说英语的乐趣 - 在各学校和我位于Phu Nhuan的专属教室。",
     "cta": "联系我",
     "secondary": "了解我的教学",
     "stats": {
-      "students": "1,000+ 学生",
-      "experience": "3年越南经验",
-      "success": "ILA & Blue Sky"
+      "students": "已教学生",
+      "experience": "教学年数",
+      "success": "TESOL & PGCE 认证"
+    }
+  },
+  "about": {
+    "label": "关于我",
+    "title": "课堂背后的老师",
+    "intro": "3年前我来到越南,爱上了这里的教学。原本只是新的一章,却成为了我的使命。",
+    "story": {
+      "title": "我的历程",
+      "p1": "持有TESOL和PGCE证书,目前正在攻读DELTA,我致力于理解人们如何真正学习语言。这不是死记硬背规则 - 而是找到你的声音。",
+      "p2": "我在胡志明市各处任教 - ILA越南、Blue Sky学院、国际学校、公立学校和幼儿园。每间教室、每个学生都教会我新的东西。",
+      "p3": "现在我在Phu Nhuan Golden Mansion的专属教室授课 - 这是一个舒适、专业设计的学习空间,配有监控让家长放心。"
+    },
+    "credentials": {
+      "title": "资质认证",
+      "tesol": "TESOL认证",
+      "tesolDesc": "英语作为外语教学",
+      "pgce": "PGCE认证",
+      "pgceDesc": "教育学研究生证书",
+      "delta": "DELTA进修中",
+      "deltaDesc": "成人英语教学文凭"
+    },
+    "stats": {
+      "students": "1,700+",
+      "studentsLabel": "已教学生",
+      "years": "3",
+      "yearsLabel": "越南教学年数",
+      "schools": "15+",
+      "schoolsLabel": "学校与机构"
+    },
+    "classroom": {
+      "title": "我的教室",
+      "description": "专为舒适和专注设计的学习空间",
+      "address": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan",
+      "features": {
+        "cctv": "监控设备",
+        "cctvDesc": "让家长安心",
+        "comfort": "舒适环境",
+        "comfortDesc": "专为学习设计",
+        "materials": "学习资料",
+        "materialsDesc": "提供所有资源"
+      }
+    },
+    "philosophy": {
+      "title": "我的教学方式",
+      "description": "我相信当你不怕犯错时学习效果最好。我的教室是一个可以尝试、失败、欢笑、再尝试的安全空间。无论你是5岁还是50岁,我们都会找到适合你的方法。"
     }
   },
   "courses": {
@@ -59,17 +105,17 @@
   "faq": {
     "title": "常见问题",
     "q1": "你在哪里教课?",
-    "a1": "我在胡志明市的Go Vap、Phu Nhuan和Binh Thanh区面对面授课。我可以去你家,或者我们在方便的地方见面。在线课程也可以。",
+    "a1": "我在Phu Nhuan Golden Mansion 1, 119 Pho Quang的专属教室授课。这是一个舒适、专业设计的空间,配有安全监控。我也可以到你在Phu Nhuan、Go Vap或Binh Thanh的位置。",
     "q2": "你教什么年龄段?",
-    "a2": "所有年龄!我教过幼儿园小朋友、小学生、青少年和成人。每个年龄组都不同,我会相应调整方法。",
+    "a2": "所有年龄!我教过幼儿园小朋友、小学生、青少年和成人。3年内教过1700+学生,我学会了针对每个年龄段调整方法。",
     "q3": "课程多少钱?",
     "a3": "取决于课程类型、地点和频率。让我们先聊聊你的需求,我会给你一个清晰的报价,没有隐藏费用。",
     "q4": "你教小组吗?",
-    "a4": "是的!小组课可能更实惠,也更有趣。如果你有朋友或家人想一起学,我们可以安排。",
-    "q5": "你的教学风格是什么?",
-    "a5": "耐心、鼓励、灵活。我注重沟通而非完美。我们会用真实对话、游戏、音乐和任何帮助你学习的东西。",
+    "a4": "是的!小组课可能更实惠,也更有趣。如果你有朋友或家人想一起学,我们可以在我的教室安排。",
+    "q5": "你有什么资质?",
+    "a5": "我持有TESOL和PGCE证书,目前正在攻读DELTA。我在ILA越南、Blue Sky学院和胡志明市15+学校任教过。",
     "q6": "可以先试课吗?",
-    "a6": "当然!我们可以做一个短的试听课,看看我们是否合适。没有义务。"
+    "a6": "当然!我们可以在我的教室做一个短的试听课,看看我们是否合适。没有义务。"
   },
   "blog": {
     "title": "文章与资源",
@@ -88,36 +134,56 @@
   "contact": {
     "title": "联系我",
     "subtitle": "有问题?想讨论课程?只是想打个招呼?我很乐意听到你的消息。",
+    "location": {
+      "title": "参观我的教室",
+      "description": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan - 配有监控,舒适的学习环境"
+    },
     "form": {
       "title": "发送消息",
       "name": "你的名字",
       "email": "你的邮箱",
-      "phone": "电话(可选)",
+      "phone": "电话或Zalo(可选)",
       "message": "你想知道什么?",
       "consent": "我愿意收到回复。",
       "submit": "发送",
       "submitting": "发送中...",
       "success": "谢谢!我会尽快回复。",
-      "error": "出了点问题。试试WhatsApp?",
+      "error": "出了点问题。试试Zalo或WhatsApp?",
       "required": "必填",
       "invalidEmail": "请输入有效邮箱"
+    },
+    "or": "或直接联系",
+    "availability": {
+      "flexible": "时间灵活 - 上午、下午或晚上",
+      "consultation": "免费初次咨询 - 看看我们是否合适",
+      "online": "在我的教室或你的位置面对面"
+    },
+    "trustBadges": {
+      "response": "通常几小时内回复",
+      "noCommitment": "没有压力,只是聊聊",
+      "trial": "可以试课"
     }
   },
   "footer": {
-    "tagline": "胡志明市英语老师,自2021年起帮助学生找到自己的声音",
+    "tagline": "胡志明市英语老师,自2021年起帮助1700+学生找到自己的声音",
     "contact": "联系",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
     "email": "邮箱",
-    "certifications": "背景",
-    "tefl": "TEFL认证",
-    "tesol": "ILA越南经验",
-    "experience": "1,000+学生",
-    "location": "在Go Vap、Phu Nhuan和Binh Thanh授课"
+    "certifications": "资质认证",
+    "tefl": "TESOL认证",
+    "tesol": "PGCE认证",
+    "experience": "1,700+学生",
+    "legal": "法律",
+    "privacy": "隐私",
+    "terms": "条款",
+    "quickLinks": "快速链接",
+    "location": "Golden Mansion 1, Phu Nhuan"
   },
   "location": {
     "title": "位于胡志明市",
-    "districts": "Go Vap • Phu Nhuan • Binh Thanh",
-    "online": "在线课程即将推出"
+    "address": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan",
+    "districts": "也在Go Vap和Binh Thanh授课",
+    "features": "监控 • 舒适 • 专业"
   }
 }

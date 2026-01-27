@@ -46,6 +46,7 @@ export function Header() {
   const currentLang = languages.find(l => l.code === locale) || languages[0];
 
   const navLinks = [
+    { href: `/${locale}#about`, label: t('about') },
     { href: `/${locale}#courses`, label: t('courses') },
     { href: `/${locale}/blog`, label: t('blog') },
     { href: `/${locale}#testimonials`, label: t('testimonials') },

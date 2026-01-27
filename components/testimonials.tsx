@@ -8,46 +8,60 @@ import { Star } from 'lucide-react';
 // Testimonial data
 const testimonials = [
   {
-    name: "Nguyễn Thu Hà",
-    role: "Marketing Manager",
-    location: "Gò Vấp",
-    text: "Now I lead presentations with confidence.",
-    initials: "NH",
-  },
-  {
-    name: "Trần Minh",
-    role: "Business Owner",
+    name: "Chị Linh Nguyễn",
+    role: "Parent of 2 students",
     location: "Phú Nhuận",
-    text: "My business expanded internationally.",
-    initials: "TM",
+    text: "The classroom at Golden Mansion is safe with CCTV. My kids love going to class every week.",
+    initials: "LN",
   },
   {
-    name: "Lê Văn Hùng",
-    role: "Parent",
-    location: "Bình Thạnh",
-    text: "My daughter went from shy to confident.",
-    initials: "LH",
-  },
-  {
-    name: "Phạm Thị Mai",
-    role: "University Student",
+    name: "Anh Minh Trần",
+    role: "IT Manager",
     location: "Gò Vấp",
-    text: "Improved my IELTS speaking significantly.",
-    initials: "PM",
+    text: "Finally found a teacher who makes learning English practical for my career.",
+    initials: "MT",
   },
   {
-    name: "David Chen",
-    role: "Software Engineer",
-    location: "District 7",
-    text: "Perfect for professional communication.",
-    initials: "DC",
+    name: "Bé Hà Phương",
+    role: "Student, age 8",
+    location: "Phú Nhuận",
+    text: "Teacher makes learning fun! I can speak English with my cousins now.",
+    initials: "HP",
   },
   {
-    name: "Anna Kozlova",
-    role: "Expat Parent",
-    location: "Thảo Điền",
-    text: "Best English teacher for our kids.",
-    initials: "AK",
+    name: "Cô Thanh Hương",
+    role: "Kindergarten Teacher",
+    location: "Bình Thạnh",
+    text: "A professional with TESOL and PGCE certifications. My daughter's English improved dramatically.",
+    initials: "TH",
+  },
+  {
+    name: "Anh Quốc Bảo",
+    role: "Business Owner",
+    location: "Gò Vấp",
+    text: "After 6 months, I negotiated my first international deal entirely in English.",
+    initials: "QB",
+  },
+  {
+    name: "Chị Mai Anh",
+    role: "University Student",
+    location: "Phú Nhuận",
+    text: "The dedicated classroom is so comfortable. Achieved my target IELTS score in 3 months.",
+    initials: "MA",
+  },
+  {
+    name: "Ông Văn Đức",
+    role: "Retired Engineer",
+    location: "Bình Thạnh",
+    text: "Learning English at 65! Patient teaching and a well-designed learning space.",
+    initials: "VD",
+  },
+  {
+    name: "Chị Yến Nhi",
+    role: "Mother of young learner",
+    location: "Phú Nhuận",
+    text: "The CCTV in the classroom gives me peace of mind while my 5-year-old learns.",
+    initials: "YN",
   },
 ];
 
@@ -208,7 +222,7 @@ export function Testimonials() {
             {/* Stat 1 */}
             <div className="text-center">
               <div className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">
-                <StatValue value={1000} suffix="+" />
+                <StatValue value={1700} suffix="+" />
               </div>
               <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
                 Students
@@ -271,7 +285,7 @@ export function Testimonials() {
         <div className="flex items-center justify-center gap-4">
           <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#0F0F11]/20 dark:to-[#F5F1E8]/20" />
           <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#0F0F11]/40 dark:text-[#F5F1E8]/40">
-            ILA Vietnam · Blue Sky Academy
+            ILA Vietnam · Blue Sky Academy · 15+ Schools
           </span>
           <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#0F0F11]/20 dark:to-[#F5F1E8]/20" />
         </div>

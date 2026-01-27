@@ -218,7 +218,7 @@ export function Hero() {
                 {/* Stat 1 */}
                 <div className="stat-block">
                   <div className="number-large text-foreground">
-                    <AnimatedCounter value={1000} suffix="+" delay={2} />
+                    <AnimatedCounter value={1700} suffix="+" delay={2} />
                   </div>
                   <p className="label mt-2">{t('stats.students')}</p>
                 </div>
@@ -226,7 +226,7 @@ export function Hero() {
                 {/* Stat 2 */}
                 <div className="stat-block">
                   <div className="number-medium text-foreground">
-                    <AnimatedCounter value={3} delay={2.3} />
+                    <AnimatedCounter value={3} suffix=" yrs" delay={2.3} />
                   </div>
                   <p className="label mt-2">{t('stats.experience')}</p>
                 </div>

@@ -30,6 +30,7 @@ export function Footer() {
   ];
 
   const navLinks = [
+    { href: `/${locale}#about`, label: 'About' },
     { href: `/${locale}#courses`, label: 'Courses' },
     { href: `/${locale}/blog`, label: 'Blog' },
     { href: `/${locale}#testimonials`, label: 'Testimonials' },

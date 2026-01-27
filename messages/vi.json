@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Trang chủ",
+    "about": "Về tôi",
     "courses": "Lớp học",
     "blog": "Bài viết",
     "testimonials": "Học viên",
@@ -10,13 +11,58 @@
   "hero": {
     "badge": "Giáo viên tiếng Anh tại TP.HCM",
     "title": "Học tiếng Anh như một cuộc phiêu lưu",
-    "subtitle": "Tôi là giáo viên tiếng Anh tại Thành phố Hồ Chí Minh. Trong 3 năm qua, tôi đã giúp học viên ở mọi lứa tuổi khám phá niềm vui khi nói tiếng Anh - tại các lớp học ở Gò Vấp, Phú Nhuận và Bình Thạnh.",
+    "subtitle": "Tôi là giáo viên tiếng Anh tại Thành phố Hồ Chí Minh. Trong 3 năm qua, tôi đã giúp hơn 1.700 học viên khám phá niềm vui khi nói tiếng Anh - tại các trường học và lớp học riêng tại Phú Nhuận.",
     "cta": "Trò chuyện ngay",
     "secondary": "Xem cách tôi dạy",
     "stats": {
-      "students": "1,000+ Học viên",
-      "experience": "3 Năm tại Việt Nam",
-      "success": "ILA & Blue Sky"
+      "students": "Học viên đã dạy",
+      "experience": "Năm giảng dạy",
+      "success": "Chứng chỉ TESOL & PGCE"
+    }
+  },
+  "about": {
+    "label": "Về Tôi",
+    "title": "Người Thầy Đằng Sau Lớp Học",
+    "intro": "Tôi đến Việt Nam 3 năm trước và yêu thích việc dạy học ở đây. Điều bắt đầu như một chương mới đã trở thành sứ mệnh của tôi.",
+    "story": {
+      "title": "Hành Trình Của Tôi",
+      "p1": "Với chứng chỉ TESOL và PGCE, và đang theo học DELTA, tôi đã dành tâm huyết để hiểu cách mọi người thực sự học ngôn ngữ. Đó không phải là ghi nhớ quy tắc - mà là tìm ra giọng nói của bạn.",
+      "p2": "Tôi đã dạy khắp Thành phố Hồ Chí Minh - tại ILA Vietnam, Blue Sky Academy, các trường quốc tế, trường công lập và trường mầm non. Mỗi lớp học, mỗi học viên đều dạy tôi điều gì đó mới.",
+      "p3": "Hiện tôi dạy tại lớp học riêng ở Golden Mansion, Phú Nhuận - một không gian học tập thoải mái, được thiết kế chuyên nghiệp với camera an ninh để phụ huynh an tâm."
+    },
+    "credentials": {
+      "title": "Bằng Cấp",
+      "tesol": "Chứng Chỉ TESOL",
+      "tesolDesc": "Dạy tiếng Anh cho người nói ngôn ngữ khác",
+      "pgce": "Chứng Chỉ PGCE",
+      "pgceDesc": "Chứng chỉ Sau đại học về Giáo dục",
+      "delta": "DELTA Đang Học",
+      "deltaDesc": "Văn bằng Giảng dạy Tiếng Anh cho Người lớn"
+    },
+    "stats": {
+      "students": "1.700+",
+      "studentsLabel": "Học viên đã dạy",
+      "years": "3",
+      "yearsLabel": "Năm tại Việt Nam",
+      "schools": "15+",
+      "schoolsLabel": "Trường & Tổ chức"
+    },
+    "classroom": {
+      "title": "Lớp Học Của Tôi",
+      "description": "Không gian học tập được thiết kế cho sự thoải mái và tập trung",
+      "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
+      "features": {
+        "cctv": "Có Camera An Ninh",
+        "cctvDesc": "Phụ huynh có thể yên tâm",
+        "comfort": "Môi Trường Thoải Mái",
+        "comfortDesc": "Thiết kế phù hợp cho việc học",
+        "materials": "Tài Liệu Học Tập",
+        "materialsDesc": "Tất cả tài liệu được cung cấp"
+      }
+    },
+    "philosophy": {
+      "title": "Cách Tôi Dạy",
+      "description": "Tôi tin rằng việc học tốt nhất khi bạn không sợ mắc lỗi. Lớp học của tôi là nơi an toàn để thử, thất bại, cười và thử lại. Dù bạn 5 hay 50 tuổi, chúng ta sẽ tìm ra cách phù hợp với bạn."
     }
   },
   "courses": {
@@ -47,14 +93,6 @@
       "level": "4-12 tuổi"
     }
   },
-  "about": {
-    "title": "Đôi Nét Về Tôi",
-    "experience": {
-      "title": "Hành Trình Giảng Dạy",
-      "description": "Tôi đến Việt Nam 3 năm trước và yêu thích việc dạy học ở đây. Tôi đã làm việc tại ILA Vietnam, trường mầm non Blue Sky Academy và giảng dạy tại hàng chục trường công lập khắp TP.HCM.",
-      "places": "ILA Vietnam • Blue Sky Academy • Các trường công lập tại TP.HCM"
-    }
-  },
   "testimonials": {
     "title": "Từ Học Viên Của Tôi",
     "subtitle": "Câu chuyện thật từ những người tôi đã có vinh dự được dạy"
@@ -67,17 +105,17 @@
   "faq": {
     "title": "Câu Hỏi Thường Gặp",
     "q1": "Thầy dạy ở đâu?",
-    "a1": "Tôi dạy trực tiếp tại Gò Vấp, Phú Nhuận và Bình Thạnh ở TP.HCM. Tôi có thể đến nhà bạn hoặc chúng ta có thể gặp ở nơi thuận tiện. Lớp học online cũng có sẵn.",
+    "a1": "Tôi dạy tại lớp học riêng ở Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Đây là không gian thoải mái, được thiết kế chuyên nghiệp với camera an ninh. Tôi cũng có thể đến nhà bạn tại Phú Nhuận, Gò Vấp hoặc Bình Thạnh.",
     "q2": "Thầy dạy độ tuổi nào?",
-    "a2": "Tất cả! Tôi đã dạy trẻ mầm non tại Blue Sky Academy, học sinh tiểu học, thanh thiếu niên và người lớn. Mỗi nhóm tuổi đều khác nhau và tôi điều chỉnh phương pháp phù hợp.",
+    "a2": "Tất cả! Tôi đã dạy trẻ mầm non, học sinh tiểu học, thanh thiếu niên và người lớn. Với hơn 1.700 học viên trong 3 năm, tôi đã học cách điều chỉnh phương pháp cho từng nhóm tuổi.",
     "q3": "Học phí bao nhiêu?",
     "a3": "Tùy thuộc vào loại lớp, địa điểm và tần suất. Hãy trò chuyện về nhu cầu của bạn trước, và tôi sẽ báo giá rõ ràng không phí ẩn.",
     "q4": "Thầy có dạy nhóm không?",
-    "a4": "Có! Lớp nhóm có thể tiết kiệm hơn và thường vui hơn. Nếu bạn có bạn bè hoặc gia đình muốn học cùng, chúng ta có thể sắp xếp.",
-    "q5": "Phong cách dạy của thầy như thế nào?",
-    "a5": "Kiên nhẫn, động viên và linh hoạt. Tôi tập trung vào giao tiếp hơn là sự hoàn hảo. Chúng ta sẽ sử dụng hội thoại thực tế, trò chơi, âm nhạc và bất cứ điều gì giúp bạn học tốt nhất.",
+    "a4": "Có! Lớp nhóm có thể tiết kiệm hơn và thường vui hơn. Nếu bạn có bạn bè hoặc gia đình muốn học cùng, chúng ta có thể sắp xếp tại lớp học của tôi.",
+    "q5": "Thầy có bằng cấp gì?",
+    "a5": "Tôi có chứng chỉ TESOL và PGCE, và đang theo học DELTA. Tôi đã dạy tại ILA Vietnam, Blue Sky Academy và hơn 15 trường khắp Thành phố Hồ Chí Minh.",
     "q6": "Có thể học thử trước không?",
-    "a6": "Tất nhiên! Chúng ta có thể có một buổi học thử ngắn để bạn xem chúng ta có phù hợp không. Không bắt buộc."
+    "a6": "Tất nhiên! Chúng ta có thể có một buổi học thử ngắn tại lớp học của tôi để bạn xem chúng ta có phù hợp không. Không bắt buộc."
   },
   "blog": {
     "title": "Bài Viết & Tài Nguyên",
@@ -96,6 +134,10 @@
   "contact": {
     "title": "Kết Nối",
     "subtitle": "Có câu hỏi? Muốn thảo luận về lớp học? Chỉ muốn chào hỏi? Tôi rất vui được nghe từ bạn.",
+    "location": {
+      "title": "Ghé Thăm Lớp Học",
+      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - Có camera an ninh, môi trường học tập thoải mái"
+    },
     "form": {
       "title": "Gửi Tin Nhắn",
       "name": "Tên của bạn",
@@ -109,23 +151,39 @@
       "error": "Có lỗi xảy ra. Thử Zalo hoặc WhatsApp?",
       "required": "Trường này bắt buộc",
       "invalidEmail": "Vui lòng nhập email hợp lệ"
+    },
+    "or": "Hoặc liên hệ trực tiếp",
+    "availability": {
+      "flexible": "Lịch linh hoạt - sáng, chiều hoặc tối",
+      "consultation": "Tư vấn miễn phí - xem chúng ta có phù hợp không",
+      "online": "Trực tiếp tại lớp học hoặc địa điểm của bạn"
+    },
+    "trustBadges": {
+      "response": "Thường phản hồi trong vài giờ",
+      "noCommitment": "Không áp lực, chỉ là trò chuyện",
+      "trial": "Có buổi học thử"
     }
   },
   "footer": {
-    "tagline": "Giáo viên tiếng Anh tại TP.HCM, giúp học viên tìm giọng nói của mình từ 2021",
+    "tagline": "Giáo viên tiếng Anh tại TP.HCM, giúp hơn 1.700 học viên tìm giọng nói của mình từ năm 2021",
     "contact": "Liên hệ",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
     "email": "Email",
-    "certifications": "Kinh nghiệm",
-    "tefl": "Chứng chỉ TEFL",
-    "tesol": "Kinh nghiệm ILA Vietnam",
-    "experience": "1,000+ Học viên đã dạy",
-    "location": "Dạy tại Gò Vấp, Phú Nhuận & Bình Thạnh"
+    "certifications": "Bằng Cấp",
+    "tefl": "Chứng Chỉ TESOL",
+    "tesol": "Chứng Chỉ PGCE",
+    "experience": "1.700+ Học Viên Đã Dạy",
+    "legal": "Pháp Lý",
+    "privacy": "Quyền Riêng Tư",
+    "terms": "Điều Khoản",
+    "quickLinks": "Liên Kết Nhanh",
+    "location": "Golden Mansion 1, Phú Nhuận"
   },
   "location": {
     "title": "Tại Thành phố Hồ Chí Minh",
-    "districts": "Gò Vấp • Phú Nhuận • Bình Thạnh",
-    "online": "Lớp online sắp ra mắt"
+    "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
+    "districts": "Cũng dạy tại Gò Vấp & Bình Thạnh",
+    "features": "Camera • Thoải mái • Chuyên nghiệp"
   }
 }

@@ -130,16 +130,19 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="p-6 border border-border bg-card"
+              className="p-6 border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent"
             >
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 flex items-center justify-center bg-foreground text-background shrink-0">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground mb-2">Teaching in Ho Chi Minh City</p>
+                  <p className="font-semibold text-foreground mb-1">{contactT('location.title')}</p>
+                  <p className="text-primary text-sm font-medium mb-3">
+                    Golden Mansion 1, 119 Phổ Quang, Phú Nhuận
+                  </p>
                   <p className="text-muted-foreground text-sm mb-3">
-                    In-person lessons available in select districts.
+                    {contactT('location.description')}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {['Gò Vấp', 'Phú Nhuận', 'Bình Thạnh'].map((district) => (
@@ -191,7 +194,7 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="flex flex-wrap justify-center gap-3 mt-16 md:mt-20 pt-12 border-t border-border"
         >
-          {['TEFL Certified', '3 Years in Vietnam', 'ILA & Blue Sky', '1000+ Students'].map((badge) => (
+          {['TESOL Certified', 'PGCE Certified', '3 Years in Vietnam', '1700+ Students'].map((badge) => (
             <span
               key={badge}
               className="px-4 py-2 text-xs font-mono tracking-wider text-muted-foreground bg-muted border border-border"

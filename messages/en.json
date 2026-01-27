@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Home",
+    "about": "About",
     "courses": "Classes",
     "blog": "Stories",
     "testimonials": "Students",
@@ -10,13 +11,58 @@
   "hero": {
     "badge": "English Teacher in Ho Chi Minh City",
     "title": "Learning English should feel like an adventure",
-    "subtitle": "I'm an English teacher based in Ho Chi Minh City. For the past 3 years, I've been helping students of all ages discover the joy of speaking English - in classrooms across Go Vap, Phu Nhuan, and Binh Thanh.",
+    "subtitle": "I'm an English teacher based in Ho Chi Minh City. For the past 3 years, I've helped over 1,700 students discover the joy of speaking English - across schools and in my dedicated classroom in Phú Nhuận.",
     "cta": "Let's Talk",
     "secondary": "See How I Teach",
     "stats": {
-      "students": "1,000+ Students",
-      "experience": "3 Years in Vietnam",
-      "success": "ILA & Blue Sky Alumni"
+      "students": "Students Taught",
+      "experience": "Years Teaching",
+      "success": "TESOL & PGCE Certified"
+    }
+  },
+  "about": {
+    "label": "About Me",
+    "title": "The Teacher Behind the Classes",
+    "intro": "I came to Vietnam 3 years ago and fell in love with teaching here. What started as a new chapter became my calling.",
+    "story": {
+      "title": "My Journey",
+      "p1": "With TESOL and PGCE certifications under my belt, and currently pursuing my DELTA, I've dedicated myself to understanding how people truly learn languages. It's not about memorizing rules - it's about finding your voice.",
+      "p2": "I've taught across Ho Chi Minh City - at ILA Vietnam, Blue Sky Academy, international schools, public schools, and kindergartens. Each classroom, each student, taught me something new.",
+      "p3": "Now I teach from my own dedicated classroom in Golden Mansion, Phú Nhuận - a comfortable, properly designed learning space with CCTV for parents' peace of mind."
+    },
+    "credentials": {
+      "title": "Qualifications",
+      "tesol": "TESOL Certified",
+      "tesolDesc": "Teaching English to Speakers of Other Languages",
+      "pgce": "PGCE Certified",
+      "pgceDesc": "Postgraduate Certificate in Education",
+      "delta": "DELTA In Progress",
+      "deltaDesc": "Diploma in English Language Teaching to Adults"
+    },
+    "stats": {
+      "students": "1,700+",
+      "studentsLabel": "Students Taught",
+      "years": "3",
+      "yearsLabel": "Years in Vietnam",
+      "schools": "15+",
+      "schoolsLabel": "Schools & Institutions"
+    },
+    "classroom": {
+      "title": "My Classroom",
+      "description": "A dedicated learning space designed for comfort and focus",
+      "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
+      "features": {
+        "cctv": "CCTV Monitored",
+        "cctvDesc": "Parents can have peace of mind",
+        "comfort": "Comfortable Environment",
+        "comfortDesc": "Properly designed for learning",
+        "materials": "Learning Materials",
+        "materialsDesc": "All resources provided"
+      }
+    },
+    "philosophy": {
+      "title": "How I Teach",
+      "description": "I believe learning happens best when you're not afraid to make mistakes. My classroom is a safe space to try, fail, laugh, and try again. Whether you're 5 or 50, we'll find what works for you."
     }
   },
   "courses": {
@@ -47,22 +93,6 @@
       "level": "Ages 4-12"
     }
   },
-  "about": {
-    "title": "A Little About Me",
-    "experience": {
-      "title": "My Teaching Journey",
-      "description": "I came to Vietnam 3 years ago and fell in love with teaching here. I've worked at ILA Vietnam, Blue Sky Academy kindergarten, and taught in dozens of public schools across Ho Chi Minh City. Each classroom taught me something new about how people learn.",
-      "places": "ILA Vietnam • Blue Sky Academy • Public Schools across HCMC"
-    },
-    "approach": {
-      "title": "How I Teach",
-      "description": "I believe learning happens best when you're not afraid to make mistakes. My classroom is a safe space to try, fail, laugh, and try again. Whether you're 5 or 50, we'll find the approach that works for you."
-    },
-    "location": {
-      "title": "Where I Teach",
-      "description": "I offer in-person classes in Go Vap, Phu Nhuan, and Binh Thanh districts. I can come to your home, or we can meet at a cafe or library. Online classes are also starting soon for those who prefer learning from home."
-    }
-  },
   "testimonials": {
     "title": "From My Students",
     "subtitle": "Real stories from real people I've had the pleasure of teaching"
@@ -75,17 +105,17 @@
   "faq": {
     "title": "Common Questions",
     "q1": "Where do you teach?",
-    "a1": "I teach in-person in Go Vap, Phu Nhuan, and Binh Thanh districts in Ho Chi Minh City. I can come to your home, or we can meet somewhere convenient. Online classes are also available.",
+    "a1": "I teach at my dedicated classroom in Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. It's a comfortable, properly designed space with CCTV for safety. I can also come to your location in Phú Nhuận, Gò Vấp, or Bình Thạnh.",
     "q2": "What ages do you teach?",
-    "a2": "Everyone! I've taught kindergarteners at Blue Sky Academy, primary school students, teenagers, and adults. Each age group is different, and I adjust my methods accordingly.",
+    "a2": "Everyone! I've taught kindergarteners, primary school students, teenagers, and adults. With 1,700+ students taught across 3 years, I've learned to adapt my methods for each age group.",
     "q3": "How much do lessons cost?",
     "a3": "It depends on the type of class, location, and frequency. Let's chat about your needs first, and I'll give you a clear quote with no hidden fees.",
     "q4": "Do you teach groups?",
-    "a4": "Yes! Group classes can be more affordable and often more fun. If you have friends or family who want to learn together, we can arrange something.",
-    "q5": "What's your teaching style?",
-    "a5": "Patient, encouraging, and adaptable. I focus on communication over perfection. We'll use real conversations, games, music, and whatever helps you learn best.",
+    "a4": "Yes! Group classes can be more affordable and often more fun. If you have friends or family who want to learn together, we can arrange something at my classroom.",
+    "q5": "What are your qualifications?",
+    "a5": "I hold TESOL and PGCE certifications, and I'm currently pursuing my DELTA. I've taught at ILA Vietnam, Blue Sky Academy, and over 15 schools across Ho Chi Minh City.",
     "q6": "Can I try a lesson first?",
-    "a6": "Of course! We can do a short trial session so you can see if we're a good fit. No obligation."
+    "a6": "Of course! We can do a short trial session at my classroom so you can see if we're a good fit. No obligation."
   },
   "blog": {
     "title": "Stories & Resources",
@@ -104,6 +134,10 @@
   "contact": {
     "title": "Let's Connect",
     "subtitle": "Have questions? Want to discuss classes? Just want to say hi? I'd love to hear from you.",
+    "location": {
+      "title": "Visit My Classroom",
+      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - CCTV monitored, comfortable learning environment"
+    },
     "form": {
       "title": "Send a Message",
       "name": "Your name",
@@ -122,7 +156,7 @@
     "availability": {
       "flexible": "Flexible scheduling - mornings, afternoons, or evenings",
       "consultation": "Free initial chat - let's see if we're a good fit",
-      "online": "In-person in HCMC or online via Zoom"
+      "online": "In-person at my classroom or your location"
     },
     "trustBadges": {
       "response": "Usually reply within a few hours",
@@ -131,24 +165,25 @@
     }
   },
   "footer": {
-    "tagline": "English teacher in Ho Chi Minh City, helping students find their voice since 2021",
+    "tagline": "English teacher in Ho Chi Minh City, helping 1,700+ students find their voice since 2021",
     "contact": "Get in Touch",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
     "email": "Email",
-    "certifications": "Background",
-    "tefl": "TEFL Certified",
-    "tesol": "ILA Vietnam Experience",
-    "experience": "1,000+ Students Taught",
+    "certifications": "Qualifications",
+    "tefl": "TESOL Certified",
+    "tesol": "PGCE Certified",
+    "experience": "1,700+ Students Taught",
     "legal": "Legal",
     "privacy": "Privacy",
     "terms": "Terms",
     "quickLinks": "Quick Links",
-    "location": "Teaching in Go Vap, Phu Nhuan & Binh Thanh"
+    "location": "Golden Mansion 1, Phú Nhuận"
   },
   "location": {
     "title": "Based in Ho Chi Minh City",
-    "districts": "Go Vap • Phu Nhuan • Binh Thanh",
-    "online": "Online classes coming soon"
+    "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
+    "districts": "Also teaching in Gò Vấp & Bình Thạnh",
+    "features": "CCTV • Comfortable • Professional"
   }
 }
