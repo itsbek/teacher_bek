@@ -3,7 +3,7 @@
     "home": "Trang chủ",
     "about": "Về tôi",
     "courses": "Lớp học",
-    "blog": "Bài viết",
+    "blog_link": "Bài viết",
     "testimonials": "Học viên",
     "faq": "Hỏi đáp",
     "contact": "Liên hệ"
@@ -11,7 +11,7 @@
   "hero": {
     "badge": "Giáo viên tiếng Anh tại TP.HCM",
     "title": "Học tiếng Anh như một cuộc phiêu lưu",
-    "subtitle": "Tôi là giáo viên tiếng Anh tại Thành phố Hồ Chí Minh. Trong 3 năm qua, tôi đã giúp hơn 1.700 học viên khám phá niềm vui khi nói tiếng Anh - tại các trường học và lớp học riêng tại Phú Nhuận.",
+    "subtitle": "Tôi là Teacher Bek, giáo viên tiếng Anh tại Thành phố Hồ Chí Minh. Trong 3 năm qua, tôi đã giúp gần 2.000 học viên khám phá niềm vui khi nói tiếng Anh - tại các trường học và lớp học riêng tại Phú Nhuận.",
     "cta": "Trò chuyện ngay",
     "secondary": "Xem cách tôi dạy",
     "stats": {
@@ -40,7 +40,7 @@
       "deltaDesc": "Văn bằng Giảng dạy Tiếng Anh cho Người lớn"
     },
     "stats": {
-      "students": "1.700+",
+      "students": "gần 2.000",
       "studentsLabel": "Học viên đã dạy",
       "years": "3",
       "yearsLabel": "Năm tại Việt Nam",
@@ -107,7 +107,7 @@
     "q1": "Thầy dạy ở đâu?",
     "a1": "Tôi dạy tại lớp học riêng ở Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Đây là không gian thoải mái, được thiết kế chuyên nghiệp với camera an ninh. Tôi cũng có thể đến nhà bạn tại Phú Nhuận, Gò Vấp hoặc Bình Thạnh.",
     "q2": "Thầy dạy độ tuổi nào?",
-    "a2": "Tất cả! Tôi đã dạy trẻ mầm non, học sinh tiểu học, thanh thiếu niên và người lớn. Với hơn 1.700 học viên trong 3 năm, tôi đã học cách điều chỉnh phương pháp cho từng nhóm tuổi.",
+    "a2": "Tất cả! Tôi đã dạy trẻ mầm non, học sinh tiểu học, thanh thiếu niên và người lớn. Với gần 2.000 học viên trong 3 năm, tôi đã học cách điều chỉnh phương pháp cho từng nhóm tuổi.",
     "q3": "Học phí bao nhiêu?",
     "a3": "Tùy thuộc vào loại lớp, địa điểm và tần suất. Hãy trò chuyện về nhu cầu của bạn trước, và tôi sẽ báo giá rõ ràng không phí ẩn.",
     "q4": "Thầy có dạy nhóm không?",
@@ -165,7 +165,7 @@
     }
   },
   "footer": {
-    "tagline": "Giáo viên tiếng Anh tại TP.HCM, giúp hơn 1.700 học viên tìm giọng nói của mình từ năm 2021",
+    "tagline": "Giáo viên tiếng Anh tại TP.HCM, giúp gần 2.000 học viên tìm giọng nói của mình từ năm 2021",
     "contact": "Liên hệ",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
@@ -173,7 +173,7 @@
     "certifications": "Bằng Cấp",
     "tefl": "Chứng Chỉ TESOL",
     "tesol": "Chứng Chỉ PGCE",
-    "experience": "1.700+ Học Viên Đã Dạy",
+    "experience": "Gần 2.000 Học Viên Đã Dạy",
     "legal": "Pháp Lý",
     "privacy": "Quyền Riêng Tư",
     "terms": "Điều Khoản",

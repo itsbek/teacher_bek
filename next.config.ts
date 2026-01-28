@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     domains: [],
     formats: ['image/avif', 'image/webp'],
   },
+  transpilePackages: ['framer-motion'],
 };
 
 export default withNextIntl(nextConfig);

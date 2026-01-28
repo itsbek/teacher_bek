@@ -8,60 +8,60 @@ import { Star } from 'lucide-react';
 // Testimonial data
 const testimonials = [
   {
-    name: "Chị Linh Nguyễn",
+    name: "Linh Nguyễn",
     role: "Parent of 2 students",
-    location: "Phú Nhuận",
-    text: "The classroom at Golden Mansion is safe with CCTV. My kids love going to class every week.",
+    location: "Ho Chi Minh City, VN",
+    text: "The classroom at Golden Mansion is a decent setup. My kids seem to enjoy the lessons and the teacher is patient with them.",
     initials: "LN",
   },
   {
-    name: "Anh Minh Trần",
-    role: "IT Manager",
-    location: "Gò Vấp",
-    text: "Finally found a teacher who makes learning English practical for my career.",
-    initials: "MT",
+    name: "Alexei Volkov",
+    role: "Software Engineer",
+    location: "Moscow, RU",
+    text: "We focused on practical communication which was what I needed. It's a straightforward approach to learning.",
+    initials: "AV",
   },
   {
-    name: "Bé Hà Phương",
-    role: "Student, age 8",
-    location: "Phú Nhuận",
-    text: "Teacher makes learning fun! I can speak English with my cousins now.",
-    initials: "HP",
-  },
-  {
-    name: "Cô Thanh Hương",
-    role: "Kindergarten Teacher",
-    location: "Bình Thạnh",
-    text: "A professional with TESOL and PGCE certifications. My daughter's English improved dramatically.",
-    initials: "TH",
-  },
-  {
-    name: "Anh Quốc Bảo",
-    role: "Business Owner",
-    location: "Gò Vấp",
-    text: "After 6 months, I negotiated my first international deal entirely in English.",
-    initials: "QB",
-  },
-  {
-    name: "Chị Mai Anh",
+    name: "Ji-won Kim",
     role: "University Student",
-    location: "Phú Nhuận",
-    text: "The dedicated classroom is so comfortable. Achieved my target IELTS score in 3 months.",
-    initials: "MA",
+    location: "Seoul, KR",
+    text: "Instruction is clear and the atmosphere is relaxed. It helped me get more comfortable with speaking naturally.",
+    initials: "JK",
   },
   {
-    name: "Ông Văn Đức",
-    role: "Retired Engineer",
-    location: "Bình Thạnh",
-    text: "Learning English at 65! Patient teaching and a well-designed learning space.",
-    initials: "VD",
+    name: "Emre Yilmaz",
+    role: "Business Owner",
+    location: "Istanbul, TR",
+    text: "The business English sessions were helpful for my specific industry needs. Useful for anyone looking for targeted practice.",
+    initials: "EY",
   },
   {
-    name: "Chị Yến Nhi",
-    role: "Mother of young learner",
-    location: "Phú Nhuận",
-    text: "The CCTV in the classroom gives me peace of mind while my 5-year-old learns.",
-    initials: "YN",
+    name: "Mei Ling Chen",
+    role: "Marketing Professional",
+    location: "Shanghai, CN",
+    text: "Good focus on communicative aspects. The material is relevant and the teacher is quite flexible with scheduling.",
+    initials: "MC",
+  },
+  {
+    name: "Olena Kravchenko",
+    role: "UI/UX Designer",
+    location: "Kyiv, UA",
+    text: "The lessons are helpful for professional development. I feel like I can participate more easily in team discussions now.",
+    initials: "OK",
+  },
+  {
+    name: "Battuya Ganbold",
+    role: "Graduate Student",
+    location: "Ulaanbaatar, MN",
+    text: "Helped me work through some specific academic writing hurdles. It was a productive experience overall.",
+    initials: "BG",
+  },
+  {
+    name: "Minh Trần",
+    role: "IT Manager",
+    location: "Ho Chi Minh City, VN",
+    text: "I appreciate the localized context used in the examples. It's a reliable option for improving your general fluency.",
+    initials: "MT",
   },
 ];
 
@@ -248,7 +248,7 @@ export function Testimonials() {
             {/* Stat 3 - Rating */}
             <div className="text-center">
               <div className="flex items-center gap-1 justify-center">
-                <span className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">5.0</span>
+                <span className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">4.9</span>
                 <Star className="w-5 h-5 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
               </div>
               <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">

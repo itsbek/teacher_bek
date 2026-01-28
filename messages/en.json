@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About",
     "courses": "Classes",
-    "blog": "Stories",
+    "blog_link": "Stories",
     "testimonials": "Students",
     "faq": "Questions",
     "contact": "Say Hello"
@@ -11,7 +11,7 @@
   "hero": {
     "badge": "English Teacher in Ho Chi Minh City",
     "title": "Learning English should feel like an adventure",
-    "subtitle": "I'm an English teacher based in Ho Chi Minh City. For the past 3 years, I've helped over 1,700 students discover the joy of speaking English - across schools and in my dedicated classroom in Phú Nhuận.",
+    "subtitle": "I'm Teacher Bek, an English teacher based in Ho Chi Minh City. For the past 3 years, I've helped nearly 2,000 students discover the joy of speaking English - across schools and in my dedicated classroom in Phú Nhuận.",
     "cta": "Let's Talk",
     "secondary": "See How I Teach",
     "stats": {
@@ -40,7 +40,7 @@
       "deltaDesc": "Diploma in English Language Teaching to Adults"
     },
     "stats": {
-      "students": "1,700+",
+      "students": "nearly 2,000",
       "studentsLabel": "Students Taught",
       "years": "3",
       "yearsLabel": "Years in Vietnam",
@@ -107,7 +107,7 @@
     "q1": "Where do you teach?",
     "a1": "I teach at my dedicated classroom in Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. It's a comfortable, properly designed space with CCTV for safety. I can also come to your location in Phú Nhuận, Gò Vấp, or Bình Thạnh.",
     "q2": "What ages do you teach?",
-    "a2": "Everyone! I've taught kindergarteners, primary school students, teenagers, and adults. With 1,700+ students taught across 3 years, I've learned to adapt my methods for each age group.",
+    "a2": "Everyone! I've taught kindergarteners, primary school students, teenagers, and adults. With nearly 2,000 students taught across 3 years, I've learned to adapt my methods for each age group.",
     "q3": "How much do lessons cost?",
     "a3": "It depends on the type of class, location, and frequency. Let's chat about your needs first, and I'll give you a clear quote with no hidden fees.",
     "q4": "Do you teach groups?",
@@ -165,7 +165,7 @@
     }
   },
   "footer": {
-    "tagline": "English teacher in Ho Chi Minh City, helping 1,700+ students find their voice since 2021",
+    "tagline": "English teacher in Ho Chi Minh City, helping nearly 2,000 students find their voice since 2021",
     "contact": "Get in Touch",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
@@ -173,7 +173,7 @@
     "certifications": "Qualifications",
     "tefl": "TESOL Certified",
     "tesol": "PGCE Certified",
-    "experience": "1,700+ Students Taught",
+    "experience": "nearly 2,000 Students Taught",
     "legal": "Legal",
     "privacy": "Privacy",
     "terms": "Terms",

@@ -2,15 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { Award, BookOpen, GraduationCap, MapPin, Shield, Users } from 'lucide-react';
 
-export function About() {
+export default function AboutSection() {
   const t = useTranslations('about');
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const credentials = [
+  const credentials = useMemo(() => [
     {
       icon: Award,
       title: t('credentials.tesol'),
@@ -26,9 +26,9 @@ export function About() {
       title: t('credentials.delta'),
       description: t('credentials.deltaDesc'),
     },
-  ];
+  ], [t]);
 
-  const classroomFeatures = [
+  const classroomFeatures = useMemo(() => [
     {
       icon: Shield,
       title: t('classroom.features.cctv'),
@@ -44,7 +44,13 @@ export function About() {
       title: t('classroom.features.materials'),
       description: t('classroom.features.materialsDesc'),
     },
-  ];
+  ], [t]);
+
+  const stats = useMemo(() => [
+    { value: t('stats.students'), label: t('stats.studentsLabel') },
+    { value: t('stats.years'), label: t('stats.yearsLabel') },
+    { value: t('stats.schools'), label: t('stats.schoolsLabel') },
+  ], [t]);
 
   return (
     <section ref={sectionRef} id="about" className="relative py-20 md:py-32 overflow-hidden bg-[#FDFCF8] dark:bg-[#0A0A0C]">
@@ -123,11 +129,7 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="grid grid-cols-3 gap-4 mt-8"
             >
-              {[
-                { value: t('stats.students'), label: t('stats.studentsLabel') },
-                { value: t('stats.years'), label: t('stats.yearsLabel') },
-                { value: t('stats.schools'), label: t('stats.schoolsLabel') },
-              ].map((stat, index) => (
+              {stats.map((stat, index) => (
                 <div key={index} className="text-center p-4 bg-[#0F0F11] dark:bg-[#F5F1E8] text-[#F5F1E8] dark:text-[#0F0F11]">
                   <div className="font-display text-2xl md:text-3xl font-bold">
                     {stat.value}
@@ -236,3 +238,4 @@ export function About() {
     </section>
   );
 }
+

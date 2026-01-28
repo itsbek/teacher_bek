@@ -1,6 +1,6 @@
 import { Header } from '@/components/header';
 import { Hero } from '@/components/hero';
-import { About } from '@/components/about';
+import AboutSection from '@/components/about';
 import { Courses } from '@/components/courses';
 import { Testimonials } from '@/components/testimonials';
 import { FAQ } from '@/components/faq';
@@ -23,7 +23,7 @@ export default async function Home({ params }: Props) {
       <main className="min-h-screen">
         <Header />
         <Hero />
-        <About />
+        <AboutSection />
         <Courses />
         <Testimonials />
         <FAQ />

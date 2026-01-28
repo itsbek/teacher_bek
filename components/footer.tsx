@@ -29,13 +29,15 @@ export function Footer() {
     { name: 'Email', href: `mailto:${email}`, icon: Mail },
   ];
 
+  const n = useTranslations('nav');
+
   const navLinks = [
-    { href: `/${locale}#about`, label: 'About' },
-    { href: `/${locale}#courses`, label: 'Courses' },
-    { href: `/${locale}/blog`, label: 'Blog' },
-    { href: `/${locale}#testimonials`, label: 'Testimonials' },
-    { href: `/${locale}#faq`, label: 'FAQ' },
-    { href: `/${locale}#contact`, label: 'Contact' },
+    { href: `/${locale}#about`, label: n('about') },
+    { href: `/${locale}#courses`, label: n('courses') },
+    { href: `/${locale}/blog`, label: n('blog_link') },
+    { href: `/${locale}#testimonials`, label: n('testimonials') },
+    { href: `/${locale}#faq`, label: n('faq') },
+    { href: `/${locale}#contact`, label: n('contact') },
   ];
 
   return (

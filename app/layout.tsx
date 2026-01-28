@@ -149,7 +149,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased`}>
+      <body className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning>
         {GA_MEASUREMENT_ID && (
           <>
             <Script

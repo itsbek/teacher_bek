@@ -126,10 +126,19 @@
 
   h1, .h1 {
     font-family: var(--font-display);
-    font-size: clamp(3.5rem, 12vw, 10rem);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
     font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  /* Hero-specific title - larger but still viewport-friendly */
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 8vw, 6.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
   }
 
   h2, .h2 {

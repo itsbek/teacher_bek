@@ -13,17 +13,16 @@ function TextReveal({ children, delay = 0 }: { children: string; delay?: number 
   return (
     <span className="inline">
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden">
+        <span key={i} className="inline-block overflow-visible py-[0.1em] -my-[0.1em]">
           <motion.span
-            initial={{ y: '110%', rotateX: -80 }}
-            animate={{ y: 0, rotateX: 0 }}
+            initial={{ y: '100%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{
-              duration: 0.8,
-              delay: delay + i * 0.08,
+              duration: 0.6,
+              delay: delay + i * 0.05,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="inline-block mr-[0.25em]"
-            style={{ transformOrigin: 'bottom' }}
           >
             {word}
           </motion.span>
@@ -83,14 +82,14 @@ export function Hero() {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  // Much gentler scroll effects - content stays visible longer
+  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0.3]);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-background"
+      className="relative h-[100svh] flex flex-col justify-center overflow-hidden bg-background"
     >
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 pointer-events-none">
@@ -111,7 +110,7 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, delay: 0.5 }}
-        className="absolute -top-[20%] -right-[10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] pointer-events-none"
+        className="absolute -top-[20%] -right-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] pointer-events-none"
       >
         <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl" />
       </motion.div>
@@ -122,9 +121,9 @@ export function Hero() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 0.02, x: 0 }}
           transition={{ duration: 1.5, delay: 1 }}
-          className="absolute -right-[5%] top-1/2 -translate-y-1/2 pointer-events-none select-none hidden lg:block"
+          className="absolute -right-[5%] top-1/2 -translate-y-1/2 pointer-events-none select-none hidden xl:block"
         >
-          <span className="font-display text-[25vw] font-bold tracking-tighter text-foreground">
+          <span className="font-display text-[18vw] font-bold tracking-tighter text-foreground">
             1K+
           </span>
         </motion.div>
@@ -135,28 +134,31 @@ export function Hero() {
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-6 md:left-10 lg:left-16 top-0 w-[1px] h-full bg-gradient-to-b from-primary via-primary/30 to-transparent origin-top hidden md:block"
+        className="absolute left-4 md:left-8 lg:left-12 top-0 w-[1px] h-full bg-gradient-to-b from-primary via-primary/30 to-transparent origin-top hidden md:block"
       />
 
-      {/* Main content */}
-      <motion.div style={{ y, opacity, scale }} className="relative z-10 pt-28 md:pt-36 lg:pt-40 pb-16 md:pb-24">
-        <div className="container-2xl">
+      {/* Main content - adjusted padding for viewport fit */}
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 pt-20 md:pt-24 lg:pt-28 pb-8 md:pb-12"
+      >
+        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8 md:mb-12"
+            className="mb-4 md:mb-6"
           >
             <span className="eyebrow">{t('badge')}</span>
           </motion.div>
 
           {/* Main Grid Layout */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end">
             {/* Left - Headline & CTA */}
             <div className="lg:col-span-8">
-              {/* Giant Headline */}
-              <h1 className="text-foreground mb-6 md:mb-8 max-w-4xl">
+              {/* Headline - refined size for viewport fit */}
+              <h1 className="text-foreground mb-4 md:mb-6 max-w-4xl hero-title">
                 <TextReveal delay={0.4}>{t('title')}</TextReveal>
               </h1>
 
@@ -164,26 +166,26 @@ export function Hero() {
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="w-24 md:w-32 h-1 bg-primary mb-6 md:mb-8 origin-left"
+                transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="w-16 md:w-24 h-[3px] bg-primary mb-4 md:mb-6 origin-left"
               />
 
-              {/* Subtitle */}
+              {/* Subtitle - more compact */}
               <motion.p
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
-                className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mb-10 md:mb-12 leading-relaxed"
+                transition={{ duration: 0.8, delay: 1 }}
+                className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mb-6 md:mb-8 leading-relaxed"
               >
                 {t('subtitle')}
               </motion.p>
 
               {/* CTAs */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
-                className="flex flex-col sm:flex-row gap-4"
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className="flex flex-col sm:flex-row gap-3"
               >
                 <motion.a
                   href="#contact"
@@ -207,64 +209,63 @@ export function Hero() {
               </motion.div>
             </div>
 
-            {/* Right - Stats */}
-            <div className="lg:col-span-4">
+            {/* Right - Stats - more compact layout */}
+            <div className="lg:col-span-4 hidden lg:block">
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 1.8 }}
-                className="flex flex-row lg:flex-col gap-8 lg:gap-10"
+                transition={{ duration: 1, delay: 1.4 }}
+                className="flex flex-col gap-6"
               >
                 {/* Stat 1 */}
                 <div className="stat-block">
-                  <div className="number-large text-foreground">
-                    <AnimatedCounter value={1700} suffix="+" delay={2} />
+                  <div className="font-display text-4xl xl:text-5xl font-bold text-foreground tracking-tight">
+                    <AnimatedCounter value={2000} suffix="" delay={1.6} />
                   </div>
-                  <p className="label mt-2">{t('stats.students')}</p>
+                  <p className="label mt-1">{t('stats.students')}</p>
                 </div>
 
                 {/* Stat 2 */}
                 <div className="stat-block">
-                  <div className="number-medium text-foreground">
-                    <AnimatedCounter value={3} suffix=" yrs" delay={2.3} />
+                  <div className="font-display text-3xl xl:text-4xl font-semibold text-foreground tracking-tight">
+                    <AnimatedCounter value={3} suffix=" yrs" delay={1.8} />
                   </div>
-                  <p className="label mt-2">{t('stats.experience')}</p>
+                  <p className="label mt-1">{t('stats.experience')}</p>
                 </div>
 
                 {/* Stat 3 - Text badge */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 2.6 }}
-                  className="hidden lg:block"
+                  transition={{ duration: 0.6, delay: 2 }}
                 >
-                  <p className="font-display text-xl md:text-2xl font-semibold text-primary leading-tight">
+                  <p className="font-display text-lg xl:text-xl font-semibold text-primary leading-tight">
                     {t('stats.success')}
                   </p>
-                  <p className="label mt-2">Teaching Background</p>
+                  <p className="label mt-1">Teaching Background</p>
                 </motion.div>
               </motion.div>
             </div>
           </div>
 
-          {/* Location Pills */}
+          {/* Location Pills - compact spacing */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.8 }}
-            className="mt-16 md:mt-24 lg:mt-32 flex flex-wrap items-center gap-3 md:gap-4"
+            transition={{ duration: 0.8, delay: 2.2 }}
+            className="mt-8 md:mt-10 lg:mt-12 flex flex-wrap items-center gap-2 md:gap-3"
           >
-            <span className="label mr-2">Teaching in:</span>
+            <span className="label mr-1">Teaching in:</span>
             {['Gò Vấp', 'Phú Nhuận', 'Bình Thạnh'].map((district, i) => (
               <motion.span
                 key={district}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 2.9 + i * 0.1 }}
+                transition={{ duration: 0.4, delay: 2.3 + i * 0.08 }}
                 whileHover={{ y: -2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 text-foreground text-sm font-medium border border-primary/20 hover:border-primary/40 hover:bg-primary/10 transition-all duration-300"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 text-foreground text-xs md:text-sm font-medium border border-primary/20 hover:border-primary/40 hover:bg-primary/10 transition-all duration-300"
               >
-                <MapPin className="w-3.5 h-3.5 text-primary" />
+                <MapPin className="w-3 h-3 text-primary" />
                 {district}
               </motion.span>
             ))}
@@ -272,20 +273,20 @@ export function Hero() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - positioned to not overflow */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 3.2 }}
-        className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2"
+        transition={{ duration: 0.8, delay: 2.6 }}
+        className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-3"
+          className="flex flex-col items-center gap-2"
         >
-          <span className="label-sm">Scroll</span>
-          <div className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-primary to-transparent" />
+          <span className="label-sm text-[8px] md:text-[9px]">Scroll</span>
+          <div className="w-[1px] h-6 md:h-8 bg-gradient-to-b from-primary to-transparent" />
         </motion.div>
       </motion.div>
 

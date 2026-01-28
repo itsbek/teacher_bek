@@ -48,7 +48,7 @@ export function Header() {
   const navLinks = [
     { href: `/${locale}#about`, label: t('about') },
     { href: `/${locale}#courses`, label: t('courses') },
-    { href: `/${locale}/blog`, label: t('blog') },
+    { href: `/${locale}/blog`, label: t('blog_link') },
     { href: `/${locale}#testimonials`, label: t('testimonials') },
     { href: `/${locale}#faq`, label: t('faq') },
     { href: `/${locale}#contact`, label: t('contact') },
@@ -60,11 +60,10 @@ export function Header() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'py-3 md:py-4 bg-background/90 backdrop-blur-xl border-b border-border'
-            : 'py-4 md:py-6 bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? 'py-3 md:py-4 bg-background/90 backdrop-blur-xl border-b border-border'
+          : 'py-4 md:py-6 bg-transparent'
+          }`}
       >
         <nav className="container-2xl">
           <div className="flex items-center justify-between">
@@ -76,7 +75,7 @@ export function Header() {
               whileTap={{ scale: 0.98 }}
             >
               <span className="font-display text-xl md:text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
-                English
+                Teacher Bek
               </span>
               <motion.span
                 className="text-primary font-display text-xl md:text-2xl font-bold"
@@ -139,11 +138,10 @@ export function Header() {
                           <button
                             key={lang.code}
                             onClick={() => switchLanguage(lang.code)}
-                            className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 transition-colors ${
-                              locale === lang.code
-                                ? 'bg-primary/10 text-primary'
-                                : 'hover:bg-muted text-muted-foreground hover:text-foreground'
-                            }`}
+                            className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 transition-colors ${locale === lang.code
+                              ? 'bg-primary/10 text-primary'
+                              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                              }`}
                           >
                             <span className="font-mono text-xs tracking-wider w-6">{lang.flag}</span>
                             <span>{lang.name}</span>
@@ -263,11 +261,10 @@ export function Header() {
                   <button
                     key={lang.code}
                     onClick={() => switchLanguage(lang.code)}
-                    className={`px-4 py-2.5 text-xs font-mono tracking-wider transition-all ${
-                      locale === lang.code
-                        ? 'bg-primary text-primary-foreground'
-                        : 'border border-border text-muted-foreground hover:text-foreground hover:border-primary/50'
-                    }`}
+                    className={`px-4 py-2.5 text-xs font-mono tracking-wider transition-all ${locale === lang.code
+                      ? 'bg-primary text-primary-foreground'
+                      : 'border border-border text-muted-foreground hover:text-foreground hover:border-primary/50'
+                      }`}
                   >
                     {lang.flag}
                   </button>
