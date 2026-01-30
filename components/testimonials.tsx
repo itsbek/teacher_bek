@@ -1,9 +1,10 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
+import { Reveal } from '@/components/ui/reveal';
 
 // Testimonial data
 const testimonials = [
@@ -66,39 +67,98 @@ const testimonials = [
 ];
 
 // Single testimonial card
-function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+// Single testimonial card
+function TestimonialCard({
+  testimonial,
+  onClick
+}: {
+  testimonial: typeof testimonials[0];
+  onClick: (t: typeof testimonials[0]) => void;
+}) {
   return (
-    <motion.div
-      className="group relative flex-shrink-0 w-[320px] md:w-[380px]"
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      className="group relative flex-shrink-0 w-[320px] md:w-[380px] h-[240px] md:h-[260px] cursor-pointer transition-all duration-500 hover:!opacity-100 hover:!grayscale-0 group-hover/marquee:opacity-40 group-hover/marquee:grayscale"
+      onClick={() => onClick(testimonial)}
     >
-      <div className="relative h-full p-6 md:p-8 bg-[#FDFCF8]/80 dark:bg-[#0A0A0C]/80 backdrop-blur-xl border border-[#0F0F11]/10 dark:border-[#F5F1E8]/10 transition-all duration-500 group-hover:border-[#C85C3F]/30 dark:group-hover:border-[#E88C73]/30 group-hover:shadow-[0_8px_40px_-12px_rgba(200,92,63,0.15)] dark:group-hover:shadow-[0_8px_40px_-12px_rgba(232,140,115,0.15)]">
-        {/* Quote accent line */}
+      <div className="absolute inset-0 bg-card/80 backdrop-blur-xl border border-border transition-all duration-300 group-hover:bg-card group-hover:border-primary/30 group-hover:shadow-lg group-hover:-translate-y-1 rounded-xl overflow-hidden p-6 md:p-8 flex flex-col justify-between">
+
+        {/* Quote accent */}
         <div className="absolute top-0 left-6 md:left-8 w-8 h-[2px] bg-gradient-to-r from-[#C85C3F] to-[#B8956A] dark:from-[#E88C73] dark:to-[#D4B896]" />
 
-        {/* Stars */}
-        <div className="flex gap-0.5 mb-4">
+        <div>
+          {/* Stars */}
+          <div className="flex gap-0.5 mb-4">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-3 h-3 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
+            ))}
+          </div>
+
+          {/* Quote - Truncated */}
+          <p className="font-sans text-base text-[#0F0F11] dark:text-[#F5F1E8] leading-relaxed line-clamp-3 mb-4 group-hover:text-primary transition-colors duration-300">
+            "{testimonial.text}"
+          </p>
+        </div>
+
+        {/* Author */}
+        <div className="flex items-center gap-3 mt-auto">
+          <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center text-xs font-mono tracking-wider bg-[#C85C3F] dark:bg-[#E88C73] text-white rounded-full">
+            {testimonial.initials}
+          </div>
+          <div className="min-w-0">
+            <p className="font-display text-sm font-semibold text-[#0F0F11] dark:text-[#F5F1E8] truncate">
+              {testimonial.name}
+            </p>
+            <p className="font-mono text-[10px] tracking-wider text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 uppercase truncate">
+              {testimonial.role}
+            </p>
+          </div>
+        </div>
+
+        {/* Hover Hint */}
+        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="text-[10px] uppercase tracking-widest text-primary font-mono">Read</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Expanded Card Overlay
+function ExpandedCard({ testimonial, onClose }: { testimonial: typeof testimonials[0]; onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 10 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/20 backdrop-blur-[2px]"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-lg bg-card border border-primary/20 shadow-2xl rounded-2xl p-8 relative overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C85C3F] to-[#B8956A]" />
+
+        <div className="flex gap-1 mb-6">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-3 h-3 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
+            <Star key={i} className="w-4 h-4 fill-[#B8956A] text-[#B8956A]" />
           ))}
         </div>
 
-        {/* Quote */}
-        <p className="font-sans text-base md:text-lg text-[#0F0F11] dark:text-[#F5F1E8] leading-relaxed mb-6 line-clamp-2">
+        <p className="font-sans text-lg md:text-xl text-foreground leading-relaxed mb-8">
           "{testimonial.text}"
         </p>
 
-        {/* Author */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 flex items-center justify-center text-xs font-mono tracking-wider bg-[#C85C3F] dark:bg-[#E88C73] text-white">
+        <div className="flex items-center gap-4 pt-6 border-t border-border/50">
+          <div className="w-12 h-12 flex items-center justify-center text-sm font-mono tracking-wider bg-[#C85C3F] text-white rounded-full">
             {testimonial.initials}
           </div>
           <div>
-            <p className="font-display text-sm font-semibold text-[#0F0F11] dark:text-[#F5F1E8]">
+            <p className="font-display text-lg font-semibold text-foreground">
               {testimonial.name}
             </p>
-            <p className="font-mono text-[10px] tracking-wider text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 uppercase">
+            <p className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
               {testimonial.role} · {testimonial.location}
             </p>
           </div>
@@ -109,39 +169,52 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 }
 
 // Infinite marquee component
-function Marquee({ children, reverse = false, pauseOnHover = true }: {
+// Infinite marquee component
+function Marquee({ children, reverse = false, isPaused = false }: {
   children: React.ReactNode;
   reverse?: boolean;
-  pauseOnHover?: boolean;
+  isPaused?: boolean;
 }) {
-  const [isPaused, setIsPaused] = useState(false);
+  const [hovering, setHovering] = useState(false);
 
   return (
     <div
-      className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
-      onMouseEnter={() => pauseOnHover && setIsPaused(true)}
-      onMouseLeave={() => pauseOnHover && setIsPaused(false)}
+      className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] group/marquee"
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
     >
-      <motion.div
-        className="flex gap-4 md:gap-6 pr-4 md:pr-6"
-        animate={{
-          x: reverse ? ["0%", "-50%"] : ["-50%", "0%"],
-        }}
-        transition={{
-          duration: 40,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+      <div
+        className="flex gap-4 md:gap-6 pr-4 md:pr-6 animate-marquee"
         style={{
-          animationPlayState: isPaused ? "paused" : "running",
+          animationPlayState: (isPaused || hovering) ? "paused" : "running",
+          animationDirection: reverse ? "reverse" : "normal",
         }}
       >
-        {children}
-        {children}
-      </motion.div>
+        <div className="flex gap-4 md:gap-6 items-center">
+          {children}
+        </div>
+        <div className="flex gap-4 md:gap-6 items-center">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
+
+// ... StatValue remains same ... (omitted for brevity, I will match start line correctly)
+// Wait, I cannot omit StatValue if I am replacing a big chunk.
+// I will just replace `Testimonials` and `TestimonialCard` and `Marquee` blocks?
+// The file has:
+// 1. testimonials data (unchanged)
+// 2. TestimonialCard (replacing)
+// 3. Marquee (replacing)
+// 4. StatValue (keeping)
+// 5. Testimonials (replacing)
+
+// I will use multiple TargetContent to be safe or one big block if they are contiguous?
+// They are contiguous: TestimonialCard -> Marquee -> StatValue -> Testimonials.
+// I'll skip StatValue replacement to minimize specific text matching errors, using multi_replace.
+
 
 // Animated stat counter
 function StatValue({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -179,6 +252,7 @@ function StatValue({ value, suffix = "" }: { value: number; suffix?: string }) {
 export function Testimonials() {
   const t = useTranslations('testimonials');
   const [mounted, setMounted] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState<typeof testimonials[0] | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -192,24 +266,31 @@ export function Testimonials() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0F0F11]/10 dark:via-[#F5F1E8]/10 to-transparent" />
       </div>
 
+      <AnimatePresence>
+        {activeTestimonial && (
+          <ExpandedCard
+            testimonial={activeTestimonial}
+            onClose={() => setActiveTestimonial(null)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Compact Header with Stats */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12">
           {/* Left: Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-md"
-          >
-            <span className="inline-block font-mono text-[10px] tracking-[0.3em] uppercase text-[#C85C3F] dark:text-[#E88C73] mb-3">
-              Testimonials
-            </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1]" style={{ letterSpacing: '-0.02em' }}>
-              {t('title')}
-            </h2>
-          </motion.div>
+          <div className="max-w-md">
+            <Reveal>
+              <span className="inline-block font-mono text-[10px] tracking-[0.3em] uppercase text-[#C85C3F] dark:text-[#E88C73] mb-3">
+                Feedback
+              </span>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1]" style={{ letterSpacing: '-0.02em' }}>
+                {t('title')}
+              </h2>
+            </Reveal>
+          </div>
 
           {/* Right: Stats row */}
           <motion.div
@@ -222,7 +303,7 @@ export function Testimonials() {
             {/* Stat 1 */}
             <div className="text-center">
               <div className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">
-                <StatValue value={1700} suffix="+" />
+                <StatValue value={2000} suffix="+" />
               </div>
               <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
                 Students
@@ -266,9 +347,13 @@ export function Testimonials() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <Marquee pauseOnHover>
+          <Marquee isPaused={!!activeTestimonial}>
             {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} testimonial={testimonial} index={index} />
+              <TestimonialCard
+                key={index}
+                testimonial={testimonial}
+                onClick={setActiveTestimonial}
+              />
             ))}
           </Marquee>
         </motion.div>

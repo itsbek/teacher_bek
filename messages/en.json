@@ -10,34 +10,34 @@
   },
   "hero": {
     "badge": "English Teacher in Ho Chi Minh City",
-    "title": "Learning English should feel like an adventure",
-    "subtitle": "I'm Teacher Bek, an English teacher based in Ho Chi Minh City. For the past 3 years, I've helped nearly 2,000 students discover the joy of speaking English - across schools and in my dedicated classroom in Phú Nhuận.",
-    "cta": "Let's Talk",
-    "secondary": "See How I Teach",
+    "title": "Speak English with Confidence and Joy",
+    "subtitle": "Hi, I'm Teacher Bek. I help students in Ho Chi Minh City move past the fear of making mistakes and start actually speaking. Whether you're 5 or 50, let's find your voice together.",
+    "cta": "Start Speaking",
+    "secondary": "How I Teach",
     "stats": {
-      "students": "Students Taught",
+      "students": "Happy Students",
       "experience": "Years Teaching",
-      "success": "TESOL & PGCE Certified"
+      "success": "Certified Teacher"
     }
   },
   "about": {
-    "label": "About Me",
-    "title": "The Teacher Behind the Classes",
-    "intro": "I came to Vietnam 3 years ago and fell in love with teaching here. What started as a new chapter became my calling.",
+    "label": "Hello",
+    "title": "A Teacher Who Listens",
+    "intro": "I believe the best way to learn is by doing - speaking, laughing, and trying without fear.",
     "story": {
-      "title": "My Journey",
-      "p1": "With TESOL and PGCE certifications under my belt, and currently pursuing my DELTA, I've dedicated myself to understanding how people truly learn languages. It's not about memorizing rules - it's about finding your voice.",
-      "p2": "I've taught across Ho Chi Minh City - at ILA Vietnam, Blue Sky Academy, international schools, public schools, and kindergartens. Each classroom, each student, taught me something new.",
-      "p3": "Now I teach from my own dedicated classroom in Golden Mansion, Phú Nhuận - a comfortable, properly designed learning space with CCTV for parents' peace of mind."
+      "title": "My Approach",
+      "p1": "I am a fully qualified teacher (TESOL & PGCE) with a passion for checking in with my students. I don't just teach from a textbook; I look at how you learn best.",
+      "p2": "I've taught everywhere from big international schools like ILA to local kindergartens. I've seen that everyone learns differently, and that's okay.",
+      "p3": "Now, I run my own classroom in Phú Nhuận. It's a space designed for you to feel comfortable, because when you're relaxed, you learn faster."
     },
     "credentials": {
-      "title": "Qualifications",
-      "tesol": "TESOL Certified",
-      "tesolDesc": "Teaching English to Speakers of Other Languages",
-      "pgce": "PGCE Certified",
-      "pgceDesc": "Postgraduate Certificate in Education",
-      "delta": "DELTA In Progress",
-      "deltaDesc": "Diploma in English Language Teaching to Adults"
+      "title": "My Background",
+      "tesol": "TESOL Qualified",
+      "tesolDesc": "Certified to teach English",
+      "pgce": "PGCE Holder",
+      "pgceDesc": "Professional Education Certificate",
+      "delta": "DELTA Candidate",
+      "deltaDesc": "Advanced Teaching Diploma"
     },
     "stats": {
       "students": "nearly 2,000",
@@ -45,24 +45,24 @@
       "years": "3",
       "yearsLabel": "Years in Vietnam",
       "schools": "15+",
-      "schoolsLabel": "Schools & Institutions"
+      "schoolsLabel": "Schools Taught At"
     },
     "classroom": {
-      "title": "My Classroom",
-      "description": "A dedicated learning space designed for comfort and focus",
+      "title": "The Classroom",
+      "description": "A safe, quiet space where you can focus.",
       "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
       "features": {
-        "cctv": "CCTV Monitored",
-        "cctvDesc": "Parents can have peace of mind",
-        "comfort": "Comfortable Environment",
-        "comfortDesc": "Properly designed for learning",
-        "materials": "Learning Materials",
-        "materialsDesc": "All resources provided"
+        "cctv": "Secure Space",
+        "cctvDesc": "CCTV for safety",
+        "comfort": "Relaxed Atmosphere",
+        "comfortDesc": "AC and comfortable seating",
+        "materials": "All Needed Tools",
+        "materialsDesc": "Books, screens, and materials provided"
       }
     },
     "philosophy": {
-      "title": "How I Teach",
-      "description": "I believe learning happens best when you're not afraid to make mistakes. My classroom is a safe space to try, fail, laugh, and try again. Whether you're 5 or 50, we'll find what works for you."
+      "title": "Why It Works",
+      "description": "My classes are not about memorizing lists of words. They are about using English to connect with people. We play games, we have conversations, and we build your confidence step by step."
     }
   },
   "courses": {
@@ -94,8 +94,8 @@
     }
   },
   "testimonials": {
-    "title": "From My Students",
-    "subtitle": "Real stories from real people I've had the pleasure of teaching"
+    "title": "Community Feedback",
+    "subtitle": "Real stories from students, parents, and colleagues"
   },
   "cta": {
     "title": "Curious about classes?",

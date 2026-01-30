@@ -51,17 +51,29 @@ export function CustomCursor() {
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA';
 
+      // Check for text elements
+      const isText =
+        target.tagName === 'P' ||
+        target.tagName === 'SPAN' ||
+        ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(target.tagName) ||
+        target.tagName === 'LI' ||
+        target.tagName === 'BLOCKQUOTE';
+
       if (isInteractive) {
         setIsPointer(true);
+      }
 
-        // Check for custom cursor text
-        const customText =
-          target.getAttribute('data-cursor-text') ||
-          target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
+      // We could add a text-hover state here if we wanted strictly different visuals
+      // For now, ensuring pointer doesn't trigger on plain text, 
+      // but we maintain the custom cursor visibility.
 
-        if (customText) {
-          setCursorText(customText);
-        }
+      // Check for custom cursor text
+      const customText =
+        target.getAttribute('data-cursor-text') ||
+        target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
+
+      if (customText) {
+        setCursorText(customText);
       }
     };
 

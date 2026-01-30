@@ -1,297 +1,314 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { trackCTAClick } from '@/lib/analytics';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Cinematic text reveal - word by word
-function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {
-  const words = children.split(' ');
 
-  return (
-    <span className="inline">
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-visible py-[0.1em] -my-[0.1em]">
-          <motion.span
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{
-              duration: 0.6,
-              delay: delay + i * 0.05,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="inline-block mr-[0.25em]"
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  );
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-// Animated counter with mounting guard
-function AnimatedCounter({ value, suffix = '', delay = 0 }: { value: number; suffix?: string; delay?: number }) {
-  const [mounted, setMounted] = useState(false);
-  const [displayValue, setDisplayValue] = useState(0);
+// -----------------------------------------------------------------------------
+// SCRAMBLE WORD
+// -----------------------------------------------------------------------------
+const ScrambleWord = ({ words, interval = 3000 }: { words: string[]; interval?: number }) => {
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const [currentWord, setCurrentWord] = useState(words[0]);
+  const indexRef = useRef(0);
+
+  // Find longest word to reserve space and prevent layout shift
+  const longestWord = useMemo(() => words.reduce((a, b) => a.length > b.length ? a : b, ""), [words]);
 
   useEffect(() => {
-    setMounted(true);
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        current += increment;
-        if (current >= value) {
-          setDisplayValue(value);
-          clearInterval(interval);
-        } else {
-          setDisplayValue(Math.floor(current));
+    const cycle = setInterval(() => {
+      indexRef.current = (indexRef.current + 1) % words.length;
+      const nextWord = words[indexRef.current];
+      const el = elementRef.current;
+
+      if (!el) return;
+
+      let frame = 0;
+      const totalFrames = 30; // 30 frames for ~500ms transition
+
+      const animate = () => {
+        let output = '';
+        const progress = frame / totalFrames;
+
+        for (let i = 0; i < nextWord.length; i++) {
+          // If we're past the "scramble" phase for this character, show the real char
+          if (progress > (i / nextWord.length)) {
+            output += nextWord[i];
+          } else {
+            // Otherwise show a random character with lower opacity
+            // Ensure width doesn't fluctuate wildly by using non-breaking space if random char is narrow?
+            // Actually, the Grid spacer handles the container width. 
+            // The text itself might jitter inside, but the layout won't shake.
+            output += `<span class="opacity-30">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
+          }
         }
-      }, duration / steps);
 
-      return () => clearInterval(interval);
-    }, delay * 1000);
+        el.innerHTML = output;
+        frame++;
 
-    return () => clearTimeout(timer);
-  }, [value, delay]);
+        if (frame <= totalFrames) {
+          requestAnimationFrame(animate);
+        } else {
+          // Animation complete, sync React state
+          setCurrentWord(nextWord);
+        }
+      };
+
+      animate();
+    }, interval);
+
+    return () => clearInterval(cycle);
+  }, [words, interval]);
 
   return (
-    <span className="tabular-nums">
-      {mounted ? displayValue : 0}{suffix}
+    <span className="inline-grid grid-cols-1 overflow-hidden" style={{ verticalAlign: 'top' }}>
+      {/* Invisible spacer to reserve constant width */}
+      <span className="col-start-1 row-start-1 opacity-0 pointer-events-none select-none" aria-hidden="true">
+        {longestWord}
+      </span>
+
+      {/* Animated text overlay */}
+      <span
+        ref={elementRef}
+        className="col-start-1 row-start-1 text-primary whitespace-nowrap"
+        aria-label={currentWord}
+      >
+        {currentWord}
+      </span>
     </span>
   );
-}
+};
+
+// -----------------------------------------------------------------------------
+// WIREGLOBE BACKGROUND ELEMENT
+// -----------------------------------------------------------------------------
+const WireGlobe = () => {
+  return (
+    <div className="absolute top-1/2 right-[5%] -translate-y-1/2 w-[600px] h-[600px] opacity-[0.04] pointer-events-none hidden xl:block mix-blend-difference">
+      <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow">
+        {/* Outer sphere */}
+        <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" strokeWidth="0.5" />
+
+        {/* Latitude lines */}
+        <ellipse cx="100" cy="100" rx="95" ry="30" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        <ellipse cx="100" cy="100" rx="95" ry="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        <ellipse cx="100" cy="100" rx="82" ry="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+
+        {/* Longitude lines */}
+        <ellipse cx="100" cy="100" rx="30" ry="95" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        <ellipse cx="100" cy="100" rx="60" ry="95" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        <ellipse cx="100" cy="100" rx="82" ry="80" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(90 100 100)" />
+
+        {/* Vertical center line */}
+        <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" strokeWidth="0.5" />
+
+        {/* Horizontal center line */}
+        <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" strokeWidth="0.5" />
+      </svg>
+    </div>
+  );
+};
+
+// -----------------------------------------------------------------------------
+// MAIN HERO
+// -----------------------------------------------------------------------------
+const WORDS = ['Confidence', 'Clarity', 'Purpose'];
 
 export function Hero() {
   const t = useTranslations('hero');
   const containerRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const [displayCount, setDisplayCount] = useState(0);
+  const hasAnimated = useRef(false);
 
+  // Count-up animation
   useEffect(() => {
-    setMounted(true);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            const target = 2000;
+            const duration = 2000;
+            const startTime = Date.now();
+
+            const tick = () => {
+              const elapsed = Date.now() - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+              setDisplayCount(Math.floor(easeOutQuart * target));
+
+              if (progress < 1) {
+                requestAnimationFrame(tick);
+              }
+            };
+
+            requestAnimationFrame(tick);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
+  // GSAP Entrance - Fixed for descenders
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-  // Much gentler scroll effects - content stays visible longer
-  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0.3]);
+      // Grid lines
+      tl.fromTo(".grid-line", { scaleX: 0 }, { scaleX: 1, duration: 1.2, stagger: 0.1 });
+      tl.fromTo(".eyebrow", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8");
+
+      // Headline - Manual line reveal to preserve ScrambleWord React state
+      if (headlineRef.current) {
+        tl.to([".line-1-text", ".line-2-text"], {
+          y: '0%',
+          duration: 1.4,
+          stagger: 0.12,
+          ease: "power4.out"
+        }, "-=0.6");
+      }
+
+      // Globe fade in
+      tl.fromTo(".wire-globe-container", { opacity: 0, scale: 0.9 }, { opacity: 0.04, scale: 1, duration: 2 }, "-=1");
+
+      // Stat row
+      tl.fromTo(".stat-row", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8");
+
+      // Subtitle
+      tl.fromTo(".subtitle", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=0.6");
+
+      // CTAs
+      tl.fromTo(".cta-group", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.6");
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative h-[100svh] flex flex-col justify-center overflow-hidden bg-background"
+      className="relative min-h-[100svh] flex flex-col justify-center bg-background overflow-hidden"
     >
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
-              linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)
-            `,
-            backgroundSize: '80px 80px',
-          }}
-        />
+      {/* Subtle noise */}
+      <div className="absolute inset-0 opacity-[0.015] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
+
+      {/* Wireframe Globe - Transparent background element */}
+      <div className="wire-globe-container absolute inset-0 pointer-events-none">
+        <WireGlobe />
       </div>
 
-      {/* Gradient orb - top right */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
-        className="absolute -top-[20%] -right-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] pointer-events-none"
-      >
-        <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl" />
-      </motion.div>
+      {/* Decorative grid lines */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="grid-line absolute left-[8vw] top-1/4 bottom-1/4 w-px bg-foreground/[0.03] origin-top" />
+        <div className="grid-line absolute right-[8vw] top-1/3 bottom-1/3 w-px bg-foreground/[0.02] origin-top" />
+      </div>
 
-      {/* Large decorative text in background */}
-      {mounted && (
-        <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 0.02, x: 0 }}
-          transition={{ duration: 1.5, delay: 1 }}
-          className="absolute -right-[5%] top-1/2 -translate-y-1/2 pointer-events-none select-none hidden xl:block"
-        >
-          <span className="font-display text-[18vw] font-bold tracking-tighter text-foreground">
-            1K+
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-12 pt-32 pb-20">
+
+        {/* Top row */}
+        <div className="flex items-center justify-between mb-16">
+          <div className="eyebrow flex items-center gap-4">
+            <div className="h-px w-8 bg-primary" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary font-semibold">
+              {t('badge')}
+            </span>
+          </div>
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 hidden sm:block">
+            Issue 01 — 2024
           </span>
-        </motion.div>
-      )}
+        </div>
 
-      {/* Vertical accent line */}
-      <motion.div
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-4 md:left-8 lg:left-12 top-0 w-[1px] h-full bg-gradient-to-b from-primary via-primary/30 to-transparent origin-top hidden md:block"
-      />
+        {/* MAIN COMPOSITION */}
+        <div className="space-y-10">
 
-      {/* Main content - adjusted padding for viewport fit */}
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 pt-20 md:pt-24 lg:pt-28 pb-8 md:pb-12"
-      >
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-4 md:mb-6"
+          {/* Headline - Fixed line-height for descenders */}
+          {/* leading-[1.05] gives enough room for tails of p, y, q, g, j */}
+          <h1
+            ref={headlineRef}
+            className="font-display text-[12vw] sm:text-[10vw] lg:text-[8vw] xl:text-[6.5vw] font-semibold leading-[1.05] tracking-[-0.03em] text-foreground max-w-4xl"
           >
-            <span className="eyebrow">{t('badge')}</span>
-          </motion.div>
+            <span className="block overflow-hidden pb-2">
+              <span className="block line-1-text translate-y-[110%]">Speak English</span>
+            </span>
+            <span className="block overflow-hidden pb-4 -mb-4">
+              <span className="inline-flex items-baseline line-2-text translate-y-[110%]">
+                with <span className="w-[0.2em]" /> <ScrambleWord words={WORDS} />
+              </span>
+            </span>
+          </h1>
 
-          {/* Main Grid Layout */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end">
-            {/* Left - Headline & CTA */}
-            <div className="lg:col-span-8">
-              {/* Headline - refined size for viewport fit */}
-              <h1 className="text-foreground mb-4 md:mb-6 max-w-4xl hero-title">
-                <TextReveal delay={0.4}>{t('title')}</TextReveal>
-              </h1>
-
-              {/* Accent bar */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="w-16 md:w-24 h-[3px] bg-primary mb-4 md:mb-6 origin-left"
-              />
-
-              {/* Subtitle - more compact */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
-                className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mb-6 md:mb-8 leading-relaxed"
-              >
-                {t('subtitle')}
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="flex flex-col sm:flex-row gap-3"
-              >
-                <motion.a
-                  href="#contact"
-                  onClick={() => trackCTAClick('hero', 'contact')}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-primary group"
-                >
-                  <span>{t('cta')}</span>
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </motion.a>
-                <motion.a
-                  href="#courses"
-                  onClick={() => trackCTAClick('hero', 'courses')}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-outline"
-                >
-                  <span>{t('secondary')}</span>
-                </motion.a>
-              </motion.div>
+          {/* Stat - Inline, proud but not shouting */}
+          <div className="stat-row inline-flex items-center gap-6 py-3 px-0 border-t border-b border-border/30">
+            <div className="flex items-baseline gap-1">
+              <span className="font-display text-5xl lg:text-6xl font-bold text-foreground tabular-nums tracking-tight">
+                {displayCount.toLocaleString()}
+              </span>
+              <span className="font-display text-2xl lg:text-3xl font-bold text-primary">+</span>
             </div>
-
-            {/* Right - Stats - more compact layout */}
-            <div className="lg:col-span-4 hidden lg:block">
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 1.4 }}
-                className="flex flex-col gap-6"
-              >
-                {/* Stat 1 */}
-                <div className="stat-block">
-                  <div className="font-display text-4xl xl:text-5xl font-bold text-foreground tracking-tight">
-                    <AnimatedCounter value={2000} suffix="" delay={1.6} />
-                  </div>
-                  <p className="label mt-1">{t('stats.students')}</p>
-                </div>
-
-                {/* Stat 2 */}
-                <div className="stat-block">
-                  <div className="font-display text-3xl xl:text-4xl font-semibold text-foreground tracking-tight">
-                    <AnimatedCounter value={3} suffix=" yrs" delay={1.8} />
-                  </div>
-                  <p className="label mt-1">{t('stats.experience')}</p>
-                </div>
-
-                {/* Stat 3 - Text badge */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 2 }}
-                >
-                  <p className="font-display text-lg xl:text-xl font-semibold text-primary leading-tight">
-                    {t('stats.success')}
-                  </p>
-                  <p className="label mt-1">Teaching Background</p>
-                </motion.div>
-              </motion.div>
+            <div className="hidden sm:block h-8 w-px bg-border/50" />
+            <div className="hidden sm:block">
+              <span className="block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/80">Students taught</span>
+              <span className="block font-mono text-[9px] text-muted-foreground/50 mt-0.5">Since 2012</span>
             </div>
           </div>
 
-          {/* Location Pills - compact spacing */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.2 }}
-            className="mt-8 md:mt-10 lg:mt-12 flex flex-wrap items-center gap-2 md:gap-3"
-          >
-            <span className="label mr-1">Teaching in:</span>
-            {['Gò Vấp', 'Phú Nhuận', 'Bình Thạnh'].map((district, i) => (
-              <motion.span
-                key={district}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 2.3 + i * 0.08 }}
-                whileHover={{ y: -2 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 text-foreground text-xs md:text-sm font-medium border border-primary/20 hover:border-primary/40 hover:bg-primary/10 transition-all duration-300"
-              >
-                <MapPin className="w-3 h-3 text-primary" />
-                {district}
-              </motion.span>
-            ))}
-          </motion.div>
+          {/* Subtitle */}
+          <p className="subtitle text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl text-pretty">
+            {t('subtitle')}
+          </p>
+
+          {/* CTAs */}
+          <div className="cta-group flex flex-col sm:flex-row gap-4 pt-2">
+            <a
+              href="#contact"
+              onClick={() => trackCTAClick('hero', 'contact')}
+              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-medium relative overflow-hidden hover:shadow-glow transition-shadow duration-500"
+            >
+              <span className="relative z-10">{t('cta')}</span>
+              <ArrowRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <div className="absolute inset-0 bg-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+            </a>
+
+            <a
+              href="#courses"
+              onClick={() => trackCTAClick('hero', 'courses')}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-foreground/20 text-foreground font-medium hover:border-primary hover:text-primary transition-colors duration-300"
+            >
+              {t('secondary')}
+            </a>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Scroll indicator - positioned to not overflow */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 2.6 }}
-        className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="label-sm text-[8px] md:text-[9px]">Scroll</span>
-          <div className="w-[1px] h-6 md:h-8 bg-gradient-to-b from-primary to-transparent" />
-        </motion.div>
-      </motion.div>
-
-      {/* Bottom border accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      {/* Animation keyframes for slow spin */}
+      <style jsx global>{`
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 60s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }

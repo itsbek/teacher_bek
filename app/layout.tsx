@@ -1,24 +1,29 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, Space_Mono } from "next/font/google";
+import { Playfair_Display, Inter, Space_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { CustomCursor } from "@/components/cursor";
+import { SmoothScrollProvider } from "@/components/smooth-scroll";
+import { BookmarkRibbon } from "@/components/bookmark-ribbon";
+import { AudioProvider } from '@/components/audio-provider';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
-// Elegant editorial display font
+import { ThemeProvider } from "@/components/theme-provider";
+
+// Professional Serif Display for Headings
 const playfair = Playfair_Display({
-  subsets: ["latin", "latin-ext", "vietnamese"],
+  subsets: ["latin", "vietnamese"],
   variable: "--font-display",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-// Modern, highly readable body font
-const dmSans = DM_Sans({
-  subsets: ["latin", "latin-ext"],
+// Professional Sans for Body
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 // Monospace accent for numbers and labels
@@ -149,7 +154,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${playfair.variable} ${inter.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning>
         {GA_MEASUREMENT_ID && (
           <>
             <Script
@@ -172,7 +177,19 @@ export default function RootLayout({
             />
           </>
         )}
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AudioProvider>
+            <SmoothScrollProvider>
+              {children}
+              <CustomCursor />
+            </SmoothScrollProvider>
+          </AudioProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

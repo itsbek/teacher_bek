@@ -1,0 +1,45 @@
+"use client";
+
+import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useAudio } from "@/components/audio-provider";
+
+export function Magnetic({ children, strength = 0.5 }: { children: React.ReactNode; strength?: number }) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const { playSound } = useAudio();
+
+    const handleMouseEnter = () => {
+        playSound("hover");
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = ref.current!.getBoundingClientRect();
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+        const distanceX = clientX - centerX;
+        const distanceY = clientY - centerY;
+
+        setPosition({ x: distanceX * strength, y: distanceY * strength });
+    };
+
+    const handleMouseLeave = () => {
+        setPosition({ x: 0, y: 0 });
+    };
+
+    const { x, y } = position;
+
+    return (
+        <motion.div
+            ref={ref}
+            onMouseEnter={handleMouseEnter}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            animate={{ x, y }}
+            transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+        >
+            {children}
+        </motion.div>
+    );
+}

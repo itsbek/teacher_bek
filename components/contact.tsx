@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { ContactForm } from './contact-form';
 import { trackCTAClick } from '@/lib/analytics';
 import { MessageCircle, Send, Mail, ArrowRight, MapPin } from 'lucide-react';
+import { Reveal } from '@/components/ui/reveal';
 
 export function Contact() {
   const t = useTranslations('cta');
@@ -59,30 +60,19 @@ export function Contact() {
       <div className="container-2xl relative">
         {/* Header */}
         <div className="max-w-3xl mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="eyebrow mb-6"
-          >
-            Contact
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-foreground mb-6"
-          >
-            {contactT('title')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-muted-foreground text-lg md:text-xl"
-          >
-            {contactT('subtitle')}
-          </motion.p>
+          <Reveal>
+            <div className="eyebrow mb-6">Contact</div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="text-foreground mb-6 font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+              {contactT('title')}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl leading-relaxed">
+              {contactT('subtitle')}
+            </p>
+          </Reveal>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
@@ -194,7 +184,7 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="flex flex-wrap justify-center gap-3 mt-16 md:mt-20 pt-12 border-t border-border"
         >
-          {['TESOL Certified', 'PGCE Certified', '3 Years in Vietnam', '1700+ Students'].map((badge) => (
+          {['TESOL Certified', 'PGCE Certified', '3 Years in Vietnam', '2000+ Students'].map((badge) => (
             <span
               key={badge}
               className="px-4 py-2 text-xs font-mono tracking-wider text-muted-foreground bg-muted border border-border"

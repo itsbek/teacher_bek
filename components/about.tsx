@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useMemo } from 'react';
 import { Award, BookOpen, GraduationCap, MapPin, Shield, Users } from 'lucide-react';
+import { Reveal, LineReveal } from '@/components/ui/reveal';
 
 export default function AboutSection() {
   const t = useTranslations('about');
@@ -78,23 +79,27 @@ export default function AboutSection() {
           >
             {t('label')}
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1] mb-6"
-            style={{ letterSpacing: '-0.02em' }}
-          >
-            {t('title')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-sans text-lg md:text-xl text-[#0F0F11]/60 dark:text-[#F5F1E8]/60 max-w-2xl"
-          >
-            {t('intro')}
-          </motion.p>
+          <Reveal>
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1] mb-6"
+              style={{ letterSpacing: '-0.02em' }}
+            >
+              {t('title')}
+            </motion.h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-sans text-lg md:text-xl text-[#0F0F11]/60 dark:text-[#F5F1E8]/60 max-w-2xl"
+            >
+              {t('intro')}
+            </motion.p>
+          </Reveal>
         </div>
 
         {/* Main Grid */}

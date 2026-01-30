@@ -5,7 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, ChevronDown, Menu, X } from 'lucide-react';
+import { Moon, Sun, ChevronDown, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { MuteToggle } from './mute-toggle';
 
 const languages = [
   { code: 'en', name: 'English', flag: 'EN' },
@@ -152,6 +153,11 @@ export function Header() {
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* Audio Toggle */}
+              {mounted && (
+                <MuteToggle />
+              )}
 
               {/* Theme Toggle */}
               {mounted && (

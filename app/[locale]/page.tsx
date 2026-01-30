@@ -7,6 +7,7 @@ import { FAQ } from '@/components/faq';
 import { Contact } from '@/components/contact';
 import { Footer } from '@/components/footer';
 import { StructuredData } from '@/components/structured-data';
+import { Newsletter } from '@/components/newsletter';
 import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
@@ -26,7 +27,7 @@ export default async function Home({ params }: Props) {
         <AboutSection />
         <Courses />
         <Testimonials />
-        <FAQ />
+        <Newsletter />
         <Contact />
         <Footer />
       </main>
