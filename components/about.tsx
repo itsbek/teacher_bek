@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
 }
 
 // Animated text reveal with blur
-function AnimatedParagraph({ children, className = '', delay = 0 }: { children: string; className?: string; delay?: number }) {
+function AnimatedParagraph({ children, className = '', delay = 0, style }: { children: string; className?: string; delay?: number; style?: React.CSSProperties }) {
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function AnimatedParagraph({ children, className = '', delay = 0 }: { children: 
   }, [delay]);
 
   return (
-    <p ref={ref} className={className}>
+    <p ref={ref} className={className} style={style}>
       {children}
     </p>
   );
