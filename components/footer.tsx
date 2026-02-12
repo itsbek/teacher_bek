@@ -1,33 +1,101 @@
 "use client";
 
 import { useTranslations, useLocale } from 'next-intl';
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { MessageCircle, Send, Mail, ArrowUpRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight, ArrowUp } from 'lucide-react';
+import { SocialIcons, defaultSocialLinks } from './social-icons';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
   const footerRef = useRef<HTMLElement>(null);
-  const isInView = useInView(footerRef, { once: true, margin: "-50px" });
   const [mounted, setMounted] = useState(false);
-
-  const whatsappNumber = "+1234567890";
-  const telegramUsername = "your_telegram";
-  const email = "hello@englishwithconfidence.com";
 
   useEffect(() => {
     setMounted(true);
+
+    const ctx = gsap.context(() => {
+      // Large brand text reveal
+      gsap.fromTo(".footer-brand-large",
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1, y: 0, duration: 1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 80%",
+            once: true,
+          }
+        }
+      );
+
+      // Brand description
+      gsap.fromTo(".footer-brand-desc",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 0.8,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 75%",
+            once: true,
+          }
+        }
+      );
+
+      // Navigation columns
+      gsap.fromTo(".footer-nav-col",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.6, stagger: 0.1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".footer-nav",
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // Social links
+      gsap.fromTo(".footer-social",
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1, scale: 1, duration: 0.5, stagger: 0.08,
+          ease: "elastic.out(1, 0.5)",
+          scrollTrigger: {
+            trigger: ".footer-social-container",
+            start: "top 90%",
+            once: true,
+          }
+        }
+      );
+
+      // Bottom bar
+      gsap.fromTo(".footer-bottom",
+        { opacity: 0 },
+        {
+          opacity: 1, duration: 0.8,
+          scrollTrigger: {
+            trigger: ".footer-bottom",
+            start: "top 95%",
+            once: true,
+          }
+        }
+      );
+
+    }, footerRef);
+
+    return () => ctx.revert();
   }, []);
 
-  // Only compute year on client to avoid hydration mismatch
   const currentYear = mounted ? new Date().getFullYear() : 2025;
-
-  const socialLinks = [
-    { name: 'WhatsApp', href: `https://wa.me/${whatsappNumber}`, icon: MessageCircle },
-    { name: 'Zalo', href: `https://zalo.me/${telegramUsername}`, icon: Send },
-    { name: 'Email', href: `mailto:${email}`, icon: Mail },
-  ];
 
   const n = useTranslations('nav');
 
@@ -40,89 +108,82 @@ export function Footer() {
     { href: `/${locale}#contact`, label: n('contact') },
   ];
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer ref={footerRef} className="relative bg-foreground text-background">
+    <footer
+      ref={footerRef}
+      className="relative bg-[#F8F4EC] dark:bg-black overflow-hidden"
+    >
       {/* Top border accent */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4A84D]/50 dark:via-[#ECD06F]/50 to-transparent" />
 
-      <div className="container-2xl py-16 lg:py-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
-          {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-2"
-          >
-            <a href="#" className="inline-flex items-baseline gap-0.5 mb-6 group">
-              <span className="font-display text-2xl font-bold text-background group-hover:text-primary transition-colors">
-                English
+      {/* Main Footer Content */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 py-20 lg:py-32">
+
+        {/* Large Brand Section */}
+        <div className="mb-20 lg:mb-28">
+          <div className="footer-brand-large mb-8">
+            <a href="#" className="inline-block group">
+              <span className="font-display text-[clamp(48px,8vw,120px)] font-bold text-foreground dark:text-white leading-none tracking-[-0.03em] group-hover:text-[#C4A84D] dark:group-hover:text-[#ECD06F] transition-colors duration-500">
+                Teacher Bek
               </span>
-              <span className="text-primary font-display text-2xl font-bold">.</span>
+              <span className="text-[#C4A84D] dark:text-[#ECD06F] text-[clamp(48px,8vw,120px)] font-bold">.</span>
             </a>
-            <p className="text-background/60 text-sm leading-relaxed max-w-sm mb-8">
-              {t('tagline')}
-            </p>
+          </div>
+          <p className="footer-brand-desc text-foreground/50 dark:text-white/50 text-lg md:text-xl leading-[1.7] max-w-xl">
+            {t('tagline')}
+          </p>
+        </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-2">
-              {socialLinks.map((link, index) => {
-                const Icon = link.icon;
-                return (
-                  <motion.a
-                    key={index}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.1 + index * 0.05 }}
-                    whileHover={{ y: -2 }}
-                    className="w-10 h-10 flex items-center justify-center border border-background/20 text-background/60 hover:text-primary hover:border-primary transition-colors"
-                    aria-label={link.name}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </motion.a>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Navigation */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1, duration: 0.6 }}
-          >
-            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-background/40 mb-6">
+        {/* Navigation Grid */}
+        <div className="footer-nav grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20 lg:mb-28">
+          {/* Column 1: Navigation */}
+          <div className="footer-nav-col">
+            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
               Navigation
             </h4>
-            <nav className="space-y-3">
-              {navLinks.map((link, index) => (
-                <motion.a
+            <nav className="space-y-4">
+              {navLinks.slice(0, 3).map((link, index) => (
+                <a
                   key={index}
                   href={link.href}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.15 + index * 0.05 }}
-                  className="block text-sm text-background/60 hover:text-primary transition-colors"
+                  className="group flex items-center gap-3 text-base text-foreground/60 dark:text-white/60 hover:text-[#C4A84D] dark:hover:text-[#ECD06F] transition-all duration-300"
                 >
-                  {link.label}
-                </motion.a>
+                  <span className="w-0 h-px bg-[#C4A84D] dark:bg-[#ECD06F] group-hover:w-4 transition-all duration-300" />
+                  <span>{link.label}</span>
+                </a>
               ))}
             </nav>
-          </motion.div>
+          </div>
 
-          {/* Certifications */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-background/40 mb-6">
+          {/* Column 2: More Links */}
+          <div className="footer-nav-col">
+            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
+              More
+            </h4>
+            <nav className="space-y-4">
+              {navLinks.slice(3).map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="group flex items-center gap-3 text-base text-foreground/60 dark:text-white/60 hover:text-[#C4A84D] dark:hover:text-[#ECD06F] transition-all duration-300"
+                >
+                  <span className="w-0 h-px bg-[#C4A84D] dark:bg-[#ECD06F] group-hover:w-4 transition-all duration-300" />
+                  <span>{link.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* Column 3: Certifications */}
+          <div className="footer-nav-col">
+            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
               {t('certifications')}
             </h4>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {[
                 { label: t('tefl') },
                 { label: t('tesol') },
@@ -130,28 +191,41 @@ export function Footer() {
               ].map((cert, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 text-sm text-background/60"
+                  className="flex items-center gap-3 text-base text-foreground/60 dark:text-white/60"
                 >
-                  <span className="w-1 h-1 bg-primary" />
+                  <span className="w-2 h-2 bg-[#C4A84D] dark:bg-[#ECD06F]" />
                   <span>{cert.label}</span>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
+
+          {/* Column 4: Connect */}
+          <div className="footer-nav-col">
+            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
+              Connect
+            </h4>
+            <div className="footer-social-container">
+              <SocialIcons
+                links={defaultSocialLinks}
+                variant="minimal"
+                size="md"
+                className="flex-wrap gap-3 [&_a]:footer-social [&_a]:w-12 [&_a]:h-12 [&_a]:border-foreground/15 dark:[&_a]:border-white/15 [&_a]:text-foreground/50 dark:[&_a]:text-white/50 [&_a:hover]:text-[#C4A84D] dark:[&_a:hover]:text-[#ECD06F] [&_a:hover]:border-[#C4A84D] dark:[&_a:hover]:border-[#ECD06F] [&_a:hover]:bg-[#C4A84D]/10 dark:[&_a:hover]:bg-[#ECD06F]/10"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Bottom */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
-          className="pt-8 border-t border-background/10"
-        >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-background/40">
-              © {currentYear} English with Confidence. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="footer-bottom pt-8 border-t border-foreground/10 dark:border-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Copyright */}
+            <p className="text-sm text-foreground/40 dark:text-white/40">
+              © {currentYear} Teacher Bek. All rights reserved.
             </p>
-            <div className="flex items-center gap-6">
+
+            {/* Links */}
+            <div className="flex items-center gap-8">
               {[
                 { href: '#', label: 'Privacy' },
                 { href: '#', label: 'Terms' },
@@ -159,15 +233,33 @@ export function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="inline-flex items-center gap-1 text-xs text-background/40 hover:text-background transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm text-foreground/40 dark:text-white/40 hover:text-foreground dark:hover:text-white transition-colors duration-300"
                 >
                   <span>{link.label}</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               ))}
             </div>
+
+            {/* Back to top */}
+            <button
+              onClick={scrollToTop}
+              className="group flex items-center gap-3 text-sm text-foreground/40 dark:text-white/40 hover:text-[#C4A84D] dark:hover:text-[#ECD06F] transition-colors duration-300"
+            >
+              <span>Back to top</span>
+              <div className="w-10 h-10 flex items-center justify-center border border-foreground/15 dark:border-white/15 group-hover:border-[#C4A84D] dark:group-hover:border-[#ECD06F] group-hover:bg-[#C4A84D]/10 dark:group-hover:bg-[#ECD06F]/10 transition-all duration-300">
+                <ArrowUp className="w-4 h-4 transform group-hover:-translate-y-0.5 transition-transform duration-300" />
+              </div>
+            </button>
           </div>
-        </motion.div>
+        </div>
+      </div>
+
+      {/* Decorative background text */}
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none select-none">
+        <p className="font-display text-[clamp(100px,20vw,300px)] font-bold text-foreground/[0.02] dark:text-white/[0.02] leading-none tracking-tighter whitespace-nowrap text-center translate-y-1/3">
+          ENGLISH · TEACHING · CONFIDENCE
+        </p>
       </div>
     </footer>
   );

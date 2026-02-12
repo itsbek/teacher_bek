@@ -3,7 +3,12 @@
 import React, { useRef, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 
-export function Tilt({ children }: { children: React.ReactNode }) {
+interface TiltProps {
+    children: React.ReactNode;
+    className?: string;
+}
+
+export function Tilt({ children, className = "" }: TiltProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
@@ -38,7 +43,7 @@ export function Tilt({ children }: { children: React.ReactNode }) {
                 rotateX: springX,
                 rotateY: springY,
             }}
-            className="will-change-transform"
+            className={`will-change-transform ${className}`}
         >
             {children}
         </motion.div>

@@ -22,11 +22,11 @@ export const BookmarkRibbon = () => {
     return (
         <div className="fixed right-4 top-0 bottom-0 z-[50] pointer-events-none hidden md:flex items-start justify-center w-12">
             {/* Ribbon Track */}
-            <div className="absolute top-0 bottom-0 w-[2px] bg-primary/10" />
+            <div className="absolute top-0 bottom-0 w-[2px] bg-[#ECD06F]/10" />
 
             {/* Dynamic Ribbon */}
             <motion.div
-                className="absolute top-0 w-[6px] bg-gradient-to-b from-primary via-primary/80 to-primary origin-top shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]"
+                className="absolute top-0 w-[6px] bg-gradient-to-b from-[#ECD06F] via-[#ECD06F]/80 to-[#ECD06F] origin-top shadow-[0_0_15px_rgba(236,208,111,0.3)]"
                 style={{ scaleY, height: "100%" }}
             />
 
@@ -37,11 +37,11 @@ export const BookmarkRibbon = () => {
                     className="absolute left-0 w-full flex items-center"
                     style={{ top: chapter.top }}
                 >
-                    <div className="w-2 h-2 rounded-full bg-primary/20 border border-primary/40 -ml-[5px]" />
+                    <div className="w-2 h-2 rounded-full bg-[#ECD06F]/20 border border-[#ECD06F]/40 -ml-[5px]" />
                     <motion.div
                         initial={{ x: 20, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
-                        className="ml-4 px-2 py-1 bg-background/80 backdrop-blur-sm border border-border rounded text-[10px] font-mono uppercase tracking-tighter text-muted-foreground whitespace-nowrap shadow-sm"
+                        className="ml-4 px-2 py-1 bg-black/80 backdrop-blur-sm border border-white/10 rounded text-[10px] font-mono uppercase tracking-tighter text-white/50 whitespace-nowrap shadow-sm"
                     >
                         {chapter.label}
                     </motion.div>
@@ -50,13 +50,13 @@ export const BookmarkRibbon = () => {
 
             {/* The "Embossed Tab" indicator */}
             <motion.div
-                className="absolute w-8 h-12 bg-primary flex items-center justify-center rounded-l-md shadow-lg pointer-events-auto"
+                className="absolute w-8 h-12 bg-[#ECD06F] flex items-center justify-center rounded-l-md shadow-lg pointer-events-auto"
                 style={{
                     top: useTransform(scrollYProgress, [0, 1], ["0%", "95%"]),
                     x: 24, // Positioned on the right edge
                 }}
             >
-                <div className="w-1 h-6 bg-white/20 rounded-full" />
+                <div className="w-1 h-6 bg-black/20 rounded-full" />
             </motion.div>
         </div>
     );

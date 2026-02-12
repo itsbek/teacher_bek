@@ -2,124 +2,162 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "courses": "Classes",
-    "blog_link": "Stories",
-    "testimonials": "Students",
-    "faq": "Questions",
-    "contact": "Say Hello"
+    "courses": "Programs",
+    "testimonials": "Stories",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "blog_link": "Blog"
   },
   "hero": {
     "badge": "English Teacher in Ho Chi Minh City",
-    "title": "Speak English with Confidence and Joy",
-    "subtitle": "Hi, I'm Teacher Bek. I help students in Ho Chi Minh City move past the fear of making mistakes and start actually speaking. Whether you're 5 or 50, let's find your voice together.",
-    "cta": "Start Speaking",
-    "secondary": "How I Teach",
+    "title": "Learn English. Actually Speak It.",
+    "titleLine1": "English is not",
+    "titleLine2": "a language — it is a",
+    "titleAccent": "key",
+    "subtitle": "Small groups (max 10 students), real conversations, and a safe, comfortable classroom designed for focused learning.",
+    "cta": "Get in Touch",
+    "secondary": "Learn More",
     "headline": "English is not a language—it is a key",
     "subheadline": "TESOL Certified • ILA Vietnam • Ho Chi Minh City",
     "primaryCTA": "Start Learning",
     "secondaryCTA": "View Courses",
     "stats": {
-      "students": "Happy Students",
+      "students": "Students Taught",
       "experience": "Years Teaching",
-      "success": "Certified Teacher"
+      "success": "Languages Spoken"
     }
   },
   "about": {
-    "label": "Hello",
-    "title": "A Teacher Who Listens",
-    "intro": "I believe the best way to learn is by doing - speaking, laughing, and trying without fear.",
+    "label": "About",
+    "title": "A Bit About Me",
+    "intro": "I'm originally from Tashkent, Uzbekistan. After years managing teams and chasing corporate targets, I came to Vietnam to volunteer—and accidentally discovered I loved teaching way more than hitting quarterly KPIs. So I stayed.",
     "story": {
-      "title": "My Approach",
-      "p1": "I am a fully qualified teacher (TESOL & PGCE) with a passion for checking in with my students. I don't just teach from a textbook; I look at how you learn best.",
-      "p2": "I've taught everywhere from big international schools like ILA to local kindergartens. I've seen that everyone learns differently, and that's okay.",
-      "p3": "Now, I run my own classroom in Phú Nhuận. It's a space designed for you to feel comfortable, because when you're relaxed, you learn faster."
+      "title": "My Background",
+      "p1": "I'm a bit of a language nerd (I speak 7 languages, though some are definitely better than others). I'm TESOL and PGCE certified, currently working on my Master's, and I believe in always learning. Honestly, my students teach me something new every week.",
+      "p2": "When I'm not teaching, I'm usually reading, lifting weights, or grappling. Staying active keeps me sharp—and keeps up with energetic students!",
+      "p3": "From ILA Vietnam to BlueSky Kindergarten and 15+ schools across Ho Chi Minh City, I've worked with every type of learner imaginable."
     },
     "credentials": {
-      "title": "My Background",
-      "tesol": "TESOL Qualified",
-      "tesolDesc": "Certified to teach English",
-      "pgce": "PGCE Holder",
-      "pgceDesc": "Professional Education Certificate",
-      "delta": "DELTA Candidate",
-      "deltaDesc": "Advanced Teaching Diploma"
+      "title": "Qualifications",
+      "tesol": "TESOL Certified",
+      "tesolDesc": "Teaching English to Speakers of Other Languages",
+      "pgce": "PGCE Certified",
+      "pgceDesc": "Graduate Certificate in Education",
+      "delta": "DELTA Completed",
+      "deltaDesc": "Cambridge - Awaiting results"
     },
     "stats": {
-      "students": "nearly 2,000",
+      "students": "2,000+",
       "studentsLabel": "Students Taught",
       "years": "3",
       "yearsLabel": "Years in Vietnam",
       "schools": "15+",
-      "schoolsLabel": "Schools Taught At"
+      "schoolsLabel": "Schools Taught"
     },
     "classroom": {
-      "title": "The Classroom",
-      "description": "A safe, quiet space where you can focus.",
+      "title": "Why My Classroom",
+      "description": "Here's the thing: I keep my groups small (max 10 students). Not because I'm exclusive, but because I've seen what happens in those 25-student language center classes or 50-student school rooms—you barely get to speak. My home classroom in Phú Nhuận has CCTV security, separate restroom, air conditioning, and mosquito-killing lamps. It's comfortable, safe, and designed for focused learning.",
       "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
       "features": {
-        "cctv": "Secure Space",
-        "cctvDesc": "CCTV for safety",
-        "comfort": "Relaxed Atmosphere",
-        "comfortDesc": "AC and comfortable seating",
-        "materials": "All Needed Tools",
-        "materialsDesc": "Books, screens, and materials provided"
+        "cctv": "CCTV Security",
+        "cctvDesc": "24/7 monitoring for safety",
+        "comfort": "Air Conditioned",
+        "comfortDesc": "Comfortable temperature year-round",
+        "materials": "Fully Equipped",
+        "materialsDesc": "Everything you need to learn",
+        "safety": "Safe Environment",
+        "safetyDesc": "Separate restroom, mosquito control"
       }
     },
     "philosophy": {
-      "title": "Why It Works",
-      "description": "My classes are not about memorizing lists of words. They are about using English to connect with people. We play games, we have conversations, and we build your confidence step by step."
+      "title": "How You'll Learn",
+      "description": "And yes, you'll actually speak English. A lot. That's kind of the whole point. Through real conversations, engaging activities, and practical scenarios, you'll build confidence naturally—because the best way to learn a language is to speak it, not just study it."
     }
   },
   "courses": {
-    "title": "How We'll Learn Together",
-    "subtitle": "Every student is different. Here's how I adapt my teaching to meet you where you are.",
-    "beginner": {
-      "title": "First Steps",
-      "description": "For young learners and complete beginners. We build confidence through games, songs, and lots of patience. No pressure, just progress.",
-      "duration": "Flexible",
-      "level": "Beginner"
+    "title": "Find the Right Program",
+    "subtitle": "Age-appropriate curriculum designed to deliver real results. Every program combines expert instruction with engaging methods that make learning stick.",
+    "youngLearners": {
+      "title": "Young Learners (Ages 6-10)",
+      "tagline": "Build Confidence. Spark Curiosity. Love Learning.",
+      "description": "Watch your child discover the joy of English through interactive games, storytelling, and creative activities. Our proven curriculum builds strong foundations while keeping young minds engaged and excited.",
+      "outcomes": [
+        "Develop natural pronunciation and listening skills",
+        "Build vocabulary through play-based learning",
+        "Gain confidence speaking in English",
+        "Prepare for academic success"
+      ],
+      "duration": "2x/week • 90 min",
+      "level": "Ages 6-10",
+      "highlight": "Building lifelong language skills"
     },
-    "intermediate": {
-      "title": "Finding Your Voice",
-      "description": "You know some English but want to speak more naturally. We'll focus on real conversations, everyday situations, and building fluency.",
-      "duration": "Ongoing",
-      "level": "Intermediate"
+    "teens": {
+      "title": "Teens & Pre-Teens (Ages 11-17)",
+      "tagline": "Express Yourself. Stand Out. Achieve More.",
+      "description": "Empower your teen with English skills that open doors. From school excellence to global opportunities, our dynamic curriculum builds fluency, critical thinking, and the confidence to communicate in any situation.",
+      "outcomes": [
+        "Master conversational fluency and academic English",
+        "Excel in school assignments and presentations",
+        "Build confidence for future opportunities",
+        "Develop critical thinking in English"
+      ],
+      "duration": "2x/week • 90 min",
+      "level": "Ages 11-17",
+      "highlight": "Prepare for high school, university, and beyond"
     },
-    "advanced": {
-      "title": "Polish & Confidence",
-      "description": "For students preparing for exams, interviews, or just wanting to master the language. We refine pronunciation, expand vocabulary, and tackle complex topics.",
-      "duration": "Customized",
-      "level": "Advanced"
-    },
-    "business": {
-      "title": "Young Learners",
-      "description": "Specialized classes for children aged 4-12. I've taught at kindergartens and primary schools across HCMC - I know how to make learning fun.",
-      "duration": "Weekly",
-      "level": "Ages 4-12"
+    "ielts": {
+      "title": "IELTS & Exam Preparation",
+      "tagline": "Achieve Your Target Score. Unlock Your Future.",
+      "description": "Get the score you need with targeted IELTS preparation that works. Proven strategies, personalized feedback, and intensive practice across all four skills—delivered by a certified expert who knows exactly what examiners look for.",
+      "outcomes": [
+        "Master all four IELTS skills: Reading, Writing, Listening, Speaking",
+        "Learn proven test-taking strategies and time management",
+        "Receive detailed feedback on practice tests",
+        "Achieve your target band score with confidence"
+      ],
+      "duration": "2x/week • 60 min",
+      "level": "All Band Targets",
+      "highlight": "Specialized training for university admission and immigration"
     }
   },
   "testimonials": {
-    "title": "Community Feedback",
-    "subtitle": "Real stories from students, parents, and colleagues"
+    "title": "Success Stories",
+    "subtitle": "Real results from students, parents, and colleagues"
   },
   "cta": {
-    "title": "Curious about classes?",
-    "subtitle": "No pressure, no commitments. Let's just have a conversation about your goals.",
-    "button": "Send me a message"
+    "title": "Want to Give It a Try?",
+    "subtitle": "Book a free assessment and we'll figure out if this is a good fit. No pressure, just a conversation about what you're looking for.",
+    "button": "Get in Touch"
   },
   "faq": {
     "title": "Common Questions",
-    "q1": "Where do you teach?",
-    "a1": "I teach at my dedicated classroom in Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. It's a comfortable, properly designed space with CCTV for safety. I can also come to your location in Phú Nhuận, Gò Vấp, or Bình Thạnh.",
+    "q1": "Where are classes held?",
+    "a1": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. I also teach at students' homes in Phú Nhuận, Gò Vấp, and Bình Thạnh.",
     "q2": "What ages do you teach?",
-    "a2": "Everyone! I've taught kindergarteners, primary school students, teenagers, and adults. With nearly 2,000 students taught across 3 years, I've learned to adapt my methods for each age group.",
+    "a2": "Young Learners (6-10), Teens (11-17), and IELTS/exam prep for all ages.",
     "q3": "How much do lessons cost?",
-    "a3": "It depends on the type of class, location, and frequency. Let's chat about your needs first, and I'll give you a clear quote with no hidden fees.",
-    "q4": "Do you teach groups?",
-    "a4": "Yes! Group classes can be more affordable and often more fun. If you have friends or family who want to learn together, we can arrange something at my classroom.",
+    "a3": "It depends on program type, location, and frequency. Reach out for a straight answer—no hidden fees.",
+    "q4": "Do you teach groups or one-on-one?",
+    "a4": "Groups only (max 10 students). This includes online classes—all group-based so everyone gets speaking practice.",
     "q5": "What are your qualifications?",
-    "a5": "I hold TESOL and PGCE certifications, and I'm currently pursuing my DELTA. I've taught at ILA Vietnam, Blue Sky Academy, and over 15 schools across Ho Chi Minh City.",
-    "q6": "Can I try a lesson first?",
-    "a6": "Of course! We can do a short trial session at my classroom so you can see if we're a good fit. No obligation."
+    "a5": "TESOL and PGCE certified. I've also completed my DELTA (Cambridge) and am awaiting results. Taught at ILA Vietnam, BlueSky Kindergarten, and 15+ schools.",
+    "q6": "Can I try a class first?",
+    "a6": "Yes! Free assessment session—no pressure, no obligation.",
+    "q7": "Why small groups instead of large classes?",
+    "a7": "In a 25-person class, you barely speak. With max 10 students, you actually practice.",
+    "q8": "Is your classroom safe for kids?",
+    "a8": "Absolutely. CCTV security, separate restroom, air-conditioned rooms, and mosquito-killing lamps. Safe, comfortable, and parent-approved."
+  },
+  "newsletter": {
+    "title": "Stay Connected",
+    "subtitle": "Teaching stories, learning tips, and class updates for parents, teachers, and students. Join 2,000+ readers.",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success": "Thanks! Check your inbox to confirm.",
+    "error": "Something went wrong. Please try again.",
+    "privacy": "No spam. Unsubscribe anytime.",
+    "benefits": "Teaching insights, learning tips, and updates"
   },
   "blog": {
     "title": "Stories & Resources",
@@ -136,40 +174,40 @@
     "backToBlog": "Back to Stories"
   },
   "contact": {
-    "title": "Let's Connect",
-    "subtitle": "Have questions? Want to discuss classes? Just want to say hi? I'd love to hear from you.",
+    "title": "Let's Talk",
+    "subtitle": "Questions? Want to chat about your English goals? Just reach out—I usually respond within a day.",
     "location": {
       "title": "Visit My Classroom",
-      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - CCTV monitored, comfortable learning environment"
+      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - Comfortable home classroom with CCTV and separate facilities"
     },
     "form": {
       "title": "Send a Message",
       "name": "Your name",
       "email": "Your email",
       "phone": "Phone or Zalo (optional)",
-      "message": "What would you like to know?",
-      "consent": "I'm happy to receive a reply to this message.",
+      "message": "What are you looking to improve?",
+      "consent": "I'm cool with getting a reply about this.",
       "submit": "Send Message",
       "submitting": "Sending...",
-      "success": "Thanks! I'll get back to you soon.",
-      "error": "Something went wrong. Try Zalo or WhatsApp instead?",
+      "success": "Got it! I'll get back to you within 24 hours.",
+      "error": "Hmm, something went wrong. Try WhatsApp or Zalo instead?",
       "required": "This field is required",
       "invalidEmail": "Please enter a valid email"
     },
     "or": "Or reach out directly",
     "availability": {
       "flexible": "Flexible scheduling - mornings, afternoons, or evenings",
-      "consultation": "Free initial chat - let's see if we're a good fit",
+      "consultation": "Free chat to see if it's a fit",
       "online": "In-person at my classroom or your location"
     },
     "trustBadges": {
-      "response": "Usually reply within a few hours",
-      "noCommitment": "No pressure, just conversation",
-      "trial": "Trial lesson available"
+      "response": "Quick replies (usually same day)",
+      "noCommitment": "Free chat—see if it's a fit",
+      "trial": "Try a session first"
     }
   },
   "footer": {
-    "tagline": "English teacher in Ho Chi Minh City, helping nearly 2,000 students find their voice since 2021",
+    "tagline": "English teacher in Ho Chi Minh City. TESOL & PGCE certified. Teaching since 2023.",
     "contact": "Get in Touch",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
@@ -177,7 +215,7 @@
     "certifications": "Qualifications",
     "tefl": "TESOL Certified",
     "tesol": "PGCE Certified",
-    "experience": "nearly 2,000 Students Taught",
+    "experience": "2,000+ Students Taught",
     "legal": "Legal",
     "privacy": "Privacy",
     "terms": "Terms",

@@ -12,7 +12,7 @@ export function MuteToggle() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleMute}
-            className="p-2 text-foreground/50 hover:text-primary transition-colors duration-300"
+            className="p-2 text-white/50 hover:text-[#ECD06F] transition-colors duration-300"
             aria-label={isMuted ? "Unmute" : "Mute"}
         >
             {isMuted ? (

@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, ChevronDown, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Moon, Sun, ChevronDown, Menu, X } from 'lucide-react';
 import { MuteToggle } from './mute-toggle';
 
 const languages = [
@@ -62,11 +62,11 @@ export function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? 'py-3 md:py-4 bg-background/90 backdrop-blur-xl border-b border-border'
+          ? 'py-3 md:py-4 bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-foreground/10 dark:border-white/10'
           : 'py-4 md:py-6 bg-transparent'
           }`}
       >
-        <nav className="container-2xl">
+        <nav className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <motion.a
@@ -75,11 +75,11 @@ export function Header() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="font-display text-xl md:text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+              <span className="text-xl md:text-2xl font-medium tracking-tight text-foreground dark:text-white transition-colors duration-300 group-hover:text-[#C4A84D] dark:group-hover:text-[#ECD06F]">
                 Teacher Bek
               </span>
               <motion.span
-                className="text-primary font-display text-xl md:text-2xl font-bold"
+                className="text-[#C4A84D] dark:text-[#ECD06F] text-xl md:text-2xl font-medium"
                 animate={{ opacity: [1, 0.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
               >
@@ -96,10 +96,10 @@ export function Header() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
-                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group"
+                  className="relative px-4 py-2 text-sm font-medium text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white transition-colors duration-300 group"
                 >
                   <span className="relative z-10">{link.label}</span>
-                  <span className="absolute bottom-1 left-4 right-4 h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute bottom-1 left-4 right-4 h-[1px] bg-[#C4A84D] dark:bg-[#ECD06F] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </motion.a>
               ))}
             </div>
@@ -112,7 +112,7 @@ export function Header() {
                   onClick={() => setLangMenuOpen(!langMenuOpen)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-mono tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium tracking-wider text-foreground/50 dark:text-white/50 hover:text-foreground dark:hover:text-white transition-colors"
                 >
                   {currentLang.flag}
                   <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${langMenuOpen ? 'rotate-180' : ''}`} />
@@ -133,18 +133,18 @@ export function Header() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -8, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 top-full mt-2 w-40 bg-card border border-border shadow-lg overflow-hidden z-50"
+                        className="absolute right-0 top-full mt-2 w-40 bg-white dark:bg-[#0A0A0A] border border-foreground/10 dark:border-white/10 shadow-lg overflow-hidden z-50 rounded-xl"
                       >
                         {languages.map((lang) => (
                           <button
                             key={lang.code}
                             onClick={() => switchLanguage(lang.code)}
                             className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 transition-colors ${locale === lang.code
-                              ? 'bg-primary/10 text-primary'
-                              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                              ? 'bg-[#C4A84D]/10 dark:bg-[#ECD06F]/10 text-[#C4A84D] dark:text-[#ECD06F]'
+                              : 'hover:bg-foreground/5 dark:hover:bg-white/5 text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white'
                               }`}
                           >
-                            <span className="font-mono text-xs tracking-wider w-6">{lang.flag}</span>
+                            <span className="text-xs tracking-wider w-6">{lang.flag}</span>
                             <span>{lang.name}</span>
                           </button>
                         ))}
@@ -165,7 +165,7 @@ export function Header() {
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="hidden md:flex items-center justify-center w-10 h-10 border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+                  className="hidden md:flex items-center justify-center w-10 h-10 border border-foreground/10 dark:border-white/10 rounded-full hover:border-[#C4A84D]/50 dark:hover:border-[#ECD06F]/50 hover:bg-[#C4A84D]/5 dark:hover:bg-[#ECD06F]/5 transition-all duration-300 text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white"
                   aria-label="Toggle theme"
                 >
                   <AnimatePresence mode="wait">
@@ -198,7 +198,7 @@ export function Header() {
               <motion.button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 whileTap={{ scale: 0.95 }}
-                className="lg:hidden flex items-center justify-center w-10 h-10"
+                className="lg:hidden flex items-center justify-center w-10 h-10 text-foreground dark:text-white"
                 aria-label="Toggle menu"
               >
                 <AnimatePresence mode="wait">
@@ -235,7 +235,7 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 lg:hidden bg-background"
+            className="fixed inset-0 z-40 lg:hidden bg-white dark:bg-black"
           >
             <div className="h-full flex flex-col justify-center items-center px-6 pt-20">
               <nav className="flex flex-col items-center gap-2 mb-12">
@@ -248,7 +248,7 @@ export function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 30 }}
                     transition={{ delay: 0.05 + i * 0.05 }}
-                    className="font-display text-3xl md:text-4xl font-semibold text-foreground hover:text-primary transition-colors py-2"
+                    className="text-3xl md:text-4xl font-medium text-foreground dark:text-white hover:text-[#C4A84D] dark:hover:text-[#ECD06F] transition-colors py-2"
                   >
                     {link.label}
                   </motion.a>
@@ -267,9 +267,9 @@ export function Header() {
                   <button
                     key={lang.code}
                     onClick={() => switchLanguage(lang.code)}
-                    className={`px-4 py-2.5 text-xs font-mono tracking-wider transition-all ${locale === lang.code
-                      ? 'bg-primary text-primary-foreground'
-                      : 'border border-border text-muted-foreground hover:text-foreground hover:border-primary/50'
+                    className={`px-4 py-2.5 text-xs font-medium tracking-wider rounded-full transition-all ${locale === lang.code
+                      ? 'bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black'
+                      : 'border border-foreground/20 dark:border-white/20 text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white hover:border-[#C4A84D]/50 dark:hover:border-[#ECD06F]/50'
                       }`}
                   >
                     {lang.flag}
@@ -288,7 +288,7 @@ export function Header() {
                     setTheme(theme === 'dark' ? 'light' : 'dark');
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-3 px-5 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors border border-border"
+                  className="flex items-center gap-3 px-5 py-2.5 text-sm text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white transition-colors border border-foreground/20 dark:border-white/20 rounded-full"
                 >
                   {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                   <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>

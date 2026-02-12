@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-[#FDFBF7] dark:bg-black transition-colors duration-500">
         <Header />
         <BlogPost post={post} locale={locale} relatedPosts={relatedPosts} />
         <Newsletter />

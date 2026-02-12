@@ -91,7 +91,7 @@ export function MagneticButton({
       >
         {/* Background fill effect */}
         <motion.div
-          className="absolute inset-0 bg-primary"
+          className="absolute inset-0 bg-[#ECD06F]"
           initial={{ y: '100%' }}
           animate={{ y: isHovering ? '0%' : '100%' }}
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -104,25 +104,25 @@ export function MagneticButton({
 
         {/* Corner accents */}
         <motion.span
-          className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary"
+          className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#ECD06F]"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: isHovering ? 1 : 0, scale: isHovering ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         />
         <motion.span
-          className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary"
+          className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#ECD06F]"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: isHovering ? 1 : 0, scale: isHovering ? 1 : 0 }}
           transition={{ duration: 0.3, delay: 0.05 }}
         />
         <motion.span
-          className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary"
+          className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#ECD06F]"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: isHovering ? 1 : 0, scale: isHovering ? 1 : 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         />
         <motion.span
-          className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary"
+          className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#ECD06F]"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: isHovering ? 1 : 0, scale: isHovering ? 1 : 0 }}
           transition={{ duration: 0.3, delay: 0.15 }}
@@ -203,7 +203,7 @@ export function MagneticText({
 
         {/* Duplicate text for hover */}
         <span
-          className={`absolute inset-0 text-primary transition-transform duration-500 ${
+          className={`absolute inset-0 text-[#ECD06F] transition-transform duration-500 ${
             isHovering ? 'translate-y-0' : 'translate-y-full'
           }`}
         >

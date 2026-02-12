@@ -8,6 +8,7 @@ import { Contact } from '@/components/contact';
 import { Footer } from '@/components/footer';
 import { StructuredData } from '@/components/structured-data';
 import { Newsletter } from '@/components/newsletter';
+import { TrialCTA } from '@/components/trial-cta';
 import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
@@ -21,12 +22,14 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <StructuredData />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-[#FDFBF7] dark:bg-black transition-colors duration-500">
         <Header />
         <Hero />
         <AboutSection />
         <Courses />
         <Testimonials />
+        <TrialCTA />
+        <FAQ />
         <Newsletter />
         <Contact />
         <Footer />

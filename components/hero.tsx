@@ -1,314 +1,511 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { trackCTAClick } from '@/lib/analytics';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { FluidSmoke } from '@/components/lingua-noir/fluid-smoke';
+import { LiquidMetalText, SmokeText } from '@/components/lingua-noir/liquid-metal-text';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// -----------------------------------------------------------------------------
-// SCRAMBLE WORD
-// -----------------------------------------------------------------------------
-const ScrambleWord = ({ words, interval = 3000 }: { words: string[]; interval?: number }) => {
-  const elementRef = useRef<HTMLSpanElement>(null);
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const indexRef = useRef(0);
-
-  // Find longest word to reserve space and prevent layout shift
-  const longestWord = useMemo(() => words.reduce((a, b) => a.length > b.length ? a : b, ""), [words]);
+// Magnetic button hook
+function useMagnetic(strength: number = 0.3) {
+  const ref = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const el = ref.current;
+    if (!el) return;
 
-    const cycle = setInterval(() => {
-      indexRef.current = (indexRef.current + 1) % words.length;
-      const nextWord = words[indexRef.current];
-      const el = elementRef.current;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = (e.clientX - centerX) * strength;
+      const deltaY = (e.clientY - centerY) * strength;
 
-      if (!el) return;
+      gsap.to(el, {
+        x: deltaX,
+        y: deltaY,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    };
 
-      let frame = 0;
-      const totalFrames = 30; // 30 frames for ~500ms transition
+    const handleMouseLeave = () => {
+      gsap.to(el, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.3)"
+      });
+    };
 
-      const animate = () => {
-        let output = '';
-        const progress = frame / totalFrames;
+    el.addEventListener('mousemove', handleMouseMove);
+    el.addEventListener('mouseleave', handleMouseLeave);
 
-        for (let i = 0; i < nextWord.length; i++) {
-          // If we're past the "scramble" phase for this character, show the real char
-          if (progress > (i / nextWord.length)) {
-            output += nextWord[i];
-          } else {
-            // Otherwise show a random character with lower opacity
-            // Ensure width doesn't fluctuate wildly by using non-breaking space if random char is narrow?
-            // Actually, the Grid spacer handles the container width. 
-            // The text itself might jitter inside, but the layout won't shake.
-            output += `<span class="opacity-30">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
-          }
-        }
+    return () => {
+      el.removeEventListener('mousemove', handleMouseMove);
+      el.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [strength]);
 
-        el.innerHTML = output;
-        frame++;
+  return ref;
+}
 
-        if (frame <= totalFrames) {
-          requestAnimationFrame(animate);
-        } else {
-          // Animation complete, sync React state
-          setCurrentWord(nextWord);
-        }
-      };
+// Scramble text effect
+function useScrambleText(text: string, isActive: boolean) {
+  const [displayText, setDisplayText] = useState(text);
+  const chars = '!<>-_\\/[]{}—=+*^?#';
 
-      animate();
-    }, interval);
+  useEffect(() => {
+    if (!isActive) {
+      setDisplayText(text);
+      return;
+    }
 
-    return () => clearInterval(cycle);
-  }, [words, interval]);
+    let iteration = 0;
+    const interval = setInterval(() => {
+      setDisplayText(
+        text
+          .split('')
+          .map((char, index) => {
+            if (char === ' ') return ' ';
+            if (index < iteration) return text[index];
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('')
+      );
+
+      if (iteration >= text.length) {
+        clearInterval(interval);
+      }
+      iteration += 1 / 3;
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [text, isActive, chars]);
+
+  return displayText;
+}
+
+// Rolling ball scroll indicator
+function RollingBall() {
+  const ballRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ball = ballRef.current;
+    if (!ball) return;
+
+    gsap.to(ball, {
+      x: '100vw',
+      rotation: 720,
+      duration: 4,
+      ease: 'none',
+      repeat: -1,
+    });
+
+    return () => {
+      gsap.killTweensOf(ball);
+    };
+  }, []);
 
   return (
-    <span className="inline-grid grid-cols-1 overflow-hidden" style={{ verticalAlign: 'top' }}>
-      {/* Invisible spacer to reserve constant width */}
-      <span className="col-start-1 row-start-1 opacity-0 pointer-events-none select-none" aria-hidden="true">
-        {longestWord}
-      </span>
-
-      {/* Animated text overlay */}
-      <span
-        ref={elementRef}
-        className="col-start-1 row-start-1 text-primary whitespace-nowrap"
-        aria-label={currentWord}
-      >
-        {currentWord}
-      </span>
-    </span>
-  );
-};
-
-// -----------------------------------------------------------------------------
-// WIREGLOBE BACKGROUND ELEMENT
-// -----------------------------------------------------------------------------
-const WireGlobe = () => {
-  return (
-    <div className="absolute top-1/2 right-[5%] -translate-y-1/2 w-[600px] h-[600px] opacity-[0.04] pointer-events-none hidden xl:block mix-blend-difference">
-      <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow">
-        {/* Outer sphere */}
-        <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" strokeWidth="0.5" />
-
-        {/* Latitude lines */}
-        <ellipse cx="100" cy="100" rx="95" ry="30" fill="none" stroke="currentColor" strokeWidth="0.5" />
-        <ellipse cx="100" cy="100" rx="95" ry="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
-        <ellipse cx="100" cy="100" rx="82" ry="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
-
-        {/* Longitude lines */}
-        <ellipse cx="100" cy="100" rx="30" ry="95" fill="none" stroke="currentColor" strokeWidth="0.5" />
-        <ellipse cx="100" cy="100" rx="60" ry="95" fill="none" stroke="currentColor" strokeWidth="0.5" />
-        <ellipse cx="100" cy="100" rx="82" ry="80" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(90 100 100)" />
-
-        {/* Vertical center line */}
-        <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" strokeWidth="0.5" />
-
-        {/* Horizontal center line */}
-        <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" strokeWidth="0.5" />
-      </svg>
+    <div className="absolute bottom-8 left-0 w-full overflow-hidden h-8">
+      <div
+        ref={ballRef}
+        className="w-3 h-3 rounded-full -ml-4"
+        style={{
+          background: 'linear-gradient(135deg, #bf953f, #fcf6ba, #b38728)',
+          boxShadow: '0 0 10px rgba(191, 149, 63, 0.5)',
+        }}
+      />
     </div>
   );
-};
-
-// -----------------------------------------------------------------------------
-// MAIN HERO
-// -----------------------------------------------------------------------------
-const WORDS = ['Confidence', 'Clarity', 'Purpose'];
+}
 
 export function Hero() {
   const t = useTranslations('hero');
   const containerRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const [displayCount, setDisplayCount] = useState(0);
-  const hasAnimated = useRef(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Count-up animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated.current) {
-            hasAnimated.current = true;
-            const target = 2000;
-            const duration = 2000;
-            const startTime = Date.now();
+  const primaryBtnRef = useMagnetic(0.25);
+  const secondaryBtnRef = useMagnetic(0.2);
 
-            const tick = () => {
-              const elapsed = Date.now() - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-              setDisplayCount(Math.floor(easeOutQuart * target));
+  // Scramble effect for badge text
+  const scrambledBadge = useScrambleText(t('badge'), isLoaded);
 
-              if (progress < 1) {
-                requestAnimationFrame(tick);
-              }
-            };
-
-            requestAnimationFrame(tick);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
+  // Track mouse for parallax
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    setMousePos({
+      x: (clientX - innerWidth / 2) / innerWidth,
+      y: (clientY - innerHeight / 2) / innerHeight
+    });
   }, []);
 
-  // GSAP Entrance - Fixed for descenders
   useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [handleMouseMove]);
+
+  // GSAP Cinematic Entrance
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power4.out" },
+        delay: 0.3
+      });
 
-      // Grid lines
-      tl.fromTo(".grid-line", { scaleX: 0 }, { scaleX: 1, duration: 1.2, stagger: 0.1 });
-      tl.fromTo(".eyebrow", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8");
+      // Reveal from center
+      tl.fromTo(".hero-reveal",
+        { clipPath: "inset(50% 50% 50% 50%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "power4.inOut" }
+      )
 
-      // Headline - Manual line reveal to preserve ScrambleWord React state
-      if (headlineRef.current) {
-        tl.to([".line-1-text", ".line-2-text"], {
-          y: '0%',
-          duration: 1.4,
-          stagger: 0.12,
-          ease: "power4.out"
-        }, "-=0.6");
-      }
+      // Badge drops in
+      .fromTo(".hero-badge",
+        { opacity: 0, y: -30, filter: "blur(10px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        "-=0.5"
+      )
 
-      // Globe fade in
-      tl.fromTo(".wire-globe-container", { opacity: 0, scale: 0.9 }, { opacity: 0.04, scale: 1, duration: 2 }, "-=1");
+      // Title lines slide in
+      .fromTo(".hero-line-1",
+        { x: -100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+        "-=0.4"
+      )
+      .fromTo(".hero-line-2",
+        { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+        "-=0.8"
+      )
 
-      // Stat row
-      tl.fromTo(".stat-row", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8");
+      // Subtitle smoke effect
+      .fromTo(".hero-subtitle",
+        { opacity: 0, y: 20, filter: "blur(8px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        "-=0.4"
+      )
 
-      // Subtitle
-      tl.fromTo(".subtitle", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=0.6");
+      // CTA liquid reveal
+      .fromTo(".hero-cta",
+        { opacity: 0, scale: 0.9, y: 20 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "back.out(1.7)"
+        },
+        "-=0.3"
+      )
 
-      // CTAs
-      tl.fromTo(".cta-group", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.6");
+      // Side elements
+      .fromTo(".hero-side",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, stagger: 0.1 },
+        "-=0.4"
+      );
+
+      // Continuous breathing animation (7 second pulse)
+      gsap.to(".breath-element", {
+        filter: "brightness(1.1)",
+        duration: 3.5,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+
+      // Parallax on scroll
+      gsap.to(".hero-content", {
+        y: -100,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.5,
+        }
+      });
+
+      // Fluid smoke parallax
+      gsap.to(".hero-smoke", {
+        y: 50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 2,
+        }
+      });
 
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] flex flex-col justify-center bg-background overflow-hidden"
+      className="relative min-h-[100svh] overflow-hidden"
+      style={{ backgroundColor: 'var(--void-black, #050505)' }}
     >
-      {/* Subtle noise */}
-      <div className="absolute inset-0 opacity-[0.015] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
+      {/* Reveal mask */}
+      <div className="hero-reveal absolute inset-0">
+        {/* Gradient bleed background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse at 30% 20%, rgba(138,3,3,0.2) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(67,179,174,0.15) 0%, transparent 40%),
+              radial-gradient(ellipse at 50% 50%, rgba(61,40,23,0.3) 0%, transparent 60%)
+            `
+          }}
+        />
 
-      {/* Wireframe Globe - Transparent background element */}
-      <div className="wire-globe-container absolute inset-0 pointer-events-none">
-        <WireGlobe />
-      </div>
-
-      {/* Decorative grid lines */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="grid-line absolute left-[8vw] top-1/4 bottom-1/4 w-px bg-foreground/[0.03] origin-top" />
-        <div className="grid-line absolute right-[8vw] top-1/3 bottom-1/3 w-px bg-foreground/[0.02] origin-top" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-12 pt-32 pb-20">
-
-        {/* Top row */}
-        <div className="flex items-center justify-between mb-16">
-          <div className="eyebrow flex items-center gap-4">
-            <div className="h-px w-8 bg-primary" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary font-semibold">
-              {t('badge')}
-            </span>
-          </div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 hidden sm:block">
-            Issue 01 — 2024
-          </span>
+        {/* Fluid smoke simulation - Teacher silhouette area */}
+        <div className="hero-smoke absolute left-0 top-0 w-1/2 h-full">
+          <FluidSmoke
+            className="opacity-70"
+            colors={{
+              tobacco: '#3d2817',
+              copper: '#43b3ae',
+              blood: '#8a0303',
+            }}
+          />
         </div>
 
-        {/* MAIN COMPOSITION */}
-        <div className="space-y-10">
+        {/* Scanline overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.015]"
+          style={{
+            background: `repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 2px,
+              rgba(255, 255, 255, 0.1) 2px,
+              rgba(255, 255, 255, 0.1) 4px
+            )`
+          }}
+        />
 
-          {/* Headline - Fixed line-height for descenders */}
-          {/* leading-[1.05] gives enough room for tails of p, y, q, g, j */}
-          <h1
-            ref={headlineRef}
-            className="font-display text-[12vw] sm:text-[10vw] lg:text-[8vw] xl:text-[6.5vw] font-semibold leading-[1.05] tracking-[-0.03em] text-foreground max-w-4xl"
-          >
-            <span className="block overflow-hidden pb-2">
-              <span className="block line-1-text translate-y-[110%]">Speak English</span>
-            </span>
-            <span className="block overflow-hidden pb-4 -mb-4">
-              <span className="inline-flex items-baseline line-2-text translate-y-[110%]">
-                with <span className="w-[0.2em]" /> <ScrambleWord words={WORDS} />
-              </span>
-            </span>
-          </h1>
+        {/* Vignette */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%)'
+          }}
+        />
+      </div>
 
-          {/* Stat - Inline, proud but not shouting */}
-          <div className="stat-row inline-flex items-center gap-6 py-3 px-0 border-t border-b border-border/30">
-            <div className="flex items-baseline gap-1">
-              <span className="font-display text-5xl lg:text-6xl font-bold text-foreground tabular-nums tracking-tight">
-                {displayCount.toLocaleString()}
-              </span>
-              <span className="font-display text-2xl lg:text-3xl font-bold text-primary">+</span>
+      {/* Main Content - Asymmetric layout */}
+      <div className="hero-content relative z-10 min-h-[100svh] grid lg:grid-cols-[45%_55%] items-center">
+
+        {/* Left side - Fluid/Smoke area (on large screens) */}
+        <div className="hidden lg:flex items-center justify-center relative">
+          {/* Tobacco smoke tendrils */}
+          <div
+            className="absolute w-64 h-64 breath-element"
+            style={{
+              background: 'radial-gradient(circle, rgba(67,179,174,0.3) 0%, transparent 70%)',
+              filter: 'blur(60px)',
+              transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`,
+            }}
+          />
+          <div
+            className="absolute w-48 h-48"
+            style={{
+              background: 'radial-gradient(circle, rgba(61,40,23,0.4) 0%, transparent 70%)',
+              filter: 'blur(40px)',
+              transform: `translate(${mousePos.x * -30}px, ${mousePos.y * -30}px)`,
+            }}
+          />
+        </div>
+
+        {/* Right side - Typography */}
+        <div className="px-6 md:px-12 lg:px-16 py-20 lg:py-0">
+          {/* Badge */}
+          <div className="hero-badge mb-8">
+            <span
+              className="inline-flex items-center gap-3 px-4 py-2 text-[9px] md:text-[10px] font-mono tracking-[0.25em] uppercase border breath-element"
+              style={{
+                color: 'var(--oxidized-copper, #43b3ae)',
+                borderColor: 'rgba(67, 179, 174, 0.3)',
+                backgroundColor: 'rgba(67, 179, 174, 0.05)',
+              }}
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ backgroundColor: 'var(--oxidized-copper, #43b3ae)' }}
+              />
+              {scrambledBadge}
+            </span>
+          </div>
+
+          {/* Main Headline - Liquid Metal Typography */}
+          <div className="mb-10" style={{ perspective: '1000px' }}>
+            {/* Line 1 */}
+            <div className="hero-line-1 overflow-hidden mb-2">
+              <LiquidMetalText
+                className="text-[clamp(2.5rem,8vw,6rem)] font-display font-bold leading-[0.95] tracking-[-0.03em]"
+                delay={0.5}
+              >
+                {t('titleLine1') || 'English is not'}
+              </LiquidMetalText>
             </div>
-            <div className="hidden sm:block h-8 w-px bg-border/50" />
-            <div className="hidden sm:block">
-              <span className="block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/80">Students taught</span>
-              <span className="block font-mono text-[9px] text-muted-foreground/50 mt-0.5">Since 2012</span>
+
+            {/* Line 2 */}
+            <div className="hero-line-2 overflow-hidden">
+              <h1
+                className="text-[clamp(2.5rem,8vw,6rem)] font-display font-bold leading-[0.95] tracking-[-0.03em]"
+                style={{
+                  color: 'var(--vintage-paper, #f4ecd8)',
+                  textShadow: '0 0 60px rgba(67, 179, 174, 0.3)',
+                }}
+              >
+                {t('titleLine2') || 'a language — it is a'}
+                <span
+                  className="ml-4 italic"
+                  style={{
+                    background: 'linear-gradient(135deg, #43b3ae 0%, #7df9ff 50%, #43b3ae 100%)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    color: 'transparent',
+                    textShadow: 'none',
+                  }}
+                >
+                  {t('titleAccent') || 'key'}
+                </span>
+              </h1>
             </div>
           </div>
 
-          {/* Subtitle */}
-          <p className="subtitle text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl text-pretty">
-            {t('subtitle')}
-          </p>
+          {/* Subtitle - Smoke-like fade */}
+          <div className="hero-subtitle mb-12 max-w-lg">
+            <SmokeText className="text-lg md:text-xl leading-relaxed font-light" style={{ color: 'rgba(244, 236, 216, 0.6)' }}>
+              {t('subtitle')}
+            </SmokeText>
+          </div>
 
-          {/* CTAs */}
-          <div className="cta-group flex flex-col sm:flex-row gap-4 pt-2">
+          {/* CTAs - Hidden until scroll reveals liquid pool effect */}
+          <div className="flex flex-col sm:flex-row gap-4">
             <a
+              ref={primaryBtnRef}
               href="#contact"
               onClick={() => trackCTAClick('hero', 'contact')}
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-medium relative overflow-hidden hover:shadow-glow transition-shadow duration-500"
+              className="hero-cta group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase overflow-hidden transition-all duration-500"
+              style={{
+                background: 'linear-gradient(135deg, #43b3ae 0%, #3d9994 100%)',
+                color: 'var(--void-black, #050505)',
+                boxShadow: '0 0 30px rgba(67, 179, 174, 0.3)',
+              }}
             >
               <span className="relative z-10">{t('cta')}</span>
-              <ArrowRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              <div className="absolute inset-0 bg-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <div
+                className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"
+                style={{ background: 'var(--vintage-paper, #f4ecd8)' }}
+              />
             </a>
 
             <a
+              ref={secondaryBtnRef}
               href="#courses"
               onClick={() => trackCTAClick('hero', 'courses')}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-foreground/20 text-foreground font-medium hover:border-primary hover:text-primary transition-colors duration-300"
+              className="hero-cta group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase border overflow-hidden transition-all duration-500"
+              style={{
+                color: 'var(--vintage-paper, #f4ecd8)',
+                borderColor: 'rgba(244, 236, 216, 0.2)',
+              }}
             >
-              {t('secondary')}
+              <span className="relative z-10">{t('secondary')}</span>
+              <div
+                className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"
+                style={{ background: 'rgba(67, 179, 174, 0.1)' }}
+              />
             </a>
           </div>
         </div>
       </div>
 
-      {/* Animation keyframes for slow spin */}
-      <style jsx global>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 60s linear infinite;
-        }
-      `}</style>
+      {/* Side editorial elements */}
+      <div className="hero-side absolute left-6 md:left-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-6 pointer-events-none">
+        <div
+          className="w-px h-20"
+          style={{ background: 'linear-gradient(to bottom, transparent, rgba(67, 179, 174, 0.3), transparent)' }}
+        />
+        <span
+          className="text-[9px] font-mono tracking-[0.4em] uppercase [writing-mode:vertical-rl] rotate-180"
+          style={{ color: 'rgba(67, 179, 174, 0.4)' }}
+        >
+          Est. 2023
+        </span>
+        <div
+          className="w-px h-20"
+          style={{ background: 'linear-gradient(to bottom, transparent, rgba(67, 179, 174, 0.3), transparent)' }}
+        />
+      </div>
+
+      {/* Section number - Oxidized */}
+      <div className="hero-side absolute right-6 md:right-10 bottom-1/4 hidden lg:block pointer-events-none">
+        <span
+          className="text-[180px] font-display font-bold leading-none breath-element"
+          style={{
+            color: 'transparent',
+            WebkitTextStroke: '1px rgba(67, 179, 174, 0.1)',
+          }}
+        >
+          01
+        </span>
+      </div>
+
+      {/* Rolling ball scroll indicator */}
+      <RollingBall />
+
+      {/* Bottom marquee - Tobacco aesthetic */}
+      <div
+        className="absolute bottom-0 left-0 right-0 overflow-hidden py-3 border-t"
+        style={{
+          borderColor: 'rgba(67, 179, 174, 0.1)',
+          background: 'rgba(5, 5, 5, 0.8)',
+          backdropFilter: 'blur(10px)',
+        }}
+      >
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...Array(8)].map((_, i) => (
+            <span
+              key={i}
+              className="mx-8 text-xs font-mono tracking-wider flex items-center gap-4"
+              style={{ color: 'rgba(244, 236, 216, 0.3)' }}
+            >
+              <span style={{ color: 'var(--oxidized-copper, #43b3ae)' }}>◆</span>
+              TESOL Certified
+              <span style={{ color: 'var(--dried-blood, #8a0303)' }}>◆</span>
+              ILA Vietnam
+              <span style={{ color: 'var(--oxidized-copper, #43b3ae)' }}>◆</span>
+              2000+ Students
+              <span style={{ color: 'var(--dried-blood, #8a0303)' }}>◆</span>
+              Ho Chi Minh City
+            </span>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

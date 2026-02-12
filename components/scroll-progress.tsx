@@ -13,7 +13,7 @@ export function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] bg-primary origin-left z-[9998]"
+      className="fixed top-0 left-0 right-0 h-[2px] bg-[#ECD06F] origin-left z-[9998]"
       style={{ scaleX }}
     />
   );
@@ -29,9 +29,9 @@ export function ScrollProgressVertical() {
   });
 
   return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 h-32 w-[2px] bg-border z-[9998] hidden lg:block">
+    <div className="fixed right-6 top-1/2 -translate-y-1/2 h-32 w-[2px] bg-white/10 z-[9998] hidden lg:block rounded-full overflow-hidden">
       <motion.div
-        className="absolute top-0 left-0 right-0 bg-primary origin-top"
+        className="absolute top-0 left-0 right-0 bg-[#ECD06F] origin-top"
         style={{ scaleY, height: '100%' }}
       />
     </div>
@@ -54,16 +54,16 @@ export function ScrollProgressPercent() {
       animate={{ opacity: 1 }}
       transition={{ delay: 1 }}
     >
-      <span className="text-[11px] font-accent tracking-widest text-muted-foreground uppercase">
+      <span className="text-[10px] font-medium tracking-[0.1em] uppercase text-white/40">
         SCROLL
       </span>
-      <div className="w-16 h-[2px] bg-border overflow-hidden">
+      <div className="w-16 h-[2px] bg-white/10 overflow-hidden rounded-full">
         <motion.div
-          className="h-full bg-primary origin-left"
+          className="h-full bg-[#ECD06F] origin-left"
           style={{ scaleX: smoothProgress }}
         />
       </div>
-      <motion.span className="text-[11px] font-accent tracking-widest text-muted-foreground w-8">
+      <motion.span className="text-[10px] font-medium tracking-[0.1em] text-white/40 w-8">
         <ProgressText progress={smoothProgress} />
       </motion.span>
     </motion.div>

@@ -11,7 +11,10 @@
   "hero": {
     "badge": "Giáo viên tiếng Anh tại TP.HCM",
     "title": "Học tiếng Anh như một cuộc phiêu lưu",
-    "subtitle": "Tôi là Teacher Bek, giáo viên tiếng Anh tại Thành phố Hồ Chí Minh. Trong 3 năm qua, tôi đã giúp gần 2.000 học viên khám phá niềm vui khi nói tiếng Anh - tại các trường học và lớp học riêng tại Phú Nhuận.",
+    "titleLine1": "Tiếng Anh không chỉ là",
+    "titleLine2": "một ngôn ngữ — đó là",
+    "titleAccent": "chìa khóa",
+    "subtitle": "Lớp học nhỏ (tối đa 10 học viên), hội thoại thực tế, và không gian học tập an toàn, thoải mái được thiết kế cho việc học tập trung.",
     "cta": "Trò chuyện ngay",
     "secondary": "Xem cách tôi dạy",
     "headline": "Tiếng Anh không phải là ngôn ngữ—đó là chìa khóa",
@@ -40,8 +43,8 @@
       "tesolDesc": "Dạy tiếng Anh cho người nói ngôn ngữ khác",
       "pgce": "Chứng Chỉ PGCE",
       "pgceDesc": "Chứng chỉ Sau đại học về Giáo dục",
-      "delta": "DELTA Đang Học",
-      "deltaDesc": "Văn bằng Giảng dạy Tiếng Anh cho Người lớn"
+      "delta": "DELTA Hoàn Thành",
+      "deltaDesc": "Cambridge - Đang chờ kết quả"
     },
     "stats": {
       "students": "gần 2.000",
@@ -49,7 +52,7 @@
       "years": "3",
       "yearsLabel": "Năm tại Việt Nam",
       "schools": "15+",
-      "schoolsLabel": "Trường & Tổ chức"
+      "schoolsLabel": "Trường Đã Dạy"
     },
     "classroom": {
       "title": "Lớp Học Của Tôi",
@@ -70,31 +73,49 @@
     }
   },
   "courses": {
-    "title": "Cách Chúng Ta Học Cùng Nhau",
-    "subtitle": "Mỗi học viên đều khác nhau. Đây là cách tôi điều chỉnh phương pháp giảng dạy phù hợp với bạn.",
-    "beginner": {
-      "title": "Bước Đầu Tiên",
-      "description": "Dành cho người mới bắt đầu. Chúng ta xây dựng sự tự tin qua trò chơi, bài hát và nhiều kiên nhẫn. Không áp lực, chỉ có tiến bộ.",
-      "duration": "Linh hoạt",
-      "level": "Cơ bản"
+    "title": "Tìm Chương Trình Phù Hợp",
+    "subtitle": "Chương trình phù hợp theo độ tuổi, mang lại kết quả thực sự. Mỗi chương trình kết hợp giảng dạy chuyên nghiệp với phương pháp hấp dẫn.",
+    "youngLearners": {
+      "title": "Thiếu Nhi (6-10 Tuổi)",
+      "tagline": "Xây Dựng Sự Tự Tin. Khơi Gợi Tò Mò. Yêu Thích Học Tập.",
+      "description": "Xem con bạn khám phá niềm vui tiếng Anh qua trò chơi tương tác, kể chuyện và hoạt động sáng tạo. Chương trình đã được chứng minh giúp xây dựng nền tảng vững chắc.",
+      "outcomes": [
+        "Phát triển phát âm và kỹ năng nghe tự nhiên",
+        "Xây dựng vốn từ qua học mà chơi",
+        "Tự tin nói tiếng Anh",
+        "Chuẩn bị thành công học tập"
+      ],
+      "duration": "2 buổi/tuần • 90 phút",
+      "level": "6-10 Tuổi",
+      "highlight": "Xây dựng kỹ năng ngôn ngữ suốt đời"
     },
-    "intermediate": {
-      "title": "Tìm Giọng Nói Của Bạn",
-      "description": "Bạn biết tiếng Anh nhưng muốn nói tự nhiên hơn. Chúng ta sẽ tập trung vào hội thoại thực tế và xây dựng sự lưu loát.",
-      "duration": "Liên tục",
-      "level": "Trung cấp"
+    "teens": {
+      "title": "Thanh Thiếu Niên (11-17 Tuổi)",
+      "tagline": "Thể Hiện Bản Thân. Nổi Bật. Đạt Được Nhiều Hơn.",
+      "description": "Trang bị cho con bạn kỹ năng tiếng Anh mở ra nhiều cơ hội. Từ xuất sắc ở trường đến cơ hội toàn cầu, chương trình năng động xây dựng sự lưu loát và tự tin.",
+      "outcomes": [
+        "Thành thạo giao tiếp và tiếng Anh học thuật",
+        "Xuất sắc trong bài tập và thuyết trình",
+        "Xây dựng tự tin cho tương lai",
+        "Phát triển tư duy phản biện bằng tiếng Anh"
+      ],
+      "duration": "2 buổi/tuần • 90 phút",
+      "level": "11-17 Tuổi",
+      "highlight": "Chuẩn bị cho THPT, đại học và xa hơn"
     },
-    "advanced": {
-      "title": "Hoàn Thiện & Tự Tin",
-      "description": "Dành cho học viên chuẩn bị thi, phỏng vấn hoặc muốn thành thạo ngôn ngữ. Chúng ta cải thiện phát âm và mở rộng vốn từ.",
-      "duration": "Tùy chỉnh",
-      "level": "Nâng cao"
-    },
-    "business": {
-      "title": "Lớp Thiếu Nhi",
-      "description": "Lớp học chuyên biệt cho trẻ em 4-12 tuổi. Tôi đã dạy tại các trường mầm non và tiểu học khắp TP.HCM - tôi biết cách làm cho việc học trở nên vui vẻ.",
-      "duration": "Hàng tuần",
-      "level": "4-12 tuổi"
+    "ielts": {
+      "title": "Luyện Thi IELTS & Chứng Chỉ",
+      "tagline": "Đạt Điểm Mục Tiêu. Mở Khóa Tương Lai.",
+      "description": "Đạt điểm bạn cần với luyện thi IELTS hiệu quả. Chiến lược đã được chứng minh, phản hồi cá nhân và luyện tập chuyên sâu cả 4 kỹ năng.",
+      "outcomes": [
+        "Thành thạo 4 kỹ năng IELTS: Đọc, Viết, Nghe, Nói",
+        "Học chiến lược thi và quản lý thời gian",
+        "Nhận phản hồi chi tiết về bài thi thử",
+        "Tự tin đạt điểm mục tiêu"
+      ],
+      "duration": "2 buổi/tuần • 60 phút",
+      "level": "Mọi Mức Điểm",
+      "highlight": "Đào tạo chuyên biệt cho du học và định cư"
     }
   },
   "testimonials": {
@@ -109,17 +130,32 @@
   "faq": {
     "title": "Câu Hỏi Thường Gặp",
     "q1": "Thầy dạy ở đâu?",
-    "a1": "Tôi dạy tại lớp học riêng ở Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Đây là không gian thoải mái, được thiết kế chuyên nghiệp với camera an ninh. Tôi cũng có thể đến nhà bạn tại Phú Nhuận, Gò Vấp hoặc Bình Thạnh.",
+    "a1": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Tôi cũng dạy tại nhà học viên ở Phú Nhuận, Gò Vấp và Bình Thạnh.",
     "q2": "Thầy dạy độ tuổi nào?",
-    "a2": "Tất cả! Tôi đã dạy trẻ mầm non, học sinh tiểu học, thanh thiếu niên và người lớn. Với gần 2.000 học viên trong 3 năm, tôi đã học cách điều chỉnh phương pháp cho từng nhóm tuổi.",
+    "a2": "Thiếu nhi (6-10 tuổi), Thanh thiếu niên (11-17 tuổi), và luyện thi IELTS/chứng chỉ cho mọi lứa tuổi.",
     "q3": "Học phí bao nhiêu?",
-    "a3": "Tùy thuộc vào loại lớp, địa điểm và tần suất. Hãy trò chuyện về nhu cầu của bạn trước, và tôi sẽ báo giá rõ ràng không phí ẩn.",
-    "q4": "Thầy có dạy nhóm không?",
-    "a4": "Có! Lớp nhóm có thể tiết kiệm hơn và thường vui hơn. Nếu bạn có bạn bè hoặc gia đình muốn học cùng, chúng ta có thể sắp xếp tại lớp học của tôi.",
+    "a3": "Tùy thuộc vào loại chương trình, địa điểm và tần suất. Liên hệ để biết thông tin cụ thể - không phí ẩn.",
+    "q4": "Thầy dạy nhóm hay 1-1?",
+    "a4": "Chỉ dạy nhóm (tối đa 10 học viên). Kể cả lớp online cũng theo nhóm để mọi người đều được thực hành nói.",
     "q5": "Thầy có bằng cấp gì?",
-    "a5": "Tôi có chứng chỉ TESOL và PGCE, và đang theo học DELTA. Tôi đã dạy tại ILA Vietnam, Blue Sky Academy và hơn 15 trường khắp Thành phố Hồ Chí Minh.",
+    "a5": "Chứng chỉ TESOL và PGCE. Tôi cũng đã hoàn thành DELTA (Cambridge) và đang chờ kết quả. Đã dạy tại ILA Vietnam, BlueSky Kindergarten và 15+ trường.",
     "q6": "Có thể học thử trước không?",
-    "a6": "Tất nhiên! Chúng ta có thể có một buổi học thử ngắn tại lớp học của tôi để bạn xem chúng ta có phù hợp không. Không bắt buộc."
+    "a6": "Có! Buổi đánh giá miễn phí - không áp lực, không ràng buộc.",
+    "q7": "Tại sao lớp nhỏ thay vì lớp đông?",
+    "a7": "Trong lớp 25 người, bạn gần như không được nói. Với tối đa 10 học viên, bạn thực sự được thực hành.",
+    "q8": "Lớp học có an toàn cho trẻ không?",
+    "a8": "Hoàn toàn. Camera an ninh CCTV, nhà vệ sinh riêng, phòng máy lạnh và đèn diệt muỗi. An toàn, thoải mái và được phụ huynh tin tưởng."
+  },
+  "newsletter": {
+    "title": "Kết Nối",
+    "subtitle": "Câu chuyện dạy học, mẹo học tập và cập nhật lớp học cho phụ huynh, giáo viên và học viên. Tham gia cùng 2.000+ độc giả.",
+    "emailPlaceholder": "Email của bạn",
+    "subscribe": "Đăng ký",
+    "subscribing": "Đang đăng ký...",
+    "success": "Cảm ơn! Kiểm tra hộp thư để xác nhận.",
+    "error": "Có lỗi xảy ra. Vui lòng thử lại.",
+    "privacy": "Không spam. Hủy đăng ký bất cứ lúc nào.",
+    "benefits": "Kiến thức giảng dạy, mẹo học tập và cập nhật"
   },
   "blog": {
     "title": "Bài Viết & Tài Nguyên",
@@ -169,7 +205,7 @@
     }
   },
   "footer": {
-    "tagline": "Giáo viên tiếng Anh tại TP.HCM, giúp gần 2.000 học viên tìm giọng nói của mình từ năm 2021",
+    "tagline": "Giáo viên tiếng Anh tại TP.HCM. Chứng chỉ TESOL & PGCE. Giảng dạy từ năm 2023.",
     "contact": "Liên hệ",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",

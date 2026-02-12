@@ -1,246 +1,623 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion, useInView } from 'framer-motion';
-import { useRef, useMemo } from 'react';
-import { Award, BookOpen, GraduationCap, MapPin, Shield, Users } from 'lucide-react';
-import { Reveal, LineReveal } from '@/components/ui/reveal';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ProfileImage } from '@/components/protected-image';
+import { ArrowRight, MapPin, Award, BookOpen } from 'lucide-react';
+import { SmokeTendrils } from '@/components/lingua-noir/fluid-smoke';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Animated text reveal with blur
+function AnimatedParagraph({ children, className = '', delay = 0 }: { children: string; className?: string; delay?: number }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 50, filter: "blur(8px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1,
+          delay,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, [delay]);
+
+  return (
+    <p ref={ref} className={className}>
+      {children}
+    </p>
+  );
+}
 
 export default function AboutSection() {
   const t = useTranslations('about');
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [imageHover, setImageHover] = useState(false);
 
-  const credentials = useMemo(() => [
-    {
-      icon: Award,
-      title: t('credentials.tesol'),
-      description: t('credentials.tesolDesc'),
-    },
-    {
-      icon: GraduationCap,
-      title: t('credentials.pgce'),
-      description: t('credentials.pgceDesc'),
-    },
-    {
-      icon: BookOpen,
-      title: t('credentials.delta'),
-      description: t('credentials.deltaDesc'),
-    },
-  ], [t]);
+  // Mouse tracking for 3D image effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!imageRef.current) return;
+      const rect = imageRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      setMousePos({ x, y });
+    };
 
-  const classroomFeatures = useMemo(() => [
-    {
-      icon: Shield,
-      title: t('classroom.features.cctv'),
-      description: t('classroom.features.cctvDesc'),
-    },
-    {
-      icon: Users,
-      title: t('classroom.features.comfort'),
-      description: t('classroom.features.comfortDesc'),
-    },
-    {
-      icon: BookOpen,
-      title: t('classroom.features.materials'),
-      description: t('classroom.features.materialsDesc'),
-    },
-  ], [t]);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
-  const stats = useMemo(() => [
-    { value: t('stats.students'), label: t('stats.studentsLabel') },
-    { value: t('stats.years'), label: t('stats.yearsLabel') },
-    { value: t('stats.schools'), label: t('stats.schoolsLabel') },
-  ], [t]);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Section number with clip path reveal
+      gsap.fromTo(".about-number",
+        { clipPath: "inset(100% 0 0 0)" },
+        {
+          clipPath: "inset(0% 0 0 0)",
+          duration: 1.5,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      // Eyebrow with draw effect
+      gsap.fromTo(".about-eyebrow-line",
+        { scaleX: 0, transformOrigin: "left" },
+        {
+          scaleX: 1,
+          duration: 1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      gsap.fromTo(".about-eyebrow-text",
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          delay: 0.3,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      // Headline with staggered word reveal
+      gsap.fromTo(".about-headline-word",
+        { y: 120, opacity: 0, rotateX: -60 },
+        {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          duration: 1.2,
+          stagger: 0.08,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".about-headline",
+            start: "top 75%",
+            once: true,
+          }
+        }
+      );
+
+      // Image reveal with wax melt effect
+      gsap.fromTo(".about-image-curtain",
+        { scaleY: 1, transformOrigin: "top" },
+        {
+          scaleY: 0,
+          duration: 1.8,
+          ease: "power4.inOut",
+          scrollTrigger: {
+            trigger: ".about-image-container",
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      // Image zoom
+      gsap.fromTo(".about-image-inner",
+        { scale: 1.5, filter: "sepia(0.3)" },
+        {
+          scale: 1,
+          filter: "sepia(0)",
+          duration: 2.5,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".about-image-container",
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      // Quote with blur reveal
+      gsap.fromTo(".about-quote",
+        { opacity: 0, y: 60, filter: "blur(15px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".about-quote",
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // Credentials with bounce
+      gsap.fromTo(".about-credential",
+        { y: 40, opacity: 0, scale: 0.8 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "elastic.out(1, 0.5)",
+          scrollTrigger: {
+            trigger: ".about-credentials",
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // Stats counter animation
+      gsap.fromTo(".about-stat",
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".about-stats",
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // Parallax on scroll for image
+      gsap.to(".about-image-inner", {
+        y: 80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2,
+        }
+      });
+
+      // Breathing animation (7 second pulse)
+      gsap.to(".breath-pulse", {
+        filter: "brightness(1.1)",
+        duration: 3.5,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const headlineWords = ['The', 'excavation', 'of', 'fluency'];
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-20 md:py-32 overflow-hidden bg-[#FDFCF8] dark:bg-[#0A0A0C]">
-      {/* Top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0F0F11]/10 dark:via-[#F5F1E8]/10 to-transparent" />
+    <section
+      ref={sectionRef}
+      id="about"
+      className="relative py-32 lg:py-48 overflow-hidden"
+      style={{ backgroundColor: 'var(--void-black, #050505)' }}
+    >
+      {/* Gradient bleed background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at 20% 30%, rgba(61,40,23,0.4) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 70%, rgba(67,179,174,0.15) 0%, transparent 40%),
+            radial-gradient(ellipse at 50% 90%, rgba(138,3,3,0.1) 0%, transparent 30%)
+          `
+        }}
+      />
 
-      {/* Background decorative element */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 0.02 } : {}}
-        transition={{ duration: 1 }}
-        className="absolute -right-[10%] top-1/2 -translate-y-1/2 font-display text-[25vw] font-bold text-[#0F0F11] dark:text-[#F5F1E8] select-none pointer-events-none hidden lg:block"
-      >
-        &
-      </motion.div>
+      {/* Smoke tendrils */}
+      <SmokeTendrils className="absolute inset-0 opacity-30" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {/* Section Header */}
-        <div className="mb-16 md:mb-24">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="inline-block font-mono text-[10px] tracking-[0.3em] uppercase text-[#C85C3F] dark:text-[#E88C73] mb-4"
-          >
-            {t('label')}
-          </motion.div>
-          <Reveal>
-            <motion.h2
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1] mb-6"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              {t('title')}
-            </motion.h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-sans text-lg md:text-xl text-[#0F0F11]/60 dark:text-[#F5F1E8]/60 max-w-2xl"
-            >
-              {t('intro')}
-            </motion.p>
-          </Reveal>
-        </div>
+      {/* Decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Oxidized copper glow */}
+        <div
+          className="absolute top-1/4 right-[10%] w-64 h-64 breath-pulse"
+          style={{
+            background: 'radial-gradient(circle, rgba(67,179,174,0.2) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
 
-        {/* Main Grid */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Column - Story */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-7"
-          >
-            {/* Story Content */}
-            <div className="relative p-8 md:p-10 bg-white/50 dark:bg-[#111113]/50 backdrop-blur-sm border border-[#0F0F11]/10 dark:border-[#F5F1E8]/10">
-              {/* Accent line */}
-              <div className="absolute top-0 left-8 md:left-10 w-16 h-[2px] bg-gradient-to-r from-[#C85C3F] to-[#B8956A] dark:from-[#E88C73] dark:to-[#D4B896]" />
+        {/* Tobacco smoke orb */}
+        <div
+          className="absolute bottom-1/3 left-[5%] w-48 h-48"
+          style={{
+            background: 'radial-gradient(circle, rgba(61,40,23,0.3) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+          }}
+        />
 
-              <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] mb-6">
-                {t('story.title')}
-              </h3>
+        {/* Grid pattern - Archaeological */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(67,179,174,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(67,179,174,0.5) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+      </div>
 
-              <div className="space-y-4 font-sans text-[#0F0F11]/70 dark:text-[#F5F1E8]/70 leading-relaxed">
-                <p>{t('story.p1')}</p>
-                <p>{t('story.p2')}</p>
-                <p>{t('story.p3')}</p>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+        {/* Two Column Layout */}
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+
+          {/* Left: Content */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            {/* Section header */}
+            <div className="flex items-start gap-8 mb-16">
+              <span
+                className="about-number text-[120px] lg:text-[180px] font-display font-bold leading-none -mt-8 select-none"
+                style={{
+                  color: 'transparent',
+                  WebkitTextStroke: '1px rgba(67, 179, 174, 0.15)',
+                }}
+              >
+                02
+              </span>
+              <div className="pt-6">
+                {/* Eyebrow */}
+                <div className="flex items-center gap-4 mb-8">
+                  <div
+                    className="about-eyebrow-line h-[1px] w-14"
+                    style={{ backgroundColor: 'var(--oxidized-copper, #43b3ae)' }}
+                  />
+                  <span
+                    className="about-eyebrow-text text-[11px] font-mono font-medium tracking-[0.2em] uppercase"
+                    style={{ color: 'var(--oxidized-copper, #43b3ae)' }}
+                  >
+                    {t('label')}
+                  </span>
+                </div>
+
+                {/* Headline */}
+                <div className="about-headline overflow-hidden mb-12" style={{ perspective: '1000px' }}>
+                  <h2
+                    className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.03em]"
+                    style={{ color: 'var(--vintage-paper, #f4ecd8)' }}
+                  >
+                    {headlineWords.map((word, i) => (
+                      <span
+                        key={i}
+                        className="about-headline-word inline-block mr-[0.25em]"
+                        style={{
+                          transformStyle: 'preserve-3d',
+                          color: word === 'fluency'
+                            ? 'var(--oxidized-copper, #43b3ae)'
+                            : 'inherit',
+                          textShadow: word === 'fluency'
+                            ? '0 0 40px rgba(67, 179, 174, 0.5)'
+                            : 'none',
+                        }}
+                      >
+                        {word}
+                      </span>
+                    ))}
+                  </h2>
+                </div>
               </div>
             </div>
 
-            {/* Stats Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-3 gap-4 mt-8"
+            {/* Body text with animated reveals */}
+            <div className="space-y-8 mb-16 max-w-xl">
+              <AnimatedParagraph
+                className="text-xl md:text-2xl leading-[1.7] font-light"
+                style={{ color: 'rgba(244, 236, 216, 0.7)' }}
+                delay={0}
+              >
+                Originally from Tashkent, Uzbekistan, I found my way to Vietnam through volunteering—and discovered a passion I never expected.
+              </AnimatedParagraph>
+
+              <AnimatedParagraph
+                className="text-2xl md:text-3xl leading-[1.5] font-medium"
+                style={{ color: 'var(--vintage-paper, #f4ecd8)' }}
+                delay={0.1}
+              >
+                Teaching became my purpose.
+              </AnimatedParagraph>
+
+              <AnimatedParagraph
+                className="text-lg leading-[1.8]"
+                style={{ color: 'rgba(244, 236, 216, 0.5)' }}
+                delay={0.2}
+              >
+                I created this classroom at home after requests from parents seeking small, focused groups where every child actually speaks. Personalized attention and real conversation practice.
+              </AnimatedParagraph>
+
+              <AnimatedParagraph
+                className="text-base leading-[1.8]"
+                style={{ color: 'rgba(244, 236, 216, 0.4)' }}
+                delay={0.3}
+              >
+                When I'm not teaching, you'll find me reading, lifting weights, or on the mats grappling.
+              </AnimatedParagraph>
+            </div>
+
+            {/* Quote - Engraved style */}
+            <blockquote className="about-quote relative pl-8 mb-16 max-w-lg">
+              <div
+                className="absolute left-0 top-0 bottom-0 w-[2px]"
+                style={{
+                  background: 'linear-gradient(to bottom, var(--oxidized-copper, #43b3ae), var(--dried-blood, #8a0303), transparent)'
+                }}
+              />
+              <p
+                className="text-2xl md:text-3xl font-display italic leading-[1.4]"
+                style={{ color: 'rgba(244, 236, 216, 0.6)' }}
+              >
+                &ldquo;{t('philosophy.description')}&rdquo;
+              </p>
+            </blockquote>
+
+            {/* Credentials - Punched metal style */}
+            <div className="about-credentials flex flex-wrap items-center gap-4 mb-12">
+              <span
+                className="about-credential punched-label group inline-flex items-center gap-3"
+                style={{
+                  background: 'linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%)',
+                  border: '1px solid rgba(67, 179, 174, 0.2)',
+                  color: 'var(--vintage-paper, #f4ecd8)',
+                }}
+              >
+                <Award className="w-4 h-4" style={{ color: 'var(--oxidized-copper, #43b3ae)' }} />
+                {t('credentials.tesol')}
+              </span>
+              <span
+                className="about-credential punched-label group inline-flex items-center gap-3"
+                style={{
+                  background: 'linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%)',
+                  border: '1px solid rgba(67, 179, 174, 0.2)',
+                  color: 'var(--vintage-paper, #f4ecd8)',
+                }}
+              >
+                <BookOpen className="w-4 h-4" style={{ color: 'var(--oxidized-copper, #43b3ae)' }} />
+                {t('credentials.pgce')}
+              </span>
+              <span
+                className="about-credential inline-flex items-center gap-3 px-6 py-4 text-[10px] font-mono font-medium tracking-[0.12em] uppercase"
+                style={{
+                  color: 'var(--oxidized-copper, #43b3ae)',
+                  border: '1px solid rgba(67, 179, 174, 0.4)',
+                  background: 'rgba(67, 179, 174, 0.1)',
+                }}
+              >
+                DELTA Trained
+              </span>
+            </div>
+
+            {/* CTA - Liquid button */}
+            <a
+              href="#contact"
+              className="about-credential group relative inline-flex items-center gap-4 px-10 py-5 text-sm font-semibold tracking-[0.08em] uppercase overflow-hidden transition-all duration-500"
+              style={{
+                background: 'linear-gradient(135deg, var(--oxidized-copper, #43b3ae), #3d9994)',
+                color: 'var(--void-black, #050505)',
+                boxShadow: '0 0 30px rgba(67, 179, 174, 0.3)',
+              }}
             >
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center p-4 bg-[#0F0F11] dark:bg-[#F5F1E8] text-[#F5F1E8] dark:text-[#0F0F11]">
-                  <div className="font-display text-2xl md:text-3xl font-bold">
+              <span className="relative z-10">Start your journey</span>
+              <ArrowRight className="relative z-10 w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" />
+              <div
+                className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"
+                style={{ background: 'var(--vintage-paper, #f4ecd8)' }}
+              />
+            </a>
+          </div>
+
+          {/* Right: Image - Bell jar / Wax figure aesthetic */}
+          <div className="lg:col-span-5 order-1 lg:order-2 lg:sticky lg:top-32">
+            <div
+              ref={imageRef}
+              className="about-image-container relative aspect-[3/4] overflow-hidden"
+              onMouseEnter={() => setImageHover(true)}
+              onMouseLeave={() => setImageHover(false)}
+              style={{
+                transform: imageHover
+                  ? `perspective(1000px) rotateY(${mousePos.x * 5}deg) rotateX(${-mousePos.y * 5}deg)`
+                  : 'perspective(1000px) rotateY(0deg) rotateX(0deg)',
+                transition: 'transform 0.3s ease-out',
+                border: '1px solid rgba(67, 179, 174, 0.1)',
+              }}
+            >
+              {/* Curtain reveal - Tobacco color */}
+              <div
+                className="about-image-curtain absolute inset-0 z-20"
+                style={{ backgroundColor: 'var(--tobacco-brown, #3d2817)' }}
+              />
+
+              {/* Image with wax-like treatment */}
+              <div className="about-image-inner absolute inset-0">
+                <ProfileImage className="w-full h-full object-cover object-top" />
+              </div>
+
+              {/* Gradient overlays - Darker, more dramatic */}
+              <div
+                className="absolute inset-0 z-10"
+                style={{
+                  background: 'linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.3) 40%, transparent 100%)'
+                }}
+              />
+              <div
+                className="absolute inset-0 z-10"
+                style={{
+                  background: 'linear-gradient(to right, rgba(61,40,23,0.5) 0%, transparent 50%)'
+                }}
+              />
+
+              {/* Glass jar / Bell jar effect */}
+              <div
+                className="absolute inset-0 z-15 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.05) 0%, transparent 50%)',
+                }}
+              />
+
+              {/* Location badge */}
+              <div className="absolute bottom-8 left-8 right-8 z-20">
+                <div
+                  className="inline-flex items-center gap-3 px-5 py-3 text-xs font-mono tracking-wider backdrop-blur-xl"
+                  style={{
+                    background: 'rgba(5, 5, 5, 0.7)',
+                    border: '1px solid rgba(67, 179, 174, 0.2)',
+                    color: 'var(--vintage-paper, #f4ecd8)',
+                  }}
+                >
+                  <MapPin className="w-4 h-4" style={{ color: 'var(--oxidized-copper, #43b3ae)' }} />
+                  Ho Chi Minh City, Vietnam
+                </div>
+              </div>
+
+              {/* Corner accents - Oxidized copper */}
+              <div
+                className="absolute top-0 left-0 w-16 h-16 z-10"
+                style={{
+                  borderLeft: '2px solid var(--oxidized-copper, #43b3ae)',
+                  borderTop: '2px solid var(--oxidized-copper, #43b3ae)',
+                }}
+              />
+              <div
+                className="absolute bottom-0 right-0 w-16 h-16 z-10"
+                style={{
+                  borderRight: '2px solid var(--dried-blood, #8a0303)',
+                  borderBottom: '2px solid var(--dried-blood, #8a0303)',
+                }}
+              />
+
+              {/* Hover glow - Oxidized copper */}
+              <div
+                className="absolute inset-0 z-5 pointer-events-none transition-opacity duration-500"
+                style={{
+                  opacity: imageHover ? 0.4 : 0,
+                  background: `radial-gradient(circle at ${(mousePos.x + 1) * 50}% ${(mousePos.y + 1) * 50}%, rgba(67, 179, 174, 0.3) 0%, transparent 50%)`
+                }}
+              />
+            </div>
+
+            {/* Stats - Obsidian slabs */}
+            <div className="about-stats grid grid-cols-3 gap-4 mt-8">
+              {[
+                { value: '2K+', label: 'Students' },
+                { value: '3', label: 'Years', accent: true },
+                { value: '15+', label: 'Schools' },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="about-stat obsidian-card text-center p-6"
+                  style={{
+                    background: 'linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%)',
+                    border: '1px solid rgba(67, 179, 174, 0.1)',
+                  }}
+                >
+                  <span
+                    className="block text-4xl md:text-5xl font-display font-bold"
+                    style={{
+                      color: stat.accent
+                        ? 'var(--oxidized-copper, #43b3ae)'
+                        : 'var(--vintage-paper, #f4ecd8)',
+                      textShadow: stat.accent
+                        ? '0 0 20px rgba(67, 179, 174, 0.5)'
+                        : 'none',
+                    }}
+                  >
                     {stat.value}
-                  </div>
-                  <div className="font-mono text-[9px] tracking-[0.2em] uppercase opacity-60 mt-1">
+                  </span>
+                  <span
+                    className="text-[10px] font-mono tracking-[0.15em] uppercase"
+                    style={{ color: 'rgba(244, 236, 216, 0.4)' }}
+                  >
                     {stat.label}
-                  </div>
+                  </span>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Credentials & Classroom */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-5 space-y-8"
-          >
-            {/* Credentials */}
-            <div>
-              <h3 className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#0F0F11]/40 dark:text-[#F5F1E8]/40 mb-6">
-                {t('credentials.title')}
-              </h3>
-              <div className="space-y-4">
-                {credentials.map((cred, index) => {
-                  const Icon = cred.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                      className="flex items-start gap-4 p-4 bg-white/50 dark:bg-[#111113]/50 border border-[#0F0F11]/10 dark:border-[#F5F1E8]/10 hover:border-[#C85C3F]/30 dark:hover:border-[#E88C73]/30 transition-colors"
-                    >
-                      <div className="w-10 h-10 flex items-center justify-center bg-[#C85C3F]/10 dark:bg-[#E88C73]/10 text-[#C85C3F] dark:text-[#E88C73]">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="font-display text-sm font-semibold text-[#0F0F11] dark:text-[#F5F1E8]">
-                          {cred.title}
-                        </p>
-                        <p className="font-sans text-xs text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-0.5">
-                          {cred.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Classroom */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="p-6 bg-gradient-to-br from-[#C85C3F]/5 to-[#B8956A]/5 dark:from-[#E88C73]/5 dark:to-[#D4B896]/5 border border-[#C85C3F]/20 dark:border-[#E88C73]/20"
+      {/* Bottom marquee text - Archaeological */}
+      <div
+        className="absolute bottom-0 left-0 right-0 overflow-hidden py-6"
+        style={{
+          borderTop: '1px solid rgba(67, 179, 174, 0.1)',
+          background: 'rgba(5, 5, 5, 0.8)',
+        }}
+      >
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...Array(6)].map((_, i) => (
+            <span
+              key={i}
+              className="mx-12 text-6xl md:text-8xl font-display font-bold tracking-tighter"
+              style={{
+                color: 'transparent',
+                WebkitTextStroke: '1px rgba(67, 179, 174, 0.1)',
+              }}
             >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#0F0F11] dark:bg-[#F5F1E8] text-[#F5F1E8] dark:text-[#0F0F11]">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-display text-lg font-semibold text-[#0F0F11] dark:text-[#F5F1E8]">
-                    {t('classroom.title')}
-                  </h4>
-                  <p className="font-mono text-[10px] tracking-wider text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
-                    {t('classroom.address')}
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-3 mt-6">
-                {classroomFeatures.map((feature, index) => {
-                  const Icon = feature.icon;
-                  return (
-                    <div key={index} className="flex items-center gap-3">
-                      <Icon className="w-4 h-4 text-[#C85C3F] dark:text-[#E88C73]" />
-                      <span className="font-sans text-sm text-[#0F0F11]/70 dark:text-[#F5F1E8]/70">
-                        {feature.title}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-            {/* Philosophy Quote */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="relative"
-            >
-              <div className="absolute -left-2 top-0 text-6xl font-display text-[#C85C3F]/20 dark:text-[#E88C73]/20 leading-none">
-                "
-              </div>
-              <blockquote className="pl-8 font-display text-lg md:text-xl italic text-[#0F0F11]/80 dark:text-[#F5F1E8]/80">
-                {t('philosophy.description')}
-              </blockquote>
-            </motion.div>
-          </motion.div>
+              EXCAVATE
+            </span>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-

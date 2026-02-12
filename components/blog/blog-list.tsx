@@ -1,11 +1,17 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react';
 import { BlogPost, categories, Category } from '@/lib/blog';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface BlogListProps {
   posts: BlogPost[];
@@ -22,36 +28,41 @@ export function BlogList({ posts, locale }: BlogListProps) {
     ? posts
     : posts.filter(post => post.category === activeCategory);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-    }
-  };
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".blog-card",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.6, stagger: 0.1,
+          scrollTrigger: {
+            trigger: ".blog-grid",
+            start: "top 80%",
+            once: true,
+          }
+        }
+      );
+    }, sectionRef);
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-  };
+    return () => ctx.revert();
+  }, [filteredPosts]);
 
   return (
-    <section ref={sectionRef} className="section-sm">
-      <div className="container-lg">
+    <section ref={sectionRef} className="py-16 lg:py-24 bg-[#FDFBF7] dark:bg-black min-h-screen">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="flex flex-wrap gap-2 mb-12"
+          className="flex flex-wrap gap-3 mb-12"
         >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+              className={`px-5 py-2.5 text-sm font-medium tracking-wide rounded-full transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                  ? 'bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black'
+                  : 'bg-foreground/5 dark:bg-white/5 text-foreground/60 dark:text-white/60 border border-foreground/10 dark:border-white/10 hover:bg-foreground/10 dark:hover:bg-white/10 hover:text-foreground dark:hover:text-white hover:border-foreground/20 dark:hover:border-white/20'
               }`}
             >
               {t(`categories.${category}`)}
@@ -60,50 +71,40 @@ export function BlogList({ posts, locale }: BlogListProps) {
         </motion.div>
 
         {/* Posts Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredPosts.map((post, index) => (
-            <motion.article
+        <div className="blog-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredPosts.map((post) => (
+            <article
               key={post.slug}
-              variants={cardVariants}
-              className="group"
+              className="blog-card group"
             >
               <Link href={`/${locale}/blog/${post.slug}`}>
-                <div className="relative h-full p-6 lg:p-8 rounded-2xl border border-border bg-card hover:border-primary/30 hover:shadow-xl transition-all duration-500">
+                <div className="relative h-full p-6 lg:p-8 rounded-2xl border border-foreground/10 dark:border-white/10 bg-white dark:bg-white/5 hover:border-[#C4A84D]/30 dark:hover:border-[#ECD06F]/30 hover:bg-[#C4A84D]/5 dark:hover:bg-[#ECD06F]/5 transition-all duration-500">
                   {/* Featured Badge */}
                   {post.featured && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="absolute -top-3 right-6 inline-flex items-center gap-1.5 px-3 py-1 text-xs font-accent tracking-wider bg-accent text-accent-foreground rounded-full"
-                    >
+                    <div className="absolute -top-3 right-6 inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium tracking-[0.05em] bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black rounded-full">
                       <Sparkles className="w-3 h-3" />
                       Featured
-                    </motion.div>
+                    </div>
                   )}
 
                   {/* Category Badge */}
-                  <span className="inline-block px-3 py-1 mb-4 text-xs font-accent tracking-wider uppercase text-primary bg-primary/10 rounded-full">
+                  <span className="inline-block px-3 py-1 mb-4 text-[10px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F] bg-[#C4A84D]/10 dark:bg-[#ECD06F]/10 border border-[#C4A84D]/20 dark:border-[#ECD06F]/20 rounded-full">
                     {t(`categories.${post.category}`)}
                   </span>
 
                   {/* Title */}
-                  <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                  <h2 className="font-sans text-xl lg:text-2xl font-normal text-foreground dark:text-white mb-3 group-hover:text-[#C4A84D] dark:group-hover:text-[#ECD06F] transition-colors duration-300 line-clamp-2" style={{ letterSpacing: '-0.01em' }}>
                     {post.title}
                   </h2>
 
                   {/* Excerpt */}
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
+                  <p className="text-foreground/50 dark:text-white/50 text-sm leading-relaxed mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
 
                   {/* Meta */}
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50">
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10 dark:border-white/10">
+                    <div className="flex items-center gap-4 text-xs text-foreground/40 dark:text-white/40">
                       <span className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5" />
                         {new Date(post.date).toLocaleDateString(locale, {
@@ -119,7 +120,7 @@ export function BlogList({ posts, locale }: BlogListProps) {
                     </div>
 
                     <motion.span
-                      className="text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="text-[#C4A84D] dark:text-[#ECD06F] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       whileHover={{ x: 4 }}
                     >
                       <ArrowRight className="w-4 h-4" />
@@ -127,12 +128,12 @@ export function BlogList({ posts, locale }: BlogListProps) {
                   </div>
 
                   {/* Hover gradient */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#C4A84D]/5 dark:from-[#ECD06F]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
               </Link>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </div>
 
         {/* Empty State */}
         {filteredPosts.length === 0 && (
@@ -141,7 +142,7 @@ export function BlogList({ posts, locale }: BlogListProps) {
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >
-            <p className="text-muted-foreground">No posts found in this category yet.</p>
+            <p className="text-foreground/50 dark:text-white/50">No posts found in this category yet.</p>
           </motion.div>
         )}
       </div>

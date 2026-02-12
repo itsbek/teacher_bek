@@ -1,12 +1,16 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { motion, useAnimationControls, AnimatePresence } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
-import { Reveal } from '@/components/ui/reveal';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, X, Quote, ArrowUpRight } from 'lucide-react';
 
-// Testimonial data
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 const testimonials = [
   {
     name: "Linh Nguyễn",
@@ -14,6 +18,7 @@ const testimonials = [
     location: "Ho Chi Minh City, VN",
     text: "The classroom at Golden Mansion is a decent setup. My kids seem to enjoy the lessons and the teacher is patient with them.",
     initials: "LN",
+    rating: 5,
   },
   {
     name: "Alexei Volkov",
@@ -21,6 +26,7 @@ const testimonials = [
     location: "Moscow, RU",
     text: "We focused on practical communication which was what I needed. It's a straightforward approach to learning.",
     initials: "AV",
+    rating: 5,
   },
   {
     name: "Ji-won Kim",
@@ -28,6 +34,7 @@ const testimonials = [
     location: "Seoul, KR",
     text: "Instruction is clear and the atmosphere is relaxed. It helped me get more comfortable with speaking naturally.",
     initials: "JK",
+    rating: 5,
   },
   {
     name: "Emre Yilmaz",
@@ -35,6 +42,7 @@ const testimonials = [
     location: "Istanbul, TR",
     text: "The business English sessions were helpful for my specific industry needs. Useful for anyone looking for targeted practice.",
     initials: "EY",
+    rating: 5,
   },
   {
     name: "Mei Ling Chen",
@@ -42,6 +50,7 @@ const testimonials = [
     location: "Shanghai, CN",
     text: "Good focus on communicative aspects. The material is relevant and the teacher is quite flexible with scheduling.",
     initials: "MC",
+    rating: 5,
   },
   {
     name: "Olena Kravchenko",
@@ -49,178 +58,236 @@ const testimonials = [
     location: "Kyiv, UA",
     text: "The lessons are helpful for professional development. I feel like I can participate more easily in team discussions now.",
     initials: "OK",
-  },
-  {
-    name: "Battuya Ganbold",
-    role: "Graduate Student",
-    location: "Ulaanbaatar, MN",
-    text: "Helped me work through some specific academic writing hurdles. It was a productive experience overall.",
-    initials: "BG",
-  },
-  {
-    name: "Minh Trần",
-    role: "IT Manager",
-    location: "Ho Chi Minh City, VN",
-    text: "I appreciate the localized context used in the examples. It's a reliable option for improving your general fluency.",
-    initials: "MT",
+    rating: 5,
   },
 ];
 
-// Single testimonial card
-// Single testimonial card
 function TestimonialCard({
   testimonial,
-  onClick
+  onClick,
+  index
 }: {
   testimonial: typeof testimonials[0];
   onClick: (t: typeof testimonials[0]) => void;
+  index: number;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  // Tilt effect
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+      gsap.to(card, {
+        rotateY: x * 5,
+        rotateX: -y * 5,
+        duration: 0.3,
+        ease: "power2.out",
+        transformPerspective: 800,
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(card, {
+        rotateY: 0,
+        rotateX: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.5)",
+      });
+    };
+
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove);
+      card.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
   return (
     <div
-      className="group relative flex-shrink-0 w-[320px] md:w-[380px] h-[240px] md:h-[260px] cursor-pointer transition-all duration-500 hover:!opacity-100 hover:!grayscale-0 group-hover/marquee:opacity-40 group-hover/marquee:grayscale"
+      ref={cardRef}
+      className="group relative flex-shrink-0 w-[340px] md:w-[400px] cursor-pointer"
+      style={{ transformStyle: 'preserve-3d' }}
       onClick={() => onClick(testimonial)}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="absolute inset-0 bg-card/80 backdrop-blur-xl border border-border transition-all duration-300 group-hover:bg-card group-hover:border-primary/30 group-hover:shadow-lg group-hover:-translate-y-1 rounded-xl overflow-hidden p-6 md:p-8 flex flex-col justify-between">
+      <div className="relative p-8 md:p-10 bg-white dark:bg-[#0A0A0A] border border-foreground/10 dark:border-white/10 transition-all duration-500 hover:border-[#C4A84D]/40 dark:hover:border-[#ECD06F]/40 h-full">
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C4A84D] dark:from-[#ECD06F] to-transparent transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
 
-        {/* Quote accent */}
-        <div className="absolute top-0 left-6 md:left-8 w-8 h-[2px] bg-gradient-to-r from-[#C85C3F] to-[#B8956A] dark:from-[#E88C73] dark:to-[#D4B896]" />
-
-        <div>
-          {/* Stars */}
-          <div className="flex gap-0.5 mb-4">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3 h-3 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
-            ))}
-          </div>
-
-          {/* Quote - Truncated */}
-          <p className="font-sans text-base text-[#0F0F11] dark:text-[#F5F1E8] leading-relaxed line-clamp-3 mb-4 group-hover:text-primary transition-colors duration-300">
-            "{testimonial.text}"
-          </p>
+        {/* Quote icon */}
+        <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+          <Quote className="w-12 h-12 text-[#C4A84D] dark:text-[#ECD06F]" />
         </div>
+
+        {/* Stars */}
+        <div className="flex gap-1 mb-6">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-[#C4A84D] dark:fill-[#ECD06F] text-[#C4A84D] dark:text-[#ECD06F]" />
+          ))}
+        </div>
+
+        {/* Quote text */}
+        <p className="text-lg text-foreground/70 dark:text-white/70 leading-[1.7] line-clamp-3 mb-8 group-hover:text-foreground/90 dark:group-hover:text-white/90 transition-colors duration-500">
+          &ldquo;{testimonial.text}&rdquo;
+        </p>
 
         {/* Author */}
-        <div className="flex items-center gap-3 mt-auto">
-          <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center text-xs font-mono tracking-wider bg-[#C85C3F] dark:bg-[#E88C73] text-white rounded-full">
-            {testimonial.initials}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 flex items-center justify-center text-sm font-semibold tracking-wider bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black">
+              {testimonial.initials}
+            </div>
+            <div>
+              <p className="text-base font-semibold text-foreground dark:text-white">
+                {testimonial.name}
+              </p>
+              <p className="text-[11px] tracking-[0.1em] text-foreground/40 dark:text-white/40 uppercase">
+                {testimonial.role}
+              </p>
+            </div>
           </div>
-          <div className="min-w-0">
-            <p className="font-display text-sm font-semibold text-[#0F0F11] dark:text-[#F5F1E8] truncate">
-              {testimonial.name}
-            </p>
-            <p className="font-mono text-[10px] tracking-wider text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 uppercase truncate">
-              {testimonial.role}
-            </p>
+
+          {/* Hover indicator */}
+          <div className="w-10 h-10 flex items-center justify-center border border-foreground/10 dark:border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:border-[#C4A84D]/30 dark:group-hover:border-[#ECD06F]/30">
+            <ArrowUpRight className="w-4 h-4 text-[#C4A84D] dark:text-[#ECD06F] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
           </div>
         </div>
 
-        {/* Hover Hint */}
-        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-[10px] uppercase tracking-widest text-primary font-mono">Read</span>
+        {/* Card number */}
+        <div className="absolute bottom-4 left-4 text-[10px] font-mono tracking-wider text-foreground/20 dark:text-white/20">
+          0{index + 1}
         </div>
       </div>
     </div>
   );
 }
 
-// Expanded Card Overlay
 function ExpandedCard({ testimonial, onClose }: { testimonial: typeof testimonials[0]; onClose: () => void }) {
+  // Close on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95, y: 10 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/20 backdrop-blur-[2px]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
       onClick={onClose}
     >
-      <div
-        className="w-full max-w-lg bg-card border border-primary/20 shadow-2xl rounded-2xl p-8 relative overflow-hidden"
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="w-full max-w-xl bg-white dark:bg-[#0A0A0A] border border-foreground/10 dark:border-white/10 p-10 md:p-14 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C85C3F] to-[#B8956A]" />
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center border border-foreground/10 dark:border-white/10 hover:border-[#C4A84D] dark:hover:border-[#ECD06F] hover:bg-[#C4A84D]/10 dark:hover:bg-[#ECD06F]/10 transition-all duration-300 group"
+        >
+          <X className="w-5 h-5 text-foreground/60 dark:text-white/60 group-hover:text-[#C4A84D] dark:group-hover:text-[#ECD06F] transition-colors" />
+        </button>
 
-        <div className="flex gap-1 mb-6">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-4 h-4 fill-[#B8956A] text-[#B8956A]" />
+        {/* Large quote icon */}
+        <div className="mb-8">
+          <Quote className="w-16 h-16 text-[#C4A84D]/20 dark:text-[#ECD06F]/20" />
+        </div>
+
+        {/* Stars */}
+        <div className="flex gap-1.5 mb-8">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} className="w-5 h-5 fill-[#C4A84D] dark:fill-[#ECD06F] text-[#C4A84D] dark:text-[#ECD06F]" />
           ))}
         </div>
 
-        <p className="font-sans text-lg md:text-xl text-foreground leading-relaxed mb-8">
-          "{testimonial.text}"
+        {/* Quote text */}
+        <p className="text-2xl md:text-3xl font-display text-foreground dark:text-white leading-[1.4] mb-10">
+          &ldquo;{testimonial.text}&rdquo;
         </p>
 
-        <div className="flex items-center gap-4 pt-6 border-t border-border/50">
-          <div className="w-12 h-12 flex items-center justify-center text-sm font-mono tracking-wider bg-[#C85C3F] text-white rounded-full">
+        {/* Divider */}
+        <div className="w-16 h-[2px] bg-[#C4A84D] dark:bg-[#ECD06F] mb-8" />
+
+        {/* Author */}
+        <div className="flex items-center gap-5">
+          <div className="w-16 h-16 flex items-center justify-center text-lg font-bold tracking-wider bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black">
             {testimonial.initials}
           </div>
           <div>
-            <p className="font-display text-lg font-semibold text-foreground">
+            <p className="text-xl font-semibold text-foreground dark:text-white mb-1">
               {testimonial.name}
             </p>
-            <p className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
-              {testimonial.role} · {testimonial.location}
+            <p className="text-sm tracking-[0.05em] text-foreground/50 dark:text-white/50">
+              {testimonial.role}
+            </p>
+            <p className="text-xs tracking-[0.1em] text-foreground/30 dark:text-white/30 uppercase mt-1">
+              {testimonial.location}
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
 
-// Infinite marquee component
-// Infinite marquee component
-function Marquee({ children, reverse = false, isPaused = false }: {
+function Marquee({
+  children,
+  isPaused = false,
+  direction = 'left',
+  speed = 40
+}: {
   children: React.ReactNode;
-  reverse?: boolean;
   isPaused?: boolean;
+  direction?: 'left' | 'right';
+  speed?: number;
 }) {
   const [hovering, setHovering] = useState(false);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
-      className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] group/marquee"
+      className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
       <div
-        className="flex gap-4 md:gap-6 pr-4 md:pr-6 animate-marquee"
+        ref={marqueeRef}
+        className="flex gap-8 pr-8"
         style={{
+          animation: `marquee ${speed}s linear infinite`,
+          animationDirection: direction === 'right' ? 'reverse' : 'normal',
           animationPlayState: (isPaused || hovering) ? "paused" : "running",
-          animationDirection: reverse ? "reverse" : "normal",
         }}
       >
-        <div className="flex gap-4 md:gap-6 items-center">
-          {children}
-        </div>
-        <div className="flex gap-4 md:gap-6 items-center">
-          {children}
-        </div>
+        <div className="flex gap-8 items-stretch">{children}</div>
+        <div className="flex gap-8 items-stretch">{children}</div>
       </div>
     </div>
   );
 }
 
-// ... StatValue remains same ... (omitted for brevity, I will match start line correctly)
-// Wait, I cannot omit StatValue if I am replacing a big chunk.
-// I will just replace `Testimonials` and `TestimonialCard` and `Marquee` blocks?
-// The file has:
-// 1. testimonials data (unchanged)
-// 2. TestimonialCard (replacing)
-// 3. Marquee (replacing)
-// 4. StatValue (keeping)
-// 5. Testimonials (replacing)
-
-// I will use multiple TargetContent to be safe or one big block if they are contiguous?
-// They are contiguous: TestimonialCard -> Marquee -> StatValue -> Testimonials.
-// I'll skip StatValue replacement to minimize specific text matching errors, using multi_replace.
-
-
-// Animated stat counter
 function StatValue({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [mounted, setMounted] = useState(false);
   const [displayValue, setDisplayValue] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -243,7 +310,7 @@ function StatValue({ value, suffix = "" }: { value: number; suffix?: string }) {
   }, [value]);
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <span className="tabular-nums">
       {mounted ? displayValue : 0}{suffix}
     </span>
   );
@@ -251,130 +318,238 @@ function StatValue({ value, suffix = "" }: { value: number; suffix?: string }) {
 
 export function Testimonials() {
   const t = useTranslations('testimonials');
+  const sectionRef = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState<typeof testimonials[0] | null>(null);
 
   useEffect(() => {
     setMounted(true);
+
+    const ctx = gsap.context(() => {
+      // Section number
+      gsap.fromTo(".testimonials-number",
+        { opacity: 0, x: -60 },
+        {
+          opacity: 1, x: 0, duration: 1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      // Label with line
+      gsap.fromTo(".testimonials-label-line",
+        { scaleX: 0 },
+        {
+          scaleX: 1, duration: 0.8,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      gsap.fromTo(".testimonials-label",
+        { opacity: 0, x: -20 },
+        {
+          opacity: 1, x: 0, duration: 0.6, delay: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            once: true,
+          }
+        }
+      );
+
+      // Title with word reveal
+      gsap.fromTo(".testimonials-title-word",
+        { y: 60, opacity: 0, rotateX: -45 },
+        {
+          y: 0, opacity: 1, rotateX: 0,
+          duration: 0.8, stagger: 0.08,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".testimonials-title",
+            start: "top 80%",
+            once: true,
+          }
+        }
+      );
+
+      // Stats with scale up
+      gsap.fromTo(".testimonials-stat",
+        { y: 30, opacity: 0, scale: 0.9 },
+        {
+          y: 0, opacity: 1, scale: 1,
+          duration: 0.6, stagger: 0.12,
+          ease: "elastic.out(1, 0.5)",
+          scrollTrigger: {
+            trigger: ".testimonials-stats",
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // Marquee reveal
+      gsap.fromTo(".testimonials-marquee",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".testimonials-marquee",
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // Schools marquee
+      gsap.fromTo(".testimonials-schools",
+        { opacity: 0 },
+        {
+          opacity: 1, duration: 0.8,
+          scrollTrigger: {
+            trigger: ".testimonials-schools",
+            start: "top 90%",
+            once: true,
+          }
+        }
+      );
+
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
+  const titleWords = t('title').split(' ');
+
   return (
-    <section id="testimonials" className="relative py-16 md:py-24 overflow-hidden bg-[#FDFCF8] dark:bg-[#0A0A0C]">
-      {/* Subtle background gradient */}
+    <section
+      ref={sectionRef}
+      id="testimonials"
+      className="relative bg-[#F8F4EC] dark:bg-[#050505] py-32 lg:py-48 overflow-hidden"
+    >
+      {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0F0F11]/10 dark:via-[#F5F1E8]/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0F0F11]/10 dark:via-[#F5F1E8]/10 to-transparent" />
+        <div className="absolute top-0 left-1/2 w-px h-32 bg-gradient-to-b from-[#C4A84D]/20 dark:from-[#ECD06F]/20 to-transparent" />
+        <div className="absolute bottom-1/4 right-[10%] w-64 h-64 rounded-full border border-[#C4A84D]/5 dark:border-[#ECD06F]/5" />
       </div>
 
-      <AnimatePresence>
-        {activeTestimonial && (
-          <ExpandedCard
-            testimonial={activeTestimonial}
-            onClose={() => setActiveTestimonial(null)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Compact Header with Stats */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-16">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12">
-          {/* Left: Title */}
-          <div className="max-w-md">
-            <Reveal>
-              <span className="inline-block font-mono text-[10px] tracking-[0.3em] uppercase text-[#C85C3F] dark:text-[#E88C73] mb-3">
-                Feedback
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mb-16 lg:mb-20 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
+          {/* Left */}
+          <div>
+            {/* Section indicator */}
+            <div className="flex items-start gap-6 mb-8">
+              <span className="testimonials-number text-[100px] lg:text-[140px] font-display font-bold text-foreground/[0.04] dark:text-white/[0.04] leading-none -mt-6">
+                04
               </span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0F0F11] dark:text-[#F5F1E8] leading-[1.1]" style={{ letterSpacing: '-0.02em' }}>
-                {t('title')}
-              </h2>
-            </Reveal>
+              <div className="pt-4">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="testimonials-label-line h-[1px] w-12 bg-[#C4A84D] dark:bg-[#ECD06F] origin-left" />
+                  <span className="testimonials-label text-[11px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
+                    Testimonials
+                  </span>
+                </div>
+
+                <h2 className="testimonials-title font-display text-[clamp(36px,5vw,64px)] font-semibold text-foreground dark:text-white leading-[1.0] tracking-[-0.03em]">
+                  {titleWords.map((word, i) => (
+                    <span key={i} className="testimonials-title-word inline-block mr-[0.2em]" style={{ transformStyle: 'preserve-3d' }}>
+                      {word}
+                    </span>
+                  ))}
+                </h2>
+              </div>
+            </div>
           </div>
 
-          {/* Right: Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-8 md:gap-12"
-          >
-            {/* Stat 1 */}
-            <div className="text-center">
-              <div className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">
+          {/* Right: Stats */}
+          <div className="testimonials-stats flex items-center gap-6 lg:gap-10">
+            <div className="testimonials-stat text-center px-4 py-3">
+              <div className="font-display text-4xl md:text-5xl font-bold text-foreground dark:text-white">
                 <StatValue value={2000} suffix="+" />
               </div>
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
+              <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
                 Students
               </p>
             </div>
 
-            {/* Divider */}
-            <div className="w-px h-12 bg-[#0F0F11]/10 dark:bg-[#F5F1E8]/10" />
+            <div className="w-px h-16 bg-foreground/10 dark:bg-white/10" />
 
-            {/* Stat 2 */}
-            <div className="text-center">
-              <div className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">
+            <div className="testimonials-stat text-center px-4 py-3">
+              <div className="font-display text-4xl md:text-5xl font-bold text-[#C4A84D] dark:text-[#ECD06F]">
                 <StatValue value={3} />
               </div>
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
+              <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
                 Years
               </p>
             </div>
 
-            {/* Divider */}
-            <div className="w-px h-12 bg-[#0F0F11]/10 dark:bg-[#F5F1E8]/10" />
+            <div className="w-px h-16 bg-foreground/10 dark:bg-white/10" />
 
-            {/* Stat 3 - Rating */}
-            <div className="text-center">
-              <div className="flex items-center gap-1 justify-center">
-                <span className="font-display text-3xl md:text-4xl font-bold text-[#0F0F11] dark:text-[#F5F1E8]">4.9</span>
-                <Star className="w-5 h-5 fill-[#B8956A] text-[#B8956A] dark:fill-[#D4B896] dark:text-[#D4B896]" />
+            <div className="testimonials-stat text-center px-4 py-3">
+              <div className="flex items-center gap-2 justify-center">
+                <span className="font-display text-4xl md:text-5xl font-bold text-foreground dark:text-white">4.9</span>
+                <Star className="w-6 h-6 fill-[#C4A84D] dark:fill-[#ECD06F] text-[#C4A84D] dark:text-[#ECD06F]" />
               </div>
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#0F0F11]/50 dark:text-[#F5F1E8]/50 mt-1">
+              <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
                 Rating
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Infinite Marquee */}
+      {/* Modal */}
+      <AnimatePresence>
+        {activeTestimonial && (
+          <ExpandedCard testimonial={activeTestimonial} onClose={() => setActiveTestimonial(null)} />
+        )}
+      </AnimatePresence>
+
+      {/* Marquee */}
       {mounted && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <Marquee isPaused={!!activeTestimonial}>
+        <div className="testimonials-marquee py-4">
+          <Marquee isPaused={!!activeTestimonial} speed={50}>
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={index}
                 testimonial={testimonial}
                 onClick={setActiveTestimonial}
+                index={index}
               />
             ))}
           </Marquee>
-        </motion.div>
+        </div>
       )}
 
-      {/* Bottom accent */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="max-w-7xl mx-auto px-4 md:px-8 mt-12 md:mt-16"
-      >
-        <div className="flex items-center justify-center gap-4">
-          <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#0F0F11]/20 dark:to-[#F5F1E8]/20" />
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#0F0F11]/40 dark:text-[#F5F1E8]/40">
-            ILA Vietnam · Blue Sky Academy · 15+ Schools
-          </span>
-          <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#0F0F11]/20 dark:to-[#F5F1E8]/20" />
+      {/* Schools marquee */}
+      <div className="testimonials-schools max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mt-16 lg:mt-20">
+        <div className="flex items-center justify-center">
+          <div className="inline-flex items-center gap-8 px-8 py-4 bg-white/50 dark:bg-white/5 backdrop-blur-sm border border-foreground/5 dark:border-white/5">
+            <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-foreground/30 dark:text-white/30">
+              Trusted by
+            </span>
+            <div className="h-4 w-px bg-foreground/10 dark:bg-white/10" />
+            <span className="text-[11px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
+              ILA Vietnam
+            </span>
+            <span className="text-[11px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
+              Blue Sky Academy
+            </span>
+            <span className="text-[11px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
+              15+ Schools
+            </span>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

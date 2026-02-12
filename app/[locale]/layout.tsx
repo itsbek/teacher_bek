@@ -31,7 +31,7 @@ export default async function LocaleLayout({
       <ThemeProvider
         attribute="class"
         defaultTheme="light"
-        enableSystem
+        enableSystem={false}
         disableTransitionOnChange={false}
       >
         <ClientLayout>{children}</ClientLayout>

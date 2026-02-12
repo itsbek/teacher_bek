@@ -2,7 +2,8 @@
 
 import { useEffect } from 'react';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
-import { CustomCursor } from '@/components/custom-cursor';
+import { MechanicalCursor } from '@/components/lingua-noir/mechanical-cursor';
+import { AtmosphericOverlay } from '@/components/lingua-noir/film-grain';
 import { ScrollProgress } from '@/components/scroll-progress';
 import { initClarity, GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { usePathname } from 'next/navigation';
@@ -56,7 +57,8 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <CustomCursor />
+      <MechanicalCursor color="#43b3ae" size={36} />
+      <AtmosphericOverlay />
       <ScrollProgress />
       {children}
     </>

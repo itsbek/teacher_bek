@@ -91,7 +91,7 @@ export function AnimatedCounterSplit({
               delay: i * 0.1,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground inline-block group-hover:text-primary transition-colors duration-300"
+            className="font-sans text-5xl md:text-6xl lg:text-7xl font-normal text-white inline-block group-hover:text-[#ECD06F] transition-colors duration-300"
             style={{ letterSpacing: '-0.02em' }}
           >
             {char}
@@ -106,7 +106,7 @@ export function AnimatedCounterSplit({
               delay: characters.length * 0.1,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="font-display text-3xl md:text-4xl font-semibold text-accent ml-1"
+            className="font-sans text-3xl md:text-4xl font-normal text-[#ECD06F] ml-1"
           >
             {suffix}
           </motion.span>
@@ -119,7 +119,7 @@ export function AnimatedCounterSplit({
           duration: 0.5,
           delay: (characters.length + 1) * 0.1,
         }}
-        className="text-sm text-muted-foreground mt-2 font-accent uppercase tracking-wider"
+        className="text-sm text-white/50 mt-2 font-mono uppercase tracking-wider"
       >
         {label}
       </motion.p>

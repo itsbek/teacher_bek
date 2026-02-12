@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Space_Mono } from "next/font/google";
+import { Lora, Source_Sans_3, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CustomCursor } from "@/components/cursor";
@@ -11,27 +11,28 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
 import { ThemeProvider } from "@/components/theme-provider";
 
-// Professional Serif Display for Headings
-const playfair = Playfair_Display({
-  subsets: ["latin", "vietnamese"],
+// Lora - Elegant serif for display
+const lora = Lora({
+  subsets: ["latin", "latin-ext"],
   variable: "--font-display",
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-// Professional Sans for Body
-const inter = Inter({
-  subsets: ["latin", "vietnamese"],
+// Source Sans 3 - Clean body text with Vietnamese support
+const sourceSans = Source_Sans_3({
+  subsets: ["latin", "latin-ext", "vietnamese"],
   variable: "--font-sans",
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-// Monospace accent for numbers and labels
-const spaceMono = Space_Mono({
+// JetBrains Mono - Technical accent font
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -63,9 +64,9 @@ export const metadata: Metadata = {
     "learn English Ho Chi Minh",
     "native English teacher Vietnam"
   ],
-  authors: [{ name: "English Teacher HCMC" }],
-  creator: "English Teacher HCMC",
-  publisher: "English Teacher HCMC",
+  authors: [{ name: "Teacher Bek" }],
+  creator: "Teacher Bek",
+  publisher: "Teacher Bek",
   alternates: {
     languages: {
       'en': '/en',
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
     locale: "vi_VN",
     alternateLocale: "en_US",
     url: "https://englishwithconfidence.com",
-    siteName: "English Teacher HCMC",
+    siteName: "Teacher Bek",
     title: "Giáo viên tiếng Anh tại TP.HCM | English Teacher Ho Chi Minh City",
     description: "Giáo viên tiếng Anh kinh nghiệm tại Gò Vấp, Phú Nhuận, Bình Thạnh. Dạy kèm cho trẻ em và người lớn.",
     images: [
@@ -128,7 +129,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "English Teacher HCMC",
+              "name": "Teacher Bek - English Teacher HCMC",
               "description": "Giáo viên tiếng Anh tại TP.HCM - English lessons in Go Vap, Phu Nhuan, Binh Thanh",
               "url": "https://englishwithconfidence.com",
               "telephone": "+84",
@@ -154,7 +155,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${playfair.variable} ${inter.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${lora.variable} ${sourceSans.variable} ${jetbrainsMono.variable} font-sans antialiased`} suppressHydrationWarning>
         {GA_MEASUREMENT_ID && (
           <>
             <Script
@@ -179,9 +180,9 @@ export default function RootLayout({
         )}
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange={false}
         >
           <AudioProvider>
             <SmoothScrollProvider>

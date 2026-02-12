@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export function CustomCursor() {
@@ -51,21 +51,9 @@ export function CustomCursor() {
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA';
 
-      // Check for text elements
-      const isText =
-        target.tagName === 'P' ||
-        target.tagName === 'SPAN' ||
-        ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(target.tagName) ||
-        target.tagName === 'LI' ||
-        target.tagName === 'BLOCKQUOTE';
-
       if (isInteractive) {
         setIsPointer(true);
       }
-
-      // We could add a text-hover state here if we wanted strictly different visuals
-      // For now, ensuring pointer doesn't trigger on plain text, 
-      // but we maintain the custom cursor visibility.
 
       // Check for custom cursor text
       const customText =
@@ -169,7 +157,7 @@ export function CustomCursor() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="px-3 py-1.5 text-[10px] font-mono tracking-widest uppercase bg-primary text-primary-foreground"
+            className="px-3 py-1.5 text-[10px] font-medium tracking-[0.1em] uppercase bg-[#ECD06F] text-black rounded-full"
           >
             {cursorText}
           </motion.div>
