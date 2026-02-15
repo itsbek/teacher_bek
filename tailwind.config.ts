@@ -15,6 +15,13 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        vanguard: {
+          black: "#000000",
+          white: "#FFFFFF",
+          lime: "#D4FF00",  // Neon Lime
+          jade: "#00FF95",  // Electric Jade
+          carbon: "#111111",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -48,16 +55,24 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        'none': '0',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-display)', 'serif'],
-        accent: ['var(--font-accent)', 'monospace'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'], // Manrope
+        display: ['var(--font-display)', 'serif'], // Playfair Display
+        mono: ['var(--font-mono)', 'monospace'],
+      },
+      letterSpacing: {
+        'vanguard': '0.25em',
+        'tightest': '-0.04em',
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",
         "slide-up": "slideUp 0.6s ease-out forwards",
         "scale-in": "scaleIn 0.4s ease-out forwards",
+        "cinematic-reveal": "cinematicReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "gold-shimmer": "goldShimmer 3s infinite linear",
+        "marquee": "marquee var(--duration) linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -72,7 +87,16 @@ const config: Config = {
           "0%": { transform: "scale(0.95)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "1" },
         },
+        cinematicReveal: {
+          "0%": { transform: "translateY(40px) scale(1.05)", opacity: "0", filter: "blur(10px)" },
+          "100%": { transform: "translateY(0) scale(1)", opacity: "1", filter: "blur(0px)" },
+        },
+        goldShimmer: {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
       },
+
     },
   },
   plugins: [require("tailwindcss-animate")],

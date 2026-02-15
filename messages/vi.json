@@ -1,8 +1,9 @@
 {
   "nav": {
     "home": "Trang chủ",
-    "about": "Về tôi",
-    "courses": "Lớp học",
+    "about": "About",
+    "services": "Services",
+    "courses": "Programs",
     "blog_link": "Bài viết",
     "testimonials": "Học viên",
     "faq": "Hỏi đáp",
@@ -21,6 +22,9 @@
     "subheadline": "Chứng Chỉ TESOL • ILA Vietnam • TP. Hồ Chí Minh",
     "primaryCTA": "Bắt Đầu Học",
     "secondaryCTA": "Xem Khóa Học",
+    "title_part1": "Nâng Tầm",
+    "title_part2": "Sự Tự Tin",
+    "description": "Một không gian học tập chuyên biệt cho sự thông thạo tiếng Anh cao cấp. Không chỉ giảng dạy, chúng tôi kiến tạo sự tự tin.",
     "stats": {
       "students": "Học viên đã dạy",
       "experience": "Năm giảng dạy",
@@ -121,6 +125,15 @@
   "testimonials": {
     "title": "Phản hồi từ Cộng đồng",
     "subtitle": "Câu chuyện thật từ học viên, phụ huynh và đồng nghiệp"
+  },
+  "vault": {
+    "subtitle": "Bộ Sưu Tập Được Tuyển Chọn",
+    "title": "Kho Tàng Kiến Thức",
+    "description": "Mỗi chương trình là một hành trình riêng biệt hướng tới sự tinh thông và rõ ràng."
+  },
+  "archive": {
+    "label": "Đánh giá từ Học viên",
+    "title": "Lưu Trữ Sự Thành Công"
   },
   "cta": {
     "title": "Muốn tìm hiểu về lớp học?",

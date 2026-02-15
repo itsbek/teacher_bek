@@ -1,8 +1,9 @@
 {
   "nav": {
     "home": "首页",
-    "about": "关于我",
-    "courses": "课程",
+    "about": "About",
+    "services": "Services",
+    "courses": "Programs",
     "blog_link": "文章",
     "testimonials": "学员",
     "faq": "问答",
@@ -21,6 +22,9 @@
     "subheadline": "TESOL认证 • ILA越南 • 胡志明市",
     "primaryCTA": "开始学习",
     "secondaryCTA": "查看课程",
+    "title_part1": "Elevate Your",
+    "title_part2": "Confessions",
+    "description": "A tailored sanctuary for premium English mastery. Beyond teaching, we architect confidence.",
     "stats": {
       "students": "已教学生",
       "experience": "教学年数",

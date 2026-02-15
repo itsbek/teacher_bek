@@ -1,39 +1,25 @@
 import type { Metadata } from "next";
-import { Lora, Source_Sans_3, JetBrains_Mono } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { CustomCursor } from "@/components/cursor";
-import { SmoothScrollProvider } from "@/components/smooth-scroll";
-import { BookmarkRibbon } from "@/components/bookmark-ribbon";
-import { AudioProvider } from '@/components/audio-provider';
-
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
-
 import { ThemeProvider } from "@/components/theme-provider";
 
-// Lora - Elegant serif for display
-const lora = Lora({
-  subsets: ["latin", "latin-ext"],
+const sans = Manrope({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const display = Playfair_Display({
+  subsets: ["latin", "vietnamese"],
   variable: "--font-display",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-// Source Sans 3 - Clean body text with Vietnamese support
-const sourceSans = Source_Sans_3({
-  subsets: ["latin", "latin-ext", "vietnamese"],
-  variable: "--font-sans",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
 
-// JetBrains Mono - Technical accent font
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-  weight: ["400", "500", "700"],
-});
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://englishwithconfidence.com'),
@@ -115,13 +101,19 @@ export const metadata: Metadata = {
   },
 };
 
+import { SmoothScroll } from "@/components/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${sans.variable} ${display.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           type="application/ld+json"
@@ -155,41 +147,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${lora.variable} ${sourceSans.variable} ${jetbrainsMono.variable} font-sans antialiased`} suppressHydrationWarning>
-        {GA_MEASUREMENT_ID && (
-          <>
-            <Script
-              strategy="afterInteractive"
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            />
-            <Script
-              id="google-analytics"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${GA_MEASUREMENT_ID}', {
-                    page_path: window.location.pathname,
-                  });
-                `,
-              }}
-            />
-          </>
-        )}
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange={false}
         >
-          <AudioProvider>
-            <SmoothScrollProvider>
-              {children}
-              <CustomCursor />
-            </SmoothScrollProvider>
-          </AudioProvider>
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

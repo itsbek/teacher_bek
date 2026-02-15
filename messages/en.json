@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "services": "Services",
     "courses": "Programs",
     "testimonials": "Stories",
     "faq": "FAQ",
@@ -72,6 +73,43 @@
     "philosophy": {
       "title": "How You'll Learn",
       "description": "And yes, you'll actually speak English. A lot. That's kind of the whole point. Through real conversations, engaging activities, and practical scenarios, you'll build confidence naturally—because the best way to learn a language is to speak it, not just study it."
+    },
+    "timeline": {
+      "milestones": [
+        {
+          "year": "2018 — PRESENT",
+          "title": "Independent Educational Strategist",
+          "desc": "Developing bespoke academic roadmaps for high-potential students globally."
+        },
+        {
+          "year": "2012 — 2018",
+          "title": "Director of Pedagogy, St. Jude's Academy",
+          "desc": "Led the redesign of the humanities curriculum."
+        },
+        {
+          "year": "2008 — 2012",
+          "title": "Doctoral Research, Oxford University",
+          "desc": "Ph.D. in Educational Philosophy on Cognitive Resilience."
+        }
+      ]
+    }
+  },
+  "services": {
+    "title": "Linguistic Systems",
+    "subtitle": "Elite academic frameworks designed for global narrative mastery.",
+    "programs": {
+      "mentorship": {
+        "title": "Elite Mentorship",
+        "desc": "Personalized 1:1 strategy."
+      },
+      "dialect": {
+        "title": "Corporate Dialect",
+        "desc": "Communication for high-stakes discourse."
+      },
+      "literacy": {
+        "title": "Conceptual Literacy",
+        "desc": "Structure of persuasion and narrative architecture."
+      }
     }
   },
   "courses": {

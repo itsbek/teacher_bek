@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react';
-import { BlogPost, categories, Category } from '@/lib/blog';
+import { BlogPost, categories, Category } from '@/lib/blog-types';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -59,11 +59,10 @@ export function BlogList({ posts, locale }: BlogListProps) {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 text-sm font-medium tracking-wide rounded-full transition-all duration-300 ${
-                activeCategory === category
+              className={`px-5 py-2.5 text-sm font-medium tracking-wide rounded-full transition-all duration-300 ${activeCategory === category
                   ? 'bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black'
                   : 'bg-foreground/5 dark:bg-white/5 text-foreground/60 dark:text-white/60 border border-foreground/10 dark:border-white/10 hover:bg-foreground/10 dark:hover:bg-white/10 hover:text-foreground dark:hover:text-white hover:border-foreground/20 dark:hover:border-white/20'
-              }`}
+                }`}
             >
               {t(`categories.${category}`)}
             </button>

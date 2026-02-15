@@ -1,8 +1,9 @@
 {
   "nav": {
     "home": "Главная",
-    "about": "Обо мне",
-    "courses": "Уроки",
+    "about": "About",
+    "services": "Services",
+    "courses": "Programs",
     "blog_link": "Статьи",
     "testimonials": "Ученики",
     "faq": "Вопросы",
@@ -21,6 +22,9 @@
     "subheadline": "Сертификат TESOL • ILA Вьетнам • Хошимин",
     "primaryCTA": "Начать обучение",
     "secondaryCTA": "Смотреть курсы",
+    "title_part1": "Elevate Your",
+    "title_part2": "Confessions",
+    "description": "A tailored sanctuary for premium English mastery. Beyond teaching, we architect confidence.",
     "stats": {
       "students": "Обучено учеников",
       "experience": "Лет преподавания",
@@ -121,6 +125,15 @@
   "testimonials": {
     "title": "Отзывы сообщества",
     "subtitle": "Реальные истории от учеников, родителей и коллег"
+  },
+  "vault": {
+    "subtitle": "The Curated Collection",
+    "title": "The Vault of Knowledge",
+    "description": "Each program is a bespoke journey into command and clarity."
+  },
+  "archive": {
+    "label": "Client Testimonials",
+    "title": "The Archive of Success"
   },
   "cta": {
     "title": "Интересуетесь уроками?",

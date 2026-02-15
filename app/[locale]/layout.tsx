@@ -28,14 +28,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="light"
-        enableSystem={false}
-        disableTransitionOnChange={false}
-      >
-        <ClientLayout>{children}</ClientLayout>
-      </ThemeProvider>
+      <ClientLayout>{children}</ClientLayout>
     </NextIntlClientProvider>
   );
 }

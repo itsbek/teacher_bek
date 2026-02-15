@@ -1,52 +1,13 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+import { VanguardNavigation } from '@/components/VanguardNavigation';
+import { VanguardFooter } from '@/components/VanguardFooter';
 import { BlogPost } from '@/components/blog/blog-post';
-import { Newsletter } from '@/components/newsletter';
-import { getBlogPost, getBlogPosts, getAllSlugs } from '@/lib/blog';
-import { routing } from '@/i18n/routing';
-import type { Metadata } from 'next';
+import { getBlogPost, getBlogPosts } from '@/lib/blog';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
-
-export async function generateStaticParams() {
-  const params: { locale: string; slug: string }[] = [];
-
-  for (const locale of routing.locales) {
-    const slugs = getAllSlugs(locale);
-    for (const slug of slugs) {
-      params.push({ locale, slug });
-    }
-  }
-
-  return params;
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale, slug } = await params;
-  const post = getBlogPost(locale, slug);
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    };
-  }
-
-  return {
-    title: post.title,
-    description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      type: 'article',
-      publishedTime: post.date,
-      authors: [post.author],
-    },
-  };
-}
 
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
@@ -65,11 +26,14 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen bg-[#FDFBF7] dark:bg-black transition-colors duration-500">
-        <Header />
+      <VanguardNavigation />
+      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased">
+        {/* Texture Layer */}
+        <div className="noise-layer" />
+
         <BlogPost post={post} locale={locale} relatedPosts={relatedPosts} />
-        <Newsletter />
-        <Footer />
+
+        <VanguardFooter />
       </main>
     </>
   );
