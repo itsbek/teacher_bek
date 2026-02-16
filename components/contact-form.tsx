@@ -7,6 +7,7 @@ import * as z from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackContactFormSubmit } from '@/lib/analytics';
 import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -36,6 +37,8 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ translations }: ContactFormProps) {
+  const locale = useLocale();
+  const [formStartedAt] = useState(() => Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -58,7 +61,11 @@ export function ContactForm({ translations }: ContactFormProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          website: '',
+          formStartedAt,
+        }),
       });
 
       if (!response.ok) {
@@ -86,6 +93,7 @@ export function ContactForm({ translations }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       {/* Name Field */}
       <div className="space-y-2">
         <label htmlFor="name" className="text-sm font-medium text-foreground dark:text-white">
@@ -210,7 +218,7 @@ export function ContactForm({ translations }: ContactFormProps) {
           <span className="text-sm text-foreground/50 dark:text-white/50 group-hover:text-foreground/70 dark:group-hover:text-white/70 transition-colors leading-relaxed">
             {translations.consent}
             <a
-              href="/privacy"
+              href={`/${locale}/privacy`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C4A84D] dark:text-[#ECD06F] hover:underline underline-offset-2 ml-1"

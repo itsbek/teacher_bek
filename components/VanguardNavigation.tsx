@@ -1,27 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { MuteToggle } from "./mute-toggle";
-import { useAudio } from "./audio-provider";
+
+const LANGUAGES = ["en", "vi", "zh", "ru"] as const;
 
 export function VanguardNavigation() {
     const t = useTranslations("nav");
     const locale = useLocale();
     const pathname = usePathname();
-    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
-    const { playSound } = useAudio();
 
-    const switchLanguage = (newLocale: string) => {
-        const segments = pathname.split('/');
-        segments[1] = newLocale;
-        router.push(segments.join('/'));
-    };
+    const localizedPath = (newLocale: string) =>
+        pathname.replace(/^\/(en|vi|zh|ru)(?=\/|$)/, `/${newLocale}`) || `/${newLocale}`;
 
     const menuItems = [
         { href: `/${locale}/about`, label: t("about") },
@@ -31,46 +28,51 @@ export function VanguardNavigation() {
         { href: `/${locale}#contact`, label: t("contact") },
     ];
 
+    const isMenuItemActive = (href: string) => {
+        const [path] = href.split("#");
+        if (!path) return false;
+        if (path === `/${locale}`) return pathname === `/${locale}`;
+        return pathname === path || pathname.startsWith(`${path}/`);
+    };
+
     return (
         <>
-            <nav className="fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-center mix-blend-difference text-white">
+            <nav className="fixed top-0 w-full z-[10000] px-6 md:px-8 py-5 flex justify-between items-center bg-background/85 backdrop-blur-md border-b border-foreground/10 text-foreground pointer-events-auto">
                 {/* Logo - Vance Style */}
-                <a
+                <Link
                     href={`/${locale}`}
+                    aria-label="Go to homepage"
                     className="text-2xl md:text-3xl font-bold tracking-tighter uppercase pointer-events-auto"
                 >
                     BEK VANGUARD®
-                </a>
+                </Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-12 pointer-events-auto">
+                <div className="hidden md:flex items-center gap-10 pointer-events-auto relative z-[10010]">
                     {menuItems.map((item) => (
-                        <a
+                        <Link
                             key={item.href}
                             href={item.href}
-                            onMouseEnter={() => playSound('hover')}
-                            onClick={() => playSound('click')}
-                            className="text-[var(--text-xs)] uppercase tracking-widest hover:text-gray-400 transition-colors"
+                            className={`text-[var(--text-xs)] uppercase tracking-widest transition-colors ${isMenuItemActive(item.href) ? "text-foreground border-b border-foreground/40 pb-1" : "text-foreground/75 hover:text-foreground"}`}
                         >
                             {item.label}
-                        </a>
+                        </Link>
                     ))}
 
-                    <div className="flex items-center gap-4 ml-8">
-                        {['en', 'vi', 'zh', 'ru'].map((lang) => (
-                            <button
+                    <div className="flex items-center gap-3 ml-4">
+                        <div className="flex items-center gap-1 rounded-full border border-foreground/15 bg-background/70 px-1 py-1">
+                        {LANGUAGES.map((lang) => (
+                            <Link
                                 key={lang}
-                                onClick={() => {
-                                    playSound('click');
-                                    switchLanguage(lang);
-                                }}
-                                onMouseEnter={() => playSound('hover')}
-                                className={`text-[var(--text-xs)] tracking-widest uppercase transition-colors ${locale === lang ? "text-white" : "text-white/30 hover:text-white/60"}`}
+                                href={localizedPath(lang)}
+                                aria-label={`Switch language to ${lang.toUpperCase()}`}
+                                aria-current={locale === lang ? "true" : undefined}
+                                className={`rounded-full px-2.5 py-1 text-[10px] tracking-[0.16em] uppercase transition-colors ${locale === lang ? "bg-foreground text-background" : "text-foreground/60 hover:text-foreground"}`}
                             >
                                 {lang}
-                            </button>
+                            </Link>
                         ))}
-                        <div className="w-[1px] h-4 bg-white/20 mx-2" />
+                        </div>
                         <div className="flex items-center gap-2">
                             <MuteToggle />
                             <ThemeToggle />
@@ -79,12 +81,17 @@ export function VanguardNavigation() {
                 </div>
 
                 {/* Mobile Toggle */}
-                <button
-                    className="md:hidden pointer-events-auto"
-                    onClick={() => setIsOpen(true)}
-                >
-                    <Menu size={24} />
-                </button>
+                <div className="md:hidden pointer-events-auto flex items-center gap-2">
+                    <ThemeToggle />
+                    <button
+                        type="button"
+                        aria-label="Open navigation menu"
+                        onClick={() => setIsOpen(true)}
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-foreground/20 bg-background/80"
+                    >
+                        <Menu size={20} />
+                    </button>
+                </div>
             </nav>
 
             {/* Mobile Menu */}
@@ -94,42 +101,50 @@ export function VanguardNavigation() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-vanguard-bone dark:bg-vanguard-black flex flex-col p-8"
+                        className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col p-8"
                     >
                         <div className="flex justify-between items-center">
                             <span className="font-display text-xl font-bold uppercase tracking-tighter">BEK</span>
-                            <button onClick={() => setIsOpen(false)} className="text-foreground">
+                            <button onClick={() => setIsOpen(false)} aria-label="Close navigation menu" className="text-foreground">
                                 <X size={32} />
                             </button>
                         </div>
 
                         <div className="mt-24 flex flex-col gap-8">
                             {menuItems.map((item, i) => (
-                                <motion.a
+                                <motion.div
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 + i * 0.1 }}
                                     key={item.href}
-                                    href={item.href}
-                                    onClick={() => setIsOpen(false)}
                                     className="font-display text-5xl uppercase tracking-tightest hover:italic transition-all"
                                 >
-                                    {item.label}
-                                </motion.a>
+                                    <Link href={item.href} onClick={() => setIsOpen(false)}>
+                                        {item.label}
+                                    </Link>
+                                </motion.div>
                             ))}
                         </div>
 
-                        <div className="mt-auto pt-8 border-t border-foreground/10 flex flex-wrap gap-8">
-                            <ThemeToggle />
-                            {['en', 'vi', 'zh', 'ru'].map((lang) => (
-                                <button
+                        <div className="mt-auto pt-8 border-t border-foreground/10 space-y-6">
+                            <div className="flex items-center gap-2">
+                                <MuteToggle />
+                                <ThemeToggle />
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                            {LANGUAGES.map((lang) => (
+                                <Link
                                     key={lang}
-                                    onClick={() => switchLanguage(lang)}
-                                    className={`text-sm uppercase tracking-widest ${locale === lang ? "text-primary underline underline-offset-8" : "text-foreground/30"}`}
+                                    href={localizedPath(lang)}
+                                    aria-current={locale === lang ? "true" : undefined}
+                                    aria-label={`Switch language to ${lang.toUpperCase()}`}
+                                    onClick={() => setIsOpen(false)}
+                                    className={`rounded-full border px-3 py-1.5 text-xs uppercase tracking-[0.14em] ${locale === lang ? "border-foreground bg-foreground text-background" : "border-foreground/20 text-foreground/60"}`}
                                 >
                                     {lang}
-                                </button>
+                                </Link>
                             ))}
+                            </div>
                         </div>
                     </motion.div>
                 )}

@@ -1,9 +1,9 @@
 {
   "nav": {
     "home": "Trang chủ",
-    "about": "About",
-    "services": "Services",
-    "courses": "Programs",
+    "about": "Giới thiệu",
+    "services": "Dịch vụ",
+    "courses": "Chương trình",
     "blog_link": "Bài viết",
     "testimonials": "Học viên",
     "faq": "Hỏi đáp",
@@ -24,7 +24,7 @@
     "secondaryCTA": "Xem Khóa Học",
     "title_part1": "Nâng Tầm",
     "title_part2": "Sự Tự Tin",
-    "description": "Một không gian học tập chuyên biệt cho sự thông thạo tiếng Anh cao cấp. Không chỉ giảng dạy, chúng tôi kiến tạo sự tự tin.",
+    "description": "Lộ trình tiếng Anh thực tế cho hội thoại, thi cử và giao tiếp công việc.",
     "stats": {
       "students": "Học viên đã dạy",
       "experience": "Năm giảng dạy",
@@ -142,22 +142,39 @@
   },
   "faq": {
     "title": "Câu Hỏi Thường Gặp",
-    "q1": "Thầy dạy ở đâu?",
-    "a1": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Tôi cũng dạy tại nhà học viên ở Phú Nhuận, Gò Vấp và Bình Thạnh.",
-    "q2": "Thầy dạy độ tuổi nào?",
-    "a2": "Thiếu nhi (6-10 tuổi), Thanh thiếu niên (11-17 tuổi), và luyện thi IELTS/chứng chỉ cho mọi lứa tuổi.",
-    "q3": "Học phí bao nhiêu?",
-    "a3": "Tùy thuộc vào loại chương trình, địa điểm và tần suất. Liên hệ để biết thông tin cụ thể - không phí ẩn.",
-    "q4": "Thầy dạy nhóm hay 1-1?",
-    "a4": "Chỉ dạy nhóm (tối đa 10 học viên). Kể cả lớp online cũng theo nhóm để mọi người đều được thực hành nói.",
-    "q5": "Thầy có bằng cấp gì?",
-    "a5": "Chứng chỉ TESOL và PGCE. Tôi cũng đã hoàn thành DELTA (Cambridge) và đang chờ kết quả. Đã dạy tại ILA Vietnam, BlueSky Kindergarten và 15+ trường.",
-    "q6": "Có thể học thử trước không?",
-    "a6": "Có! Buổi đánh giá miễn phí - không áp lực, không ràng buộc.",
-    "q7": "Tại sao lớp nhỏ thay vì lớp đông?",
-    "a7": "Trong lớp 25 người, bạn gần như không được nói. Với tối đa 10 học viên, bạn thực sự được thực hành.",
-    "q8": "Lớp học có an toàn cho trẻ không?",
-    "a8": "Hoàn toàn. Camera an ninh CCTV, nhà vệ sinh riêng, phòng máy lạnh và đèn diệt muỗi. An toàn, thoải mái và được phụ huynh tin tưởng."
+    "q1": {
+      "question": "Thầy dạy ở đâu?",
+      "answer": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Tôi cũng dạy tại nhà học viên ở Phú Nhuận, Gò Vấp và Bình Thạnh."
+    },
+    "q2": {
+      "question": "Thầy dạy độ tuổi nào?",
+      "answer": "Thiếu nhi (6-10 tuổi), Thanh thiếu niên (11-17 tuổi), và luyện thi IELTS/chứng chỉ cho mọi lứa tuổi."
+    },
+    "q3": {
+      "question": "Học phí bao nhiêu?",
+      "answer": "Tùy thuộc vào loại chương trình, địa điểm và tần suất. Liên hệ để biết thông tin cụ thể - không phí ẩn."
+    },
+    "q4": {
+      "question": "Thầy dạy nhóm hay 1-1?",
+      "answer": "Chỉ dạy nhóm (tối đa 10 học viên). Kể cả lớp online cũng theo nhóm để mọi người đều được thực hành nói."
+    },
+    "q5": {
+      "question": "Thầy có bằng cấp gì?",
+      "answer": "Chứng chỉ TESOL và PGCE. Tôi cũng đã hoàn thành DELTA (Cambridge) và đang chờ kết quả. Đã dạy tại ILA Vietnam, BlueSky Kindergarten và 15+ trường."
+    },
+    "q6": {
+      "question": "Có thể học thử trước không?",
+      "answer": "Có! Buổi đánh giá miễn phí - không áp lực, không ràng buộc."
+    },
+    "q7": {
+      "question": "Tại sao lớp nhỏ thay vì lớp đông?",
+      "answer": "Trong lớp 25 người, bạn gần như không được nói. Với tối đa 10 học viên, bạn thực sự được thực hành."
+    },
+    "q8": {
+      "question": "Lớp học có an toàn cho trẻ không?",
+      "answer": "Hoàn toàn. Camera an ninh CCTV, nhà vệ sinh riêng, phòng máy lạnh và đèn diệt muỗi. An toàn, thoải mái và được phụ huynh tin tưởng."
+    },
+    "description": "Câu Hỏi Thường Gặp"
   },
   "newsletter": {
     "title": "Kết Nối",
@@ -168,7 +185,8 @@
     "success": "Cảm ơn! Kiểm tra hộp thư để xác nhận.",
     "error": "Có lỗi xảy ra. Vui lòng thử lại.",
     "privacy": "Không spam. Hủy đăng ký bất cứ lúc nào.",
-    "benefits": "Kiến thức giảng dạy, mẹo học tập và cập nhật"
+    "benefits": "Kiến thức giảng dạy, mẹo học tập và cập nhật",
+    "description": "Câu chuyện dạy học, mẹo học tập và cập nhật lớp học cho phụ huynh, giáo viên và học viên. Tham gia cùng 2.000+ độc giả."
   },
   "blog": {
     "title": "Bài Viết & Tài Nguyên",

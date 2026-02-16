@@ -57,6 +57,8 @@ export const metadata: Metadata = {
     languages: {
       'en': '/en',
       'vi': '/vi',
+      'zh': '/zh',
+      'ru': '/ru',
     },
   },
   openGraph: {
@@ -120,11 +122,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Teacher Bek - English Teacher HCMC",
-              "description": "Giáo viên tiếng Anh tại TP.HCM - English lessons in Go Vap, Phu Nhuan, Binh Thanh",
+              "@type": "EducationalOrganization",
+              "name": "Teacher Bek",
+              "description": "Small-group English lessons in Ho Chi Minh City",
               "url": "https://englishwithconfidence.com",
-              "telephone": "+84",
+              "sameAs": [
+                "https://www.linkedin.com",
+                "https://www.instagram.com"
+              ],
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Ho Chi Minh City",
@@ -142,15 +147,39 @@ export default function RootLayout({
                 { "@type": "City", "name": "Binh Thanh District, Ho Chi Minh City" }
               ],
               "serviceType": ["English Language Teaching", "Private English Lessons", "English Tutoring"],
-              "priceRange": "$$"
+              "contactPoint": [{
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "email": "hello@teacherbek.com",
+                "availableLanguage": ["English", "Vietnamese", "Chinese", "Russian"]
+              }],
+              "priceRange": "$$",
+              "knowsLanguage": ["en", "vi", "zh", "ru"]
             })
           }}
         />
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange={false}
         >

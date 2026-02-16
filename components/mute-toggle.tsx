@@ -2,17 +2,19 @@
 
 import { useAudio } from './audio-provider';
 import { Volume2, VolumeX } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export function MuteToggle() {
-    const { isMuted, toggleMute } = useAudio();
+    const { isMuted, toggleMute, playSound } = useAudio();
 
     return (
-        <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={toggleMute}
-            className="p-2 text-white/50 hover:text-[#ECD06F] transition-colors duration-300"
+        <button
+            type="button"
+            onClick={() => {
+                toggleMute();
+                // Give audible confirmation when unmuting.
+                if (isMuted) playSound('click');
+            }}
+            className="relative z-[10010] pointer-events-auto flex items-center justify-center w-10 h-10 rounded-full border border-foreground/10 text-foreground/70 hover:text-foreground hover:border-foreground/40 transition-colors duration-300"
             aria-label={isMuted ? "Unmute" : "Mute"}
         >
             {isMuted ? (
@@ -20,6 +22,6 @@ export function MuteToggle() {
             ) : (
                 <Volume2 className="w-5 h-5" />
             )}
-        </motion.button>
+        </button>
     );
 }

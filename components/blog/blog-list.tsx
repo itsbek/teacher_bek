@@ -51,7 +51,7 @@ export function BlogList({ posts, locale }: BlogListProps) {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         {/* Category Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="flex flex-wrap gap-3 mb-12"
         >
@@ -137,7 +137,7 @@ export function BlogList({ posts, locale }: BlogListProps) {
         {/* Empty State */}
         {filteredPosts.length === 0 && (
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >

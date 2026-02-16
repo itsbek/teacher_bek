@@ -7,10 +7,13 @@ const contactFormSchema = z.object({
   phone: z.string().optional(),
   message: z.string().min(10),
   consent: z.boolean().refine((val) => val === true),
+  website: z.string().optional(), // honeypot
+  formStartedAt: z.number().int().optional(),
 });
 
 // Simple rate limiting (in production, use Redis or similar)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const MIN_FORM_FILL_MS = 1500;
 
 function rateLimit(ip: string): boolean {
   const now = Date.now();
@@ -33,7 +36,8 @@ function rateLimit(ip: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     // Get IP for rate limiting
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const ip = forwardedFor?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
 
     // Rate limiting check
     if (!rateLimit(ip)) {
@@ -47,6 +51,21 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = contactFormSchema.parse(body);
 
+    // Honeypot + speed trap for bot submissions.
+    if (validatedData.website && validatedData.website.trim().length > 0) {
+      return NextResponse.json(
+        { success: true, message: 'Thank you for your message! I will get back to you within 24 hours.' },
+        { status: 200 }
+      );
+    }
+
+    if (validatedData.formStartedAt && Date.now() - validatedData.formStartedAt < MIN_FORM_FILL_MS) {
+      return NextResponse.json(
+        { error: 'Please take a moment before submitting the form.' },
+        { status: 400 }
+      );
+    }
+
     // In production, you would:
     // 1. Send email using Resend, SendGrid, or similar service
     // 2. Store in database with consent timestamp
@@ -56,11 +75,10 @@ export async function POST(request: NextRequest) {
     console.log('Contact form submission:', {
       name: validatedData.name,
       email: validatedData.email,
-      phone: validatedData.phone || 'Not provided',
+      phone: validatedData.phone ? 'Provided' : 'Not provided',
       message: validatedData.message.substring(0, 50) + '...',
       consent: validatedData.consent,
       timestamp: new Date().toISOString(),
-      ip: ip,
     });
 
     // Simulate email sending delay

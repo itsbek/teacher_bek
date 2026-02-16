@@ -29,6 +29,8 @@ export function NewsletterEnhanced() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const [subscriberType, setSubscriberType] = useState<'student' | 'parent' | 'teacher'>('student');
+  const [formStartedAt] = useState(() => Date.now());
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -127,7 +129,12 @@ export function NewsletterEnhanced() {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          subscriberType,
+          website: '',
+          formStartedAt,
+        }),
       });
 
       const data = await response.json();
@@ -144,7 +151,7 @@ export function NewsletterEnhanced() {
         }, 5000);
       } else {
         setStatus('error');
-        setMessage(data.message || 'Something went wrong. Please try again.');
+        setMessage(data.error || 'Something went wrong. Please try again.');
 
         // Reset after 5 seconds
         setTimeout(() => {
@@ -268,6 +275,28 @@ export function NewsletterEnhanced() {
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#43b3ae]/40" />
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+
+                  <div>
+                    <label htmlFor="newsletter-subscriber-type" className="block text-xs font-mono tracking-[0.15em] uppercase text-[#f4ecd8]/40 mb-3">
+                      Subscriber Type
+                    </label>
+                    <select
+                      id="newsletter-subscriber-type"
+                      value={subscriberType}
+                      onChange={(e) => setSubscriberType(e.target.value as 'student' | 'parent' | 'teacher')}
+                      className="w-full px-0 py-3 bg-transparent border-0 border-b-2 font-mono text-sm tracking-[0.08em] uppercase focus:outline-none"
+                      style={{
+                        color: '#f4ecd8',
+                        borderColor: 'rgba(244, 236, 216, 0.2)',
+                      }}
+                    >
+                      <option value="student" style={{ color: '#050505' }}>Student</option>
+                      <option value="parent" style={{ color: '#050505' }}>Parent</option>
+                      <option value="teacher" style={{ color: '#050505' }}>Teacher</option>
+                    </select>
+                  </div>
+
                   {/* Telegraph input */}
                   <div className="relative">
                     <label

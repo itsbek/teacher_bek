@@ -4,22 +4,17 @@ import { getBlogPosts } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://englishwithconfidence.com'
+  const primaryRoutes = ['', '/about', '/services', '/faq', '/blog', '/privacy', '/terms'];
 
   // Main pages for each locale
-  const mainPages = routing.locales.flatMap((locale) => [
-    {
-      url: `${baseUrl}/${locale}`,
+  const mainPages = routing.locales.flatMap((locale) =>
+    primaryRoutes.map((route) => ({
+      url: `${baseUrl}/${locale}${route}`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/${locale}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-  ])
+      changeFrequency: route === '/blog' ? ('daily' as const) : ('weekly' as const),
+      priority: route === '' ? 1.0 : route === '/blog' ? 0.9 : 0.8,
+    }))
+  )
 
   // Blog posts for each locale
   const blogPosts = routing.locales.flatMap((locale) => {

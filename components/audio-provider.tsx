@@ -18,17 +18,20 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
     const initAudioCtx = () => {
         if (!audioCtxRef.current) {
-            audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const AudioCtor = window.AudioContext || (window as any).webkitAudioContext;
+            if (!AudioCtor) return null;
+            audioCtxRef.current = new AudioCtor();
         }
+        return audioCtxRef.current;
     };
 
     const playSound = (type: SoundType) => {
         if (isMuted) return;
 
-        initAudioCtx();
-        const ctx = audioCtxRef.current!;
+        const ctx = initAudioCtx();
+        if (!ctx) return;
         if (ctx.state === 'suspended') {
-            ctx.resume();
+            void ctx.resume();
         }
 
         const osc = ctx.createOscillator();
@@ -98,15 +101,39 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     };
 
     const toggleMute = () => {
-        setIsMuted(!isMuted);
-        localStorage.setItem('audio-muted', (!isMuted).toString());
+        setIsMuted((prev) => {
+            const next = !prev;
+            try {
+                localStorage.setItem('audio-muted', String(next));
+            } catch {
+                // Ignore storage errors
+            }
+            return next;
+        });
     };
 
     useEffect(() => {
-        const saved = localStorage.getItem('audio-muted');
-        if (saved === 'true') {
-            setIsMuted(true);
+        try {
+            const saved = localStorage.getItem('audio-muted');
+            if (saved === 'true') {
+                setIsMuted(true);
+            }
+        } catch {
+            // Ignore storage errors
         }
+    }, []);
+
+    useEffect(() => {
+        const unlockAudio = () => {
+            const ctx = initAudioCtx();
+            if (ctx && ctx.state === 'suspended') {
+                void ctx.resume();
+            }
+            window.removeEventListener('pointerdown', unlockAudio);
+        };
+
+        window.addEventListener('pointerdown', unlockAudio, { passive: true });
+        return () => window.removeEventListener('pointerdown', unlockAudio);
     }, []);
 
     return (

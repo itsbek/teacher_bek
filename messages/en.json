@@ -99,16 +99,16 @@
     "subtitle": "Elite academic frameworks designed for global narrative mastery.",
     "programs": {
       "mentorship": {
-        "title": "Elite Mentorship",
-        "desc": "Personalized 1:1 strategy."
+        "title": "Young Learners",
+        "desc": "Structured small-group English lessons."
       },
       "dialect": {
-        "title": "Corporate Dialect",
-        "desc": "Communication for high-stakes discourse."
+        "title": "Teens English",
+        "desc": "Communication practice for school and daily life."
       },
       "literacy": {
-        "title": "Conceptual Literacy",
-        "desc": "Structure of persuasion and narrative architecture."
+        "title": "IELTS Preparation",
+        "desc": "Practical exam training with speaking and writing focus."
       }
     }
   },
@@ -169,22 +169,39 @@
   },
   "faq": {
     "title": "Common Questions",
-    "q1": "Where are classes held?",
-    "a1": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. I also teach at students' homes in Phú Nhuận, Gò Vấp, and Bình Thạnh.",
-    "q2": "What ages do you teach?",
-    "a2": "Young Learners (6-10), Teens (11-17), and IELTS/exam prep for all ages.",
-    "q3": "How much do lessons cost?",
-    "a3": "It depends on program type, location, and frequency. Reach out for a straight answer—no hidden fees.",
-    "q4": "Do you teach groups or one-on-one?",
-    "a4": "Groups only (max 10 students). This includes online classes—all group-based so everyone gets speaking practice.",
-    "q5": "What are your qualifications?",
-    "a5": "TESOL and PGCE certified. I've also completed my DELTA (Cambridge) and am awaiting results. Taught at ILA Vietnam, BlueSky Kindergarten, and 15+ schools.",
-    "q6": "Can I try a class first?",
-    "a6": "Yes! Free assessment session—no pressure, no obligation.",
-    "q7": "Why small groups instead of large classes?",
-    "a7": "In a 25-person class, you barely speak. With max 10 students, you actually practice.",
-    "q8": "Is your classroom safe for kids?",
-    "a8": "Absolutely. CCTV security, separate restroom, air-conditioned rooms, and mosquito-killing lamps. Safe, comfortable, and parent-approved."
+    "q1": {
+      "question": "Where are classes held?",
+      "answer": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. I also teach at students' homes in Phú Nhuận, Gò Vấp, and Bình Thạnh."
+    },
+    "q2": {
+      "question": "What ages do you teach?",
+      "answer": "Young Learners (6-10), Teens (11-17), and IELTS/exam prep for all ages."
+    },
+    "q3": {
+      "question": "How much do lessons cost?",
+      "answer": "It depends on program type, location, and frequency. Reach out for a straight answer—no hidden fees."
+    },
+    "q4": {
+      "question": "Do you teach only group classes?",
+      "answer": "Yes. All classes are group-based (max 10 students), including online sessions, so everyone gets speaking practice."
+    },
+    "q5": {
+      "question": "What are your qualifications?",
+      "answer": "TESOL and PGCE certified. I've also completed my DELTA (Cambridge) and am awaiting results. Taught at ILA Vietnam, BlueSky Kindergarten, and 15+ schools."
+    },
+    "q6": {
+      "question": "Can I try a class first?",
+      "answer": "Yes! Free assessment session—no pressure, no obligation."
+    },
+    "q7": {
+      "question": "Why small groups instead of large classes?",
+      "answer": "In a 25-person class, you barely speak. With max 10 students, you actually practice."
+    },
+    "q8": {
+      "question": "Is your classroom safe for kids?",
+      "answer": "Absolutely. CCTV security, separate restroom, air-conditioned rooms, and mosquito-killing lamps. Safe, comfortable, and parent-approved."
+    },
+    "description": "Common Questions"
   },
   "newsletter": {
     "title": "Stay Connected",
@@ -195,7 +212,8 @@
     "success": "Thanks! Check your inbox to confirm.",
     "error": "Something went wrong. Please try again.",
     "privacy": "No spam. Unsubscribe anytime.",
-    "benefits": "Teaching insights, learning tips, and updates"
+    "benefits": "Teaching insights, learning tips, and updates",
+    "description": "Teaching stories, learning tips, and class updates for parents, teachers, and students. Join 2,000+ readers."
   },
   "blog": {
     "title": "Stories & Resources",

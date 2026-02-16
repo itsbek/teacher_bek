@@ -1,13 +1,52 @@
-import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { VanguardNavigation } from '@/components/VanguardNavigation';
 import { VanguardFooter } from '@/components/VanguardFooter';
 import { BlogPost } from '@/components/blog/blog-post';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
+import { SITE_URL, buildLocaleAlternates } from '@/lib/seo';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const post = getBlogPost(locale, slug);
+
+  if (!post) {
+    return {
+      title: "Article Not Found",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const path = `/blog/${slug}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: `/${locale}${path}`,
+      languages: buildLocaleAlternates((loc) => `/${loc}${path}`),
+    },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url: `${SITE_URL}/${locale}${path}`,
+      images: post.image
+        ? [{ url: post.image, alt: post.title }]
+        : [{ url: "/images/teacher-profile.jpg", alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: post.image ? [post.image] : ["/images/teacher-profile.jpg"],
+    },
+  };
+}
 
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
@@ -27,7 +66,8 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <VanguardNavigation />
-      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased">
+      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
+        <div className="atmosphere-grid opacity-35" />
         {/* Texture Layer */}
         <div className="noise-layer" />
 

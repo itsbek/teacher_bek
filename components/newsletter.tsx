@@ -19,6 +19,7 @@ type SubscriberType = 'student' | 'parent' | 'teacher' | '';
 
 export function Newsletter() {
   const t = useTranslations('newsletter');
+  const [formStartedAt] = useState(() => Date.now());
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
   const [subscriberType, setSubscriberType] = useState<SubscriberType>('');
@@ -114,7 +115,12 @@ export function Newsletter() {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, subscriberType }),
+        body: JSON.stringify({
+          email,
+          subscriberType,
+          website: '',
+          formStartedAt,
+        }),
       });
 
       const data = await response.json();
@@ -198,6 +204,7 @@ export function Newsletter() {
                 onSubmit={handleSubmit}
                 className="space-y-6"
               >
+                <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                 {/* Subscriber Type Selection */}
                 <div>
                   <label className="block text-sm font-medium text-foreground dark:text-white mb-4 text-center">

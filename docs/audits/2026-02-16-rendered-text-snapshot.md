@@ -1,0 +1,207 @@
+# Rendered Text Snapshot (Live HTML)
+
+## /en
+- English Teacher in Ho Chi Minh City | English Teacher HCMC Skip to main content BEK VANGUARD® About Services Blog FAQ Contact en vi zh ru Intro Philosophy Services Framework Journal Inquiry E N G L I S H T H A T W O R K S Private English mentorship for students and professionals in Ho Chi Minh City.
+- Built for confident speaking, exam outcomes, and real-world communication.
+- 2000+ Learners TESOL + PGCE HCMC-Based Online + In-person F O R L I F E Book Consultation View Programs Status: Enrollment Open Scroll to explore Plate 01.A Teaching Approach Structured lessons.
+- Real speaking.
+- Measurable results.
+- Students improve faster when classes are clear, interactive, and consistent.
+- Every week includes speaking practice, focused correction, and concrete targets you can track.
+- How It Works Assessment Current level, goals, speaking gaps Training Speaking-first lessons and drills Feedback Corrections, homework, and milestones Outcome Confident communication in real life Programs Overview Practical English programs built for real progress.
+- Max 10 students per class Program 01 Kids English (6-10) Confidence + Vocabulary Program 02 Teens English (11-17) School + Speaking Fluency Program 03 IELTS Preparation Band Score Strategy Program 04 English for Work Meetings + Interviews Program Collection P r o g r a m F r a m e w o r k s Practical English Results Clear lesson tracks for children, teens, and adults with real communication goals.
+- PROGRAM 01 / 04 Kids Program View Program Young Learners (6-10) Interactive English classes that build vocabulary, pronunciation, and confidence through practice.
+- Course details on request PROGRAM 02 / 04 Teen Program View Program Teens (11-17) Support for school English, speaking fluency, and communication skills for academic success.
+- Course details on request PROGRAM 03 / 04 Exam Program View Program IELTS Preparation Goal-based IELTS coaching with speaking drills, writing feedback, and test strategy.
+- Course details on request PROGRAM 04 / 04 Career Program View Program English for Work Professional English for interviews, meetings, presentations, and client communication.
+- Course details on request Ready to start?
+- Send your level and goal.
+- You will receive a recommended program and schedule options.
+- Request Placement Call Latest English Learning Insights P r a c t i c a l E n g l i s h J o u r n a l New Articles Tips for parents, students, and professionals who want better English outcomes.
+- Article 1 2024-01-20 Why Immersion Beats Textbooks Every Time learning Article 2 2024-01-15 How to Help Your Child Actually Love Learning English parents Article 3 2024-01-10 5 Mistakes Even Advanced English Learners Make learning Article 4 2024-01-05 Maria's Story: From Zero English to Dream Job in 8 Months stories View All Articles Intake is limited each cycle to maintain small-group quality and measurable progress.
+- Free assessment.
+- Personalized plan in your first reply.
+- Reserve Assessment Outcome Framework A clear path from hesitation to confident fluency.
+- Step 01 Assess Identify current speaking level, communication goals, and confidence blockers.
+- Step 02 Train Run targeted speaking drills and correction loops with weekly structure.
+- Step 03 Perform Apply English in real conversations, exams, interviews, and work contexts.
+- Contact Enquiry Form Usually replies within 24 hours Full Name Email Your Goal I consent to data processing for inquiry follow-up.
+- Send Message Classroom: Phu Nhuan Teaching Hours (GMT+7) MON - THU 09:00 - 18:00 FRI 09:00 - 15:00 SAT - SUN By appointment Address Golden Mansion 119 Pho Quang, Ward 9 Phu Nhuan, HCMC Vietnam Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /en/about
+- About Teacher Bek | English Teacher HCMC BEK VANGUARD® About Services Blog FAQ Contact en vi zh ru About Teacher Bek Teacher, Coach, and Mentor Practical English coaching built around confidence, communication, and consistent progress.
+- 2000+ Learners Coached 4 Languages Supported 24h Response Window 1:1 Personal Mentorship Core Principles Language learning works best when students feel safe to speak and make mistakes.
+- I keep classes small so every student gets real speaking time, direct correction, and clear next steps after each lesson.
+- Instead of memorizing disconnected rules, students learn how to use English in conversations, school tasks, exams, and workplace situations.
+- Method Predictable progress, without confusion.
+- Step 01 Diagnose Map fluency blockers, confidence triggers, and practical goals before lesson planning starts.
+- Step 02 Design Build a weekly plan with speaking drills, correction loops, and measurable checkpoints.
+- Step 03 Deploy Run high-accountability sessions and feedback cycles until communication becomes automatic.
+- Record of Achievement Teaching Journey 2023 - PRESENT Independent English Teacher, Ho Chi Minh City Teaching small-group and private lessons focused on speaking confidence, exam readiness, and practical communication.
+- 2022 - 2023 English Instructor, Language Centers Taught mixed-age classes and refined a speaking-first lesson format built around feedback and confidence building.
+- EARLIER Corporate Leadership Background Managed teams and communication workflows, which now informs structured, goal-oriented language coaching.
+- Next Step Ready to improve your English confidence?
+- Book a Free Consultation Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /en/services
+- English Services | English Teacher HCMC BEK VANGUARD® About Services Blog FAQ Contact en vi zh ru Programs & Services English Programs Flexible coaching for kids, teens, and adults who want practical English results.
+- 1:1 Personalized Delivery Weekly Measurable Targets 48h Plan Turnaround HCMC Local + Online Quick Decision Guide Pick the best starting track in under a minute.
+- Track 0 1 Kids (6-10) Need confidence, vocabulary, and pronunciation.
+- Start with Young Learners Track 0 2 Teens (11-17) Need school support and better speaking fluency.
+- Start with Teens Program Track 0 3 Adults & Professionals Need IELTS performance or workplace communication.
+- Start with IELTS & Professional English PLATE 0 01 Program 01 Young Learners (6-10) Interactive English classes that build confidence, pronunciation, and vocabulary through structured games and conversation.
+- Small group format Speaking-focused activities Parent progress updates Request This Program PLATE 0 02 Program 02 Teens (11-17) Academic and conversational English for school success, presentations, and day-to-day confidence.
+- School support Presentation speaking Exam-focused practice Request This Program PLATE 0 03 Program 03 IELTS & Professional English Targeted coaching for IELTS band goals and workplace communication in interviews, meetings, and client conversations.
+- Band-focused strategy Mock speaking drills Real-world communication practice Request This Program Enrollment Not sure which program fits?
+- Get matched.
+- Share your age, level, and goal.
+- You will get a recommended track and schedule options in the first reply.
+- Request Program Match Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /en/faq
+- FAQ | English Teacher HCMC BEK VANGUARD® About Services Blog FAQ Contact en vi zh ru Questions & Answers F r e q u e n t l y A s k e d Q u e s t i o n s Common Concerns Price & Value Schedule Fit Current Level Exam Pressure Business Fluency Parent Guidance Quick Answers Common questions about class format, age groups, IELTS preparation, and getting started.
+- Q 1 How are your classes different from large language centers?
+- Groups are limited to 10 students, so everyone speaks in every lesson.
+- You get direct correction and practical speaking time, not just textbook exercises.
+- Q 2 Do you teach children, teens, and adults?
+- Yes.
+- Programs are designed for young learners (6-10), teens (11-17), and adults preparing for IELTS or improving workplace English.
+- Q 3 Can I study IELTS with you?
+- IELTS coaching includes speaking drills, writing correction, and test strategy to help you reach your target band.
+- Q 4 How do I start?
+- Send an enquiry with your current level and goal.
+- You will get a recommended program and available schedule in the first response.
+- Still Unsure?
+- Ask directly.
+- Get a clear answer within 24 hours.
+- Share your goal, timeline, and current level.
+- You will get a direct recommendation and next step.
+- Send Your Question Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /en/blog
+- Blog | English Teacher HCMC BEK VANGUARD® About Services Blog FAQ Contact en vi zh ru English Learning Blog E n g l i s h I n s i g h t s Practical articles for parents, students, and professionals who want better English results.
+- Reader to Student Path Reading is step one.
+- Speaking confidently is the goal.
+- Every article reflects practical coaching methods used in real mentorship sessions.
+- If you want personalized application, request your plan directly.
+- Quick Action Get a personalized roadmap based on your level and timeline.
+- Request My Plan All Teaching For Parents Learning Tips Student Stories 0 1 Learning Tips Why Immersion Beats Textbooks Every Time 2024-01-20 5 reading 0 2 For Parents How to Help Your Child Actually Love Learning English 2024-01-15 6 reading 0 3 Learning Tips 5 Mistakes Even Advanced English Learners Make 2024-01-10 4 reading 0 4 Student Stories Maria's Story: From Zero English to Dream Job in 8 Months 2024-01-05 5 reading Need implementation, not just tips?
+- Build your fluency system with direct mentorship.
+- Book Consultation Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /ru
+- English Teacher in Ho Chi Minh City | English Teacher HCMC Skip to main content BEK VANGUARD® Обо мне Услуги Статьи Вопросы Связаться en vi zh ru Intro Philosophy Services Framework Journal Inquiry E N G L I S H T H A T W O R K S Private English mentorship for students and professionals in Ho Chi Minh City.
+- Built for confident speaking, exam outcomes, and real-world communication.
+- 2000+ Learners TESOL + PGCE HCMC-Based Online + In-person F O R L I F E Book Consultation View Programs Status: Enrollment Open Scroll to explore Plate 01.A Teaching Approach Structured lessons.
+- Real speaking.
+- Measurable results.
+- Students improve faster when classes are clear, interactive, and consistent.
+- Every week includes speaking practice, focused correction, and concrete targets you can track.
+- How It Works Assessment Current level, goals, speaking gaps Training Speaking-first lessons and drills Feedback Corrections, homework, and milestones Outcome Confident communication in real life Programs Overview Practical English programs built for real progress.
+- Max 10 students per class Program 01 Kids English (6-10) Confidence + Vocabulary Program 02 Teens English (11-17) School + Speaking Fluency Program 03 IELTS Preparation Band Score Strategy Program 04 English for Work Meetings + Interviews Program Collection P r o g r a m F r a m e w o r k s Practical English Results Clear lesson tracks for children, teens, and adults with real communication goals.
+- PROGRAM 01 / 04 Kids Program View Program Young Learners (6-10) Interactive English classes that build vocabulary, pronunciation, and confidence through practice.
+- Course details on request PROGRAM 02 / 04 Teen Program View Program Teens (11-17) Support for school English, speaking fluency, and communication skills for academic success.
+- Course details on request PROGRAM 03 / 04 Exam Program View Program IELTS Preparation Goal-based IELTS coaching with speaking drills, writing feedback, and test strategy.
+- Course details on request PROGRAM 04 / 04 Career Program View Program English for Work Professional English for interviews, meetings, presentations, and client communication.
+- Course details on request Ready to start?
+- Send your level and goal.
+- You will receive a recommended program and schedule options.
+- Request Placement Call Latest English Learning Insights P r a c t i c a l E n g l i s h J o u r n a l New Articles Tips for parents, students, and professionals who want better English outcomes.
+- Article 1 2024-01-20 Почему погружение всегда лучше учебников learning View All Articles Intake is limited each cycle to maintain small-group quality and measurable progress.
+- Free assessment.
+- Personalized plan in your first reply.
+- Reserve Assessment Outcome Framework A clear path from hesitation to confident fluency.
+- Step 01 Assess Identify current speaking level, communication goals, and confidence blockers.
+- Step 02 Train Run targeted speaking drills and correction loops with weekly structure.
+- Step 03 Perform Apply English in real conversations, exams, interviews, and work contexts.
+- Contact Enquiry Form Usually replies within 24 hours Full Name Email Your Goal I consent to data processing for inquiry follow-up.
+- Send Message Classroom: Phu Nhuan Teaching Hours (GMT+7) MON - THU 09:00 - 18:00 FRI 09:00 - 15:00 SAT - SUN By appointment Address Golden Mansion 119 Pho Quang, Ward 9 Phu Nhuan, HCMC Vietnam Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /zh
+- English Teacher in Ho Chi Minh City | English Teacher HCMC Skip to main content BEK VANGUARD® 关于我 服务 文章 问答 联系 en vi zh ru Intro Philosophy Services Framework Journal Inquiry E N G L I S H T H A T W O R K S Private English mentorship for students and professionals in Ho Chi Minh City.
+- Built for confident speaking, exam outcomes, and real-world communication.
+- 2000+ Learners TESOL + PGCE HCMC-Based Online + In-person F O R L I F E Book Consultation View Programs Status: Enrollment Open Scroll to explore Plate 01.A Teaching Approach Structured lessons.
+- Real speaking.
+- Measurable results.
+- Students improve faster when classes are clear, interactive, and consistent.
+- Every week includes speaking practice, focused correction, and concrete targets you can track.
+- How It Works Assessment Current level, goals, speaking gaps Training Speaking-first lessons and drills Feedback Corrections, homework, and milestones Outcome Confident communication in real life Programs Overview Practical English programs built for real progress.
+- Max 10 students per class Program 01 Kids English (6-10) Confidence + Vocabulary Program 02 Teens English (11-17) School + Speaking Fluency Program 03 IELTS Preparation Band Score Strategy Program 04 English for Work Meetings + Interviews Program Collection P r o g r a m F r a m e w o r k s Practical English Results Clear lesson tracks for children, teens, and adults with real communication goals.
+- PROGRAM 01 / 04 Kids Program View Program Young Learners (6-10) Interactive English classes that build vocabulary, pronunciation, and confidence through practice.
+- Course details on request PROGRAM 02 / 04 Teen Program View Program Teens (11-17) Support for school English, speaking fluency, and communication skills for academic success.
+- Course details on request PROGRAM 03 / 04 Exam Program View Program IELTS Preparation Goal-based IELTS coaching with speaking drills, writing feedback, and test strategy.
+- Course details on request PROGRAM 04 / 04 Career Program View Program English for Work Professional English for interviews, meetings, presentations, and client communication.
+- Course details on request Ready to start?
+- Send your level and goal.
+- You will receive a recommended program and schedule options.
+- Request Placement Call Latest English Learning Insights P r a c t i c a l E n g l i s h J o u r n a l New Articles Tips for parents, students, and professionals who want better English outcomes.
+- Article 1 2024-01-20 为什么沉浸式学习总是比课本更有效 learning View All Articles Intake is limited each cycle to maintain small-group quality and measurable progress.
+- Free assessment.
+- Personalized plan in your first reply.
+- Reserve Assessment Outcome Framework A clear path from hesitation to confident fluency.
+- Step 01 Assess Identify current speaking level, communication goals, and confidence blockers.
+- Step 02 Train Run targeted speaking drills and correction loops with weekly structure.
+- Step 03 Perform Apply English in real conversations, exams, interviews, and work contexts.
+- Contact Enquiry Form Usually replies within 24 hours Full Name Email Your Goal I consent to data processing for inquiry follow-up.
+- Send Message Classroom: Phu Nhuan Teaching Hours (GMT+7) MON - THU 09:00 - 18:00 FRI 09:00 - 15:00 SAT - SUN By appointment Address Golden Mansion 119 Pho Quang, Ward 9 Phu Nhuan, HCMC Vietnam Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+
+## /vi
+- English Teacher in Ho Chi Minh City | English Teacher HCMC Skip to main content BEK VANGUARD® Giới thiệu Dịch vụ Bài viết Hỏi đáp Liên hệ en vi zh ru Intro Philosophy Services Framework Journal Inquiry E N G L I S H T H A T W O R K S Private English mentorship for students and professionals in Ho Chi Minh City.
+- Built for confident speaking, exam outcomes, and real-world communication.
+- 2000+ Learners TESOL + PGCE HCMC-Based Online + In-person F O R L I F E Book Consultation View Programs Status: Enrollment Open Scroll to explore Plate 01.A Teaching Approach Structured lessons.
+- Real speaking.
+- Measurable results.
+- Students improve faster when classes are clear, interactive, and consistent.
+- Every week includes speaking practice, focused correction, and concrete targets you can track.
+- How It Works Assessment Current level, goals, speaking gaps Training Speaking-first lessons and drills Feedback Corrections, homework, and milestones Outcome Confident communication in real life Programs Overview Practical English programs built for real progress.
+- Max 10 students per class Program 01 Kids English (6-10) Confidence + Vocabulary Program 02 Teens English (11-17) School + Speaking Fluency Program 03 IELTS Preparation Band Score Strategy Program 04 English for Work Meetings + Interviews Program Collection P r o g r a m F r a m e w o r k s Practical English Results Clear lesson tracks for children, teens, and adults with real communication goals.
+- PROGRAM 01 / 04 Kids Program View Program Young Learners (6-10) Interactive English classes that build vocabulary, pronunciation, and confidence through practice.
+- Course details on request PROGRAM 02 / 04 Teen Program View Program Teens (11-17) Support for school English, speaking fluency, and communication skills for academic success.
+- Course details on request PROGRAM 03 / 04 Exam Program View Program IELTS Preparation Goal-based IELTS coaching with speaking drills, writing feedback, and test strategy.
+- Course details on request PROGRAM 04 / 04 Career Program View Program English for Work Professional English for interviews, meetings, presentations, and client communication.
+- Course details on request Ready to start?
+- Send your level and goal.
+- You will receive a recommended program and schedule options.
+- Request Placement Call Latest English Learning Insights P r a c t i c a l E n g l i s h J o u r n a l New Articles Tips for parents, students, and professionals who want better English outcomes.
+- Article 1 2024-01-20 Tại Sao Phương Pháp Ngâm Mình Luôn Hiệu Quả Hơn Sách Giáo Khoa learning View All Articles Intake is limited each cycle to maintain small-group quality and measurable progress.
+- Free assessment.
+- Personalized plan in your first reply.
+- Reserve Assessment Outcome Framework A clear path from hesitation to confident fluency.
+- Step 01 Assess Identify current speaking level, communication goals, and confidence blockers.
+- Step 02 Train Run targeted speaking drills and correction loops with weekly structure.
+- Step 03 Perform Apply English in real conversations, exams, interviews, and work contexts.
+- Contact Enquiry Form Usually replies within 24 hours Full Name Email Your Goal I consent to data processing for inquiry follow-up.
+- Send Message Classroom: Phu Nhuan Teaching Hours (GMT+7) MON - THU 09:00 - 18:00 FRI 09:00 - 15:00 SAT - SUN By appointment Address Golden Mansion 119 Pho Quang, Ward 9 Phu Nhuan, HCMC Vietnam Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Speak confidently in real English conversations with clear pronunciation, useful vocabulary, and practical grammar.
+- • Ready to speak English with more confidence?
+- Currently accepting a limited number of new students.
+- Reach out to discuss your goal and available schedule.
+- hello@teacherbek.com Explore About Programs Journal Contact Channels LinkedIn Instagram Zalo Headquarters Phu Nhuan, Ho Chi Minh City Vietnam (UTC+7) BEK VANGUARD® © 2026 Teacher Bek Privacy Terms
+

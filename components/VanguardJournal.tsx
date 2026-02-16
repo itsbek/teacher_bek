@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
+import Link from "next/link";
+import { motion, AnimatePresence, useSpring, useMotionValue, useReducedMotion } from "framer-motion";
 import { KineticText } from "./KineticText";
 import { useAudio } from "./audio-provider";
 import { useLocale } from "next-intl";
@@ -12,6 +13,7 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
     const articles = initialArticles;
     const { playSound } = useAudio();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const reduceMotion = useReducedMotion();
 
     // Magnetic Physics for Image Hover
     const mouseX = useMotionValue(0);
@@ -28,37 +30,38 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
 
 
     return (
-        <section id="journal" className="bg-background text-foreground px-6 md:px-12 lg:px-24 relative" onMouseMove={handleMouseMove}>
+        <section className="bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden" onMouseMove={handleMouseMove}>
+            <div className="atmosphere-grid opacity-45" />
             <div className="max-w-[1920px] mx-auto">
                 {/* Header: Disciplined Symmetry */}
-                <div className="grid grid-cols-12 gap-8 mb-24 lg:mb-32 items-end">
+                <div className="grid grid-cols-12 gap-8 mb-14 lg:mb-18 items-end">
                     <div className="col-span-12 lg:col-span-8">
-                        <div className="flex items-center gap-6 mb-8 opacity-40">
-                            <div className="w-12 h-[1px] bg-foreground" />
-                            <span className="text-[var(--text-xs)] font-mono tracking-widest uppercase">PLATE 05 / INSIGHTS</span>
+                        <div className="flex items-center gap-6 mb-8 opacity-85">
+                            <div className="w-12 h-[1px] bg-white" />
+                            <span className="type-label">Latest English Learning Insights</span>
                         </div>
-                        <h2 className="text-[var(--text-display-lg)] tracking-tightest font-display leading-[0.8]">
-                            <KineticText text="The Scholarly" /> <br />
+                        <h2 className="type-title-lg leading-[0.86]">
+                            <KineticText text="Practical" /> <br />
                             <span className="italic">
-                                <KineticText text="Review" delay={0.2} className="italic" />
+                                <KineticText text="English Journal" delay={0.2} className="italic" />
                             </span>
                         </h2>
                     </div>
-                    <div className="col-span-12 lg:col-span-4 lg:text-right border-l lg:border-l-0 lg:border-r border-foreground/10 pl-8 lg:pl-0 lg:pr-8 py-4">
-                        <span className="text-[var(--text-xs)] font-mono tracking-[0.5em] uppercase opacity-30 font-bold block mb-4">Latest Additions</span>
-                        <p className="text-[var(--text-lg)] font-sans font-light leading-relaxed max-w-sm ml-auto">
-                            Dispatches from the intersection of academic rigor and creative manifestation.
+                    <div className="col-span-12 lg:col-span-4 lg:text-right border-l lg:border-l-0 lg:border-r border-white/20 pl-8 lg:pl-0 lg:pr-8 py-4">
+                        <span className="type-label opacity-75 block mb-4">New Articles</span>
+                        <p className="type-body-lg max-w-sm ml-auto">
+                            Tips for parents, students, and professionals who want better English outcomes.
                         </p>
                     </div>
                 </div>
 
                 {/* Symmetrical Row Grid */}
-                <div className="flex flex-col border-t border-foreground/10 h-full">
+                <div className="flex flex-col border-t border-white/20 h-full">
                     {articles.map((article, index) => (
-                        <a
+                        <Link
                             key={article.slug}
                             href={`/${locale}/blog/${article.slug}`}
-                            className="group relative h-full py-12 lg:py-16 border-b border-foreground/10 transition-colors hover:bg-foreground/[0.02] block"
+                            className="group relative h-full py-8 lg:py-10 border-b border-white/20 transition-colors hover:bg-white/[0.05] block"
                             onMouseEnter={() => {
                                 setHoveredIndex(index);
                                 playSound('hover');
@@ -69,36 +72,35 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                             <div className="grid grid-cols-12 gap-8 items-center h-full relative z-10">
                                 {/* Academic Marker */}
                                 <div className="col-span-2 lg:col-span-1 hidden md:flex flex-col">
-                                    <span className="text-[var(--text-xs)] font-mono tracking-tighter opacity-10 font-bold">SEC_0{index + 1}</span>
-                                    <span className="text-[var(--text-xs)] font-mono tracking-widest opacity-40">{article.date}</span>
+                                    <span className="type-meta opacity-60">Article {index + 1}</span>
+                                    <span className="type-meta opacity-80">{article.date}</span>
                                 </div>
 
                                 {/* Title: Clamped and Energetic */}
                                 <div className="col-span-10 lg:col-span-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-12">
-                                    <h3 className="text-3xl md:text-5xl lg:text-6xl font-display tracking-tight leading-none group-hover:italic transition-all duration-500">
+                                    <h3 className="type-title-lg tracking-tight leading-none group-hover:italic transition-all duration-500">
                                         {article.title}
                                     </h3>
                                     <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <div className="w-8 h-[1px] bg-foreground" />
+                                        <div className="w-8 h-[1px] bg-white" />
                                         <ArrowRightIcon />
                                     </div>
                                 </div>
 
                                 {/* Category: Tactical Marker */}
                                 <div className="col-span-12 lg:col-span-3 text-left lg:text-right pt-6 lg:pt-0">
-                                    <span className="px-4 py-2 border border-foreground/10 rounded-full text-[var(--text-xs)] font-mono tracking-widest uppercase group-hover:bg-foreground group-hover:text-background transition-colors">
-                                        {article.category}
-                                    </span>
+                                        <span className="px-4 py-2 border border-white/40 rounded-full type-label-tight group-hover:bg-white group-hover:text-black transition-colors">
+                                            {article.category}
+                                        </span>
                                 </div>
                             </div>
 
                             {/* Magnetic Magnetic Preview (Phase 8 Fluid) */}
                             <AnimatePresence>
-                                {hoveredIndex === index && (
+                                {hoveredIndex === index && !reduceMotion && (
                                     <motion.div
                                         initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
                                         animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                        onViewportEnter={() => playSound('morph')}
                                         exit={{ opacity: 0, scale: 0.9, rotate: 3 }}
                                         style={{
                                             position: "fixed",
@@ -108,35 +110,35 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                                             y: y,
                                             pointerEvents: "none",
                                         }}
-                                        className="fixed pointer-events-none z-[100] w-[clamp(300px,30vw,500px)] aspect-video overflow-hidden rounded-[2px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] border border-white/10"
+                                        className="fixed pointer-events-none z-[100] w-[clamp(300px,30vw,500px)] aspect-video overflow-hidden rounded-[2px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] border border-white/20"
                                     >
                                         <img
-                                            src={article.image}
+                                            src={article.image || "/images/teacher-profile.jpg"}
                                             className="w-full h-full object-cover grayscale brightness-90 contrast-125"
                                             alt="Preview"
                                         />
                                         <div className="absolute top-4 right-4 text-[9px] font-mono text-white/50 bg-black/40 px-3 py-1 backdrop-blur-md">
-                                            FIG. {index + 1} // ANALYTICAL VIEW
+                                            PREVIEW {index + 1}
                                         </div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
-                <div className="mt-24 flex justify-center">
-                    <a
+                <div className="mt-12 flex justify-center">
+                    <Link
                         href={`/${locale}/blog`}
                         onMouseEnter={() => playSound('hover')}
                         onClick={() => playSound('click')}
                         className="vanguard-magnetic group flex flex-col items-center gap-4"
                     >
-                        <span className="text-[var(--text-xs)] uppercase tracking-[0.5em] font-bold opacity-30 group-hover:opacity-100 transition-opacity">Access Complete Archives</span>
-                        <div className="w-32 h-[1px] bg-foreground/20 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-foreground -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+                        <span className="type-label opacity-75 group-hover:opacity-100 transition-opacity">View All Articles</span>
+                        <div className="w-32 h-[1px] bg-white/30 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </div>
 

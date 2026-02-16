@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { initClarity, GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { VanguardCursor } from '@/components/VanguardCursor';
 import { usePathname } from 'next/navigation';
 import { AudioProvider } from '@/components/audio-provider';
+import { ExitIntentModal } from '@/components/ExitIntentModal';
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [shouldUseEnhancedCursor, setShouldUseEnhancedCursor] = useState(false);
 
   // Initialize analytics
   useEffect(() => {
@@ -22,11 +24,19 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const allowCursor =
+      window.matchMedia('(pointer: fine)').matches &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setShouldUseEnhancedCursor(allowCursor);
+  }, []);
+
   return (
     <AudioProvider>
-      <VanguardCursor />
+      {shouldUseEnhancedCursor ? <VanguardCursor /> : null}
+      <ExitIntentModal />
       {children}
     </AudioProvider>
   );
 }
-

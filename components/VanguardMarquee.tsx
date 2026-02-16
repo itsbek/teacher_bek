@@ -1,32 +1,31 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 export function VanguardMarquee() {
-    const text = "Academic Strategy — Creative Mentorship — Linguistic Blueprinting — Intellectual Resilience — Narrative Mastery — ";
+    const text = "Small-group English lessons for speaking confidence, IELTS test preparation, and real-world communication.";
+    const repeated = `${text} • ${text} • ${text} • ${text} • `;
 
     return (
-        <div className="w-full bg-black text-[#f4f4f0] py-8 overflow-hidden border-y border-white/5">
-            <div className="whitespace-nowrap flex">
-                <motion.div
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{
-                        duration: 30,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-                    className="flex shrink-0 gap-8"
-                >
-                    {[...Array(2)].map((_, i) => (
-                        <div key={i} className="flex gap-8 items-center">
-                            <span className="font-display text-[var(--text-2xl)] md:text-[var(--text-display-lg)] italic">
-                                {text}
-                            </span>
-                        </div>
-                    ))}
-                </motion.div>
+        <div className="w-full bg-black text-white py-4 overflow-hidden border-y border-white/15">
+            <div className="marquee-track flex w-max">
+                <span className="type-title-sm px-4 text-white/90 whitespace-nowrap">{repeated}</span>
+                <span className="type-title-sm px-4 text-white/90 whitespace-nowrap" aria-hidden="true">{repeated}</span>
             </div>
+            <style jsx>{`
+                .marquee-track {
+                    animation: marquee-loop 26s linear infinite;
+                }
+
+                @keyframes marquee-loop {
+                    from {
+                        transform: translateX(0);
+                    }
+                    to {
+                        transform: translateX(-50%);
+                    }
+                }
+            `}</style>
         </div>
     );
 }

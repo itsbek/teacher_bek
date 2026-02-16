@@ -2,73 +2,61 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+
 export function VanguardSignature() {
-
-    return (
-        <section className="relative bg-background overflow-hidden border-t border-foreground/5">
-            {/* Disciplined Grid Overlay (Subtle) */}
-            <div className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24 top-0 h-full grid grid-cols-12 gap-8 pointer-events-none opacity-[0.02]">
-                {[...Array(12)].map((_, i) => (
-                    <div key={i} className="h-full border-x border-foreground" />
-                ))}
+  return (
+    <section className="relative bg-background border-t border-foreground/10 overflow-hidden">
+      <div className="atmosphere-grid opacity-60" />
+      <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <motion.div
+            initial={false}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-10 h-[1px] bg-foreground" />
+              <span className="text-[10px] uppercase tracking-[0.22em] font-mono text-foreground/80">Teaching Approach</span>
             </div>
+            <h2 className="font-display text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-tight mb-6 headline-balance">
+              Structured lessons. Real speaking. Measurable results.
+            </h2>
+            <p className="text-foreground/85 text-lg md:text-xl leading-relaxed rhythm-copy">
+              Students improve faster when classes are clear, interactive, and consistent. Every week includes speaking practice, focused correction, and concrete targets you can track.
+            </p>
+          </motion.div>
 
-            <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-                <div className="grid grid-cols-12 gap-8 items-center">
-                    {/* Centered Monolith "B" */}
-                    <div className="col-span-12 flex justify-center items-center pointer-events-none mb-12 lg:mb-0">
-                        <motion.h1
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 0.05, scale: 1 }}
-                            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-                            className="font-display text-[50vw] leading-none tracking-tightest text-foreground select-none"
-                        >
-                            B
-                        </motion.h1>
-                    </div>
-
-                    {/* Philosophy Overlay: Ratio-Bound (6/12 cols center) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="grid grid-cols-12 gap-8 w-full px-6 md:px-12 lg:px-24">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                className="col-span-12 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 text-center"
-                            >
-                                <div className="flex flex-col items-center gap-8">
-                                    <div className="flex items-center gap-6 opacity-40">
-                                        <div className="w-8 h-[1px] bg-foreground" />
-                                        <span className="text-[var(--text-xs)] font-mono tracking-widest uppercase font-bold">THE PHILOSOPHY</span>
-                                        <div className="w-8 h-[1px] bg-foreground" />
-                                    </div>
-
-                                    <p className="font-display text-[clamp(2rem,6vw,4rem)] leading-[1.1] tracking-tight">
-                                        "Education is the <span className="italic">manifestation</span> of disciplined agency through linguistic mastery."
-                                    </p>
-
-                                    <div className="flex flex-col items-center gap-4 opacity-50">
-                                        <span className="text-[var(--text-xs)] font-mono tracking-widest uppercase">Est. 2012 — VERIFIED BLUEPRINT</span>
-                                        <div className="w-0.5 h-12 bg-foreground/20" />
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Technical Footers: Symmetrical */}
-                <div className="absolute bottom-12 inset-x-6 md:inset-x-12 lg:inset-x-24 flex justify-between items-end opacity-20">
-                    <div className="flex flex-col gap-2">
-                        <span className="text-[var(--text-xs)] font-mono tracking-widest uppercase opacity-40">PLATE NO. 06 / CONCLUSION</span>
-                        <div className="w-24 h-[1px] bg-foreground" />
-                    </div>
-                    <div className="flex flex-col items-end gap-2">
-                        <span className="text-[var(--text-xs)] font-mono tracking-widest uppercase opacity-40">BEK VANGUARD® // ELITE SYSTEMS</span>
-                        <div className="w-24 h-[1px] bg-foreground" />
-                    </div>
-                </div>
+          <motion.div
+            initial={false}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 editorial-panel p-6 md:p-8"
+          >
+            <h3 className="text-[11px] uppercase tracking-[0.2em] font-mono text-foreground/75 mb-5">How It Works</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-start gap-4 border-b border-foreground/10 pb-3">
+                <span className="text-foreground/80 text-sm uppercase tracking-wide">Assessment</span>
+                <span className="text-foreground font-medium text-right">Current level, goals, speaking gaps</span>
+              </div>
+              <div className="flex justify-between items-start gap-4 border-b border-foreground/10 pb-3">
+                <span className="text-foreground/80 text-sm uppercase tracking-wide">Training</span>
+                <span className="text-foreground font-medium text-right">Speaking-first lessons and drills</span>
+              </div>
+              <div className="flex justify-between items-start gap-4 border-b border-foreground/10 pb-3">
+                <span className="text-foreground/80 text-sm uppercase tracking-wide">Feedback</span>
+                <span className="text-foreground font-medium text-right">Corrections, homework, and milestones</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-foreground/80 text-sm uppercase tracking-wide">Outcome</span>
+                <span className="text-foreground font-medium text-right">Confident communication in real life</span>
+              </div>
             </div>
-        </section>
-    );
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }

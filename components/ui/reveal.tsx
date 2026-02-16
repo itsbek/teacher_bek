@@ -29,8 +29,9 @@ export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 
                     hidden: { opacity: 0, y: 75, filter: "blur(10px)" },
                     visible: { opacity: 1, y: 0, filter: "blur(0px)" },
                 }}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                // Fail-safe: keep content visible even if in-view observers fail.
+                initial={false}
+                animate={isInView ? "visible" : "visible"}
                 transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
             >
                 {children}
@@ -46,8 +47,8 @@ export const LineReveal = ({ children, delay = 0 }: { children: string; delay?: 
     return (
         <div ref={ref} className="relative overflow-hidden">
             <motion.div
-                initial={{ y: "100%" }}
-                animate={isInView ? { y: 0 } : { y: "100%" }}
+                initial={false}
+                animate={isInView ? { y: 0 } : { y: 0 }}
                 transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
             >
                 {children}

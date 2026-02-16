@@ -55,9 +55,10 @@ export function KineticText({
         <motion.span
             ref={ref}
             variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className={`inline-block perspective-1000 ${className}`}
+            // Render visible by default so content never disappears if JS/in-view logic fails.
+            initial={false}
+            animate={isInView ? "visible" : "visible"}
+            className={`inline-block whitespace-nowrap perspective-1000 ${className}`}
         >
             {text.split("").map((char, index) => (
                 <motion.span

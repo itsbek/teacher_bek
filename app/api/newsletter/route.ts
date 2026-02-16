@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
 // In-memory rate limiting (replace with Redis in production)
 const rateLimitMap = new Map<string, { count: number; timestamp: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX = 3; // 3 requests per minute
+const MIN_FORM_FILL_MS = 1200;
+
+const newsletterSchema = z.object({
+  email: z.string().email(),
+  subscriberType: z.enum(['student', 'parent', 'teacher']),
+  website: z.string().optional(), // honeypot
+  formStartedAt: z.number().int().optional(),
+});
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
@@ -38,7 +47,8 @@ const subscribers: Array<{
 
 export async function POST(request: NextRequest) {
   try {
-    const ip = request.headers.get('x-forwarded-for') ||
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const ip = forwardedFor?.split(',')[0]?.trim() ||
       request.headers.get('x-real-ip') ||
       'unknown';
 
@@ -51,12 +61,25 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { email, subscriberType } = body;
+    const parsed = newsletterSchema.safeParse(body);
 
-    // Validation
-    if (!email || !subscriberType) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Email and subscriber type are required.' },
+        { error: 'Invalid request data.' },
+        { status: 400 }
+      );
+    }
+
+    const { email, subscriberType, website, formStartedAt } = parsed.data;
+
+    // Honeypot + speed trap for bot submissions.
+    if (website && website.trim().length > 0) {
+      return NextResponse.json({ success: true, message: 'Thanks for subscribing!' });
+    }
+
+    if (formStartedAt && Date.now() - formStartedAt < MIN_FORM_FILL_MS) {
+      return NextResponse.json(
+        { error: 'Please take a moment before submitting the form.' },
         { status: 400 }
       );
     }
@@ -64,14 +87,6 @@ export async function POST(request: NextRequest) {
     if (!isValidEmail(email)) {
       return NextResponse.json(
         { error: 'Please enter a valid email address.' },
-        { status: 400 }
-      );
-    }
-
-    const validTypes = ['student', 'parent', 'teacher'];
-    if (!validTypes.includes(subscriberType)) {
-      return NextResponse.json(
-        { error: 'Invalid subscriber type.' },
         { status: 400 }
       );
     }
@@ -95,9 +110,7 @@ export async function POST(request: NextRequest) {
 
     subscribers.push(newSubscriber);
 
-    // Log for debugging (remove in production)
     console.log('New newsletter subscriber:', {
-      email: newSubscriber.email,
       type: newSubscriber.subscriberType,
       date: newSubscriber.subscribedAt,
     });
@@ -147,18 +160,25 @@ function getSuccessMessage(subscriberType: string): string {
   }
 }
 
-// Get subscribers (for admin purposes - protect this endpoint in production)
 export async function GET(request: NextRequest) {
-  // In production, add authentication here
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
+
+  const adminApiKey = process.env.ADMIN_API_KEY;
+  if (!adminApiKey) {
+    return NextResponse.json({ error: 'Admin API key is not configured.' }, { status: 503 });
+  }
+
   const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.ADMIN_API_KEY}`) {
+  if (authHeader !== `Bearer ${adminApiKey}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   return NextResponse.json({
     total: subscribers.length,
     subscribers: subscribers.map(s => ({
-      email: s.email,
+      email: `${s.email.slice(0, 2)}***`,
       type: s.subscriberType,
       date: s.subscribedAt,
     })),

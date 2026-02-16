@@ -1,9 +1,9 @@
 {
   "nav": {
     "home": "首页",
-    "about": "About",
-    "services": "Services",
-    "courses": "Programs",
+    "about": "关于我",
+    "services": "服务",
+    "courses": "课程",
     "blog_link": "文章",
     "testimonials": "学员",
     "faq": "问答",
@@ -22,9 +22,9 @@
     "subheadline": "TESOL认证 • ILA越南 • 胡志明市",
     "primaryCTA": "开始学习",
     "secondaryCTA": "查看课程",
-    "title_part1": "Elevate Your",
-    "title_part2": "Confessions",
-    "description": "A tailored sanctuary for premium English mastery. Beyond teaching, we architect confidence.",
+    "title_part1": "自信",
+    "title_part2": "英语",
+    "description": "面向真实场景的英语学习：会话、考试与工作沟通。",
     "stats": {
       "students": "已教学生",
       "experience": "教学年数",
@@ -133,22 +133,39 @@
   },
   "faq": {
     "title": "常见问题",
-    "q1": "你在哪里教课?",
-    "a1": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan。也在Phu Nhuan、Go Vap和Binh Thanh的学生家中授课。",
-    "q2": "你教什么年龄段?",
-    "a2": "儿童(6-10岁)、青少年(11-17岁)和各年龄段的雅思/考试准备。",
-    "q3": "课程多少钱?",
-    "a3": "取决于课程类型、地点和频率。联系获取直接报价 - 无隐藏费用。",
-    "q4": "你教小组还是一对一?",
-    "a4": "只教小组(最多10名学生)。包括在线课程也是小组形式,确保每个人都有口语练习机会。",
-    "q5": "你有什么资质?",
-    "a5": "TESOL和PGCE认证。我也完成了DELTA(剑桥),等待结果中。曾在ILA越南、BlueSky幼儿园和15+学校任教。",
-    "q6": "可以先试课吗?",
-    "a6": "可以!免费评估课 - 无压力,无义务。",
-    "q7": "为什么小班而不是大班?",
-    "a7": "在25人的班级里,你几乎没有机会开口。最多10名学生,你才能真正练习。",
-    "q8": "教室对孩子安全吗?",
-    "a8": "绝对安全。CCTV监控、独立卫生间、空调房间和灭蚊灯。安全、舒适,家长放心。"
+    "q1": {
+      "question": "你在哪里教课?",
+      "answer": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan。也在Phu Nhuan、Go Vap和Binh Thanh的学生家中授课。"
+    },
+    "q2": {
+      "question": "你教什么年龄段?",
+      "answer": "儿童(6-10岁)、青少年(11-17岁)和各年龄段的雅思/考试准备。"
+    },
+    "q3": {
+      "question": "课程多少钱?",
+      "answer": "取决于课程类型、地点和频率。联系获取直接报价 - 无隐藏费用。"
+    },
+    "q4": {
+      "question": "你教小组还是一对一?",
+      "answer": "只教小组(最多10名学生)。包括在线课程也是小组形式,确保每个人都有口语练习机会。"
+    },
+    "q5": {
+      "question": "你有什么资质?",
+      "answer": "TESOL和PGCE认证。我也完成了DELTA(剑桥),等待结果中。曾在ILA越南、BlueSky幼儿园和15+学校任教。"
+    },
+    "q6": {
+      "question": "可以先试课吗?",
+      "answer": "可以!免费评估课 - 无压力,无义务。"
+    },
+    "q7": {
+      "question": "为什么小班而不是大班?",
+      "answer": "在25人的班级里,你几乎没有机会开口。最多10名学生,你才能真正练习。"
+    },
+    "q8": {
+      "question": "教室对孩子安全吗?",
+      "answer": "绝对安全。CCTV监控、独立卫生间、空调房间和灭蚊灯。安全、舒适,家长放心。"
+    },
+    "description": "常见问题"
   },
   "newsletter": {
     "title": "保持联系",
@@ -159,7 +176,8 @@
     "success": "谢谢!请检查邮箱确认。",
     "error": "出错了,请重试。",
     "privacy": "无垃圾邮件。随时退订。",
-    "benefits": "教学见解、学习技巧和更新"
+    "benefits": "教学见解、学习技巧和更新",
+    "description": "教学故事、学习技巧和课程更新,为家长、老师和学生提供。加入2000+读者。"
   },
   "blog": {
     "title": "文章与资源",

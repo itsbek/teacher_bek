@@ -1,85 +1,96 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowRight, ArrowUp } from "lucide-react";
 import { useAudio } from "./audio-provider";
 
 export function VanguardFooter() {
-    const t = useTranslations("footer");
     const locale = useLocale();
+    const t = useTranslations("footer");
+    const navT = useTranslations("nav");
     const { playSound } = useAudio();
 
-    return (
-        <footer className="bg-black text-[#f4f4f0] pt-24 pb-12 px-4 md:px-12 relative overflow-hidden">
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+    const scrollToTop = () => {
+        const lenis = (window as Window & { __lenis?: { scrollTo: (to: number, opts?: { duration?: number }) => void } }).__lenis;
+        if (lenis) {
+            lenis.scrollTo(0, { duration: 1.1 });
+            return;
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
-            <div className="max-w-[1600px] mx-auto relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-32">
+    return (
+        <footer className="bg-background text-foreground pt-16 pb-8 px-4 md:px-10 relative overflow-hidden border-t border-foreground/10">
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-foreground/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+
+            <div className="max-w-[1400px] mx-auto relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
                     <div>
-                        <h2 className="text-[var(--text-xl)] md:text-[var(--text-display-lg)] tracking-tighter mb-8 font-display leading-[0.9]">
-                            Let's shape the<br /><span className="text-white/20 italic font-light">future.</span>
+                        <h2 className="type-title-md mb-6">
+                            Ready to speak English with<br /><span className="text-foreground/25 italic font-light">more confidence?</span>
                         </h2>
-                        <p className="text-[var(--text-base)] text-white/40 max-w-sm leading-relaxed mb-12 font-sans font-light">
-                            Currently accepting select students for the 2024 academic cycle. Reach out to schedule a consultation regarding your linguistic trajectory.
+                        <p className="type-body text-foreground/60 max-w-sm mb-8">
+                            Currently accepting a limited number of new students. Reach out to discuss your goal and available schedule.
                         </p>
                         <a
-                            href="mailto:bek@teacher.edu"
+                            href="mailto:hello@teacherbek.com"
                             onMouseEnter={() => playSound('hover')}
                             onClick={() => playSound('click')}
-                            className="inline-flex items-center gap-4 text-[var(--text-lg)] md:text-[var(--text-xl)] border-b border-white/20 pb-2 hover:border-white transition-all duration-500"
+                            className="inline-flex items-center gap-4 type-body-lg border-b border-foreground/25 pb-2 hover:border-foreground transition-all duration-500"
                         >
-                            bek@teacher.edu
+                            hello@teacherbek.com
                             <ArrowRight size={20} />
                         </a>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-8 lg:pl-20">
+                    <div className="grid grid-cols-2 gap-8 lg:pl-8">
                         <div className="flex flex-col space-y-4">
-                            <span className="text-[var(--text-xs)] font-bold uppercase tracking-widest text-white/20 mb-4">Structure</span>
-                            <a href={`/${locale}/about`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="text-[var(--text-xs)] text-white/40 hover:text-white transition-colors">Philosophy</a>
-                            <a href="#lexicon" onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="text-[var(--text-xs)] text-white/40 hover:text-white transition-colors">Frameworks</a>
-                            <a href="#journal" onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="text-[var(--text-xs)] text-white/40 hover:text-white transition-colors">Journal</a>
-                            <a href="#contact" onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="text-[var(--text-xs)] text-white/40 hover:text-white transition-colors">Inquiry</a>
+                            <span className="type-label text-foreground/35 mb-4">{t("quickLinks")}</span>
+                            <Link href={`/${locale}/about`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">{navT("about")}</Link>
+                            <Link href={`/${locale}/services`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">{navT("services")}</Link>
+                            <Link href={`/${locale}#journal`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">Journal</Link>
+                            <Link href={`/${locale}#contact`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">{navT("contact")}</Link>
                         </div>
                         <div className="flex flex-col space-y-4">
-                            <span className="text-[var(--text-xs)] font-bold uppercase tracking-widest text-white/20 mb-4">Socials</span>
-                            {['LinkedIn', 'Instagram', 'Zalo'].map((item) => (
-                                <a key={item} href="#" className="text-[var(--text-xs)] text-white/40 hover:text-white transition-colors">{item}</a>
-                            ))}
+                            <span className="type-label text-foreground/35 mb-4">Channels</span>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">LinkedIn</a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">Instagram</a>
+                            <a href="https://zalo.me/0123456789" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">Zalo</a>
                         </div>
-                        <div className="col-span-2 mt-8">
-                            <span className="text-[var(--text-xs)] font-bold uppercase tracking-widest text-white/20 mb-4 block">Headquarters</span>
-                            <p className="text-white/40 text-[var(--text-xs)] leading-relaxed">
-                                District 1, Ho Chi Minh City<br />
-                                Vietnam, UTC+7
+                        <div className="col-span-2 mt-4">
+                            <span className="type-label text-foreground/35 mb-4 block">Headquarters</span>
+                            <p className="type-meta text-foreground/65 leading-relaxed">
+                                Phu Nhuan, Ho Chi Minh City<br />
+                                Vietnam (UTC+7)
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between items-end border-t border-white/5 pt-12">
-                    <div className="mb-4 md:mb-0 flex items-center gap-12">
-                        <h1 className="text-[8vw] md:text-[6vw] leading-none font-bold tracking-tighter text-white opacity-[0.05] select-none pointer-events-none uppercase">
+                <div className="flex flex-col md:flex-row justify-between items-end border-t border-foreground/10 pt-8">
+                    <div className="mb-4 md:mb-0 flex items-center gap-8">
+                        <h1 className="text-[7vw] md:text-[4.6vw] leading-none font-bold tracking-tighter text-foreground opacity-[0.08] select-none pointer-events-none uppercase">
                             BEK VANGUARD®
                         </h1>
                         <button
+                            type="button"
                             onMouseEnter={() => playSound('hover')}
                             onClick={() => {
                                 playSound('click');
-                                window.scrollTo({ top: 0, behavior: "smooth" });
+                                scrollToTop();
                             }}
-                            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-500 group"
+                            className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-500 group"
                         >
                             <ArrowUp size={18} className="group-hover:translate-y-[-2px] transition-transform" />
                         </button>
                     </div>
-                    <div className="flex gap-8 text-[var(--text-xs)] text-white/30 uppercase tracking-widest font-bold">
-                        <span>© {new Date().getFullYear()} Vanguard Mastery</span>
-                        <a href="#" className="hover:text-white">Privacy</a>
-                        <a href="#" className="hover:text-white">Terms</a>
+                    <div className="flex gap-8 type-label-tight text-foreground/50">
+                        <span>© {new Date().getFullYear()} Teacher Bek</span>
+                        <Link href={`/${locale}/privacy`} className="hover:text-foreground">{t("privacy")}</Link>
+                        <Link href={`/${locale}/terms`} className="hover:text-foreground">{t("terms")}</Link>
                     </div>
                 </div>
             </div>

@@ -126,7 +126,7 @@ export function Footer() {
         {/* Large Brand Section */}
         <div className="mb-20 lg:mb-28">
           <div className="footer-brand-large mb-8">
-            <a href="#" className="inline-block group">
+            <a href={`/${locale}`} className="inline-block group">
               <span className="font-display text-[clamp(48px,8vw,120px)] font-bold text-foreground dark:text-white leading-none tracking-[-0.03em] group-hover:text-[#C4A84D] dark:group-hover:text-[#ECD06F] transition-colors duration-500">
                 Teacher Bek
               </span>
