@@ -30,6 +30,13 @@ yarn-error.log*
 .vercel
 
 # typescript
+tsconfig.tsbuildinfo
 *.tsbuildinfo
 next-env.d.ts
 .worktrees/
+
+# AI Tools & Local Configs
+.claude/*.local*
+.agent/*.local*
+.agents/*.local*
+.mcp.json
