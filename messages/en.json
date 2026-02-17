@@ -26,7 +26,16 @@
       "students": "Students Taught",
       "experience": "Years Teaching",
       "success": "Languages Spoken"
-    }
+    },
+    "badgeTesol": "TESOL + PGCE",
+    "badgePgce": "DELTA (Cambridge)",
+    "badgeLocation": "HCMC-Based",
+    "badgeFormat": "In-Person + Online",
+    "statsStudents": "Students taught",
+    "statsYears": "Years in Vietnam",
+    "statsRating": "Avg. rating",
+    "statusOpen": "Enrollment open",
+    "photoCaption": "Teacher Bek — Phú Nhuận, HCMC"
   },
   "about": {
     "label": "About",
@@ -283,5 +292,28 @@
     "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
     "districts": "Also teaching in Gò Vấp & Bình Thạnh",
     "features": "CCTV • Comfortable • Professional"
+  },
+  "methodology": {
+    "sectionLabel": "Outcome Framework",
+    "heading": "A clear path from hesitation to",
+    "headingItalic": "confident fluency.",
+    "steps": [
+      {
+        "id": "01",
+        "title": "Assess",
+        "description": "Identify current speaking level, communication goals, and confidence blockers."
+      },
+      {
+        "id": "02",
+        "title": "Train",
+        "description": "Run targeted speaking drills and correction loops with weekly structure."
+      },
+      {
+        "id": "03",
+        "title": "Perform",
+        "description": "Apply English in real conversations, exams, interviews, and work contexts."
+      }
+    ],
+    "stepLabel": "Step"
   }
 }

@@ -29,7 +29,16 @@
       "students": "Học viên đã dạy",
       "experience": "Năm giảng dạy",
       "success": "Chứng chỉ TESOL & PGCE"
-    }
+    },
+    "badgeTesol": "TESOL + PGCE",
+    "badgePgce": "DELTA (Cambridge)",
+    "badgeLocation": "Tại TP.HCM",
+    "badgeFormat": "Trực tiếp + Trực tuyến",
+    "statsStudents": "Học viên đã dạy",
+    "statsYears": "Năm tại Việt Nam",
+    "statsRating": "Đánh giá TB",
+    "statusOpen": "Đang tuyển sinh",
+    "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM"
   },
   "about": {
     "label": "Về Tôi",
@@ -256,5 +265,28 @@
     "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
     "districts": "Cũng dạy tại Gò Vấp & Bình Thạnh",
     "features": "Camera • Thoải mái • Chuyên nghiệp"
+  },
+  "methodology": {
+    "sectionLabel": "Lộ Trình Kết Quả",
+    "heading": "Con đường rõ ràng từ do dự đến",
+    "headingItalic": "tự tin giao tiếp.",
+    "steps": [
+      {
+        "id": "01",
+        "title": "Đánh Giá",
+        "description": "Xác định trình độ nói hiện tại, mục tiêu giao tiếp và những điểm cần cải thiện."
+      },
+      {
+        "id": "02",
+        "title": "Luyện Tập",
+        "description": "Thực hiện các bài luyện nói chuyên sâu và vòng lặp sửa lỗi có cấu trúc hàng tuần."
+      },
+      {
+        "id": "03",
+        "title": "Ứng Dụng",
+        "description": "Sử dụng tiếng Anh trong các cuộc hội thoại thực tế, kỳ thi, phỏng vấn và môi trường làm việc."
+      }
+    ],
+    "stepLabel": "Bước"
   }
 }

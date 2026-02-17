@@ -117,6 +117,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Mobile browser chrome: matches page bg color in light/dark */}
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f4f0" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" />
+        {/* Preconnect to Google Fonts CDN — shaves 100-300ms off font load */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -93,40 +93,7 @@ function useScrambleText(text: string, isActive: boolean) {
   return displayText;
 }
 
-// Rolling ball scroll indicator
-function RollingBall() {
-  const ballRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ball = ballRef.current;
-    if (!ball) return;
-
-    gsap.to(ball, {
-      x: '100vw',
-      rotation: 720,
-      duration: 4,
-      ease: 'none',
-      repeat: -1,
-    });
-
-    return () => {
-      gsap.killTweensOf(ball);
-    };
-  }, []);
-
-  return (
-    <div className="absolute bottom-8 left-0 w-full overflow-hidden h-8">
-      <div
-        ref={ballRef}
-        className="w-3 h-3 rounded-full -ml-4"
-        style={{
-          background: 'linear-gradient(135deg, #bf953f, #fcf6ba, #b38728)',
-          boxShadow: '0 0 10px rgba(191, 149, 63, 0.5)',
-        }}
-      />
-    </div>
-  );
-}
+// RollingBall removed — infinite GPU loop with no informational value.
 
 export function Hero() {
   const t = useTranslations('hero');
@@ -171,10 +138,10 @@ export function Hero() {
         { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "power4.inOut" }
       )
 
-      // Badge drops in
+      // Badge drops in — opacity + transform only (compositor-friendly)
       .fromTo(".hero-badge",
-        { opacity: 0, y: -30, filter: "blur(10px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        { opacity: 0, y: -30 },
+        { opacity: 1, y: 0, duration: 0.8 },
         "-=0.5"
       )
 
@@ -190,10 +157,10 @@ export function Hero() {
         "-=0.8"
       )
 
-      // Subtitle smoke effect
+      // Subtitle — opacity + transform only
       .fromTo(".hero-subtitle",
-        { opacity: 0, y: 20, filter: "blur(8px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8 },
         "-=0.4"
       )
 
@@ -218,9 +185,9 @@ export function Hero() {
         "-=0.4"
       );
 
-      // Continuous breathing animation (7 second pulse)
+      // Continuous breathing: opacity-only (compositor-friendly, no filter)
       gsap.to(".breath-element", {
-        filter: "brightness(1.1)",
+        opacity: 0.7,
         duration: 3.5,
         ease: "sine.inOut",
         yoyo: true,
@@ -343,7 +310,7 @@ export function Hero() {
           {/* Badge */}
           <div className="hero-badge mb-8">
             <span
-              className="inline-flex items-center gap-3 px-4 py-2 text-[9px] md:text-[10px] font-mono tracking-[0.25em] uppercase border breath-element"
+              className="inline-flex items-center gap-3 px-4 py-2 text-xs font-mono tracking-[0.25em] uppercase border breath-element"
               style={{
                 color: 'var(--oxidized-copper, #43b3ae)',
                 borderColor: 'rgba(67, 179, 174, 0.3)',
@@ -351,6 +318,7 @@ export function Hero() {
               }}
             >
               <span
+                aria-hidden="true"
                 className="w-1.5 h-1.5 rounded-full animate-pulse"
                 style={{ backgroundColor: 'var(--oxidized-copper, #43b3ae)' }}
               />
@@ -409,17 +377,19 @@ export function Hero() {
               ref={primaryBtnRef}
               href="#contact"
               onClick={() => trackCTAClick('hero', 'contact')}
-              className="hero-cta group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase overflow-hidden transition-all duration-500"
+              className="hero-cta group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               style={{
                 background: 'linear-gradient(135deg, #43b3ae 0%, #3d9994 100%)',
                 color: 'var(--void-black, #050505)',
                 boxShadow: '0 0 30px rgba(67, 179, 174, 0.3)',
+                touchAction: 'manipulation',
               }}
             >
               <span className="relative z-10">{t('cta')}</span>
-              <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight aria-hidden="true" className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               <div
-                className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"
+                aria-hidden="true"
+                className="absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"
                 style={{ background: 'var(--vintage-paper, #f4ecd8)' }}
               />
             </a>
@@ -428,15 +398,17 @@ export function Hero() {
               ref={secondaryBtnRef}
               href="#courses"
               onClick={() => trackCTAClick('hero', 'courses')}
-              className="hero-cta group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase border overflow-hidden transition-all duration-500"
+              className="hero-cta group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-semibold tracking-[0.15em] uppercase border overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               style={{
                 color: 'var(--vintage-paper, #f4ecd8)',
                 borderColor: 'rgba(244, 236, 216, 0.2)',
+                touchAction: 'manipulation',
               }}
             >
               <span className="relative z-10">{t('secondary')}</span>
               <div
-                className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"
+                aria-hidden="true"
+                className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"
                 style={{ background: 'rgba(67, 179, 174, 0.1)' }}
               />
             </a>
@@ -451,8 +423,9 @@ export function Hero() {
           style={{ background: 'linear-gradient(to bottom, transparent, rgba(67, 179, 174, 0.3), transparent)' }}
         />
         <span
-          className="text-[9px] font-mono tracking-[0.4em] uppercase [writing-mode:vertical-rl] rotate-180"
+          className="text-xs font-mono tracking-[0.4em] uppercase [writing-mode:vertical-rl] rotate-180"
           style={{ color: 'rgba(67, 179, 174, 0.4)' }}
+          aria-hidden="true"
         >
           Est. 2023
         </span>
@@ -475,8 +448,7 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Rolling ball scroll indicator */}
-      <RollingBall />
+      {/* Rolling ball removed — replaced by bottom marquee as scroll cue */}
 
       {/* Bottom marquee - Tobacco aesthetic */}
       <div
@@ -487,20 +459,22 @@ export function Hero() {
           backdropFilter: 'blur(10px)',
         }}
       >
-        <div className="flex animate-marquee whitespace-nowrap">
+        {/* First set readable, duplicates aria-hidden to prevent screen reader repetition */}
+        <div className="flex animate-marquee whitespace-nowrap" aria-label="TESOL Certified · ILA Vietnam · 2000+ Students · Ho Chi Minh City">
           {[...Array(8)].map((_, i) => (
             <span
               key={i}
+              aria-hidden={i > 0 ? "true" : undefined}
               className="mx-8 text-xs font-mono tracking-wider flex items-center gap-4"
               style={{ color: 'rgba(244, 236, 216, 0.3)' }}
             >
-              <span style={{ color: 'var(--oxidized-copper, #43b3ae)' }}>◆</span>
+              <span aria-hidden="true" style={{ color: 'var(--oxidized-copper, #43b3ae)' }}>◆</span>
               TESOL Certified
-              <span style={{ color: 'var(--dried-blood, #8a0303)' }}>◆</span>
+              <span aria-hidden="true" style={{ color: 'var(--dried-blood, #8a0303)' }}>◆</span>
               ILA Vietnam
-              <span style={{ color: 'var(--oxidized-copper, #43b3ae)' }}>◆</span>
+              <span aria-hidden="true" style={{ color: 'var(--oxidized-copper, #43b3ae)' }}>◆</span>
               2000+ Students
-              <span style={{ color: 'var(--dried-blood, #8a0303)' }}>◆</span>
+              <span aria-hidden="true" style={{ color: 'var(--dried-blood, #8a0303)' }}>◆</span>
               Ho Chi Minh City
             </span>
           ))}

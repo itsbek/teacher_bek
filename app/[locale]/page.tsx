@@ -1,4 +1,4 @@
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { StructuredData } from '@/components/structured-data';
 import { VanguardNavigation } from '@/components/VanguardNavigation';
@@ -37,27 +37,17 @@ export default async function Home({ params }: Props) {
   setRequestLocale(locale);
 
   const articles = getBlogPosts(locale).slice(0, 4);
-  const methodLoop = [
-    {
-      id: "01",
-      title: "Assess",
-      description: "Identify current speaking level, communication goals, and confidence blockers.",
-    },
-    {
-      id: "02",
-      title: "Train",
-      description: "Run targeted speaking drills and correction loops with weekly structure.",
-    },
-    {
-      id: "03",
-      title: "Perform",
-      description: "Apply English in real conversations, exams, interviews, and work contexts.",
-    },
-  ];
+  const t = await getTranslations({ locale, namespace: 'methodology' });
+
+  // Methodology steps from translations — no hardcoded English
+  const methodSteps = (t.raw('steps') as Array<{ id: string; title: string; description: string }>);
 
   return (
     <>
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:bg-foreground focus:text-background focus:px-4 focus:py-2">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:bg-foreground focus:text-background focus:px-4 focus:py-2 focus:outline-none focus-visible:outline-2 focus-visible:outline-foreground"
+      >
         Skip to main content
       </a>
       <StructuredData />
@@ -65,43 +55,52 @@ export default async function Home({ params }: Props) {
       <HomeSectionRail />
 
       {/* Texture Layer */}
-      <div className="noise-layer bg-noise" />
+      <div className="noise-layer bg-noise" aria-hidden="true" />
 
       <main id="main-content" className="bg-background text-foreground min-h-screen">
         {/* BEAT 01: ELITE INTRODUCTION */}
-        <section id="hero">
+        <section id="hero" style={{ scrollMarginTop: '5rem' }}>
           <VanguardHero />
         </section>
 
         {/* BEAT 02: BRAND ESSENCE & PHILOSOPHY */}
-        <section id="signature" className="section-space-lg relative z-10">
+        <section id="signature" className="section-space-lg relative z-10" style={{ scrollMarginTop: '5rem' }}>
           <VanguardSignature />
         </section>
 
         {/* BEAT 03: SYSTEMIC CURRICULUM */}
-        <div className="section-space-lg">
+        <section id="lexicon" className="section-space-lg" style={{ scrollMarginTop: '5rem' }}>
           <VanguardLexicon />
-        </div>
+        </section>
 
         {/* BEAT 05: INTELLECTUAL DEPTH (JOURNAL) */}
-        <div className="section-space-lg bg-black text-white overflow-hidden" id="journal">
+        <section className="section-space-lg bg-black text-white overflow-hidden" id="journal" style={{ scrollMarginTop: '5rem' }}>
           <VanguardJournal initialArticles={articles} />
-        </div>
+        </section>
 
         <ConversionStrip />
 
-        <section className="section-space-lg border-t border-foreground/10 bg-foreground/[0.02] px-6 md:px-12 lg:px-24">
+        {/* BEAT 04: OUTCOME FRAMEWORK — i18n */}
+        <section
+          id="methodology"
+          className="section-space-lg border-t border-foreground/10 bg-foreground/[0.02] px-6 md:px-12 lg:px-24"
+          style={{ scrollMarginTop: '5rem' }}
+        >
           <div className="max-w-[1920px] mx-auto grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 lg:col-span-4">
-              <p className="text-[10px] uppercase tracking-[0.25em] font-mono text-foreground/55 mb-5">Outcome Framework</p>
-              <h3 className="font-display text-4xl md:text-6xl leading-[0.9]">
-                A clear path from hesitation to <span className="italic">confident fluency.</span>
+              <p className="text-xs uppercase tracking-[0.25em] font-mono text-foreground/55 mb-5">
+                {t('sectionLabel')}
+              </p>
+              <h3 className="font-display text-4xl md:text-6xl leading-[0.9] headline-balance">
+                {t('heading')} <span className="italic">{t('headingItalic')}</span>
               </h3>
             </div>
             <div className="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-px border border-foreground/10 bg-foreground/10">
-              {methodLoop.map((item) => (
+              {methodSteps.map((item) => (
                 <article key={item.id} className="bg-background p-8 md:p-10">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-foreground/45 mb-4">Step {item.id}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-foreground/45 mb-4">
+                    {t('stepLabel')} {item.id}
+                  </p>
                   <h4 className="font-display text-3xl mb-3">{item.title}</h4>
                   <p className="text-foreground/70 leading-relaxed">{item.description}</p>
                 </article>
@@ -111,12 +110,19 @@ export default async function Home({ params }: Props) {
         </section>
 
         {/* BEAT 06: CONVERSION & LOCATION PROTOCOL */}
-        <div className="section-space-lg border-t border-foreground/5 bg-background text-foreground">
+        <section
+          id="contact"
+          className="section-space-lg border-t border-foreground/5 bg-background text-foreground"
+          style={{ scrollMarginTop: '5rem' }}
+        >
           <VanguardInquiry />
-        </div>
+        </section>
 
         {/* BEAT 07: TRUST LOOP */}
-        <section className="py-10 lg:py-14 overflow-hidden border-t border-foreground/5 bg-black">
+        <section
+          className="py-10 lg:py-14 overflow-hidden border-t border-foreground/5 bg-black"
+          aria-label="Credentials and certifications"
+        >
           <VanguardMarquee />
         </section>
 

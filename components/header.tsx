@@ -112,10 +112,14 @@ export function Header() {
                   onClick={() => setLangMenuOpen(!langMenuOpen)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium tracking-wider text-foreground/50 dark:text-white/50 hover:text-foreground dark:hover:text-white transition-colors"
+                  aria-label={`Language: ${currentLang.name}. Change language`}
+                  aria-expanded={langMenuOpen}
+                  aria-haspopup="listbox"
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium tracking-wider text-foreground/50 dark:text-white/50 hover:text-foreground dark:hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+                  style={{ touchAction: 'manipulation' }}
                 >
                   {currentLang.flag}
-                  <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${langMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown aria-hidden="true" className={`w-3 h-3 transition-transform duration-300 ${langMenuOpen ? 'rotate-180' : ''}`} />
                 </motion.button>
 
                 <AnimatePresence>
@@ -133,7 +137,9 @@ export function Header() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -8, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 top-full mt-2 w-40 bg-white dark:bg-[#0A0A0A] border border-foreground/10 dark:border-white/10 shadow-lg overflow-hidden z-50 rounded-xl"
+                        role="listbox"
+                        aria-label="Select language"
+                        className="absolute right-0 top-full mt-2 w-40 bg-white dark:bg-[#0A0A0A] border border-foreground/10 dark:border-white/10 shadow-lg overflow-hidden z-50"
                       >
                         {languages.map((lang) => (
                           <button
@@ -165,7 +171,8 @@ export function Header() {
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="hidden md:flex items-center justify-center w-10 h-10 border border-foreground/10 dark:border-white/10 rounded-full hover:border-[#C4A84D]/50 dark:hover:border-[#ECD06F]/50 hover:bg-[#C4A84D]/5 dark:hover:bg-[#ECD06F]/5 transition-all duration-300 text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white"
+                  className="hidden md:flex items-center justify-center w-10 h-10 border border-foreground/10 dark:border-white/10 hover:border-[#C4A84D]/50 dark:hover:border-[#ECD06F]/50 hover:bg-[#C4A84D]/5 dark:hover:bg-[#ECD06F]/5 transition-colors duration-300 text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+                  style={{ touchAction: 'manipulation' }}
                   aria-label="Toggle theme"
                 >
                   <AnimatePresence mode="wait">
@@ -198,8 +205,11 @@ export function Header() {
               <motion.button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 whileTap={{ scale: 0.95 }}
-                className="lg:hidden flex items-center justify-center w-10 h-10 text-foreground dark:text-white"
-                aria-label="Toggle menu"
+                className="lg:hidden flex items-center justify-center w-10 h-10 text-foreground dark:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+                aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav"
+                style={{ touchAction: 'manipulation' }}
               >
                 <AnimatePresence mode="wait">
                   {mobileMenuOpen ? (
@@ -232,10 +242,15 @@ export function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            id="mobile-nav"
+            role="dialog"
+            aria-label="Navigation menu"
+            aria-modal="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 lg:hidden bg-white dark:bg-black"
+            className="fixed inset-0 z-40 lg:hidden bg-white dark:bg-black overscroll-contain"
+            style={{ overscrollBehavior: 'contain' }}
           >
             <div className="h-full flex flex-col justify-center items-center px-6 pt-20">
               <nav className="flex flex-col items-center gap-2 mb-12">
@@ -267,7 +282,8 @@ export function Header() {
                   <button
                     key={lang.code}
                     onClick={() => switchLanguage(lang.code)}
-                    className={`px-4 py-2.5 text-xs font-medium tracking-wider rounded-full transition-all ${locale === lang.code
+                    style={{ touchAction: 'manipulation' }}
+                    className={`px-4 py-2.5 text-xs font-medium tracking-wider transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${locale === lang.code
                       ? 'bg-[#C4A84D] dark:bg-[#ECD06F] text-white dark:text-black'
                       : 'border border-foreground/20 dark:border-white/20 text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white hover:border-[#C4A84D]/50 dark:hover:border-[#ECD06F]/50'
                       }`}
@@ -288,7 +304,8 @@ export function Header() {
                     setTheme(theme === 'dark' ? 'light' : 'dark');
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-3 px-5 py-2.5 text-sm text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white transition-colors border border-foreground/20 dark:border-white/20 rounded-full"
+                  className="flex items-center gap-3 px-5 py-2.5 text-sm text-foreground/60 dark:text-white/60 hover:text-foreground dark:hover:text-white transition-colors border border-foreground/20 dark:border-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+                  style={{ touchAction: 'manipulation' }}
                 >
                   {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                   <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>

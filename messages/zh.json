@@ -29,7 +29,16 @@
       "students": "已教学生",
       "experience": "教学年数",
       "success": "TESOL & PGCE 认证"
-    }
+    },
+    "badgeTesol": "TESOL + PGCE",
+    "badgePgce": "DELTA（剑桥）",
+    "badgeLocation": "胡志明市",
+    "badgeFormat": "线下 + 线上",
+    "statsStudents": "已教学生",
+    "statsYears": "在越南年限",
+    "statsRating": "平均评分",
+    "statusOpen": "正在招生",
+    "photoCaption": "Bek 老师 — 富润区，胡志明市"
   },
   "about": {
     "label": "关于我",
@@ -247,5 +256,28 @@
     "address": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan",
     "districts": "也在Go Vap和Binh Thanh授课",
     "features": "监控 • 舒适 • 专业"
+  },
+  "methodology": {
+    "sectionLabel": "学习路径",
+    "heading": "从犹豫到",
+    "headingItalic": "自信流利表达的清晰路径。",
+    "steps": [
+      {
+        "id": "01",
+        "title": "评估",
+        "description": "了解当前口语水平、沟通目标和自信障碍。"
+      },
+      {
+        "id": "02",
+        "title": "训练",
+        "description": "进行有针对性的口语练习和每周结构化纠错循环。"
+      },
+      {
+        "id": "03",
+        "title": "实践",
+        "description": "在真实对话、考试、面试和工作场合中运用英语。"
+      }
+    ],
+    "stepLabel": "步骤"
   }
 }

@@ -105,6 +105,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    /* Fixes browser chrome (scrollbar, native inputs) for light/dark themes */
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   html.lenis-enabled {
@@ -118,12 +124,16 @@
     transition-duration: 500ms;
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1, "cv01" 1;
     overflow-x: hidden;
+    /* Remove tap highlight on mobile — prevents ghost blue flash on interactive elements */
+    -webkit-tap-highlight-color: transparent;
   }
 
   a,
   button {
     transition-duration: var(--motion-fast);
     transition-timing-function: var(--ease-editorial);
+    /* Prevents 300ms double-tap zoom delay on mobile */
+    touch-action: manipulation;
   }
 
   :where(a, button, input, textarea, select, [tabindex]):focus-visible {
@@ -140,6 +150,8 @@
     line-height: 0.95;
     text-transform: none;
     /* Editorial Case Control */
+    /* Prevents widow words on responsive layouts */
+    text-wrap: balance;
   }
 
   p {
@@ -147,6 +159,13 @@
     line-height: 1.625;
     font-size: clamp(1.05rem, 2.25vw, 1.2rem);
     opacity: 0.9;
+    text-wrap: pretty;
+  }
+
+  /* Numbers in stat columns must not shift width as they count up */
+  [data-stat],
+  .stat-value {
+    font-variant-numeric: tabular-nums;
   }
 
   /* Selection Clarity */
