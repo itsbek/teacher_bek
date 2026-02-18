@@ -6,33 +6,35 @@ import { VanguardNavigation } from "@/components/VanguardNavigation";
 import { VanguardFooter } from "@/components/VanguardFooter";
 
 export function AboutPageClient() {
-  const milestones = [
-    { year: "2023 - PRESENT", title: "Independent English Teacher, Ho Chi Minh City", desc: "Teaching small-group English lessons focused on speaking confidence, exam readiness, and practical communication." },
-    { year: "2022 - 2023", title: "English Instructor, Language Centers", desc: "Taught mixed-age classes and refined a speaking-first lesson format built around feedback and confidence building." },
-    { year: "EARLIER", title: "Corporate Leadership Background", desc: "Managed teams and communication workflows, which now informs structured, goal-oriented teaching." }
+  const credentials = [
+    { abbr: "TESOL", full: "Teaching English to Speakers of Other Languages" },
+    { abbr: "PGCE", full: "Postgraduate Certificate in Education" },
+    { abbr: "DELTA", full: "Cambridge — Completed, awaiting results" },
   ];
+
   const proofPoints = [
-    { value: "2000+", label: "Students Taught" },
-    { value: "4", label: "Languages Supported" },
-    { value: "24h", label: "Response Window" },
+    { value: "2,000+", label: "Students Taught" },
+    { value: "7", label: "Languages Spoken" },
+    { value: "15+", label: "Schools in HCMC" },
     { value: "Max 10", label: "Students Per Group" },
   ];
-  const methodSteps = [
+
+  const timeline = [
     {
-      id: "01",
-      title: "Diagnose",
-      description: "Map fluency blockers, confidence triggers, and practical goals before lesson planning starts."
+      year: "2022 — PRESENT",
+      title: "English Teacher, Ho Chi Minh City",
+      desc: "Teaching small-group lessons at my own classroom in Golden Mansion, Phu Nhuan. ILA Vietnam, BlueSky Kindergarten, international schools, government schools, and kindergartens across the city."
     },
     {
-      id: "02",
-      title: "Design",
-      description: "Build a weekly plan with speaking drills, correction loops, and measurable checkpoints."
+      year: "EARLIER",
+      title: "Corporate Team Leadership",
+      desc: "Years managing people and chasing quarterly targets. Good training for understanding how adults learn under pressure — and why most of them hate being put on the spot."
     },
     {
-      id: "03",
-      title: "Deploy",
-      description: "Run high-accountability sessions and feedback cycles until communication becomes automatic."
-    },
+      year: "THE BEGINNING",
+      title: "Tashkent, Uzbekistan",
+      desc: "Grew up speaking Uzbek, Russian, and eventually English. Language was never just school subject — it was the difference between being understood and being invisible."
+    }
   ];
 
   return (
@@ -40,31 +42,32 @@ export function AboutPageClient() {
       <VanguardNavigation />
       <main className="bg-background text-foreground min-h-screen pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
         <div className="atmosphere-grid opacity-40" />
-        <section className="relative px-6 md:px-12 lg:px-24 py-24 lg:py-36 overflow-hidden">
-          <div className="absolute top-0 right-0 w-[38.2%] h-full bg-[#f0f0eb] dark:bg-vanguard-carbon -z-10 hidden lg:block" />
 
+        {/* Hero */}
+        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-36">
           <div className="max-w-[1200px] mx-auto text-center section-stack">
-              <motion.span
-                initial={false}
-                animate={{ opacity: 1, y: 0 }}
-                className="type-label opacity-40 block"
-              >
-                About Teacher Bek
-              </motion.span>
-              <motion.h1
-                initial={false}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="type-display max-w-[14ch] mx-auto"
-              >
-                English Teacher <span className="italic">in Ho Chi Minh City</span>
-              </motion.h1>
-              <p className="type-body-lg max-w-2xl mx-auto text-foreground/75">
-                Practical English teaching built around confidence, communication, and consistent progress.
-              </p>
+            <motion.span
+              initial={false}
+              animate={{ opacity: 0.4, x: 0 }}
+              className="type-label block"
+            >
+              About Teacher Bek
+            </motion.span>
+            <motion.h1
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="type-display max-w-[16ch] mx-auto"
+            >
+              English Teacher <span className="italic">in Ho Chi Minh City</span>
+            </motion.h1>
+            <p className="type-body-lg max-w-2xl mx-auto text-foreground/75">
+              From Tashkent to teaching. Three years in Vietnam, seven languages, and a genuine belief that small groups produce better English speakers.
+            </p>
           </div>
         </section>
 
+        {/* Stats bar */}
         <section className="px-6 md:px-12 lg:px-24 py-10 border-y border-foreground/10 bg-foreground/[0.02]">
           <div className="max-w-[1920px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-px border border-foreground/10 bg-foreground/10">
             {proofPoints.map((point) => (
@@ -76,107 +79,135 @@ export function AboutPageClient() {
           </div>
         </section>
 
+        {/* Story section */}
         <section className="py-24 md:py-40 px-6 md:px-12 lg:px-24 border-t border-foreground/5">
           <div className="max-w-[1920px] mx-auto grid grid-cols-12 gap-12 lg:gap-24 items-start">
-            <div className="col-span-12 md:col-span-5">
+            <div className="col-span-12 lg:col-span-6">
               <h2 className="type-label opacity-40 mb-12 flex items-center gap-4">
-                <span className="w-8 h-[1px] bg-foreground"></span> Core Principles
+                <span className="w-8 h-[1px] bg-foreground"></span> The Story
               </h2>
-              <p className="type-title-lg leading-[1.05] mb-12">
-                Language learning works best when students feel safe to <span className="italic">speak and make mistakes.</span>
+              <p className="type-title-sm leading-[1.2] mb-10 text-foreground/90">
+                I came to Vietnam three years ago to volunteer. I was going to stay a few months.
               </p>
-              <div className="space-y-8 type-body text-foreground/70">
-                <p>I keep classes small so every student gets real speaking time, direct correction, and clear next steps after each lesson.</p>
-                <p>Instead of memorizing disconnected rules, students learn how to use English in conversations, school tasks, exams, and workplace situations.</p>
+              <div className="space-y-6 type-body text-foreground/70">
+                <p>
+                  After years managing teams and chasing corporate targets, I found myself in a classroom in Ho Chi Minh City — and realised I liked it more than anything I'd done in an office. So I stayed.
+                </p>
+                <p>
+                  I'm originally from Tashkent, Uzbekistan. I speak seven languages, which means I know first-hand what it feels like to not understand, to hesitate before speaking, to feel embarrassed about making mistakes in front of people. That background informs how I teach.
+                </p>
+                <p>
+                  I hold TESOL and PGCE qualifications, and I've recently completed my DELTA (Cambridge) — awaiting results. I've taught at ILA Vietnam, BlueSky Kindergarten, international schools, government schools, and kindergartens across HCMC. Right now I teach from my own classroom at Golden Mansion in Phu Nhuan.
+                </p>
+                <p>
+                  Outside of teaching: reading, weightlifting, grappling. Staying active keeps me sharp — and keeps me honest about what it actually takes to build a new skill.
+                </p>
               </div>
             </div>
 
-            <div className="col-span-12 md:col-span-7 grid grid-cols-2 gap-4 h-full pt-12 lg:pt-0">
+            {/* Photo placeholder — replace with actual teacher photo */}
+            <div className="col-span-12 lg:col-span-6 flex flex-col gap-6 pt-12 lg:pt-16">
               <motion.div
                 initial={false}
                 whileInView={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
-                transition={{ duration: 1.5 }}
-                className="aspect-[3/4] overflow-hidden grayscale brightness-90"
+                transition={{ duration: 1.2 }}
+                className="aspect-[4/5] bg-foreground/5 border border-foreground/10 overflow-hidden flex items-end"
               >
-                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop" alt="Teacher session" className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000" />
+                {/* Replace src with actual teacher photo */}
+                <div className="w-full h-full flex flex-col items-center justify-center text-foreground/20 p-8 text-center">
+                  <span className="type-label-tight block mb-2">Photo</span>
+                  <span className="type-meta block opacity-60">Teacher Bek — Phu Nhuan, Ho Chi Minh City</span>
+                </div>
               </motion.div>
-              <motion.div
-                initial={false}
-                whileInView={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
-                transition={{ duration: 1.5, delay: 0.2 }}
-                className="aspect-[3/4] overflow-hidden grayscale brightness-90 mt-24"
-              >
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" alt="Learning workshop" className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000" />
-              </motion.div>
+              <div className="border-l-2 border-foreground/15 pl-6">
+                <p className="type-body-lg italic text-foreground/60 leading-relaxed">
+                  "My students teach me something new every week. That's not a platitude — it's just true."
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-24 md:py-36 px-6 md:px-12 lg:px-24 border-t border-foreground/10">
+        {/* Credentials */}
+        <section className="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-foreground/10">
           <div className="max-w-[1920px] mx-auto grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 lg:col-span-4">
-              <span className="type-label-tight text-foreground/60">Method</span>
-              <h2 className="type-title-lg mt-6">
-                Predictable progress, <span className="italic">without confusion.</span>
+              <span className="type-label-tight text-foreground/60 block mb-6">Qualifications</span>
+              <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold leading-tight tracking-tight">
+                Certified and<br /><span className="italic">still learning.</span>
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-px border border-foreground/10 bg-foreground/10">
-              {methodSteps.map((step) => (
-                <article key={step.id} className="bg-background p-8 md:p-10">
-                  <p className="type-label-tight text-foreground/40 mb-5">Step {step.id}</p>
-                  <h3 className="type-title-sm mb-4">{step.title}</h3>
-                  <p className="type-body text-foreground/70">{step.description}</p>
+              {credentials.map((cred) => (
+                <article key={cred.abbr} className="bg-background p-8 md:p-10">
+                  <p className="type-title-sm mb-4 font-mono">{cred.abbr}</p>
+                  <p className="type-body text-foreground/60 leading-relaxed">{cred.full}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-24 md:py-48 bg-foreground text-background">
-          <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24">
-            <div className="flex flex-col items-center text-center mb-32">
-              <span className="type-label opacity-40 mb-8">Record of Achievement</span>
-              <h2 className="type-title-lg italic">Teaching Journey</h2>
+        {/* Teaching approach */}
+        <section className="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-foreground/10">
+          <div className="max-w-[1920px] mx-auto grid grid-cols-12 gap-12 items-center">
+            <div className="col-span-12 lg:col-span-5">
+              <span className="type-label-tight text-foreground/60 block mb-6">Why It Works</span>
+              <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold leading-tight tracking-tight mb-8">
+                Small groups.<br /><span className="italic">Real speaking time.</span>
+              </h2>
+              <div className="space-y-5 type-body text-foreground/70">
+                <p>
+                  I keep my groups at ten students maximum. Not because it sounds exclusive — because I've seen what happens in a 25-student language centre class. Students speak for maybe four minutes per hour. That's not a language lesson.
+                </p>
+                <p>
+                  With ten or fewer, every student speaks in every lesson. I know each person's patterns, their hesitations, the specific sounds they consistently get wrong. Correction is direct and immediate.
+                </p>
+                <p>
+                  My classroom at Golden Mansion, Phu Nhuan has CCTV, a separate restroom, air conditioning, and mosquito lamps. Parents are welcome to visit before enrolling their children.
+                </p>
+              </div>
+            </div>
+            <div className="col-span-12 lg:col-span-7 grid grid-cols-2 gap-px border border-foreground/10 bg-foreground/10">
+              {[
+                { stat: "Max 10", label: "Students per group" },
+                { stat: "3 yrs", label: "Teaching in Vietnam" },
+                { stat: "15+", label: "Schools taught at in HCMC" },
+                { stat: "CCTV", label: "Secure classroom with monitoring" },
+              ].map((item) => (
+                <div key={item.label} className="bg-background p-8 md:p-10">
+                  <p className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold leading-none mb-3">{item.stat}</p>
+                  <p className="type-label-tight text-foreground/55">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline */}
+        <section className="py-24 md:py-36 px-6 md:px-12 lg:px-24 bg-foreground text-background border-t border-foreground/10">
+          <div className="max-w-[1920px] mx-auto">
+            <div className="mb-20">
+              <span className="type-label opacity-40 mb-4 block">Background</span>
+              <h2 className="text-[clamp(1.8rem,4vw,3.5rem)] font-display font-bold leading-tight italic">
+                How I got here.
+              </h2>
             </div>
 
-            <div className="relative">
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-[1px] bg-background/10 hidden lg:block" />
-
-              <div className="space-y-32 lg:space-y-60 relative z-10">
-                {milestones.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={false}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className={`grid grid-cols-12 gap-8 items-center ${idx % 2 === 0 ? "" : "lg:flex-row-reverse"}`}
-                  >
-                    <div className={`col-span-12 lg:col-span-5 ${idx % 2 === 0 ? "lg:text-right" : "lg:col-start-8 lg:order-2"}`}>
-                      <span className="type-meta opacity-40 mb-4 block tracking-[0.3em]">{item.year}</span>
-                      <h3 className="type-title-md mb-6 italic leading-none">{item.title}</h3>
-                      <p className="type-body text-background/60 max-w-sm ml-auto mr-0 lg:ml-auto lg:mr-0 inline-block">
-                        {item.desc}
-                      </p>
-                    </div>
-
-                    <div className={`col-span-12 lg:col-span-2 flex justify-center scale-0 lg:scale-100 ${idx % 2 === 0 ? "" : "lg:order-1 lg:col-start-6"}`}>
-                      <div className="w-4 h-4 rounded-full border border-background flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-background rounded-full" />
-                      </div>
-                    </div>
-
-                    <div className={`col-span-12 lg:col-span-5 ${idx % 2 === 0 ? "lg:col-start-8" : "lg:col-start-1 lg:order-1 lg:text-right"}`}>
-                      <div className="aspect-video bg-background/5 overflow-hidden filter grayscale opacity-50 hover:opacity-100 transition-opacity">
-                        <img
-                          src={`https://images.unsplash.com/photo-${idx === 0 ? "1434030216411-0b793f4b4173" : idx === 1 ? "1517245386807-bb43f82c33c4" : "1523050335392-93851179ae22"}?q=80&w=800&auto=format&fit=crop`}
-                          className="w-full h-full object-cover"
-                          alt="Milestone"
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px border border-background/10 bg-background/10">
+              {timeline.map((item) => (
+                <motion.article
+                  key={item.year}
+                  initial={false}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-foreground p-8 md:p-10"
+                >
+                  <span className="type-meta opacity-30 block mb-6 tracking-[0.25em]">{item.year}</span>
+                  <h3 className="text-[clamp(1.1rem,1.8vw,1.4rem)] font-display font-bold leading-tight mb-5 italic">{item.title}</h3>
+                  <p className="type-body text-background/60 leading-relaxed">{item.desc}</p>
+                </motion.article>
+              ))}
             </div>
           </div>
         </section>

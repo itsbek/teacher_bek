@@ -36,123 +36,90 @@ export function VanguardHero() {
             </div>
 
             <div className="max-w-[1920px] mx-auto w-full relative z-10 flex flex-col">
-                {/* 12vw MASTER TYPOGRAPHY LAYER */}
-                <div className="flex flex-col mb-20 lg:mb-32">
-                    <h1 className="font-display text-[10.5vw] md:text-[11vw] lg:text-[10vw] leading-[0.84] tracking-tighter text-foreground headline-balance">
+                {/* HERO HEADLINE */}
+                <div className="flex flex-col mb-16 lg:mb-24">
+                    <h1 className="font-display text-[8vw] md:text-[7.5vw] lg:text-[7vw] leading-[0.88] tracking-tighter text-foreground">
                         <span className="block">
-                            <KineticText text="ENGLISH" />
+                            <KineticText text="LEARN ENGLISH." />
                         </span>
-
                         <motion.span
                             initial={false}
                             animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
                             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex items-center gap-4 md:gap-10 lg:gap-14 whitespace-nowrap"
+                            className="block italic"
                         >
-                            <div className="w-12 md:w-24 lg:w-40 h-[2px] bg-foreground hidden md:block" aria-hidden="true" />
-                            <span className="font-display text-[10.5vw] md:text-[11vw] lg:text-[10vw] leading-[0.84] tracking-tighter text-foreground italic whitespace-nowrap">
-                                <KineticText text="THAT WORKS" delay={0.3} className="italic font-serif" />
-                            </span>
+                            <KineticText text="ACTUALLY SPEAK IT." delay={0.3} className="italic" />
                         </motion.span>
                     </h1>
 
-                    <div className="flex flex-col md:flex-row justify-between items-start lg:items-end mt-12 lg:mt-4">
-                        <motion.div
-                            initial={false}
-                            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.5 }}
-                            className="max-w-xl pb-1"
-                        >
-                            <p className="text-[var(--text-lg)] md:text-[var(--text-xl)] font-light leading-relaxed text-foreground/60 rhythm-copy headline-balance">
-                                {t("subtitle")}
-                            </p>
+                    <motion.div
+                        initial={false}
+                        animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="max-w-xl mt-10"
+                    >
+                        <p className="text-[var(--text-lg)] font-light leading-relaxed text-foreground/60">
+                            {t("subtitle")}
+                        </p>
 
-                            {/* Social proof tags — trust signals above the fold */}
-                            <div className="flex flex-wrap gap-2 mt-8">
-                                {[
-                                    t("badgeTesol"),
-                                    t("badgePgce"),
-                                    t("badgeLocation"),
-                                    t("badgeFormat"),
-                                ].map((item) => (
-                                    <span
-                                        key={item}
-                                        className="px-3 py-1.5 border border-foreground/10 text-xs tracking-[0.12em] uppercase font-mono text-foreground/60"
-                                        style={{ touchAction: "manipulation" }}
-                                    >
-                                        {item}
+                        <div className="flex flex-wrap gap-2 mt-8">
+                            {[
+                                t("badgeTesol"),
+                                t("badgePgce"),
+                                t("badgeLocation"),
+                                t("badgeFormat"),
+                            ].map((item) => (
+                                <span
+                                    key={item}
+                                    className="px-3 py-1.5 border border-foreground/10 text-xs tracking-[0.12em] uppercase font-mono text-foreground/60"
+                                >
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div className="flex gap-8 mt-10 pt-10 border-t border-foreground/10">
+                            {stats.map(({ value, labelKey }) => (
+                                <div key={labelKey} className="flex flex-col gap-1">
+                                    <span className="font-display text-2xl md:text-3xl font-bold text-foreground leading-none" style={{ fontVariantNumeric: "tabular-nums" }}>
+                                        {value}
                                     </span>
-                                ))}
-                            </div>
-
-                            {/* Key stats — social proof numbers near primary CTA */}
-                            <div className="flex gap-8 mt-10 pt-10 border-t border-foreground/10">
-                                {stats.map(({ value, labelKey }) => (
-                                    <div key={labelKey} className="flex flex-col gap-1">
-                                        <span
-                                            className="font-display text-2xl md:text-3xl font-bold text-foreground leading-none"
-                                            style={{ fontVariantNumeric: "tabular-nums" }}
-                                        >
-                                            {value}
-                                        </span>
-                                        <span className="text-xs uppercase tracking-[0.12em] font-mono text-foreground/45">
-                                            {t(labelKey)}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-
-                        <span
-                            className="font-display text-[12vw] md:text-[13vw] lg:text-[12vw] leading-[0.8] tracking-tighter text-right ml-auto opacity-50 lg:opacity-80 metal-text"
-                            aria-hidden="true"
-                        >
-                            <KineticText text="FOR LIFE" delay={0.6} />
-                        </span>
-                    </div>
+                                    <span className="text-xs uppercase tracking-[0.12em] font-mono text-foreground/45">
+                                        {t(labelKey)}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
                 </div>
 
-                {/* CALL TO ACTION PROTOCOL */}
+                {/* CTAs */}
                 <motion.div
                     initial={false}
                     animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="flex flex-wrap items-end gap-12 lg:gap-20 pt-12 border-t border-foreground/5"
+                    className="flex flex-wrap items-center gap-4 pt-10 border-t border-foreground/10"
                 >
                     <Link
                         href="#contact"
-                        onMouseEnter={() => playSound('hover')}
                         onClick={() => {
                             playSound('click');
                             trackCTAClick('hero', 'primary_inquiry');
                         }}
-                        className="group link-sheen flex flex-col gap-4 bg-foreground text-background px-8 py-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
-                        style={{ touchAction: "manipulation" }}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background text-sm font-semibold tracking-wide hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
                     >
-                        <span className="text-xs uppercase tracking-[0.4em] font-bold inline-flex items-center gap-2">
-                            <span className="text-background">{t("cta")}</span>
-                            <ArrowUpRight size={14} aria-hidden="true" className="opacity-70 group-hover:opacity-100 transition-opacity text-background" />
-                        </span>
-                        <div className="w-28 h-[1px] bg-background/30 relative overflow-hidden" aria-hidden="true">
-                            <div className="absolute inset-0 bg-background -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                        </div>
+                        {t("cta")}
+                        <ArrowUpRight size={15} aria-hidden="true" />
                     </Link>
                     <Link
                         href="#lexicon"
-                        onMouseEnter={() => playSound('hover')}
                         onClick={() => {
                             playSound('click');
                             trackCTAClick('hero', 'curriculum');
                         }}
-                        className="group link-sheen flex flex-col gap-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
-                        style={{ touchAction: "manipulation" }}
+                        className="inline-flex items-center gap-2 px-6 py-3 border border-foreground/25 text-sm font-semibold tracking-wide text-foreground/80 hover:border-foreground hover:text-foreground transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
                     >
-                        <span className="text-xs uppercase tracking-[0.4em] font-bold text-foreground inline-flex items-center gap-2">
-                            {t("secondary")} <ArrowUpRight size={14} aria-hidden="true" className="opacity-40 group-hover:opacity-100 transition-opacity" />
-                        </span>
-                        <div className="w-24 h-[1px] bg-foreground/10 relative overflow-hidden" aria-hidden="true">
-                            <div className="absolute inset-0 bg-foreground -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                        </div>
+                        {t("secondary")}
                     </Link>
                 </motion.div>
             </div>

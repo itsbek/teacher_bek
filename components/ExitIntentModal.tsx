@@ -21,15 +21,22 @@ export function ExitIntentModal() {
   useEffect(() => {
     if (!shouldShow) return;
 
-    const onMouseOut = (event: MouseEvent) => {
-      if (event.clientY <= 0 && !event.relatedTarget) {
-        setIsOpen(true);
-      }
-    };
+    let removeListener: (() => void) | undefined;
 
-    document.addEventListener("mouseout", onMouseOut);
+    // Only register after 45 seconds on page — avoids firing on load/quick visit
+    const activateTimer = setTimeout(() => {
+      const onMouseOut = (event: MouseEvent) => {
+        if (event.clientY <= 0 && !event.relatedTarget) {
+          setIsOpen(true);
+        }
+      };
+      document.addEventListener("mouseout", onMouseOut);
+      removeListener = () => document.removeEventListener("mouseout", onMouseOut);
+    }, 45_000);
+
     return () => {
-      document.removeEventListener("mouseout", onMouseOut);
+      clearTimeout(activateTimer);
+      removeListener?.();
     };
   }, [shouldShow]);
 

@@ -52,7 +52,7 @@ export function VanguardLexicon() {
                             <div className="w-12 h-[1px] bg-foreground" />
                             <span className="type-label">Program Collection</span>
                         </div>
-                        <h2 className="type-title-lg mb-8">
+                        <h2 className="type-title-md mb-8">
                             <KineticText text="Program" /> <span className="italic"><KineticText text="Frameworks" delay={0.2} className="italic" /></span>
                         </h2>
                     </div>

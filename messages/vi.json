@@ -2,7 +2,7 @@
   "nav": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
-    "services": "Dịch vụ",
+    "services": "Lớp học",
     "courses": "Chương trình",
     "blog_link": "Bài viết",
     "testimonials": "Học viên",
@@ -15,7 +15,7 @@
     "titleLine1": "Tiếng Anh không chỉ là",
     "titleLine2": "một ngôn ngữ — đó là",
     "titleAccent": "chìa khóa",
-    "subtitle": "Lớp học nhỏ (tối đa 10 học viên), hội thoại thực tế, và không gian học tập an toàn, thoải mái được thiết kế cho việc học tập trung.",
+    "subtitle": "Lớp nhỏ. Nói thật. Một lớp học nơi mắc lỗi là chuyện bình thường.",
     "cta": "Trò chuyện ngay",
     "secondary": "Xem cách tôi dạy",
     "headline": "Tiếng Anh không phải là ngôn ngữ—đó là chìa khóa",
@@ -90,45 +90,45 @@
     "subtitle": "Chương trình phù hợp theo độ tuổi, mang lại kết quả thực sự. Mỗi chương trình kết hợp giảng dạy chuyên nghiệp với phương pháp hấp dẫn.",
     "youngLearners": {
       "title": "Thiếu Nhi (6-10 Tuổi)",
-      "tagline": "Xây Dựng Sự Tự Tin. Khơi Gợi Tò Mò. Yêu Thích Học Tập.",
-      "description": "Xem con bạn khám phá niềm vui tiếng Anh qua trò chơi tương tác, kể chuyện và hoạt động sáng tạo. Chương trình đã được chứng minh giúp xây dựng nền tảng vững chắc.",
+      "tagline": "Nhóm nhỏ, bài học rõ ràng, nhịp độ phù hợp.",
+      "description": "Trẻ em tiến bộ khi cảm thấy thoải mái và hứng thú. Mỗi buổi học dùng hoạt động và trò chơi thực tế — không chỉ học thuộc lòng. Nhóm nhỏ đảm bảo mỗi em đều được chú ý.",
       "outcomes": [
-        "Phát triển phát âm và kỹ năng nghe tự nhiên",
-        "Xây dựng vốn từ qua học mà chơi",
-        "Tự tin nói tiếng Anh",
-        "Chuẩn bị thành công học tập"
+        "Phát âm và kỹ năng nghe qua luyện tập thực tế",
+        "Vốn từ xây dựng qua hoạt động, không phải ghi nhớ",
+        "Tự tin nói trong môi trường không áp lực",
+        "Nền tảng tiếng Anh học đường vững chắc"
       ],
       "duration": "2 buổi/tuần • 90 phút",
       "level": "6-10 Tuổi",
-      "highlight": "Xây dựng kỹ năng ngôn ngữ suốt đời"
+      "highlight": "Nền tảng thực sự có ích"
     },
     "teens": {
       "title": "Thanh Thiếu Niên (11-17 Tuổi)",
-      "tagline": "Thể Hiện Bản Thân. Nổi Bật. Đạt Được Nhiều Hơn.",
-      "description": "Trang bị cho con bạn kỹ năng tiếng Anh mở ra nhiều cơ hội. Từ xuất sắc ở trường đến cơ hội toàn cầu, chương trình năng động xây dựng sự lưu loát và tự tin.",
+      "tagline": "Tiếng Anh phù hợp với thanh thiếu niên — trường học, giao tiếp và cuộc sống.",
+      "description": "Thanh thiếu niên tiến bộ hơn khi bài học gắn với nhu cầu thực tế của các em. Chúng tôi tập trung vào tiếng Anh học đường, giao tiếp khẩu ngữ và những kỹ năng có ích ngoài sách giáo khoa.",
       "outcomes": [
-        "Thành thạo giao tiếp và tiếng Anh học thuật",
-        "Xuất sắc trong bài tập và thuyết trình",
-        "Xây dựng tự tin cho tương lai",
-        "Phát triển tư duy phản biện bằng tiếng Anh"
+        "Nói tiếng Anh tự nhiên, không gượng gạo",
+        "Kết quả học tập và bài kiểm tra tốt hơn",
+        "Kỹ năng giao tiếp trong tình huống thực tế",
+        "Luyện tư duy phản biện bằng tiếng Anh"
       ],
       "duration": "2 buổi/tuần • 90 phút",
       "level": "11-17 Tuổi",
-      "highlight": "Chuẩn bị cho THPT, đại học và xa hơn"
+      "highlight": "Học đường, đại học và cuộc sống hàng ngày"
     },
     "ielts": {
       "title": "Luyện Thi IELTS & Chứng Chỉ",
-      "tagline": "Đạt Điểm Mục Tiêu. Mở Khóa Tương Lai.",
-      "description": "Đạt điểm bạn cần với luyện thi IELTS hiệu quả. Chiến lược đã được chứng minh, phản hồi cá nhân và luyện tập chuyên sâu cả 4 kỹ năng.",
+      "tagline": "Luyện thi có hệ thống, tập trung đúng vào những gì bài thi kiểm tra.",
+      "description": "Cả 4 kỹ năng IELTS, đề thi thực tế và phản hồi cụ thể về điểm yếu cần cải thiện. Không có nội dung thừa — chỉ là chuẩn bị thiết thực cho điểm số thực tế.",
       "outcomes": [
-        "Thành thạo 4 kỹ năng IELTS: Đọc, Viết, Nghe, Nói",
-        "Học chiến lược thi và quản lý thời gian",
-        "Nhận phản hồi chi tiết về bài thi thử",
-        "Tự tin đạt điểm mục tiêu"
+        "Cả 4 kỹ năng: Đọc, Viết, Nghe, Nói",
+        "Chiến lược thi và quản lý thời gian thực sự hiệu quả",
+        "Phản hồi chi tiết qua bài thi có tính giờ",
+        "Đánh giá thực tế: bạn đang ở đâu và cần cải thiện gì"
       ],
       "duration": "2 buổi/tuần • 60 phút",
       "level": "Mọi Mức Điểm",
-      "highlight": "Đào tạo chuyên biệt cho du học và định cư"
+      "highlight": "Cho du học và định cư"
     }
   },
   "testimonials": {

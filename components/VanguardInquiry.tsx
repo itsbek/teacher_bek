@@ -86,8 +86,8 @@ export function VanguardInquiry() {
         <div className="flex justify-between items-end mb-14 pb-6 border-b border-foreground/10">
           <div>
             <span className="text-[var(--text-xs)] font-mono opacity-80 block mb-2">Contact</span>
-            <h2 className="text-[clamp(3.2rem,9.2vw,8.5rem)] font-display tracking-tightest leading-none">
-              Enquiry <span className="italic font-light opacity-50 underline decoration-1 underline-offset-[10px]">Form</span>
+            <h2 className="text-[clamp(2rem,4.5vw,3.75rem)] font-display tracking-tight leading-none">
+              Get in Touch
             </h2>
           </div>
           <div className="hidden md:block text-right">
@@ -204,23 +204,15 @@ export function VanguardInquiry() {
           </div>
 
           <div className="lg:col-span-5 flex flex-col gap-16">
-            <div className="relative aspect-[4/3] w-full border border-foreground/20 overflow-hidden grayscale invert dark:invert-0 bg-foreground/5 editorial-panel">
-              <div className="absolute top-4 left-4 z-10 bg-background/80 backdrop-blur-md px-4 py-2 border border-foreground/10">
+            <div className="relative w-full border border-foreground/20 overflow-hidden bg-foreground/5 editorial-panel" style={{ height: '320px' }}>
+              <div className="absolute top-4 left-4 z-10 bg-background/90 backdrop-blur-md px-4 py-2 border border-foreground/10">
                 <span className="text-[var(--text-xs)] font-bold tracking-widest uppercase flex items-center gap-2">
-                  <MapPin size={12} className="text-primary" /> Classroom: Phu Nhuan
+                  <MapPin size={12} /> Classroom: Golden Mansion, Phu Nhuan
                 </span>
               </div>
-              <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-primary/25 blur-md scale-150 animate-pulse" />
-                  <div className="relative w-8 h-8 rounded-full bg-primary text-primary-foreground border-2 border-background flex items-center justify-center shadow-lg">
-                    <MapPin size={14} />
-                  </div>
-                </div>
-              </div>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.106579893414!2d106.6669923!3d10.80313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175293da27d979d%3A0x6bba46bc20e58f0d!2sGolden%20Mansion!5e0!3m2!1sen!2svn!4v1700000000000!5m2!1sen!2svn"
-                title="Classroom location map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d974.7574530506484!2d106.66820746963197!3d10.803109899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528b00e4da229%3A0x3aba4a5d0e7a050c!2sGolden%20Mansion!5e0!3m2!1sen!2svn!4v1740000000000!5m2!1sen!2svn"
+                title="Classroom location — Golden Mansion, 119 Pho Quang, Phu Nhuan"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

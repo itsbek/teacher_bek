@@ -36,7 +36,7 @@ export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const articles = getBlogPosts(locale).slice(0, 4);
+  const articles = getBlogPosts(locale).slice(0, 2);
   const t = await getTranslations({ locale, namespace: 'methodology' });
 
   // Methodology steps from translations — no hardcoded English
@@ -74,7 +74,7 @@ export default async function Home({ params }: Props) {
         </section>
 
         {/* BEAT 05: INTELLECTUAL DEPTH (JOURNAL) */}
-        <section className="section-space-lg bg-black text-white overflow-hidden" id="journal" style={{ scrollMarginTop: '5rem' }}>
+        <section className="section-space-lg bg-black text-white" id="journal" style={{ scrollMarginTop: '5rem' }}>
           <VanguardJournal initialArticles={articles} />
         </section>
 

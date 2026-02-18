@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useSpring, useMotionValue, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { KineticText } from "./KineticText";
 import { useAudio } from "./audio-provider";
 import { useLocale } from "next-intl";
@@ -14,23 +14,18 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
     const { playSound } = useAudio();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const reduceMotion = useReducedMotion();
+    const lastHoverSound = useRef(0);
 
-    // Magnetic Physics for Image Hover
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { damping: 25, stiffness: 150 };
-    const x = useSpring(mouseX, springConfig);
-    const y = useSpring(mouseY, springConfig);
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        mouseX.set(e.clientX);
-        mouseY.set(e.clientY);
+    const throttledHoverSound = () => {
+        const now = Date.now();
+        if (now - lastHoverSound.current > 400) {
+            lastHoverSound.current = now;
+            playSound('hover');
+        }
     };
 
-
     return (
-        <section className="bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden" onMouseMove={handleMouseMove}>
+        <section className="bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden">
             <div className="atmosphere-grid opacity-45" />
             <div className="max-w-[1920px] mx-auto">
                 {/* Header: Disciplined Symmetry */}
@@ -38,19 +33,19 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                     <div className="col-span-12 lg:col-span-8">
                         <div className="flex items-center gap-6 mb-8 opacity-85">
                             <div className="w-12 h-[1px] bg-white" />
-                            <span className="type-label">Latest English Learning Insights</span>
+                            <span className="type-label">From the Journal</span>
                         </div>
-                        <h2 className="type-title-lg leading-[0.86]">
-                            <KineticText text="Practical" /> <br />
+                        <h2 className="type-title-md leading-[0.9]">
+                            <KineticText text="Things I" /> <br />
                             <span className="italic">
-                                <KineticText text="English Journal" delay={0.2} className="italic" />
+                                <KineticText text="Actually Write About" delay={0.2} className="italic" />
                             </span>
                         </h2>
                     </div>
                     <div className="col-span-12 lg:col-span-4 lg:text-right border-l lg:border-l-0 lg:border-r border-white/20 pl-8 lg:pl-0 lg:pr-8 py-4">
                         <span className="type-label opacity-75 block mb-4">New Articles</span>
                         <p className="type-body-lg max-w-sm ml-auto">
-                            Tips for parents, students, and professionals who want better English outcomes.
+                            Short reads for parents, students, and people working on their English.
                         </p>
                     </div>
                 </div>
@@ -64,7 +59,7 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                             className="group relative h-full py-8 lg:py-10 border-b border-white/20 transition-colors hover:bg-white/[0.05] block"
                             onMouseEnter={() => {
                                 setHoveredIndex(index);
-                                playSound('hover');
+                                throttledHoverSound();
                             }}
                             onMouseLeave={() => setHoveredIndex(null)}
                             onClick={() => playSound('click')}
@@ -78,7 +73,7 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
 
                                 {/* Title: Clamped and Energetic */}
                                 <div className="col-span-10 lg:col-span-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-12">
-                                    <h3 className="type-title-lg tracking-tight leading-none group-hover:italic transition-all duration-500">
+                                    <h3 className="text-[clamp(1.2rem,2.4vw,2rem)] font-display tracking-tight leading-[1.1] group-hover:italic transition-all duration-500">
                                         {article.title}
                                     </h3>
                                     <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -95,34 +90,6 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                                 </div>
                             </div>
 
-                            {/* Magnetic Magnetic Preview (Phase 8 Fluid) */}
-                            <AnimatePresence>
-                                {hoveredIndex === index && !reduceMotion && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
-                                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                        exit={{ opacity: 0, scale: 0.9, rotate: 3 }}
-                                        style={{
-                                            position: "fixed",
-                                            left: "20px",
-                                            top: "-150px",
-                                            x: x,
-                                            y: y,
-                                            pointerEvents: "none",
-                                        }}
-                                        className="fixed pointer-events-none z-[100] w-[clamp(300px,30vw,500px)] aspect-video overflow-hidden rounded-[2px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] border border-white/20"
-                                    >
-                                        <img
-                                            src={article.image || "/images/teacher-profile.jpg"}
-                                            className="w-full h-full object-cover grayscale brightness-90 contrast-125"
-                                            alt="Preview"
-                                        />
-                                        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/50 bg-black/40 px-3 py-1 backdrop-blur-md">
-                                            PREVIEW {index + 1}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
                         </Link>
                     ))}
                 </div>

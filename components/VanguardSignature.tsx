@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function VanguardSignature() {
   return (
-    <section className="relative bg-background border-t border-foreground/10 overflow-hidden">
+    <section className="relative bg-background border-t border-foreground/10 overflow-hidden py-[clamp(3.5rem,7vw,6rem)]">
       <div className="atmosphere-grid opacity-60" />
       <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -20,11 +20,11 @@ export function VanguardSignature() {
               <span className="w-10 h-[1px] bg-foreground" />
               <span className="text-[10px] uppercase tracking-[0.22em] font-mono text-foreground/80">Teaching Approach</span>
             </div>
-            <h2 className="font-display text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-tight mb-6 headline-balance">
-              Structured lessons. Real speaking. Measurable results.
+            <h2 className="font-display text-[clamp(2rem,5vw,4rem)] leading-[0.95] tracking-tight mb-6 headline-balance">
+              Clear sessions. Honest feedback. Consistent progress.
             </h2>
-            <p className="text-foreground/85 text-lg md:text-xl leading-relaxed rhythm-copy">
-              Students improve faster when classes are clear, interactive, and consistent. Every week includes speaking practice, focused correction, and concrete targets you can track.
+            <p className="text-foreground/75 text-lg md:text-xl leading-relaxed rhythm-copy">
+              Each week covers speaking practice, error correction, and something concrete to take away. No filler — just structured, focused work that compounds over time.
             </p>
           </motion.div>
 

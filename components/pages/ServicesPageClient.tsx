@@ -87,51 +87,50 @@ export function ServicesPageClient() {
           </div>
         </section>
 
-        <section className="pb-40 px-6 md:px-12 lg:px-24">
-          <div className="max-w-[1920px] mx-auto space-y-40 lg:space-y-60">
-            {programs.map((program, idx) => (
-              <motion.div
-                key={program.id}
-                id={`program-${program.id}`}
-                initial={false}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="grid grid-cols-12 gap-8 lg:gap-24"
-              >
-                <div className={`col-span-12 lg:col-span-7 ${idx % 2 === 0 ? "order-1" : "lg:order-2"}`}>
-                  <div className="relative aspect-[16/9] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
-                    <img src={program.image} className="w-full h-full object-cover scale-105" alt={program.title} />
-                    <div className="absolute top-0 right-0 p-8">
-                      <span className="type-meta text-white/40 rotate-90 inline-block origin-right">PLATE 0{program.id}</span>
+        <section className="pb-24 px-6 md:px-12 lg:px-24">
+          <div className="max-w-[1920px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px border border-foreground/10 bg-foreground/10">
+              {programs.map((program, idx) => (
+                <motion.div
+                  key={program.id}
+                  id={`program-${program.id}`}
+                  initial={false}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
+                  className="bg-background flex flex-col group"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <img src={program.image} className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" alt={program.title} />
+                    <div className="absolute top-0 left-0 p-4">
+                      <span className="type-meta text-white/50">0{program.id}</span>
                     </div>
                   </div>
-                </div>
 
-                <div className={`col-span-12 lg:col-span-5 flex flex-col justify-center ${idx % 2 === 0 ? "order-2" : "lg:order-1"}`}>
-                  <span className="type-label-tight opacity-30 mb-8">Program {program.id}</span>
-                  <h2 className="type-title-lg mb-8 leading-none">
-                    {program.title}
-                  </h2>
-                  <p className="type-body-lg text-foreground/70 mb-12 max-w-md">
-                    {program.desc}
-                  </p>
+                  <div className="flex flex-col flex-1 p-6 md:p-8 lg:p-10">
+                    <h2 className="text-[clamp(1.25rem,2vw,1.75rem)] font-display font-bold leading-tight mb-4">
+                      {program.title}
+                    </h2>
+                    <p className="type-body text-foreground/65 mb-6 flex-1">
+                      {program.desc}
+                    </p>
 
-                  <ul className="space-y-4 mb-12">
-                    {program.features.map(f => (
-                      <li key={f} className="flex items-center gap-4 type-label-tight opacity-40">
-                        <div className="w-6 h-[1px] bg-foreground" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="space-y-2.5 mb-8">
+                      {program.features.map(f => (
+                        <li key={f} className="flex items-center gap-3 type-label-tight opacity-50">
+                          <div className="w-4 h-[1px] bg-foreground shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <a href={`/${locale}#contact`} className="vanguard-magnetic group w-fit flex items-center gap-6 py-4 px-8 border border-foreground/10 hover:bg-foreground hover:text-background transition-colors duration-500">
-                    <span className="type-label-tight">Request This Program</span>
-                    <ArrowUpRight size={16} />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
+                    <a href={`/${locale}#contact`} className="vanguard-magnetic group/btn mt-auto w-fit flex items-center gap-4 py-3 px-6 border border-foreground/15 hover:bg-foreground hover:text-background transition-colors duration-400">
+                      <span className="type-label-tight">Enquire</span>
+                      <ArrowUpRight size={14} />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 

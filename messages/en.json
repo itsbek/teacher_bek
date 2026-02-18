@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "services": "Services",
+    "services": "Classes",
     "courses": "Programs",
     "testimonials": "Stories",
     "faq": "FAQ",
@@ -15,7 +15,7 @@
     "titleLine1": "English is not",
     "titleLine2": "a language — it is a",
     "titleAccent": "key",
-    "subtitle": "Small groups (max 10 students), real conversations, and a safe, comfortable classroom designed for focused learning.",
+    "subtitle": "Small groups. Real conversations. A classroom where making mistakes is the whole point.",
     "cta": "Get in Touch",
     "secondary": "Learn More",
     "headline": "English is not a language—it is a key",
@@ -105,7 +105,7 @@
   },
   "services": {
     "title": "Linguistic Systems",
-    "subtitle": "Elite academic frameworks designed for global narrative mastery.",
+    "subtitle": "Programs built around how people actually learn to speak.",
     "programs": {
       "mentorship": {
         "title": "Young Learners",
@@ -126,45 +126,45 @@
     "subtitle": "Age-appropriate curriculum designed to deliver real results. Every program combines expert instruction with engaging methods that make learning stick.",
     "youngLearners": {
       "title": "Young Learners (Ages 6-10)",
-      "tagline": "Build Confidence. Spark Curiosity. Love Learning.",
-      "description": "Watch your child discover the joy of English through interactive games, storytelling, and creative activities. Our proven curriculum builds strong foundations while keeping young minds engaged and excited.",
+      "tagline": "Small groups, clear lessons, comfortable pace.",
+      "description": "Kids improve when they feel relaxed and engaged. Sessions use activities, real practice, and games — not just textbook drills. Groups stay small so every child gets attention.",
       "outcomes": [
-        "Develop natural pronunciation and listening skills",
-        "Build vocabulary through play-based learning",
-        "Gain confidence speaking in English",
-        "Prepare for academic success"
+        "Natural pronunciation and listening through practice",
+        "Vocabulary built through activities, not memorization",
+        "Confidence speaking in a low-pressure setting",
+        "A solid base for school English"
       ],
       "duration": "2x/week • 90 min",
       "level": "Ages 6-10",
-      "highlight": "Building lifelong language skills"
+      "highlight": "A foundation they'll actually use"
     },
     "teens": {
       "title": "Teens & Pre-Teens (Ages 11-17)",
-      "tagline": "Express Yourself. Stand Out. Achieve More.",
-      "description": "Empower your teen with English skills that open doors. From school excellence to global opportunities, our dynamic curriculum builds fluency, critical thinking, and the confidence to communicate in any situation.",
+      "tagline": "Relevant English for teenagers — school, conversations, and beyond.",
+      "description": "Teenagers get better at English when lessons match what they actually need. We cover school subjects, spoken communication, and the kind of English that's useful outside of textbooks.",
       "outcomes": [
-        "Master conversational fluency and academic English",
-        "Excel in school assignments and presentations",
-        "Build confidence for future opportunities",
-        "Develop critical thinking in English"
+        "Spoken English that feels natural, not rehearsed",
+        "Better performance on school assignments and exams",
+        "Communication skills for real situations",
+        "Critical thinking practice in English"
       ],
       "duration": "2x/week • 90 min",
       "level": "Ages 11-17",
-      "highlight": "Prepare for high school, university, and beyond"
+      "highlight": "School, university, and everyday life"
     },
     "ielts": {
       "title": "IELTS & Exam Preparation",
-      "tagline": "Achieve Your Target Score. Unlock Your Future.",
-      "description": "Get the score you need with targeted IELTS preparation that works. Proven strategies, personalized feedback, and intensive practice across all four skills—delivered by a certified expert who knows exactly what examiners look for.",
+      "tagline": "Structured prep that covers what the exam actually tests.",
+      "description": "All four IELTS skills, real practice tests, and clear feedback on what needs work. No padding — just focused preparation that translates to scores.",
       "outcomes": [
-        "Master all four IELTS skills: Reading, Writing, Listening, Speaking",
-        "Learn proven test-taking strategies and time management",
-        "Receive detailed feedback on practice tests",
-        "Achieve your target band score with confidence"
+        "All four skills: Reading, Writing, Listening, Speaking",
+        "Test strategy and time management that actually helps",
+        "Detailed feedback on timed practice tests",
+        "A realistic sense of where you stand and what to fix"
       ],
       "duration": "2x/week • 60 min",
       "level": "All Band Targets",
-      "highlight": "Specialized training for university admission and immigration"
+      "highlight": "For university applications and immigration"
     }
   },
   "testimonials": {

@@ -61,10 +61,10 @@ export function VanguardFooter() {
                             <a href="https://zalo.me/0123456789" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">Zalo</a>
                         </div>
                         <div className="col-span-2 mt-4">
-                            <span className="type-label text-foreground/35 mb-4 block">Headquarters</span>
+                            <span className="type-label text-foreground/35 mb-4 block">Location</span>
                             <p className="type-meta text-foreground/65 leading-relaxed">
-                                Phu Nhuan, Ho Chi Minh City<br />
-                                Vietnam (UTC+7)
+                                Golden Mansion, Phu Nhuan<br />
+                                Ho Chi Minh City, Vietnam
                             </p>
                         </div>
                     </div>
@@ -72,9 +72,9 @@ export function VanguardFooter() {
 
                 <div className="flex flex-col md:flex-row justify-between items-end border-t border-foreground/10 pt-8">
                     <div className="mb-4 md:mb-0 flex items-center gap-8">
-                        <h1 className="text-[7vw] md:text-[4.6vw] leading-none font-bold tracking-tighter text-foreground opacity-[0.08] select-none pointer-events-none uppercase">
-                            BEK VANGUARD®
-                        </h1>
+                        <span className="text-[7vw] md:text-[4.6vw] leading-none font-bold tracking-tighter text-foreground opacity-[0.06] select-none pointer-events-none uppercase">
+                            Teacher Bek
+                        </span>
                         <button
                             type="button"
                             onMouseEnter={() => playSound('hover')}
@@ -82,13 +82,13 @@ export function VanguardFooter() {
                                 playSound('click');
                                 scrollToTop();
                             }}
+                            aria-label="Back to top"
                             className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-500 group"
                         >
                             <ArrowUp size={18} className="group-hover:translate-y-[-2px] transition-transform" />
                         </button>
                     </div>
-                    <div className="flex gap-8 type-label-tight text-foreground/50">
-                        <span>© {new Date().getFullYear()} Teacher Bek</span>
+                    <div className="flex gap-8 type-label-tight text-foreground/40">
                         <Link href={`/${locale}/privacy`} className="hover:text-foreground">{t("privacy")}</Link>
                         <Link href={`/${locale}/terms`} className="hover:text-foreground">{t("terms")}</Link>
                     </div>

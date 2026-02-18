@@ -29,7 +29,6 @@ export function ThemeToggle() {
             aria-label="Toggle Theme"
             title="Toggle light/dark theme"
         >
-            <span className="type-label-tight hidden lg:inline">Theme</span>
             {activeTheme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
         </button>
     );

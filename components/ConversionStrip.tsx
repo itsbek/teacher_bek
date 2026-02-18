@@ -9,10 +9,10 @@ export function ConversionStrip() {
       <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center editorial-panel px-6 md:px-10 py-8">
         <div className="lg:col-span-8">
           <p className="text-[var(--text-xl)] font-display leading-tight">
-            Intake is limited each cycle to maintain small-group quality and measurable progress.
+            Spots are limited — I keep groups small on purpose.
           </p>
-          <p className="text-sm uppercase tracking-[0.16em] opacity-50 mt-3">
-            Free assessment. Personalized plan in your first reply.
+          <p className="text-sm opacity-50 mt-3">
+            Free trial session. No commitment, no pressure.
           </p>
         </div>
         <div className="lg:col-span-4 lg:text-right">
@@ -21,7 +21,7 @@ export function ConversionStrip() {
             onClick={() => trackCTAClick("strip", "assessment")}
             className="inline-flex items-center gap-3 px-7 py-4 border border-foreground text-[11px] uppercase tracking-[0.25em] hover:bg-foreground hover:text-background transition-colors link-sheen"
           >
-            Reserve Assessment
+            Get in Touch
           </a>
         </div>
       </div>

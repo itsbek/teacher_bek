@@ -38,13 +38,12 @@ export function VanguardNavigation() {
     return (
         <>
             <nav className="fixed top-0 w-full z-[10000] px-6 md:px-8 py-5 flex justify-between items-center bg-background/85 backdrop-blur-md border-b border-foreground/10 text-foreground pointer-events-auto">
-                {/* Logo - Vance Style */}
                 <Link
                     href={`/${locale}`}
                     aria-label="Go to homepage"
                     className="text-2xl md:text-3xl font-bold tracking-tighter uppercase pointer-events-auto"
                 >
-                    BEK VANGUARD®
+                    Teacher Bek
                 </Link>
 
                 {/* Desktop Nav */}
