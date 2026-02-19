@@ -26,7 +26,6 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
 
     return (
         <section className="bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden">
-            <div className="atmosphere-grid opacity-45" />
             <div className="max-w-[1920px] mx-auto">
                 {/* Header: Disciplined Symmetry */}
                 <div className="grid grid-cols-12 gap-8 mb-14 lg:mb-18 items-end">

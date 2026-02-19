@@ -8,8 +8,8 @@ export function BlogHero() {
     const t = useTranslations("blog");
 
     return (
-        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-36 border-b border-foreground/5">
-            <div className="max-w-[1200px] mx-auto text-center section-stack">
+        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-32 min-h-[calc(100vh-8rem)] flex flex-col justify-center border-b border-foreground/5">
+            <div className="max-w-[1920px] mx-auto w-full text-center section-stack">
                     <span className="type-label opacity-40 mb-12 block">
                         English Learning Blog
                     </span>

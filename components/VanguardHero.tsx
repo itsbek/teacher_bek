@@ -23,18 +23,6 @@ export function VanguardHero() {
 
     return (
         <header className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-32 pb-40 overflow-hidden bg-background">
-            <div className="atmosphere-grid -z-10" aria-hidden="true" />
-            <div className="hero-atmosphere -z-10" aria-hidden="true" />
-            {/* Golden Ratio Split Background (38.2%) */}
-            <div className="absolute top-0 right-0 w-[38.2%] h-full bg-[#f4f4f0] dark:bg-vanguard-carbon/20 -z-10 hidden lg:block" aria-hidden="true" />
-
-            {/* Grid Logic: 12 Columns Overlay */}
-            <div className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24 top-0 h-full grid grid-cols-12 gap-8 pointer-events-none opacity-[0.03]" aria-hidden="true">
-                {[...Array(12)].map((_, i) => (
-                    <div key={i} className="h-full border-x border-foreground/5" />
-                ))}
-            </div>
-
             <div className="max-w-[1920px] mx-auto w-full relative z-10 flex flex-col">
                 {/* HERO HEADLINE */}
                 <div className="flex flex-col mb-16 lg:mb-24">
@@ -62,7 +50,8 @@ export function VanguardHero() {
                             {t("subtitle")}
                         </p>
 
-                        <div className="flex flex-wrap gap-2 mt-8">
+                        {/* min-h prevents layout shift when badge text length varies by locale */}
+                        <div className="flex flex-wrap gap-2 mt-8 min-h-[2.5rem]">
                             {[
                                 t("badgeTesol"),
                                 t("badgePgce"),
@@ -71,16 +60,16 @@ export function VanguardHero() {
                             ].map((item) => (
                                 <span
                                     key={item}
-                                    className="px-3 py-1.5 border border-foreground/10 text-xs tracking-[0.12em] uppercase font-mono text-foreground/60"
+                                    className="px-3 py-1.5 border border-foreground/10 text-xs tracking-[0.12em] uppercase font-mono text-foreground/60 whitespace-nowrap"
                                 >
                                     {item}
                                 </span>
                             ))}
                         </div>
 
-                        <div className="flex gap-8 mt-10 pt-10 border-t border-foreground/10">
+                        <div className="flex gap-8 mt-10 pt-10 border-t border-foreground/10 min-h-[5rem]">
                             {stats.map(({ value, labelKey }) => (
-                                <div key={labelKey} className="flex flex-col gap-1">
+                                <div key={labelKey} className="flex flex-col gap-1 min-w-[4rem]">
                                     <span className="font-display text-2xl md:text-3xl font-bold text-foreground leading-none" style={{ fontVariantNumeric: "tabular-nums" }}>
                                         {value}
                                     </span>
@@ -150,10 +139,9 @@ export function VanguardHero() {
                         fill
                         sizes="(min-width: 1024px) 32vw, 0vw"
                         priority
+                        quality={90}
                         className="w-full h-full object-cover object-top transition-transform duration-[3000ms] ease-[var(--ease-editorial)] hover:scale-105"
                     />
-                    {/* Subtle tone treatment to blend with page */}
-                    <div className="absolute inset-0 mix-blend-multiply bg-[hsl(var(--background)/0.15)]" aria-hidden="true" />
                     <div className="absolute inset-0 border border-foreground/10" aria-hidden="true" />
                     <div className="absolute bottom-6 left-6">
                         <span className="text-xs font-mono text-white/70 uppercase tracking-widest bg-black/50 backdrop-blur-sm px-3 py-1">

@@ -16,7 +16,7 @@
     "titleLine2": "một ngôn ngữ — đó là",
     "titleAccent": "chìa khóa",
     "subtitle": "Lớp nhỏ. Nói thật. Một lớp học nơi mắc lỗi là chuyện bình thường.",
-    "cta": "Trò chuyện ngay",
+    "cta": "Đặt Lịch Học Thử Miễn Phí",
     "secondary": "Xem cách tôi dạy",
     "headline": "Tiếng Anh không phải là ngôn ngữ—đó là chìa khóa",
     "subheadline": "Chứng Chỉ TESOL • ILA Vietnam • TP. Hồ Chí Minh",
@@ -258,6 +258,7 @@
     "privacy": "Quyền Riêng Tư",
     "terms": "Điều Khoản",
     "quickLinks": "Liên Kết Nhanh",
+    "channels": "Kênh Liên Hệ",
     "location": "Golden Mansion 1, Phú Nhuận"
   },
   "location": {
@@ -267,7 +268,7 @@
     "features": "Camera • Thoải mái • Chuyên nghiệp"
   },
   "methodology": {
-    "sectionLabel": "Lộ Trình Kết Quả",
+    "sectionLabel": "Cách Bạn Học",
     "heading": "Con đường rõ ràng từ do dự đến",
     "headingItalic": "tự tin giao tiếp.",
     "steps": [
@@ -288,5 +289,67 @@
       }
     ],
     "stepLabel": "Bước"
+  },
+  "programs": {
+    "sectionLabel": "Lớp Tiếng Anh",
+    "heading": "Các",
+    "headingItalic": "Chương Trình",
+    "subtitle": "Kết Quả Tiếng Anh Thực Tế",
+    "subtitleDesc": "Lộ trình học rõ ràng cho trẻ em, thiếu niên và người lớn với mục tiêu giao tiếp thực tế.",
+    "requestDetails": "Yêu cầu thông tin",
+    "readyTitle": "Sẵn sàng bắt đầu?",
+    "readyDesc": "Cho biết trình độ và mục tiêu của bạn. Chúng tôi sẽ gợi ý chương trình và lịch học phù hợp.",
+    "requestCta": "Yêu Cầu Tư Vấn",
+    "pricingNote": "Tất cả lớp học: 3.000.000 VND / tháng",
+    "scheduleNote": "Buổi tối ngày thường · Cuối tuần (một số buổi chiều)",
+    "formatNote": "90 phút học · 15 phút nghỉ · Tối đa 10 học viên",
+    "youngLearners": {
+      "title": "Thiếu Nhi",
+      "subtitle": "Từ 6–10 tuổi",
+      "tagline": "Lớp nhỏ, bài học rõ ràng, nhịp độ thoải mái.",
+      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
+      "price": "3.000.000 VND / tháng",
+      "schedule": "Buổi tối ngày thường · Cuối tuần",
+      "outcomes_0": "Phát âm tự nhiên qua luyện tập",
+      "outcomes_1": "Từ vựng qua hoạt động thực tế",
+      "outcomes_2": "Tự tin trong môi trường áp lực thấp",
+      "outcomes_3": "Nền tảng vững chắc cho tiếng Anh học đường"
+    },
+    "teens": {
+      "title": "Thiếu Niên",
+      "subtitle": "Từ 11–17 tuổi",
+      "tagline": "Tiếng Anh phù hợp cho học đường và cuộc sống.",
+      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
+      "price": "3.000.000 VND / tháng",
+      "schedule": "Buổi tối ngày thường · Cuối tuần",
+      "outcomes_0": "Tiếng Anh giao tiếp tự nhiên",
+      "outcomes_1": "Kết quả học tập và thi cử tốt hơn",
+      "outcomes_2": "Kỹ năng giao tiếp trong tình huống thực tế",
+      "outcomes_3": "Tư duy phản biện bằng tiếng Anh"
+    },
+    "ielts": {
+      "title": "Luyện Thi IELTS",
+      "subtitle": "Mọi Band Điểm",
+      "tagline": "Luyện thi có hệ thống, đúng trọng tâm.",
+      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
+      "price": "3.000.000 VND / tháng",
+      "schedule": "Buổi tối ngày thường · Cuối tuần",
+      "outcomes_0": "Đủ 4 kỹ năng: Đọc, Viết, Nghe, Nói",
+      "outcomes_1": "Chiến lược thi và quản lý thời gian",
+      "outcomes_2": "Phản hồi chi tiết bài thi thử",
+      "outcomes_3": "Biết rõ điểm mạnh và điểm cần cải thiện"
+    },
+    "workEnglish": {
+      "title": "Tiếng Anh Công Sở",
+      "subtitle": "Mọi Trình Độ",
+      "tagline": "Tiếng Anh chuyên nghiệp cho phỏng vấn, họp và khách hàng.",
+      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
+      "price": "3.000.000 VND / tháng",
+      "schedule": "Buổi tối ngày thường · Cuối tuần",
+      "outcomes_0": "Phỏng vấn và thuyết trình bằng tiếng Anh",
+      "outcomes_1": "Email và viết lách trong công việc",
+      "outcomes_2": "Ngôn ngữ đàm phán và họp hành",
+      "outcomes_3": "Kỹ năng giao tiếp với khách hàng"
+    }
   }
 }

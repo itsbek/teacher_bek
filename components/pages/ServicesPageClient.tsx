@@ -7,144 +7,210 @@ import { VanguardNavigation } from "@/components/VanguardNavigation";
 import { VanguardFooter } from "@/components/VanguardFooter";
 import { ArrowUpRight } from "lucide-react";
 
+const programs = [
+  {
+    id: "01",
+    title: "Young Learners",
+    subtitle: "Ages 6–10",
+    tagline: "Small groups, clear lessons, comfortable pace.",
+    format: "2x/week · 90 min · Max 10 students",
+    features: [
+      "Small group format (max 10)",
+      "Speaking-focused activities",
+      "Parent progress updates",
+      "Safe, CCTV-monitored classroom",
+    ],
+    anchor: "young-learners",
+  },
+  {
+    id: "02",
+    title: "Teens & Pre-Teens",
+    subtitle: "Ages 11–17",
+    tagline: "Relevant English for school, conversations, and beyond.",
+    format: "2x/week · 90 min · Max 10 students",
+    features: [
+      "School assignment support",
+      "Presentation and speaking skills",
+      "Exam-focused practice",
+      "Communication for real situations",
+    ],
+    anchor: "teens",
+  },
+  {
+    id: "03",
+    title: "IELTS & Professional English",
+    subtitle: "All Band Targets",
+    tagline: "Structured prep for the exam and the workplace.",
+    format: "2x/week · 60 min · All levels",
+    features: [
+      "Band-focused exam strategy",
+      "Mock speaking drills and feedback",
+      "Business email and writing",
+      "Real-world communication practice",
+    ],
+    anchor: "ielts",
+  },
+];
+
+const stats = [
+  { value: "Max 10", label: "Students per class" },
+  { value: "TESOL", label: "Qualified teacher" },
+  { value: "Free", label: "Trial assessment" },
+  { value: "HCMC", label: "In-person + online" },
+];
+
 export function ServicesPageClient() {
   const locale = useLocale();
-
-  const programs = [
-    {
-      id: "01",
-      title: "Young Learners (6-10)",
-      desc: "Interactive English classes that build confidence, pronunciation, and vocabulary through structured games and conversation.",
-      features: ["Small group format", "Speaking-focused activities", "Parent progress updates"],
-      image: "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?q=80&w=1200"
-    },
-    {
-      id: "02",
-      title: "Teens (11-17)",
-      desc: "Academic and conversational English for school success, presentations, and day-to-day confidence.",
-      features: ["School support", "Presentation speaking", "Exam-focused practice"],
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200"
-    },
-    {
-      id: "03",
-      title: "IELTS & Professional English",
-      desc: "Targeted IELTS and workplace English lessons for interviews, meetings, and client conversations.",
-      features: ["Band-focused strategy", "Mock speaking drills", "Real-world communication practice"],
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200"
-    }
-  ];
-  const trustSignals = [
-    { value: "Max 10", label: "Small Group Classes" },
-    { value: "IELTS", label: "Test Prep Included" },
-    { value: "Band+", label: "Exam Strategy + Drills" },
-    { value: "HCMC", label: "Local + Online Delivery" },
-  ];
 
   return (
     <>
       <VanguardNavigation />
-      <main className="bg-background text-foreground min-h-screen pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
-        <div className="atmosphere-grid opacity-40" />
-        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-36">
-          <div className="max-w-[1200px] mx-auto text-center section-stack">
-            <motion.span
-              initial={false}
-              animate={{ opacity: 0.4, x: 0 }}
-              className="type-label block"
-            >
-              Programs & Services
-            </motion.span>
-            <motion.h1
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="type-display max-w-[12ch] mx-auto"
-            >
-              English <span className="italic">Programs</span>
-            </motion.h1>
-            <p className="type-body-lg max-w-2xl mx-auto text-foreground/75">
-              Flexible small-group lessons for kids, teens, and adults who want practical English results.
-            </p>
+      <main className="bg-background text-foreground min-h-screen pt-32 selection:bg-black selection:text-white antialiased">
+
+        {/* Hero */}
+        <section className="px-6 md:px-12 lg:px-24 py-20 lg:py-28 min-h-[calc(100vh-8rem)] flex flex-col justify-center border-b border-foreground/10">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/50 mb-4">
+            English Programs
+          </p>
+          <h1
+            className="font-display leading-[0.92] tracking-tight text-foreground"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
+          >
+            Find the Right <span className="italic">Program.</span>
+          </h1>
+          <p className="font-mono text-sm text-foreground/55 max-w-lg mt-5 leading-relaxed">
+            Small groups for children, teens, and adults. Practical English with
+            real results — not just textbook English.
+          </p>
+        </section>
+
+        {/* Stats bar */}
+        <section className="px-6 md:px-12 lg:px-24 py-0 border-b border-foreground/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px border border-foreground/10 bg-foreground/10">
+            {stats.map((stat) => (
+              <div key={stat.label} className="bg-background px-6 md:px-10 py-8">
+                <p
+                  className="font-display font-bold leading-none text-foreground"
+                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
+                >
+                  {stat.value}
+                </p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/55 mt-3">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="px-6 md:px-12 lg:px-24 pb-16">
-          <div className="max-w-[1920px] mx-auto">
-            <div className="mb-6">
-              <p className="type-label-tight text-foreground/50 mb-2">Program Snapshot</p>
-              <p className="type-body text-foreground/70 max-w-2xl">
-                Core delivery standards across all programs below, including IELTS-focused preparation.
+        {/* Program rows */}
+        <section className="px-6 md:px-12 lg:px-24">
+          {programs.map((program, index) => (
+            <motion.div
+              key={program.id}
+              id={program.anchor}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.75,
+                delay: index * 0.12,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={`
+                group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16
+                py-12 lg:py-16 border-b border-foreground/10
+                ${index === 0 ? "border-t border-foreground/10" : ""}
+              `}
+            >
+              {/* LEFT — Identity */}
+              <div className="lg:col-span-4 flex flex-col justify-between">
+                <div>
+                  <div
+                    className="font-display font-bold leading-none select-none mb-3 text-foreground/10 group-hover:text-foreground/[0.18] transition-colors duration-500"
+                    style={{ fontSize: "clamp(5rem, 10vw, 9rem)" }}
+                    aria-hidden="true"
+                  >
+                    {program.id}
+                  </div>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-tight mb-1 group-hover:italic transition-all duration-500">
+                    {program.title}
+                  </h2>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/45 mb-3">
+                    {program.subtitle}
+                  </p>
+                  <p className="font-mono text-xs text-foreground/55 italic leading-relaxed max-w-xs">
+                    {program.tagline}
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <span className="font-mono text-[10px] uppercase tracking-widest border border-foreground/15 px-3 py-1.5 inline-block text-foreground/60">
+                    {program.format}
+                  </span>
+                </div>
+              </div>
+
+              {/* RIGHT — Features */}
+              <div className="lg:col-span-8 flex flex-col justify-center">
+                <ul className="flex flex-col divide-y divide-foreground/[0.06]">
+                  {program.features.map((feature) => (
+                    <li key={feature} className="flex items-baseline gap-4 py-3.5">
+                      <span
+                        className="font-mono text-foreground/30 text-xs shrink-0 group-hover:text-foreground/60 transition-colors duration-500"
+                        aria-hidden="true"
+                      >
+                        →
+                      </span>
+                      <span className="font-mono text-sm text-foreground/75 leading-snug">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={`/${locale}#contact`}
+                  className="inline-flex items-center gap-2 mt-8 self-start font-mono text-xs uppercase tracking-widest text-foreground/40 underline underline-offset-4 hover:text-foreground transition-colors duration-300"
+                >
+                  Enquire about this program
+                  <ArrowUpRight size={11} />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="px-6 md:px-12 lg:px-24 py-16 border-t border-foreground/10 bg-foreground/[0.02]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/50 mb-3">
+                Free Assessment
+              </p>
+              <h2
+                className="font-display leading-tight text-foreground"
+                style={{ fontSize: "clamp(1.6rem, 3vw, 2.6rem)" }}
+              >
+                Not sure which program?{" "}
+                <span className="italic">Let&apos;s figure it out together.</span>
+              </h2>
+              <p className="font-mono text-xs text-foreground/50 mt-4 leading-relaxed">
+                30-minute assessment. No payment, no commitment.
               </p>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px border border-foreground/10 bg-foreground/10">
-              {trustSignals.map((signal) => (
-                <div key={signal.label} className="bg-background px-6 md:px-10 py-8">
-                  <p className="type-title-md leading-none">{signal.value}</p>
-                  <p className="type-label-tight mt-3 text-foreground/60">{signal.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="pb-24 px-6 md:px-12 lg:px-24">
-          <div className="max-w-[1920px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px border border-foreground/10 bg-foreground/10">
-              {programs.map((program, idx) => (
-                <motion.div
-                  key={program.id}
-                  id={`program-${program.id}`}
-                  initial={false}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
-                  className="bg-background flex flex-col group"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <img src={program.image} className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" alt={program.title} />
-                    <div className="absolute top-0 left-0 p-4">
-                      <span className="type-meta text-white/50">0{program.id}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col flex-1 p-6 md:p-8 lg:p-10">
-                    <h2 className="text-[clamp(1.25rem,2vw,1.75rem)] font-display font-bold leading-tight mb-4">
-                      {program.title}
-                    </h2>
-                    <p className="type-body text-foreground/65 mb-6 flex-1">
-                      {program.desc}
-                    </p>
-
-                    <ul className="space-y-2.5 mb-8">
-                      {program.features.map(f => (
-                        <li key={f} className="flex items-center gap-3 type-label-tight opacity-50">
-                          <div className="w-4 h-[1px] bg-foreground shrink-0" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <a href={`/${locale}#contact`} className="vanguard-magnetic group/btn mt-auto w-fit flex items-center gap-4 py-3 px-6 border border-foreground/15 hover:bg-foreground hover:text-background transition-colors duration-400">
-                      <span className="type-label-tight">Enquire</span>
-                      <ArrowUpRight size={14} />
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="lg:col-span-4 lg:flex lg:justify-end">
+              <a
+                href={`/${locale}#contact`}
+                className="inline-flex items-center gap-3 px-8 py-5 bg-foreground text-background font-mono text-[11px] uppercase tracking-[0.25em] hover:opacity-90 transition-opacity"
+              >
+                Book Free Assessment
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
             </div>
           </div>
         </section>
 
         <VanguardFooter />
       </main>
-
-      <style jsx>{`
-        .vanguard-magnetic {
-          transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .vanguard-magnetic:hover {
-          transform: translateY(-2px);
-        }
-      `}</style>
     </>
   );
 }

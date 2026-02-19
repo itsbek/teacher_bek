@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 
 const STORAGE_KEY = "exit-intent-dismissed-at";
@@ -9,6 +9,9 @@ const COOLDOWN_MS = 1000 * 60 * 60 * 24; // 24h
 export function ExitIntentModal() {
   const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
+  // Tracks session-level dismissal so the listener stops firing after "No Thanks"
+  const dismissedRef = useRef(false);
+  const removeListenerRef = useRef<(() => void) | undefined>(undefined);
 
   const shouldShow = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -21,26 +24,27 @@ export function ExitIntentModal() {
   useEffect(() => {
     if (!shouldShow) return;
 
-    let removeListener: (() => void) | undefined;
-
     // Only register after 45 seconds on page — avoids firing on load/quick visit
     const activateTimer = setTimeout(() => {
       const onMouseOut = (event: MouseEvent) => {
-        if (event.clientY <= 0 && !event.relatedTarget) {
+        if (event.clientY <= 0 && !event.relatedTarget && !dismissedRef.current) {
           setIsOpen(true);
         }
       };
       document.addEventListener("mouseout", onMouseOut);
-      removeListener = () => document.removeEventListener("mouseout", onMouseOut);
+      removeListenerRef.current = () => document.removeEventListener("mouseout", onMouseOut);
     }, 45_000);
 
     return () => {
       clearTimeout(activateTimer);
-      removeListener?.();
+      removeListenerRef.current?.();
     };
   }, [shouldShow]);
 
   const close = () => {
+    // Mark dismissed for this session AND persist for 24h cooldown
+    dismissedRef.current = true;
+    removeListenerRef.current?.();
     localStorage.setItem(STORAGE_KEY, String(Date.now()));
     setIsOpen(false);
   };

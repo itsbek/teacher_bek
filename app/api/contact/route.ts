@@ -2,44 +2,55 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 const contactFormSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().optional(),
-  message: z.string().min(10),
-  consent: z.boolean().refine((val) => val === true),
-  website: z.string().optional(), // honeypot
+  name: z.string().min(2).max(100),
+  email: z.string().email().max(200),
+  message: z.string().max(2000).optional().default(''),
+  consent: z.boolean().refine((val) => val === true, { message: 'Consent is required' }),
+  forWhom: z.enum(['My Child', 'Myself', '']).optional(),
+  level: z.enum(['Beginner', 'Intermediate', 'Advanced', 'Not Sure', '']).optional(),
+  goal: z.enum(['IELTS Score', 'Speaking Confidence', 'School Grades', 'Work English', '']).optional(),
+  website: z.string().optional(), // honeypot — bots fill this
   formStartedAt: z.number().int().optional(),
 });
 
-// Simple rate limiting (in production, use Redis or similar)
+// Simple in-memory rate limiting (use Redis in production)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const MIN_FORM_FILL_MS = 1500;
+const MAX_REQUESTS_PER_WINDOW = 3;
+const RATE_WINDOW_MS = 60_000; // 1 minute
 
 function rateLimit(ip: string): boolean {
   const now = Date.now();
-  const limit = rateLimitMap.get(ip);
+  const entry = rateLimitMap.get(ip);
 
-  if (!limit || now > limit.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + 60000 }); // 1 minute window
+  if (!entry || now > entry.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_WINDOW_MS });
     return true;
   }
 
-  if (limit.count >= 3) {
-    // Max 3 requests per minute
-    return false;
-  }
+  if (entry.count >= MAX_REQUESTS_PER_WINDOW) return false;
 
-  limit.count++;
+  entry.count++;
   return true;
+}
+
+// Sanitise string fields — strip HTML tags to prevent stored XSS
+function sanitise(str: string): string {
+  return str.replace(/<[^>]*>/g, '').trim();
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // Get IP for rate limiting
+    // Only accept JSON
+    const contentType = request.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      return NextResponse.json({ error: 'Unsupported content type' }, { status: 415 });
+    }
+
+    // Rate limiting by IP
     const forwardedFor = request.headers.get('x-forwarded-for');
     const ip = forwardedFor?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
 
-    // Rate limiting check
     if (!rateLimit(ip)) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
@@ -47,63 +58,48 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse and validate request body
     const body = await request.json();
-    const validatedData = contactFormSchema.parse(body);
+    const validated = contactFormSchema.parse(body);
 
-    // Honeypot + speed trap for bot submissions.
-    if (validatedData.website && validatedData.website.trim().length > 0) {
+    // Honeypot: bots fill hidden "website" field — silently accept to avoid revealing the check
+    if (validated.website && validated.website.trim().length > 0) {
       return NextResponse.json(
-        { success: true, message: 'Thank you for your message! I will get back to you within 24 hours.' },
+        { success: true, message: 'Thank you! I will be in touch within 24 hours.' },
         { status: 200 }
       );
     }
 
-    if (validatedData.formStartedAt && Date.now() - validatedData.formStartedAt < MIN_FORM_FILL_MS) {
+    // Speed trap: sub-1.5 s submissions are automated
+    if (validated.formStartedAt && Date.now() - validated.formStartedAt < MIN_FORM_FILL_MS) {
       return NextResponse.json(
-        { error: 'Please take a moment before submitting the form.' },
+        { error: 'Please take a moment before submitting.' },
         { status: 400 }
       );
     }
 
-    // In production, you would:
-    // 1. Send email using Resend, SendGrid, or similar service
-    // 2. Store in database with consent timestamp
-    // 3. Send notification to admin
+    // Sanitise user-supplied strings
+    const name = sanitise(validated.name);
+    const email = sanitise(validated.email);
+    const message = sanitise(validated.message ?? '');
 
-    // For now, log the submission (remove in production)
-    console.log('Contact form submission:', {
-      name: validatedData.name,
-      email: validatedData.email,
-      phone: validatedData.phone ? 'Provided' : 'Not provided',
-      message: validatedData.message.substring(0, 50) + '...',
-      consent: validatedData.consent,
-      timestamp: new Date().toISOString(),
-    });
-
-    // Simulate email sending delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // TODO: Implement actual email sending
-    // Example with Resend:
-    // const { data, error } = await resend.emails.send({
-    //   from: 'noreply@yourdomain.com',
-    //   to: process.env.CONTACT_EMAIL || 'your@email.com',
-    //   subject: `New Contact Form Submission from ${validatedData.name}`,
-    //   html: `
-    //     <h2>New Contact Form Submission</h2>
-    //     <p><strong>Name:</strong> ${validatedData.name}</p>
-    //     <p><strong>Email:</strong> ${validatedData.email}</p>
-    //     <p><strong>Phone:</strong> ${validatedData.phone || 'Not provided'}</p>
-    //     <p><strong>Message:</strong></p>
-    //     <p>${validatedData.message}</p>
-    //     <p><strong>Consent:</strong> ${validatedData.consent ? 'Given' : 'Not given'}</p>
-    //     <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
-    //   `,
+    // TODO: integrate Resend / SendGrid here
+    // Example:
+    // await resend.emails.send({
+    //   from: 'no-reply@teacherbek.com',
+    //   to: process.env.CONTACT_EMAIL!,
+    //   subject: `New inquiry from ${name}`,
+    //   html: `<p><strong>Name:</strong> ${name}</p>
+    //          <p><strong>Email:</strong> ${email}</p>
+    //          <p><strong>For:</strong> ${validated.forWhom}</p>
+    //          <p><strong>Level:</strong> ${validated.level}</p>
+    //          <p><strong>Goal:</strong> ${validated.goal}</p>
+    //          <p><strong>Message:</strong> ${message}</p>`,
     // });
 
+    console.log('[contact] submission from', { name, email, forWhom: validated.forWhom, level: validated.level, goal: validated.goal });
+
     return NextResponse.json(
-      { success: true, message: 'Thank you for your message! I will get back to you within 24 hours.' },
+      { success: true, message: 'Thank you! I will be in touch within 24 hours.' },
       { status: 200 }
     );
   } catch (error) {
@@ -114,9 +110,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.error('Contact form error:', error);
+    console.error('[contact] error:', error);
     return NextResponse.json(
-      { error: 'Failed to send message. Please try again later.' },
+      { error: 'Something went wrong. Please try again later.' },
       { status: 500 }
     );
   }

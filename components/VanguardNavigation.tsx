@@ -48,15 +48,29 @@ export function VanguardNavigation() {
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-10 pointer-events-auto relative z-[10010]">
-                    {menuItems.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`text-[var(--text-xs)] uppercase tracking-widest transition-colors ${isMenuItemActive(item.href) ? "text-foreground border-b border-foreground/40 pb-1" : "text-foreground/75 hover:text-foreground"}`}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
+                    {menuItems.map((item) => {
+                        const isContact = item.href.includes('#contact');
+                        if (isContact) {
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className="text-[var(--text-xs)] uppercase tracking-widest border border-foreground/40 px-4 py-2 text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        }
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={`text-[var(--text-xs)] uppercase tracking-widest transition-colors ${isMenuItemActive(item.href) ? "text-foreground border-b border-foreground/40 pb-1" : "text-foreground/75 hover:text-foreground"}`}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
 
                     <div className="flex items-center gap-3 ml-4">
                         <div className="flex items-center gap-1 rounded-full border border-foreground/15 bg-background/70 px-1 py-1">

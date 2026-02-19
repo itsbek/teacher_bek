@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { VanguardNavigation } from "@/components/VanguardNavigation";
 import { VanguardFooter } from "@/components/VanguardFooter";
@@ -21,7 +22,7 @@ export function AboutPageClient() {
 
   const timeline = [
     {
-      year: "2022 — PRESENT",
+      year: "2023 — PRESENT",
       title: "English Teacher, Ho Chi Minh City",
       desc: "Teaching small-group lessons at my own classroom in Golden Mansion, Phu Nhuan. ILA Vietnam, BlueSky Kindergarten, international schools, government schools, and kindergartens across the city."
     },
@@ -41,11 +42,10 @@ export function AboutPageClient() {
     <>
       <VanguardNavigation />
       <main className="bg-background text-foreground min-h-screen pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
-        <div className="atmosphere-grid opacity-40" />
 
         {/* Hero */}
-        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-36">
-          <div className="max-w-[1200px] mx-auto text-center section-stack">
+        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-32 min-h-[calc(100vh-8rem)] flex flex-col justify-center">
+          <div className="max-w-[1920px] mx-auto w-full text-center section-stack">
             <motion.span
               initial={false}
               animate={{ opacity: 0.4, x: 0 }}
@@ -105,18 +105,26 @@ export function AboutPageClient() {
               </div>
             </div>
 
-            {/* Photo placeholder — replace with actual teacher photo */}
+            {/* Teacher portrait */}
             <div className="col-span-12 lg:col-span-6 flex flex-col gap-6 pt-12 lg:pt-16">
               <motion.div
-                initial={false}
-                whileInView={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
-                transition={{ duration: 1.2 }}
-                className="aspect-[4/5] bg-foreground/5 border border-foreground/10 overflow-hidden flex items-end"
+                initial={{ clipPath: "inset(100% 0 0 0)" }}
+                whileInView={{ clipPath: "inset(0 0 0 0)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative aspect-[4/5] border border-foreground/10 overflow-hidden"
               >
-                {/* Replace src with actual teacher photo */}
-                <div className="w-full h-full flex flex-col items-center justify-center text-foreground/20 p-8 text-center">
-                  <span className="type-label-tight block mb-2">Photo</span>
-                  <span className="type-meta block opacity-60">Teacher Bek — Phu Nhuan, Ho Chi Minh City</span>
+                <Image
+                  src="/images/teacher-profile.webp"
+                  alt="Teacher Bek — English teacher in Ho Chi Minh City"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 45vw"
+                  className="object-cover object-top"
+                />
+                <div className="absolute bottom-5 left-5">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/70 bg-black/40 backdrop-blur-sm px-3 py-1.5 block">
+                    Teacher Bek — Phú Nhuận, HCMC
+                  </span>
                 </div>
               </motion.div>
               <div className="border-l-2 border-foreground/15 pl-6">

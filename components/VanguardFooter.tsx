@@ -10,6 +10,7 @@ export function VanguardFooter() {
     const locale = useLocale();
     const t = useTranslations("footer");
     const navT = useTranslations("nav");
+    const ctaT = useTranslations("cta");
     const { playSound } = useAudio();
 
     const scrollToTop = () => {
@@ -22,78 +23,203 @@ export function VanguardFooter() {
     };
 
     return (
-        <footer className="bg-background text-foreground pt-16 pb-8 px-4 md:px-10 relative overflow-hidden border-t border-foreground/10">
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-foreground/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+        <footer className="bg-foreground text-background relative overflow-hidden">
 
-            <div className="max-w-[1400px] mx-auto relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-                    <div>
-                        <h2 className="type-title-md mb-6">
-                            Ready to speak English with<br /><span className="text-foreground/25 italic font-light">more confidence?</span>
-                        </h2>
-                        <p className="type-body text-foreground/60 max-w-sm mb-8">
-                            Currently accepting a limited number of new students. Reach out to discuss your goal and available schedule.
-                        </p>
+            {/* ─── CTA Section ─── */}
+            <div className="px-6 md:px-12 lg:px-24 pt-20 pb-16 border-b border-background/10">
+                <div className="max-w-[1920px] mx-auto">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10 lg:gap-16">
+                        <div className="max-w-3xl">
+                            <div className="flex items-center gap-5 mb-8">
+                                <span className="w-10 h-[1px] bg-background/30 shrink-0" aria-hidden="true" />
+                                <span className="font-mono text-[10px] uppercase tracking-[0.22em] opacity-40">
+                                    {t("contact")}
+                                </span>
+                            </div>
+                            <h2
+                                className="font-display font-bold leading-[0.9] tracking-tight mb-8"
+                                style={{ fontSize: "clamp(2.2rem,5vw,4.5rem)" }}
+                            >
+                                {ctaT("title")}{" "}
+                                <span className="italic opacity-30">{ctaT("subtitle").split(".")[0]}.</span>
+                            </h2>
+                        </div>
                         <a
                             href="mailto:hello@teacherbek.com"
-                            onMouseEnter={() => playSound('hover')}
-                            onClick={() => playSound('click')}
-                            className="inline-flex items-center gap-4 type-body-lg border-b border-foreground/25 pb-2 hover:border-foreground transition-all duration-500"
+                            onMouseEnter={() => playSound("hover")}
+                            onClick={() => playSound("click")}
+                            className="group inline-flex items-center gap-5 shrink-0 font-mono text-sm tracking-wide border-b border-background/25 pb-2 hover:border-background transition-colors duration-400"
                         >
                             hello@teacherbek.com
-                            <ArrowRight size={20} />
+                            <ArrowRight
+                                size={16}
+                                className="group-hover:translate-x-1 transition-transform duration-300"
+                            />
                         </a>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-8 lg:pl-8">
-                        <div className="flex flex-col space-y-4">
-                            <span className="type-label text-foreground/35 mb-4">{t("quickLinks")}</span>
-                            <Link href={`/${locale}/about`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">{navT("about")}</Link>
-                            <Link href={`/${locale}/services`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">{navT("services")}</Link>
-                            <Link href={`/${locale}#journal`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">Journal</Link>
-                            <Link href={`/${locale}#contact`} onMouseEnter={() => playSound('hover')} onClick={() => playSound('click')} className="type-meta text-foreground/65 hover:text-foreground transition-colors">{navT("contact")}</Link>
-                        </div>
-                        <div className="flex flex-col space-y-4">
-                            <span className="type-label text-foreground/35 mb-4">Channels</span>
-                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">LinkedIn</a>
-                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">Instagram</a>
-                            <a href="https://zalo.me/0123456789" target="_blank" rel="noopener noreferrer" className="type-meta text-foreground/65 hover:text-foreground transition-colors">Zalo</a>
-                        </div>
-                        <div className="col-span-2 mt-4">
-                            <span className="type-label text-foreground/35 mb-4 block">Location</span>
-                            <p className="type-meta text-foreground/65 leading-relaxed">
-                                Golden Mansion, Phu Nhuan<br />
-                                Ho Chi Minh City, Vietnam
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between items-end border-t border-foreground/10 pt-8">
-                    <div className="mb-4 md:mb-0 flex items-center gap-8">
-                        <span className="text-[7vw] md:text-[4.6vw] leading-none font-bold tracking-tighter text-foreground opacity-[0.06] select-none pointer-events-none uppercase">
-                            Teacher Bek
-                        </span>
-                        <button
-                            type="button"
-                            onMouseEnter={() => playSound('hover')}
-                            onClick={() => {
-                                playSound('click');
-                                scrollToTop();
-                            }}
-                            aria-label="Back to top"
-                            className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-500 group"
-                        >
-                            <ArrowUp size={18} className="group-hover:translate-y-[-2px] transition-transform" />
-                        </button>
-                    </div>
-                    <div className="flex gap-8 type-label-tight text-foreground/40">
-                        <Link href={`/${locale}/privacy`} className="hover:text-foreground">{t("privacy")}</Link>
-                        <Link href={`/${locale}/terms`} className="hover:text-foreground">{t("terms")}</Link>
                     </div>
                 </div>
             </div>
+
+            {/* ─── Links Grid ─── */}
+            <div className="px-6 md:px-12 lg:px-24 py-16">
+                <div className="max-w-[1920px] mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
+
+                        {/* Quick Links */}
+                        <div className="flex flex-col gap-4">
+                            <span className="font-mono text-[9px] uppercase tracking-[0.22em] opacity-35 mb-1">
+                                {t("quickLinks")}
+                            </span>
+                            <Link
+                                href={`/${locale}/about`}
+                                onMouseEnter={() => playSound("hover")}
+                                onClick={() => playSound("click")}
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {navT("about")}
+                            </Link>
+                            <Link
+                                href={`/${locale}/services`}
+                                onMouseEnter={() => playSound("hover")}
+                                onClick={() => playSound("click")}
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {navT("services")}
+                            </Link>
+                            <Link
+                                href={`/${locale}/blog`}
+                                onMouseEnter={() => playSound("hover")}
+                                onClick={() => playSound("click")}
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {navT("blog_link")}
+                            </Link>
+                            <Link
+                                href={`/${locale}#contact`}
+                                onMouseEnter={() => playSound("hover")}
+                                onClick={() => playSound("click")}
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {navT("contact")}
+                            </Link>
+                        </div>
+
+                        {/* Channels */}
+                        <div className="flex flex-col gap-4">
+                            <span className="font-mono text-[9px] uppercase tracking-[0.22em] opacity-35 mb-1">
+                                {t("channels")}
+                            </span>
+                            <a
+                                href="https://wa.me/84000000000"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {t("whatsapp")}
+                            </a>
+                            <a
+                                href="https://zalo.me/0000000000"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {t("telegram")}
+                            </a>
+                            <a
+                                href="https://www.linkedin.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                LinkedIn
+                            </a>
+                            <a
+                                href="mailto:hello@teacherbek.com"
+                                className="font-mono text-sm opacity-55 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {t("email")}
+                            </a>
+                        </div>
+
+                        {/* Qualifications */}
+                        <div className="flex flex-col gap-4">
+                            <span className="font-mono text-[9px] uppercase tracking-[0.22em] opacity-35 mb-1">
+                                {t("certifications")}
+                            </span>
+                            <span className="font-mono text-sm opacity-55">{t("tefl")}</span>
+                            <span className="font-mono text-sm opacity-55">{t("tesol")}</span>
+                            <span className="font-mono text-sm opacity-55">DELTA</span>
+                            <span className="font-mono text-sm opacity-55">{t("experience")}</span>
+                        </div>
+
+                        {/* Location */}
+                        <div className="flex flex-col gap-4">
+                            <span className="font-mono text-[9px] uppercase tracking-[0.22em] opacity-35 mb-1">
+                                Location
+                            </span>
+                            <p className="font-mono text-sm opacity-55 leading-relaxed">
+                                {t("location")}<br />
+                                Ho Chi Minh City
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {/* ─── Bottom Bar ─── */}
+            <div className="px-6 md:px-12 lg:px-24 pb-8 border-t border-background/10">
+                <div className="max-w-[1920px] mx-auto pt-8">
+                    <div className="grid grid-cols-3 items-center">
+
+                        {/* Left: tagline watermark */}
+                        <p className="font-mono text-[9px] uppercase tracking-[0.12em] opacity-25 leading-relaxed hidden md:block">
+                            {t("tagline")}
+                        </p>
+                        {/* Left mobile fallback */}
+                        <p className="font-mono text-[9px] opacity-25 md:hidden">
+                            © 2025
+                        </p>
+
+                        {/* Center: back to top */}
+                        <div className="flex justify-center">
+                            <button
+                                type="button"
+                                onMouseEnter={() => playSound("hover")}
+                                onClick={() => {
+                                    playSound("click");
+                                    scrollToTop();
+                                }}
+                                aria-label="Back to top"
+                                className="w-11 h-11 border border-background/20 flex items-center justify-center hover:bg-background hover:text-foreground transition-all duration-400 group"
+                            >
+                                <ArrowUp
+                                    size={16}
+                                    className="group-hover:-translate-y-0.5 transition-transform duration-300"
+                                />
+                            </button>
+                        </div>
+
+                        {/* Right: legal */}
+                        <div className="flex justify-end gap-6 font-mono text-[9px] uppercase tracking-[0.1em] opacity-35">
+                            <Link
+                                href={`/${locale}/privacy`}
+                                className="hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {t("privacy")}
+                            </Link>
+                            <Link
+                                href={`/${locale}/terms`}
+                                className="hover:opacity-100 transition-opacity duration-300"
+                            >
+                                {t("terms")}
+                            </Link>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </footer>
     );
 }

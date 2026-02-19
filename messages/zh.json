@@ -16,7 +16,7 @@
     "titleLine2": "一门语言 — 它是",
     "titleAccent": "钥匙",
     "subtitle": "小班授课。真实对话。一个犯错是学习过程的课堂。",
-    "cta": "联系我",
+    "cta": "预约免费评估课",
     "secondary": "了解我的教学",
     "headline": "英语不是一门语言——它是一把钥匙",
     "subheadline": "TESOL认证 • ILA越南 • 胡志明市",
@@ -249,6 +249,7 @@
     "privacy": "隐私",
     "terms": "条款",
     "quickLinks": "快速链接",
+    "channels": "联系渠道",
     "location": "Golden Mansion 1, Phu Nhuan"
   },
   "location": {
@@ -279,5 +280,67 @@
       }
     ],
     "stepLabel": "步骤"
+  },
+  "programs": {
+    "sectionLabel": "英语课程",
+    "heading": "我们的",
+    "headingItalic": "课程",
+    "subtitle": "实用英语成果",
+    "subtitleDesc": "为儿童、青少年和成人设计的清晰课程体系，聚焦真实沟通目标。",
+    "requestDetails": "了解详情",
+    "readyTitle": "准备好开始了吗？",
+    "readyDesc": "告诉我们您的水平和目标，我们将推荐适合的课程和排课方案。",
+    "requestCta": "申请分级咨询",
+    "pricingNote": "所有课程：3,000,000 越南盾/月",
+    "scheduleNote": "工作日晚上 · 周末（部分下午）",
+    "formatNote": "90分钟课程 · 含15分钟休息 · 最多10名学生",
+    "youngLearners": {
+      "title": "少儿英语",
+      "subtitle": "6–10岁",
+      "tagline": "小班教学，课程清晰，节奏舒适。",
+      "format": "每周2次 · 90分钟 + 15分钟休息",
+      "price": "3,000,000 越南盾/月",
+      "schedule": "工作日晚上 · 周末",
+      "outcomes_0": "通过练习培养自然发音",
+      "outcomes_1": "通过活动积累词汇",
+      "outcomes_2": "在低压环境中建立自信",
+      "outcomes_3": "为学校英语打下坚实基础"
+    },
+    "teens": {
+      "title": "青少年英语",
+      "subtitle": "11–17岁",
+      "tagline": "适合学校、日常对话及各类场景的英语。",
+      "format": "每周2次 · 90分钟 + 15分钟休息",
+      "price": "3,000,000 越南盾/月",
+      "schedule": "工作日晚上 · 周末",
+      "outcomes_0": "自然流畅的英语口语",
+      "outcomes_1": "提升学校作业和考试成绩",
+      "outcomes_2": "真实场景中的沟通技能",
+      "outcomes_3": "用英语进行批判性思维"
+    },
+    "ielts": {
+      "title": "雅思备考",
+      "subtitle": "所有目标分段",
+      "tagline": "系统备考，精准覆盖考试重点。",
+      "format": "每周2次 · 90分钟 + 15分钟休息",
+      "price": "3,000,000 越南盾/月",
+      "schedule": "工作日晚上 · 周末",
+      "outcomes_0": "四项技能全覆盖：阅读、写作、听力、口语",
+      "outcomes_1": "应试策略与时间管理",
+      "outcomes_2": "模拟测试详细反馈",
+      "outcomes_3": "清楚了解自身水平与提升方向"
+    },
+    "workEnglish": {
+      "title": "职场英语",
+      "subtitle": "所有水平",
+      "tagline": "面试、会议和客户沟通的专业英语。",
+      "format": "每周2次 · 90分钟 + 15分钟休息",
+      "price": "3,000,000 越南盾/月",
+      "schedule": "工作日晚上 · 周末",
+      "outcomes_0": "英语面试与演讲",
+      "outcomes_1": "商务邮件与写作",
+      "outcomes_2": "会议与谈判用语",
+      "outcomes_3": "客户沟通技巧"
+    }
   }
 }

@@ -16,7 +16,7 @@
     "titleLine2": "a language — it is a",
     "titleAccent": "key",
     "subtitle": "Small groups. Real conversations. A classroom where making mistakes is the whole point.",
-    "cta": "Get in Touch",
+    "cta": "Book Free Assessment",
     "secondary": "Learn More",
     "headline": "English is not a language—it is a key",
     "subheadline": "TESOL Certified • ILA Vietnam • Ho Chi Minh City",
@@ -86,25 +86,25 @@
     "timeline": {
       "milestones": [
         {
-          "year": "2018 — PRESENT",
-          "title": "Independent Educational Strategist",
-          "desc": "Developing bespoke academic roadmaps for high-potential students globally."
+          "year": "2023 — PRESENT",
+          "title": "English Teacher, Ho Chi Minh City",
+          "desc": "Teaching small-group lessons at my own classroom in Golden Mansion, Phu Nhuan. ILA Vietnam, BlueSky Kindergarten, international schools, and kindergartens across the city."
         },
         {
-          "year": "2012 — 2018",
-          "title": "Director of Pedagogy, St. Jude's Academy",
-          "desc": "Led the redesign of the humanities curriculum."
+          "year": "EARLIER",
+          "title": "Corporate Team Leadership",
+          "desc": "Years managing people and chasing quarterly targets. Good training for understanding how adults learn under pressure."
         },
         {
-          "year": "2008 — 2012",
-          "title": "Doctoral Research, Oxford University",
-          "desc": "Ph.D. in Educational Philosophy on Cognitive Resilience."
+          "year": "THE BEGINNING",
+          "title": "Tashkent, Uzbekistan",
+          "desc": "Grew up speaking Uzbek, Russian, and eventually English. Language was the difference between being understood and being invisible."
         }
       ]
     }
   },
   "services": {
-    "title": "Linguistic Systems",
+    "title": "English Programs",
     "subtitle": "Programs built around how people actually learn to speak.",
     "programs": {
       "mentorship": {
@@ -285,6 +285,7 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "quickLinks": "Quick Links",
+    "channels": "Channels",
     "location": "Golden Mansion 1, Phú Nhuận"
   },
   "location": {
@@ -293,8 +294,70 @@
     "districts": "Also teaching in Gò Vấp & Bình Thạnh",
     "features": "CCTV • Comfortable • Professional"
   },
+  "programs": {
+    "sectionLabel": "English Classes",
+    "heading": "Our",
+    "headingItalic": "Programs",
+    "subtitle": "Practical English Results",
+    "subtitleDesc": "Clear lesson tracks for children, teens, and adults with real communication goals.",
+    "requestDetails": "Request details",
+    "readyTitle": "Ready to start?",
+    "readyDesc": "Send your level and goal. You will receive a recommended program and schedule options.",
+    "requestCta": "Request Placement Call",
+    "pricingNote": "All classes: 3,000,000 VND / month",
+    "scheduleNote": "Weekday evenings · Weekends (some afternoons)",
+    "formatNote": "90 min class · 15 min included break · Max 10 students",
+    "youngLearners": {
+      "title": "Young Learners",
+      "subtitle": "Ages 6–10",
+      "tagline": "Small groups, clear lessons, comfortable pace.",
+      "format": "2× per week · 90 min + 15 min break",
+      "price": "3,000,000 VND / month",
+      "schedule": "Weekday evenings · Weekends",
+      "outcomes_0": "Natural pronunciation through practice",
+      "outcomes_1": "Vocabulary built through activities",
+      "outcomes_2": "Confidence in a low-pressure setting",
+      "outcomes_3": "A solid base for school English"
+    },
+    "teens": {
+      "title": "Teens & Pre-Teens",
+      "subtitle": "Ages 11–17",
+      "tagline": "Relevant English for school, conversations, and beyond.",
+      "format": "2× per week · 90 min + 15 min break",
+      "price": "3,000,000 VND / month",
+      "schedule": "Weekday evenings · Weekends",
+      "outcomes_0": "Spoken English that feels natural",
+      "outcomes_1": "Better school assignments and exams",
+      "outcomes_2": "Communication for real situations",
+      "outcomes_3": "Critical thinking in English"
+    },
+    "ielts": {
+      "title": "IELTS Preparation",
+      "subtitle": "All Band Targets",
+      "tagline": "Structured prep that covers what the exam actually tests.",
+      "format": "2× per week · 90 min + 15 min break",
+      "price": "3,000,000 VND / month",
+      "schedule": "Weekday evenings · Weekends",
+      "outcomes_0": "All four skills: Reading, Writing, Listening, Speaking",
+      "outcomes_1": "Test strategy and time management",
+      "outcomes_2": "Detailed feedback on practice tests",
+      "outcomes_3": "Clear picture of where you stand"
+    },
+    "workEnglish": {
+      "title": "English for Work",
+      "subtitle": "All Levels",
+      "tagline": "Professional English for interviews, meetings, and clients.",
+      "format": "2× per week · 90 min + 15 min break",
+      "price": "3,000,000 VND / month",
+      "schedule": "Weekday evenings · Weekends",
+      "outcomes_0": "Interviews and presentations in English",
+      "outcomes_1": "Business email and writing",
+      "outcomes_2": "Meeting and negotiation language",
+      "outcomes_3": "Client communication skills"
+    }
+  },
   "methodology": {
-    "sectionLabel": "Outcome Framework",
+    "sectionLabel": "How You Learn",
     "heading": "A clear path from hesitation to",
     "headingItalic": "confident fluency.",
     "steps": [

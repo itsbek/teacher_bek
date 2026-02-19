@@ -32,10 +32,6 @@ export default async function BlogPage({ params }: Props) {
       <VanguardNavigation />
 
       <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
-        <div className="atmosphere-grid opacity-40" />
-        {/* Texture Layer */}
-        <div className="noise-layer" />
-
         {/* Editorial Hero */}
         <BlogHero />
 

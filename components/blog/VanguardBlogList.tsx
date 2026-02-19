@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { BlogPost, Category, categories } from "@/lib/blog-types";
 
+const POSTS_PER_PAGE = 6;
+
 interface VanguardBlogListProps {
     posts: BlogPost[];
     locale: string;
@@ -15,10 +17,19 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
     const t = useTranslations("blog");
     const [activeCategory, setActiveCategory] = useState<Category>("all");
     const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+    const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
     const filteredPosts = activeCategory === "all"
         ? posts
         : posts.filter(post => post.category === activeCategory);
+
+    const visiblePosts = filteredPosts.slice(0, visibleCount);
+    const hasMore = visibleCount < filteredPosts.length;
+
+    const handleCategoryChange = (cat: Category) => {
+        setActiveCategory(cat);
+        setVisibleCount(POSTS_PER_PAGE); // reset pagination when filtering
+    };
 
     return (
         <section className="py-16 md:py-24 bg-background text-foreground px-6 md:px-12 lg:px-24">
@@ -29,7 +40,7 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
                     {categories.map((cat) => (
                         <button
                             key={cat}
-                            onClick={() => setActiveCategory(cat)}
+                            onClick={() => handleCategoryChange(cat)}
                             className={`type-label-tight transition-all pb-1 ${activeCategory === cat
                                 ? "text-foreground border-b border-foreground"
                                 : "text-foreground/35 hover:text-foreground/65"
@@ -40,9 +51,9 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
                     ))}
                 </div>
 
-                {/* Post List */}
-                <div className="space-y-0">
-                    {filteredPosts.map((post, idx) => (
+                {/* Post List — min-height prevents layout collapse with few posts */}
+                <div className="space-y-0 min-h-[40vh]">
+                    {visiblePosts.map((post, idx) => (
                         <Link
                             key={post.slug}
                             href={`/${locale}/blog/${post.slug}`}
@@ -70,7 +81,7 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
 
                                 {/* Meta */}
                                 <div className="col-span-2 md:col-span-2 lg:col-span-2 text-right">
-                                    <span className="type-meta opacity-35 block">{post.readTime} min</span>
+                                    <span className="type-meta opacity-35 block">{post.readTime} {t("readTime")}</span>
                                     <span className="type-meta opacity-20 block hidden md:block mt-1">
                                         {new Date(post.date).toLocaleDateString('en', { month: 'short', year: 'numeric' })}
                                     </span>
@@ -87,12 +98,34 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
                             />
                         </Link>
                     ))}
+
+                    {filteredPosts.length === 0 && (
+                        <div className="py-24 text-center">
+                            <span className="type-label opacity-40">No articles in this category yet</span>
+                        </div>
+                    )}
                 </div>
 
-                {filteredPosts.length === 0 && (
-                    <div className="py-24 text-center">
-                        <span className="type-label opacity-40">No articles in this category yet</span>
+                {/* Pagination — Load More */}
+                {hasMore && (
+                    <div className="mt-10 flex justify-center">
+                        <button
+                            onClick={() => setVisibleCount(c => c + POSTS_PER_PAGE)}
+                            className="group inline-flex items-center gap-3 px-8 py-3 border border-foreground/20 type-label-tight text-foreground/60 hover:border-foreground hover:text-foreground transition-all duration-300"
+                        >
+                            Load More
+                            <span className="opacity-40 group-hover:opacity-100 transition-opacity">
+                                ({filteredPosts.length - visibleCount} remaining)
+                            </span>
+                        </button>
                     </div>
+                )}
+
+                {/* Post count indicator */}
+                {filteredPosts.length > 0 && (
+                    <p className="mt-6 text-center type-meta opacity-30">
+                        Showing {Math.min(visibleCount, filteredPosts.length)} of {filteredPosts.length}
+                    </p>
                 )}
 
                 <div className="mt-16 border border-foreground/10 p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

@@ -67,10 +67,6 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <VanguardNavigation />
       <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
-        <div className="atmosphere-grid opacity-35" />
-        {/* Texture Layer */}
-        <div className="noise-layer" />
-
         <BlogPost post={post} locale={locale} relatedPosts={relatedPosts} />
 
         <VanguardFooter />

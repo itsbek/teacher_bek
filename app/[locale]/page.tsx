@@ -9,7 +9,7 @@ import { VanguardMarquee } from '@/components/VanguardMarquee';
 import { VanguardSignature } from '@/components/VanguardSignature';
 import { VanguardFooter } from '@/components/VanguardFooter';
 import { VanguardInquiry } from '@/components/VanguardInquiry';
-import { HomeSectionRail } from '@/components/HomeSectionRail';
+import { TrustSection } from '@/components/TrustSection';
 import { ConversionStrip } from '@/components/ConversionStrip';
 import { getBlogPosts } from '@/lib/blog';
 import { buildPageMetadata } from '@/lib/seo';
@@ -52,10 +52,6 @@ export default async function Home({ params }: Props) {
       </a>
       <StructuredData />
       <VanguardNavigation />
-      <HomeSectionRail />
-
-      {/* Texture Layer */}
-      <div className="noise-layer bg-noise" aria-hidden="true" />
 
       <main id="main-content" className="bg-background text-foreground min-h-screen">
         {/* BEAT 01: ELITE INTRODUCTION */}
@@ -63,12 +59,17 @@ export default async function Home({ params }: Props) {
           <VanguardHero />
         </section>
 
-        {/* BEAT 02: BRAND ESSENCE & PHILOSOPHY */}
-        <section id="signature" className="section-space-lg relative z-10" style={{ scrollMarginTop: '5rem' }}>
+        {/* BEAT 02: BRAND ESSENCE & PHILOSOPHY
+            Note: VanguardSignature manages its own vertical padding — no section-space-lg wrapper needed */}
+        <section id="signature" className="relative z-10" style={{ scrollMarginTop: '5rem' }}>
           <VanguardSignature />
         </section>
 
-        {/* BEAT 03: SYSTEMIC CURRICULUM */}
+        {/* BEAT 02b: TRUST & SAFETY */}
+        <TrustSection />
+
+        {/* BEAT 03: SYSTEMIC CURRICULUM
+            VanguardLexicon has no internal vertical padding — section-space-lg provides it */}
         <section id="lexicon" className="section-space-lg" style={{ scrollMarginTop: '5rem' }}>
           <VanguardLexicon />
         </section>

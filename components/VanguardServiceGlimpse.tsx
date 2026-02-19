@@ -17,7 +17,6 @@ export function VanguardServiceGlimpse() {
 
     return (
         <section className="px-6 md:px-12 lg:px-24 bg-background border-y border-foreground/5 overflow-hidden relative">
-            <div className="atmosphere-grid opacity-60" />
             <div className="max-w-[1920px] mx-auto">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 lg:mb-20">
                     <div className="max-w-xl">
