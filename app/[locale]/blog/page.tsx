@@ -25,13 +25,13 @@ export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const posts = getBlogPosts(locale);
+  const posts = await getBlogPosts(locale);
 
   return (
     <>
       <VanguardNavigation />
 
-      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
+      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative">
         {/* Editorial Hero */}
         <BlogHero />
 

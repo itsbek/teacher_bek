@@ -2,14 +2,14 @@ import { MetadataRoute } from 'next'
 import { routing } from '@/i18n/routing'
 import { getBlogPosts } from '@/lib/blog'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://englishwithconfidence.com'
-  const primaryRoutes = ['', '/about', '/services', '/faq', '/blog', '/privacy', '/terms'];
+const BASE_URL = 'https://englishwithconfidence.com'
+const PRIMARY_ROUTES = ['', '/about', '/services', '/faq', '/blog', '/privacy', '/terms']
 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Main pages for each locale
   const mainPages = routing.locales.flatMap((locale) =>
-    primaryRoutes.map((route) => ({
-      url: `${baseUrl}/${locale}${route}`,
+    PRIMARY_ROUTES.map((route) => ({
+      url: `${BASE_URL}/${locale}${route}`,
       lastModified: new Date(),
       changeFrequency: route === '/blog' ? ('daily' as const) : ('weekly' as const),
       priority: route === '' ? 1.0 : route === '/blog' ? 0.9 : 0.8,
@@ -17,15 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   )
 
   // Blog posts for each locale
-  const blogPosts = routing.locales.flatMap((locale) => {
-    const posts = getBlogPosts(locale)
-    return posts.map((post) => ({
-      url: `${baseUrl}/${locale}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }))
-  })
+  const postResults = await Promise.all(
+    routing.locales.map(async (locale) => {
+      const posts = await getBlogPosts(locale)
+      return posts.map((post) => ({
+        url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+        lastModified: new Date(post.updatedAt ?? post.date),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      }))
+    })
+  )
 
-  return [...mainPages, ...blogPosts]
+  return [...mainPages, ...postResults.flat()]
 }

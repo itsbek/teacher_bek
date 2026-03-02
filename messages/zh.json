@@ -15,9 +15,9 @@
     "titleLine1": "英语不仅是",
     "titleLine2": "一门语言 — 它是",
     "titleAccent": "钥匙",
-    "subtitle": "小班授课。真实对话。一个犯错是学习过程的课堂。",
-    "cta": "预约免费评估课",
-    "secondary": "了解我的教学",
+    "subtitle": "不是语法练习。不是被动输入。有目的的练习，在一个专为此设计的课堂里。",
+    "cta": "预约免费体验课",
+    "secondary": "课程",
     "headline": "英语不是一门语言——它是一把钥匙",
     "subheadline": "TESOL认证 • ILA越南 • 胡志明市",
     "primaryCTA": "开始学习",
@@ -31,24 +31,26 @@
       "success": "TESOL & PGCE 认证"
     },
     "badgeTesol": "TESOL + PGCE",
-    "badgePgce": "DELTA（剑桥）",
+    "badgePgce": "MBA 候选人",
     "badgeLocation": "胡志明市",
     "badgeFormat": "线下 + 线上",
     "statsStudents": "已教学生",
     "statsYears": "在越南年限",
-    "statsRating": "平均评分",
-    "statusOpen": "正在招生",
-    "photoCaption": "Bek 老师 — 富润区，胡志明市"
+    "statsSchools": "任教学校",
+    "statusOpen": "招生中",
+    "photoCaption": "Bek 老师 — 富润区，胡志明市",
+    "tagline": "小班授课 · 富润区 · 雅思 · 线上",
+    "scrollLabel": "向下滚动"
   },
   "about": {
     "label": "关于我",
-    "title": "课堂背后的老师",
-    "intro": "3年前我来到越南,爱上了这里的教学。原本只是新的一章,却成为了我的使命。",
+    "title": "这位老师",
+    "intro": "来越南做志愿者。教书要求我做到一件事：坚持、真正投入、长期去做。觉得值。所以留下来了。",
     "story": {
-      "title": "我的历程",
-      "p1": "持有TESOL和PGCE证书,目前正在攻读DELTA,我致力于理解人们如何真正学习语言。这不是死记硬背规则 - 而是找到你的声音。",
-      "p2": "我在胡志明市各处任教 - ILA越南、Blue Sky学院、国际学校、公立学校和幼儿园。每间教室、每个学生都教会我新的东西。",
-      "p3": "现在我在Phu Nhuan Golden Mansion的专属教室授课 - 这是一个舒适、专业设计的学习空间,配有监控让家长放心。"
+      "title": "背景",
+      "p1": "TESOL和PGCE认证。目前正在完成MBA学位。证书告诉你我知道什么——课堂才能告诉你我怎么教。",
+      "p2": "课外：读书、健身、格斗训练。让自己保持状态。",
+      "p3": "ILA越南、BlueSky幼儿园、胡志明市15+所学校。每个层次。每种起点。"
     },
     "credentials": {
       "title": "资质认证",
@@ -56,8 +58,8 @@
       "tesolDesc": "英语作为外语教学",
       "pgce": "PGCE认证",
       "pgceDesc": "教育学研究生证书",
-      "delta": "DELTA已完成",
-      "deltaDesc": "剑桥 - 等待结果"
+      "delta": "MBA 候选人",
+      "deltaDesc": "目前正在攻读 MBA"
     },
     "stats": {
       "students": "近2000",
@@ -67,9 +69,10 @@
       "schools": "15+",
       "schoolsLabel": "任教学校"
     },
+    "photoCaption": "Bek 老师 — 富润区, 胡志明市",
     "classroom": {
-      "title": "我的教室",
-      "description": "专为舒适和专注设计的学习空间",
+      "title": "教室",
+      "description": "每班最多10人。25人的课堂里，每人每节课开口不到3分钟——这练不出口语。我在富润的教室是有意做小的：监控、独立卫生间、空调。对孩子安全。就是为了让人开口说英语设计的。",
       "address": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan",
       "features": {
         "cctv": "监控设备",
@@ -77,17 +80,35 @@
         "comfort": "舒适环境",
         "comfortDesc": "专为学习设计",
         "materials": "学习资料",
-        "materialsDesc": "提供所有资源"
+        "materialsDesc": "提供所有资源",
+        "safety": "安全环境",
+        "safetyDesc": "独立卫生间，灭蚊措施"
       }
     },
     "philosophy": {
-      "title": "我的教学方式",
-      "description": "我相信当你不怕犯错时学习效果最好。我的教室是一个可以尝试、失败、欢笑、再尝试的安全空间。无论你是5岁还是50岁,我们都会找到适合你的方法。"
-    }
+      "title": "学习方式",
+      "description": "每节课都要开口。不是可选项。自信是练出来的——不是天生的，也不是等来的。练习有方向。环境够安全。开口说话，就是在上课。"
+    },
+    "timeline": {
+      "milestones": [
+        {
+          "year": "2023 — 至今",
+          "title": "英语老师，胡志明市",
+          "desc": "在富润区Golden Mansion的自有教室进行小班教学。ILA越南、BlueSky幼儿园、国际学校和各类幼儿园。"
+        },
+        {
+          "year": "起点",
+          "title": "塔什干，乌兹别克斯坦",
+          "desc": "从小说乌兹别克语、俄语,后来学会了英语。语言是被理解和被忽视之间的区别。"
+        }
+      ]
+    },
+    "locationLabel": "地址",
+    "backgroundLabel": "背景"
   },
   "courses": {
     "title": "找到合适的课程",
-    "subtitle": "适龄课程设计,带来真实效果。每个课程都结合专业教学与吸引人的方法。",
+    "subtitle": "三个课程。一套方法。有目的地练，而不是被动接受。",
     "youngLearners": {
       "title": "少儿英语 (6-10岁)",
       "tagline": "小班教学，清晰课程，轻松节奏。",
@@ -136,23 +157,30 @@
     "subtitle": "来自学生、家长和同事的真实故事"
   },
   "cta": {
-    "title": "想了解课程?",
-    "subtitle": "没有压力,没有承诺。让我们聊聊你的目标。",
-    "button": "发消息"
+    "title": "一节课。无需承诺。",
+    "subtitle": "一节免费评估课，判断水平与匹配度。如果不合适，我会直接说。",
+    "button": "发消息",
+    "heading": "免费评估",
+    "headingItalic": "无需承诺。",
+    "checklist_0": "无需付款",
+    "checklist_1": "30分钟体验课",
+    "checklist_2": "真实水平评估",
+    "phoneLabel": "Zalo / 电话",
+    "zaloButton": "Zalo 联系"
   },
   "faq": {
     "title": "常见问题",
     "q1": {
       "question": "你在哪里教课?",
-      "answer": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan。也在Phu Nhuan、Go Vap和Binh Thanh的学生家中授课。"
+      "answer": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận。也在Phú Nhuận、Gò Vấp和Bình Thạnh的学生家中授课。"
     },
     "q2": {
       "question": "你教什么年龄段?",
       "answer": "儿童(6-10岁)、青少年(11-17岁)和各年龄段的雅思/考试准备。"
     },
     "q3": {
-      "question": "课程多少钱?",
-      "answer": "取决于课程类型、地点和频率。联系获取直接报价 - 无隐藏费用。"
+      "question": "需要长期承诺吗?",
+      "answer": "不签合同。按月计费。先学一个月，看效果再说。"
     },
     "q4": {
       "question": "你教小组还是一对一?",
@@ -160,15 +188,15 @@
     },
     "q5": {
       "question": "你有什么资质?",
-      "answer": "TESOL和PGCE认证。我也完成了DELTA(剑桥),等待结果中。曾在ILA越南、BlueSky幼儿园和15+学校任教。"
+      "answer": "TESOL和PGCE认证。曾在ILA越南、BlueSky幼儿园和15+学校任教。"
     },
     "q6": {
       "question": "可以先试课吗?",
-      "answer": "可以!免费评估课 - 无压力,无义务。"
+      "answer": "可以。一节免费课。带着真实水平来 — 我直接告诉你差在哪。"
     },
     "q7": {
       "question": "为什么小班而不是大班?",
-      "answer": "在25人的班级里,你几乎没有机会开口。最多10名学生,你才能真正练习。"
+      "answer": "25人班，每人开口不到3分钟。10人班，整节课你都在说。差别就这么大。"
     },
     "q8": {
       "question": "教室对孩子安全吗?",
@@ -204,7 +232,7 @@
   },
   "contact": {
     "title": "联系我",
-    "subtitle": "有问题?想讨论课程?只是想打个招呼?我很乐意听到你的消息。",
+    "subtitle": "告诉我你的水平和目标。我来告诉你我是否能帮到你。",
     "location": {
       "title": "参观我的教室",
       "description": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan - 配有监控,舒适的学习环境"
@@ -250,7 +278,14 @@
     "terms": "条款",
     "quickLinks": "快速链接",
     "channels": "联系渠道",
-    "location": "Golden Mansion 1, Phu Nhuan"
+    "location": "Golden Mansion 1, Phu Nhuan",
+    "ctaHeading": "一节免费课，摸清自己的真实水平。",
+    "linkedin": "LinkedIn",
+    "mba": "MBA候选人",
+    "locationLabel": "地址",
+    "city": "胡志明市",
+    "country": "越南",
+    "backToTop": "返回顶部"
   },
   "location": {
     "title": "位于胡志明市",
@@ -260,50 +295,95 @@
   },
   "methodology": {
     "sectionLabel": "学习路径",
-    "heading": "从犹豫到",
-    "headingItalic": "自信流利表达的清晰路径。",
+    "heading": "有目的的练习，",
+    "headingItalic": "而非被动输入。",
     "steps": [
       {
         "id": "01",
         "title": "评估",
-        "description": "了解当前口语水平、沟通目标和自信障碍。"
+        "description": "准确判断你的真实水平。程度、目标，以及真正阻碍流利表达的因素。"
       },
       {
         "id": "02",
-        "title": "训练",
-        "description": "进行有针对性的口语练习和每周结构化纠错循环。"
+        "title": "构建",
+        "description": "专为提升口语流利度而设计的结构化课程，而不仅仅是增加熟悉感。每节课在上一节的基础上递进。"
       },
       {
         "id": "03",
-        "title": "实践",
-        "description": "在真实对话、考试、面试和工作场合中运用英语。"
+        "title": "运用",
+        "description": "你开口说。获得直接反馈。再开口说。流利度不是被教出来的——是练出来的。"
       }
     ],
     "stepLabel": "步骤"
   },
+  "inquiry": {
+    "sectionLabel": "06 — 联系",
+    "heading": "联系我",
+    "replyNote": "通常在24小时内回复",
+    "forWhomLabel": "这是为谁报名的？",
+    "forWhomChild": "我的孩子",
+    "forWhomSelf": "我自己",
+    "levelLabel": "当前英语水平？",
+    "levelBeginner": "初级",
+    "levelIntermediate": "中级",
+    "levelAdvanced": "高级",
+    "levelNotSure": "不确定",
+    "goalLabel": "主要目标？",
+    "goalIelts": "雅思成绩",
+    "goalSpeaking": "口语自信",
+    "goalSchool": "学校成绩",
+    "goalWork": "职场英语",
+    "nameLabel": "姓名",
+    "namePlaceholder": "请输入姓名",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "其他信息？",
+    "messagePlaceholder": "你觉得自己英语的差距在哪里？",
+    "optional": "可选",
+    "consentText": "我同意接收回复。",
+    "sendButton": "发送消息",
+    "sendingButton": "发送中...",
+    "hoursLabel": "教学时间 (GMT+7)",
+    "weekdays": "工作日",
+    "weekends": "周末",
+    "connectLabel": "直接联系",
+    "phoneChannels": "Zalo · 电话 · WhatsApp"
+  },
+  "marquee": {
+    "text": "TESOL认证 · PGCE资质 · 2,000+学员 · 小班教学 · 口语自信 · 雅思备考 · 胡志明市 ·"
+  },
+  "journal": {
+    "sectionLabel": "04 — 我的博客",
+    "heading": "最新",
+    "headingItalic": "文章",
+    "insightsLabel": "见解",
+    "subtitle": "关于学习、教学和语言策略的简短思考。",
+    "articlePrefix": "文章",
+    "viewAll": "查看所有文章"
+  },
   "programs": {
     "sectionLabel": "英语课程",
-    "heading": "我们的",
+    "heading": "英语",
     "headingItalic": "课程",
-    "subtitle": "实用英语成果",
-    "subtitleDesc": "为儿童、青少年和成人设计的清晰课程体系，聚焦真实沟通目标。",
+    "subtitle": "三个课程。一种方法。",
+    "subtitleDesc": "为准备好停止死学英语、开始真正用起来的学员准备的。",
     "requestDetails": "了解详情",
-    "readyTitle": "准备好开始了吗？",
-    "readyDesc": "告诉我们您的水平和目标，我们将推荐适合的课程和排课方案。",
-    "requestCta": "申请分级咨询",
-    "pricingNote": "所有课程：3,000,000 越南盾/月",
-    "scheduleNote": "工作日晚上 · 周末（部分下午）",
-    "formatNote": "90分钟课程 · 含15分钟休息 · 最多10名学生",
+    "readyTitle": "一节课，看看是否适合。",
+    "readyDesc": "告诉我你的水平和目标。我会告诉你哪个课程适合——以及我能否帮到你。",
+    "requestCta": "预约免费试听课",
+    "pricingNote": "课程起价 1,990,000 越南盾/月（首月试听价）",
+    "scheduleNote": "工作日：晚上 7:30 - 9:00 · 周末：下午 2:00 - 晚上 8:00",
+    "formatNote": "小组课程 · 最多10名学生",
     "youngLearners": {
       "title": "少儿英语",
       "subtitle": "6–10岁",
       "tagline": "小班教学，课程清晰，节奏舒适。",
       "format": "每周2次 · 90分钟 + 15分钟休息",
-      "price": "3,000,000 越南盾/月",
+      "price": "起价 1,990,000 越南盾/月",
       "schedule": "工作日晚上 · 周末",
       "outcomes_0": "通过练习培养自然发音",
       "outcomes_1": "通过活动积累词汇",
-      "outcomes_2": "在低压环境中建立自信",
+      "outcomes_2": "有目的地训练自信，每节课递进",
       "outcomes_3": "为学校英语打下坚实基础"
     },
     "teens": {
@@ -311,7 +391,7 @@
       "subtitle": "11–17岁",
       "tagline": "适合学校、日常对话及各类场景的英语。",
       "format": "每周2次 · 90分钟 + 15分钟休息",
-      "price": "3,000,000 越南盾/月",
+      "price": "起价 1,990,000 越南盾/月",
       "schedule": "工作日晚上 · 周末",
       "outcomes_0": "自然流畅的英语口语",
       "outcomes_1": "提升学校作业和考试成绩",
@@ -321,13 +401,13 @@
     "ielts": {
       "title": "雅思备考",
       "subtitle": "所有目标分段",
-      "tagline": "系统备考，精准覆盖考试重点。",
-      "format": "每周2次 · 90分钟 + 15分钟休息",
-      "price": "3,000,000 越南盾/月",
+      "tagline": "建立考试技巧与自信的策略课程。",
+      "format": "每周2次 · 60分钟",
+      "price": "起价 1,990,000 越南盾/月",
       "schedule": "工作日晚上 · 周末",
-      "outcomes_0": "四项技能全覆盖：阅读、写作、听力、口语",
-      "outcomes_1": "应试策略与时间管理",
-      "outcomes_2": "模拟测试详细反馈",
+      "outcomes_0": "策略课程，而非被动听讲",
+      "outcomes_1": "主动指导与技巧教学",
+      "outcomes_2": "基于学生表现的详细反馈",
       "outcomes_3": "清楚了解自身水平与提升方向"
     },
     "workEnglish": {
@@ -342,5 +422,13 @@
       "outcomes_2": "会议与谈判用语",
       "outcomes_3": "客户沟通技巧"
     }
+  },
+  "exitIntent": {
+    "tag": "离开之前",
+    "heading": "领取专属英语学习方案",
+    "body": "告诉我你的目标，我会根据你的水平和时间为你发送一份简短的学习建议。",
+    "zalo": "Zalo 联系",
+    "inquiry": "发起咨询",
+    "dismiss": "不了，谢谢"
   }
 }

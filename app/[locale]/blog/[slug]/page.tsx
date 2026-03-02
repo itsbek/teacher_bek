@@ -13,7 +13,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = getBlogPost(locale, slug);
+  const post = await getBlogPost(locale, slug);
 
   if (!post) {
     return {
@@ -52,13 +52,13 @@ export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const post = getBlogPost(locale, slug);
+  const post = await getBlogPost(locale, slug);
 
   if (!post) {
     notFound();
   }
 
-  const allPosts = getBlogPosts(locale);
+  const allPosts = await getBlogPosts(locale);
   const relatedPosts = allPosts
     .filter(p => p.slug !== slug && p.category === post.category)
     .slice(0, 2);

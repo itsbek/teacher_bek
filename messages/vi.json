@@ -15,9 +15,9 @@
     "titleLine1": "Tiếng Anh không chỉ là",
     "titleLine2": "một ngôn ngữ — đó là",
     "titleAccent": "chìa khóa",
-    "subtitle": "Lớp nhỏ. Nói thật. Một lớp học nơi mắc lỗi là chuyện bình thường.",
-    "cta": "Đặt Lịch Học Thử Miễn Phí",
-    "secondary": "Xem cách tôi dạy",
+    "subtitle": "Không phải bài tập ngữ pháp. Không phải tiếp nhận thụ động. Luyện tập có chủ đích, trong một lớp học được thiết kế cho điều đó.",
+    "cta": "Đặt lịch học thử miễn phí",
+    "secondary": "Chương trình",
     "headline": "Tiếng Anh không phải là ngôn ngữ—đó là chìa khóa",
     "subheadline": "Chứng Chỉ TESOL • ILA Vietnam • TP. Hồ Chí Minh",
     "primaryCTA": "Bắt Đầu Học",
@@ -31,24 +31,26 @@
       "success": "Chứng chỉ TESOL & PGCE"
     },
     "badgeTesol": "TESOL + PGCE",
-    "badgePgce": "DELTA (Cambridge)",
+    "badgePgce": "Ứng viên MBA",
     "badgeLocation": "Tại TP.HCM",
     "badgeFormat": "Trực tiếp + Trực tuyến",
     "statsStudents": "Học viên đã dạy",
     "statsYears": "Năm tại Việt Nam",
-    "statsRating": "Đánh giá TB",
-    "statusOpen": "Đang tuyển sinh",
-    "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM"
+    "statsSchools": "Trường Đã Dạy",
+    "statusOpen": "Đang nhận học viên",
+    "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM",
+    "tagline": "Nhóm nhỏ · Phú Nhuận · IELTS · Trực tuyến",
+    "scrollLabel": "Cuộn để khám phá"
   },
   "about": {
     "label": "Về Tôi",
-    "title": "Người Thầy Đằng Sau Lớp Học",
-    "intro": "Tôi đến Việt Nam 3 năm trước và yêu thích việc dạy học ở đây. Điều bắt đầu như một chương mới đã trở thành sứ mệnh của tôi.",
+    "title": "Người Thầy",
+    "intro": "Qua Việt Nam tình nguyện. Dạy học đòi hỏi điều gì đó khác ở tôi — sự nhất quán, có mặt thực sự, và gắn bó dài hạn. Tôi thấy điều đó xứng đáng. Nên ở lại.",
     "story": {
-      "title": "Hành Trình Của Tôi",
-      "p1": "Với chứng chỉ TESOL và PGCE, và đang theo học DELTA, tôi đã dành tâm huyết để hiểu cách mọi người thực sự học ngôn ngữ. Đó không phải là ghi nhớ quy tắc - mà là tìm ra giọng nói của bạn.",
-      "p2": "Tôi đã dạy khắp Thành phố Hồ Chí Minh - tại ILA Vietnam, Blue Sky Academy, các trường quốc tế, trường công lập và trường mầm non. Mỗi lớp học, mỗi học viên đều dạy tôi điều gì đó mới.",
-      "p3": "Hiện tôi dạy tại lớp học riêng ở Golden Mansion, Phú Nhuận - một không gian học tập thoải mái, được thiết kế chuyên nghiệp với camera an ninh để phụ huynh an tâm."
+      "title": "Tiểu Sử",
+      "p1": "Chứng chỉ TESOL và PGCE. Đang hoàn thành MBA. Bằng cấp cho bạn biết tôi biết gì — lớp học mới cho bạn thấy tôi dạy như thế nào.",
+      "p2": "Ngoài giờ dạy: đọc sách, tập thể hình, grappling. Giữ đầu óc tỉnh táo.",
+      "p3": "ILA Vietnam, BlueSky Kindergarten, 15+ trường khắp TP.HCM. Mọi trình độ. Mọi xuất phát điểm."
     },
     "credentials": {
       "title": "Bằng Cấp",
@@ -56,8 +58,8 @@
       "tesolDesc": "Dạy tiếng Anh cho người nói ngôn ngữ khác",
       "pgce": "Chứng Chỉ PGCE",
       "pgceDesc": "Chứng chỉ Sau đại học về Giáo dục",
-      "delta": "DELTA Hoàn Thành",
-      "deltaDesc": "Cambridge - Đang chờ kết quả"
+      "delta": "Ứng viên MBA",
+      "deltaDesc": "Hiện đang theo học MBA"
     },
     "stats": {
       "students": "gần 2.000",
@@ -67,9 +69,10 @@
       "schools": "15+",
       "schoolsLabel": "Trường Đã Dạy"
     },
+    "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM",
     "classroom": {
-      "title": "Lớp Học Của Tôi",
-      "description": "Không gian học tập được thiết kế cho sự thoải mái và tập trung",
+      "title": "Lớp Học",
+      "description": "Mỗi lớp tối đa 10 người. Lớp 25 người thì mỗi bạn nói chừng 3 phút một buổi — không ai luyện được gì cả. Lớp ở Phú Nhuận của tôi nhỏ theo chủ ý: camera CCTV, nhà vệ sinh riêng, máy lạnh. An toàn cho trẻ. Làm sẵn để nói tiếng Anh.",
       "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
       "features": {
         "cctv": "Có Camera An Ninh",
@@ -77,17 +80,35 @@
         "comfort": "Môi Trường Thoải Mái",
         "comfortDesc": "Thiết kế phù hợp cho việc học",
         "materials": "Tài Liệu Học Tập",
-        "materialsDesc": "Tất cả tài liệu được cung cấp"
+        "materialsDesc": "Tất cả tài liệu được cung cấp",
+        "safety": "Môi Trường An Toàn",
+        "safetyDesc": "Nhà vệ sinh riêng, kiểm soát muỗi"
       }
     },
     "philosophy": {
-      "title": "Cách Tôi Dạy",
-      "description": "Tôi tin rằng việc học tốt nhất khi bạn không sợ mắc lỗi. Lớp học của tôi là nơi an toàn để thử, thất bại, cười và thử lại. Dù bạn 5 hay 50 tuổi, chúng ta sẽ tìm ra cách phù hợp với bạn."
-    }
+      "title": "Cách Bạn Học",
+      "description": "Mỗi buổi bạn đều sẽ nói. Không phải tuỳ chọn. Sự tự tin là thứ rèn được — không phải bẩm sinh, không phải chờ đợi. Có cấu trúc. Môi trường an toàn. Nói chính là bài học."
+    },
+    "timeline": {
+      "milestones": [
+        {
+          "year": "2023 — HIỆN TẠI",
+          "title": "Giáo Viên Tiếng Anh, TP.HCM",
+          "desc": "Dạy lớp nhỏ tại lớp học riêng ở Golden Mansion, Phú Nhuận. ILA Vietnam, BlueSky Kindergarten, trường quốc tế và mầm non khắp thành phố."
+        },
+        {
+          "year": "KHỞI ĐẦU",
+          "title": "Tashkent, Uzbekistan",
+          "desc": "Lớn lên nói tiếng Uzbek, tiếng Nga, và sau đó là tiếng Anh. Ngôn ngữ là sự khác biệt giữa được hiểu và bị bỏ qua."
+        }
+      ]
+    },
+    "locationLabel": "Địa Điểm",
+    "backgroundLabel": "Tiểu Sử"
   },
   "courses": {
     "title": "Tìm Chương Trình Phù Hợp",
-    "subtitle": "Chương trình phù hợp theo độ tuổi, mang lại kết quả thực sự. Mỗi chương trình kết hợp giảng dạy chuyên nghiệp với phương pháp hấp dẫn.",
+    "subtitle": "Ba chương trình. Một phương pháp. Luyện tập có chủ đích — không phải tiếp thu thụ động.",
     "youngLearners": {
       "title": "Thiếu Nhi (6-10 Tuổi)",
       "tagline": "Nhóm nhỏ, bài học rõ ràng, nhịp độ phù hợp.",
@@ -145,9 +166,16 @@
     "title": "Lưu Trữ Sự Thành Công"
   },
   "cta": {
-    "title": "Muốn tìm hiểu về lớp học?",
-    "subtitle": "Không áp lực, không cam kết. Hãy cùng trò chuyện về mục tiêu của bạn.",
-    "button": "Gửi tin nhắn"
+    "title": "Một buổi học. Không ràng buộc.",
+    "subtitle": "Một buổi học miễn phí để đánh giá trình độ và sự phù hợp. Nếu không phù hợp, tôi sẽ nói thẳng.",
+    "button": "Gửi tin nhắn",
+    "heading": "Đánh Giá Miễn Phí",
+    "headingItalic": "Không ràng buộc.",
+    "checklist_0": "Không cần thanh toán",
+    "checklist_1": "Buổi học 30 phút",
+    "checklist_2": "Đánh giá trung thực",
+    "phoneLabel": "Zalo / Gọi điện",
+    "zaloButton": "Nhắn Tin Zalo"
   },
   "faq": {
     "title": "Câu Hỏi Thường Gặp",
@@ -160,8 +188,8 @@
       "answer": "Thiếu nhi (6-10 tuổi), Thanh thiếu niên (11-17 tuổi), và luyện thi IELTS/chứng chỉ cho mọi lứa tuổi."
     },
     "q3": {
-      "question": "Học phí bao nhiêu?",
-      "answer": "Tùy thuộc vào loại chương trình, địa điểm và tần suất. Liên hệ để biết thông tin cụ thể - không phí ẩn."
+      "question": "Cần đăng ký theo kỳ không?",
+      "answer": "Không hợp đồng. Tháng nào tính tháng đó. Thử một tháng, tự đánh giá lấy."
     },
     "q4": {
       "question": "Thầy dạy nhóm hay 1-1?",
@@ -169,15 +197,15 @@
     },
     "q5": {
       "question": "Thầy có bằng cấp gì?",
-      "answer": "Chứng chỉ TESOL và PGCE. Tôi cũng đã hoàn thành DELTA (Cambridge) và đang chờ kết quả. Đã dạy tại ILA Vietnam, BlueSky Kindergarten và 15+ trường."
+      "answer": "Chứng chỉ TESOL và PGCE. Đã dạy tại ILA Vietnam, BlueSky Kindergarten và 15+ trường."
     },
     "q6": {
       "question": "Có thể học thử trước không?",
-      "answer": "Có! Buổi đánh giá miễn phí - không áp lực, không ràng buộc."
+      "answer": "Được. Một buổi miễn phí. Cứ mang trình độ thật — tôi đánh giá thẳng thắn."
     },
     "q7": {
       "question": "Tại sao lớp nhỏ thay vì lớp đông?",
-      "answer": "Trong lớp 25 người, bạn gần như không được nói. Với tối đa 10 học viên, bạn thực sự được thực hành."
+      "answer": "Lớp 25 người, mỗi bạn nói chưa đầy 3 phút một buổi. Lớp 10 người, bạn nói suốt tiết. Đó là sự khác biệt."
     },
     "q8": {
       "question": "Lớp học có an toàn cho trẻ không?",
@@ -213,7 +241,7 @@
   },
   "contact": {
     "title": "Kết Nối",
-    "subtitle": "Có câu hỏi? Muốn thảo luận về lớp học? Chỉ muốn chào hỏi? Tôi rất vui được nghe từ bạn.",
+    "subtitle": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết liệu tôi có thể giúp được không.",
     "location": {
       "title": "Ghé Thăm Lớp Học",
       "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - Có camera an ninh, môi trường học tập thoải mái"
@@ -259,7 +287,14 @@
     "terms": "Điều Khoản",
     "quickLinks": "Liên Kết Nhanh",
     "channels": "Kênh Liên Hệ",
-    "location": "Golden Mansion 1, Phú Nhuận"
+    "location": "Golden Mansion 1, Phú Nhuận",
+    "ctaHeading": "Một buổi học miễn phí để biết bạn đang ở đâu.",
+    "linkedin": "LinkedIn",
+    "mba": "Ứng Viên MBA",
+    "locationLabel": "Địa Điểm",
+    "city": "TP. Hồ Chí Minh",
+    "country": "Việt Nam",
+    "backToTop": "Về đầu trang"
   },
   "location": {
     "title": "Tại Thành phố Hồ Chí Minh",
@@ -269,50 +304,95 @@
   },
   "methodology": {
     "sectionLabel": "Cách Bạn Học",
-    "heading": "Con đường rõ ràng từ do dự đến",
-    "headingItalic": "tự tin giao tiếp.",
+    "heading": "Luyện tập có chủ đích,",
+    "headingItalic": "không phải tiếp nhận thụ động.",
     "steps": [
       {
         "id": "01",
         "title": "Đánh Giá",
-        "description": "Xác định trình độ nói hiện tại, mục tiêu giao tiếp và những điểm cần cải thiện."
+        "description": "Xác định chính xác bạn đang ở đâu. Trình độ, mục tiêu và điều gì thực sự cản trở kỹ năng nói."
       },
       {
         "id": "02",
-        "title": "Luyện Tập",
-        "description": "Thực hiện các bài luyện nói chuyên sâu và vòng lặp sửa lỗi có cấu trúc hàng tuần."
+        "title": "Xây Dựng",
+        "description": "Các buổi học có cấu trúc được thiết kế để tăng kỹ năng nói, không chỉ là sự quen thuộc. Mỗi buổi học xây dựng trên buổi trước."
       },
       {
         "id": "03",
-        "title": "Ứng Dụng",
-        "description": "Sử dụng tiếng Anh trong các cuộc hội thoại thực tế, kỳ thi, phỏng vấn và môi trường làm việc."
+        "title": "Sử Dụng",
+        "description": "Bạn nói. Nhận phản hồi trực tiếp. Nói lại. Kỹ năng nói không được dạy — nó được thực hành."
       }
     ],
     "stepLabel": "Bước"
   },
+  "inquiry": {
+    "sectionLabel": "06 — Liên Hệ",
+    "heading": "Liên Hệ Với Tôi",
+    "replyNote": "Thường phản hồi trong vòng 24 giờ",
+    "forWhomLabel": "Đăng ký cho ai?",
+    "forWhomChild": "Con tôi",
+    "forWhomSelf": "Bản thân",
+    "levelLabel": "Trình độ hiện tại?",
+    "levelBeginner": "Sơ cấp",
+    "levelIntermediate": "Trung cấp",
+    "levelAdvanced": "Nâng cao",
+    "levelNotSure": "Chưa chắc",
+    "goalLabel": "Mục tiêu chính?",
+    "goalIelts": "Điểm IELTS",
+    "goalSpeaking": "Tự tin giao tiếp",
+    "goalSchool": "Điểm học đường",
+    "goalWork": "Tiếng Anh công việc",
+    "nameLabel": "Họ và tên",
+    "namePlaceholder": "Họ và tên đầy đủ",
+    "emailLabel": "Email",
+    "emailPlaceholder": "email@cua-ban.com",
+    "messageLabel": "Có thêm gì không?",
+    "messagePlaceholder": "Bạn đang mắc kẹt ở điểm nào?",
+    "optional": "tùy chọn",
+    "consentText": "Tôi đồng ý nhận phản hồi từ Teacher Bek.",
+    "sendButton": "Gửi tin nhắn",
+    "sendingButton": "Đang gửi...",
+    "hoursLabel": "Giờ dạy (GMT+7)",
+    "weekdays": "Ngày thường",
+    "weekends": "Cuối tuần",
+    "connectLabel": "Liên hệ trực tiếp",
+    "phoneChannels": "Zalo · Điện Thoại · WhatsApp"
+  },
+  "marquee": {
+    "text": "Chứng Chỉ TESOL · Bằng PGCE · 2.000+ Học Viên · Nhóm Nhỏ · Tự Tin Giao Tiếp · Luyện Thi IELTS · TP. Hồ Chí Minh ·"
+  },
+  "journal": {
+    "sectionLabel": "04 — Blog Của Tôi",
+    "heading": "Mới Nhất",
+    "headingItalic": "Bài Viết",
+    "insightsLabel": "Góc Nhìn",
+    "subtitle": "Những suy nghĩ ngắn gọn về học tập, giảng dạy và chiến lược ngôn ngữ.",
+    "articlePrefix": "Bài",
+    "viewAll": "Xem Tất Cả Bài Viết"
+  },
   "programs": {
     "sectionLabel": "Lớp Tiếng Anh",
-    "heading": "Các",
-    "headingItalic": "Chương Trình",
-    "subtitle": "Kết Quả Tiếng Anh Thực Tế",
-    "subtitleDesc": "Lộ trình học rõ ràng cho trẻ em, thiếu niên và người lớn với mục tiêu giao tiếp thực tế.",
+    "heading": "Tiếng Anh",
+    "headingItalic": "Chương trình",
+    "subtitle": "Ba chương trình. Một phương pháp.",
+    "subtitleDesc": "Dành cho học viên sẵn sàng ngừng học tiếng Anh và bắt đầu sử dụng nó.",
     "requestDetails": "Yêu cầu thông tin",
-    "readyTitle": "Sẵn sàng bắt đầu?",
-    "readyDesc": "Cho biết trình độ và mục tiêu của bạn. Chúng tôi sẽ gợi ý chương trình và lịch học phù hợp.",
-    "requestCta": "Yêu Cầu Tư Vấn",
-    "pricingNote": "Tất cả lớp học: 3.000.000 VND / tháng",
-    "scheduleNote": "Buổi tối ngày thường · Cuối tuần (một số buổi chiều)",
-    "formatNote": "90 phút học · 15 phút nghỉ · Tối đa 10 học viên",
+    "readyTitle": "Một buổi học để xem có phù hợp không.",
+    "readyDesc": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết chương trình nào phù hợp — và liệu tôi có thể giúp được không.",
+    "requestCta": "Đặt Lịch Học Thử Miễn Phí",
+    "pricingNote": "Học phí từ 1.990.000 VND / tháng (mức giá học thử tháng đầu tiên)",
+    "scheduleNote": "Ngày thường: 19:30 - 21:00 · Cuối tuần: 14:00 - 20:00",
+    "formatNote": "Lớp học nhóm · Tối đa 10 học viên",
     "youngLearners": {
       "title": "Thiếu Nhi",
       "subtitle": "Từ 6–10 tuổi",
       "tagline": "Lớp nhỏ, bài học rõ ràng, nhịp độ thoải mái.",
       "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
-      "price": "3.000.000 VND / tháng",
+      "price": "từ 1.990.000 VND / tháng",
       "schedule": "Buổi tối ngày thường · Cuối tuần",
       "outcomes_0": "Phát âm tự nhiên qua luyện tập",
       "outcomes_1": "Từ vựng qua hoạt động thực tế",
-      "outcomes_2": "Tự tin trong môi trường áp lực thấp",
+      "outcomes_2": "Sự tự tin được rèn luyện có chủ đích, từng buổi học",
       "outcomes_3": "Nền tảng vững chắc cho tiếng Anh học đường"
     },
     "teens": {
@@ -320,7 +400,7 @@
       "subtitle": "Từ 11–17 tuổi",
       "tagline": "Tiếng Anh phù hợp cho học đường và cuộc sống.",
       "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
-      "price": "3.000.000 VND / tháng",
+      "price": "từ 1.990.000 VND / tháng",
       "schedule": "Buổi tối ngày thường · Cuối tuần",
       "outcomes_0": "Tiếng Anh giao tiếp tự nhiên",
       "outcomes_1": "Kết quả học tập và thi cử tốt hơn",
@@ -330,13 +410,13 @@
     "ielts": {
       "title": "Luyện Thi IELTS",
       "subtitle": "Mọi Band Điểm",
-      "tagline": "Luyện thi có hệ thống, đúng trọng tâm.",
-      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
-      "price": "3.000.000 VND / tháng",
+      "tagline": "Bài học chiến lược để xây dựng kỹ năng và sự tự tin.",
+      "format": "2× mỗi tuần · 60 phút",
+      "price": "từ 1.990.000 VND / tháng",
       "schedule": "Buổi tối ngày thường · Cuối tuần",
-      "outcomes_0": "Đủ 4 kỹ năng: Đọc, Viết, Nghe, Nói",
-      "outcomes_1": "Chiến lược thi và quản lý thời gian",
-      "outcomes_2": "Phản hồi chi tiết bài thi thử",
+      "outcomes_0": "Học kỹ năng chiến lược, không phải bài giảng thụ động",
+      "outcomes_1": "Hướng dẫn thực hành và dạy kỹ năng làm bài",
+      "outcomes_2": "Phản hồi chi tiết dựa trên bài làm của học viên",
       "outcomes_3": "Biết rõ điểm mạnh và điểm cần cải thiện"
     },
     "workEnglish": {
@@ -351,5 +431,13 @@
       "outcomes_2": "Ngôn ngữ đàm phán và họp hành",
       "outcomes_3": "Kỹ năng giao tiếp với khách hàng"
     }
+  },
+  "exitIntent": {
+    "tag": "Trước khi rời đi",
+    "heading": "Nhận lộ trình tiếng Anh phù hợp với bạn",
+    "body": "Cho tôi biết mục tiêu của bạn — tôi sẽ gửi gợi ý phù hợp với trình độ và thời gian của bạn.",
+    "zalo": "Nhắn tin qua Zalo",
+    "inquiry": "Gửi yêu cầu",
+    "dismiss": "Thôi, cảm ơn"
   }
 }

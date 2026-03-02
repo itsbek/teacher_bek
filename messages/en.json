@@ -10,16 +10,16 @@
     "blog_link": "Blog"
   },
   "hero": {
-    "badge": "English Teacher in Ho Chi Minh City",
-    "title": "Learn English. Actually Speak It.",
+    "badge": "English Teacher · Ho Chi Minh City",
+    "title": "Communicate Clearly.",
     "titleLine1": "English is not",
     "titleLine2": "a language — it is a",
     "titleAccent": "key",
-    "subtitle": "Small groups. Real conversations. A classroom where making mistakes is the whole point.",
-    "cta": "Book Free Assessment",
-    "secondary": "Learn More",
-    "headline": "English is not a language—it is a key",
-    "subheadline": "TESOL Certified • ILA Vietnam • Ho Chi Minh City",
+    "subtitle": "Not grammar drills. Not passive exposure. Deliberate practice, in a room designed for it.",
+    "cta": "Book Free Session",
+    "secondary": "Programs",
+    "headline": "Professional instruction. A comfortable environment.",
+    "subheadline": "TESOL Certified · ILA Vietnam · Ho Chi Minh City",
     "primaryCTA": "Start Learning",
     "secondaryCTA": "View Courses",
     "stats": {
@@ -28,24 +28,26 @@
       "success": "Languages Spoken"
     },
     "badgeTesol": "TESOL + PGCE",
-    "badgePgce": "DELTA (Cambridge)",
+    "badgePgce": "MBA Candidate",
     "badgeLocation": "HCMC-Based",
     "badgeFormat": "In-Person + Online",
     "statsStudents": "Students taught",
     "statsYears": "Years in Vietnam",
-    "statsRating": "Avg. rating",
-    "statusOpen": "Enrollment open",
-    "photoCaption": "Teacher Bek — Phú Nhuận, HCMC"
+    "statsSchools": "Schools taught",
+    "statusOpen": "Accepting students",
+    "photoCaption": "Teacher Bek — Phú Nhuận, HCMC",
+    "tagline": "Small groups · Phú Nhuận · IELTS · Online",
+    "scrollLabel": "Scroll to explore"
   },
   "about": {
     "label": "About",
-    "title": "A Bit About Me",
-    "intro": "I'm originally from Tashkent, Uzbekistan. After years managing teams and chasing corporate targets, I came to Vietnam to volunteer—and accidentally discovered I loved teaching way more than hitting quarterly KPIs. So I stayed.",
+    "title": "The Teacher",
+    "intro": "I came to Vietnam to volunteer. Teaching required a different standard from me — consistency, presence, and long-term commitment. I found that standard worth pursuing. So I stayed.",
     "story": {
-      "title": "My Background",
-      "p1": "I'm a bit of a language nerd (I speak 7 languages, though some are definitely better than others). I'm TESOL and PGCE certified, currently working on my Master's, and I believe in always learning. Honestly, my students teach me something new every week.",
-      "p2": "When I'm not teaching, I'm usually reading, lifting weights, or grappling. Staying active keeps me sharp—and keeps up with energetic students!",
-      "p3": "From ILA Vietnam to BlueSky Kindergarten and 15+ schools across Ho Chi Minh City, I've worked with every type of learner imaginable."
+      "title": "Background",
+      "p1": "TESOL and PGCE certified. Currently finishing my MBA. Credentials tell you what I know — the classroom tells you how I teach.",
+      "p2": "Outside the classroom: reading, lifting, grappling. Staying sharp.",
+      "p3": "ILA Vietnam, BlueSky Kindergarten, 15+ schools across Ho Chi Minh City. Every level. Every starting point."
     },
     "credentials": {
       "title": "Qualifications",
@@ -53,8 +55,8 @@
       "tesolDesc": "Teaching English to Speakers of Other Languages",
       "pgce": "PGCE Certified",
       "pgceDesc": "Graduate Certificate in Education",
-      "delta": "DELTA Completed",
-      "deltaDesc": "Cambridge - Awaiting results"
+      "delta": "MBA Candidate",
+      "deltaDesc": "Currently pursuing MBA"
     },
     "stats": {
       "students": "2,000+",
@@ -64,9 +66,10 @@
       "schools": "15+",
       "schoolsLabel": "Schools Taught"
     },
+    "photoCaption": "Teacher Bek — Phú Nhuận, HCMC",
     "classroom": {
-      "title": "Why My Classroom",
-      "description": "Here's the thing: I keep my groups small (max 10 students). Not because I'm exclusive, but because I've seen what happens in those 25-student language center classes or 50-student school rooms—you barely get to speak. My home classroom in Phú Nhuận has CCTV security, separate restroom, air conditioning, and mosquito-killing lamps. It's comfortable, safe, and designed for focused learning.",
+      "title": "The Classroom",
+      "description": "Group size is capped at 10. In a 25-student class, each student speaks for roughly 3 minutes per session. That is not how fluency forms. My classroom in Phú Nhuận is small by design — CCTV, private restroom, air conditioning. Safe for children. Built for speaking.",
       "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
       "features": {
         "cctv": "CCTV Security",
@@ -74,26 +77,21 @@
         "comfort": "Air Conditioned",
         "comfortDesc": "Comfortable temperature year-round",
         "materials": "Fully Equipped",
-        "materialsDesc": "Everything you need to learn",
+        "materialsDesc": "Everything needed to learn effectively",
         "safety": "Safe Environment",
-        "safetyDesc": "Separate restroom, mosquito control"
+        "safetyDesc": "Separate restroom and mosquito control"
       }
     },
     "philosophy": {
       "title": "How You'll Learn",
-      "description": "And yes, you'll actually speak English. A lot. That's kind of the whole point. Through real conversations, engaging activities, and practical scenarios, you'll build confidence naturally—because the best way to learn a language is to speak it, not just study it."
+      "description": "You speak every session. This is not optional. Confidence is trained — not inherited, not found, not waited for. The structure is deliberate. The environment is safe. The speaking is the lesson."
     },
     "timeline": {
       "milestones": [
         {
           "year": "2023 — PRESENT",
           "title": "English Teacher, Ho Chi Minh City",
-          "desc": "Teaching small-group lessons at my own classroom in Golden Mansion, Phu Nhuan. ILA Vietnam, BlueSky Kindergarten, international schools, and kindergartens across the city."
-        },
-        {
-          "year": "EARLIER",
-          "title": "Corporate Team Leadership",
-          "desc": "Years managing people and chasing quarterly targets. Good training for understanding how adults learn under pressure."
+          "desc": "Small-group lessons at my own classroom in Golden Mansion, Phú Nhuận. ILA Vietnam, BlueSky Kindergarten, international schools, and kindergartens across the city."
         },
         {
           "year": "THE BEGINNING",
@@ -101,38 +99,40 @@
           "desc": "Grew up speaking Uzbek, Russian, and eventually English. Language was the difference between being understood and being invisible."
         }
       ]
-    }
+    },
+    "locationLabel": "Location",
+    "backgroundLabel": "Background"
   },
   "services": {
     "title": "English Programs",
-    "subtitle": "Programs built around how people actually learn to speak.",
+    "subtitle": "Built on the science of how fluency actually forms.",
     "programs": {
       "mentorship": {
         "title": "Young Learners",
-        "desc": "Structured small-group English lessons."
+        "desc": "Small groups. Speaking from session one."
       },
       "dialect": {
         "title": "Teens English",
-        "desc": "Communication practice for school and daily life."
+        "desc": "Spoken English that keeps pace with real ambitions."
       },
       "literacy": {
         "title": "IELTS Preparation",
-        "desc": "Practical exam training with speaking and writing focus."
+        "desc": "Band scores follow clarity. We train clarity."
       }
     }
   },
   "courses": {
     "title": "Find the Right Program",
-    "subtitle": "Age-appropriate curriculum designed to deliver real results. Every program combines expert instruction with engaging methods that make learning stick.",
+    "subtitle": "Three programs. One method: deliberate practice over passive exposure.",
     "youngLearners": {
       "title": "Young Learners (Ages 6-10)",
-      "tagline": "Small groups, clear lessons, comfortable pace.",
-      "description": "Kids improve when they feel relaxed and engaged. Sessions use activities, real practice, and games — not just textbook drills. Groups stay small so every child gets attention.",
+      "tagline": "Small groups. Speaking from session one.",
+      "description": "Children learn English when they feel safe enough to try and challenged enough to grow. Sessions are structured around speaking, not textbook repetition. Groups stay small so every child is heard.",
       "outcomes": [
-        "Natural pronunciation and listening through practice",
-        "Vocabulary built through activities, not memorization",
-        "Confidence speaking in a low-pressure setting",
-        "A solid base for school English"
+        "Pronunciation built through speaking, not drilling",
+        "Vocabulary acquired through use, not memorization",
+        "Confidence trained deliberately, session by session",
+        "A foundation that compounds through school and beyond"
       ],
       "duration": "2x/week • 90 min",
       "level": "Ages 6-10",
@@ -140,27 +140,27 @@
     },
     "teens": {
       "title": "Teens & Pre-Teens (Ages 11-17)",
-      "tagline": "Relevant English for teenagers — school, conversations, and beyond.",
-      "description": "Teenagers get better at English when lessons match what they actually need. We cover school subjects, spoken communication, and the kind of English that's useful outside of textbooks.",
+      "tagline": "Spoken English that keeps pace with your ambitions.",
+      "description": "Teenagers improve when lessons match what is actually at stake for them. We work on spoken communication, critical thinking in English, and the kind of fluency that shows up in real situations — not just exams.",
       "outcomes": [
-        "Spoken English that feels natural, not rehearsed",
-        "Better performance on school assignments and exams",
+        "Spoken English without the internal translation delay",
+        "Stronger performance on school assignments and exams",
         "Communication skills for real situations",
-        "Critical thinking practice in English"
+        "Critical thinking in English"
       ],
       "duration": "2x/week • 90 min",
       "level": "Ages 11-17",
-      "highlight": "School, university, and everyday life"
+      "highlight": "School, university, and every room beyond"
     },
     "ielts": {
       "title": "IELTS & Exam Preparation",
-      "tagline": "Structured prep that covers what the exam actually tests.",
-      "description": "All four IELTS skills, real practice tests, and clear feedback on what needs work. No padding — just focused preparation that translates to scores.",
+      "tagline": "Band scores follow clarity. We train clarity.",
+      "description": "All four IELTS skills, timed practice, and direct feedback on what needs work. No padding, no passive lectures. Focused preparation that translates to scores — and more importantly, to actual English ability.",
       "outcomes": [
         "All four skills: Reading, Writing, Listening, Speaking",
-        "Test strategy and time management that actually helps",
+        "Test strategy and time management that holds under pressure",
         "Detailed feedback on timed practice tests",
-        "A realistic sense of where you stand and what to fix"
+        "A clear, honest read on where you stand"
       ],
       "duration": "2x/week • 60 min",
       "level": "All Band Targets",
@@ -168,13 +168,20 @@
     }
   },
   "testimonials": {
-    "title": "Success Stories",
-    "subtitle": "Real results from students, parents, and colleagues"
+    "title": "What Students Say",
+    "subtitle": "From the students, parents, and colleagues who've worked with Teacher Bek."
   },
   "cta": {
-    "title": "Want to Give It a Try?",
-    "subtitle": "Book a free assessment and we'll figure out if this is a good fit. No pressure, just a conversation about what you're looking for.",
-    "button": "Get in Touch"
+    "title": "One session. No commitment.",
+    "subtitle": "A free session to assess level and fit. If it's not the right match, I'll say so.",
+    "button": "Get in Touch",
+    "heading": "Free Session",
+    "headingItalic": "See if it fits.",
+    "checklist_0": "No payment required",
+    "checklist_1": "30-minute session",
+    "checklist_2": "Honest fit assessment",
+    "phoneLabel": "Zalo / Call",
+    "zaloButton": "Message on Zalo"
   },
   "faq": {
     "title": "Common Questions",
@@ -187,46 +194,46 @@
       "answer": "Young Learners (6-10), Teens (11-17), and IELTS/exam prep for all ages."
     },
     "q3": {
-      "question": "How much do lessons cost?",
-      "answer": "It depends on program type, location, and frequency. Reach out for a straight answer—no hidden fees."
+      "question": "Do I need to commit long-term?",
+      "answer": "No contract. Month-to-month. Try for a month — see if it works for you."
     },
     "q4": {
       "question": "Do you teach only group classes?",
-      "answer": "Yes. All classes are group-based (max 10 students), including online sessions, so everyone gets speaking practice."
+      "answer": "Yes. All classes are group-based (max 10 students), including online sessions, so everyone gets speaking practice every session."
     },
     "q5": {
       "question": "What are your qualifications?",
-      "answer": "TESOL and PGCE certified. I've also completed my DELTA (Cambridge) and am awaiting results. Taught at ILA Vietnam, BlueSky Kindergarten, and 15+ schools."
+      "answer": "TESOL and PGCE certified. Taught at ILA Vietnam, BlueSky Kindergarten, and 15+ schools."
     },
     "q6": {
       "question": "Can I try a class first?",
-      "answer": "Yes! Free assessment session—no pressure, no obligation."
+      "answer": "Yes. One free session. Bring your honest level — I'll tell you exactly where you stand."
     },
     "q7": {
       "question": "Why small groups instead of large classes?",
-      "answer": "In a 25-person class, you barely speak. With max 10 students, you actually practice."
+      "answer": "In a 25-person class, you barely speak. With 10 students, you practice every session."
     },
     "q8": {
       "question": "Is your classroom safe for kids?",
-      "answer": "Absolutely. CCTV security, separate restroom, air-conditioned rooms, and mosquito-killing lamps. Safe, comfortable, and parent-approved."
+      "answer": "Yes. CCTV security, private restroom, air conditioning, and mosquito-killing lamps. Safe, comfortable, and parent-approved."
     },
     "description": "Common Questions"
   },
   "newsletter": {
-    "title": "Stay Connected",
-    "subtitle": "Teaching stories, learning tips, and class updates for parents, teachers, and students. Join 2,000+ readers.",
+    "title": "Notes on Learning",
+    "subtitle": "Weekly observations from the classroom. Language, fluency, and what actually works.",
     "emailPlaceholder": "Your email",
     "subscribe": "Subscribe",
     "subscribing": "Subscribing...",
     "success": "Thanks! Check your inbox to confirm.",
     "error": "Something went wrong. Please try again.",
     "privacy": "No spam. Unsubscribe anytime.",
-    "benefits": "Teaching insights, learning tips, and updates",
-    "description": "Teaching stories, learning tips, and class updates for parents, teachers, and students. Join 2,000+ readers."
+    "benefits": "Teaching insights, learning research, and classroom observations",
+    "description": "Weekly observations from the classroom. Language, fluency, and what actually works."
   },
   "blog": {
     "title": "Stories & Resources",
-    "subtitle": "Thoughts on learning, teaching, and life in Vietnam",
+    "subtitle": "Language. Learning. What actually changes students.",
     "categories": {
       "all": "All",
       "teaching": "Teaching",
@@ -240,39 +247,39 @@
   },
   "contact": {
     "title": "Let's Talk",
-    "subtitle": "Questions? Want to chat about your English goals? Just reach out—I usually respond within a day.",
+    "subtitle": "Tell me the level and the goal. I'll tell you if I can help.",
     "location": {
       "title": "Visit My Classroom",
-      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - Comfortable home classroom with CCTV and separate facilities"
+      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận — small group classroom with CCTV and private facilities"
     },
     "form": {
       "title": "Send a Message",
       "name": "Your name",
       "email": "Your email",
       "phone": "Phone or Zalo (optional)",
-      "message": "What are you looking to improve?",
-      "consent": "I'm cool with getting a reply about this.",
+      "message": "What's the gap you're trying to close?",
+      "consent": "I consent to receiving a follow-up about this inquiry.",
       "submit": "Send Message",
       "submitting": "Sending...",
-      "success": "Got it! I'll get back to you within 24 hours.",
-      "error": "Hmm, something went wrong. Try WhatsApp or Zalo instead?",
+      "success": "Got it. I'll get back to you within 24 hours.",
+      "error": "Something went wrong. Try WhatsApp or Zalo instead.",
       "required": "This field is required",
       "invalidEmail": "Please enter a valid email"
     },
     "or": "Or reach out directly",
     "availability": {
-      "flexible": "Flexible scheduling - mornings, afternoons, or evenings",
-      "consultation": "Free chat to see if it's a fit",
+      "flexible": "Flexible scheduling — mornings, afternoons, or evenings",
+      "consultation": "Free session to assess level and fit",
       "online": "In-person at my classroom or your location"
     },
     "trustBadges": {
-      "response": "Quick replies (usually same day)",
-      "noCommitment": "Free chat—see if it's a fit",
-      "trial": "Try a session first"
+      "response": "Same-day replies, usually",
+      "noCommitment": "Honest fit assessment — no sales pitch",
+      "trial": "Free first session"
     }
   },
   "footer": {
-    "tagline": "English teacher in Ho Chi Minh City. TESOL & PGCE certified. Teaching since 2023.",
+    "tagline": "English teacher, Ho Chi Minh City. 2,000+ students. TESOL & PGCE certified.",
     "contact": "Get in Touch",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
@@ -286,67 +293,74 @@
     "terms": "Terms",
     "quickLinks": "Quick Links",
     "channels": "Channels",
-    "location": "Golden Mansion 1, Phú Nhuận"
+    "location": "Golden Mansion 1, Phú Nhuận",
+    "ctaHeading": "One free session to see where you stand.",
+    "linkedin": "LinkedIn",
+    "mba": "MBA Candidate",
+    "locationLabel": "Location",
+    "city": "Ho Chi Minh City",
+    "country": "Vietnam",
+    "backToTop": "Back to top"
   },
   "location": {
     "title": "Based in Ho Chi Minh City",
     "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
     "districts": "Also teaching in Gò Vấp & Bình Thạnh",
-    "features": "CCTV • Comfortable • Professional"
+    "features": "CCTV · Comfortable · Professional"
   },
   "programs": {
     "sectionLabel": "English Classes",
-    "heading": "Our",
+    "heading": "English",
     "headingItalic": "Programs",
-    "subtitle": "Practical English Results",
-    "subtitleDesc": "Clear lesson tracks for children, teens, and adults with real communication goals.",
+    "subtitle": "Three programs. One method.",
+    "subtitleDesc": "For students ready to stop studying English and start using it.",
     "requestDetails": "Request details",
-    "readyTitle": "Ready to start?",
-    "readyDesc": "Send your level and goal. You will receive a recommended program and schedule options.",
-    "requestCta": "Request Placement Call",
-    "pricingNote": "All classes: 3,000,000 VND / month",
-    "scheduleNote": "Weekday evenings · Weekends (some afternoons)",
-    "formatNote": "90 min class · 15 min included break · Max 10 students",
+    "readyTitle": "One session to see if it's right.",
+    "readyDesc": "Tell me your level and goal. I'll tell you which program fits — and whether I can help.",
+    "requestCta": "Book a Free Session",
+    "pricingNote": "Classes from 1,990,000 VND / month (first month trial rate)",
+    "scheduleNote": "Weekdays: 7:30 PM - 9:00 PM · Weekends: 2:00 PM - 8:00 PM",
+    "formatNote": "Group classes · Max 10 students",
     "youngLearners": {
       "title": "Young Learners",
       "subtitle": "Ages 6–10",
-      "tagline": "Small groups, clear lessons, comfortable pace.",
+      "tagline": "Small groups. Speaking from session one.",
       "format": "2× per week · 90 min + 15 min break",
-      "price": "3,000,000 VND / month",
+      "price": "from 1,990,000 VND / month",
       "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "Natural pronunciation through practice",
-      "outcomes_1": "Vocabulary built through activities",
-      "outcomes_2": "Confidence in a low-pressure setting",
-      "outcomes_3": "A solid base for school English"
+      "outcomes_0": "Pronunciation built through speaking, not drilling",
+      "outcomes_1": "Vocabulary acquired through use, not memorization",
+      "outcomes_2": "Confidence trained deliberately, session by session",
+      "outcomes_3": "A foundation that compounds through school"
     },
     "teens": {
       "title": "Teens & Pre-Teens",
       "subtitle": "Ages 11–17",
-      "tagline": "Relevant English for school, conversations, and beyond.",
+      "tagline": "Spoken English that keeps pace with real ambitions.",
       "format": "2× per week · 90 min + 15 min break",
-      "price": "3,000,000 VND / month",
+      "price": "from 1,990,000 VND / month",
       "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "Spoken English that feels natural",
-      "outcomes_1": "Better school assignments and exams",
-      "outcomes_2": "Communication for real situations",
+      "outcomes_0": "Spoken English without the internal translation delay",
+      "outcomes_1": "Stronger performance on school assignments and exams",
+      "outcomes_2": "Communication skills for real situations",
       "outcomes_3": "Critical thinking in English"
     },
     "ielts": {
       "title": "IELTS Preparation",
       "subtitle": "All Band Targets",
-      "tagline": "Structured prep that covers what the exam actually tests.",
-      "format": "2× per week · 90 min + 15 min break",
-      "price": "3,000,000 VND / month",
+      "tagline": "Band scores follow clarity. We train clarity.",
+      "format": "2× per week · 60 min",
+      "price": "from 1,990,000 VND / month",
       "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "All four skills: Reading, Writing, Listening, Speaking",
-      "outcomes_1": "Test strategy and time management",
-      "outcomes_2": "Detailed feedback on practice tests",
-      "outcomes_3": "Clear picture of where you stand"
+      "outcomes_0": "Strategy lessons, not passive lectures",
+      "outcomes_1": "Active guidance and technique building",
+      "outcomes_2": "Detailed feedback on timed practice tests",
+      "outcomes_3": "A clear, honest read on where you stand"
     },
     "workEnglish": {
       "title": "English for Work",
       "subtitle": "All Levels",
-      "tagline": "Professional English for interviews, meetings, and clients.",
+      "tagline": "Professional English that earns its place in a room.",
       "format": "2× per week · 90 min + 15 min break",
       "price": "3,000,000 VND / month",
       "schedule": "Weekday evenings · Weekends",
@@ -358,25 +372,78 @@
   },
   "methodology": {
     "sectionLabel": "How You Learn",
-    "heading": "A clear path from hesitation to",
-    "headingItalic": "confident fluency.",
+    "heading": "Deliberate practice,",
+    "headingItalic": "not passive exposure.",
     "steps": [
       {
         "id": "01",
-        "title": "Assess",
-        "description": "Identify current speaking level, communication goals, and confidence blockers."
+        "title": "Understand",
+        "description": "Assess exactly where you are. Level, goals, and what's actually blocking fluency."
       },
       {
         "id": "02",
-        "title": "Train",
-        "description": "Run targeted speaking drills and correction loops with weekly structure."
+        "title": "Build",
+        "description": "Structured sessions designed to increase fluency, not just familiarity. Every class builds on the last."
       },
       {
         "id": "03",
-        "title": "Perform",
-        "description": "Apply English in real conversations, exams, interviews, and work contexts."
+        "title": "Use",
+        "description": "You speak. You get direct feedback. You speak again. Fluency isn't taught — it's practiced."
       }
     ],
     "stepLabel": "Step"
+  },
+  "inquiry": {
+    "sectionLabel": "06 — Contact",
+    "heading": "Get in Touch",
+    "replyNote": "Usually replies within 24 hours",
+    "forWhomLabel": "Who is this for?",
+    "forWhomChild": "My Child",
+    "forWhomSelf": "Myself",
+    "levelLabel": "Current level?",
+    "levelBeginner": "Beginner",
+    "levelIntermediate": "Intermediate",
+    "levelAdvanced": "Advanced",
+    "levelNotSure": "Not Sure",
+    "goalLabel": "Main goal?",
+    "goalIelts": "IELTS Score",
+    "goalSpeaking": "Speaking Confidence",
+    "goalSchool": "School Grades",
+    "goalWork": "Work English",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Anything else?",
+    "messagePlaceholder": "What's the gap you're trying to close?",
+    "optional": "optional",
+    "consentText": "I consent to data processing for inquiry follow-up.",
+    "sendButton": "Send Message",
+    "sendingButton": "Sending...",
+    "hoursLabel": "Teaching Hours (GMT+7)",
+    "weekdays": "Weekdays",
+    "weekends": "Weekends",
+    "connectLabel": "Connect Directly",
+    "phoneChannels": "Zalo · Phone · WhatsApp"
+  },
+  "marquee": {
+    "text": "TESOL Certified · PGCE Qualified · 2,000+ Students · Fluency, Not Just Familiarity · Small Groups · HCMC · Deliberate Practice · IELTS Preparation ·"
+  },
+  "journal": {
+    "sectionLabel": "04 — My Blog",
+    "heading": "Latest",
+    "headingItalic": "Articles",
+    "insightsLabel": "Insights",
+    "subtitle": "Observations on language, learning, and what actually changes students.",
+    "articlePrefix": "Article",
+    "viewAll": "Read All Articles"
+  },
+  "exitIntent": {
+    "tag": "Before You Leave",
+    "heading": "Get a Personalized English Plan",
+    "body": "Share your goal and I'll send a short recommended roadmap for your level and timeline.",
+    "zalo": "Message on Zalo",
+    "inquiry": "Start Inquiry",
+    "dismiss": "No Thanks"
   }
 }
