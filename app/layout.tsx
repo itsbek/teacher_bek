@@ -3,6 +3,7 @@ import { Barlow_Condensed, Be_Vietnam_Pro } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /* Display font: Barlow Condensed
    Condensed + bold like Sofia SC, but with NATIVE Vietnamese + Latin Extended support.
@@ -201,6 +202,7 @@ export default function RootLayout({
             {children}
           </SmoothScroll>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
