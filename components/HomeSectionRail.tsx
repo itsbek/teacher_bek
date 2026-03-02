@@ -48,7 +48,7 @@ export function HomeSectionRail() {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className={`flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] transition-all ${isActive ? "text-foreground" : "text-foreground/60 hover:text-foreground"}`}
+              className={`flex items-center gap-3 text-[13px] uppercase tracking-[0.25em] transition-all ${isActive ? "text-foreground" : "text-foreground/60 hover:text-foreground"}`}
             >
               <span className={`h-[1px] transition-all ${isActive ? "w-10 bg-foreground" : "w-5 bg-foreground/40"}`} />
               <span>{section.label}</span>

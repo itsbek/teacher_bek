@@ -58,9 +58,9 @@ const config: Config = {
         'none': '0',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'], // Manrope
-        display: ['var(--font-display)', 'serif'], // Playfair Display
-        mono: ['var(--font-mono)', 'monospace'],
+        sans: ['var(--font-sans)', 'ui-monospace', 'monospace'],    // Spline Sans Mono
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'], // Sofia Sans Condensed
+        mono: ['var(--font-sans)', 'ui-monospace', 'monospace'],     // Spline Sans Mono (same)
       },
       letterSpacing: {
         'vanguard': '0.25em',

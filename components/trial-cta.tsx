@@ -101,7 +101,7 @@ export function TrialCTA() {
           {/* Label */}
           <div className="trial-label flex items-center justify-center gap-3 mb-6">
             <Sparkles className="w-4 h-4 text-[#C4A84D] dark:text-[#ECD06F]" />
-            <span className="text-[11px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
+            <span className="text-[13px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
               Free Assessment
             </span>
             <Sparkles className="w-4 h-4 text-[#C4A84D] dark:text-[#ECD06F]" />
@@ -131,17 +131,17 @@ export function TrialCTA() {
           <div className="mt-12 flex items-center justify-center gap-8">
             <div className="text-center">
               <div className="text-2xl font-normal text-foreground dark:text-white">Free</div>
-              <div className="text-[10px] font-medium tracking-[0.1em] uppercase text-foreground/40 dark:text-white/40 mt-1">Assessment</div>
+              <div className="text-[13px] font-medium tracking-[0.1em] uppercase text-foreground/40 dark:text-white/40 mt-1">Assessment</div>
             </div>
             <div className="w-px h-10 bg-foreground/10 dark:bg-white/10" />
             <div className="text-center">
               <div className="text-2xl font-normal text-foreground dark:text-white">30 min</div>
-              <div className="text-[10px] font-medium tracking-[0.1em] uppercase text-foreground/40 dark:text-white/40 mt-1">Session</div>
+              <div className="text-[13px] font-medium tracking-[0.1em] uppercase text-foreground/40 dark:text-white/40 mt-1">Session</div>
             </div>
             <div className="w-px h-10 bg-foreground/10 dark:bg-white/10" />
             <div className="text-center">
               <div className="text-2xl font-normal text-foreground dark:text-white">No</div>
-              <div className="text-[10px] font-medium tracking-[0.1em] uppercase text-foreground/40 dark:text-white/40 mt-1">Commitment</div>
+              <div className="text-[13px] font-medium tracking-[0.1em] uppercase text-foreground/40 dark:text-white/40 mt-1">Commitment</div>
             </div>
           </div>
         </div>

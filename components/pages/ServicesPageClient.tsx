@@ -68,20 +68,36 @@ export function ServicesPageClient() {
       <main className="bg-background text-foreground min-h-screen pt-32 selection:bg-black selection:text-white antialiased">
 
         {/* Hero */}
-        <section className="px-6 md:px-12 lg:px-24 py-20 lg:py-28 min-h-[calc(100vh-8rem)] flex flex-col justify-center border-b border-foreground/10">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/50 mb-4">
-            English Programs
-          </p>
-          <h1
-            className="font-display leading-[0.92] tracking-tight text-foreground"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
-          >
-            Find the Right <span className="italic">Program.</span>
-          </h1>
-          <p className="font-mono text-sm text-foreground/55 max-w-lg mt-5 leading-relaxed">
-            Small groups for children, teens, and adults. Practical English with
-            real results — not just textbook English.
-          </p>
+        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-40 min-h-[min(80vh,800px)] flex flex-col justify-center border-b border-foreground/5 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-foreground/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-end relative z-10">
+            <div className="lg:col-span-8 flex flex-col items-start text-left">
+              <motion.span
+                initial={false}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/50 mb-10 block"
+              >
+                English Programs
+              </motion.span>
+              <motion.h1
+                initial={false}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display text-[12vw] md:text-[9vw] lg:text-[7.5vw] leading-[0.88] tracking-tighter"
+              >
+                Find the Right<br /><span className="text-foreground/40 font-light italic">Program.</span>
+              </motion.h1>
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right pb-4 border-t border-foreground/10 lg:border-t-0 pt-8 lg:pt-0">
+              <p className="text-xl md:text-2xl font-light text-foreground/70 leading-relaxed max-w-sm mb-8 lg:mb-12">
+                Real results.
+              </p>
+              <p className="text-base text-foreground/50 leading-relaxed max-w-sm">
+                Small groups for children, teens, and adults. Practical English — not just textbook English.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Stats bar */}
@@ -95,7 +111,7 @@ export function ServicesPageClient() {
                 >
                   {stat.value}
                 </p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/55 mt-3">
+                <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-foreground/55 mt-3">
                   {stat.label}
                 </p>
               </div>
@@ -136,7 +152,7 @@ export function ServicesPageClient() {
                   <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-tight mb-1 group-hover:italic transition-all duration-500">
                     {program.title}
                   </h2>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/45 mb-3">
+                  <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/45 mb-3">
                     {program.subtitle}
                   </p>
                   <p className="font-mono text-xs text-foreground/55 italic leading-relaxed max-w-xs">
@@ -144,7 +160,7 @@ export function ServicesPageClient() {
                   </p>
                 </div>
                 <div className="mt-6">
-                  <span className="font-mono text-[10px] uppercase tracking-widest border border-foreground/15 px-3 py-1.5 inline-block text-foreground/60">
+                  <span className="font-mono text-[13px] uppercase tracking-widest border border-foreground/15 px-3 py-1.5 inline-block text-foreground/60">
                     {program.format}
                   </span>
                 </div>
@@ -183,7 +199,7 @@ export function ServicesPageClient() {
         <section className="px-6 md:px-12 lg:px-24 py-16 border-t border-foreground/10 bg-foreground/[0.02]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-8">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/50 mb-3">
+              <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/50 mb-3">
                 Free Assessment
               </p>
               <h2
@@ -200,7 +216,7 @@ export function ServicesPageClient() {
             <div className="lg:col-span-4 lg:flex lg:justify-end">
               <a
                 href={`/${locale}#contact`}
-                className="inline-flex items-center gap-3 px-8 py-5 bg-foreground text-background font-mono text-[11px] uppercase tracking-[0.25em] hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-3 px-8 py-5 bg-foreground text-background font-mono text-[13px] uppercase tracking-[0.25em] hover:opacity-90 transition-opacity"
               >
                 Book Free Assessment
                 <ArrowUpRight size={14} aria-hidden="true" />

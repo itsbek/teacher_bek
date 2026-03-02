@@ -10,7 +10,7 @@ export function AboutPageClient() {
   const credentials = [
     { abbr: "TESOL", full: "Teaching English to Speakers of Other Languages" },
     { abbr: "PGCE", full: "Postgraduate Certificate in Education" },
-    { abbr: "DELTA", full: "Cambridge — Completed, awaiting results" },
+    { abbr: "MBA", full: "Currently pursuing MBA" },
   ];
 
   const proofPoints = [
@@ -44,26 +44,37 @@ export function AboutPageClient() {
       <main className="bg-background text-foreground min-h-screen pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
 
         {/* Hero */}
-        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-32 min-h-[calc(100vh-8rem)] flex flex-col justify-center">
-          <div className="max-w-[1920px] mx-auto w-full text-center section-stack">
-            <motion.span
-              initial={false}
-              animate={{ opacity: 0.4, x: 0 }}
-              className="type-label block"
-            >
-              About Teacher Bek
-            </motion.span>
-            <motion.h1
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="type-display max-w-[16ch] mx-auto"
-            >
-              English Teacher <span className="italic">in Ho Chi Minh City</span>
-            </motion.h1>
-            <p className="type-body-lg max-w-2xl mx-auto text-foreground/75">
-              From Tashkent to teaching. Three years in Vietnam, seven languages, and a genuine belief that small groups produce better English speakers.
-            </p>
+        <section className="px-6 md:px-12 lg:px-24 py-24 lg:py-40 min-h-[min(80vh,800px)] flex flex-col justify-center border-b border-foreground/5 relative">
+          <div className="tech-grid opacity-30" />
+          <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-foreground/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-end relative z-10">
+            <div className="lg:col-span-8 flex flex-col items-start text-left">
+              <motion.div
+                initial={false}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex items-center gap-4 mb-10"
+              >
+                <span className="w-8 h-[1px] bg-foreground/30" />
+                <span className="text-[13px] uppercase tracking-[0.22em] text-foreground/45">[ About Teacher Bek ]</span>
+              </motion.div>
+              <motion.h1
+                initial={false}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display text-[12vw] md:text-[9vw] lg:text-[7.5vw] leading-[0.88] tracking-tighter"
+              >
+                English Teacher<br /><span className="text-foreground/40 font-light italic">in Ho Chi Minh City</span>
+              </motion.h1>
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right pb-4 border-t border-foreground/10 lg:border-t-0 pt-8 lg:pt-0">
+              <p className="text-xl md:text-2xl font-light text-foreground/70 leading-relaxed max-w-sm mb-8 lg:mb-12">
+                From Tashkent to teaching.
+              </p>
+              <p className="text-base text-foreground/50 leading-relaxed max-w-sm">
+                Three years in Vietnam, seven languages, and a genuine belief that small groups produce better English speakers.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -97,7 +108,7 @@ export function AboutPageClient() {
                   I'm originally from Tashkent, Uzbekistan. I speak seven languages, which means I know first-hand what it feels like to not understand, to hesitate before speaking, to feel embarrassed about making mistakes in front of people. That background informs how I teach.
                 </p>
                 <p>
-                  I hold TESOL and PGCE qualifications, and I've recently completed my DELTA (Cambridge) — awaiting results. I've taught at ILA Vietnam, BlueSky Kindergarten, international schools, government schools, and kindergartens across HCMC. Right now I teach from my own classroom at Golden Mansion in Phu Nhuan.
+                  I hold TESOL and PGCE qualifications, and I'm currently pursuing my MBA. I've taught at ILA Vietnam, BlueSky Kindergarten, international schools, government schools, and kindergartens across HCMC. Right now I teach from my own classroom at Golden Mansion in Phu Nhuan.
                 </p>
                 <p>
                   Outside of teaching: reading, weightlifting, grappling. Staying active keeps me sharp — and keeps me honest about what it actually takes to build a new skill.
@@ -122,7 +133,7 @@ export function AboutPageClient() {
                   className="object-cover object-top"
                 />
                 <div className="absolute bottom-5 left-5">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/70 bg-black/40 backdrop-blur-sm px-3 py-1.5 block">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-white/70 bg-black/40 backdrop-blur-sm px-3 py-1.5 block">
                     Teacher Bek — Phú Nhuận, HCMC
                   </span>
                 </div>

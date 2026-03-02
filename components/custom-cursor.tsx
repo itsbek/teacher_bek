@@ -157,7 +157,7 @@ export function CustomCursor() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="px-3 py-1.5 text-[10px] font-medium tracking-[0.1em] uppercase bg-[#ECD06F] text-black rounded-full"
+            className="px-3 py-1.5 text-[13px] font-medium tracking-[0.1em] uppercase bg-[#ECD06F] text-black rounded-full"
           >
             {cursorText}
           </motion.div>

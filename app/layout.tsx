@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Barlow_Condensed, Be_Vietnam_Pro } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const sans = Manrope({
+/* Display font: Barlow Condensed
+   Condensed + bold like Sofia SC, but with NATIVE Vietnamese + Latin Extended support.
+   No fallback needed — one font covers all characters for EN and VI. */
+const display = Barlow_Condensed({
+  subsets: ["latin", "latin-ext", "vietnamese"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["400", "600", "700", "800"],
+  style: ["normal", "italic"],
+});
+
+/* Body font: Be Vietnam Pro
+   Designed specifically for Vietnamese. Replaces Spline Sans Mono entirely.
+   Weight 300 maintains the light editorial body aesthetic. */
+const sans = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   variable: "--font-sans",
   display: "swap",
-});
-
-const display = Playfair_Display({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -118,8 +126,8 @@ export default function RootLayout({
     >
       <head>
         {/* Mobile browser chrome: matches page bg color in light/dark */}
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f4f0" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
         {/* Preconnect to Google Fonts CDN — shaves 100-300ms off font load */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

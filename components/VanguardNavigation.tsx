@@ -1,163 +1,441 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
-import { MuteToggle } from "./mute-toggle";
+import { useAppStore, type FontSize } from "@/lib/store";
 
-const LANGUAGES = ["en", "vi", "zh", "ru"] as const;
+const LANGUAGES = [
+    { code: "en", label: "EN", name: "English" },
+    { code: "vi", label: "VI", name: "Tiếng Việt" },
+    { code: "zh", label: "ZH", name: "中文" },
+    { code: "ru", label: "RU", name: "Русский" },
+] as const;
+
+const FONT_SIZES: { size: FontSize; px: number; label: string }[] = [
+    { size: "sm", px: 12, label: "A−" },
+    { size: "md", px: 15, label: "A" },
+    { size: "lg", px: 18, label: "A+" },
+];
+
+const SECTION_IDS = ["hero", "about", "programs", "methodology", "credentials", "journal", "faq", "contact"] as const;
 
 export function VanguardNavigation() {
     const t = useTranslations("nav");
     const locale = useLocale();
     const pathname = usePathname();
+    const { fontSize, setFontSize } = useAppStore();
+
     const [isOpen, setIsOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState<string>("");
+    const [langOpen, setLangOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 });
+    const langBtnRef = useRef<HTMLButtonElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`;
+
+    useEffect(() => { setMounted(true); }, []);
+
+    // Scroll spy
+    useEffect(() => {
+        if (!isHomepage) return;
+        const observers: IntersectionObserver[] = [];
+
+        SECTION_IDS.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const observer = new IntersectionObserver(
+                ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+                { rootMargin: "-40% 0px -55% 0px" }
+            );
+            observer.observe(el);
+            observers.push(observer);
+        });
+
+        return () => observers.forEach((o) => o.disconnect());
+    }, [isHomepage]);
+
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
+    }, [isOpen]);
 
     const localizedPath = (newLocale: string) =>
         pathname.replace(/^\/(en|vi|zh|ru)(?=\/|$)/, `/${newLocale}`) || `/${newLocale}`;
 
+    const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        const hash = href.split("#")[1];
+        if (!hash) return;
+        if (isHomepage) {
+            e.preventDefault();
+            const target = document.getElementById(hash);
+            if (!target) return;
+            const lenis = (window as Window & { __lenis?: { scrollTo: (el: HTMLElement, opts?: { offset?: number; duration?: number }) => void } }).__lenis;
+            if (lenis) {
+                lenis.scrollTo(target, { offset: -60, duration: 1.0 });
+            } else {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+        setIsOpen(false);
+    }, [isHomepage]);
+
+    const openLang = useCallback(() => {
+        if (langBtnRef.current) {
+            const rect = langBtnRef.current.getBoundingClientRect();
+            setDropdownPos({
+                top: rect.bottom + 8,
+                right: window.innerWidth - rect.right,
+            });
+        }
+        setLangOpen((v) => !v);
+    }, []);
+
+    // Close lang dropdown on outside click
+    useEffect(() => {
+        if (!langOpen) return;
+        const close = (e: MouseEvent) => {
+            const insideBtn = langBtnRef.current?.contains(e.target as Node);
+            const insidePanel = dropdownRef.current?.contains(e.target as Node);
+            if (!insideBtn && !insidePanel) {
+                setLangOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", close);
+        return () => document.removeEventListener("mousedown", close);
+    }, [langOpen]);
+
     const menuItems = [
-        { href: `/${locale}/about`, label: t("about") },
-        { href: `/${locale}/services`, label: t("services") },
-        { href: `/${locale}/blog`, label: t("blog_link") },
-        { href: `/${locale}/faq`, label: t("faq") },
-        { href: `/${locale}#contact`, label: t("contact") },
+        { href: `/${locale}#about`, label: t("about"), section: "about" },
+        { href: `/${locale}#programs`, label: t("services"), section: "programs" },
+        { href: `/${locale}/blog`, label: t("blog_link"), section: "" },
+        { href: `/${locale}#faq`, label: t("faq"), section: "faq" },
+        { href: `/${locale}#contact`, label: t("contact"), section: "contact" },
     ];
 
-    const isMenuItemActive = (href: string) => {
-        const [path] = href.split("#");
+    const isActive = (item: typeof menuItems[number]) => {
+        if (item.section && isHomepage) return activeSection === item.section;
+        const [path] = item.href.split("#");
         if (!path) return false;
-        if (path === `/${locale}`) return pathname === `/${locale}`;
         return pathname === path || pathname.startsWith(`${path}/`);
     };
 
+    const currentLang = LANGUAGES.find((l) => l.code === locale);
+
     return (
         <>
-            <nav className="fixed top-0 w-full z-[10000] px-6 md:px-8 py-5 flex justify-between items-center bg-background/85 backdrop-blur-md border-b border-foreground/10 text-foreground pointer-events-auto">
+            {/* ── Fixed Header — mix-blend-mode: difference makes it always visible ── */}
+            <nav
+                aria-label="Main navigation"
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    zIndex: 10000,
+                    mixBlendMode: "difference",
+                    color: "#efefef",
+                    pointerEvents: "none",
+                }}
+                className="px-6 md:px-10 lg:px-16 py-5 flex justify-between items-center"
+            >
+                {/* Logo */}
                 <Link
                     href={`/${locale}`}
                     aria-label="Go to homepage"
-                    className="text-2xl md:text-3xl font-bold tracking-tighter uppercase pointer-events-auto"
+                    style={{ pointerEvents: "auto", color: "inherit" }}
+                    className="font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.04em] leading-none hover:opacity-70 transition-opacity duration-300"
                 >
                     Teacher Bek
                 </Link>
 
-                {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-10 pointer-events-auto relative z-[10010]">
-                    {menuItems.map((item) => {
-                        const isContact = item.href.includes('#contact');
-                        if (isContact) {
-                            return (
-                                <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className="text-[var(--text-xs)] uppercase tracking-widest border border-foreground/40 px-4 py-2 text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
-                                >
-                                    {item.label}
-                                </Link>
-                            );
-                        }
-                        return (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={`text-[var(--text-xs)] uppercase tracking-widest transition-colors ${isMenuItemActive(item.href) ? "text-foreground border-b border-foreground/40 pb-1" : "text-foreground/75 hover:text-foreground"}`}
-                            >
-                                {item.label}
-                            </Link>
-                        );
-                    })}
+                {/* Desktop Nav + Utilities — all in one row, no overlap */}
+                <div
+                    className="hidden lg:flex items-center gap-6"
+                    style={{ pointerEvents: "auto", color: "inherit" }}
+                >
+                    {/* Nav links */}
+                    {menuItems.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={(e) => handleAnchorClick(e, item.href)}
+                            style={{ color: "inherit" }}
+                            className={`link-line font-sans text-[13px] uppercase tracking-[0.18em] font-light transition-opacity duration-300 ${isActive(item) ? "opacity-100" : "opacity-50 hover:opacity-100"}`}
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
 
-                    <div className="flex items-center gap-3 ml-4">
-                        <div className="flex items-center gap-1 rounded-full border border-foreground/15 bg-background/70 px-1 py-1">
-                        {LANGUAGES.map((lang) => (
-                            <Link
-                                key={lang}
-                                href={localizedPath(lang)}
-                                aria-label={`Switch language to ${lang.toUpperCase()}`}
-                                aria-current={locale === lang ? "true" : undefined}
-                                className={`rounded-full px-2.5 py-1 text-[10px] tracking-[0.16em] uppercase transition-colors ${locale === lang ? "bg-foreground text-background" : "text-foreground/60 hover:text-foreground"}`}
+                    {/* Divider */}
+                    <span style={{ width: 1, height: 14, background: "currentColor", opacity: 0.2, display: "block", flexShrink: 0 }} aria-hidden="true" />
+
+                    {/* Font size — A− A A+ */}
+                    <div className="flex items-center" role="group" aria-label="Font size">
+                        {FONT_SIZES.map(({ size, px, label }) => (
+                            <button
+                                key={size}
+                                onClick={() => setFontSize(size)}
+                                aria-pressed={fontSize === size}
+                                aria-label={`Font size ${size}`}
+                                style={{
+                                    fontFamily: "var(--font-display)",
+                                    fontSize: px,
+                                    fontWeight: 700,
+                                    lineHeight: 1,
+                                    padding: "4px 5px",
+                                    opacity: fontSize === size ? 1 : 0.3,
+                                    transition: "opacity 0.2s",
+                                    letterSpacing: "-0.02em",
+                                    background: "none",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    color: "inherit",
+                                }}
                             >
-                                {lang}
-                            </Link>
+                                {label}
+                            </button>
                         ))}
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <MuteToggle />
-                            <ThemeToggle />
-                        </div>
                     </div>
+
+                    {/* Divider */}
+                    <span style={{ width: 1, height: 14, background: "currentColor", opacity: 0.2, display: "block", flexShrink: 0 }} aria-hidden="true" />
+
+                    {/* Language dropdown trigger */}
+                    <button
+                        ref={langBtnRef}
+                        onClick={openLang}
+                        aria-expanded={langOpen}
+                        aria-haspopup="listbox"
+                        aria-label={`Language: ${currentLang?.name ?? locale.toUpperCase()}`}
+                        style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: 13,
+                            fontWeight: 500,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.12em",
+                            opacity: 0.7,
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",
+                            color: "inherit",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 5,
+                            transition: "opacity 0.2s",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.7")}
+                    >
+                        {currentLang?.label ?? locale.toUpperCase()}
+                        <span
+                            style={{
+                                display: "inline-block",
+                                fontSize: 8,
+                                transition: "transform 0.2s",
+                                transform: langOpen ? "rotate(180deg)" : "rotate(0deg)",
+                            }}
+                            aria-hidden="true"
+                        >
+                            ▾
+                        </span>
+                    </button>
+
+                    {/* Divider */}
+                    <span style={{ width: 1, height: 14, background: "currentColor", opacity: 0.2, display: "block", flexShrink: 0 }} aria-hidden="true" />
+
+                    {/* Theme toggle */}
+                    <ThemeToggle />
                 </div>
 
-                {/* Mobile Toggle */}
-                <div className="md:hidden pointer-events-auto flex items-center gap-2">
-                    <ThemeToggle />
+                {/* Mobile controls */}
+                <div className="lg:hidden flex items-center gap-4" style={{ pointerEvents: "auto", color: "inherit" }}>
+                    {/* Hamburger */}
                     <button
                         type="button"
-                        aria-label="Open navigation menu"
-                        onClick={() => setIsOpen(true)}
-                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-foreground/20 bg-background/80"
+                        aria-label={isOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={isOpen}
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="flex flex-col items-end gap-[5px] w-8 h-8 justify-center"
+                        style={{ color: "inherit" }}
                     >
-                        <Menu size={20} />
+                        <span className={`h-[1px] bg-current transition-all duration-500 ${isOpen ? "w-6 rotate-45 translate-y-[3px]" : "w-7"}`} />
+                        <span className={`h-[1px] bg-current transition-all duration-500 ${isOpen ? "w-6 -rotate-45 -translate-y-[3px]" : "w-5"}`} />
                     </button>
                 </div>
             </nav>
 
-            {/* Mobile Menu */}
+            {/* ── Language dropdown — portal escapes blend-mode compositing ── */}
+            {langOpen && mounted && createPortal(
+                <div
+                    ref={dropdownRef}
+                    role="listbox"
+                    aria-label="Select language"
+                    style={{
+                        position: "fixed",
+                        top: dropdownPos.top,
+                        right: dropdownPos.right,
+                        zIndex: 10002,
+                        background: "hsl(var(--background))",
+                        border: "1px solid hsl(var(--foreground) / 0.12)",
+                        minWidth: 160,
+                        boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                    }}
+                >
+                    {LANGUAGES.map((lang) => (
+                        <Link
+                            key={lang.code}
+                            href={localizedPath(lang.code)}
+                            role="option"
+                            aria-selected={locale === lang.code}
+                            onClick={() => setLangOpen(false)}
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 10,
+                                padding: "10px 16px",
+                                fontFamily: "var(--font-sans)",
+                                fontSize: 13,
+                                textDecoration: "none",
+                                color: "hsl(var(--foreground))",
+                                opacity: locale === lang.code ? 1 : 0.55,
+                                fontWeight: locale === lang.code ? 600 : 400,
+                                borderBottom: "1px solid hsl(var(--foreground) / 0.06)",
+                                transition: "opacity 0.15s, background 0.15s",
+                            }}
+                            onMouseEnter={(e) => {
+                                (e.currentTarget as HTMLElement).style.opacity = "1";
+                                (e.currentTarget as HTMLElement).style.background = "hsl(var(--foreground) / 0.04)";
+                            }}
+                            onMouseLeave={(e) => {
+                                (e.currentTarget as HTMLElement).style.opacity = locale === lang.code ? "1" : "0.55";
+                                (e.currentTarget as HTMLElement).style.background = "transparent";
+                            }}
+                        >
+                            <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontSize: 11 }}>
+                                {lang.label}
+                            </span>
+                            <span style={{ opacity: 0.7 }}>{lang.name}</span>
+                            {locale === lang.code && (
+                                <span style={{ marginLeft: "auto", opacity: 0.4, fontSize: 10 }}>✓</span>
+                            )}
+                        </Link>
+                    ))}
+                </div>,
+                document.body
+            )}
+
+            {/* ── Full-screen mobile menu ── */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col p-8"
+                        initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+                        animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+                        exit={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
+                        transition={{ duration: 0.7, ease: [0.11, 0.82, 0.39, 0.92] }}
+                        className="fixed inset-0 z-[9999] bg-foreground text-background flex flex-col overflow-hidden"
+                        role="dialog"
+                        aria-label="Navigation menu"
+                        aria-modal="true"
                     >
-                        <div className="flex justify-between items-center">
-                            <span className="font-display text-xl font-bold uppercase tracking-tighter">BEK</span>
-                            <button onClick={() => setIsOpen(false)} aria-label="Close navigation menu" className="text-foreground">
-                                <X size={32} />
-                            </button>
-                        </div>
+                        {/* Noise overlay */}
+                        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                            style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }}
+                        />
 
-                        <div className="mt-24 flex flex-col gap-8">
-                            {menuItems.map((item, i) => (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.2 + i * 0.1 }}
-                                    key={item.href}
-                                    className="font-display text-5xl uppercase tracking-tightest hover:italic transition-all"
-                                >
-                                    <Link href={item.href} onClick={() => setIsOpen(false)}>
-                                        {item.label}
-                                    </Link>
-                                </motion.div>
-                            ))}
-                        </div>
+                        {/* Close button */}
+                        <button
+                            type="button"
+                            aria-label="Close menu"
+                            onClick={() => setIsOpen(false)}
+                            className="absolute top-5 right-6 z-10 flex flex-col items-end gap-[5px] w-8 h-8 justify-center"
+                        >
+                            <span className="h-[1px] w-6 bg-current rotate-45 translate-y-[3px]" />
+                            <span className="h-[1px] w-6 bg-current -rotate-45 -translate-y-[3px]" />
+                        </button>
 
-                        <div className="mt-auto pt-8 border-t border-foreground/10 space-y-6">
-                            <div className="flex items-center gap-2">
-                                <MuteToggle />
-                                <ThemeToggle />
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                            {LANGUAGES.map((lang) => (
-                                <Link
-                                    key={lang}
-                                    href={localizedPath(lang)}
-                                    aria-current={locale === lang ? "true" : undefined}
-                                    aria-label={`Switch language to ${lang.toUpperCase()}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`rounded-full border px-3 py-1.5 text-xs uppercase tracking-[0.14em] ${locale === lang ? "border-foreground bg-foreground text-background" : "border-foreground/20 text-foreground/60"}`}
-                                >
-                                    {lang}
-                                </Link>
-                            ))}
-                            </div>
+                        <div className="flex flex-col justify-between h-full px-8 pt-24 pb-12 relative z-10">
+                            {/* Nav items */}
+                            <nav className="flex flex-col gap-0">
+                                {menuItems.map((item, i) => (
+                                    <motion.div
+                                        key={item.href}
+                                        initial={{ opacity: 0, x: -30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.2 + i * 0.07, duration: 0.6, ease: [0.11, 0.82, 0.39, 0.92] }}
+                                        className="border-b border-current/10"
+                                    >
+                                        <Link
+                                            href={item.href}
+                                            onClick={(e) => handleAnchorClick(e, item.href)}
+                                            className="font-display font-bold text-[clamp(2.5rem,12vw,5rem)] uppercase tracking-[-0.04em] leading-[1.05] hover:opacity-60 transition-opacity duration-300 block py-2 text-background"
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                            </nav>
+
+                            {/* Bottom: font size + language + theme + copyright */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.55, duration: 0.5 }}
+                                className="flex items-center justify-between pt-8 border-t border-current/15"
+                            >
+                                {/* Font size controls */}
+                                <div className="flex items-center gap-1" role="group" aria-label="Font size">
+                                    {FONT_SIZES.map(({ size, px, label }) => (
+                                        <button
+                                            key={size}
+                                            onClick={() => setFontSize(size)}
+                                            aria-pressed={fontSize === size}
+                                            style={{
+                                                fontFamily: "var(--font-display)",
+                                                fontSize: px,
+                                                fontWeight: 700,
+                                                padding: "4px 5px",
+                                                opacity: fontSize === size ? 1 : 0.3,
+                                                transition: "opacity 0.2s",
+                                                background: "none",
+                                                border: "none",
+                                                cursor: "pointer",
+                                                color: "hsl(var(--background))",
+                                            }}
+                                        >
+                                            {label}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Language links */}
+                                <div className="flex items-center gap-3">
+                                    {LANGUAGES.map((lang) => (
+                                        <Link
+                                            key={lang.code}
+                                            href={localizedPath(lang.code)}
+                                            aria-current={locale === lang.code ? "true" : undefined}
+                                            onClick={() => setIsOpen(false)}
+                                            className={`font-sans text-[13px] uppercase tracking-[0.14em] transition-opacity duration-300 ${locale === lang.code ? "opacity-100 text-background" : "opacity-35 text-background hover:opacity-70"}`}
+                                        >
+                                            {lang.label}
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <ThemeToggle />
+                                    <p className="font-sans text-[12px] uppercase tracking-[0.15em] opacity-20 text-background">
+                                        © 2025
+                                    </p>
+                                </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}

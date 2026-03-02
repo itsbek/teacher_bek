@@ -219,7 +219,7 @@ export function Contact() {
               {/* Label */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="contact-label-line h-[1px] w-12 bg-[#C4A84D] dark:bg-[#ECD06F] origin-left" />
-                <span className="contact-label text-[11px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
+                <span className="contact-label text-[13px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
                   Get in Touch
                 </span>
               </div>
@@ -258,7 +258,7 @@ export function Contact() {
                     className="contact-method group flex items-center gap-5 p-6 border border-foreground/10 dark:border-white/10 bg-white dark:bg-black hover:border-[#C4A84D]/40 dark:hover:border-[#ECD06F]/40 transition-all duration-500"
                   >
                     {/* Number */}
-                    <span className="text-[10px] font-mono text-foreground/20 dark:text-white/20">
+                    <span className="text-[13px] font-mono text-foreground/20 dark:text-white/20">
                       0{index + 1}
                     </span>
 
@@ -301,7 +301,7 @@ export function Contact() {
                     {['Gò Vấp', 'Phú Nhuận', 'Bình Thạnh'].map((district) => (
                       <span
                         key={district}
-                        className="text-[10px] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-foreground/10 dark:border-white/10 text-foreground/50 dark:text-white/50"
+                        className="text-[13px] font-medium tracking-[0.08em] uppercase px-4 py-2 border border-foreground/10 dark:border-white/10 text-foreground/50 dark:text-white/50"
                       >
                         {district}
                       </span>
@@ -359,7 +359,7 @@ export function Contact() {
               className="trust-badge inline-flex items-center gap-3 px-5 py-3 border border-foreground/10 dark:border-white/10 bg-white/50 dark:bg-white/5"
             >
               <badge.icon className="w-4 h-4 text-[#C4A84D] dark:text-[#ECD06F]" />
-              <span className="text-[11px] font-medium tracking-[0.08em] uppercase text-foreground/60 dark:text-white/60">
+              <span className="text-[13px] font-medium tracking-[0.08em] uppercase text-foreground/60 dark:text-white/60">
                 {badge.label}
               </span>
             </div>

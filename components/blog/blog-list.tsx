@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { BlogPost, categories, Category } from '@/lib/blog-types';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -87,7 +87,7 @@ export function BlogList({ posts, locale }: BlogListProps) {
                   )}
 
                   {/* Category Badge */}
-                  <span className="inline-block px-3 py-1 mb-4 text-[10px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F] bg-[#C4A84D]/10 dark:bg-[#ECD06F]/10 border border-[#C4A84D]/20 dark:border-[#ECD06F]/20 rounded-full">
+                  <span className="inline-block px-3 py-1 mb-4 text-[13px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F] bg-[#C4A84D]/10 dark:bg-[#ECD06F]/10 border border-[#C4A84D]/20 dark:border-[#ECD06F]/20 rounded-full">
                     {t(`categories.${post.category}`)}
                   </span>
 
@@ -103,20 +103,9 @@ export function BlogList({ posts, locale }: BlogListProps) {
 
                   {/* Meta */}
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10 dark:border-white/10">
-                    <div className="flex items-center gap-4 text-xs text-foreground/40 dark:text-white/40">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {new Date(post.date).toLocaleDateString(locale, {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        {post.readTime} {t('readTime')}
-                      </span>
-                    </div>
+                    <span className="text-xs text-foreground/40 dark:text-white/40">
+                      {new Date(post.date).toLocaleDateString(locale, { month: 'short', year: 'numeric' })}
+                    </span>
 
                     <motion.span
                       className="text-[#C4A84D] dark:text-[#ECD06F] opacity-0 group-hover:opacity-100 transition-opacity duration-300"

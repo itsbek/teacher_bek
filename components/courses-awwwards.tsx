@@ -169,11 +169,11 @@ function CourseCard({
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
-            <span className="px-4 py-2 text-[10px] font-medium tracking-wider uppercase text-[#2A2A2C]/60 dark:text-[#F4ECD8]/60 border border-[#C4A84D]/10 dark:border-[#43b3ae]/10 backdrop-blur-sm">
+            <span className="px-4 py-2 text-[13px] font-medium tracking-wider uppercase text-[#2A2A2C]/60 dark:text-[#F4ECD8]/60 border border-[#C4A84D]/10 dark:border-[#43b3ae]/10 backdrop-blur-sm">
               {duration}
             </span>
             <span
-              className="px-4 py-2 text-[10px] font-medium tracking-wider uppercase border backdrop-blur-sm"
+              className="px-4 py-2 text-[13px] font-medium tracking-wider uppercase border backdrop-blur-sm"
               style={{
                 color: accentColor,
                 borderColor: `${accentColor}40`,
@@ -395,7 +395,7 @@ export function CoursesAwwwards() {
               {/* Label */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="courses-label-line h-[1px] w-12 bg-[#C4A84D] dark:bg-[#43b3ae] origin-left" />
-                <span className="courses-label text-[11px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#43b3ae]">
+                <span className="courses-label text-[13px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#43b3ae]">
                   Programs
                 </span>
               </div>
@@ -458,7 +458,7 @@ export function CoursesAwwwards() {
             <div className="max-w-xl">
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="w-5 h-5 text-white/70 dark:text-black/60" aria-hidden="true" />
-                <span className="text-[11px] font-medium tracking-[0.15em] uppercase text-white/70 dark:text-black/60">
+                <span className="text-[13px] font-medium tracking-[0.15em] uppercase text-white/70 dark:text-black/60">
                   Free Consultation
                 </span>
               </div>

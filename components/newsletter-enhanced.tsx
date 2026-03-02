@@ -227,7 +227,7 @@ export function NewsletterEnhanced() {
             {/* Label with oxidized copper */}
             <div className="flex items-center gap-4 mb-8">
               <Sparkles className="w-4 h-4 text-[#43b3ae]" />
-              <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#43b3ae]">
+              <span className="text-[13px] font-mono tracking-[0.2em] uppercase text-[#43b3ae]">
                 Stay Informed
               </span>
             </div>

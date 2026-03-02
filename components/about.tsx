@@ -324,10 +324,10 @@ export default function AboutSection() {
                     style={{ backgroundColor: 'var(--oxidized-copper, #43b3ae)' }}
                   />
                   <span
-                    className="about-eyebrow-text text-[11px] font-mono font-medium tracking-[0.2em] uppercase"
+                    className="about-eyebrow-text text-[13px] font-medium tracking-[0.2em] uppercase"
                     style={{ color: 'var(--oxidized-copper, #43b3ae)' }}
                   >
-                    {t('label')}
+                    [ {t('label')} ]
                   </span>
                 </div>
 
@@ -435,14 +435,14 @@ export default function AboutSection() {
                 {t('credentials.pgce')}
               </span>
               <span
-                className="about-credential inline-flex items-center gap-3 px-6 py-4 text-[10px] font-mono font-medium tracking-[0.12em] uppercase"
+                className="about-credential inline-flex items-center gap-3 px-6 py-4 text-[13px] font-mono font-medium tracking-[0.12em] uppercase"
                 style={{
                   color: 'var(--oxidized-copper, #43b3ae)',
                   border: '1px solid rgba(67, 179, 174, 0.4)',
                   background: 'rgba(67, 179, 174, 0.1)',
                 }}
               >
-                DELTA Trained
+                MBA Candidate
               </span>
             </div>
 
@@ -583,7 +583,7 @@ export default function AboutSection() {
                     {stat.value}
                   </span>
                   <span
-                    className="text-[10px] font-mono tracking-[0.15em] uppercase"
+                    className="text-[13px] font-mono tracking-[0.15em] uppercase"
                     style={{ color: 'rgba(244, 236, 216, 0.4)' }}
                   >
                     {stat.label}

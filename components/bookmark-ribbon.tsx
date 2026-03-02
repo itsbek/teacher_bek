@@ -41,7 +41,7 @@ export const BookmarkRibbon = () => {
                     <motion.div
                         initial={{ x: 20, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
-                        className="ml-4 px-2 py-1 bg-black/80 backdrop-blur-sm border border-white/10 rounded text-[10px] font-mono uppercase tracking-tighter text-white/50 whitespace-nowrap shadow-sm"
+                        className="ml-4 px-2 py-1 bg-black/80 backdrop-blur-sm border border-white/10 rounded text-[13px] font-mono uppercase tracking-tighter text-white/50 whitespace-nowrap shadow-sm"
                     >
                         {chapter.label}
                     </motion.div>

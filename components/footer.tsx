@@ -142,7 +142,7 @@ export function Footer() {
         <div className="footer-nav grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20 lg:mb-28">
           {/* Column 1: Navigation */}
           <div className="footer-nav-col">
-            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
+            <h4 className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
               Navigation
             </h4>
             <nav className="space-y-4">
@@ -161,7 +161,7 @@ export function Footer() {
 
           {/* Column 2: More Links */}
           <div className="footer-nav-col">
-            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
+            <h4 className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
               More
             </h4>
             <nav className="space-y-4">
@@ -180,7 +180,7 @@ export function Footer() {
 
           {/* Column 3: Certifications */}
           <div className="footer-nav-col">
-            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
+            <h4 className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
               {t('certifications')}
             </h4>
             <div className="space-y-4">
@@ -202,7 +202,7 @@ export function Footer() {
 
           {/* Column 4: Connect */}
           <div className="footer-nav-col">
-            <h4 className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
+            <h4 className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30 mb-8">
               Connect
             </h4>
             <div className="footer-social-container">

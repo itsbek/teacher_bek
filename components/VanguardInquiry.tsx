@@ -1,8 +1,21 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const LocationMap = dynamic(
+  () => import("./LocationMap"),
+  { ssr: false, loading: () => <div className="w-full border border-foreground/15 bg-foreground/[0.03]" style={{ height: "300px" }} /> }
+);
+import { useTranslations } from "next-intl";
 import { useAudio } from "./audio-provider";
-import { MapPin, Clock, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 type FormState = {
   name: string;
@@ -14,77 +27,153 @@ type FormState = {
   goal: string;
 };
 
-const INITIAL_FORM_STATE: FormState = {
-  name: "",
-  email: "",
-  message: "",
-  consent: false,
-  forWhom: "",
-  level: "",
-  goal: "",
+const INITIAL: FormState = {
+  name: "", email: "", message: "", consent: false,
+  forWhom: "", level: "", goal: "",
 };
 
-type SelectorGroupProps = {
+// ── Pill selector ─────────────────────────────────────────────────────────
+function PillGroup({
+  label,
+  options,
+  value,
+  onChange,
+}: {
   label: string;
   options: string[];
   value: string;
-  onChange: (val: string) => void;
-};
-
-function SelectorGroup({ label, options, value, onChange }: SelectorGroupProps) {
+  onChange: (v: string) => void;
+}) {
   return (
     <div>
-      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/60 mb-3">
+      <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-4">
         {label}
       </p>
-      {/* min-h prevents layout shift when option text length varies by locale */}
-      <div className="flex flex-wrap gap-2 min-h-[2.75rem]">
+      <div className="flex flex-wrap gap-2">
         {options.map((opt) => (
-          <span
+          <button
             key={opt}
-            role="button"
-            tabIndex={0}
+            type="button"
             onClick={() => onChange(opt)}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onChange(opt)}
-            className={`
-              px-4 py-2 text-sm font-mono tracking-wide cursor-pointer border transition-all duration-200 select-none whitespace-nowrap
-              ${value === opt
-                ? "bg-foreground text-background border-foreground"
-                : "border-foreground/20 text-foreground/70 hover:border-foreground/60 hover:text-foreground"
-              }
-            `}
+            className={`font-sans text-[13px] uppercase tracking-[0.14em] font-light px-4 py-2 border transition-all duration-400 ${
+              value === opt
+                ? "border-foreground bg-foreground text-background"
+                : "border-foreground/20 text-foreground/50 hover:border-foreground/50 hover:text-foreground/80"
+            }`}
+            style={{ transitionTimingFunction: "var(--transition-main)" }}
           >
             {opt}
-          </span>
+          </button>
         ))}
       </div>
     </div>
   );
 }
 
+// ── Line field ────────────────────────────────────────────────────────────
+function LineField({
+  id,
+  label,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  required,
+  optional,
+  optionalLabel,
+  rows,
+}: {
+  id: string;
+  label: string;
+  type?: string;
+  placeholder: string;
+  value: string;
+  onChange: (v: string) => void;
+  required?: boolean;
+  optional?: boolean;
+  optionalLabel?: string;
+  rows?: number;
+}) {
+  const [focused, setFocused] = useState(false);
+
+  const inputClass = `
+    w-full bg-transparent border-none outline-none
+    font-sans font-light
+    text-foreground placeholder:opacity-30
+    py-3 resize-none
+  `;
+
+  const fontSize = "clamp(0.9rem, 1.3vw, 1rem)";
+
+  return (
+    <div
+      className="field-line"
+      style={{ borderBottomColor: focused ? "hsl(var(--foreground))" : undefined }}
+    >
+      <label
+        htmlFor={id}
+        className="block font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-2"
+      >
+        {label}
+        {optional && <span className="opacity-50 normal-case tracking-normal ml-1">({optionalLabel ?? "optional"})</span>}
+      </label>
+      {rows ? (
+        <textarea
+          id={id}
+          rows={rows}
+          required={required}
+          value={value}
+          placeholder={placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          className={inputClass}
+          style={{ fontSize }}
+        />
+      ) : (
+        <input
+          id={id}
+          type={type}
+          required={required}
+          value={value}
+          placeholder={placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          className={inputClass}
+          style={{ fontSize }}
+        />
+      )}
+    </div>
+  );
+}
+
 export function VanguardInquiry() {
+  const t = useTranslations("inquiry");
   const { playSound } = useAudio();
-  const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [statusMessage, setStatusMessage] = useState("");
-  const [formState, setFormState] = useState<FormState>(INITIAL_FORM_STATE);
-  const [formStartedAt] = useState(() => Date.now());
+  const [status, setStatus]     = useState<"idle" | "success" | "error">("idle");
+  const [statusMsg, setStatusMsg] = useState("");
+  const [form, setForm]         = useState<FormState>(INITIAL);
+  const [formStartedAt]         = useState(() => Date.now());
 
-  const canSubmit = useMemo(() => {
-    return (
-      formState.name.trim().length >= 2 &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email) &&
-      formState.consent &&
-      formState.forWhom !== "" &&
-      formState.level !== "" &&
-      formState.goal !== ""
-    );
-  }, [formState]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef  = useRef<HTMLDivElement>(null);
+  const formRef    = useRef<HTMLDivElement>(null);
+  const infoRef    = useRef<HTMLDivElement>(null);
 
-  const handleFieldChange = (field: keyof FormState, value: string | boolean) => {
-    setFormState((prev) => ({ ...prev, [field]: value }));
-  };
+  const canSubmit = useMemo(() =>
+    form.name.trim().length >= 2 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) &&
+    form.consent &&
+    form.forWhom !== "" &&
+    form.level !== "" &&
+    form.goal !== "",
+    [form]
+  );
+
+  const set = (field: keyof FormState, value: string | boolean) =>
+    setForm((prev) => ({ ...prev, [field]: value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,237 +181,267 @@ export function VanguardInquiry() {
 
     setIsSubmitting(true);
     setStatus("idle");
-    setStatusMessage("");
+    setStatusMsg("");
     playSound("click");
 
     try {
-      const response = await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formState.name.trim(),
-          email: formState.email.trim(),
-          message: formState.message.trim(),
-          consent: formState.consent,
-          forWhom: formState.forWhom,
-          level: formState.level,
-          goal: formState.goal,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+          consent: form.consent,
+          forWhom: form.forWhom,
+          level: form.level,
+          goal: form.goal,
           website: "",
           formStartedAt,
         }),
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data?.error || "Failed to send message.");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Failed to send message.");
 
       setStatus("success");
-      setStatusMessage(data?.message || "Message sent successfully.");
-      setFormState(INITIAL_FORM_STATE);
-    } catch (error) {
+      setStatusMsg(data?.message || "Message sent.");
+      setForm(INITIAL);
+    } catch (err) {
       setStatus("error");
-      setStatusMessage(error instanceof Error ? error.message : "Failed to send message.");
+      setStatusMsg(err instanceof Error ? err.message : "Failed to send.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  return (
-    <section className="bg-background text-foreground px-6 md:px-12 lg:px-24 relative overflow-hidden">
-      <div className="max-w-[1920px] mx-auto">
+  // GSAP animations
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        {/* Header */}
-        <div className="flex justify-between items-end mb-14 pb-6 border-b border-foreground/10">
-          <div>
-            <span className="text-[var(--text-xs)] font-mono opacity-80 block mb-2">Contact</span>
-            <h2 className="text-[clamp(2rem,4.5vw,3.75rem)] font-display tracking-tight leading-none mb-3">
-              Get in Touch
-            </h2>
-            <p className="font-mono text-xs text-foreground/50">
-              Tell us who you&apos;re booking for and we&apos;ll suggest the right program.
-            </p>
-          </div>
-          <div className="hidden md:block text-right">
-            <span className="text-[var(--text-xs)] font-mono tracking-widest uppercase opacity-80">
-              Usually replies within 24 hours
+    const ctx = gsap.context(() => {
+      gsap.fromTo(headerRef.current,
+        { y: 25, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+          scrollTrigger: { trigger: headerRef.current, start: "top 85%", once: true } }
+      );
+
+      gsap.fromTo(formRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+          scrollTrigger: { trigger: formRef.current, start: "top 82%", once: true } }
+      );
+
+      gsap.fromTo(infoRef.current,
+        { x: 30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+          scrollTrigger: { trigger: infoRef.current, start: "top 82%", once: true } }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={sectionRef} className="bg-background text-foreground px-6 md:px-10 lg:px-16">
+
+      {/* ── Section header ──────────────────────────────────────────── */}
+      <div
+        ref={headerRef}
+        className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 mb-14 border-b border-foreground/10"
+      >
+        <div>
+          <div className="flex items-center gap-4 mb-5">
+            <span className="w-8 h-[1px] bg-foreground/30 shrink-0" />
+            <span className="font-sans text-[12px] uppercase tracking-[0.22em] opacity-55 font-light">
+              [ {t("sectionLabel")} ]
             </span>
           </div>
+          <h2
+            className="font-display font-bold uppercase leading-[0.9]"
+            style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)", letterSpacing: "-0.05em" }}
+          >
+            {t("heading")}
+          </h2>
+        </div>
+        <p className="font-sans font-light opacity-55 max-w-xs" style={{ fontSize: "clamp(0.875rem, 1.3vw, 0.95rem)" }}>
+          {t("replyNote")}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+
+        {/* ── Form ──────────────────────────────────────────────────── */}
+        <div ref={formRef} className="lg:col-span-7">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            {/* Honeypot */}
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
+            {/* Selectors */}
+            <PillGroup
+              label={t("forWhomLabel")}
+              options={[t("forWhomChild"), t("forWhomSelf")]}
+              value={form.forWhom}
+              onChange={(v) => { set("forWhom", v); playSound("hover"); }}
+            />
+            <PillGroup
+              label={t("levelLabel")}
+              options={[t("levelBeginner"), t("levelIntermediate"), t("levelAdvanced"), t("levelNotSure")]}
+              value={form.level}
+              onChange={(v) => { set("level", v); playSound("hover"); }}
+            />
+            <PillGroup
+              label={t("goalLabel")}
+              options={[t("goalIelts"), t("goalSpeaking"), t("goalSchool"), t("goalWork")]}
+              value={form.goal}
+              onChange={(v) => { set("goal", v); playSound("hover"); }}
+            />
+
+            <div className="w-full h-[1px] bg-foreground/10" />
+
+            {/* Name */}
+            <LineField
+              id="inq-name"
+              label={t("nameLabel")}
+              placeholder={t("namePlaceholder")}
+              value={form.name}
+              onChange={(v) => set("name", v)}
+              required
+            />
+
+            {/* Email */}
+            <LineField
+              id="inq-email"
+              label={t("emailLabel")}
+              type="email"
+              placeholder={t("emailPlaceholder")}
+              value={form.email}
+              onChange={(v) => set("email", v)}
+              required
+            />
+
+            {/* Message */}
+            <LineField
+              id="inq-message"
+              label={t("messageLabel")}
+              placeholder={t("messagePlaceholder")}
+              value={form.message}
+              onChange={(v) => set("message", v)}
+              optional
+              optionalLabel={t("optional")}
+              rows={2}
+            />
+
+            {/* Consent */}
+            <label className="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                checked={form.consent}
+                onChange={(e) => set("consent", e.target.checked)}
+                className="mt-1 w-4 h-4 border border-foreground/30 bg-transparent cursor-pointer"
+              />
+              <span className="font-sans text-[13px] uppercase tracking-[0.18em] opacity-50 font-light group-hover:opacity-80 transition-opacity duration-300">
+                {t("consentText")}
+              </span>
+            </label>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={isSubmitting || !canSubmit}
+              onMouseEnter={() => playSound("hover")}
+              className="self-start flex flex-col gap-3 disabled:opacity-30 disabled:cursor-not-allowed group"
+            >
+              <span className="font-sans text-[13px] uppercase tracking-[0.4em] font-light opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4">
+                {isSubmitting ? t("sendingButton") : t("sendButton")}
+                <svg
+                  width="12" height="12" viewBox="0 0 12 12" fill="none"
+                  className="group-hover:translate-x-1 transition-transform duration-300"
+                  aria-hidden="true"
+                >
+                  <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1.5"/>
+                </svg>
+              </span>
+              {/* Animated underline */}
+              <div className="w-36 h-[1px] bg-foreground/15 relative overflow-hidden">
+                <div className="absolute inset-y-0 left-0 w-0 bg-foreground group-hover:w-full transition-all duration-600" style={{ transitionTimingFunction: "var(--transition-main)" }} />
+              </div>
+            </button>
+
+            {/* Status */}
+            {status !== "idle" && (
+              <div className={`flex items-center gap-3 font-sans text-[13px] ${status === "success" ? "text-green-600" : "text-red-500"}`}>
+                {status === "success" ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+                <span>{statusMsg}</span>
+              </div>
+            )}
+          </form>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        {/* ── Info column ───────────────────────────────────────────── */}
+        <div ref={infoRef} className="lg:col-span-5 flex flex-col gap-12">
 
-          {/* Form Column */}
-          <div className="lg:col-span-7 editorial-panel p-6 md:p-8">
-            <form onSubmit={handleSubmit} className="flex flex-col gap-8 group/form">
-              {/* Honeypot */}
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+          {/* Map — Leaflet + OpenStreetMap (no Google, no API key) */}
+          <LocationMap />
 
-              {/* Segment A: Who */}
-              <SelectorGroup
-                label="Who is this for?"
-                options={["My Child", "Myself"]}
-                value={formState.forWhom}
-                onChange={(val) => { handleFieldChange("forWhom", val); playSound("hover"); }}
-              />
-
-              {/* Segment B: Level */}
-              <SelectorGroup
-                label="Current level?"
-                options={["Beginner", "Intermediate", "Advanced", "Not Sure"]}
-                value={formState.level}
-                onChange={(val) => { handleFieldChange("level", val); playSound("hover"); }}
-              />
-
-              {/* Segment C: Goal */}
-              <SelectorGroup
-                label="Main goal?"
-                options={["IELTS Score", "Speaking Confidence", "School Grades", "Work English"]}
-                value={formState.goal}
-                onChange={(val) => { handleFieldChange("goal", val); playSound("hover"); }}
-              />
-
-              {/* Divider */}
-              <div className="border-t border-foreground/10" />
-
-              {/* Name */}
-              <div className={`relative border-b transition-colors duration-500 ${focusedField === "name" ? "border-foreground" : "border-foreground/20 group-hover/form:border-foreground/40"}`}>
-                <label htmlFor="vanguard-name" className="block text-[var(--text-xs)] uppercase tracking-[0.2em] font-bold mb-4 opacity-80">
-                  Full Name
-                </label>
-                <input
-                  id="vanguard-name"
-                  type="text"
-                  required
-                  minLength={2}
-                  value={formState.name}
-                  onChange={(e) => handleFieldChange("name", e.target.value)}
-                  onFocus={() => { setFocusedField("name"); playSound("hover"); }}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Your full name"
-                  className="w-full bg-transparent border-none py-4 font-display text-3xl md:text-5xl uppercase tracking-tighter outline-none placeholder:opacity-35"
-                />
+          {/* Hours */}
+          <div>
+            <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-5">
+              {t("hoursLabel")}
+            </p>
+            <div className="space-y-2 border border-foreground/10">
+              <div className="flex items-center justify-between px-5 py-3 border-b border-foreground/10">
+                <span className="font-sans text-[13px] uppercase tracking-[0.14em] opacity-60 font-light">{t("weekdays")}</span>
+                <span className="font-sans text-[13px] uppercase tracking-[0.14em] opacity-60 font-light">19:30 – 21:00</span>
               </div>
-
-              {/* Email */}
-              <div className={`relative border-b transition-colors duration-500 ${focusedField === "email" ? "border-foreground" : "border-foreground/20 group-hover/form:border-foreground/40"}`}>
-                <label htmlFor="vanguard-email" className="block text-[var(--text-xs)] uppercase tracking-[0.2em] font-bold mb-4 opacity-80">
-                  Email
-                </label>
-                <input
-                  id="vanguard-email"
-                  type="email"
-                  required
-                  value={formState.email}
-                  onChange={(e) => handleFieldChange("email", e.target.value)}
-                  onFocus={() => { setFocusedField("email"); playSound("hover"); }}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="your@email.com"
-                  className="w-full bg-transparent border-none py-4 font-display text-3xl md:text-5xl uppercase tracking-tighter outline-none placeholder:opacity-35"
-                />
+              <div className="flex items-center justify-between px-5 py-3">
+                <span className="font-sans text-[13px] uppercase tracking-[0.14em] opacity-60 font-light">{t("weekends")}</span>
+                <span className="font-sans text-[13px] uppercase tracking-[0.14em] opacity-60 font-light">14:00 – 20:00</span>
               </div>
-
-              {/* Optional message */}
-              <div className={`relative border-b transition-colors duration-500 ${focusedField === "message" ? "border-foreground" : "border-foreground/20 group-hover/form:border-foreground/40"}`}>
-                <label htmlFor="vanguard-message" className="block text-[var(--text-xs)] uppercase tracking-[0.2em] font-bold mb-4 opacity-80">
-                  Anything else to add?{" "}
-                  <span className="opacity-40 normal-case tracking-normal">(optional)</span>
-                </label>
-                <textarea
-                  id="vanguard-message"
-                  rows={3}
-                  value={formState.message}
-                  onChange={(e) => handleFieldChange("message", e.target.value)}
-                  onFocus={() => { setFocusedField("message"); playSound("hover"); }}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Any extra context..."
-                  className="w-full bg-transparent border-none py-4 font-display text-3xl md:text-5xl uppercase tracking-tighter outline-none placeholder:opacity-35 resize-none min-h-[110px]"
-                />
-              </div>
-
-              {/* Consent */}
-              <label className="flex items-start gap-3 text-[11px] uppercase tracking-[0.18em] font-bold opacity-90 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formState.consent}
-                  onChange={(e) => handleFieldChange("consent", e.target.checked)}
-                  className="mt-1 size-4 rounded border border-foreground/30 bg-transparent"
-                />
-                <span>I consent to data processing for inquiry follow-up.</span>
-              </label>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={isSubmitting || !canSubmit}
-                onMouseEnter={() => playSound("hover")}
-                className="vanguard-magnetic group self-start flex flex-col gap-3 mt-2 disabled:opacity-40 disabled:cursor-not-allowed link-sheen"
-              >
-                <span className="text-[var(--text-xs)] uppercase tracking-[0.5em] font-bold flex items-center gap-4 group-hover:italic transition-all">
-                  {isSubmitting ? "Sending..." : "Send Message"}{" "}
-                  <Send size={14} className="group-hover:translate-x-2 transition-transform" />
-                </span>
-                <div className="w-40 h-[2px] bg-foreground/10 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-foreground -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
-                </div>
-              </button>
-
-              {/* Status feedback */}
-              {status !== "idle" && (
-                <div className={`flex items-center gap-3 text-sm ${status === "success" ? "text-green-500" : "text-red-500"}`}>
-                  {status === "success" ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
-                  <span>{statusMessage}</span>
-                </div>
-              )}
-            </form>
+            </div>
           </div>
 
-          {/* Info Column */}
-          <div className="lg:col-span-5 flex flex-col gap-16">
-            {/* Map */}
-            <div className="relative w-full border border-foreground/20 overflow-hidden bg-foreground/5 editorial-panel" style={{ height: "320px" }}>
-              <div className="absolute top-4 left-4 z-10 bg-background/90 backdrop-blur-md px-4 py-2 border border-foreground/10">
-                <span className="text-[var(--text-xs)] font-bold tracking-widest uppercase flex items-center gap-2">
-                  <MapPin size={12} /> Classroom: Golden Mansion, Phu Nhuan
-                </span>
-              </div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d974.7574530506484!2d106.66820746963197!3d10.803109899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528b00e4da229%3A0x3aba4a5d0e7a050c!2sGolden%20Mansion!5e0!3m2!1sen!2svn!4v1740000000000!5m2!1sen!2svn"
-                title="Classroom location — Golden Mansion, 119 Pho Quang, Phu Nhuan"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+          {/* Contact info — phone first, large */}
+          <div>
+            <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-5">
+              {t("connectLabel")}
+            </p>
 
-            {/* Hours + Address */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-4">
-                <span className="text-[var(--text-xs)] font-bold uppercase tracking-[0.2em] opacity-80 flex items-center gap-2">
-                  <Clock size={12} /> Teaching Hours (GMT+7)
-                </span>
-                <div className="space-y-2 font-mono text-[var(--text-xs)] opacity-85">
-                  <p className="flex justify-between border-b border-foreground/5 pb-2"><span>MON – THU</span><span>09:00 – 18:00</span></p>
-                  <p className="flex justify-between border-b border-foreground/5 pb-2"><span>FRI</span><span>09:00 – 15:00</span></p>
-                  <p className="flex justify-between"><span>SAT – SUN</span><span className="italic opacity-40">By appointment</span></p>
-                </div>
-              </div>
+            {/* Big phone CTA */}
+            <a
+              href="https://zalo.me/84353885757"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col mb-6 pb-6 border-b border-foreground/10"
+            >
+              <span className="font-sans text-[11px] uppercase tracking-[0.22em] opacity-50 font-light mb-1">
+                {t("phoneChannels")}
+              </span>
+              <span
+                className="font-display font-bold leading-none tracking-tight text-foreground group-hover:opacity-60 transition-opacity duration-300"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.04em" }}
+              >
+                +84 353 88 5757
+              </span>
+            </a>
 
-              <div className="space-y-4">
-                <span className="text-[var(--text-xs)] font-bold uppercase tracking-[0.2em] opacity-80">Address</span>
-                <p className="font-mono text-[var(--text-xs)] leading-relaxed opacity-85">
-                  Golden Mansion<br />
-                  119 Pho Quang, Ward 9<br />
-                  Phu Nhuan, HCMC<br />
-                  Vietnam
-                </p>
-              </div>
+            <div className="flex flex-col gap-3">
+              <a href="mailto:hello@teacherbek.com"
+                className="link-line font-sans font-light opacity-50 hover:opacity-100 transition-opacity duration-300 flex justify-between"
+                style={{ fontSize: "clamp(0.8rem, 1.2vw, 0.95rem)" }}>
+                <span>Email</span><span>hello@teacherbek.com</span>
+              </a>
+              <a href="https://wa.me/84353885757" target="_blank" rel="noopener noreferrer"
+                className="link-line font-sans font-light opacity-50 hover:opacity-100 transition-opacity duration-300 flex justify-between"
+                style={{ fontSize: "clamp(0.8rem, 1.2vw, 0.95rem)" }}>
+                <span>WhatsApp</span><span>+84 353 88 5757</span>
+              </a>
             </div>
           </div>
 
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -150,7 +150,7 @@ export function Newsletter() {
           {/* Label */}
           <div className="newsletter-label flex items-center justify-center gap-4 mb-6">
             <div className="h-px w-12 bg-foreground/20 dark:bg-white/20" />
-            <span className="text-[11px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
+            <span className="text-[13px] font-medium tracking-[0.1em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
               Free Resources
             </span>
             <div className="h-px w-12 bg-foreground/20 dark:bg-white/20" />
@@ -325,7 +325,7 @@ export function Newsletter() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mt-16 lg:mt-20">
         <div className="flex items-center justify-center gap-4">
           <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-foreground/10 dark:to-white/10" />
-          <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30">
+          <span className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/30 dark:text-white/30">
             No Spam, Just Value
           </span>
           <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-foreground/10 dark:to-white/10" />

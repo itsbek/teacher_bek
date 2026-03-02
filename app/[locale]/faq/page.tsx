@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { FaqPageClient } from "@/components/pages/FaqPageClient";
-import { JsonLd } from "@/components/JsonLd";
+import { redirect } from "next/navigation";
 import { buildPageMetadata } from "@/lib/seo";
 
 type Props = {
@@ -17,42 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export default function FAQPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "How are classes different from large language centers?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Classes are capped at 10 students, with speaking practice and direct feedback in every session.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is this suitable for children, teens, and adults?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Programs are available for young learners, teens, and adults focused on IELTS or workplace communication.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How can I start?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Submit your level and goal through the enquiry form to receive a recommended program and schedule options.",
-        },
-      },
-    ],
-  };
-
-  return (
-    <>
-      <JsonLd data={faqJsonLd} />
-      <FaqPageClient />
-    </>
-  );
+export default async function FAQPage({ params }: Props) {
+  const { locale } = await params;
+  redirect(`/${locale}#faq`);
 }

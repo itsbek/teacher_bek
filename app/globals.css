@@ -1,112 +1,162 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   THE VANCE EDITORIAL - Design System
-   Academic Prestige, Minimalist Grid, High Contrast
+   DESIGN SYSTEM — Inspired by Olha Lazarieva Portfolio
+   Grayscale Minimal · Brutalist Condensed · Kinetic Typography
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Leaflet — must load before any map component mounts */
+@import 'leaflet/dist/leaflet.css';
+
+/* ── Font size scaling — set by NavUtilities, persisted in localStorage ── */
+/* Default browser root is 16px; sm/lg scale all rem values proportionally */
+html[data-fontsize="sm"] { font-size: 14px; }
+html[data-fontsize="md"] { font-size: 16px; }
+html[data-fontsize="lg"] { font-size: 19px; }
+
 @layer base {
   :root {
-    /* ─── LIGHT THEME (Default) ─── */
-    --background: 60 7% 95%;
-    /* Bone #f4f4f0 */
-    --foreground: 0 0% 10%;
-    /* Carbon #1a1a1a */
+    /* ─── LIGHT THEME ─── */
+    /* #f7f7f7 background, #101010 text */
+    --background: 0 0% 97%;
+    --foreground: 0 0% 6%;
 
-    --card: 60 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
 
-    --primary: 0 0% 0%;
-    /* Pure Black */
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 6%;
+    --primary-foreground: 0 0% 97%;
 
-    --secondary: 60 5% 90%;
-    --muted: 60 5% 85%;
+    --secondary: 0 0% 93%;
+    --secondary-foreground: 0 0% 6%;
+
+    --muted: 0 0% 90%;
     --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 6%;
+    --accent-foreground: 0 0% 97%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 97%;
 
     --border: 0 0% 80%;
     --input: 0 0% 80%;
-    --ring: 0 0% 10%;
-    --radius: 0px;
-    /* Editorial Sharpness */
+    --ring: 0 0% 6%;
 
-    /* ─── FLUID TYPOGRAPHY SCALE (Awwwards Standard) ─── */
-    --text-xs: clamp(0.8rem, 1.25vw, 0.95rem);
-    /* Technical Markers: 12px scaled */
-    --text-sm: clamp(0.875rem, 1.5vw, 1rem);
-    /* Secondary Labels: 14px-16px */
-    --text-base: clamp(1.05rem, 2.2vw, 1.25rem);
-    /* Body Text: 16px-18px */
-    --text-lg: clamp(1.25rem, 2.9vw, 1.75rem);
-    /* Subheadings: 18px-24px */
-    --text-xl: clamp(1.85rem, 4.4vw, 3rem);
-    /* Section Headers: 24px-36px */
-    --text-2xl: clamp(2.75rem, 6.8vw, 4.75rem);
-    /* Small Display: 36px-56px */
-    --text-display-lg: clamp(3.25rem, 8vw, 7.25rem);
-    /* Editorial Display: 52px-116px */
-    --section-space: clamp(3rem, 7vw, 5rem);
-    --section-space-lg: clamp(4rem, 9vw, 7rem);
+    --popover: 0 0% 97%;
+    --popover-foreground: 0 0% 6%;
+
+    --radius: 0px;
+
+    /* ─── DIRECT COLOR VALUES ─── */
+    --bg-color: #f7f7f7;
+    --text-color: #101010;
+    --text-gray: #908c8c;
+    --text-gray-light: #aaa;
+    --color-white: #fff;
+
+    /* ─── EASING ─── */
+    --transition-main: cubic-bezier(0.11, 0.82, 0.39, 0.92);
     --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ─── TIMING ─── */
     --motion-fast: 180ms;
     --motion-medium: 360ms;
     --motion-slow: 640ms;
-    --accent-metal: 36 35% 52%;
+
+    /* ─── LAYOUT GRID ───
+       All spacing is a multiple of the 8px base unit.
+       clamp(mobile, fluid, desktop)
+    ───────────────────── */
+    --nav-h: 4.5rem;
+    /* 72px — navigation bar height */
+    --gutter: clamp(1.25rem, 4vw, 2rem);
+    /* horizontal page margin */
+
+    /* Vertical section breathing room */
+    --section-xs: clamp(2rem, 4vw, 3rem);
+    /* tight separator */
+    --section-sm: clamp(3rem, 6vw, 5rem);
+    /* small gap */
+    --section-md: clamp(4rem, 7vw, 7rem);
+    /* standard section */
+    --section-lg: clamp(5rem, 8vw, 9rem);
+    /* generous section */
+    --section-xl: clamp(6rem, 10vw, 11rem);
+    /* hero-adjacent breathing */
+
+    /* Legacy aliases — mapped to new tokens */
+    --section-space: var(--section-md);
+    --section-space-lg: var(--section-lg);
   }
 
   .dark {
-    /* ─── DARK THEME (Classic Vance) ─── */
-    --background: 0 0% 10%;
-    /* Carbon #1a1a1a */
-    --foreground: 40 10% 95%;
-    /* Paper White */
+    /* ─── DARK THEME ─── */
+    /* #101010 background, #f7f7f7 text */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 97%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 40 10% 95%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 97%;
 
-    --primary: 0 0% 100%;
-    /* Pure White */
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 0% 97%;
+    --primary-foreground: 0 0% 6%;
 
-    --secondary: 0 0% 15%;
-    --muted: 0 0% 20%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 97%;
+
+    --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 100%;
+    --accent: 0 0% 97%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 97%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 97%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 97%;
+
+    --bg-color: #101010;
+    --text-color: #f7f7f7;
   }
 
   .light {
-    --background: 60 7% 95%;
-    --foreground: 0 0% 10%;
-    --card: 60 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 60 5% 90%;
-    --muted: 60 5% 85%;
+    --background: 0 0% 97%;
+    --foreground: 0 0% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
+    --primary: 0 0% 6%;
+    --primary-foreground: 0 0% 97%;
+    --secondary: 0 0% 93%;
+    --muted: 0 0% 90%;
     --muted-foreground: 0 0% 40%;
     --border: 0 0% 80%;
     --input: 0 0% 80%;
-    --ring: 0 0% 10%;
+    --ring: 0 0% 6%;
+    --bg-color: #f7f7f7;
+    --text-color: #101010;
   }
 }
 
 @layer base {
   * {
-    border-color: var(--border);
+    border-color: hsl(var(--border));
   }
 
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-    /* Fixes browser chrome (scrollbar, native inputs) for light/dark themes */
     color-scheme: light;
+    /* --font-mono falls back to sans (Be Vietnam Pro) */
+    --font-mono: var(--font-sans);
   }
 
   html.dark {
@@ -121,18 +171,13 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     transition-property: color, background-color;
-    transition-duration: 500ms;
-    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1, "cv01" 1;
+    transition-duration: 400ms;
     overflow-x: hidden;
-    /* Remove tap highlight on mobile — prevents ghost blue flash on interactive elements */
     -webkit-tap-highlight-color: transparent;
   }
 
   a,
   button {
-    transition-duration: var(--motion-fast);
-    transition-timing-function: var(--ease-editorial);
-    /* Prevents 300ms double-tap zoom delay on mobile */
     touch-action: manipulation;
   }
 
@@ -141,173 +186,639 @@
     outline-offset: 3px;
   }
 
+  /* ─── TYPOGRAPHY BASE ─── */
+  /* Barlow Condensed — display headings. Native Vietnamese + Latin support. */
   h1,
   h2,
   h3,
-  h4 {
-    font-family: var(--font-display);
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-    text-transform: none;
-    /* Editorial Case Control */
-    /* Prevents widow words on responsive layouts */
-    text-wrap: balance;
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
   }
 
-  p {
-    font-family: var(--font-sans);
-    line-height: 1.625;
-    font-size: clamp(1.05rem, 2.25vw, 1.2rem);
-    opacity: 0.9;
-    text-wrap: pretty;
+  /* Readable body text — minimum 16px */
+  body {
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
-  /* Numbers in stat columns must not shift width as they count up */
+  /* Be Vietnam Pro — body. Native Vietnamese support, consistent metrics everywhere. */
+  p,
+  li,
+  td,
+  th,
+  label,
+  input,
+  textarea,
+  select {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    font-size: 1rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   [data-stat],
   .stat-value {
     font-variant-numeric: tabular-nums;
   }
 
-  /* Selection Clarity */
   ::selection {
-    @apply bg-foreground text-background;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
-
-  /* Weighted Elegance: Scrollbar */
-  ::-webkit-scrollbar {
-    mix-blend-mode: difference;
-  }
-
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .section-space {
-    padding-top: var(--section-space);
-    padding-bottom: var(--section-space);
-  }
-
-  .section-space-lg {
-    padding-top: var(--section-space-lg);
-    padding-bottom: var(--section-space-lg);
-  }
-
-  .rhythm-copy {
-    max-width: 66ch;
-    text-wrap: pretty;
-  }
-
-  .headline-balance {
-    text-wrap: balance;
-  }
-
-  /* Unified Typography System */
-  .type-display {
-    font-family: var(--font-display);
-    font-size: var(--text-display-lg);
-    line-height: 0.82;
-    letter-spacing: -0.045em;
-  }
-
-  .type-hero {
-    font-family: var(--font-display);
-    font-size: clamp(3.1rem, 8.6vw, 8rem);
-    line-height: 0.86;
-    letter-spacing: -0.042em;
-  }
-
-  .type-title-lg {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-  }
-
-  .type-title-md {
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-  }
-
-  .type-title-sm {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-  }
-
-  .type-body {
-    font-family: var(--font-sans);
-    font-size: var(--text-base);
-    line-height: 1.65;
-    letter-spacing: 0;
-  }
-
-  .type-body-lg {
-    font-family: var(--font-sans);
-    font-size: var(--text-lg);
-    line-height: 1.6;
-    letter-spacing: 0;
-  }
-
-  .type-label {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    line-height: 1.25;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  .type-label-tight {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    line-height: 1.2;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  .type-meta {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    line-height: 1.2;
-    letter-spacing: 0.08em;
-  }
-
-  .page-shell {
-    min-height: 100vh;
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    padding-top: clamp(6rem, 10vw, 8rem);
-    padding-bottom: clamp(3.5rem, 7vw, 6rem);
-    padding-left: clamp(1.25rem, 3vw, 2.5rem);
-    padding-right: clamp(1.25rem, 3vw, 2.5rem);
-  }
-
-  .page-container {
-    width: min(100%, 1200px);
-    margin-inline: auto;
-  }
-
-  .section-stack {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1rem, 2.2vw, 1.5rem);
-  }
-
-  .panel {
-    border: 1px solid hsl(var(--foreground) / 0.12);
-    background: linear-gradient(
-      150deg,
-      hsl(var(--foreground) / 0.04),
-      hsl(var(--foreground) / 0.01)
-    );
-    padding: clamp(1rem, 2.5vw, 1.5rem);
-  }
-
 }
+
+/* ═══ LAYOUT UTILITIES ═══ */
+
+/* Vertical section rhythm — use these, no ad-hoc padding */
+.section-xs {
+  padding-block: var(--section-xs);
+}
+
+.section-sm {
+  padding-block: var(--section-sm);
+}
+
+.section-space,
+.section-md {
+  padding-block: var(--section-md);
+}
+
+.section-lg,
+.section-space-lg {
+  padding-block: var(--section-lg);
+}
+
+.section-xl {
+  padding-block: var(--section-xl);
+}
+
+/* Horizontal page gutters */
+.page-gutter {
+  padding-inline: var(--gutter);
+}
+
+/* Constrain content width — max 1440px */
+.page-container {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+/* Typography measure */
+.rhythm-copy {
+  max-width: 65ch;
+  text-wrap: pretty;
+}
+
+.headline-balance {
+  text-wrap: balance;
+}
+
+.panel {
+  border: 1px solid hsl(var(--foreground) / 0.10);
+  background: linear-gradient(150deg,
+      hsl(var(--foreground) / 0.03),
+      hsl(var(--foreground) / 0.01));
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.page-shell {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  padding-top: clamp(5rem, 9vw, 7rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  padding-left: clamp(1.25rem, 3vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* ═══ TYPOGRAPHY SYSTEM ═══
+
+   Scale follows a Major Third ratio (1.25×) anchored at 16px.
+   Vietnamese-safe: line-heights are generous; min font floor is 12px.
+   Display capped at 8rem (128px) — any larger is a design error.
+   ═══════════════════════════════════════════════════════════════════
+
+   Token        Mobile   →  Desktop    Use case
+   ─────────────────────────────────────────────
+   type-display  3rem        8rem      Hero single-word
+   type-hero     2.5rem      6rem      Hero headline
+   type-title-lg 2rem        4.5rem    Section H2
+   type-title-md 1.5rem      3rem      Card title, H3
+   type-title-sm 1.25rem     2rem      Sub-section H4
+   type-body-lg  1.125rem    1.25rem   Lead paragraph
+   type-body     1rem        1.0625rem Body copy (floor: 16px)
+   type-label    0.8125rem   0.875rem  UI labels (13–14px)
+   type-micro    0.75rem     0.75rem   Legal, timestamps (12px hard floor)
+   ─────────────────────────────────────────────
+*/
+
+.type-display {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.type-hero {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.type-title-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.type-title-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.type-title-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.type-body-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+.type-body {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+/* 13–14px — readable UI labels */
+.type-label {
+  font-family: var(--font-sans);
+  font-size: clamp(0.8125rem, 0.9vw, 0.875rem);
+  /* 13–14px */
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* 12px hard floor — absolute minimum per WCAG */
+.type-micro {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  /* 12px — never go below this */
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Deprecated aliases (kept for backward compatibility) ─── */
+.type-label-tight {
+  font-family: var(--font-sans);
+  font-size: clamp(0.8125rem, 0.9vw, 0.875rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.type-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+}
+
+/* Container for each character with overflow hidden */
+.letter-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: inherit;
+}
+
+/* The character itself — starts translated out, animates in via GSAP */
+.letter {
+  display: inline-block;
+  transform: translateY(120%);
+}
+
+/* Word wrapper for word-by-word reveals */
+.word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.word {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+/* ═══ LINK ANIMATIONS ═══ */
+
+/* Center-outward underline (reference site's link-line pattern) */
+.link-line {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-line::before,
+.link-line::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  height: 1px;
+  width: 50%;
+  background: currentColor;
+  transition: transform 0.6s var(--transition-main);
+}
+
+.link-line::before {
+  left: 50%;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.link-line::after {
+  right: 50%;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.link-line:hover::before,
+.link-line:hover::after {
+  transform: scaleX(1);
+}
+
+/* Slide-in background on hover */
+.slide-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: hsl(var(--foreground));
+  transform: translateX(-101%);
+  transition: transform 0.5s var(--transition-main);
+  z-index: 0;
+}
+
+.slide-fill:hover::before {
+  transform: translateX(0);
+}
+
+.slide-fill>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Inverted slide fill (bg→text on hover) */
+.slide-fill-inv {
+  position: relative;
+  overflow: hidden;
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+.slide-fill-inv::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: hsl(var(--background));
+  transform: translateX(-101%);
+  transition: transform 0.5s var(--transition-main);
+  z-index: 0;
+}
+
+.slide-fill-inv:hover::before {
+  transform: translateX(0);
+}
+
+.slide-fill-inv:hover {
+  color: hsl(var(--foreground));
+}
+
+.slide-fill-inv>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Simple accent underline (single line, left-to-right) */
+.accent-underline {
+  position: relative;
+}
+
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--transition-main);
+}
+
+.accent-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Link sheen (diagonal sweep) */
+.link-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.link-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(110deg,
+      transparent 0%,
+      rgba(200, 200, 200, 0.20) 45%,
+      transparent 75%);
+  transition: transform var(--motion-medium) var(--ease-editorial);
+}
+
+.link-sheen:hover::after {
+  transform: translateX(120%);
+}
+
+/* ═══ CLIP-PATH UTILITIES ═══ */
+
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.clip-reveal-left {
+  clip-path: inset(0 100% 0 0);
+}
+
+.clip-reveal-right {
+  clip-path: inset(0 0 0 100%);
+}
+
+/* ═══ IMAGE ANIMATIONS (reference-style) ═══ */
+
+/* Image container: initially clips from bottom */
+.img-reveal {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: clip-path 1.2s var(--transition-main);
+}
+
+.img-reveal.is-visible {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Inner image: scales in from zoomed-out */
+.img-reveal-inner {
+  transform: scale(1.3);
+  transition: transform 1.4s var(--transition-main);
+}
+
+.img-reveal.is-visible .img-reveal-inner {
+  transform: scale(1);
+}
+
+/* ═══ SCROLL-TRIGGERED BASE STATES ═══ */
+
+[data-scroll] {
+  will-change: transform, opacity;
+}
+
+.pin-spacer {
+  position: relative;
+}
+
+.gsap-pin-container {
+  overflow: visible !important;
+}
+
+/* ═══ SECTION UTILITIES ═══ */
+
+.bracket-label {
+  font-family: var(--font-sans);
+  font-size: clamp(0.6rem, 0.85vw, 0.7rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground) / 0.45);
+}
+
+.bracket-label::before {
+  content: '[ ';
+  opacity: 0.6;
+}
+
+.bracket-label::after {
+  content: ' ]';
+  opacity: 0.6;
+}
+
+/* ═══ EDITORIAL PANEL ═══ */
+
+.editorial-panel {
+  border: 1px solid hsl(var(--foreground) / 0.10);
+  background: linear-gradient(155deg,
+      hsl(var(--foreground) / 0.03),
+      hsl(var(--foreground) / 0.01));
+}
+
+/* ═══ VERTICAL TEXT ═══ */
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ═══ LOADING SCREEN ═══ */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(var(--foreground));
+  color: hsl(var(--background));
+  transition: opacity 0.7s var(--transition-main),
+    transform 0.7s var(--transition-main);
+}
+
+.loading-screen.is-done {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* ═══ KEYFRAME ANIMATIONS ═══ */
+
+@keyframes marquee-slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-infinite {
+  animation: marquee-slide 50s linear infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up-reveal {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-bar {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ═══ SCROLL BORDER ANIMATE ═══ */
+
+.border-animate {
+  position: relative;
+}
+
+.border-animate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: hsl(var(--foreground));
+  transition: none;
+}
+
+/* ═══ HORIZONTAL SCROLL SECTION ═══ */
+
+.h-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.h-scroll-container:active {
+  cursor: grabbing;
+}
+
+.h-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══ FORM STYLES ─── (reference-inspired: border-bottom only) ═══ */
+
+.field-line {
+  position: relative;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.20);
+  transition: border-color 0.4s var(--transition-main);
+}
+
+.field-line:focus-within {
+  border-color: hsl(var(--foreground));
+}
+
+.field-line input,
+.field-line textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: hsl(var(--foreground));
+  padding: 0.6rem 0;
+}
+
+.field-line input::placeholder,
+.field-line textarea::placeholder {
+  opacity: 0.25;
+}
+
+/* ═══ DARK ZONE PATTERN ═══ */
+
+.dark-zone {
+  background: #101010;
+  color: #f7f7f7;
+}
+
+/* ═══ NOISE LAYER ═══ */
 
 .noise-layer {
   position: fixed;
@@ -317,99 +828,26 @@
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
-.atmosphere-grid {
+/* Dot grid */
+.dot-grid {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(128, 128, 128, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(128, 128, 128, 0.12) 1px, transparent 1px);
-  background-size: clamp(60px, 8vw, 96px) clamp(60px, 8vw, 96px);
-  opacity: 0.5;
+  background-image: radial-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
-.hero-atmosphere {
-  position: absolute;
-  inset: -20% -10% auto auto;
-  width: min(60vw, 900px);
-  height: min(60vw, 900px);
-  border-radius: 9999px;
-  filter: blur(70px);
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(173, 123, 92, 0.2), transparent 55%),
-    radial-gradient(circle at 70% 60%, rgba(180, 180, 180, 0.12), transparent 65%);
-  animation: float-orb 12s var(--ease-fluid) infinite alternate;
+.section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.2vw, 1.5rem);
 }
 
-.editorial-panel {
-  border: 1px solid rgba(128, 128, 128, 0.28);
-  background: linear-gradient(
-    155deg,
-    rgba(180, 180, 180, 0.06),
-    rgba(180, 180, 180, 0.02)
-  );
-  backdrop-filter: blur(2px);
-}
-
-.metal-text {
-  background: linear-gradient(
-    92deg,
-    rgba(235, 235, 235, 0.9),
-    rgba(180, 128, 98, 0.95),
-    rgba(235, 235, 235, 0.9)
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: metal-shift 8s linear infinite;
-}
-
-.link-sheen {
-  position: relative;
-  overflow: hidden;
-}
-
-.link-sheen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-120%);
-  background: linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(200, 200, 200, 0.24) 45%,
-    transparent 75%
-  );
-  transition: transform var(--motion-medium) var(--ease-editorial);
-}
-
-.link-sheen:hover::after {
-  transform: translateX(120%);
-}
-
-@keyframes metal-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 220% 50%;
-  }
-}
-
-@keyframes float-orb {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  100% {
-    transform: translate3d(-3%, 4%, 0) scale(1.05);
-  }
-}
+/* ═══ REDUCED MOTION ═══ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -424,15 +862,12 @@
     transition-duration: 0.01ms !important;
   }
 
+  .letter,
+  .word {
+    transform: none !important;
+  }
+
   .noise-layer {
     display: none;
-  }
-
-  .hero-atmosphere {
-    animation: none;
-  }
-
-  .metal-text {
-    animation: none;
   }
 }

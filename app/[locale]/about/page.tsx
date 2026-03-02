@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AboutPageClient } from "@/components/pages/AboutPageClient";
+import { redirect } from "next/navigation";
 import { buildPageMetadata } from "@/lib/seo";
 
 type Props = {
@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export default function AboutPage() {
-  return <AboutPageClient />;
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
+  redirect(`/${locale}#about`);
 }

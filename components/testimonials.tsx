@@ -151,7 +151,7 @@ function TestimonialCard({
               <p className="text-base font-semibold text-foreground dark:text-white">
                 {testimonial.name}
               </p>
-              <p className="text-[11px] tracking-[0.1em] text-foreground/40 dark:text-white/40 uppercase">
+              <p className="text-[13px] tracking-[0.1em] text-foreground/40 dark:text-white/40 uppercase">
                 {testimonial.role}
               </p>
             </div>
@@ -164,7 +164,7 @@ function TestimonialCard({
         </div>
 
         {/* Card number */}
-        <div className="absolute bottom-4 left-4 text-[10px] font-mono tracking-wider text-foreground/20 dark:text-white/20">
+        <div className="absolute bottom-4 left-4 text-[13px] font-mono tracking-wider text-foreground/20 dark:text-white/20">
           0{index + 1}
         </div>
       </div>
@@ -454,7 +454,7 @@ export function Testimonials() {
               <div className="pt-4">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="testimonials-label-line h-[1px] w-12 bg-[#C4A84D] dark:bg-[#ECD06F] origin-left" />
-                  <span className="testimonials-label text-[11px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
+                  <span className="testimonials-label text-[13px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
                     Testimonials
                   </span>
                 </div>
@@ -476,7 +476,7 @@ export function Testimonials() {
               <div className="font-display text-4xl md:text-5xl font-bold text-foreground dark:text-white">
                 <StatValue value={2000} suffix="+" />
               </div>
-              <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
+              <p className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
                 Students
               </p>
             </div>
@@ -487,7 +487,7 @@ export function Testimonials() {
               <div className="font-display text-4xl md:text-5xl font-bold text-[#C4A84D] dark:text-[#ECD06F]">
                 <StatValue value={3} />
               </div>
-              <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
+              <p className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
                 Years
               </p>
             </div>
@@ -499,7 +499,7 @@ export function Testimonials() {
                 <span className="font-display text-4xl md:text-5xl font-bold text-foreground dark:text-white">4.9</span>
                 <Star className="w-6 h-6 fill-[#C4A84D] dark:fill-[#ECD06F] text-[#C4A84D] dark:text-[#ECD06F]" />
               </div>
-              <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
+              <p className="text-[13px] font-medium tracking-[0.15em] uppercase text-foreground/40 dark:text-white/40 mt-2">
                 Rating
               </p>
             </div>
@@ -534,17 +534,17 @@ export function Testimonials() {
       <div className="testimonials-schools max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mt-16 lg:mt-20">
         <div className="flex items-center justify-center">
           <div className="inline-flex items-center gap-8 px-8 py-4 bg-white/50 dark:bg-white/5 backdrop-blur-sm border border-foreground/5 dark:border-white/5">
-            <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-foreground/30 dark:text-white/30">
+            <span className="text-[13px] font-medium tracking-[0.2em] uppercase text-foreground/30 dark:text-white/30">
               Trusted by
             </span>
             <div className="h-4 w-px bg-foreground/10 dark:bg-white/10" />
-            <span className="text-[11px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
+            <span className="text-[13px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
               ILA Vietnam
             </span>
-            <span className="text-[11px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
+            <span className="text-[13px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
               Blue Sky Academy
             </span>
-            <span className="text-[11px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
+            <span className="text-[13px] font-medium tracking-[0.1em] text-foreground/50 dark:text-white/50">
               15+ Schools
             </span>
           </div>

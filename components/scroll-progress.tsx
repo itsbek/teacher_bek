@@ -54,7 +54,7 @@ export function ScrollProgressPercent() {
       animate={{ opacity: 1 }}
       transition={{ delay: 1 }}
     >
-      <span className="text-[10px] font-medium tracking-[0.1em] uppercase text-white/40">
+      <span className="text-[13px] font-medium tracking-[0.1em] uppercase text-white/40">
         SCROLL
       </span>
       <div className="w-16 h-[2px] bg-white/10 overflow-hidden rounded-full">
@@ -63,7 +63,7 @@ export function ScrollProgressPercent() {
           style={{ scaleX: smoothProgress }}
         />
       </div>
-      <motion.span className="text-[10px] font-medium tracking-[0.1em] text-white/40 w-8">
+      <motion.span className="text-[13px] font-medium tracking-[0.1em] text-white/40 w-8">
         <ProgressText progress={smoothProgress} />
       </motion.span>
     </motion.div>

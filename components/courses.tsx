@@ -147,7 +147,7 @@ function CourseCard({
           {/* Card Header */}
           <div className="flex items-start justify-between mb-10">
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-foreground/30 dark:text-white/30">
+              <span className="text-[13px] font-mono tracking-[0.2em] uppercase text-foreground/30 dark:text-white/30">
                 Program
               </span>
               <span
@@ -193,11 +193,11 @@ function CourseCard({
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
-            <span className="px-4 py-2 text-[10px] font-medium tracking-[0.08em] uppercase text-foreground/60 dark:text-white/60 border border-foreground/10 dark:border-white/10 backdrop-blur-sm transition-all duration-300 group-hover:border-foreground/20 dark:group-hover:border-white/20">
+            <span className="px-4 py-2 text-[13px] font-medium tracking-[0.08em] uppercase text-foreground/60 dark:text-white/60 border border-foreground/10 dark:border-white/10 backdrop-blur-sm transition-all duration-300 group-hover:border-foreground/20 dark:group-hover:border-white/20">
               {t(`${course.key}.duration`)}
             </span>
             <span
-              className="px-4 py-2 text-[10px] font-medium tracking-[0.08em] uppercase border backdrop-blur-sm transition-all duration-300"
+              className="px-4 py-2 text-[13px] font-medium tracking-[0.08em] uppercase border backdrop-blur-sm transition-all duration-300"
               style={{
                 color: course.color,
                 borderColor: `${course.color}40`,
@@ -407,7 +407,7 @@ export function Courses() {
               {/* Label */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="courses-label-line h-[1px] w-12 bg-[#C4A84D] dark:bg-[#ECD06F] origin-left" />
-                <span className="courses-label text-[11px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
+                <span className="courses-label text-[13px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#ECD06F]">
                   Programs
                 </span>
               </div>
@@ -463,7 +463,7 @@ export function Courses() {
             <div className="max-w-xl">
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="w-5 h-5 text-white/70 dark:text-black/60" />
-                <span className="text-[11px] font-medium tracking-[0.15em] uppercase text-white/70 dark:text-black/60">
+                <span className="text-[13px] font-medium tracking-[0.15em] uppercase text-white/70 dark:text-black/60">
                   Free Consultation
                 </span>
               </div>

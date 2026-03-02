@@ -76,74 +76,35 @@ export function BlogPost({ post, locale, relatedPosts }: BlogPostProps) {
   return (
     <article ref={articleRef} className="bg-background text-foreground pb-40">
       {/* Prestige Article Header */}
-      <header className="px-6 md:px-12 lg:px-24 pt-24 lg:pt-40 mb-24 border-b border-foreground/5 pb-24">
-        <div className="max-w-[1920px] mx-auto grid grid-cols-12 gap-8 items-end">
-          <div className="col-span-12 lg:col-span-8">
-            <Link
-              href={`/${locale}/blog`}
-              className="type-label opacity-40 hover:opacity-100 transition-opacity flex items-center gap-4 mb-12 group"
-            >
-              <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform" />
-              Return to Journal
-            </Link>
+      <header className="px-6 md:px-12 lg:px-24 pt-8 md:pt-14 mb-16 border-b border-foreground/5 pb-16">
+        <div className="max-w-[1920px] mx-auto">
+          <Link
+            href={`/${locale}/blog`}
+            className="type-label opacity-40 hover:opacity-100 transition-opacity flex items-center gap-4 mb-10 group"
+          >
+            <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform" />
+            Return to Journal
+          </Link>
 
-            <span className="type-meta uppercase text-foreground/30 mb-8 block">
-              Category // {post.category.toUpperCase()}
-            </span>
-
-            <h1 className="type-display leading-[0.9] mb-0">
-              <KineticText text={post.title} />
-            </h1>
-          </div>
-
-          <div className="col-span-12 lg:col-span-4 lg:pb-4 border-l border-foreground/10 pl-8 lg:text-right lg:border-l-0 lg:border-r lg:pr-8">
-            <div className="space-y-4">
-              <span className="type-meta opacity-40 block">{post.date}</span>
-              <span className="type-label-tight">{post.author}</span>
-              <div className="w-12 h-[1px] bg-foreground/20 ml-auto mr-0 hidden lg:block" />
-              <span className="type-meta opacity-40 block">{post.readTime} READ</span>
-            </div>
-          </div>
+          <h1 className="type-title-lg mb-0">
+            <KineticText text={post.title} noWrap={false} />
+          </h1>
         </div>
       </header>
 
       {/* Content: 12-Column Alignment */}
       <div className="px-6 md:px-12 lg:px-24">
-        <div className="max-w-[1920px] mx-auto mb-14 border border-foreground/10 p-8 md:p-10 bg-foreground/[0.02]">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <div>
-              <p className="type-label-tight text-foreground/50 mb-3">Applied Learning</p>
-              <h2 className="type-title-md">
-                Want this strategy tailored to your level?
-              </h2>
-              <p className="type-body mt-3 text-foreground/70 max-w-3xl">
-                Turn this article into a weekly speaking and feedback plan, personalized to your goal and timeline.
-              </p>
-            </div>
-            <a
-              href={`/${locale}#contact`}
-              className="inline-flex items-center gap-3 px-6 py-3 border border-foreground type-label-tight hover:bg-foreground hover:text-background transition-colors link-sheen"
-            >
-              Request Personal Plan
-            </a>
-          </div>
-        </div>
-
         <div className="max-w-[1920px] mx-auto grid grid-cols-12 gap-8">
-          {/* Floating Sidebar: Academic Markers */}
+          {/* Floating Sidebar */}
           <aside className="col-span-12 lg:col-span-3 hidden lg:block">
-            <div className="sticky top-40 space-y-12 opacity-30">
-              <div className="flex flex-col gap-2">
-                <span className="type-meta uppercase opacity-40">CATALOGUE_ID</span>
-                <span className="type-meta">VF-{post.slug.slice(0, 6).toUpperCase()}</span>
+            <div className="sticky top-40 space-y-10 opacity-40">
+              <div className="flex flex-col gap-1.5">
+                <span className="type-meta uppercase tracking-widest opacity-50">Category</span>
+                <span className="type-label-tight uppercase">{post.category}</span>
               </div>
-              <div className="flex flex-col gap-2">
-                <span className="type-meta uppercase opacity-40">FOCUS</span>
-                <span className="type-meta">Applied English</span>
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="type-meta uppercase opacity-40">TOPIC</span>
-                <span className="type-meta">{post.category.toUpperCase()}</span>
+              <div className="flex flex-col gap-1.5">
+                <span className="type-meta uppercase tracking-widest opacity-50">Published</span>
+                <span className="type-label-tight">{new Date(post.date).toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
               </div>
             </div>
           </aside>
@@ -187,7 +148,7 @@ export function BlogPost({ post, locale, relatedPosts }: BlogPostProps) {
                   href={`/${locale}/blog/${rPost.slug}`}
                   className="bg-background group p-12 lg:p-20 hover:bg-foreground hover:text-background transition-colors duration-700"
                 >
-                  <span className="type-meta opacity-40 mb-8 block group-hover:text-background/70">{rPost.date}</span>
+                  <span className="type-meta opacity-40 mb-8 block group-hover:text-background/70">{new Date(rPost.date).toLocaleDateString('en', { month: 'short', year: 'numeric' })}</span>
                   <h3 className="type-title-sm group-hover:italic transition-all">{rPost.title}</h3>
                   <div className="mt-12 w-8 h-[2px] bg-foreground group-hover:bg-background transition-all group-hover:w-16" />
                 </Link>

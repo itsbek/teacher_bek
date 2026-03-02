@@ -237,7 +237,7 @@ export function AboutAwwwards() {
               {/* Label */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="about-label-line h-[1px] w-12 bg-[#C4A84D] dark:bg-[#43b3ae] origin-left" />
-                <span className="about-label text-[11px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#43b3ae]">
+                <span className="about-label text-[13px] font-medium tracking-[0.15em] uppercase text-[#C4A84D] dark:text-[#43b3ae]">
                   {t('label') || 'About'}
                 </span>
               </div>
