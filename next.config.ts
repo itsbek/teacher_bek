@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
   transpilePackages: ['framer-motion'],
   async headers() {
     return [
+      // ── Security headers — all routes ────────────────────────────────────
       {
         source: '/:path*',
         headers: [
@@ -40,6 +41,27 @@ const nextConfig: NextConfig = {
               "frame-src https://www.google.com",
             ].join('; '),
           },
+        ],
+      },
+      // ── Long-lived cache for immutable static assets ──────────────────────
+      // Next.js content-hashes these files at build time, so 1-year TTL is safe.
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      // Images and other public static files — 30 days, revalidatable
+      {
+        source: '/images/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' },
+        ],
+      },
+      {
+        source: '/assets/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' },
         ],
       },
     ];

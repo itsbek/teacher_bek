@@ -1,16 +1,19 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { initClarity, GA_MEASUREMENT_ID } from '@/lib/analytics';
-import { VanguardCursor } from '@/components/VanguardCursor';
-import { LoadingScreen } from '@/components/LoadingScreen';
 import { usePathname } from 'next/navigation';
 import { AudioProvider } from '@/components/audio-provider';
-import { ExitIntentModal } from '@/components/ExitIntentModal';
-import { LanguageSuggestion } from '@/components/LanguageSuggestion';
-import { ZaloFloat } from '@/components/ZaloFloat';
 import { useAppStore, type FontSize } from '@/lib/store';
 import type Lenis from 'lenis';
+
+/* Lazy-load non-critical UI — keeps main bundle lean */
+const VanguardCursor    = dynamic(() => import('@/components/VanguardCursor').then(m => ({ default: m.VanguardCursor })));
+const LoadingScreen     = dynamic(() => import('@/components/LoadingScreen').then(m => ({ default: m.LoadingScreen })));
+const ExitIntentModal   = dynamic(() => import('@/components/ExitIntentModal').then(m => ({ default: m.ExitIntentModal })));
+const LanguageSuggestion = dynamic(() => import('@/components/LanguageSuggestion').then(m => ({ default: m.LanguageSuggestion })));
+const ZaloFloat         = dynamic(() => import('@/components/ZaloFloat').then(m => ({ default: m.ZaloFloat })));
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

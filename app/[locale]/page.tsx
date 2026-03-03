@@ -1,21 +1,24 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { StructuredData } from '@/components/structured-data';
 import { VanguardNavigation } from '@/components/VanguardNavigation';
 import { VanguardHero } from '@/components/VanguardHero';
-import { VanguardLexicon } from '@/components/VanguardLexicon';
-import { VanguardJournal } from '@/components/VanguardJournal';
-import { VanguardMarquee } from '@/components/VanguardMarquee';
-import { VanguardFooter } from '@/components/VanguardFooter';
-import { VanguardInquiry } from '@/components/VanguardInquiry';
-import { AboutSection } from '@/components/AboutSection';
-import { CredentialsSection } from '@/components/CredentialsSection';
-import { DarkZoneWrapper } from '@/components/DarkZoneWrapper';
-import { ConversionStrip } from '@/components/ConversionStrip';
-import { FAQ } from '@/components/faq';
-import { MethodologySteps } from '@/components/MethodologySteps';
 import { getBlogPosts } from '@/lib/blog';
 import { buildPageMetadata } from '@/lib/seo';
+
+/* Below-the-fold sections — loaded after the hero paints */
+const DarkZoneWrapper   = dynamic(() => import('@/components/DarkZoneWrapper').then(m => ({ default: m.DarkZoneWrapper })));
+const AboutSection      = dynamic(() => import('@/components/AboutSection').then(m => ({ default: m.AboutSection })));
+const VanguardLexicon   = dynamic(() => import('@/components/VanguardLexicon').then(m => ({ default: m.VanguardLexicon })));
+const MethodologySteps  = dynamic(() => import('@/components/MethodologySteps').then(m => ({ default: m.MethodologySteps })));
+const CredentialsSection = dynamic(() => import('@/components/CredentialsSection').then(m => ({ default: m.CredentialsSection })));
+const VanguardJournal   = dynamic(() => import('@/components/VanguardJournal').then(m => ({ default: m.VanguardJournal })));
+const ConversionStrip   = dynamic(() => import('@/components/ConversionStrip').then(m => ({ default: m.ConversionStrip })));
+const FAQ               = dynamic(() => import('@/components/faq').then(m => ({ default: m.FAQ })));
+const VanguardInquiry   = dynamic(() => import('@/components/VanguardInquiry').then(m => ({ default: m.VanguardInquiry })));
+const VanguardMarquee   = dynamic(() => import('@/components/VanguardMarquee').then(m => ({ default: m.VanguardMarquee })));
+const VanguardFooter    = dynamic(() => import('@/components/VanguardFooter').then(m => ({ default: m.VanguardFooter })));
 
 type Props = {
   params: Promise<{ locale: string }>;
