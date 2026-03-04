@@ -224,7 +224,7 @@ export function AboutSection() {
               marginBottom: 14,
             }}
           >
-            "I came to Vietnam to volunteer. Teaching required a different standard from me — consistency, presence, and long-term commitment. I found that standard worth pursuing. So I stayed."
+            {t("intro")}
           </p>
           <p
             style={{
@@ -295,7 +295,7 @@ export function AboutSection() {
                 marginBottom: 20,
               }}
             >
-              "I came to Vietnam to volunteer. Teaching required a different standard from me — consistency, presence, and long-term commitment. I found that standard worth pursuing. So I stayed."
+              {t("intro")}
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.38, margin: 0 }}>
               Bek · {t("label")}
