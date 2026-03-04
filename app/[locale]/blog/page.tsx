@@ -1,5 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
+
+// ISR: re-render at most once per hour as a fallback.
+// GitHub webhook (/api/revalidate) triggers immediate revalidation on push.
+export const revalidate = 3600;
 import { VanguardNavigation } from '@/components/VanguardNavigation';
 import { VanguardFooter } from '@/components/VanguardFooter';
 import { VanguardBlogList } from '@/components/blog/VanguardBlogList';

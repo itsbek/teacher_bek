@@ -1,5 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
+
+// ISR: re-render at most once per hour as a fallback.
+// GitHub webhook (/api/revalidate) triggers immediate revalidation on push.
+export const revalidate = 3600;
 import { notFound } from 'next/navigation';
 import { VanguardNavigation } from '@/components/VanguardNavigation';
 import { VanguardFooter } from '@/components/VanguardFooter';
@@ -68,9 +72,8 @@ export default async function BlogPostPage({ params }: Props) {
       <VanguardNavigation />
       <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
         <BlogPost post={post} locale={locale} relatedPosts={relatedPosts} />
-
-        <VanguardFooter />
       </main>
+      <VanguardFooter />
     </>
   );
 }
