@@ -24,7 +24,7 @@ const FONT_SIZES: { size: FontSize; px: number; label: string }[] = [
     { size: "lg", px: 18, label: "A+" },
 ];
 
-const SECTION_IDS = ["hero", "about", "programs", "methodology", "credentials", "journal", "faq", "contact"] as const;
+const SECTION_IDS = ["hero", "about", "programs", "methodology", "credentials", "reads", "faq", "contact"] as const;
 
 export function VanguardNavigation() {
     const t = useTranslations("nav");

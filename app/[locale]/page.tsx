@@ -108,10 +108,12 @@ export default async function Home({ params }: Props) {
           {/* §5: CREDENTIALS */}
           <CredentialsSection />
 
-          {/* §6: JOURNAL */}
-          <section id="journal" className="section-md border-t border-current/10" style={{ scrollMarginTop: 'var(--nav-h)' }}>
-            <VanguardJournal initialArticles={articles} />
-          </section>
+          {/* §6: READS — only rendered when posts exist */}
+          {articles.length > 0 && (
+            <section id="reads" className="section-md border-t border-current/10" style={{ scrollMarginTop: 'var(--nav-h)' }}>
+              <VanguardJournal initialArticles={articles} />
+            </section>
+          )}
         </DarkZoneWrapper>
 
         {/* §7: CONVERSION STRIP — Light zone */}

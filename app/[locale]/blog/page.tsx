@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return buildPageMetadata({
     locale,
-    title: "Blog",
+    title: "Reads",
     description: "Insights on English learning, teaching strategy, and communication growth.",
     path: "/blog",
   });
@@ -35,11 +35,11 @@ export default async function BlogPage({ params }: Props) {
         {/* Editorial Hero */}
         <BlogHero />
 
-        {/* Elite Blog List */}
+        {/* Reads List */}
         <VanguardBlogList posts={posts} locale={locale} />
-
-        <VanguardFooter />
       </main>
+
+      <VanguardFooter />
     </>
   );
 }

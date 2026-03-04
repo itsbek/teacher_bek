@@ -7,7 +7,7 @@
     "testimonials": "Stories",
     "faq": "FAQ",
     "contact": "Contact",
-    "blog_link": "Blog"
+    "blog_link": "Reads"
   },
   "hero": {
     "badge": "English Teacher · Ho Chi Minh City",
@@ -232,7 +232,8 @@
     "description": "Weekly observations from the classroom. Language, fluency, and what actually works."
   },
   "blog": {
-    "title": "Stories & Resources",
+    "label": "English · Reading Room",
+    "title": "Reads",
     "subtitle": "Language. Learning. What actually changes students.",
     "categories": {
       "all": "All",
@@ -243,7 +244,7 @@
     },
     "readMore": "Read more",
     "readTime": "min read",
-    "backToBlog": "Back to Stories",
+    "backToBlog": "Back to Reads",
     "loadMore": "Load more",
     "showing": "Showing {visible} of {total}",
     "emptyCategory": "Nothing here yet in this category.",
@@ -443,13 +444,13 @@
     "text": "TESOL Certified · PGCE Qualified · 2,000+ Students · Fluency, Not Just Familiarity · Small Groups · HCMC · Deliberate Practice · IELTS Preparation ·"
   },
   "journal": {
-    "sectionLabel": "04 — My Blog",
+    "sectionLabel": "Reads",
     "heading": "Latest",
-    "headingItalic": "Articles",
+    "headingItalic": "Reads",
     "insightsLabel": "Insights",
     "subtitle": "Observations on language, learning, and what actually changes students.",
     "articlePrefix": "Article",
-    "viewAll": "Read All Articles"
+    "viewAll": "All Reads"
   },
   "exitIntent": {
     "tag": "Before You Leave",

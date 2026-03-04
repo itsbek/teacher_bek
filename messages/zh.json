@@ -4,7 +4,7 @@
     "about": "关于我",
     "services": "课堂",
     "courses": "课程",
-    "blog_link": "文章",
+    "blog_link": "阅读",
     "testimonials": "学员",
     "faq": "问答",
     "contact": "联系"
@@ -217,7 +217,8 @@
     "description": "教学故事、学习技巧和课程更新,为家长、老师和学生提供。加入2000+读者。"
   },
   "blog": {
-    "title": "文章与资源",
+    "label": "英语 · 阅读室",
+    "title": "阅读",
     "subtitle": "关于学习、教学和越南生活的想法",
     "categories": {
       "all": "全部",
@@ -366,13 +367,13 @@
     "text": "TESOL认证 · PGCE资质 · 2,000+学员 · 小班教学 · 口语自信 · 雅思备考 · 胡志明市 ·"
   },
   "journal": {
-    "sectionLabel": "04 — 我的博客",
+    "sectionLabel": "阅读",
     "heading": "最新",
-    "headingItalic": "文章",
+    "headingItalic": "阅读",
     "insightsLabel": "见解",
     "subtitle": "关于学习、教学和语言策略的简短思考。",
     "articlePrefix": "文章",
-    "viewAll": "查看所有文章"
+    "viewAll": "查看全部"
   },
   "programs": {
     "sectionLabel": "英语课程",

@@ -4,7 +4,7 @@
     "about": "Giới thiệu",
     "services": "Lớp học",
     "courses": "Chương trình",
-    "blog_link": "Bài viết",
+    "blog_link": "Bài Đọc",
     "testimonials": "Học viên",
     "faq": "Hỏi đáp",
     "contact": "Liên hệ"
@@ -226,7 +226,8 @@
     "description": "Câu chuyện dạy học, mẹo học tập và cập nhật lớp học cho phụ huynh, giáo viên và học viên. Tham gia cùng 2.000+ độc giả."
   },
   "blog": {
-    "title": "Bài Viết & Tài Nguyên",
+    "label": "Tiếng Anh · Phòng Đọc",
+    "title": "Bài Đọc",
     "subtitle": "Suy nghĩ về việc học, dạy và cuộc sống tại Việt Nam",
     "categories": {
       "all": "Tất cả",
@@ -375,13 +376,13 @@
     "text": "Chứng Chỉ TESOL · Bằng PGCE · 2.000+ Học Viên · Nhóm Nhỏ · Tự Tin Giao Tiếp · Luyện Thi IELTS · TP. Hồ Chí Minh ·"
   },
   "journal": {
-    "sectionLabel": "04 — Blog Của Tôi",
+    "sectionLabel": "Bài Đọc",
     "heading": "Mới Nhất",
-    "headingItalic": "Bài Viết",
+    "headingItalic": "Bài Đọc",
     "insightsLabel": "Góc Nhìn",
     "subtitle": "Những suy nghĩ ngắn gọn về học tập, giảng dạy và chiến lược ngôn ngữ.",
     "articlePrefix": "Bài",
-    "viewAll": "Xem Tất Cả Bài Viết"
+    "viewAll": "Xem Tất Cả"
   },
   "programs": {
     "sectionLabel": "Lớp Tiếng Anh",
