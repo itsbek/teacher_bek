@@ -36,9 +36,9 @@ next-env.d.ts
 .worktrees/
 
 # AI Tools & Local Configs
-.claude/*.local*
-.agent/*.local*
-.agents/*.local*
+.claude/
+.agent/
+.agents/
 .mcp.json
 
 # AI coding assistants
