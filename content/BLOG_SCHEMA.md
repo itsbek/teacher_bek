@@ -1,73 +1,145 @@
 # Blog Post Markdown Schema
 
-Each blog post is a `.md` file placed in `content/blog/{locale}/`.
+Each post is a single `.md` file. Filename must be lowercase kebab-case —
+`TEMPLATE.md`, `README.md`, `_ideas.md` and anything starting with an uppercase
+letter or underscore are automatically ignored by the site.
 
-## Frontmatter Fields
+---
+
+## Frontmatter
 
 ```yaml
 ---
-slug: "unique-url-slug"           # Required. URL-safe, kebab-case. Must be unique per locale.
-title: "Post Title"               # Required. Display title.
-excerpt: "Short summary..."       # Required. 1-2 sentences shown in blog listing cards.
-author: "Teacher Bek"             # Required. Displayed on post page.
-date: "2024-11-15"                # Required. ISO date YYYY-MM-DD. Used for sort order.
-readTime: 5                       # Required. Integer minutes.
-category: "teaching"              # Required. One of: teaching | parents | learning | stories
-image: "https://..."              # Optional. Unsplash or hosted image URL (1200×800 recommended).
-featured: true                    # Optional. Defaults to false. Shows in featured/homepage glimpse.
+# ── REQUIRED ────────────────────────────────────────────────────────────────
+
+slug: "teaching-vocabulary-that-sticks"
+# URL slug. Must match the filename (without .md). Lowercase, hyphens only.
+# Becomes: /en/blog/teaching-vocabulary-that-sticks
+
+title: "How I Teach Vocabulary That Actually Sticks"
+# Shown in the browser tab, listing cards, and article header.
+
+excerpt: "Most vocab is forgotten within 48 hours. Here's the single change that fixed that in my classroom."
+# 1–3 sentences. Used as the meta description and listing card preview.
+# Write it to make the reader want to click.
+
+date: "2026-03-10"
+# Publication date. YYYY-MM-DD. Controls sort order — newest first.
+
+# ── OPTIONAL ────────────────────────────────────────────────────────────────
+
+readTime: 4
+# Estimated reading time in minutes. Rule of thumb: word count ÷ 200.
+# Defaults to 5 if omitted.
+
+category: "teaching"
+# One of: teaching | parents | learning | stories
+# Defaults to "teaching" if omitted or unrecognised.
+
+author: "Teacher Bek"
+# Defaults to "Teacher Bek" — only set if different.
+
+featured: true
+# Promotes this post to the homepage Reads section preview.
+# Omit or set false for regular posts.
+
+draft: true
+# Hides the post everywhere while you're still writing.
+# Remove the line (or set false) to publish.
+
+image: "https://images.unsplash.com/photo-XXXXXX?w=1200&q=80"
+# Cover image. Used for OG/Twitter card. 1200×630 recommended.
+
+tags: speaking, vocabulary, fluency
+# Comma-separated. Used to surface related posts at the bottom of an article.
+
+updatedAt: "2026-04-01"
+# Only set if you significantly revise a post after publishing.
 ---
 ```
 
-## Categories
+---
 
-| Value      | When to use                                                  |
-|------------|--------------------------------------------------------------|
-| `teaching` | Methodology, classroom observations, teacher reflections     |
-| `parents`  | Advice for parents supporting children learning English      |
-| `learning` | Tips and techniques for students studying English            |
-| `stories`  | Student progress stories, case studies, anecdotes            |
+## Category values
 
-## Body Content
+| Value | Use for |
+|---|---|
+| `teaching` | Methodology, how you run the classroom, teacher observations |
+| `parents` | Advice addressed to parents of young learners |
+| `learning` | Practical tips students can use themselves |
+| `stories` | Student progress, personal narrative, case studies |
 
-Standard Markdown is supported. Recommended structure:
+---
+
+## Body
+
+Plain markdown after the closing `---`. No special syntax needed.
 
 ```markdown
-## Section Heading
+Opening paragraph — no heading. Start mid-thought. Never open with
+"In this post I will..." or "Today we're going to look at..."
 
-Body paragraph text. Keep paragraphs short (3-5 sentences).
+## First section
 
-### Subsection
+One idea per section. Use real classroom examples, numbers, specific
+names of techniques. Short paragraphs (2–4 sentences).
 
-- Bullet list items
-- Work well for tips
+## Second section
 
-**Bold** for emphasis. *Italic* for titles, terms, or soft emphasis.
+Keep it moving. Each section should answer a question the previous one raised.
 
-> Blockquote for a student quote or memorable line.
+> Pull quote — a single sentence worth highlighting.
 
-## Another Section
+### Subsection (use sparingly)
+
+- Bullet lists work well for tips and steps
+- Keep each item to one line if possible
+
+**Bold** for key terms. *Italic* for titles, foreign words, or soft emphasis.
+
+## Practical takeaway
+
+End with something the reader can do today. Specific beats vague.
+
+---
+
+*Have a question? [Message me directly](/en#contact)*
 ```
 
-## Locales
+---
 
-Posts live in locale-specific folders:
-- `content/blog/en/` — English (primary, always required)
-- `content/blog/vi/` — Vietnamese
-- `content/blog/zh/` — Chinese (Simplified)
-- `content/blog/ru/` — Russian
+## What makes a post get picked up
 
-If a locale folder is missing, the site falls back to English automatically.
+All three conditions must be true:
 
-## File Naming Convention
+1. Filename matches `lowercase-kebab-case.md`
+2. `slug`, `title`, `excerpt`, and `date` are all present and non-empty
+3. `draft: true` is not set (or the field is absent entirely)
 
-`{slug}.md` — e.g. `why-small-groups-work.md`
+---
 
-The filename doesn't have to match the slug exactly, but keeping them the same avoids confusion.
+## File location
 
-## Google Drive Sync (Future)
+Posts live in the GitHub blog content repo, organised by locale:
 
-When uploading from Google Drive:
-1. Export Google Doc as Markdown (`.md`)
-2. Add frontmatter block at the top (copy template above)
-3. Place in the correct locale folder
-4. The site re-reads content on next build/request — no code changes needed
+```
+en/   ← English (primary — always required)
+  teaching-vocabulary-that-sticks.md
+
+vi/   ← Vietnamese
+  teaching-vocabulary-that-sticks.md   ← same slug, translated content
+
+zh/   ← Chinese (Simplified)
+ru/   ← Russian
+```
+
+If a locale folder is empty or missing, the site falls back to `en/` automatically.
+
+---
+
+## Publishing workflow
+
+1. Write the post — copy the frontmatter block above, fill in the fields
+2. Save as `your-slug.md` in the correct locale folder(s) in the GitHub repo
+3. Push to main — GitHub webhook fires → site updates within seconds, no redeploy needed
+4. To unpublish: set `draft: true` and push again
