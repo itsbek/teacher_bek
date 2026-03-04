@@ -81,7 +81,7 @@ export function ExitIntentModal() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={close}
-              className="inline-flex items-center gap-3 px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.2em] text-white border border-[#0068FF]/60 hover:border-[#0068FF] hover:bg-[#0068FF]/10 transition-all duration-300"
+              className="inline-flex items-center gap-3 px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.2em] text-white border border-white/25 hover:border-white/60 hover:bg-white/5 transition-all duration-300"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/icons/zalo.svg" width={28} height={28} alt="" aria-hidden="true" className="block rounded-[13px] overflow-hidden" />
