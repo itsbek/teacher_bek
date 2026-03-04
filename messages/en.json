@@ -243,7 +243,20 @@
     },
     "readMore": "Read more",
     "readTime": "min read",
-    "backToBlog": "Back to Stories"
+    "backToBlog": "Back to Stories",
+    "loadMore": "Load more",
+    "showing": "Showing {visible} of {total}",
+    "emptyCategory": "Nothing here yet in this category.",
+    "empty": {
+      "heading": "Articles on the way",
+      "body": "First posts are being written. Check back soon — or reach out directly.",
+      "cta": "Get in Touch"
+    },
+    "cta": {
+      "text": "Want to apply this to your own English?",
+      "emphasis": "Book a free session.",
+      "button": "Get in Touch"
+    }
   },
   "contact": {
     "title": "Let's Talk",

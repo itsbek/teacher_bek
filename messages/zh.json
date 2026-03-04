@@ -228,7 +228,20 @@
     },
     "readMore": "阅读更多",
     "readTime": "分钟阅读",
-    "backToBlog": "返回"
+    "backToBlog": "返回",
+    "loadMore": "加载更多",
+    "showing": "显示 {visible}/{total}",
+    "emptyCategory": "该分类暂无文章。",
+    "empty": {
+      "heading": "文章即将发布",
+      "body": "正在撰写第一批文章，敬请期待——或直接联系我。",
+      "cta": "联系我"
+    },
+    "cta": {
+      "text": "想把这些用到你自己的英语学习中？",
+      "emphasis": "预约一节免费体验课。",
+      "button": "联系我"
+    }
   },
   "contact": {
     "title": "联系我",

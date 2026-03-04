@@ -237,7 +237,20 @@
     },
     "readMore": "Đọc thêm",
     "readTime": "phút đọc",
-    "backToBlog": "Quay lại"
+    "backToBlog": "Quay lại",
+    "loadMore": "Xem thêm",
+    "showing": "Hiển thị {visible}/{total}",
+    "emptyCategory": "Chưa có bài viết nào trong mục này.",
+    "empty": {
+      "heading": "Bài viết sắp ra mắt",
+      "body": "Các bài viết đang được chuẩn bị. Quay lại sớm nhé — hoặc nhắn tin trực tiếp.",
+      "cta": "Liên Hệ"
+    },
+    "cta": {
+      "text": "Muốn áp dụng ngay vào việc học tiếng Anh của bạn?",
+      "emphasis": "Đặt buổi học thử miễn phí.",
+      "button": "Liên Hệ"
+    }
   },
   "contact": {
     "title": "Kết Nối",
