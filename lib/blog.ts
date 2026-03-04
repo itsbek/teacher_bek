@@ -12,7 +12,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { BlogPost, PostCategory } from './blog-types';
-import { getDrivePostFiles, isDriveConfigured } from './drive';
+import { getGithubPostFiles, isGithubConfigured } from './github';
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -112,13 +112,13 @@ function readLocalPosts(locale: string): BlogPost[] {
     .filter((p): p is BlogPost => p !== null && !p.draft);
 }
 
-// ─── Drive source ──────────────────────────────────────────────────────────
+// ─── GitHub source ─────────────────────────────────────────────────────────
 
-async function readDrivePosts(locale: string): Promise<BlogPost[]> {
-  const files = await getDrivePostFiles(locale);
+async function readGithubPosts(locale: string): Promise<BlogPost[]> {
+  const files = await getGithubPostFiles(locale);
 
   if (files.length === 0 && locale !== 'en') {
-    return readDrivePosts('en');
+    return readGithubPosts('en');
   }
 
   return files
@@ -138,8 +138,8 @@ function sortByDate(posts: BlogPost[]): BlogPost[] {
 
 /** Return all published posts for the given locale, newest first. */
 export async function getBlogPosts(locale: string): Promise<BlogPost[]> {
-  const posts = isDriveConfigured()
-    ? await readDrivePosts(locale)
+  const posts = isGithubConfigured()
+    ? await readGithubPosts(locale)
     : readLocalPosts(locale);
 
   return sortByDate(posts);
