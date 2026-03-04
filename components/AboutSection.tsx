@@ -273,25 +273,6 @@ export function AboutSection() {
             <WrapWords text={t("title")} />
           </h2>
 
-          <p
-            className="abt-reveal"
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 300,
-              lineHeight: 1.65,
-              opacity: 0.72,
-              fontSize: "clamp(0.9375rem, 1.4vw, 1.0625rem)",
-              maxWidth: "52ch",
-              margin: 0,
-              marginTop: "clamp(16px, 2vw, 26px)",
-              paddingTop: "clamp(16px, 2vw, 26px)",
-              borderTop: "1px solid hsl(var(--foreground) / 0.1)",
-              marginBottom: "clamp(22px, 3vw, 40px)",
-            }}
-          >
-            {t("intro")}
-          </p>
-
           <div
             style={{
               borderTop: "1px solid hsl(var(--foreground) / 0.1)",

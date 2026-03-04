@@ -8,6 +8,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAppStore, type FontSize } from "@/lib/store";
+import { useAudio } from "./audio-provider";
+import { Volume2, VolumeX } from "lucide-react";
 
 const LANGUAGES = [
     { code: "en", label: "EN", name: "English" },
@@ -30,10 +32,13 @@ export function VanguardNavigation() {
     const pathname = usePathname();
     const { fontSize, setFontSize } = useAppStore();
 
+    const { isMuted, toggleMute } = useAudio();
+
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>("");
     const [langOpen, setLangOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 });
     const langBtnRef = useRef<HTMLButtonElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -41,6 +46,13 @@ export function VanguardNavigation() {
     const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`;
 
     useEffect(() => { setMounted(true); }, []);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 40);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     // Scroll spy
     useEffect(() => {
@@ -139,9 +151,17 @@ export function VanguardNavigation() {
                     left: 0,
                     right: 0,
                     zIndex: 10000,
-                    mixBlendMode: "difference",
-                    color: "#efefef",
                     pointerEvents: "none",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
+                    background: scrolled
+                        ? "hsl(var(--background) / 0.92)"
+                        : "hsl(var(--background) / 0.75)",
+                    borderBottom: scrolled
+                        ? "1px solid hsl(var(--foreground) / 0.08)"
+                        : "1px solid transparent",
+                    transition: "background 0.3s ease, border-color 0.3s ease",
+                    color: "hsl(var(--foreground))",
                 }}
                 className="px-6 md:px-10 lg:px-16 py-5 flex justify-between items-center"
             >
@@ -252,6 +272,28 @@ export function VanguardNavigation() {
 
                     {/* Theme toggle */}
                     <ThemeToggle />
+
+                    {/* Mute toggle */}
+                    <button
+                        onClick={toggleMute}
+                        aria-label={isMuted ? "Unmute sounds" : "Mute sounds"}
+                        aria-pressed={isMuted}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",
+                            color: "inherit",
+                            opacity: isMuted ? 0.35 : 0.7,
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "4px",
+                            transition: "opacity 0.2s",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                        onMouseLeave={(e) => (e.currentTarget.style.opacity = isMuted ? "0.35" : "0.7")}
+                    >
+                        {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                    </button>
                 </div>
 
                 {/* Mobile controls */}
@@ -430,6 +472,23 @@ export function VanguardNavigation() {
                                 </div>
 
                                 <div className="flex items-center gap-3">
+                                    <button
+                                        onClick={toggleMute}
+                                        aria-label={isMuted ? "Unmute sounds" : "Mute sounds"}
+                                        aria-pressed={isMuted}
+                                        style={{
+                                            background: "none",
+                                            border: "none",
+                                            cursor: "pointer",
+                                            color: "hsl(var(--background))",
+                                            opacity: isMuted ? 0.3 : 0.6,
+                                            display: "flex",
+                                            alignItems: "center",
+                                            padding: "4px",
+                                        }}
+                                    >
+                                        {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                                    </button>
                                     <ThemeToggle />
                                     <p className="font-sans text-[12px] uppercase tracking-[0.15em] opacity-20 text-background">
                                         © 2025
