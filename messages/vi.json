@@ -453,5 +453,12 @@
     "zalo": "Nhắn tin qua Zalo",
     "inquiry": "Gửi yêu cầu",
     "dismiss": "Thôi, cảm ơn"
+  },
+  "notFound": {
+    "heading": "404",
+    "label": "Không tìm thấy trang",
+    "body": "Trang bạn đang tìm không tồn tại hoặc đã được di chuyển.",
+    "cta": "Về trang chủ",
+    "hint": "Hoặc thử một trong các trang sau"
   }
 }
