@@ -92,6 +92,12 @@ function parsePost(raw: string, fallbackSlug: string): BlogPost | null {
   };
 }
 
+// ─── Helpers ───────────────────────────────────────────────────────────────
+
+/** Only process lowercase-kebab-case filenames (e.g. my-post.md).
+ *  Silently skips TEMPLATE.md, README.md, _drafts.md, etc. */
+const isPostFile = (name: string) => /^[a-z][a-z0-9-]*\.md$/.test(name);
+
 // ─── Local source ──────────────────────────────────────────────────────────
 
 function readLocalPosts(locale: string): BlogPost[] {
@@ -104,7 +110,7 @@ function readLocalPosts(locale: string): BlogPost[] {
 
   return fs
     .readdirSync(localePath)
-    .filter((f) => f.endsWith('.md'))
+    .filter(isPostFile)
     .map((file) => {
       const raw = fs.readFileSync(path.join(localePath, file), 'utf-8');
       return parsePost(raw, file);
@@ -115,7 +121,7 @@ function readLocalPosts(locale: string): BlogPost[] {
 // ─── GitHub source ─────────────────────────────────────────────────────────
 
 async function readGithubPosts(locale: string): Promise<BlogPost[]> {
-  const files = await getGithubPostFiles(locale);
+  const files = (await getGithubPostFiles(locale)).filter((f) => isPostFile(f.name));
 
   if (files.length === 0 && locale !== 'en') {
     return readGithubPosts('en');
