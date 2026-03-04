@@ -40,3 +40,17 @@ next-env.d.ts
 .agent/*.local*
 .agents/*.local*
 .mcp.json
+
+# AI coding assistants
+.cursor/
+.windsurf/
+.aider*
+.continue/
+.copilot-*
+
+# IDEs
+.idea/
+*.iml
+
+# Local reference/inspiration (downloaded sites, guides)
+guides/

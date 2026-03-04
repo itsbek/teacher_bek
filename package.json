@@ -6,7 +6,9 @@
     "dev": "NEXT_DISABLE_DEVTOOLS=1 NEXT_DISABLE_WEBPACK_CACHE=1 next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
