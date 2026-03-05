@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { routing } from '@/i18n/routing'
 import { getBlogPosts } from '@/lib/blog'
 
-const BASE_URL = 'https://englishwithconfidence.com'
+const BASE_URL = 'https://teacherbek.com'
 const PRIMARY_ROUTES = ['', '/about', '/services', '/faq', '/blog', '/privacy', '/terms']
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

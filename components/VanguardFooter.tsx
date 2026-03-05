@@ -69,10 +69,13 @@ export function VanguardFooter() {
     ];
 
     const channelLinks = [
-        { href: "https://zalo.me/84353885757", label: t("telegram"),  external: true  },
-        { href: "https://wa.me/84353885757",   label: t("whatsapp"),  external: true  },
-        { href: "mailto:hello@teacherbek.com", label: t("email"),     external: false },
-        { href: "https://www.linkedin.com",    label: t("linkedin"),  external: true  },
+        { href: "https://zalo.me/84353885757",                       label: t("telegram"),  external: true  },
+        { href: "https://wa.me/84353885757",                         label: t("whatsapp"),  external: true  },
+        { href: "mailto:hello@teacherbek.com",                       label: t("email"),     external: false },
+        { href: "https://www.linkedin.com/in/bek-boymirzaev/",       label: t("linkedin"),  external: true  },
+        { href: "https://www.instagram.com/itsteacherbek",           label: t("instagram"), external: true  },
+        { href: "https://www.facebook.com/teacherbek",               label: t("facebook"),  external: true  },
+        { href: "https://www.tiktok.com/@itsteacherbek",             label: t("tiktok"),    external: true  },
     ];
 
     const titleText = "TEACHER BEK.";

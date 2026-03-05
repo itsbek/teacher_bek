@@ -31,7 +31,7 @@ const sans = Be_Vietnam_Pro({
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://englishwithconfidence.com'),
+  metadataBase: new URL('https://teacherbek.com'),
   title: {
     default: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
     template: "%s · Teacher Bek · Phú Nhuận"
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "vi_VN",
     alternateLocale: "en_US",
-    url: "https://englishwithconfidence.com",
+    url: "https://teacherbek.com",
     siteName: "Teacher Bek",
     title: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
     description: "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
@@ -140,10 +140,12 @@ export default function RootLayout({
               "@type": "EducationalOrganization",
               "name": "Teacher Bek",
               "description": "Small-group English lessons in Ho Chi Minh City",
-              "url": "https://englishwithconfidence.com",
+              "url": "https://teacherbek.com",
               "sameAs": [
-                "https://www.linkedin.com",
-                "https://www.instagram.com"
+                "https://www.linkedin.com/in/bek-boymirzaev/",
+                "https://www.instagram.com/itsteacherbek",
+                "https://www.facebook.com/teacherbek",
+                "https://www.tiktok.com/@itsteacherbek"
               ],
               "address": {
                 "@type": "PostalAddress",
