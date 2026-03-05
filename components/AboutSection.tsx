@@ -40,6 +40,8 @@ export function AboutSection() {
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const classroomRef = useRef<HTMLDivElement>(null);
   const quoteRef     = useRef<HTMLParagraphElement>(null);
+  const pullRef      = useRef<HTMLDivElement>(null);
+  const closeRef     = useRef<HTMLDivElement>(null);
 
 
   useEffect(() => {
@@ -111,6 +113,29 @@ export function AboutSection() {
             scrollTrigger: { trigger: quoteRef.current, start: ms("top 84%"), once: true },
           }
         );
+      }
+
+      if (pullRef.current) {
+        gsap.fromTo(pullRef.current,
+          { x: -32, opacity: 0 },
+          {
+            x: 0, opacity: 1, duration: 1.1, ease: "power3.out",
+            scrollTrigger: { trigger: pullRef.current, start: ms("top 84%"), once: true },
+          }
+        );
+      }
+
+      if (closeRef.current) {
+        const words = closeRef.current.querySelectorAll(".close-word");
+        if (words.length) {
+          gsap.fromTo(words,
+            { y: "110%", opacity: 0 },
+            {
+              y: "0%", opacity: 1, duration: 1.0, stagger: 0.055, ease: "power3.out",
+              scrollTrigger: { trigger: closeRef.current, start: ms("top 88%"), once: true },
+            }
+          );
+        }
       }
 
       gsap.utils.toArray<HTMLElement>(".abt-reveal").forEach((el) => {
@@ -223,7 +248,7 @@ export function AboutSection() {
               marginBottom: 10,
             }}
           >
-            {t("intro")}
+            {t("story.hook")}
           </p>
           <p
             style={{
@@ -241,28 +266,41 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* ── MOBILE STORY (< md) — shows below the portrait ─────── */}
+      {/* ── MOBILE STORY (< md) — full narrative below portrait ── */}
       <div
-        className="md:hidden px-6 py-8"
+        className="md:hidden px-6 py-10"
         style={{ borderBottom: "1px solid hsl(var(--foreground) / 0.08)" }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {(["p1", "p2", "p3"] as const).map((key) => (
-            <p
-              key={key}
-              className="abt-reveal"
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontWeight: 300,
-                lineHeight: 1.65,
-                opacity: 0.72,
-                fontSize: "clamp(0.9375rem, 4vw, 1rem)",
-                margin: 0,
-              }}
-            >
+        {/* Body paragraphs */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
+          {(["p1", "p2"] as const).map((key) => (
+            <p key={key} className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.7, opacity: 0.72, fontSize: "clamp(0.9375rem, 4vw, 1rem)", margin: 0 }}>
               {t(`story.${key}`)}
             </p>
           ))}
+        </div>
+
+        {/* Pull quote */}
+        <div className="abt-reveal" style={{ borderTop: "1px solid hsl(var(--foreground) / 0.1)", paddingTop: 20, marginBottom: 28 }}>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontStyle: "italic", lineHeight: 0.95, letterSpacing: "-0.03em", fontSize: "clamp(1.3rem, 6vw, 1.8rem)", opacity: 0.78, margin: 0 }}>
+            — {t("story.pull")}
+          </p>
+        </div>
+
+        {/* More body */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
+          {(["p3", "p4", "p5"] as const).map((key) => (
+            <p key={key} className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.7, opacity: 0.72, fontSize: "clamp(0.9375rem, 4vw, 1rem)", margin: 0 }}>
+              {t(`story.${key}`)}
+            </p>
+          ))}
+        </div>
+
+        {/* Close line */}
+        <div className="abt-reveal" style={{ borderTop: "1px solid hsl(var(--foreground) / 0.1)", paddingTop: 20 }}>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontStyle: "italic", lineHeight: 0.92, letterSpacing: "-0.04em", fontSize: "clamp(1.5rem, 7vw, 2.2rem)", opacity: 0.85, margin: 0 }}>
+            {t("story.close")}
+          </p>
         </div>
       </div>
 
@@ -305,43 +343,40 @@ export function AboutSection() {
               flex: 1,
               display: "flex",
               flexDirection: "column",
-              gap: "clamp(20px, 2.5vw, 32px)",
+              justifyContent: "space-between",
+              gap: "clamp(24px, 3vw, 40px)",
             }}
           >
-            {/* Story paragraphs — brief info first */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(8px, 1.2vw, 12px)" }}>
-              {(["p1", "p2", "p3"] as const).map((key) => (
-                <p
-                  key={key}
-                  className="abt-reveal"
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontWeight: 300,
-                    lineHeight: 1.65,
-                    opacity: 0.72,
-                    fontSize: "clamp(0.9375rem, 1.3vw, 1rem)",
-                    margin: 0,
-                  }}
-                >
-                  {t(`story.${key}`)}
-                </p>
-              ))}
-            </div>
+            {/* Hook — editorial opener */}
+            <p
+              ref={quoteRef}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 600,
+                fontStyle: "italic",
+                lineHeight: 0.95,
+                letterSpacing: "-0.03em",
+                fontSize: "clamp(1.6rem, 3.8vw, 4.8rem)",
+                opacity: 0.82,
+                margin: 0,
+              }}
+            >
+              {t("story.hook")}
+            </p>
 
-            {/* Slogan — comes after the brief info */}
+            {/* Slogan + label — anchored at bottom */}
             <div style={{ borderTop: "1px solid hsl(var(--foreground) / 0.08)", paddingTop: "clamp(16px, 2vw, 26px)" }}>
               <p
-                ref={quoteRef}
                 style={{
                   fontFamily: "var(--font-display)",
                   fontWeight: 600,
                   fontStyle: "italic",
-                  lineHeight: 0.93,
-                  letterSpacing: "-0.03em",
-                  fontSize: "clamp(1.3rem, 3.2vw, 3.8rem)",
-                  opacity: 0.72,
+                  lineHeight: 1.0,
+                  letterSpacing: "-0.025em",
+                  fontSize: "clamp(0.9rem, 1.6vw, 1.5rem)",
+                  opacity: 0.5,
                   margin: 0,
-                  marginBottom: 16,
+                  marginBottom: 12,
                 }}
               >
                 {t("intro")}
@@ -386,41 +421,59 @@ export function AboutSection() {
 
       </div>
 
-      {/* ── PHILOSOPHY ───────────────────────────────────────── */}
+      {/* ── EDITORIAL STORY (desktop md+) ────────────────────── */}
       <div
-        className="grid grid-cols-1 md:grid-cols-2"
+        className="hidden md:block px-6 md:px-10 lg:px-16 pt-14 md:pt-18 lg:pt-20 pb-0"
         style={{ borderBottom: "1px solid hsl(var(--foreground) / 0.08)" }}
       >
-        <div className="px-6 md:px-10 lg:px-16 py-5 md:py-8 lg:py-10">
-          <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.45, margin: 0, marginBottom: 16 }}>
-            {t("philosophy.title")}
+        {/* Row 1 — two body columns */}
+        <div className="grid grid-cols-2 gap-10 md:gap-16" style={{ marginBottom: "clamp(40px, 5vw, 64px)" }}>
+          <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.75, opacity: 0.68, fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)", margin: 0 }}>
+            {t("story.p1")}
           </p>
-          <p
-            className="abt-reveal"
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 300,
-              lineHeight: 1.65,
-              opacity: 0.72,
-              fontSize: "clamp(0.9375rem, 1.3vw, 1rem)",
-              margin: 0,
-            }}
-          >
-            {t("philosophy.description")}
+          <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.75, opacity: 0.68, fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)", margin: 0 }}>
+            {t("story.p2")}
           </p>
         </div>
 
+        {/* Pull quote — full width */}
         <div
-          className="px-6 md:px-10 lg:px-16 py-5 md:py-8 lg:py-10 border-t md:border-t-0 md:border-l border-foreground/[0.08]"
+          ref={pullRef}
+          style={{ borderTop: "1px solid hsl(var(--foreground) / 0.1)", paddingTop: "clamp(24px, 3vw, 40px)", marginBottom: "clamp(40px, 5vw, 64px)" }}
         >
-          <div className="abt-reveal">
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.38, margin: 0, marginBottom: 8 }}>
-              {t("locationLabel")}
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.18em", opacity: 0.55, fontWeight: 300, lineHeight: 1.6, margin: 0, marginTop: 8 }}>
-              {t("classroom.address")}
-            </p>
-          </div>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontStyle: "italic", lineHeight: 0.92, letterSpacing: "-0.04em", fontSize: "clamp(1.8rem, 4vw, 5rem)", opacity: 0.78, margin: 0 }}>
+            — {t("story.pull")}
+          </p>
+        </div>
+
+        {/* Row 2 — two more columns */}
+        <div className="grid grid-cols-2 gap-10 md:gap-16" style={{ marginBottom: "clamp(40px, 5vw, 64px)" }}>
+          <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.75, opacity: 0.68, fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)", margin: 0 }}>
+            {t("story.p3")}
+          </p>
+          <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.75, opacity: 0.68, fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)", margin: 0 }}>
+            {t("story.p4")}
+          </p>
+        </div>
+
+        {/* p5 — narrower single column */}
+        <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontWeight: 300, lineHeight: 1.75, opacity: 0.68, fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)", margin: 0, maxWidth: "55ch", marginBottom: "clamp(40px, 5vw, 64px)" }}>
+          {t("story.p5")}
+        </p>
+
+        {/* Close line — large italic, right-aligned */}
+        <div
+          ref={closeRef}
+          style={{ borderTop: "1px solid hsl(var(--foreground) / 0.1)", paddingTop: "clamp(24px, 3vw, 40px)", paddingBottom: "clamp(40px, 5vw, 64px)", textAlign: "right" }}
+        >
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontStyle: "italic", lineHeight: 0.88, letterSpacing: "-0.05em", fontSize: "clamp(2rem, 5.5vw, 7rem)", opacity: 0.88, margin: 0 }}>
+            {t("story.close").split(" ").map((word, i) => (
+              <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
+                <span className="close-word" style={{ display: "block" }}>{word}</span>
+                {"\u00a0"}
+              </span>
+            ))}
+          </p>
         </div>
       </div>
 
