@@ -35,6 +35,7 @@ export function VanguardLexicon() {
     title: t(`${key}.title`),
     subtitle: t(`${key}.subtitle`),
     tagline: t(`${key}.tagline`),
+    method: t(`${key}.method`),
     format: t(`${key}.format`),
     price: t(`${key}.price`),
     schedule: t(`${key}.schedule`),
@@ -247,9 +248,15 @@ export function VanguardLexicon() {
                     <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-tight mb-2 group-hover:italic transition-all duration-500">
                       {program.title}
                     </h3>
-                    <p className="font-mono text-xs text-foreground/50 italic leading-relaxed">
+                    <p className="font-mono text-xs text-foreground/50 italic leading-relaxed mb-5">
                       {program.tagline}
                     </p>
+                    {/* Method — distinct per program */}
+                    <div className="border-l-2 border-foreground/20 pl-3 group-hover:border-foreground/40 transition-colors duration-500">
+                      <p className="font-sans font-light text-[13px] text-foreground/60 leading-relaxed">
+                        {program.method}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Price block */}

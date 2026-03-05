@@ -47,10 +47,15 @@
     "title": "Về Tôi",
     "intro": "Từ phòng họp đến lớp học — xây dựng sự tự tin, từng câu chuyện một.",
     "story": {
-      "title": "Tiểu Sử",
-      "p1": "Chứng chỉ TESOL và PGCE. Tôi dạy vì bài toán này thực sự thú vị — tìm ra điều gì đang cản trở học viên và gỡ bỏ nó.",
-      "p2": "Ngoài lớp học: đọc sách, tập gym, grappling.",
-      "p3": "ILA Vietnam, BlueSky Kindergarten, 15+ trường khắp TP.HCM. Trẻ em đến người lớn. Mọi trình độ."
+      "hook": "Ban đầu tôi không có kế hoạch gắn bó lâu dài với việc dạy học.",
+      "p1": "Khi lần đầu đến Việt Nam, tôi đến để tình nguyện và trải nghiệm môi trường mới. Lớp học chỉ là tạm thời. Nhưng theo thời gian, tôi bắt đầu nhận ra giá trị của trách nhiệm mà nghề dạy học đòi hỏi — sự kiên nhẫn, nhất quán và tận tâm với học sinh mỗi ngày.",
+      "p2": "Điều giữ tôi lại là những khoảnh khắc tiến bộ nhỏ xảy ra một cách lặng lẽ. Một học sinh tự tin hơn khi nói. Ai đó đặt ra một câu hỏi sâu sắc. Một đứa trẻ nhận ra mình có thể diễn đạt ý tưởng mà trước đây còn khó nắm bắt.",
+      "pull": "Học sinh thường dạy lại giáo viên không kém gì giáo viên dạy học sinh.",
+      "p3": "Làm việc cùng các em đã nhắc nhở tôi về sức mạnh của sự tò mò và kiên trì. Theo nhiều cách, các em cũng ảnh hưởng đến tôi — thậm chí giới thiệu cho tôi những thứ như cờ vua và sự kỷ luật đi kèm với việc học nó.",
+      "p4": "Ngoài giờ dạy, tôi thích đọc sách, tập gym và grappling. Những hoạt động đó giúp tôi có nền tảng vững chắc và nhắc nhở rằng sự tiến bộ thường đến từ nỗ lực bền vững theo thời gian.",
+      "p5": "Đó là tư duy tôi cố gắng mang vào lớp học — giúp học sinh trở nên tự tin, có năng lực và thoải mái hơn khi sử dụng tiếng Anh trong quá trình trưởng thành.",
+      "close": "Với tôi, dạy học đơn giản là hướng dẫn quá trình đó — từng học sinh và từng câu chuyện một.",
+      "title": "Giới thiệu"
     },
     "credentials": {
       "title": "Bằng Cấp",
@@ -386,10 +391,10 @@
   },
   "programs": {
     "sectionLabel": "Lớp Tiếng Anh",
-    "heading": "Tiếng Anh",
-    "headingItalic": "Chương trình",
-    "subtitle": "Ba chương trình. Một phương pháp.",
-    "subtitleDesc": "Dành cho học viên sẵn sàng ngừng học tiếng Anh và bắt đầu sử dụng nó.",
+    "heading": "Ba",
+    "headingItalic": "Chương Trình",
+    "subtitle": "Học viên khác nhau. Phương pháp khác nhau.",
+    "subtitleDesc": "Trẻ nhỏ, thanh thiếu niên và học viên IELTS học theo những cách khác nhau. Các chương trình này được xây dựng dựa trên điều đó.",
     "requestDetails": "Yêu cầu thông tin",
     "readyTitle": "Một buổi học để xem có phù hợp không.",
     "readyDesc": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết chương trình nào phù hợp — và liệu tôi có thể giúp được không.",
@@ -407,7 +412,8 @@
       "outcomes_0": "Phát âm tự nhiên qua luyện tập",
       "outcomes_1": "Từ vựng qua hoạt động thực tế",
       "outcomes_2": "Sự tự tin được rèn luyện có chủ đích, từng buổi học",
-      "outcomes_3": "Nền tảng vững chắc cho tiếng Anh học đường"
+      "outcomes_3": "Nền tảng vững chắc cho tiếng Anh học đường",
+      "method": "Tiếp thu ngôn ngữ qua hoạt động vui chơi có cấu trúc, luyện nói từ buổi đầu tiên và xây dựng sự tự tin một cách có chủ đích."
     },
     "teens": {
       "title": "Thiếu Niên",
@@ -419,7 +425,8 @@
       "outcomes_0": "Tiếng Anh giao tiếp tự nhiên",
       "outcomes_1": "Kết quả học tập và thi cử tốt hơn",
       "outcomes_2": "Kỹ năng giao tiếp trong tình huống thực tế",
-      "outcomes_3": "Tư duy phản biện bằng tiếng Anh"
+      "outcomes_3": "Tư duy phản biện bằng tiếng Anh",
+      "method": "Phát triển khả năng giao tiếp linh hoạt dưới áp lực thực tế — loại bỏ độ trễ dịch trong đầu để học sinh có thể suy nghĩ và phản hồi bằng tiếng Anh."
     },
     "ielts": {
       "title": "Luyện Thi IELTS",
@@ -431,7 +438,8 @@
       "outcomes_0": "Học kỹ năng chiến lược, không phải bài giảng thụ động",
       "outcomes_1": "Hướng dẫn thực hành và dạy kỹ năng làm bài",
       "outcomes_2": "Phản hồi chi tiết dựa trên bài làm của học viên",
-      "outcomes_3": "Biết rõ điểm mạnh và điểm cần cải thiện"
+      "outcomes_3": "Biết rõ điểm mạnh và điểm cần cải thiện",
+      "method": "Luyện chiến lược theo tiêu chí của giám khảo, thực hành có tính giờ, dự đoán band điểm thực tế và làm việc có mục tiêu trên cả 4 kỹ năng."
     },
     "workEnglish": {
       "title": "Tiếng Anh Công Sở",

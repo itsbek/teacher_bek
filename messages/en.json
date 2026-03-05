@@ -44,10 +44,15 @@
     "title": "About Me",
     "intro": "From boardrooms to classrooms — shaping confidence, one story at a time.",
     "story": {
-      "title": "Background",
-      "p1": "TESOL and PGCE certified. I teach because the problem is genuinely interesting — figuring out what's blocking someone and removing it.",
-      "p2": "Outside the classroom: books, the gym, grappling.",
-      "p3": "ILA Vietnam, BlueSky Kindergarten, 15+ schools across Ho Chi Minh City. Kids to adults. Every starting point."
+      "hook": "I didn't originally plan to stay in teaching.",
+      "p1": "When I first came to Vietnam, it was to volunteer and experience a different environment. The classroom was meant to be temporary. Over time, however, I began to appreciate the kind of responsibility teaching requires — patience, consistency, and showing up fully for students every day.",
+      "p2": "What kept me here were the small moments of growth that happen quietly. A student speaking a little more confidently. Someone asking a thoughtful question. A child realising they can express an idea that once felt out of reach.",
+      "pull": "Students often teach the teacher as much as the teacher teaches them.",
+      "p3": "Working with them has reminded me how powerful curiosity and persistence can be. In many ways, they've influenced me as well — even introducing me to things like chess and the discipline that comes with learning it.",
+      "p4": "Outside the classroom, I enjoy reading, training at the gym, and grappling. Those activities keep me grounded and remind me that improvement usually comes from steady effort over time rather than sudden breakthroughs.",
+      "p5": "That mindset is something I try to bring into the classroom too — helping students become a little more confident, capable, and comfortable using English as they grow.",
+      "close": "Teaching, for me, is simply about guiding that process — one student and one story at a time.",
+      "title": "Background"
     },
     "credentials": {
       "title": "Qualifications",
@@ -324,10 +329,10 @@
   },
   "programs": {
     "sectionLabel": "English Classes",
-    "heading": "English",
+    "heading": "Three",
     "headingItalic": "Programs",
-    "subtitle": "Three programs. One method.",
-    "subtitleDesc": "For students ready to stop studying English and start using it.",
+    "subtitle": "Different learners. Different methods.",
+    "subtitleDesc": "Young children, teenagers, and IELTS candidates each learn differently. These programs are built around that — not forced into a single approach.",
     "requestDetails": "Request details",
     "readyTitle": "One session to see if it's right.",
     "readyDesc": "Tell me your level and goal. I'll tell you which program fits — and whether I can help.",
@@ -345,7 +350,8 @@
       "outcomes_0": "Pronunciation built through speaking, not drilling",
       "outcomes_1": "Vocabulary acquired through use, not memorization",
       "outcomes_2": "Confidence trained deliberately, session by session",
-      "outcomes_3": "A foundation that compounds through school"
+      "outcomes_3": "A foundation that compounds through school",
+      "method": "Acquisition through structured play, spoken production from session one, and deliberate confidence-building — no drilling, no passive listening."
     },
     "teens": {
       "title": "Teens & Pre-Teens",
@@ -357,7 +363,8 @@
       "outcomes_0": "Spoken English without the internal translation delay",
       "outcomes_1": "Stronger performance on school assignments and exams",
       "outcomes_2": "Communication skills for real situations",
-      "outcomes_3": "Critical thinking in English"
+      "outcomes_3": "Critical thinking in English",
+      "method": "Communicative fluency under real pressure — removing the internal translation delay so students can think and respond in English, not about it."
     },
     "ielts": {
       "title": "IELTS Preparation",
@@ -369,7 +376,8 @@
       "outcomes_0": "Strategy lessons, not passive lectures",
       "outcomes_1": "Active guidance and technique building",
       "outcomes_2": "Detailed feedback on timed practice tests",
-      "outcomes_3": "A clear, honest read on where you stand"
+      "outcomes_3": "A clear, honest read on where you stand",
+      "method": "Examiner-criteria strategy training with timed practice, honest band projection, and targeted work on each of the four skills — no generic test prep."
     },
     "workEnglish": {
       "title": "English for Work",
