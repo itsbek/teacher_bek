@@ -9,7 +9,8 @@ export function ZaloFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Message on Zalo"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-[26px] overflow-hidden bg-[#0068FF] shadow-[0_4px_20px_rgba(0,104,255,0.4)]"
+      className="fixed z-50 overflow-hidden rounded-[26px] bg-[#0068FF] shadow-[0_4px_20px_rgba(0,104,255,0.4)]"
+      style={{ bottom: 24, right: 24, width: 56, height: 56 }}
       /* ── Periodic nudge: fires after 5s, then every 9s ── */
       animate={{
         rotate: [0, -11, 10, -6, 4, 0],

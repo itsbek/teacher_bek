@@ -47,11 +47,8 @@ const IconWhatsApp = () => (
     </svg>
 );
 
-const IconZalo = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.527 3.655 1.443 5.163L2 22l4.946-1.418A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-3.5 7h4.75l-4.75 5H13M8.5 9v6m6.5-6v6"/>
-    </svg>
-);
+// eslint-disable-next-line @next/next/no-img-element
+const IconZalo = () => <img src="/assets/icons/zalo.svg" width={16} height={16} alt="" aria-hidden="true" style={{ display: "block" }} />;
 
 export function VanguardFooter() {
     const locale        = useLocale();
