@@ -33,10 +33,10 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 export const metadata: Metadata = {
   metadataBase: new URL('https://englishwithconfidence.com'),
   title: {
-    default: "Giáo viên tiếng Anh tại TP.HCM | English Teacher in Ho Chi Minh City",
-    template: "%s | English Teacher HCMC"
+    default: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
+    template: "%s · Teacher Bek · Phú Nhuận"
   },
-  description: "Giáo viên tiếng Anh tại Gò Vấp, Phú Nhuận, Bình Thạnh. 3 năm kinh nghiệm tại ILA Vietnam, Blue Sky Academy. Dạy kèm tiếng Anh cho trẻ em và người lớn. English teacher in Ho Chi Minh City with experience at ILA Vietnam and Blue Sky Academy.",
+  description: "TESOL & PGCE certified, ex-ILA Vietnam. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. Free trial class.",
   keywords: [
     "giáo viên tiếng Anh Gò Vấp",
     "dạy tiếng Anh Phú Nhuận",
@@ -76,8 +76,8 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     url: "https://englishwithconfidence.com",
     siteName: "Teacher Bek",
-    title: "Giáo viên tiếng Anh tại TP.HCM | English Teacher Ho Chi Minh City",
-    description: "Giáo viên tiếng Anh kinh nghiệm tại Gò Vấp, Phú Nhuận, Bình Thạnh. Dạy kèm cho trẻ em và người lớn.",
+    title: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
+    description: "TESOL & PGCE certified, ex-ILA Vietnam. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
     images: [
       {
         url: "/og-image.jpg",
