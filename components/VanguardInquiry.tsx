@@ -420,7 +420,7 @@ export function VanguardInquiry() {
               </span>
               <span
                 className="font-display font-bold leading-none tracking-tight text-foreground group-hover:opacity-60 transition-opacity duration-300"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.04em" }}
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "0.06em" }}
               >
                 +84 353 88 5757
               </span>
