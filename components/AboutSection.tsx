@@ -155,7 +155,7 @@ export function AboutSection() {
       {/* ══════════════════════════════════════════════════════════
           MOBILE HERO ROW  (< md)
           Full portrait — no crop. Gradient darkens bottom half.
-          Heading + quote overlaid on the dark zone.
+          Heading + slogan overlaid on the dark zone.
       ══════════════════════════════════════════════════════════ */}
       <div
         className="md:hidden relative w-full overflow-hidden"
@@ -163,7 +163,6 @@ export function AboutSection() {
           aspectRatio: "3 / 4",
           maxHeight: "78vh",
           minHeight: "420px",
-          borderBottom: "1px solid hsl(var(--foreground) / 0.08)",
         }}
       >
         <Image
@@ -204,7 +203,7 @@ export function AboutSection() {
               fontSize: "clamp(2.6rem, 12vw, 3.8rem)",
               color: "hsl(var(--foreground))",
               margin: 0,
-              marginBottom: 20,
+              marginBottom: 18,
             }}
             aria-label={t("title")}
           >
@@ -221,7 +220,7 @@ export function AboutSection() {
               color: "hsl(var(--foreground))",
               opacity: 0.72,
               margin: 0,
-              marginBottom: 14,
+              marginBottom: 10,
             }}
           >
             {t("intro")}
@@ -237,8 +236,33 @@ export function AboutSection() {
               color: "hsl(var(--foreground))",
             }}
           >
-            Bek · {t("label")}
+            {t("label")}
           </p>
+        </div>
+      </div>
+
+      {/* ── MOBILE STORY (< md) — shows below the portrait ─────── */}
+      <div
+        className="md:hidden px-6 py-8"
+        style={{ borderBottom: "1px solid hsl(var(--foreground) / 0.08)" }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {(["p1", "p2", "p3"] as const).map((key) => (
+            <p
+              key={key}
+              className="abt-reveal"
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontWeight: 300,
+                lineHeight: 1.65,
+                opacity: 0.72,
+                fontSize: "clamp(0.9375rem, 4vw, 1rem)",
+                margin: 0,
+              }}
+            >
+              {t(`story.${key}`)}
+            </p>
+          ))}
         </div>
       </div>
 
@@ -277,29 +301,55 @@ export function AboutSection() {
             style={{
               borderTop: "1px solid hsl(var(--foreground) / 0.1)",
               paddingTop: "clamp(20px, 2.5vw, 34px)",
-              paddingBottom: "clamp(20px, 3vw, 40px)",
+              paddingBottom: "clamp(24px, 3vw, 44px)",
               flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: "clamp(20px, 2.5vw, 32px)",
             }}
           >
-            <p
-              ref={quoteRef}
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 600,
-                fontStyle: "italic",
-                lineHeight: 0.93,
-                letterSpacing: "-0.03em",
-                fontSize: "clamp(1.5rem, 3.8vw, 4.5rem)",
-                opacity: 0.72,
-                margin: 0,
-                marginBottom: 20,
-              }}
-            >
-              {t("intro")}
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.38, margin: 0 }}>
-              Bek · {t("label")}
-            </p>
+            {/* Story paragraphs — brief info first */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(8px, 1.2vw, 12px)" }}>
+              {(["p1", "p2", "p3"] as const).map((key) => (
+                <p
+                  key={key}
+                  className="abt-reveal"
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontWeight: 300,
+                    lineHeight: 1.65,
+                    opacity: 0.72,
+                    fontSize: "clamp(0.9375rem, 1.3vw, 1rem)",
+                    margin: 0,
+                  }}
+                >
+                  {t(`story.${key}`)}
+                </p>
+              ))}
+            </div>
+
+            {/* Slogan — comes after the brief info */}
+            <div style={{ borderTop: "1px solid hsl(var(--foreground) / 0.08)", paddingTop: "clamp(16px, 2vw, 26px)" }}>
+              <p
+                ref={quoteRef}
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 600,
+                  fontStyle: "italic",
+                  lineHeight: 0.93,
+                  letterSpacing: "-0.03em",
+                  fontSize: "clamp(1.3rem, 3.2vw, 3.8rem)",
+                  opacity: 0.72,
+                  margin: 0,
+                  marginBottom: 16,
+                }}
+              >
+                {t("intro")}
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.38, margin: 0 }}>
+                {t("label")}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -336,40 +386,12 @@ export function AboutSection() {
 
       </div>
 
-      {/* ── STORY + PHILOSOPHY ───────────────────────────────── */}
+      {/* ── PHILOSOPHY ───────────────────────────────────────── */}
       <div
         className="grid grid-cols-1 md:grid-cols-2"
         style={{ borderBottom: "1px solid hsl(var(--foreground) / 0.08)" }}
       >
-        {/* Story */}
-        <div className="px-6 md:px-10 lg:px-16 py-5 md:py-8 lg:py-10 border-b md:border-b-0 border-foreground/[0.08]">
-          <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.45, margin: 0, marginBottom: 16 }}>
-            {t("story.title")}
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(8px, 1.5vw, 14px)" }}>
-            {(["p1", "p2", "p3"] as const).map((key) => (
-              <p
-                key={key}
-                className="abt-reveal"
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontWeight: 300,
-                  lineHeight: 1.65,
-                  opacity: 0.72,
-                  fontSize: "clamp(0.9375rem, 1.3vw, 1rem)",
-                  margin: 0,
-                }}
-              >
-                {t(`story.${key}`)}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* Philosophy */}
-        <div
-          className="px-6 md:px-10 lg:px-16 py-5 md:py-8 lg:py-10 border-t md:border-t-0 md:border-l border-foreground/[0.08]"
-        >
+        <div className="px-6 md:px-10 lg:px-16 py-5 md:py-8 lg:py-10">
           <p className="abt-reveal" style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.45, margin: 0, marginBottom: 16 }}>
             {t("philosophy.title")}
           </p>
@@ -386,7 +408,12 @@ export function AboutSection() {
           >
             {t("philosophy.description")}
           </p>
-          <div className="abt-reveal" style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid hsl(var(--foreground) / 0.08)" }}>
+        </div>
+
+        <div
+          className="px-6 md:px-10 lg:px-16 py-5 md:py-8 lg:py-10 border-t md:border-t-0 md:border-l border-foreground/[0.08]"
+        >
+          <div className="abt-reveal">
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.28em", opacity: 0.38, margin: 0, marginBottom: 8 }}>
               {t("locationLabel")}
             </p>
