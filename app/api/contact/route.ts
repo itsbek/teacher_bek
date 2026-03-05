@@ -164,41 +164,45 @@ export async function POST(request: NextRequest) {
     const email   = sanitise(validated.email);
     const message = sanitise(validated.message ?? '');
 
-    // Send both emails concurrently
-    const [notification, confirmation] = await Promise.allSettled([
-      resend.emails.send({
-        from: 'Teacher Bek Website <noreply@teacherbek.com>',
-        to:   CONTACT_EMAIL,
-        replyTo: email,
-        subject: `New inquiry from ${name}`,
-        html: buildNotificationEmail({
-          name,
-          email,
-          forWhom: validated.forWhom ?? undefined,
-          level:   validated.level   ?? undefined,
-          goal:    validated.goal    ?? undefined,
-          message,
-        }),
-      }),
-      resend.emails.send({
-        from: 'Teacher Bek <hello@teacherbek.com>',
-        to:   email,
-        subject: 'Got your message — Teacher Bek',
-        html: buildConfirmationEmail(name),
-      }),
-    ]);
+    if (!process.env.RESEND_API_KEY) {
+      console.error('[contact] RESEND_API_KEY is not set');
+      return NextResponse.json({ error: 'Email service not configured.' }, { status: 500 });
+    }
 
-    if (notification.status === 'rejected') {
-      console.error('[contact] notification email failed:', notification.reason);
+    // Resend returns { data, error } — it does NOT throw on failure
+    const { error: notifyError } = await resend.emails.send({
+      from:    'Teacher Bek Website <noreply@teacherbek.com>',
+      to:      CONTACT_EMAIL,
+      replyTo: email,
+      subject: `New inquiry from ${name}`,
+      html: buildNotificationEmail({
+        name,
+        email,
+        forWhom: validated.forWhom ?? undefined,
+        level:   validated.level   ?? undefined,
+        goal:    validated.goal    ?? undefined,
+        message,
+      }),
+    });
+
+    if (notifyError) {
+      console.error('[contact] notification send failed:', JSON.stringify(notifyError));
       return NextResponse.json(
         { error: 'Failed to send message. Please try again or contact me directly.' },
         { status: 500 }
       );
     }
 
-    if (confirmation.status === 'rejected') {
-      // Non-fatal — inquiry was delivered, confirmation failed
-      console.warn('[contact] confirmation email failed:', confirmation.reason);
+    // Confirmation to submitter — non-fatal if it fails
+    const { error: confirmError } = await resend.emails.send({
+      from:    'Teacher Bek <hello@teacherbek.com>',
+      to:      email,
+      subject: 'Got your message — Teacher Bek',
+      html:    buildConfirmationEmail(name),
+    });
+
+    if (confirmError) {
+      console.warn('[contact] confirmation send failed (non-fatal):', JSON.stringify(confirmError));
     }
 
     return NextResponse.json(
