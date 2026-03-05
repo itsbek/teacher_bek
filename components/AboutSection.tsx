@@ -268,6 +268,7 @@ export function AboutSection() {
 
       {/* ── MOBILE STORY (< md) — full narrative below portrait ── */}
       <div
+        data-nosnippet
         className="md:hidden px-6 py-10"
         style={{ borderBottom: "1px solid hsl(var(--foreground) / 0.08)" }}
       >
@@ -423,6 +424,7 @@ export function AboutSection() {
 
       {/* ── EDITORIAL STORY (desktop md+) ────────────────────── */}
       <div
+        data-nosnippet
         className="hidden md:block px-6 md:px-10 lg:px-16 pt-14 md:pt-18 lg:pt-20 pb-0"
         style={{ borderBottom: "1px solid hsl(var(--foreground) / 0.08)" }}
       >
