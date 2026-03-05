@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     default: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
     template: "%s · Teacher Bek · Phú Nhuận"
   },
-  description: "TESOL & PGCE certified, ex-ILA Vietnam. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. Free trial class.",
+  description: "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. Free trial class.",
   keywords: [
     "giáo viên tiếng Anh Gò Vấp",
     "dạy tiếng Anh Phú Nhuận",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     url: "https://englishwithconfidence.com",
     siteName: "Teacher Bek",
     title: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
-    description: "TESOL & PGCE certified, ex-ILA Vietnam. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
+    description: "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
     images: [
       {
         url: "/og-image.jpg",
