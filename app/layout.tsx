@@ -38,26 +38,44 @@ export const metadata: Metadata = {
   },
   description: "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. Free trial class.",
   keywords: [
+    // Vietnamese — local high-intent
+    "giáo viên tiếng Anh Phú Nhuận",
     "giáo viên tiếng Anh Gò Vấp",
-    "dạy tiếng Anh Phú Nhuận",
-    "học tiếng Anh Bình Thạnh",
-    "gia sư tiếng Anh TPHCM",
-    "dạy kèm tiếng Anh quận Gò Vấp",
-    "lớp tiếng Anh cho trẻ em",
-    "giáo viên bản ngữ tiếng Anh",
-    "học tiếng Anh tại nhà TPHCM",
-    "English teacher Ho Chi Minh",
-    "English tutor Saigon",
+    "gia sư tiếng Anh Bình Thạnh",
+    "dạy tiếng Anh TPHCM",
+    "lớp tiếng Anh nhóm nhỏ Sài Gòn",
+    "luyện thi IELTS Phú Nhuận",
+    "giáo viên bản ngữ tiếng Anh TPHCM",
+    "lớp tiếng Anh cho trẻ em từ 6 tuổi",
+    "học tiếng Anh 119 Phổ Quang",
+    "tiếng Anh tối đa 10 học sinh",
+    "học tiếng Anh gần sân bay Tân Sơn Nhất",
+    "trung tâm tiếng Anh Phú Nhuận",
+    "giáo viên TESOL TPHCM",
+    // English — local + global
+    "English teacher Phu Nhuan",
     "English teacher Ho Chi Minh City",
+    "English tutor Saigon",
     "English lessons Go Vap",
-    "English tutor Phu Nhuan",
     "English classes Binh Thanh",
-    "ILA Vietnam teacher",
-    "Blue Sky Academy English",
-    "private English lessons HCMC",
+    "TESOL certified English teacher Vietnam",
+    "native English teacher Ho Chi Minh",
     "English for kids Saigon",
-    "learn English Ho Chi Minh",
-    "native English teacher Vietnam"
+    "IELTS preparation Ho Chi Minh City",
+    "small group English lessons HCMC",
+    "English teacher ILA Vietnam",
+    "certified English teacher Vietnam",
+    // Chinese — expat community HCMC
+    "胡志明市英语教师",
+    "TESOL认证英语教师越南",
+    "小班英语课程胡志明",
+    "儿童英语课程胡志明市",
+    "雅思备考胡志明",
+    // Russian — expat/diaspora
+    "учитель английского Хошимин",
+    "английский для детей Вьетнам",
+    "TESOL преподаватель английского Вьетнам",
+    "малые группы английского Сайгон",
   ],
   authors: [{ name: "Teacher Bek" }],
   creator: "Teacher Bek",
@@ -137,41 +155,77 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
+              "@type": ["EducationalOrganization", "LocalBusiness"],
+              "@id": "https://teacherbek.com/#organization",
               "name": "Teacher Bek",
-              "description": "Small-group English lessons in Ho Chi Minh City",
+              "alternateName": ["Teacher Bek English", "Lớp Tiếng Anh Teacher Bek"],
+              "description": "Small-group English lessons in Ho Chi Minh City. TESOL & PGCE certified. Maximum 10 students per class. Programs for children (ages 6+), teens, and IELTS preparation.",
               "url": "https://teacherbek.com",
+              "telephone": "+84353885757",
+              "email": "hello@teacherbek.com",
+              "priceRange": "$$",
+              "currenciesAccepted": "VND",
+              "paymentAccepted": "Cash, Bank Transfer",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "119 Phổ Quang, Golden Mansion 1",
+                "addressLocality": "Phú Nhuận",
+                "addressRegion": "Ho Chi Minh City",
+                "addressCountry": "VN",
+                "postalCode": "72411"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 10.8016,
+                "longitude": 106.6524
+              },
+              "hasMap": "https://maps.google.com/?q=119+Pho+Quang+Phu+Nhuan+Ho+Chi+Minh+City",
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "19:30",
+                  "closes": "21:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Saturday", "Sunday"],
+                  "opens": "14:00",
+                  "closes": "20:00"
+                }
+              ],
+              "areaServed": [
+                { "@type": "AdministrativeArea", "name": "Phú Nhuận District, Ho Chi Minh City" },
+                { "@type": "AdministrativeArea", "name": "Gò Vấp District, Ho Chi Minh City" },
+                { "@type": "AdministrativeArea", "name": "Bình Thạnh District, Ho Chi Minh City" },
+                { "@type": "AdministrativeArea", "name": "Ho Chi Minh City, Vietnam" }
+              ],
+              "serviceType": [
+                "English Language Teaching",
+                "Small-Group English Lessons",
+                "IELTS Preparation",
+                "English for Children",
+                "English for Teenagers",
+                "Online English Lessons"
+              ],
+              "maximumAttendeeCapacity": 10,
+              "employee": {
+                "@id": "https://teacherbek.com/#teacher-bek"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "telephone": "+84353885757",
+                "email": "hello@teacherbek.com",
+                "availableLanguage": ["English", "Vietnamese", "Russian", "Uzbek"],
+                "contactOption": "TollFree"
+              },
               "sameAs": [
                 "https://www.linkedin.com/in/bek-boymirzaev/",
                 "https://www.instagram.com/itsteacherbek",
                 "https://www.facebook.com/teacherbek",
                 "https://www.tiktok.com/@itsteacherbek"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Ho Chi Minh City",
-                "addressRegion": "Ho Chi Minh",
-                "addressCountry": "VN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 10.8231,
-                "longitude": 106.6297
-              },
-              "areaServed": [
-                { "@type": "City", "name": "Go Vap District, Ho Chi Minh City" },
-                { "@type": "City", "name": "Phu Nhuan District, Ho Chi Minh City" },
-                { "@type": "City", "name": "Binh Thanh District, Ho Chi Minh City" }
-              ],
-              "serviceType": ["English Language Teaching", "Private English Lessons", "English Tutoring"],
-              "contactPoint": [{
-                "@type": "ContactPoint",
-                "contactType": "customer support",
-                "email": "hello@teacherbek.com",
-                "availableLanguage": ["English", "Vietnamese", "Chinese", "Russian"]
-              }],
-              "priceRange": "$$",
-              "knowsLanguage": ["en", "vi", "zh", "ru"]
+              ]
             })
           }}
         />

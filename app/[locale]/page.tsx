@@ -5,7 +5,7 @@ import { StructuredData } from '@/components/structured-data';
 import { VanguardNavigation } from '@/components/VanguardNavigation';
 import { VanguardHero } from '@/components/VanguardHero';
 import { getBlogPosts } from '@/lib/blog';
-import { buildPageMetadata } from '@/lib/seo';
+import { buildPageMetadata, getLocaleMetadata } from '@/lib/seo';
 
 /* Below-the-fold sections — loaded after the hero paints */
 const DarkZoneWrapper   = dynamic(() => import('@/components/DarkZoneWrapper').then(m => ({ default: m.DarkZoneWrapper })));
@@ -26,11 +26,14 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
+  const seo = getLocaleMetadata(locale);
   return buildPageMetadata({
     locale,
-    title: "English Teacher in Ho Chi Minh City",
-    description: "Small-group English lessons for students, parents, and professionals in Ho Chi Minh City.",
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
     path: "",
+    ogLocale: seo.ogLocale,
   });
 }
 
