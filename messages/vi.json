@@ -16,7 +16,7 @@
     "titleLine2": "một ngôn ngữ — đó là",
     "titleAccent": "chìa khóa",
     "subtitle": "Không phải bài tập ngữ pháp. Không phải tiếp nhận thụ động. Luyện tập có chủ đích, trong một lớp học được thiết kế cho điều đó.",
-    "cta": "Đặt lịch học thử miễn phí",
+    "cta": "Đặt Lịch Học Miễn Phí 1 Tuần",
     "secondary": "Chương trình",
     "headline": "Tiếng Anh không phải là ngôn ngữ—đó là chìa khóa",
     "subheadline": "Chứng Chỉ TESOL • ILA Vietnam • TP. Hồ Chí Minh",
@@ -50,7 +50,7 @@
       "hook": "Ban đầu tôi không có kế hoạch gắn bó lâu dài với việc dạy học.",
       "p1": "Khi lần đầu đến Việt Nam, tôi đến để tình nguyện và trải nghiệm môi trường mới. Lớp học chỉ là tạm thời. Nhưng theo thời gian, tôi bắt đầu nhận ra giá trị của trách nhiệm mà nghề dạy học đòi hỏi — sự kiên nhẫn, nhất quán và tận tâm với học sinh mỗi ngày.",
       "p2": "Điều giữ tôi lại là những khoảnh khắc tiến bộ nhỏ xảy ra một cách lặng lẽ. Một học sinh tự tin hơn khi nói. Ai đó đặt ra một câu hỏi sâu sắc. Một đứa trẻ nhận ra mình có thể diễn đạt ý tưởng mà trước đây còn khó nắm bắt.",
-      "pull": "Học sinh thường dạy lại giáo viên không kém gì giáo viên dạy học sinh.",
+      "pull": "Từ phòng họp đến lớp học — xây dựng sự tự tin, từng câu chuyện một.",
       "p3": "Làm việc cùng các em đã nhắc nhở tôi về sức mạnh của sự tò mò và kiên trì. Theo nhiều cách, các em cũng ảnh hưởng đến tôi — thậm chí giới thiệu cho tôi những thứ như cờ vua và sự kỷ luật đi kèm với việc học nó.",
       "p4": "Ngoài giờ dạy, tôi thích đọc sách, tập gym và grappling. Những hoạt động đó giúp tôi có nền tảng vững chắc và nhắc nhở rằng sự tiến bộ thường đến từ nỗ lực bền vững theo thời gian.",
       "p5": "Đó là tư duy tôi cố gắng mang vào lớp học — giúp học sinh trở nên tự tin, có năng lực và thoải mái hơn khi sử dụng tiếng Anh trong quá trình trưởng thành.",
@@ -172,9 +172,9 @@
   },
   "cta": {
     "title": "Một buổi học. Không ràng buộc.",
-    "subtitle": "Một buổi học miễn phí để đánh giá trình độ và sự phù hợp. Nếu không phù hợp, tôi sẽ nói thẳng.",
+    "subtitle": "Một tuần học thử miễn phí để đánh giá trình độ và sự phù hợp. Nếu không phù hợp, tôi sẽ nói thẳng.",
     "button": "Gửi tin nhắn",
-    "heading": "Đánh Giá Miễn Phí",
+    "heading": "1 Tuần Miễn Phí",
     "headingItalic": "Không ràng buộc.",
     "checklist_0": "Không cần thanh toán",
     "checklist_1": "Buổi học 30 phút",
@@ -206,7 +206,7 @@
     },
     "q6": {
       "question": "Có thể học thử trước không?",
-      "answer": "Được. Một buổi miễn phí. Cứ mang trình độ thật — tôi đánh giá thẳng thắn."
+      "answer": "Được. Một tuần học thử miễn phí. Cứ mang trình độ thật — tôi đánh giá thẳng thắn."
     },
     "q7": {
       "question": "Tại sao lớp nhỏ thay vì lớp đông?",
@@ -254,7 +254,7 @@
     },
     "cta": {
       "text": "Muốn áp dụng ngay vào việc học tiếng Anh của bạn?",
-      "emphasis": "Đặt buổi học thử miễn phí.",
+      "emphasis": "Đặt lịch 1 tuần học miễn phí.",
       "button": "Liên Hệ"
     }
   },
@@ -282,13 +282,13 @@
     "or": "Hoặc liên hệ trực tiếp",
     "availability": {
       "flexible": "Lịch linh hoạt - sáng, chiều hoặc tối",
-      "consultation": "Tư vấn miễn phí - xem chúng ta có phù hợp không",
+      "consultation": "1 tuần học miễn phí để đánh giá trình độ và sự phù hợp",
       "online": "Trực tiếp tại lớp học hoặc địa điểm của bạn"
     },
     "trustBadges": {
       "response": "Thường phản hồi trong vài giờ",
       "noCommitment": "Không áp lực, chỉ là trò chuyện",
-      "trial": "Có buổi học thử"
+      "trial": "1 tuần học miễn phí"
     }
   },
   "footer": {
@@ -307,7 +307,7 @@
     "quickLinks": "Liên Kết Nhanh",
     "channels": "Kênh Liên Hệ",
     "location": "Golden Mansion 1, Phú Nhuận",
-    "ctaHeading": "Một buổi học miễn phí để biết bạn đang ở đâu.",
+    "ctaHeading": "1 tuần học miễn phí để biết bạn đang ở đâu.",
     "linkedin": "LinkedIn",
     "instagram": "Instagram",
     "facebook": "Facebook",
@@ -390,18 +390,20 @@
     "insightsLabel": "Góc Nhìn",
     "subtitle": "Những suy nghĩ ngắn gọn về học tập, giảng dạy và chiến lược ngôn ngữ.",
     "articlePrefix": "Bài",
-    "viewAll": "Xem Tất Cả"
+    "viewAll": "Xem Tất Cả",
+    "emptyNote": "Các bài viết mới đang được chuẩn bị. Đây là nơi những ý tưởng về học tiếng Anh và giảng dạy được hình thành — hãy ghé lại sớm nhé.",
+    "visitJournal": "Đến trang nhật ký"
   },
   "programs": {
     "sectionLabel": "Lớp Tiếng Anh",
-    "heading": "Ba",
+    "heading": "",
     "headingItalic": "Chương Trình",
-    "subtitle": "Học viên khác nhau. Phương pháp khác nhau.",
-    "subtitleDesc": "Trẻ nhỏ, thanh thiếu niên và học viên IELTS học theo những cách khác nhau. Các chương trình này được xây dựng dựa trên điều đó.",
+    "subtitle": "Thiếu nhi, thiếu niên và IELTS.",
+    "subtitleDesc": "Ba chương trình. Mỗi chương trình dành cho một giai đoạn cụ thể.",
     "requestDetails": "Yêu cầu thông tin",
-    "readyTitle": "Một buổi học để xem có phù hợp không.",
+    "readyTitle": "Một tuần học thử để xem có phù hợp không.",
     "readyDesc": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết chương trình nào phù hợp — và liệu tôi có thể giúp được không.",
-    "requestCta": "Đặt Lịch Học Thử Miễn Phí",
+    "requestCta": "Đặt Lịch 1 Tuần Miễn Phí",
     "pricingNote": "Học phí từ 1.990.000 VND / tháng (mức giá học thử tháng đầu tiên)",
     "scheduleNote": "Ngày thường: 19:30 - 21:00 · Cuối tuần: 14:00 - 20:00",
     "formatNote": "Lớp học nhóm · Tối đa 10 học viên",

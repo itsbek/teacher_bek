@@ -77,16 +77,11 @@ html[data-fontsize="lg"] { font-size: 19px; }
     /* horizontal page margin */
 
     /* Vertical section breathing room */
-    --section-xs: clamp(2rem, 4vw, 3rem);
-    /* tight separator */
-    --section-sm: clamp(3rem, 6vw, 5rem);
-    /* small gap */
-    --section-md: clamp(4rem, 7vw, 7rem);
-    /* standard section */
-    --section-lg: clamp(5rem, 8vw, 9rem);
-    /* generous section */
-    --section-xl: clamp(6rem, 10vw, 11rem);
-    /* hero-adjacent breathing */
+    --section-xs: clamp(1.5rem, 2.5vw, 2rem);
+    --section-sm: clamp(2rem, 3.5vw, 3rem);
+    --section-md: clamp(2.5rem, 4.5vw, 4.5rem);
+    --section-lg: clamp(3rem, 5.5vw, 6rem);
+    --section-xl: clamp(4rem, 7vw, 8rem);
 
     /* Legacy aliases — mapped to new tokens */
     --section-space: var(--section-md);

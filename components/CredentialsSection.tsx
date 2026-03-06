@@ -59,12 +59,12 @@ export function CredentialsSection() {
     <section
       ref={sectionRef}
       id="credentials"
-      className="relative py-[clamp(4rem,10vw,8rem)] px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="relative py-[clamp(2.5rem,4.5vw,4.5rem)] px-6 md:px-12 lg:px-24 overflow-hidden"
       style={{ scrollMarginTop: "5rem" }}
     >
       <div className="max-w-[1920px] mx-auto">
         {/* Section Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-6 lg:mb-10">
           <div className="lg:col-span-7">
             <div className="flex items-center gap-4 mb-8">
               <span className="w-10 h-[1px] bg-current opacity-30" />
@@ -80,7 +80,7 @@ export function CredentialsSection() {
         </div>
 
         {/* Qualifications */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px border border-current/10 bg-current/10 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px border border-current/10 bg-current/10 mb-8">
           {credentialKeys.map((key, i) => (
             <div
               key={key}
@@ -122,7 +122,7 @@ export function CredentialsSection() {
         </div>
 
         {/* Address */}
-        <div className="mt-12 pt-8 border-t border-current/10">
+        <div className="mt-6 pt-5 border-t border-current/10">
           <p className="font-mono text-sm opacity-50">
             {classroomT("address")}
           </p>

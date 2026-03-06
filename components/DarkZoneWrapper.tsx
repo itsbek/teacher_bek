@@ -3,13 +3,13 @@
 import React from "react";
 
 /**
- * DarkZoneWrapper — previously forced dark palette unconditionally.
- * Now transparent: children inherit the active theme so light/dark
- * mode applies consistently across all sections.
+ * DarkZoneWrapper — structural grouping for §2-6.
+ * Transparent: children manage their own backgrounds.
+ * Dark sections (About, Journal) opt-in via `dark` class on their own element.
  */
 export function DarkZoneWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative bg-background text-foreground">
+    <div className="relative">
       {children}
     </div>
   );

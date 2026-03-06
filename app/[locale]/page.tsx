@@ -78,7 +78,7 @@ export default async function Home({ params }: Props) {
           {/* §4: METHODOLOGY */}
           <section
             id="methodology"
-            className="section-md border-t border-current/10 px-6 md:px-12 lg:px-20"
+            className="section-sm border-t border-current/10 px-6 md:px-12 lg:px-20"
             style={{ scrollMarginTop: 'var(--nav-h)' }}
           >
             <div className="max-w-[1440px] mx-auto grid grid-cols-12 gap-8 items-start">
@@ -108,12 +108,10 @@ export default async function Home({ params }: Props) {
           {/* §5: CREDENTIALS */}
           <CredentialsSection />
 
-          {/* §6: READS — only rendered when posts exist */}
-          {articles.length > 0 && (
-            <section id="reads" className="section-md border-t border-current/10" style={{ scrollMarginTop: 'var(--nav-h)' }}>
-              <VanguardJournal initialArticles={articles} />
-            </section>
-          )}
+          {/* §6: READS */}
+          <section id="reads" className="dark section-sm bg-background text-foreground border-t border-current/10" style={{ scrollMarginTop: 'var(--nav-h)' }}>
+            <VanguardJournal initialArticles={articles} />
+          </section>
         </DarkZoneWrapper>
 
         {/* §7: CONVERSION STRIP — Light zone */}
@@ -125,7 +123,7 @@ export default async function Home({ params }: Props) {
         {/* §9: CONTACT — Light zone */}
         <section
           id="contact"
-          className="section-lg border-t border-foreground/5 bg-background text-foreground"
+          className="section-md border-t border-foreground/5 bg-background text-foreground"
           style={{ scrollMarginTop: 'var(--nav-h)' }}
         >
           <VanguardInquiry />

@@ -16,7 +16,7 @@
     "titleLine2": "a language — it is a",
     "titleAccent": "key",
     "subtitle": "Not grammar drills. Not passive exposure. Deliberate practice, in a room designed for it.",
-    "cta": "Book Free Session",
+    "cta": "Book a Free Week",
     "secondary": "Programs",
     "headline": "Professional instruction. A comfortable environment.",
     "subheadline": "TESOL Certified · ILA Vietnam · Ho Chi Minh City",
@@ -47,7 +47,7 @@
       "hook": "I didn't originally plan to stay in teaching.",
       "p1": "When I first came to Vietnam, it was to volunteer and experience a different environment. The classroom was meant to be temporary. Over time, however, I began to appreciate the kind of responsibility teaching requires — patience, consistency, and showing up fully for students every day.",
       "p2": "What kept me here were the small moments of growth that happen quietly. A student speaking a little more confidently. Someone asking a thoughtful question. A child realising they can express an idea that once felt out of reach.",
-      "pull": "Students often teach the teacher as much as the teacher teaches them.",
+      "pull": "From boardrooms to classrooms — shaping confidence, one story at a time.",
       "p3": "Working with them has reminded me how powerful curiosity and persistence can be. In many ways, they've influenced me as well — even introducing me to things like chess and the discipline that comes with learning it.",
       "p4": "Outside the classroom, I enjoy reading, training at the gym, and grappling. Those activities keep me grounded and remind me that improvement usually comes from steady effort over time rather than sudden breakthroughs.",
       "p5": "That mindset is something I try to bring into the classroom too — helping students become a little more confident, capable, and comfortable using English as they grow.",
@@ -177,13 +177,13 @@
     "subtitle": "From the students, parents, and colleagues who've worked with Teacher Bek."
   },
   "cta": {
-    "title": "One session. No commitment.",
-    "subtitle": "A free session to assess level and fit. If it's not the right match, I'll say so.",
+    "title": "One week. No commitment.",
+    "subtitle": "A free week of lessons to assess level and fit. If it's not the right match, I'll say so.",
     "button": "Get in Touch",
-    "heading": "Free Session",
+    "heading": "Free Week",
     "headingItalic": "See if it fits.",
     "checklist_0": "No payment required",
-    "checklist_1": "30-minute session",
+    "checklist_1": "1 week of free lessons",
     "checklist_2": "Honest fit assessment",
     "phoneLabel": "Zalo / Call",
     "zaloButton": "Message on Zalo"
@@ -212,7 +212,7 @@
     },
     "q6": {
       "question": "Can I try a class first?",
-      "answer": "Yes. One free session. Bring your honest level — I'll tell you exactly where you stand."
+      "answer": "Yes. One free week of lessons. Bring your honest level — I'll tell you exactly where you stand."
     },
     "q7": {
       "question": "Why small groups instead of large classes?",
@@ -260,7 +260,7 @@
     },
     "cta": {
       "text": "Want to apply this to your own English?",
-      "emphasis": "Book a free session.",
+      "emphasis": "Book a free week of lessons.",
       "button": "Get in Touch"
     }
   },
@@ -288,13 +288,13 @@
     "or": "Or reach out directly",
     "availability": {
       "flexible": "Flexible scheduling — mornings, afternoons, or evenings",
-      "consultation": "Free session to assess level and fit",
+      "consultation": "Free week of lessons to assess level and fit",
       "online": "In-person at my classroom or your location"
     },
     "trustBadges": {
       "response": "Same-day replies, usually",
       "noCommitment": "Honest fit assessment — no sales pitch",
-      "trial": "Free first session"
+      "trial": "Free first week of lessons"
     }
   },
   "footer": {
@@ -313,7 +313,7 @@
     "quickLinks": "Quick Links",
     "channels": "Channels",
     "location": "Golden Mansion 1, Phú Nhuận",
-    "ctaHeading": "One free session to see where you stand.",
+    "ctaHeading": "One free week of lessons to see where you stand.",
     "linkedin": "LinkedIn",
     "instagram": "Instagram",
     "facebook": "Facebook",
@@ -332,14 +332,14 @@
   },
   "programs": {
     "sectionLabel": "English Classes",
-    "heading": "Three",
+    "heading": "",
     "headingItalic": "Programs",
-    "subtitle": "Different learners. Different methods.",
-    "subtitleDesc": "Young children, teenagers, and IELTS candidates each learn differently. These programs are built around that — not forced into a single approach.",
+    "subtitle": "Young learners, teens, and IELTS.",
+    "subtitleDesc": "Three programs. Each built for a specific stage.",
     "requestDetails": "Request details",
-    "readyTitle": "One session to see if it's right.",
+    "readyTitle": "One free week to see if it's right.",
     "readyDesc": "Tell me your level and goal. I'll tell you which program fits — and whether I can help.",
-    "requestCta": "Book a Free Session",
+    "requestCta": "Book a Free Week",
     "pricingNote": "Classes from 1,990,000 VND / month (first month trial rate)",
     "scheduleNote": "Weekdays: 7:30 PM - 9:00 PM · Weekends: 2:00 PM - 8:00 PM",
     "formatNote": "Group classes · Max 10 students",
@@ -461,7 +461,9 @@
     "insightsLabel": "Insights",
     "subtitle": "Observations on language, learning, and what actually changes students.",
     "articlePrefix": "Article",
-    "viewAll": "All Reads"
+    "viewAll": "All Reads",
+    "emptyNote": "New articles are on their way. The journal is where ideas on English learning, teaching, and building real fluency take shape — check back soon.",
+    "visitJournal": "Visit the journal"
   },
   "exitIntent": {
     "tag": "Before You Leave",
