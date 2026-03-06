@@ -3,7 +3,8 @@ import { z } from 'zod';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const CONTACT_EMAIL = 'hello@teacherbek.com';
+// Where YOU receive inquiry notifications — set CONTACT_NOTIFY_EMAIL in Vercel env vars
+const CONTACT_EMAIL = process.env.CONTACT_NOTIFY_EMAIL || 'hello@teacherbek.com';
 
 const contactFormSchema = z.object({
   name: z.string().min(2).max(100),
