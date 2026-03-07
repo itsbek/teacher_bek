@@ -120,10 +120,11 @@ export function FAQ() {
       </div>
 
       {/* ── FAQ list ───────────────────────────────────────────────── */}
+      {/* Structured data is handled via JSON-LD in structured-data.tsx.
+          Microdata is intentionally omitted here because answers are conditionally
+          rendered (accordion) — Google would see Question without acceptedAnswer. */}
       <div
         ref={listRef}
-        itemScope
-        itemType="https://schema.org/FAQPage"
         role="list"
       >
         {FAQ_KEYS.map((key, index) => {
@@ -133,9 +134,6 @@ export function FAQ() {
             <div
               key={key}
               className="faq-row border-b border-foreground/10"
-              itemScope
-              itemProp="mainEntity"
-              itemType="https://schema.org/Question"
               role="listitem"
             >
               <button
@@ -160,7 +158,6 @@ export function FAQ() {
                       opacity: isOpen ? 1 : 0.65,
                       transition: "opacity 0.3s ease",
                     }}
-                    itemProp="name"
                   >
                     {t(`${key}.question`)}
                   </h3>
@@ -191,14 +188,10 @@ export function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.45, ease: [0.11, 0.82, 0.39, 0.92] }}
                     className="overflow-hidden"
-                    itemScope
-                    itemProp="acceptedAnswer"
-                    itemType="https://schema.org/Answer"
                   >
                     <p
                       className="font-sans font-light leading-relaxed opacity-55 px-6 md:px-10 lg:px-16 pb-7 pl-[calc(1.5rem+1.5rem+1.5rem)] md:pl-[calc(2.5rem+1.5rem+1.5rem)] lg:pl-[calc(4rem+1.5rem+1.5rem)]"
                       style={{ fontSize: "clamp(0.875rem, 1.5vw, 1.05rem)" }}
-                      itemProp="text"
                     >
                       {t(`${key}.answer`)}
                     </p>
