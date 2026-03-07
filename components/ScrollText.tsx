@@ -39,11 +39,14 @@ export function ScrollText({
         // Respect reduced motion
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+        // Skip character-level animations on mobile — SplitType + blur filters
+        // on many DOM nodes is GPU-heavy and causes scroll jank.
+        if (window.innerWidth < 768) return;
+
         const split = new SplitType(el, { types: 'chars' });
         const chars = split.chars;
         if (!chars || chars.length === 0) return;
 
-        const isMobile = window.innerWidth < 768;
         let tween: gsap.core.Tween;
 
         if (mode === 'scrub') {
@@ -55,25 +58,24 @@ export function ScrollText({
                 ease: 'none',
                 scrollTrigger: {
                     trigger: el,
-                    start: start || (isMobile ? 'top 98%' : 'top 80%'),
-                    end: end || (isMobile ? 'top 60%' : 'top 30%'),
+                    start: start || 'top 80%',
+                    end: end || 'top 30%',
                     scrub: true,
                 },
             });
         } else {
-            // Entrance: chars animate in on scroll enter
-            gsap.set(chars, { opacity: 0, y: '60%', rotateX: -40, filter: 'blur(4px)' });
+            // Entrance: chars animate in on scroll enter (no blur — composited props only)
+            gsap.set(chars, { opacity: 0, y: '60%', rotateX: -40 });
             tween = gsap.to(chars, {
                 opacity: 1,
                 y: '0%',
                 rotateX: 0,
-                filter: 'blur(0px)',
                 duration: 1,
                 stagger,
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: el,
-                    start: start || (isMobile ? 'top 98%' : 'top 85%'),
+                    start: start || 'top 85%',
                     toggleActions: 'play none none none',
                 },
             });

@@ -19,6 +19,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         if (typeof window === "undefined") return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+        // Touch/mobile devices have hardware-accelerated native scroll.
+        // Lenis on touch devices overrides that with JS scroll, causing lag.
+        // Only run Lenis on pointer-fine (mouse) devices.
+        if (window.matchMedia("(pointer: coarse)").matches) return;
+
         gsap.registerPlugin(ScrollTrigger);
 
         const lenis = new Lenis({
@@ -28,8 +33,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
             gestureOrientation: "vertical",
             smoothWheel: true,
             wheelMultiplier: 0.85,
-            touchMultiplier: 0.9,
-            syncTouch: true,
         });
 
         (window as Window & { __lenis?: Lenis }).__lenis = lenis;
