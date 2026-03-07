@@ -81,11 +81,12 @@ export const metadata: Metadata = {
   creator: "Teacher Bek",
   publisher: "Teacher Bek",
   alternates: {
+    canonical: 'https://teacherbek.com/en',
     languages: {
-      'en': '/en',
-      'vi': '/vi',
-      'zh': '/zh',
-      'ru': '/ru',
+      'en': 'https://teacherbek.com/en',
+      'vi': 'https://teacherbek.com/vi',
+      'zh': 'https://teacherbek.com/zh',
+      'ru': 'https://teacherbek.com/ru',
     },
   },
   openGraph: {

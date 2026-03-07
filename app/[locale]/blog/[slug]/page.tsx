@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.excerpt,
     alternates: {
-      canonical: `/${locale}${path}`,
-      languages: buildLocaleAlternates((loc) => `/${loc}${path}`),
+      canonical: `${SITE_URL}/${locale}${path}`,
+      languages: buildLocaleAlternates((loc) => `${SITE_URL}/${loc}${path}`),
     },
     openGraph: {
       type: "article",

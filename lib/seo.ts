@@ -160,8 +160,8 @@ export function buildPageMetadata({
     description,
     ...(keywords ? { keywords } : {}),
     alternates: {
-      canonical: fullPath,
-      languages: buildLocaleAlternates((loc) => `/${loc}${path}`),
+      canonical: `${SITE_URL}${fullPath}`,
+      languages: buildLocaleAlternates((loc) => `${SITE_URL}/${loc}${path}`),
     },
     openGraph: {
       type: "website",

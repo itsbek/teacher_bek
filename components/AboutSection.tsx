@@ -214,7 +214,7 @@ export function AboutSection() {
       <div
         ref={classroomRef}
         className="relative w-full overflow-hidden"
-        style={{ height: "clamp(180px, 28vw, 380px)" }}
+        style={{ height: "clamp(300px, 42vw, 560px)" }}
         aria-label="Teacher Bek's classroom"
       >
         <div className="cls-inner absolute inset-0">

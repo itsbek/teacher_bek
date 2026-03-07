@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/'],
     },
-    sitemap: 'https://englishwithconfidence.com/sitemap.xml',
+    sitemap: 'https://teacherbek.com/sitemap.xml',
   }
 }

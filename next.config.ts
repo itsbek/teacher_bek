@@ -7,6 +7,17 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      // Redirect www → non-www (permanent 301 for SEO canonical consolidation)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.teacherbek.com' }],
+        destination: 'https://teacherbek.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
