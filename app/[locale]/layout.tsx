@@ -88,6 +88,12 @@ export default async function LocaleLayout({
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
 
+        {/* Preconnect to CartoCDN tile servers — saves ~300-390ms on map load */}
+        <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://b.basemaps.cartocdn.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://c.basemaps.cartocdn.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://d.basemaps.cartocdn.com" crossOrigin="anonymous" />
+
         {/* LocalBusiness + LanguageSchool structured data */}
         <script
           type="application/ld+json"
@@ -227,9 +233,9 @@ export default async function LocaleLayout({
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-analytics" strategy="lazyOnload">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}

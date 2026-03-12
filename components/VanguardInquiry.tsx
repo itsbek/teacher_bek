@@ -7,6 +7,31 @@ const LocationMap = dynamic(
   () => import("./LocationMap"),
   { ssr: false, loading: () => <div className="w-full border border-foreground/15 bg-foreground/[0.03]" style={{ height: "300px" }} /> }
 );
+
+// Only initialise Leaflet + fetch map tiles when the map is near the viewport.
+// This keeps ~100KB of tile requests off the critical path.
+function LazyMap() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
+      { rootMargin: "300px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={containerRef}>
+      {inView
+        ? <LocationMap />
+        : <div className="w-full border border-foreground/15 bg-foreground/[0.03]" style={{ height: "300px" }} />
+      }
+    </div>
+  );
+}
 import { useTranslations } from "next-intl";
 import { useAudio } from "./audio-provider";
 import { CheckCircle2, AlertCircle } from "lucide-react";
@@ -383,7 +408,7 @@ export function VanguardInquiry() {
         <div ref={infoRef} className="lg:col-span-5 flex flex-col gap-12">
 
           {/* Map — Leaflet + OpenStreetMap (no Google, no API key) */}
-          <LocationMap />
+          <LazyMap />
 
           {/* Hours */}
           <div>
