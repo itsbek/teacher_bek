@@ -24,28 +24,34 @@ export function CredentialsSection() {
     if (reduceMotion) return;
     if (!sectionRef.current) return;
 
-    const ctx = gsap.context(() => {
-      rowRefs.current.forEach((el) => {
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
-      });
-    }, sectionRef);
+    let ctx: gsap.Context;
+    const rafId = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        rowRefs.current.forEach((el) => {
+          if (!el) return;
+          gsap.fromTo(
+            el,
+            { y: 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                once: true,
+              },
+            }
+          );
+        });
+      }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, [reduceMotion]);
 
   const featureKeys = [

@@ -21,46 +21,52 @@ export function VanguardMarquee() {
         if (!trackRef.current || !containerRef.current) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        // Base marquee animation
-        const track = trackRef.current;
-        const baseSpeed = 60; // seconds for one full cycle
+        let tween: gsap.core.Tween;
+        let st: ScrollTrigger;
+        const rafId = requestAnimationFrame(() => {
+            // Base marquee animation
+            const track = trackRef.current;
+            if (!track || !containerRef.current) return;
+            const baseSpeed = 60; // seconds for one full cycle
 
-        // Use GSAP for the marquee so we can modulate speed with scroll velocity
-        const tween = gsap.to(track, {
-            xPercent: -50,
-            ease: "none",
-            duration: baseSpeed,
-            repeat: -1,
-        });
+            // Use GSAP for the marquee so we can modulate speed with scroll velocity
+            tween = gsap.to(track, {
+                xPercent: -50,
+                ease: "none",
+                duration: baseSpeed,
+                repeat: -1,
+            });
 
-        // Modulate speed based on scroll velocity
-        let currentDirection = 1;
-        const st = ScrollTrigger.create({
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            onUpdate: (self) => {
-                const velocity = Math.abs(self.getVelocity());
-                // Speed multiplier: faster scroll = faster marquee
-                const speedMultiplier = 1 + velocity / 1500;
-                tween.timeScale(speedMultiplier * currentDirection);
+            // Modulate speed based on scroll velocity
+            let currentDirection = 1;
+            st = ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                onUpdate: (self) => {
+                    const velocity = Math.abs(self.getVelocity());
+                    // Speed multiplier: faster scroll = faster marquee
+                    const speedMultiplier = 1 + velocity / 1500;
+                    tween.timeScale(speedMultiplier * currentDirection);
 
-                // Reverse direction when scrolling up
-                const newDirection = self.direction === -1 ? -1 : 1;
-                if (newDirection !== currentDirection) {
-                    currentDirection = newDirection;
-                    gsap.to(tween, {
-                        timeScale: speedMultiplier * currentDirection,
-                        duration: 0.4,
-                        ease: "power2.out",
-                    });
-                }
-            },
+                    // Reverse direction when scrolling up
+                    const newDirection = self.direction === -1 ? -1 : 1;
+                    if (newDirection !== currentDirection) {
+                        currentDirection = newDirection;
+                        gsap.to(tween, {
+                            timeScale: speedMultiplier * currentDirection,
+                            duration: 0.4,
+                            ease: "power2.out",
+                        });
+                    }
+                },
+            });
         });
 
         return () => {
-            tween.kill();
-            st.kill();
+            cancelAnimationFrame(rafId);
+            tween?.kill();
+            st?.kill();
         };
     }, []);
 

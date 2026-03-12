@@ -20,44 +20,50 @@ export function ConversionStrip() {
     if (!sectionRef.current) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const ctx = gsap.context(() => {
-      // Scale reveal: entire section scales from 0.9 → 1.0 with opacity scrubbed
-      gsap.fromTo(
-        sectionRef.current,
-        { scale: 0.92, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 90%",
-            end: "top 40%",
-            scrub: true,
-          },
-        }
-      );
-
-      // Heading wipe: clip-path from left to right, scrubbed
-      if (headingRef.current) {
+    let ctx: gsap.Context;
+    const rafId = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        // Scale reveal: entire section scales from 0.9 → 1.0 with opacity scrubbed
         gsap.fromTo(
-          headingRef.current,
-          { clipPath: "inset(0 100% 0 0)" },
+          sectionRef.current,
+          { scale: 0.92, opacity: 0 },
           {
-            clipPath: "inset(0 0% 0 0)",
+            scale: 1,
+            opacity: 1,
             ease: "none",
             scrollTrigger: {
-              trigger: headingRef.current,
-              start: "top 85%",
-              end: "top 45%",
+              trigger: sectionRef.current,
+              start: "top 90%",
+              end: "top 40%",
               scrub: true,
             },
           }
         );
-      }
-    }, sectionRef);
 
-    return () => ctx.revert();
+        // Heading wipe: clip-path from left to right, scrubbed
+        if (headingRef.current) {
+          gsap.fromTo(
+            headingRef.current,
+            { clipPath: "inset(0 100% 0 0)" },
+            {
+              clipPath: "inset(0 0% 0 0)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: headingRef.current,
+                start: "top 85%",
+                end: "top 45%",
+                scrub: true,
+              },
+            }
+          );
+        }
+      }, sectionRef);
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, []);
 
   return (

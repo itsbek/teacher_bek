@@ -245,27 +245,33 @@ export function VanguardInquiry() {
     if (!sectionRef.current) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(headerRef.current,
-        { y: 25, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: headerRef.current, start: "top 85%", once: true } }
-      );
+    let ctx: gsap.Context;
+    const rafId = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        gsap.fromTo(headerRef.current,
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: { trigger: headerRef.current, start: "top 85%", once: true } }
+        );
 
-      gsap.fromTo(formRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: formRef.current, start: "top 82%", once: true } }
-      );
+        gsap.fromTo(formRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: { trigger: formRef.current, start: "top 82%", once: true } }
+        );
 
-      gsap.fromTo(infoRef.current,
-        { x: 30, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: infoRef.current, start: "top 82%", once: true } }
-      );
-    }, sectionRef);
+        gsap.fromTo(infoRef.current,
+          { x: 30, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: { trigger: infoRef.current, start: "top 82%", once: true } }
+        );
+      }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, []);
 
   return (

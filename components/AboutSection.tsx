@@ -24,54 +24,60 @@ export function AboutSection() {
   useEffect(() => {
     if (reduceMotion || !sectionRef.current) return;
 
-    const ctx = gsap.context(() => {
-      if (headingRef.current) {
-        gsap.fromTo(headingRef.current,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.0, ease: "power3.out",
-            scrollTrigger: { trigger: headingRef.current, start: "top 85%", once: true } }
-        );
-      }
-      if (bodyRef.current) {
-        gsap.fromTo(bodyRef.current,
-          { y: 16, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2,
-            scrollTrigger: { trigger: bodyRef.current, start: "top 85%", once: true } }
-        );
-      }
-      if (pullRef.current) {
-        gsap.fromTo(pullRef.current,
-          { y: 24, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.0, ease: "power3.out",
-            scrollTrigger: { trigger: pullRef.current, start: "top 90%", once: true } }
-        );
-      }
-      if (imageWrapRef.current) {
-        gsap.fromTo(imageWrapRef.current,
-          { opacity: 0, x: 24 },
-          { opacity: 1, x: 0, duration: 1.1, ease: "power3.out",
-            scrollTrigger: { trigger: imageWrapRef.current, start: "top 80%", once: true } }
-        );
-      }
-      if (classroomRef.current) {
-        gsap.fromTo(classroomRef.current,
-          { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" },
-          { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 1.4, ease: "power3.inOut",
-            scrollTrigger: { trigger: classroomRef.current, start: "top 82%", once: true } }
-        );
-        const inner = classroomRef.current.querySelector(".cls-inner");
-        if (inner) {
-          gsap.fromTo(inner,
-            { scale: 1.08, x: "3%" },
-            { scale: 1, x: "0%", duration: 1.6, ease: "power3.out",
-              scrollTrigger: { trigger: classroomRef.current, start: "top 82%", once: true } }
+    let ctx: gsap.Context;
+    const rafId = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        if (headingRef.current) {
+          gsap.fromTo(headingRef.current,
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.0, ease: "power3.out",
+              scrollTrigger: { trigger: headingRef.current, start: "top 85%", once: true } }
           );
         }
-      }
-    }, sectionRef);
+        if (bodyRef.current) {
+          gsap.fromTo(bodyRef.current,
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2,
+              scrollTrigger: { trigger: bodyRef.current, start: "top 85%", once: true } }
+          );
+        }
+        if (pullRef.current) {
+          gsap.fromTo(pullRef.current,
+            { y: 24, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.0, ease: "power3.out",
+              scrollTrigger: { trigger: pullRef.current, start: "top 90%", once: true } }
+          );
+        }
+        if (imageWrapRef.current) {
+          gsap.fromTo(imageWrapRef.current,
+            { opacity: 0, x: 24 },
+            { opacity: 1, x: 0, duration: 1.1, ease: "power3.out",
+              scrollTrigger: { trigger: imageWrapRef.current, start: "top 80%", once: true } }
+          );
+        }
+        if (classroomRef.current) {
+          gsap.fromTo(classroomRef.current,
+            { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" },
+            { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+              duration: 1.4, ease: "power3.inOut",
+              scrollTrigger: { trigger: classroomRef.current, start: "top 82%", once: true } }
+          );
+          const inner = classroomRef.current.querySelector(".cls-inner");
+          if (inner) {
+            gsap.fromTo(inner,
+              { scale: 1.08, x: "3%" },
+              { scale: 1, x: "0%", duration: 1.6, ease: "power3.out",
+                scrollTrigger: { trigger: classroomRef.current, start: "top 82%", once: true } }
+            );
+          }
+        }
+      }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, [reduceMotion]);
 
   return (
