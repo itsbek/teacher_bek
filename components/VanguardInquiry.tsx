@@ -71,7 +71,7 @@ function PillGroup({
 }) {
   return (
     <div>
-      <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-4">
+      <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-60 font-light mb-4">
         {label}
       </p>
       <div className="flex flex-wrap gap-2">
@@ -137,7 +137,7 @@ function LineField({
     >
       <label
         htmlFor={id}
-        className="block font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-2"
+        className="block font-sans text-[12px] uppercase tracking-[0.2em] opacity-60 font-light mb-2"
       >
         {label}
         {optional && <span className="opacity-50 normal-case tracking-normal ml-1">({optionalLabel ?? "optional"})</span>}
@@ -412,7 +412,7 @@ export function VanguardInquiry() {
 
           {/* Hours */}
           <div>
-            <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-5">
+            <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-60 font-light mb-5">
               {t("hoursLabel")}
             </p>
             <div className="space-y-2 border border-foreground/10">
@@ -429,7 +429,7 @@ export function VanguardInquiry() {
 
           {/* Contact info — phone first, large */}
           <div>
-            <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-40 font-light mb-5">
+            <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-60 font-light mb-5">
               {t("connectLabel")}
             </p>
 
@@ -440,7 +440,7 @@ export function VanguardInquiry() {
               rel="noopener noreferrer"
               className="group flex flex-col mb-6 pb-6 border-b border-foreground/10"
             >
-              <span className="font-sans text-[11px] uppercase tracking-[0.22em] opacity-50 font-light mb-1">
+              <span className="font-sans text-[11px] uppercase tracking-[0.22em] opacity-65 font-light mb-1">
                 {t("phoneChannels")}
               </span>
               <span

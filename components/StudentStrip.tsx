@@ -168,7 +168,7 @@ export function StudentStrip() {
                       fontSize: 9,
                       letterSpacing: "0.2em",
                       textTransform: "uppercase",
-                      background: "#C85C3F",
+                      background: "#B85337",
                       color: "#fff",
                       padding: "2px 8px",
                       flexShrink: 0,

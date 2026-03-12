@@ -68,7 +68,7 @@ export function CredentialsSection() {
           <div className="lg:col-span-7">
             <div className="flex items-center gap-4 mb-8">
               <span className="w-10 h-[1px] bg-current opacity-30" />
-              <span className="text-[13px] uppercase tracking-[0.22em] opacity-45">
+              <span className="text-[13px] uppercase tracking-[0.22em] opacity-60">
                 [ 05 &mdash; {t("title")} ]
               </span>
             </div>
@@ -87,7 +87,7 @@ export function CredentialsSection() {
               ref={(el) => { rowRefs.current[i] = el; }}
               className="bg-card p-8 md:p-10"
             >
-              <span className="text-[13px] uppercase tracking-[0.2em] opacity-45 block mb-4">
+              <span className="text-[13px] uppercase tracking-[0.2em] opacity-60 block mb-4">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="font-display text-xl md:text-2xl font-bold mb-3">
@@ -111,7 +111,7 @@ export function CredentialsSection() {
               <span className="text-[13px] tracking-[0.2em] opacity-40 block mb-6">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="text-[13px] uppercase tracking-[0.18em] opacity-45 mb-3 group-hover:opacity-70 transition-opacity duration-300">
+              <p className="text-[13px] uppercase tracking-[0.18em] opacity-60 mb-3 group-hover:opacity-70 transition-opacity duration-300">
                 {classroomT(`features.${point.labelKey}`)}
               </p>
               <p className="font-display text-[1.05rem] leading-snug opacity-65 group-hover:opacity-100 group-hover:pl-1 transition-all duration-500">

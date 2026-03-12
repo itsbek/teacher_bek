@@ -94,7 +94,7 @@ export default async function Home({ params }: Props) {
               <div className="col-span-12 lg:col-span-4">
                 <div className="flex items-center gap-4 mb-5">
                   <span className="w-8 h-[1px] bg-current opacity-30 shrink-0" />
-                  <span className="text-[13px] uppercase tracking-[0.22em] opacity-45">[ 04 &mdash; {t('sectionLabel')} ]</span>
+                  <span className="text-[13px] uppercase tracking-[0.22em] opacity-60">[ 04 &mdash; {t('sectionLabel')} ]</span>
                 </div>
                 <h3 className="font-display text-4xl md:text-6xl leading-[0.9] headline-balance">
                   {t('heading')} <span className="italic">{t('headingItalic')}</span>
@@ -103,7 +103,7 @@ export default async function Home({ params }: Props) {
               <MethodologySteps>
                 {methodSteps.map((item) => (
                   <article key={item.id} className="bg-card p-8 md:p-10 border border-current/10">
-                    <p className="text-xs uppercase tracking-[0.2em] opacity-45 mb-4">
+                    <p className="text-xs uppercase tracking-[0.2em] opacity-60 mb-4">
                       {t('stepLabel')} {item.id}
                     </p>
                     <h4 className="font-display text-3xl mb-3">{item.title}</h4>

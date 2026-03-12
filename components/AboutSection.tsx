@@ -88,7 +88,7 @@ export function AboutSection() {
       >
         <div className="flex items-center gap-4">
           <span className="w-8 h-[1px] bg-foreground/25 shrink-0" aria-hidden="true" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/55">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65">
             [ 02 &mdash; {t("label")} ]
           </span>
         </div>

@@ -232,7 +232,7 @@ export function VanguardHero() {
                             href="#contact"
                             onClick={() => { playSound("click"); trackCTAClick("hero", "primary_inquiry"); }}
                             className="group relative w-full inline-flex items-center justify-center gap-2 py-[14px] text-[12px] font-bold tracking-[0.2em] uppercase overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
-                            style={{ background: "#C85C3F", color: "#fff" }}
+                            style={{ background: "#B85337", color: "#fff" }}
                         >
                             <span className="relative z-10 flex items-center gap-2">
                                 {t("cta")}
@@ -298,7 +298,7 @@ export function VanguardHero() {
                 <div className="flex flex-col gap-4 shrink-0">
                     <h1 className="font-display text-foreground overflow-visible">
                         <motion.span
-                            initial={reduceMotion ? false : { y: "0.25em" }}
+                            initial={reduceMotion ? false : { y: 12 }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="block font-bold uppercase"
@@ -361,7 +361,7 @@ export function VanguardHero() {
                                     href="#contact"
                                     onClick={() => { playSound("click"); trackCTAClick("hero", "primary_inquiry"); }}
                                     className="group relative inline-flex items-center justify-center gap-2 px-6 py-4 text-[12px] font-bold tracking-[0.2em] uppercase overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
-                                    style={{ background: "#C85C3F", color: "#fff" }}
+                                    style={{ background: "#B85337", color: "#fff" }}
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         {t("cta")}

@@ -150,7 +150,7 @@ export function VanguardLexicon() {
         <div ref={bannerTextRef} className="max-w-[1920px] mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-20">
             <div>
-              <span className="text-[13px] uppercase tracking-[0.22em] opacity-40 mb-5 block">
+              <span className="text-[13px] uppercase tracking-[0.22em] opacity-60 mb-5 block">
                 {t("sectionLabel")}
               </span>
               {/* Split pricingNote: main price large, parenthetical qualifier small */}
@@ -216,7 +216,7 @@ export function VanguardLexicon() {
               <p className="font-display text-xl italic mb-3 text-foreground/80">
                 {t("subtitle")}
               </p>
-              <p className="font-mono text-sm text-foreground/55 max-w-xs leading-relaxed">
+              <p className="font-mono text-sm text-foreground/65 max-w-xs leading-relaxed">
                 {t("subtitleDesc")}
               </p>
             </div>

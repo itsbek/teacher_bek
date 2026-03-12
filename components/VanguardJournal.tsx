@@ -69,7 +69,7 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                     <div className="col-span-12 lg:col-span-8">
                         <div className="flex items-center gap-6 mb-8 opacity-85">
                             <div className="w-12 h-[1px] bg-foreground/30" />
-                            <span className="text-[var(--text-xs)] uppercase tracking-[0.22em] font-medium text-foreground/45">[ {t("sectionLabel")} ]</span>
+                            <span className="text-[var(--text-xs)] uppercase tracking-[0.22em] font-medium text-foreground/65">[ {t("sectionLabel")} ]</span>
                         </div>
                         <h2 className="type-title-md leading-[0.9]">
                             <ScrollText mode="scrub" as="span" start="top 85%" end="top 40%">

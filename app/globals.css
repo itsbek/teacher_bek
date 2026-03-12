@@ -655,7 +655,7 @@ html[data-fontsize="lg"] { font-size: 19px; }
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: hsl(var(--foreground) / 0.45);
+  color: hsl(var(--foreground) / 0.65);
 }
 
 .bracket-label::before {

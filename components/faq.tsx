@@ -80,7 +80,7 @@ export function FAQ() {
         <div>
           <div className="flex items-center gap-4 mb-6">
             <span className="w-8 h-[1px] bg-foreground/30 shrink-0" />
-            <span className="font-sans text-[12px] uppercase tracking-[0.22em] opacity-40 font-light">
+            <span className="font-sans text-[12px] uppercase tracking-[0.22em] opacity-60 font-light">
               [ {t("title")} ]
             </span>
           </div>
