@@ -127,8 +127,8 @@ export function VanguardHero() {
 
                     {/* Heading */}
                     <motion.h1
-                        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={reduceMotion ? false : { y: 10 }}
+                        animate={{ y: 0 }}
                         transition={{ duration: 0.75, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
                         className="font-display text-foreground overflow-visible"
                         aria-label={`English ${CYCLING_WORDS[wordIndex]}`}
@@ -298,8 +298,8 @@ export function VanguardHero() {
                 <div className="flex flex-col gap-4 shrink-0">
                     <h1 className="font-display text-foreground overflow-visible">
                         <motion.span
-                            initial={reduceMotion ? false : { opacity: 0, y: "0.25em" }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={reduceMotion ? false : { y: "0.25em" }}
+                            animate={{ y: 0 }}
                             transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="block font-bold uppercase"
                             style={{
