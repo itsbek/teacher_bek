@@ -298,7 +298,7 @@ export function VanguardHero() {
                 <div className="flex flex-col gap-4 shrink-0">
                     <h1 className="font-display text-foreground overflow-visible">
                         <motion.span
-                            initial={reduceMotion ? false : { y: "0.25em" }}
+                            initial={reduceMotion ? false : { y: 12 }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="block font-bold uppercase"
