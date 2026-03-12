@@ -29,7 +29,7 @@ const communitySubmitSchema = z.object({
   url:     z.string().max(500).optional(),
   caption: z.string().max(500).optional(),
   // Anti-spam
-  website:       z.string().max(0).optional(),
+  website:       z.string().optional(),
   formStartedAt: z.number().int().optional(),
   // Device fingerprint
   visitorId: z.string().max(36).optional(),

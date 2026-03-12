@@ -71,7 +71,7 @@ async function submitCommunity(payload: Record<string, unknown>): Promise<boolea
     const res = await fetch("/api/community/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...payload, website: "", visitorId: getVisitorId() }),
+      body: JSON.stringify({ ...payload, visitorId: getVisitorId() }),
     });
     return !!(await res.json()).success;
   } catch { return false; }
@@ -325,6 +325,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
   const [urlError,    setUrlError]   = useState(false);
   const [status,      setStatus]     = useState<Status>("idle");
   const [startedAt]                  = useState(() => Date.now());
+  const [honeypot,    setHoneypot]   = useState("");
   const [visible,     setVisible]    = useState(INITIAL_SHOW);
 
   const MAX_WORDS = 200;
@@ -341,7 +342,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
   const switchType = (t: WallType) => {
     setWallType(t);
     setContent(""); setWordCount(0); setVideoUrl(""); setCaption(""); setUrlError(false);
-    setDriveLink(""); setDriveLinkErr(false);
+    setDriveLink(""); setDriveLinkErr(false); setHoneypot("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -352,7 +353,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
       if (!videoUrl.trim() || !isValidVideoUrl(videoUrl.trim())) { setUrlError(true); return; }
       if (!caption.trim()) return;
       setStatus("sending");
-      const ok = await submitCommunity({ type: "video", name: name.trim(), url: videoUrl.trim(), caption: caption.trim(), formStartedAt: startedAt });
+      const ok = await submitCommunity({ type: "video", name: name.trim(), url: videoUrl.trim(), caption: caption.trim(), website: honeypot, formStartedAt: startedAt });
       if (ok) { setStatus("success"); setName(""); setVideoUrl(""); setCaption(""); }
       else setStatus("error");
       return;
@@ -362,7 +363,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
       if (!name.trim() || !driveLink.trim()) return;
       if (!isValidDriveLink(driveLink.trim())) { setDriveLinkErr(true); return; }
       setStatus("sending");
-      const ok = await submitCommunity({ type: "writing", name: name.trim(), level: level.trim(), title: title.trim(), driveLink: driveLink.trim(), formStartedAt: startedAt });
+      const ok = await submitCommunity({ type: "writing", name: name.trim(), level: level.trim(), title: title.trim(), driveLink: driveLink.trim(), website: honeypot, formStartedAt: startedAt });
       if (ok) { setStatus("success"); setName(""); setLevel(""); setTitle(""); setDriveLink(""); }
       else setStatus("error");
       return;
@@ -371,7 +372,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
     // learned
     if (!name.trim() || !content.trim() || overLimit) return;
     setStatus("sending");
-    const ok = await submitCommunity({ type: "learned", name: name.trim(), learned: content.trim(), formStartedAt: startedAt });
+    const ok = await submitCommunity({ type: "learned", name: name.trim(), learned: content.trim(), website: honeypot, formStartedAt: startedAt });
     if (ok) { setStatus("success"); setName(""); setContent(""); setWordCount(0); }
     else setStatus("error");
   };
@@ -491,7 +492,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
           ) : status === "error" ? (
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "#C85C3F" }}>{t("submitError")}</p>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", minHeight: "340px" }}>
 
               {/* Row 1: name — always */}
               <div>
@@ -505,22 +506,24 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
                 )}
               </div>
 
-              {/* Row 2: sub-fields differ per type */}
-              {wallType === "writing" && (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }} className="form-name-level">
-                  <div className="field-line">
-                    <input type="text" placeholder={t("writingTitlePlaceholder")} value={title} onChange={e => setTitle(e.target.value)} maxLength={120} />
+              {/* Row 2: always rendered to prevent height jump */}
+              <div style={{ visibility: wallType === "learned" ? "hidden" : "visible", pointerEvents: wallType === "learned" ? "none" : "auto" }}>
+                {wallType === "writing" && (
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }} className="form-name-level">
+                    <div className="field-line">
+                      <input type="text" placeholder={t("writingTitlePlaceholder")} value={title} onChange={e => setTitle(e.target.value)} maxLength={120} />
+                    </div>
+                    <div className="field-line">
+                      <input type="text" placeholder={t("writingLevelPlaceholder")} value={level} onChange={e => setLevel(e.target.value)} maxLength={60} />
+                    </div>
                   </div>
-                  <div className="field-line">
-                    <input type="text" placeholder={t("writingLevelPlaceholder")} value={level} onChange={e => setLevel(e.target.value)} maxLength={60} />
+                )}
+                {(wallType === "video" || wallType === "learned") && (
+                  <div className="field-line" style={{ borderColor: urlError ? "#C85C3F" : undefined, visibility: wallType === "learned" ? "hidden" : "visible" }}>
+                    <input type="url" placeholder={t("videoUrlPlaceholder")} value={videoUrl} onChange={e => { setVideoUrl(e.target.value); setUrlError(false); }} required={wallType === "video"} maxLength={500} />
                   </div>
-                </div>
-              )}
-              {wallType === "video" && (
-                <div className="field-line" style={{ borderColor: urlError ? "#C85C3F" : undefined }}>
-                  <input type="url" placeholder={t("videoUrlPlaceholder")} value={videoUrl} onChange={e => { setVideoUrl(e.target.value); setUrlError(false); }} required maxLength={500} />
-                </div>
-              )}
+                )}
+              </div>
 
               {/* Row 3: Drive link (writing) or textarea (learned / video caption) */}
               {wallType === "writing" ? (
@@ -576,6 +579,11 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
                 </div>
               )}
 
+              {/* Honeypot — off-screen, invisible to humans, attractive to bots */}
+              <div className="honey-trap" aria-hidden="true">
+                <input type="text" name="phone" tabIndex={-1} autoComplete="off" value={honeypot} onChange={e => setHoneypot(e.target.value)} />
+              </div>
+
               <SubmitBtn status={overLimit ? "sending" : status} label={t("submitButton")} sendingLabel={t("submitting")} />
             </form>
           )}
@@ -593,12 +601,13 @@ function TeachPanel({ featured, t }: { featured: TeachEntry | null; t: ReturnTyp
   const [explanation, setExpl]      = useState("");
   const [status, setStatus]         = useState<Status>("idle");
   const [startedAt]                 = useState(() => Date.now());
+  const [honeypot, setHoneypot]     = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !explanation.trim() || status === "sending") return;
     setStatus("sending");
-    const ok = await submitCommunity({ type: "teach", name: name.trim(), topic: topic.trim(), explanation: explanation.trim(), formStartedAt: startedAt });
+    const ok = await submitCommunity({ type: "teach", name: name.trim(), topic: topic.trim(), explanation: explanation.trim(), website: honeypot, formStartedAt: startedAt });
     if (ok) { setStatus("success"); setName(""); setTopic(""); setExpl(""); }
     else setStatus("error");
   };
@@ -645,6 +654,9 @@ function TeachPanel({ featured, t }: { featured: TeachEntry | null; t: ReturnTyp
             </div>
             <div className="field-line">
               <textarea placeholder={t("teachExplanationPlaceholder")} value={explanation} onChange={e => setExpl(e.target.value)} required maxLength={2000} rows={6} style={{ resize: "none" }} />
+            </div>
+            <div className="honey-trap" aria-hidden="true">
+              <input type="text" name="phone" tabIndex={-1} autoComplete="off" value={honeypot} onChange={e => setHoneypot(e.target.value)} />
             </div>
             <SubmitBtn status={status} label={t("submitButton")} sendingLabel={t("submitting")} />
           </form>
@@ -726,39 +738,52 @@ export function CommunityHub({ writingEntries, learnedEntries, videoEntries, fea
           {activeTab === "teach" && <TeachPanel featured={featuredTeach} t={t} />}
         </div>
 
-        {/* ── Bottom CTA ───────────────────────────────── */}
+        {/* ── Bottom CTA — editorial strip ─────────────── */}
         <div
           style={{
-            marginTop: "clamp(3rem, 6vw, 5rem)",
-            paddingTop: "clamp(1.5rem, 3vw, 2rem)",
-            borderTop: "1px solid hsl(var(--foreground) / 0.07)",
-            display: "flex",
-            flexWrap: "wrap",
+            marginTop: "clamp(4rem, 8vw, 7rem)",
+            background: "hsl(var(--foreground))",
+            color: "hsl(var(--background))",
+            padding: "clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem)",
+            display: "grid",
+            gridTemplateColumns: "1fr auto",
+            gap: "clamp(2rem, 5vw, 4rem)",
             alignItems: "center",
-            justifyContent: "space-between",
-            gap: "1rem",
           }}
+          className="join-cta-grid"
         >
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.2vw, 15px)", opacity: 0.42, margin: 0, lineHeight: 1.5 }}>
-            {t("joinCta")}
-          </p>
+          <div>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.38, marginBottom: "clamp(0.75rem, 1.5vw, 1rem)" }}>
+              — {t("joinCtaEyebrow")}
+            </p>
+            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(36px, 5.5vw, 72px)", letterSpacing: "-0.03em", lineHeight: 0.92, textTransform: "uppercase", margin: "0 0 clamp(1rem, 2vw, 1.5rem)" }}>
+              {t("joinCtaHeading")}<br />
+              <em style={{ fontStyle: "italic", opacity: 0.5 }}>{t("joinCtaHeadingItalic")}</em>
+            </h2>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.3vw, 16px)", opacity: 0.5, lineHeight: 1.65, maxWidth: 460, margin: 0 }}>
+              {t("joinCta")}
+            </p>
+          </div>
           <Link
             href={`/${locale}#contact`}
             style={{
+              display: "inline-block",
+              background: "hsl(var(--background))",
+              color: "hsl(var(--foreground))",
+              padding: "clamp(14px, 1.8vw, 20px) clamp(28px, 3.5vw, 52px)",
               fontFamily: "var(--font-display)",
               fontWeight: 700,
-              fontSize: "clamp(11px, 1vw, 12px)",
+              fontSize: "clamp(11px, 1vw, 13px)",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "inherit",
-              opacity: 0.55,
               textDecoration: "none",
-              transition: "opacity 0.2s",
+              whiteSpace: "nowrap",
+              transition: "opacity 0.25s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "0.55")}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
           >
-            {t("joinCtaLink")}
+            {t("joinCtaLink")} →
           </Link>
         </div>
       </div>
@@ -816,6 +841,21 @@ export function CommunityHub({ writingEntries, learnedEntries, videoEntries, fea
         @media (max-width: 560px) {
           .wall-grid { grid-template-columns: 1fr !important; }
           .form-name-level { grid-template-columns: 1fr !important; }
+        }
+        /* ── Honeypot ───────────────────────────────── */
+        .honey-trap {
+          position: absolute;
+          left: -9999px;
+          top: -9999px;
+          width: 1px;
+          height: 1px;
+          opacity: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        /* ── Join CTA ───────────────────────────────── */
+        @media (max-width: 640px) {
+          .join-cta-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
