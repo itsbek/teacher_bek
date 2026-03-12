@@ -19,35 +19,29 @@ export function MethodologySteps({ children }: MethodologyStepsProps) {
         if (!ref.current) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        let ctx: gsap.Context;
-        const rafId = requestAnimationFrame(() => {
-            ctx = gsap.context(() => {
-                const cards = ref.current?.children;
-                if (!cards || cards.length === 0) return;
+        const ctx = gsap.context(() => {
+            const cards = ref.current?.children;
+            if (!cards || cards.length === 0) return;
 
-                const isMobile = window.innerWidth < 768;
-                gsap.fromTo(
-                    cards,
-                    { y: 30, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.7,
-                        stagger: isMobile ? 0.08 : 0.15,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: ref.current,
-                            start: isMobile ? "top 98%" : "top 80%",
-                        },
-                    }
-                );
-            }, ref);
-        });
+            const isMobile = window.innerWidth < 768;
+            gsap.fromTo(
+                cards,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: isMobile ? 0.08 : 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ref.current,
+                        start: isMobile ? "top 98%" : "top 80%",
+                    },
+                }
+            );
+        }, ref);
 
-        return () => {
-            cancelAnimationFrame(rafId);
-            ctx?.revert();
-        };
+        return () => ctx.revert();
     }, []);
 
     return (
