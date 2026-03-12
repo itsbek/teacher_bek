@@ -21,6 +21,10 @@ const VanguardInquiry   = dynamic(() => import('@/components/VanguardInquiry').t
 const VanguardMarquee   = dynamic(() => import('@/components/VanguardMarquee').then(m => ({ default: m.VanguardMarquee })));
 const VanguardFooter    = dynamic(() => import('@/components/VanguardFooter').then(m => ({ default: m.VanguardFooter })));
 
+// Regenerate at most once per hour — keeps blog section fresh without a redeploy.
+// On-demand revalidation via /api/revalidate still works instantly.
+export const revalidate = 3600;
+
 type Props = {
   params: Promise<{ locale: string }>;
 };
