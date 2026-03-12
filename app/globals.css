@@ -7,9 +7,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Leaflet — must load before any map component mounts */
-@import 'leaflet/dist/leaflet.css';
-
 /* ── Font size scaling — set by NavUtilities, persisted in localStorage ── */
 /* Default browser root is 16px; sm/lg scale all rem values proportionally */
 html[data-fontsize="sm"] { font-size: 14px; }
@@ -56,6 +53,14 @@ html[data-fontsize="lg"] { font-size: 19px; }
     --text-gray: #908c8c;
     --text-gray-light: #aaa;
     --color-white: #fff;
+
+    /* ─── THEME-AWARE OPACITY LEVELS ─── */
+    /* Ghost: numbered decorative items, empty-state headings */
+    --op-ghost: 0.10;
+    /* Faint: dates, small metadata */
+    --op-faint: 0.30;
+    /* Dim: secondary labels, attributions */
+    --op-dim: 0.40;
 
     /* ─── EASING ─── */
     --transition-main: cubic-bezier(0.11, 0.82, 0.39, 0.92);
@@ -121,6 +126,11 @@ html[data-fontsize="lg"] { font-size: 19px; }
 
     --bg-color: #101010;
     --text-color: #f7f7f7;
+
+    /* ─── THEME-AWARE OPACITY LEVELS (dark mode boosts) ─── */
+    --op-ghost: 0.22;
+    --op-faint: 0.45;
+    --op-dim:   0.58;
   }
 
   .light {
@@ -230,6 +240,14 @@ html[data-fontsize="lg"] { font-size: 19px; }
     color: hsl(var(--background));
   }
 }
+
+/* ═══ THEME-AWARE OPACITY UTILITIES ═══ */
+/* These scale with --op-ghost / --op-faint / --op-dim CSS vars
+   which are higher in dark mode (see :root and .dark blocks above) */
+
+.op-ghost { opacity: var(--op-ghost); }
+.op-faint { opacity: var(--op-faint); }
+.op-dim   { opacity: var(--op-dim);   }
 
 /* ═══ LAYOUT UTILITIES ═══ */
 

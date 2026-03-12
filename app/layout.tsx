@@ -38,44 +38,44 @@ export const metadata: Metadata = {
   },
   description: "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. Free trial class.",
   keywords: [
-    // Vietnamese — local high-intent
-    "giáo viên tiếng Anh Phú Nhuận",
-    "giáo viên tiếng Anh Gò Vấp",
-    "gia sư tiếng Anh Bình Thạnh",
-    "dạy tiếng Anh TPHCM",
-    "lớp tiếng Anh nhóm nhỏ Sài Gòn",
-    "luyện thi IELTS Phú Nhuận",
+    // Vietnamese — highest volume local searches
+    "lớp tiếng Anh TPHCM",
+    "trung tâm tiếng Anh TPHCM",
+    "lớp tiếng Anh Phú Nhuận",
+    "lớp tiếng Anh Gò Vấp",
+    "lớp tiếng Anh gần đây",
+    "trung tâm tiếng Anh gần nhà",
+    "lớp tiếng Anh cho trẻ em",
+    "học tiếng Anh với người nước ngoài",
     "giáo viên bản ngữ tiếng Anh TPHCM",
-    "lớp tiếng Anh cho trẻ em từ 6 tuổi",
-    "học tiếng Anh 119 Phổ Quang",
-    "tiếng Anh tối đa 10 học sinh",
+    "luyện thi IELTS TPHCM",
+    "lớp IELTS nhóm nhỏ TPHCM",
+    "tiếng Anh giao tiếp TPHCM",
+    "trung tâm Anh ngữ Phú Nhuận",
     "học tiếng Anh gần sân bay Tân Sơn Nhất",
-    "trung tâm tiếng Anh Phú Nhuận",
-    "giáo viên TESOL TPHCM",
     // English — local + global
-    "English teacher Phu Nhuan",
-    "English teacher Ho Chi Minh City",
-    "English tutor Saigon",
-    "English lessons Go Vap",
-    "English classes Binh Thanh",
-    "TESOL certified English teacher Vietnam",
-    "native English teacher Ho Chi Minh",
+    "English classes Ho Chi Minh City",
+    "English classes near me Saigon",
+    "English school HCMC",
+    "language school Ho Chi Minh City",
     "English for kids Saigon",
     "IELTS preparation Ho Chi Minh City",
-    "small group English lessons HCMC",
-    "English teacher ILA Vietnam",
-    "certified English teacher Vietnam",
-    // Chinese — expat community HCMC
-    "胡志明市英语教师",
-    "TESOL认证英语教师越南",
-    "小班英语课程胡志明",
-    "儿童英语课程胡志明市",
-    "雅思备考胡志明",
-    // Russian — expat/diaspora
-    "учитель английского Хошимин",
-    "английский для детей Вьетнам",
-    "TESOL преподаватель английского Вьетнам",
-    "малые группы английского Сайгон",
+    "small group English class HCMC",
+    "native English teacher Ho Chi Minh City",
+    "TESOL certified English teacher Vietnam",
+    "English classes Phu Nhuan",
+    "English classes Go Vap",
+    // Chinese
+    "胡志明市英语培训班",
+    "富润郡英语课程",
+    "小班英语胡志明市",
+    "外籍英语教师胡志明市",
+    "雅思备考胡志明市",
+    // Russian
+    "курсы английского Хошимин",
+    "английский для детей Хошимин",
+    "малые группы английского Хошимин",
+    "носитель языка английский Вьетнам",
   ],
   authors: [{ name: "Teacher Bek" }],
   creator: "Teacher Bek",
@@ -132,15 +132,17 @@ export const metadata: Metadata = {
 };
 
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { getLocale } from "next-intl/server";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${sans.variable} ${display.variable}`}
       suppressHydrationWarning
     >
@@ -148,19 +150,17 @@ export default function RootLayout({
         {/* Mobile browser chrome: matches page bg color in light/dark */}
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
-        {/* Preconnect to Google Fonts CDN — shaves 100-300ms off font load */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": ["EducationalOrganization", "LocalBusiness"],
+              "@type": "LanguageSchool",
               "@id": "https://teacherbek.com/#organization",
-              "name": "Teacher Bek",
-              "alternateName": ["Teacher Bek English", "Lớp Tiếng Anh Teacher Bek"],
-              "description": "Small-group English lessons in Ho Chi Minh City. TESOL & PGCE certified. Maximum 10 students per class. Programs for children (ages 6+), teens, and IELTS preparation.",
+              "name": "Teacher Bek English Classes",
+              "alternateName": ["Teacher Bek", "Lớp Tiếng Anh Teacher Bek", "Teacher Bek Anh Ngữ"],
+              "description": "Small-group English classes in Ho Chi Minh City. Maximum 10 students per class. Native teacher, TESOL & PGCE certified. Programs for children ages 6+, teens, and IELTS preparation. Located at 119 Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
+              "keywords": "lớp tiếng Anh Phú Nhuận, trung tâm tiếng Anh TPHCM, English classes Ho Chi Minh City, IELTS preparation Saigon, English for kids HCMC, giáo viên nước ngoài TPHCM, small group English class",
               "url": "https://teacherbek.com",
               "telephone": "+84353885757",
               "email": "hello@teacherbek.com",
@@ -169,7 +169,7 @@ export default function RootLayout({
               "paymentAccepted": "Cash, Bank Transfer",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "119 Phổ Quang, Golden Mansion 1",
+                "streetAddress": "119 Phổ Quang",
                 "addressLocality": "Phú Nhuận",
                 "addressRegion": "Ho Chi Minh City",
                 "addressCountry": "VN",
@@ -196,20 +196,48 @@ export default function RootLayout({
                 }
               ],
               "areaServed": [
-                { "@type": "AdministrativeArea", "name": "Phú Nhuận District, Ho Chi Minh City" },
-                { "@type": "AdministrativeArea", "name": "Gò Vấp District, Ho Chi Minh City" },
-                { "@type": "AdministrativeArea", "name": "Bình Thạnh District, Ho Chi Minh City" },
-                { "@type": "AdministrativeArea", "name": "Ho Chi Minh City, Vietnam" }
+                { "@type": "City", "name": "Ho Chi Minh City", "sameAs": "https://www.wikidata.org/wiki/Q1854" },
+                { "@type": "AdministrativeArea", "name": "Phú Nhuận District" },
+                { "@type": "AdministrativeArea", "name": "Gò Vấp District" },
+                { "@type": "AdministrativeArea", "name": "Bình Thạnh District" },
+                { "@type": "AdministrativeArea", "name": "Tân Bình District" }
               ],
-              "serviceType": [
-                "English Language Teaching",
-                "Small-Group English Lessons",
-                "IELTS Preparation",
-                "English for Children",
-                "English for Teenagers",
-                "Online English Lessons"
-              ],
-              "maximumAttendeeCapacity": 10,
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "English Language Programs",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Course",
+                      "name": "Young Learners English",
+                      "description": "English classes for children ages 6–10. Max 10 students per class."
+                    },
+                    "price": "1990000",
+                    "priceCurrency": "VND"
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Course",
+                      "name": "Teens English",
+                      "description": "English classes for teenagers ages 11–17. Communicative fluency focus."
+                    },
+                    "price": "1990000",
+                    "priceCurrency": "VND"
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Course",
+                      "name": "IELTS Preparation",
+                      "description": "IELTS exam preparation covering all four skills. Small groups, max 10 students."
+                    },
+                    "price": "1990000",
+                    "priceCurrency": "VND"
+                  }
+                ]
+              },
               "employee": {
                 "@id": "https://teacherbek.com/#teacher-bek"
               },
@@ -218,8 +246,7 @@ export default function RootLayout({
                 "contactType": "customer service",
                 "telephone": "+84353885757",
                 "email": "hello@teacherbek.com",
-                "availableLanguage": ["English", "Vietnamese", "Russian", "Uzbek"],
-                "contactOption": "TollFree"
+                "availableLanguage": ["English", "Vietnamese", "Russian", "Uzbek"]
               },
               "sameAs": [
                 "https://www.linkedin.com/in/bek-boymirzaev/",

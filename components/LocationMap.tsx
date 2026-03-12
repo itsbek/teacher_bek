@@ -2,21 +2,28 @@
 
 /**
  * LocationMap
- * Free map with CartoDB Dark Matter tiles (OpenStreetMap data).
+ * Free map with CartoDB Light tiles (OpenStreetMap data).
  * No Google, no API key, no billing.
  * Clicking anywhere opens native Maps / Google Maps with directions.
+ *
+ * Leaflet CSS is imported here (not in globals.css) so it is only
+ * loaded as part of this dynamic chunk — not render-blocking.
  */
 
+import "leaflet/dist/leaflet.css";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
+import type { Marker as LeafletMarker } from "leaflet";
 
 const LAT = 10.809185405016475;
 const LNG = 106.67111255387708;
 const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=119+%C4%90.+Ph%E1%BB%95+Quang%2C+Ph%C6%B0%E1%BB%9Dng+9%2C+Ph%C3%BA+Nhu%E1%BA%ADn%2C+H%E1%BB%93+Ch%C3%AD+Minh%2C+Vietnam`;
 
-// Dark pin — visible against both CartoDB dark tiles and white fallback
+// Dark pin — visible against both CartoDB light tiles and white fallback
 const pinIcon = L.divIcon({
   html: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34"
+              aria-hidden="true"
               style="filter:drop-shadow(0 3px 6px rgba(0,0,0,0.5))">
            <path d="M13 0C5.82 0 0 5.82 0 13c0 9.1 13 21 13 21S26 22.1 26 13C26 5.82 20.18 0 13 0z"
                  fill="#101010" stroke="#f7f7f7" stroke-width="1.5"/>
@@ -28,6 +35,19 @@ const pinIcon = L.divIcon({
 });
 
 export default function LocationMap() {
+  const markerRef = useRef<LeafletMarker>(null);
+
+  // Leaflet creates a div with role="button" for the marker but gives it no
+  // accessible name. Set one after mount so screen readers can identify it.
+  useEffect(() => {
+    if (markerRef.current) {
+      const el = markerRef.current.getElement();
+      if (el) {
+        el.setAttribute("aria-label", "Location pin: Golden Mansion 1, 119 Phổ Quang, Phú Nhuận");
+      }
+    }
+  }, []);
+
   return (
     <a
       href={DIRECTIONS_URL}
@@ -66,11 +86,11 @@ export default function LocationMap() {
           subdomains="abcd"
           maxZoom={19}
         />
-        <Marker position={[LAT, LNG]} icon={pinIcon} />
+        <Marker ref={markerRef} position={[LAT, LNG]} icon={pinIcon} />
       </MapContainer>
 
       {/* Full-area click overlay — above Leaflet's own layer stack (z 400+) */}
-      <div className="absolute inset-0 z-[999] cursor-pointer" />
+      <div className="absolute inset-0 z-[999] cursor-pointer" aria-hidden="true" />
     </a>
   );
 }

@@ -126,13 +126,17 @@ export function VanguardNavigation() {
     const menuItems = [
         { href: `/${locale}#about`, label: t("about"), section: "about" },
         { href: `/${locale}#programs`, label: t("services"), section: "programs" },
+        { href: `/${locale}/community`, label: t("community"), section: "" },
         { href: `/${locale}/blog`, label: t("blog_link"), section: "" },
         { href: `/${locale}#faq`, label: t("faq"), section: "faq" },
         { href: `/${locale}#contact`, label: t("contact"), section: "contact" },
     ];
 
     const isActive = (item: typeof menuItems[number]) => {
-        if (item.section && isHomepage) return activeSection === item.section;
+        if (item.section) {
+            // Anchor-based nav items are only active on the homepage
+            return isHomepage && activeSection === item.section;
+        }
         const [path] = item.href.split("#");
         if (!path) return false;
         return pathname === path || pathname.startsWith(`${path}/`);

@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const CONTACT_EMAIL = process.env.CONTACT_NOTIFY_EMAIL || 'hello@teacherbek.com';
+
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 const contactFormSchema = z.object({
   name: z.string().min(2).max(100),
@@ -283,7 +286,7 @@ export async function POST(request: NextRequest) {
     const email   = sanitise(validated.email);
     const message = sanitise(validated.message ?? '');
 
-    const { error: notifyError } = await resend.emails.send({
+    const { error: notifyError } = await getResend().emails.send({
       from:    'Teacher Bek Website <noreply@teacherbek.com>',
       to:      CONTACT_EMAIL,
       replyTo: email,
@@ -302,7 +305,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to send message. Please try again or contact me directly.' }, { status: 500 });
     }
 
-    const { error: confirmError } = await resend.emails.send({
+    const { error: confirmError } = await getResend().emails.send({
       from:    'Teacher Bek <hello@teacherbek.com>',
       to:      email,
       subject: 'Got your message — Teacher Bek',

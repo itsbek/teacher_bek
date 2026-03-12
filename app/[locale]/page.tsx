@@ -15,6 +15,7 @@ const MethodologySteps  = dynamic(() => import('@/components/MethodologySteps').
 const CredentialsSection = dynamic(() => import('@/components/CredentialsSection').then(m => ({ default: m.CredentialsSection })));
 const VanguardJournal   = dynamic(() => import('@/components/VanguardJournal').then(m => ({ default: m.VanguardJournal })));
 const ConversionStrip   = dynamic(() => import('@/components/ConversionStrip').then(m => ({ default: m.ConversionStrip })));
+const StudentStrip      = dynamic(() => import('@/components/StudentStrip').then(m => ({ default: m.StudentStrip })));
 const FAQ               = dynamic(() => import('@/components/faq').then(m => ({ default: m.FAQ })));
 const VanguardInquiry   = dynamic(() => import('@/components/VanguardInquiry').then(m => ({ default: m.VanguardInquiry })));
 const VanguardMarquee   = dynamic(() => import('@/components/VanguardMarquee').then(m => ({ default: m.VanguardMarquee })));
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: seo.keywords,
     path: "",
     ogLocale: seo.ogLocale,
+    absolute: true,
   });
 }
 
@@ -120,6 +122,9 @@ export default async function Home({ params }: Props) {
         {/* §7: CONVERSION STRIP — Light zone */}
         <ConversionStrip />
 
+        {/* §7.5: STUDENT STRIP — For existing students */}
+        <StudentStrip />
+
         {/* §8: FAQ — Light zone */}
         <FAQ />
 
@@ -134,7 +139,7 @@ export default async function Home({ params }: Props) {
 
         {/* §10: MARQUEE */}
         <section
-          className="py-10 lg:py-14 overflow-hidden border-t border-foreground/5 bg-foreground"
+          className="light py-10 lg:py-14 overflow-hidden border-t border-foreground/5 bg-foreground"
           aria-label="Credentials and certifications"
         >
           <VanguardMarquee />

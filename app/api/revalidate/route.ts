@@ -73,7 +73,8 @@ export async function POST(req: NextRequest) {
   }
 
   revalidateTag('blog');
-  console.log('[revalidate] blog tag revalidated at', new Date().toISOString());
+  revalidateTag('community');
+  console.log('[revalidate] blog + community tags revalidated at', new Date().toISOString());
 
   return NextResponse.json({ revalidated: true, at: new Date().toISOString() });
 }

@@ -1,8 +1,8 @@
 /**
- * GET /api/blog-status?secret=YOUR_REVALIDATE_SECRET
+ * GET /api/blog-status
  *
  * Diagnostic endpoint — checks whether GitHub blog integration is working.
- * Protected by REVALIDATE_SECRET so it's not publicly readable.
+ * Protected by Authorization: Bearer <REVALIDATE_SECRET> header.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -13,7 +13,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const secret = process.env.REVALIDATE_SECRET;
-  const provided = req.nextUrl.searchParams.get('secret');
+  const authHeader = req.headers.get('authorization');
+  const provided = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
 
   if (!secret || provided !== secret) {
     return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });

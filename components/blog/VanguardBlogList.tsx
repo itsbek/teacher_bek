@@ -93,14 +93,14 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
               <div className="grid grid-cols-12 gap-3 md:gap-8 items-center relative z-10">
                 {/* Index */}
                 <div className="col-span-1 hidden md:block">
-                  <span className="type-meta opacity-15 group-hover:opacity-60 transition-opacity">
+                  <span className="op-ghost type-meta group-hover:opacity-60 transition-opacity">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 {/* Title & Category */}
                 <div className="col-span-10 md:col-span-8 lg:col-span-8">
-                  <span className="type-meta uppercase opacity-35 mb-1 block">
+                  <span className="op-dim type-meta uppercase mb-1 block">
                     {t(`categories.${post.category}`)}
                   </span>
                   <h2 className="text-[clamp(0.95rem,1.6vw,1.35rem)] font-display font-bold leading-snug tracking-tight group-hover:translate-x-1 transition-transform duration-500">
@@ -110,8 +110,8 @@ export function VanguardBlogList({ posts, locale }: VanguardBlogListProps) {
 
                 {/* Date + Arrow */}
                 <div className="col-span-2 md:col-span-2 lg:col-span-2 text-right flex flex-col items-end gap-1.5">
-                  <ArrowUpRight size={14} className="opacity-25 group-hover:opacity-100 transition-opacity md:hidden" />
-                  <span className="type-meta opacity-30 hidden md:block">
+                  <ArrowUpRight size={14} className="op-dim group-hover:opacity-100 transition-opacity md:hidden" />
+                  <span className="op-faint type-meta hidden md:block">
                     {new Date(post.date).toLocaleDateString("en", {
                       month: "short",
                       year: "numeric",

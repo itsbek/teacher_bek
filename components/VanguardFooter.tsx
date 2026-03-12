@@ -96,7 +96,7 @@ export function VanguardFooter() {
     }
 
     return (
-        <footer ref={footerRef} className="bg-foreground text-background" style={{ textDecoration: "none" }}>
+        <footer ref={footerRef} className="light bg-foreground text-background" style={{ textDecoration: "none" }}>
 
             {/* ── CTA + email ───────────────────────────────────────── */}
             <div className="px-6 md:px-10 lg:px-16 pt-14 pb-10 border-b border-background/10">
@@ -189,23 +189,23 @@ export function VanguardFooter() {
             {/* ── Bottom bar ────────────────────────────────────────── */}
             <div className="px-6 md:px-10 lg:px-16 py-4">
                 <div className="flex items-center justify-between flex-wrap gap-3 max-w-[1920px] mx-auto">
-                    <p className="font-mono text-[11px] opacity-25 tracking-[0.06em]">
+                    <p className="font-mono text-[11px] opacity-50 tracking-[0.06em]">
                         © {new Date().getFullYear()} Teacher Bek · {t("tagline").split(".")[0]}
                     </p>
                     <div className="flex items-center gap-4">
                         <Link href={`/${locale}/privacy`} style={{ textDecoration: "none" }}
-                            className="font-mono text-[11px] opacity-25 hover:opacity-55 transition-opacity duration-200 text-background">
+                            className="font-mono text-[11px] opacity-50 hover:opacity-75 transition-opacity duration-200 text-background">
                             {t("privacy")}
                         </Link>
                         <Link href={`/${locale}/terms`} style={{ textDecoration: "none" }}
-                            className="font-mono text-[11px] opacity-25 hover:opacity-55 transition-opacity duration-200 text-background">
+                            className="font-mono text-[11px] opacity-50 hover:opacity-75 transition-opacity duration-200 text-background">
                             {t("terms")}
                         </Link>
                         <button type="button"
                             onMouseEnter={() => playSound("hover")}
                             onClick={() => { playSound("click"); scrollToTop(); }}
                             aria-label={t("backToTop")}
-                            className="group flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.15em] opacity-25 hover:opacity-65 transition-opacity duration-200 text-background">
+                            className="group flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.15em] opacity-50 hover:opacity-75 transition-opacity duration-200 text-background">
                             {t("backToTop")}
                             <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true"
                                 className="group-hover:-translate-y-px transition-transform duration-200">

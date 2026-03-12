@@ -67,7 +67,7 @@ export function VanguardMarquee() {
     return (
         <div
             ref={containerRef}
-            className="w-full bg-foreground text-background py-5 overflow-hidden select-none flex whitespace-nowrap"
+            className="light w-full bg-foreground text-background py-5 overflow-hidden select-none flex whitespace-nowrap"
         >
             <div ref={trackRef} className="flex w-max flex-nowrap">
                 <span className="font-display font-bold uppercase tracking-[-0.03em] px-4 whitespace-nowrap opacity-60 leading-none" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)" }}>

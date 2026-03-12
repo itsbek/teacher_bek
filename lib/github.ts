@@ -130,3 +130,66 @@ export function isGithubConfigured(): boolean {
     process.env.GITHUB_BLOG_REPO,
   );
 }
+
+// ─── Community posts (student writing) ─────────────────────────────────────
+//
+// Lives in the same GITHUB_BLOG_REPO under the `community/` subfolder.
+// No locale organisation — all student writing is a single flat collection.
+//
+//   your-content-repo/
+//     en/                  ← blog posts (existing)
+//     community/           ← student writing (new)
+//       linh-coffee-shop.md
+//       minh-english-door.md
+
+async function fetchCommunityFilesFromGithub(repo: string): Promise<GithubFile[]> {
+  const listRes = await fetch(
+    `https://api.github.com/repos/${repo}/contents/community`,
+    { headers: apiHeaders() },
+  );
+
+  if (listRes.status === 404) return [];
+  if (!listRes.ok) {
+    throw new Error(`[github] Community list error ${listRes.status} for "${repo}/community"`);
+  }
+
+  const entries = (await listRes.json()) as GithubEntry[];
+  const mdFiles = entries.filter((e) => e.type === 'file' && e.name.endsWith('.md'));
+
+  const results = await Promise.all(
+    mdFiles.map(async (file) => {
+      const fileRes = await fetch(
+        `https://api.github.com/repos/${repo}/contents/${file.path}`,
+        { headers: apiHeaders() },
+      );
+      if (!fileRes.ok) return null;
+
+      const data = (await fileRes.json()) as GithubFileResponse;
+      if (data.encoding !== 'base64') return null;
+
+      const content = Buffer.from(data.content.replace(/\n/g, ''), 'base64').toString('utf-8');
+      return { name: file.name, content } satisfies GithubFile;
+    }),
+  );
+
+  return results.filter((f): f is GithubFile => f !== null);
+}
+
+export const getGithubCommunityFiles = unstable_cache(
+  async (): Promise<GithubFile[]> => {
+    const repo = process.env.GITHUB_BLOG_REPO;
+    if (!repo) return [];
+
+    try {
+      return await fetchCommunityFilesFromGithub(repo);
+    } catch (err) {
+      console.error('[github] Failed to fetch community posts:', err);
+      return [];
+    }
+  },
+  ['github-community-posts'],
+  {
+    revalidate: REVALIDATE_SECONDS,
+    tags: ['community'],
+  },
+);

@@ -3,7 +3,8 @@ import { routing } from '@/i18n/routing'
 import { getBlogPosts } from '@/lib/blog'
 
 const BASE_URL = 'https://teacherbek.com'
-const PRIMARY_ROUTES = ['', '/about', '/services', '/faq', '/blog', '/privacy', '/terms']
+// Only canonical pages with real content — redirect stubs (/about, /services, /faq) are excluded
+const PRIMARY_ROUTES = ['', '/blog', '/community', '/privacy', '/terms']
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Main pages for each locale

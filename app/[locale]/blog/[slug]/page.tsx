@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <VanguardNavigation />
-      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative overflow-hidden">
+      <main id="main-content" className="min-h-screen bg-background text-foreground pt-32">
         <BlogPost post={post} locale={locale} relatedPosts={relatedPosts} />
       </main>
       <VanguardFooter />

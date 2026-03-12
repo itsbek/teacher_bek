@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 
-export function BlogHero() {
-  const t = useTranslations("blog");
+export function CommunityHero() {
+  const t = useTranslations("community");
   const reduceMotion = useReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -14,7 +14,7 @@ export function BlogHero() {
     if (reduceMotion || !heroRef.current) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".blog-hero-appear",
+        ".hero-appear",
         { y: 32, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.0, stagger: 0.1, ease: "power4.out", delay: 0.1 }
       );
@@ -38,7 +38,7 @@ export function BlogHero() {
       <div style={{ maxWidth: "1440px", margin: "0 auto", width: "100%" }}>
 
         <p
-          className="blog-hero-appear"
+          className="hero-appear"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: 11,
@@ -48,7 +48,7 @@ export function BlogHero() {
             marginBottom: "1.5rem",
           }}
         >
-          — {t("label")}
+          — {t("studentDirectEyebrow")}
         </p>
 
         <h1
@@ -62,17 +62,26 @@ export function BlogHero() {
             marginBottom: "clamp(2.5rem, 5vw, 4.5rem)",
           }}
         >
-          <span className="blog-hero-appear" style={{ display: "block" }}>
-            {t("title")}
+          <span className="hero-appear" style={{ display: "block" }}>
+            {t("studentDirectHeading")}
+          </span>
+          <span
+            className="hero-appear"
+            style={{ display: "block", fontStyle: "italic", opacity: 0.5 }}
+          >
+            {t("studentDirectHeadingItalic")}
           </span>
         </h1>
 
         <div
-          className="blog-hero-appear"
+          className="hero-appear"
           style={{
             borderTop: "1px solid hsl(var(--foreground) / 0.12)",
             paddingTop: "clamp(1.75rem, 3.5vw, 3rem)",
-            maxWidth: 560,
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "clamp(2rem, 4vw, 4rem)",
+            flexWrap: "wrap",
           }}
         >
           <p
@@ -80,10 +89,26 @@ export function BlogHero() {
               fontFamily: "var(--font-sans)",
               fontSize: "clamp(15px, 1.6vw, 20px)",
               lineHeight: 1.6,
+              maxWidth: 480,
               margin: 0,
             }}
           >
-            {t("subtitle")}
+            {t("studentDirectSubtitle")}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(12px, 1.1vw, 14px)",
+              lineHeight: 1.65,
+              opacity: 0.4,
+              borderLeft: "2px solid hsl(var(--foreground) / 0.25)",
+              paddingLeft: "1rem",
+              maxWidth: 360,
+              margin: 0,
+              flexShrink: 0,
+            }}
+          >
+            {t("reviewNote")}
           </p>
         </div>
 

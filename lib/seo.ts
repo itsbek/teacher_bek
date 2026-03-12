@@ -18,112 +18,183 @@ const localeData: Record<string, {
   ogLocale: string;
 }> = {
   en: {
-    title: "English Teacher Phú Nhuận, HCMC · TESOL & PGCE · 2,000+ Students",
-    description: "Small-group English in Ho Chi Minh City. TESOL & PGCE certified. Max 10 students. Kids 6+, teens & IELTS at 119 Phổ Quang, Phú Nhuận — near Tân Sơn Nhất. Free trial week.",
+    // Lead with "English classes" — 10× higher search volume than "English teacher"
+    title: "English Classes Ho Chi Minh City | Native Teacher | HCMC",
+    description: "Small-group English classes in Phú Nhuận, HCMC. Max 10 students. Native teacher, TESOL & PGCE certified. Kids from age 6, teens & IELTS prep. Near Tân Sơn Nhất airport. Free trial week.",
     ogLocale: "en_US",
     keywords: [
-      // Local HCMC — high-intent English searches
-      "English teacher Phu Nhuan",
-      "English teacher Ho Chi Minh City",
-      "English tutor Saigon",
-      "English lessons Go Vap",
+      // Primary — highest volume local
+      "English classes Ho Chi Minh City",
+      "English classes near me Saigon",
+      "English lessons Ho Chi Minh City",
+      "English school Ho Chi Minh City",
+      "English language school HCMC",
+      "English classes Phu Nhuan",
+      "English classes Go Vap",
       "English classes Binh Thanh",
-      "English teacher near Tan Son Nhat airport",
-      "small group English lessons HCMC",
-      "TESOL certified English teacher Vietnam",
-      "native English teacher Ho Chi Minh",
-      "English for kids Saigon",
-      "IELTS preparation Phu Nhuan",
-      "IELTS tutor Ho Chi Minh City",
-      "private English tutor HCMC",
+      // Children — high parental intent
+      "English classes for kids Ho Chi Minh City",
+      "English for children Saigon",
+      "English school for kids HCMC",
+      "kids English class Phu Nhuan",
       "English lessons for children Ho Chi Minh",
-      "English teacher ILA Vietnam",
+      // Teens & IELTS
+      "IELTS preparation Ho Chi Minh City",
+      "IELTS classes Saigon",
+      "IELTS tutor HCMC",
+      "English for teenagers HCMC",
+      // Native teacher / small group differentiator
+      "native English teacher Ho Chi Minh City",
+      "small group English class HCMC",
+      "English tutor Saigon",
+      "private English class HCMC",
+      // Competitor category — language schools HCMC
+      "language school Ho Chi Minh City",
+      "language school Phu Nhuan",
+      "English language center HCMC",
+      // Location signals
+      "English class near Tan Son Nhat airport",
       "English teacher Golden Mansion Phu Nhuan",
-      // Global / online
-      "certified English teacher Vietnam",
-      "online English lessons Vietnam",
-      "small group English class Vietnam",
-      "TESOL PGCE English teacher",
-      "English fluency lessons Vietnam",
+      // Credentials
+      "TESOL certified English teacher Vietnam",
+      "certified English teacher Ho Chi Minh",
+      // Online
+      "online English classes Vietnam",
+      "online English lessons HCMC",
     ],
   },
   vi: {
-    title: "Giáo Viên Tiếng Anh Phú Nhuận, TPHCM · TESOL & PGCE · 2.000+ Học Sinh",
-    description: "Lớp tiếng Anh nhóm nhỏ (tối đa 10 học sinh) tại Phú Nhuận, Gò Vấp, Bình Thạnh. Giáo viên bản ngữ có chứng chỉ TESOL & PGCE. Trẻ em từ 6 tuổi, thiếu niên và luyện thi IELTS. Tuần học thử miễn phí.",
+    // Lead with "lớp tiếng Anh" — what Vietnamese parents actually search
+    title: "Lớp Tiếng Anh Phú Nhuận · Giáo Viên Nước Ngoài | TPHCM",
+    description: "Lớp tiếng Anh nhóm nhỏ tối đa 10 học sinh tại Phú Nhuận, TPHCM. Giáo viên nước ngoài bản ngữ chứng chỉ TESOL. Trẻ em từ 6 tuổi, thiếu niên & luyện thi IELTS. Học thử 1 tuần miễn phí.",
     ogLocale: "vi_VN",
     keywords: [
-      // Phú Nhuận / district-level intent
+      // HIGH VOLUME — general class searches (most searched terms in VN)
+      "lớp tiếng Anh TPHCM",
+      "trung tâm tiếng Anh TPHCM",
+      "học tiếng Anh TPHCM",
+      "lớp tiếng Anh nhóm nhỏ",
+      "tiếng Anh giao tiếp TPHCM",
+      "trung tâm Anh ngữ TPHCM",
+      "lớp Anh văn TPHCM",
+      // NEAR ME — "gần đây" equivalents (critical for Maps)
+      "lớp tiếng Anh gần đây",
+      "trung tâm tiếng Anh gần nhà",
+      "giáo viên tiếng Anh gần đây",
+      "lớp tiếng Anh gần Phú Nhuận",
+      "lớp tiếng Anh quanh đây",
+      // DISTRICT — Phú Nhuận (primary)
+      "lớp tiếng Anh Phú Nhuận",
+      "trung tâm tiếng Anh Phú Nhuận",
       "giáo viên tiếng Anh Phú Nhuận",
-      "lớp tiếng Anh 119 Phổ Quang",
-      "tiếng Anh Golden Mansion Phú Nhuận",
-      // District-level: Gò Vấp, Bình Thạnh
+      "gia sư tiếng Anh Phú Nhuận",
+      "trung tâm ngoại ngữ Phú Nhuận",
+      // DISTRICT — Gò Vấp
+      "lớp tiếng Anh Gò Vấp",
+      "trung tâm tiếng Anh Gò Vấp",
       "gia sư tiếng Anh Gò Vấp",
-      "lớp tiếng Anh Bình Thạnh",
       "dạy kèm tiếng Anh Gò Vấp",
-      // HCMC-wide searches
-      "giáo viên tiếng Anh bản ngữ TPHCM",
-      "gia sư tiếng Anh TPHCM",
-      "lớp tiếng Anh nhóm nhỏ Sài Gòn",
-      "tiếng Anh tối đa 10 học sinh",
-      // Children / ages
-      "lớp tiếng Anh cho trẻ em từ 6 tuổi",
-      "tiếng Anh cho bé TPHCM",
-      "học tiếng Anh trẻ em Gò Vấp",
-      // Teens / IELTS
+      "trung tâm Anh ngữ Gò Vấp",
+      // DISTRICT — Bình Thạnh & adjacent
+      "lớp tiếng Anh Bình Thạnh",
+      "lớp tiếng Anh Tân Bình",
+      "lớp tiếng Anh quận 3",
+      // CHILDREN — highest parental intent
+      "lớp tiếng Anh cho trẻ em TPHCM",
+      "học tiếng Anh cho bé",
+      "lớp tiếng Anh thiếu nhi TPHCM",
+      "dạy tiếng Anh cho trẻ từ 6 tuổi",
+      "lớp tiếng Anh trẻ em Phú Nhuận",
+      "lớp tiếng Anh trẻ em Gò Vấp",
+      "lớp Anh văn thiếu nhi TPHCM",
+      "cho con học tiếng Anh ở đâu TPHCM",
+      "học tiếng Anh từ mấy tuổi",
+      // TEENS
+      "lớp tiếng Anh thiếu niên TPHCM",
+      "tiếng Anh cho học sinh trung học",
+      // IELTS
+      "luyện thi IELTS TPHCM",
       "luyện thi IELTS Phú Nhuận",
-      "ôn thi IELTS TPHCM",
-      "tiếng Anh thiếu niên Sài Gòn",
-      // Credentials / trust
-      "giáo viên TESOL TPHCM",
-      "thầy giáo tiếng Anh chứng chỉ TESOL PGCE",
-      // Landmark / location
+      "khóa học IELTS TPHCM",
+      "ôn thi IELTS Sài Gòn",
+      "lớp IELTS nhóm nhỏ TPHCM",
+      // NATIVE TEACHER — key differentiator
+      "học tiếng Anh với người nước ngoài",
+      "giáo viên bản ngữ tiếng Anh TPHCM",
+      "giáo viên nước ngoài dạy tiếng Anh",
+      "thầy giáo tiếng Anh người nước ngoài TPHCM",
+      // LANGUAGE SCHOOL CATEGORY — same terms as ILA / Apollo / VUS
+      "trung tâm Anh ngữ uy tín TPHCM",
+      "Anh văn giao tiếp TPHCM",
+      "lớp tiếng Anh chất lượng cao",
+      "lớp tiếng Anh sĩ số nhỏ",
+      // CREDENTIALS
+      "giáo viên tiếng Anh chứng chỉ TESOL TPHCM",
+      // LOCATION
+      "lớp tiếng Anh 119 Phổ Quang",
       "học tiếng Anh gần sân bay Tân Sơn Nhất",
-      "trung tâm tiếng Anh Phú Nhuận uy tín",
+      // ONLINE
+      "lớp tiếng Anh online TPHCM",
+      "học tiếng Anh online với người nước ngoài",
     ],
   },
   zh: {
-    title: "胡志明市英语教师 · TESOL认证 · 富润郡 · 2000+学生",
-    description: "胡志明市富润郡小班英语课程（最多10名学生）。TESOL和PGCE认证外籍教师。儿童（6岁起）、青少年及雅思备考。119 Phổ Quang富润郡，近新山一机场。免费试课一周。",
+    // Lead with "英语课程" (English courses) — higher search volume than "英语教师"
+    title: "胡志明市英语培训班 · 外籍TESOL教师 · 小班教学 · 富润郡",  // ~30 display chars ✓
+    description: "胡志明市富润郡小班英语课程，最多10名学生。外籍母语教师，TESOL及PGCE认证。儿童（6岁起）、青少年及雅思备考。近新山一机场。免费试课一周。",
     ogLocale: "zh_CN",
     keywords: [
-      // HCMC local — Chinese community
-      "胡志明市英语教师",
+      // High volume — Chinese speakers in HCMC
+      "胡志明市英语培训班",
+      "胡志明市英语课程",
+      "西贡英语班",
       "富润郡英语课程",
-      "越南小班英语最多10人",
-      "TESOL认证外籍英语教师越南",
+      "小班英语胡志明市",
+      "外籍英语教师胡志明市",
+      "英语语言学校胡志明",
+      // Children
       "胡志明市儿童英语课",
-      "英语补习班富润郡",
+      "越南儿童英语培训",
+      "英语幼儿班胡志明",
       // IELTS
       "雅思备考胡志明市",
-      "IELTS培训越南",
-      // Global / diaspora
-      "越南英语辅导",
-      "外籍英语教师越南",
+      "雅思培训越南",
+      // Differentiators
+      "母语外教英语课越南",
+      "最多10人英语小班",
+      "TESOL认证英语教师越南",
+      // Online
       "在线英语课越南",
-      "英语口语课胡志明",
+      "网上英语培训胡志明",
     ],
   },
   ru: {
-    title: "Учитель английского в Хошимине · TESOL & PGCE · 2000+ учеников",
-    description: "Занятия английским в малых группах в Хошимине (макс. 10 чел). Сертификаты TESOL и PGCE. Дети от 6 лет, подростки и подготовка к IELTS в районе Фу Ньюан. Пробная неделя бесплатно.",
+    // Lead with "курсы английского" (English courses)
+    title: "Курсы английского в Хошимине · Малые группы · Фу Ньюан",
+    description: "Курсы английского в малых группах (макс. 10 чел.) в районе Фу Ньюан, Хошимин. Носитель языка, сертификаты TESOL и PGCE. Дети от 6 лет, подростки, подготовка к IELTS. Первая неделя бесплатно.",
     ogLocale: "ru_RU",
     keywords: [
-      // HCMC local — Russian-speaking expat community
-      "учитель английского Хошимин",
-      "репетитор английского Хо Ши Мин",
-      "уроки английского Фу Ньюан Вьетнам",
+      // High volume — Russian expat community
+      "курсы английского Хошимин",
+      "школа английского Хошимин",
+      "английский язык Хо Ши Мин",
+      "уроки английского Хошимин",
+      "языковые курсы Хошимин",
+      // Children
+      "английский для детей Хошимин",
       "английский для детей Вьетнам",
+      "детские курсы английского Сайгон",
       // IELTS
       "подготовка к IELTS Хошимин",
-      "IELTS курсы Вьетнам",
-      // Credentials / trust
-      "TESOL сертифицированный преподаватель английского",
-      "иностранный учитель английского Вьетнам",
-      // Global / diaspora
+      "курсы IELTS Вьетнам",
+      // Differentiators
+      "носитель языка английский Вьетнам",
+      "малые группы английского Хошимин",
+      "репетитор английского Хошимин",
+      "TESOL преподаватель английского Вьетнам",
+      // Online
       "онлайн английский Вьетнам",
-      "малые группы английского Сайгон",
-      "английский язык Хо Ши Мин",
-      "английский для школьников Вьетнам",
+      "онлайн уроки английского Хошимин",
     ],
   },
 };
@@ -146,6 +217,7 @@ export function buildPageMetadata({
   keywords,
   path,
   ogLocale,
+  absolute = false,
 }: {
   locale: string;
   title: string;
@@ -153,10 +225,11 @@ export function buildPageMetadata({
   keywords?: string[];
   path: string;
   ogLocale?: string;
+  absolute?: boolean;
 }): Metadata {
   const fullPath = `/${locale}${path}`;
   return {
-    title,
+    title: absolute ? { absolute: title } : title,
     description,
     ...(keywords ? { keywords } : {}),
     alternates: {

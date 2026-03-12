@@ -11,7 +11,7 @@ export function StructuredData() {
     inLanguage: ["en", "vi", "zh", "ru"],
     potentialAction: {
       "@type": "SearchAction",
-      target: { "@type": "EntryPoint", urlTemplate: `${SITE}/en/blog?q={search_term_string}` },
+      target: `${SITE}/en/blog?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
@@ -66,10 +66,10 @@ export function StructuredData() {
       instructor: { "@id": `${SITE}/#teacher-bek` },
       educationalLevel: "Beginner to Elementary",
       teaches: "English Language",
-      courseWorkload: "PT1H30M per session, 2 sessions per week",
+      courseWorkload: "PT1H30M",
       hasCourseInstance: {
         "@type": "CourseInstance",
-        courseMode: ["Blended", "Onsite"],
+        courseMode: ["blended", "onsite"],
         location: {
           "@type": "Place",
           name: "Golden Mansion 1",
@@ -78,7 +78,12 @@ export function StructuredData() {
         courseSchedule: {
           "@type": "Schedule",
           repeatFrequency: "P1W",
-          byDay: ["Monday", "Wednesday", "Saturday", "Sunday"],
+          byDay: [
+            "https://schema.org/Monday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Saturday",
+            "https://schema.org/Sunday",
+          ],
         },
       },
       offers: {
@@ -104,10 +109,10 @@ export function StructuredData() {
       instructor: { "@id": `${SITE}/#teacher-bek` },
       educationalLevel: "Elementary to Advanced",
       teaches: "English Language",
-      courseWorkload: "PT1H30M per session, 2 sessions per week",
+      courseWorkload: "PT1H30M",
       hasCourseInstance: {
         "@type": "CourseInstance",
-        courseMode: ["Blended", "Onsite"],
+        courseMode: ["blended", "onsite"],
         location: {
           "@type": "Place",
           name: "Golden Mansion 1",
@@ -137,10 +142,10 @@ export function StructuredData() {
       instructor: { "@id": `${SITE}/#teacher-bek` },
       educationalLevel: "Intermediate to Advanced",
       teaches: "IELTS Examination Preparation",
-      courseWorkload: "PT1H per session, 2 sessions per week",
+      courseWorkload: "PT1H",
       hasCourseInstance: {
         "@type": "CourseInstance",
-        courseMode: ["Blended", "Onsite"],
+        courseMode: ["blended", "onsite"],
         location: {
           "@type": "Place",
           name: "Golden Mansion 1",

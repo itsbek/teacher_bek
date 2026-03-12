@@ -35,7 +35,7 @@ export default async function BlogPage({ params }: Props) {
     <>
       <VanguardNavigation />
 
-      <main className="min-h-screen bg-background text-foreground pt-32 selection:bg-black selection:text-white antialiased relative">
+      <main id="main-content" className="bg-background text-foreground">
         {/* Editorial Hero */}
         <BlogHero />
 
