@@ -30,6 +30,8 @@ interface WallEntry {
   title?: string;
   level?: string;
   content?: string;
+  driveLink?: string;
+  feedback?: string;
   // video
   url?: string;
   caption?: string;
@@ -208,6 +210,71 @@ function WallCard({ entry, t }: { entry: WallEntry; t: ReturnType<typeof useTran
 
   // Text card (writing | learned)
   const accent = entry.type === "writing" ? "#C85C3F" : "hsl(var(--foreground) / 0.28)";
+
+  if (entry.type === "writing") {
+    return (
+      <article style={{
+        borderLeft: `2px solid ${accent}`,
+        paddingLeft: "clamp(0.85rem, 1.5vw, 1.25rem)",
+        paddingTop: "clamp(1rem, 1.8vw, 1.4rem)",
+        paddingBottom: "clamp(1rem, 1.8vw, 1.4rem)",
+        paddingRight: "clamp(0.75rem, 1.2vw, 1rem)",
+        borderBottom: "1px solid hsl(var(--foreground) / 0.07)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.65rem",
+      }}>
+        {/* Level + type badge */}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+          {entry.level && (
+            <span style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", opacity: 0.38, border: "1px solid hsl(var(--foreground) / 0.18)", padding: "1px 6px" }}>
+              {entry.level}
+            </span>
+          )}
+          <span style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", opacity: 0.26, marginLeft: "auto" }}>
+            {t("wallTypeWriting")}
+          </span>
+        </div>
+        {/* Title */}
+        {entry.title && (
+          <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(15px, 1.5vw, 20px)", letterSpacing: "-0.02em", lineHeight: 1.1, textTransform: "uppercase", margin: 0 }}>
+            {entry.title}
+          </h3>
+        )}
+        {/* Teacher feedback */}
+        {entry.feedback && (
+          <div style={{ borderLeft: "2px solid hsl(var(--foreground) / 0.15)", paddingLeft: "0.75rem" }}>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", opacity: 0.38, marginBottom: "0.25rem" }}>
+              {t("writingFeedbackLabel")}
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px, 1vw, 13px)", lineHeight: 1.7, opacity: 0.62, margin: 0 }}>
+              {entry.feedback}
+            </p>
+          </div>
+        )}
+        {/* Footer */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "auto", gap: "0.5rem" }}>
+          <span className="op-faint" style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            {fmt(entry.date)}
+          </span>
+          {entry.driveLink && (
+            <a
+              href={entry.driveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(9px, 0.8vw, 10px)", letterSpacing: "0.18em", textTransform: "uppercase", color: "inherit", opacity: 0.55, textDecoration: "none", transition: "opacity 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+              onMouseLeave={e => (e.currentTarget.style.opacity = "0.55")}
+            >
+              {t("writingViewWork")} →
+            </a>
+          )}
+        </div>
+      </article>
+    );
+  }
+
+  // Learned card — shows name + typed content
   return (
     <article style={{
       borderLeft: `2px solid ${accent}`,
@@ -223,20 +290,10 @@ function WallCard({ entry, t }: { entry: WallEntry; t: ReturnType<typeof useTran
         <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(11px, 1vw, 13px)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
           {entry.name}
         </span>
-        {entry.level && (
-          <span style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", opacity: 0.38, border: "1px solid hsl(var(--foreground) / 0.18)", padding: "1px 6px" }}>
-            {entry.level}
-          </span>
-        )}
         <span style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", opacity: 0.26, marginLeft: "auto", flexShrink: 0 }}>
-          {entry.type === "writing" ? t("wallTypeWriting") : t("wallTypeReflection")}
+          {t("wallTypeReflection")}
         </span>
       </div>
-      {entry.title && (
-        <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(16px, 1.6vw, 22px)", letterSpacing: "-0.02em", lineHeight: 1.1, textTransform: "uppercase", marginBottom: "0.5rem" }}>
-          {entry.title}
-        </h3>
-      )}
       <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px, 1.1vw, 14px)", lineHeight: 1.7, opacity: 0.62, flex: 1 }}>
         {entry.content}
       </p>
@@ -255,21 +312,26 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
   videoEntries:   VideoEntry[];
   t: ReturnType<typeof useTranslations>;
 }) {
-  const [wallType,   setWallType]   = useState<WallType>("writing");
-  const [name,       setName]       = useState("");
-  const [level,      setLevel]      = useState("");
-  const [title,      setTitle]      = useState("");
-  const [content,    setContent]    = useState("");
-  const [videoUrl,   setVideoUrl]   = useState("");
-  const [caption,    setCaption]    = useState("");
-  const [wordCount,  setWordCount]  = useState(0);
-  const [urlError,   setUrlError]   = useState(false);
-  const [status,     setStatus]     = useState<Status>("idle");
-  const [startedAt]                 = useState(() => Date.now());
-  const [visible,    setVisible]    = useState(INITIAL_SHOW);
+  const [wallType,    setWallType]   = useState<WallType>("writing");
+  const [name,        setName]       = useState("");
+  const [level,       setLevel]      = useState("");
+  const [title,       setTitle]      = useState("");
+  const [driveLink,   setDriveLink]  = useState("");
+  const [driveLinkErr,setDriveLinkErr] = useState(false);
+  const [content,     setContent]    = useState("");
+  const [videoUrl,    setVideoUrl]   = useState("");
+  const [caption,     setCaption]    = useState("");
+  const [wordCount,   setWordCount]  = useState(0);
+  const [urlError,    setUrlError]   = useState(false);
+  const [status,      setStatus]     = useState<Status>("idle");
+  const [startedAt]                  = useState(() => Date.now());
+  const [visible,     setVisible]    = useState(INITIAL_SHOW);
 
-  const MAX_WORDS  = 200;
-  const overLimit  = wallType === "writing" && wordCount > MAX_WORDS;
+  const MAX_WORDS = 200;
+  const overLimit = wallType === "learned" && wordCount > MAX_WORDS;
+
+  const DRIVE_RE = /drive\.google\.com|docs\.google\.com/i;
+  const isValidDriveLink = (url: string) => { try { return DRIVE_RE.test(new URL(url).hostname); } catch { return false; } };
 
   const handleContent = (val: string) => {
     setContent(val);
@@ -279,6 +341,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
   const switchType = (t: WallType) => {
     setWallType(t);
     setContent(""); setWordCount(0); setVideoUrl(""); setCaption(""); setUrlError(false);
+    setDriveLink(""); setDriveLinkErr(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -295,13 +358,21 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
       return;
     }
 
+    if (wallType === "writing") {
+      if (!name.trim() || !driveLink.trim()) return;
+      if (!isValidDriveLink(driveLink.trim())) { setDriveLinkErr(true); return; }
+      setStatus("sending");
+      const ok = await submitCommunity({ type: "writing", name: name.trim(), level: level.trim(), title: title.trim(), driveLink: driveLink.trim(), formStartedAt: startedAt });
+      if (ok) { setStatus("success"); setName(""); setLevel(""); setTitle(""); setDriveLink(""); }
+      else setStatus("error");
+      return;
+    }
+
+    // learned
     if (!name.trim() || !content.trim() || overLimit) return;
     setStatus("sending");
-    const payload = wallType === "writing"
-      ? { type: "writing", name: name.trim(), level: level.trim(), title: title.trim(), content: content.trim(), formStartedAt: startedAt }
-      : { type: "learned", name: name.trim(), learned: content.trim(), formStartedAt: startedAt };
-    const ok = await submitCommunity(payload);
-    if (ok) { setStatus("success"); setName(""); setLevel(""); setTitle(""); setContent(""); setWordCount(0); }
+    const ok = await submitCommunity({ type: "learned", name: name.trim(), learned: content.trim(), formStartedAt: startedAt });
+    if (ok) { setStatus("success"); setName(""); setContent(""); setWordCount(0); }
     else setStatus("error");
   };
 
@@ -309,7 +380,8 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
   const allEntries: WallEntry[] = [
     ...writingEntries.map(e => ({
       id: e.slug, name: e.name, type: "writing" as WallType,
-      title: e.title, level: e.level, content: e.excerpt, date: e.date,
+      title: e.title, level: e.level, date: e.date,
+      driveLink: e.driveLink, feedback: e.feedback,
     })),
     ...learnedEntries.map(e => ({
       id: e.id, name: e.name, type: "learned" as WallType,
@@ -406,8 +478,7 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
 
         <p className="review-note">{t("reviewNote")}</p>
 
-        {/* Stable-height wrapper — same height regardless of type or state */}
-        <div style={{ height: "380px", overflow: "visible", display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           {status === "success" ? (
             <>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(14px, 1.3vw, 16px)", lineHeight: 1.65, color: "#3a7a3a", marginBottom: "0.85rem" }}>
@@ -423,67 +494,86 @@ function WallPanel({ writingEntries, learnedEntries, videoEntries, t }: {
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
 
               {/* Row 1: name — always */}
-              <div className="field-line">
-                <input type="text" placeholder={t("writingNamePlaceholder")} value={name} onChange={e => setName(e.target.value)} required maxLength={60} />
-              </div>
-
-              {/* Row 2: sub-field — fixed height, content differs per type */}
-              <div style={{ height: "44px" }}>
+              <div>
+                <div className="field-line">
+                  <input type="text" placeholder={t("writingNamePlaceholder")} value={name} onChange={e => setName(e.target.value)} required maxLength={60} />
+                </div>
                 {wallType === "writing" && (
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", height: "100%" }} className="form-name-level">
-                    <div className="field-line" style={{ height: "100%" }}>
-                      <input type="text" placeholder={t("writingTitlePlaceholder")} value={title} onChange={e => setTitle(e.target.value)} maxLength={120} />
-                    </div>
-                    <div className="field-line" style={{ height: "100%" }}>
-                      <input type="text" placeholder={t("writingLevelPlaceholder")} value={level} onChange={e => setLevel(e.target.value)} maxLength={60} />
-                    </div>
+                  <p style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.28, marginTop: "0.3rem" }}>
+                    {t("writingNamePrivate")}
+                  </p>
+                )}
+              </div>
+
+              {/* Row 2: sub-fields differ per type */}
+              {wallType === "writing" && (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }} className="form-name-level">
+                  <div className="field-line">
+                    <input type="text" placeholder={t("writingTitlePlaceholder")} value={title} onChange={e => setTitle(e.target.value)} maxLength={120} />
                   </div>
-                )}
-                {wallType === "video" && (
-                  <div className="field-line" style={{ height: "100%", borderColor: urlError ? "#C85C3F" : undefined }}>
-                    <input type="url" placeholder={t("videoUrlPlaceholder")} value={videoUrl} onChange={e => { setVideoUrl(e.target.value); setUrlError(false); }} required maxLength={500} />
+                  <div className="field-line">
+                    <input type="text" placeholder={t("writingLevelPlaceholder")} value={level} onChange={e => setLevel(e.target.value)} maxLength={60} />
                   </div>
-                )}
-                {/* learned: empty — height preserved */}
-              </div>
+                </div>
+              )}
+              {wallType === "video" && (
+                <div className="field-line" style={{ borderColor: urlError ? "#C85C3F" : undefined }}>
+                  <input type="url" placeholder={t("videoUrlPlaceholder")} value={videoUrl} onChange={e => { setVideoUrl(e.target.value); setUrlError(false); }} required maxLength={500} />
+                </div>
+              )}
 
-              {/* Row 3: main textarea — fixed height, always */}
-              <div className="field-line">
-                <textarea
-                  placeholder={
-                    wallType === "writing" ? t("writingContentPlaceholder") :
-                    wallType === "video"   ? t("videoCaptionPlaceholder") :
-                                            t("learnedPlaceholder")
-                  }
-                  value={wallType === "video" ? caption : content}
-                  onChange={e => wallType === "video" ? setCaption(e.target.value) : handleContent(e.target.value)}
-                  required
-                  maxLength={wallType === "video" ? 500 : 3000}
-                  style={{ resize: "none", height: "150px" }}
-                />
-              </div>
-
-              {/* Row 4: feedback — fixed height */}
-              <div style={{ height: "18px", display: "flex", alignItems: "center" }}>
-                {wallType === "writing" && (
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: overLimit ? "#C85C3F" : "inherit", opacity: overLimit ? 1 : 0.3, marginLeft: "auto", transition: "color 0.2s, opacity 0.2s" }}>
-                    {wordCount} / {MAX_WORDS}
-                  </span>
-                )}
-                {wallType === "video" && urlError && (
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "#C85C3F" }}>{t("videoUrlError")}</span>
-                )}
-                {wallType === "video" && !urlError && videoUrl && isValidVideoUrl(videoUrl) && (
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: "#3a7a3a", opacity: 0.8 }}>
-                    ✓ {parseVideoUrl(videoUrl).platform === "youtube" ? "YouTube" : "Google Drive"}
-                  </span>
-                )}
-              </div>
-
-              {overLimit && (
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "#C85C3F", marginTop: "-0.5rem" }}>
-                  {t("writingOverLimit")}
-                </p>
+              {/* Row 3: Drive link (writing) or textarea (learned / video caption) */}
+              {wallType === "writing" ? (
+                <div>
+                  <div className="field-line" style={{ borderColor: driveLinkErr ? "#C85C3F" : undefined }}>
+                    <input
+                      type="url"
+                      placeholder={t("writingDriveLinkPlaceholder")}
+                      value={driveLink}
+                      onChange={e => { setDriveLink(e.target.value); setDriveLinkErr(false); }}
+                      required
+                      maxLength={500}
+                    />
+                  </div>
+                  {driveLinkErr && (
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "#C85C3F", marginTop: "0.3rem" }}>
+                      {t("writingDriveLinkError")}
+                    </p>
+                  )}
+                  {!driveLinkErr && driveLink && isValidDriveLink(driveLink) && (
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "#3a7a3a", opacity: 0.8, marginTop: "0.3rem" }}>
+                      ✓ Google Drive
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <div className="field-line">
+                    <textarea
+                      placeholder={wallType === "video" ? t("videoCaptionPlaceholder") : t("learnedPlaceholder")}
+                      value={wallType === "video" ? caption : content}
+                      onChange={e => wallType === "video" ? setCaption(e.target.value) : handleContent(e.target.value)}
+                      required
+                      maxLength={wallType === "video" ? 500 : 3000}
+                      style={{ resize: "none", height: "120px" }}
+                    />
+                  </div>
+                  <div style={{ height: "18px", display: "flex", alignItems: "center", marginTop: "0.25rem" }}>
+                    {wallType === "learned" && (
+                      <span style={{ fontFamily: "var(--font-display)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: overLimit ? "#C85C3F" : "inherit", opacity: overLimit ? 1 : 0.3, marginLeft: "auto", transition: "color 0.2s, opacity 0.2s" }}>
+                        {wordCount} / {MAX_WORDS}
+                      </span>
+                    )}
+                    {wallType === "video" && urlError && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "#C85C3F" }}>{t("videoUrlError")}</span>
+                    )}
+                    {wallType === "video" && !urlError && videoUrl && isValidVideoUrl(videoUrl) && (
+                      <span style={{ fontFamily: "var(--font-display)", fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: "#3a7a3a", opacity: 0.8 }}>
+                        ✓ {parseVideoUrl(videoUrl).platform === "youtube" ? "YouTube" : "Google Drive"}
+                      </span>
+                    )}
+                  </div>
+                </div>
               )}
 
               <SubmitBtn status={overLimit ? "sending" : status} label={t("submitButton")} sendingLabel={t("submitting")} />
