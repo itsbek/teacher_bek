@@ -33,10 +33,9 @@ function LazyMap() {
   );
 }
 import { useTranslations } from "next-intl";
-import { useAudio } from "./audio-provider";
 import { SplitHeading } from "@/components/ui/split-heading";
-import { CheckCircle2, AlertCircle } from "lucide-react";
-import { event as trackEvent, trackContactFormSubmit } from "@/lib/analytics";
+import { CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
+import { event as trackEvent, trackContactFormSubmit, trackCTAClick } from "@/lib/analytics";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -46,6 +45,7 @@ if (typeof window !== "undefined") {
 
 type FormState = {
   name: string;
+  phone: string;
   email: string;
   message: string;
   consent: boolean;
@@ -55,7 +55,7 @@ type FormState = {
 };
 
 const INITIAL: FormState = {
-  name: "", email: "", message: "", consent: false,
+  name: "", phone: "", email: "", message: "", consent: false,
   forWhom: "", level: "", goal: "",
 };
 
@@ -178,7 +178,6 @@ function LineField({
 
 export function VanguardInquiry() {
   const t = useTranslations("inquiry");
-  const { playSound } = useAudio();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus]     = useState<"idle" | "success" | "error">("idle");
   const [statusMsg, setStatusMsg] = useState("");
@@ -194,11 +193,9 @@ export function VanguardInquiry() {
 
   const canSubmit = useMemo(() =>
     form.name.trim().length >= 2 &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) &&
+    form.phone.trim().length >= 6 &&
     form.consent &&
-    form.forWhom !== "" &&
-    form.level !== "" &&
-    form.goal !== "",
+    (form.email.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)),
     [form]
   );
 
@@ -238,7 +235,6 @@ export function VanguardInquiry() {
     setIsSubmitting(true);
     setStatus("idle");
     setStatusMsg("");
-    playSound("click");
 
     try {
       const res = await fetch("/api/contact", {
@@ -246,6 +242,7 @@ export function VanguardInquiry() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name.trim(),
+          phone: form.phone.trim(),
           email: form.email.trim(),
           message: form.message.trim(),
           consent: form.consent,
@@ -332,31 +329,28 @@ export function VanguardInquiry() {
 
         {/* ── Form ──────────────────────────────────────────────────── */}
         <div ref={formRef} className="lg:col-span-7">
+
+          {/* Zalo direct — primary channel, above the form */}
+          <a
+            href="https://zalo.me/84353885757?text=Xin%20ch%C3%A0o%2C%20t%C3%B4i%20mu%E1%BB%91n%20h%E1%BB%8Fi%20v%E1%BB%81%20l%E1%BB%9Bp%20ti%E1%BA%BFng%20Anh"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackCTAClick("inquiry", "zalo_primary")}
+            className="group flex items-center justify-between gap-4 mb-8 px-6 py-5 border border-foreground bg-foreground text-background hover:opacity-90 transition-opacity duration-300"
+          >
+            <span className="font-sans text-[13px] uppercase tracking-[0.18em] font-bold">
+              {t("zaloPrimary")}
+            </span>
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+
+          <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-45 font-light mb-6">
+            {t("orFormLabel")}
+          </p>
+
           <form onSubmit={handleSubmit} onFocus={handleFormFirstTouch} className="flex flex-col gap-6">
             {/* Honeypot */}
             <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-
-            {/* Selectors */}
-            <PillGroup
-              label={t("forWhomLabel")}
-              options={[t("forWhomChild"), t("forWhomSelf")]}
-              value={form.forWhom}
-              onChange={(v) => { set("forWhom", v); playSound("hover"); }}
-            />
-            <PillGroup
-              label={t("levelLabel")}
-              options={[t("levelBeginner"), t("levelIntermediate"), t("levelAdvanced"), t("levelNotSure")]}
-              value={form.level}
-              onChange={(v) => { set("level", v); playSound("hover"); }}
-            />
-            <PillGroup
-              label={t("goalLabel")}
-              options={[t("goalIelts"), t("goalSpeaking"), t("goalSchool"), t("goalWork")]}
-              value={form.goal}
-              onChange={(v) => { set("goal", v); playSound("hover"); }}
-            />
-
-            <div className="w-full h-[1px] bg-foreground/10" />
 
             {/* Name */}
             <LineField
@@ -368,6 +362,17 @@ export function VanguardInquiry() {
               required
             />
 
+            {/* Phone */}
+            <LineField
+              id="inq-phone"
+              label={t("phoneLabel")}
+              type="tel"
+              placeholder={t("phonePlaceholder")}
+              value={form.phone}
+              onChange={(v) => set("phone", v)}
+              required
+            />
+
             {/* Email */}
             <LineField
               id="inq-email"
@@ -376,7 +381,28 @@ export function VanguardInquiry() {
               placeholder={t("emailPlaceholder")}
               value={form.email}
               onChange={(v) => set("email", v)}
-              required
+              optional
+              optionalLabel={t("optional")}
+            />
+
+            {/* Selectors — optional context, not required to submit */}
+            <PillGroup
+              label={t("forWhomLabel")}
+              options={[t("forWhomChild"), t("forWhomSelf")]}
+              value={form.forWhom}
+              onChange={(v) => set("forWhom", v)}
+            />
+            <PillGroup
+              label={t("levelLabel")}
+              options={[t("levelBeginner"), t("levelIntermediate"), t("levelAdvanced"), t("levelNotSure")]}
+              value={form.level}
+              onChange={(v) => set("level", v)}
+            />
+            <PillGroup
+              label={t("goalLabel")}
+              options={[t("goalIelts"), t("goalSpeaking"), t("goalSchool"), t("goalWork")]}
+              value={form.goal}
+              onChange={(v) => set("goal", v)}
             />
 
             {/* Message */}
@@ -408,7 +434,6 @@ export function VanguardInquiry() {
             <button
               type="submit"
               disabled={isSubmitting || !canSubmit}
-              onMouseEnter={() => playSound("hover")}
               className="self-start flex flex-col gap-3 disabled:opacity-30 disabled:cursor-not-allowed group"
             >
               <span className="font-sans text-[13px] uppercase tracking-[0.4em] font-light opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4">

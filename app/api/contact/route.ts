@@ -10,12 +10,13 @@ function getResend() {
 
 const contactFormSchema = z.object({
   name: z.string().min(2).max(100),
-  email: z.string().email().max(200),
+  phone: z.string().min(6).max(30),
+  email: z.string().email().max(200).optional().or(z.literal('')),
   message: z.string().max(2000).optional().default(''),
   consent: z.boolean().refine((val) => val === true, { message: 'Consent is required' }),
-  forWhom: z.enum(['My Child', 'Myself', '']).optional(),
-  level: z.enum(['Beginner', 'Intermediate', 'Advanced', 'Not Sure', '']).optional(),
-  goal: z.enum(['IELTS Score', 'Speaking Confidence', 'School Grades', 'Work English', '']).optional(),
+  forWhom: z.string().max(100).optional(),
+  level: z.string().max(100).optional(),
+  goal: z.string().max(100).optional(),
   website: z.string().optional(),
   formStartedAt: z.number().int().optional(),
 });
@@ -45,7 +46,7 @@ function sanitise(str: string): string {
    NOTIFICATION EMAIL  — sent to the teacher
 ───────────────────────────────────────────────────────────── */
 function buildNotificationEmail(d: {
-  name: string; email: string;
+  name: string; phone: string; email?: string;
   forWhom?: string; level?: string; goal?: string; message?: string;
 }): string {
   const field = (label: string, value?: string) => value ? `
@@ -96,7 +97,8 @@ function buildNotificationEmail(d: {
         <tr>
           <td style="border-top:1px solid rgba(255,255,255,0.1);padding-top:20px">
             <p style="margin:0;font-family:'Barlow Condensed',Georgia,'Times New Roman',serif;font-size:32px;font-weight:800;letter-spacing:-0.01em;color:#ffffff;text-transform:uppercase">${d.name}</p>
-            <p style="margin:6px 0 0;font-family:'Courier New',Courier,monospace;font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.04em">${d.email}</p>
+            <p style="margin:6px 0 0;font-family:'Courier New',Courier,monospace;font-size:14px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">${d.phone}</p>
+            ${d.email ? `<p style="margin:2px 0 0;font-family:'Courier New',Courier,monospace;font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.04em">${d.email}</p>` : ''}
           </td>
         </tr>
       </table>
@@ -135,9 +137,9 @@ function buildNotificationEmail(d: {
       <table cellpadding="0" cellspacing="0">
         <tr>
           <td style="background:#0f0f0f;">
-            <a href="mailto:${d.email}?subject=Re: Your English lesson inquiry"
+            <a href="https://zalo.me/${d.phone.replace(/[^\d]/g, '')}"
                style="display:inline-block;padding:14px 32px;font-family:'Courier New',Courier,monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#ffffff;text-decoration:none;">
-              Reply to ${d.name} &rarr;
+              Message ${d.name} on Zalo &rarr;
             </a>
           </td>
         </tr>
@@ -283,16 +285,17 @@ export async function POST(request: NextRequest) {
     }
 
     const name    = sanitise(validated.name);
-    const email   = sanitise(validated.email);
+    const phone   = sanitise(validated.phone);
+    const email   = validated.email ? sanitise(validated.email) : '';
     const message = sanitise(validated.message ?? '');
 
     const { error: notifyError } = await getResend().emails.send({
       from:    'Teacher Bek Website <noreply@teacherbek.com>',
       to:      CONTACT_EMAIL,
-      replyTo: email,
+      replyTo: email || undefined,
       subject: `New inquiry from ${name}`,
       html:    buildNotificationEmail({
-        name, email,
+        name, phone, email: email || undefined,
         forWhom: validated.forWhom ?? undefined,
         level:   validated.level   ?? undefined,
         goal:    validated.goal    ?? undefined,
@@ -305,15 +308,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to send message. Please try again or contact me directly.' }, { status: 500 });
     }
 
-    const { error: confirmError } = await getResend().emails.send({
-      from:    'Teacher Bek <hello@teacherbek.com>',
-      to:      email,
-      subject: 'Got your message — Teacher Bek',
-      html:    buildConfirmationEmail(name),
-    });
+    if (email) {
+      const { error: confirmError } = await getResend().emails.send({
+        from:    'Teacher Bek <hello@teacherbek.com>',
+        to:      email,
+        subject: 'Got your message — Teacher Bek',
+        html:    buildConfirmationEmail(name),
+      });
 
-    if (confirmError) {
-      console.warn('[contact] confirmation send failed (non-fatal):', JSON.stringify(confirmError));
+      if (confirmError) {
+        console.warn('[contact] confirmation send failed (non-fatal):', JSON.stringify(confirmError));
+      }
     }
 
     return NextResponse.json({ success: true, message: 'Thank you! I will be in touch within 24 hours.' }, { status: 200 });
