@@ -99,6 +99,16 @@ export function ConversionStrip() {
           {/* RIGHT — CTA + Phone */}
           <div className="lg:col-span-4 flex flex-col items-start lg:items-end lg:justify-center gap-5">
             <a
+              href="https://zalo.me/84353885757?text=Xin%20ch%C3%A0o%2C%20t%C3%B4i%20mu%E1%BB%91n%20h%E1%BB%8Fi%20v%E1%BB%81%20l%E1%BB%9Bp%20ti%E1%BA%BFng%20Anh"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCTAClick("strip", "zalo_primary")}
+              className="group inline-flex items-center justify-center gap-3 w-full lg:w-auto bg-foreground text-background px-7 py-4 font-sans text-[13px] uppercase tracking-[0.2em] font-bold hover:opacity-90 transition-opacity duration-300"
+            >
+              {t("zaloButton")}
+              <ArrowUpRight size={12} aria-hidden="true" />
+            </a>
+            <a
               href="https://zalo.me/84353885757"
               target="_blank"
               rel="noopener noreferrer"

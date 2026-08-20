@@ -31,6 +31,8 @@ const CYCLING_WORDS = [
 
 type LenisInstance = { scrollTo: (el: HTMLElement, opts?: { offset?: number; duration?: number }) => void };
 
+const ZALO_HREF = "https://zalo.me/84353885757?text=Xin%20ch%C3%A0o%2C%20t%C3%B4i%20mu%E1%BB%91n%20h%E1%BB%8Fi%20v%E1%BB%81%20l%E1%BB%9Bp%20ti%E1%BA%BFng%20Anh";
+
 export function VanguardHero() {
     const t             = useTranslations("hero");
     const { playSound } = useAudio();
@@ -259,28 +261,39 @@ export function VanguardHero() {
                         transition={{ duration: 0.55, delay: 0.54 }}
                         className="flex flex-col gap-2"
                     >
-                        <Link
-                            href="#contact"
-                            onClick={() => { playSound("click"); trackCTAClick("hero", "primary_inquiry"); }}
+                        <a
+                            href={ZALO_HREF}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => trackCTAClick("hero", "zalo_primary")}
                             className="group relative w-full inline-flex items-center justify-center gap-2 py-[14px] text-[12px] font-bold tracking-[0.2em] uppercase overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
                             style={{ background: "#B85337", color: "#fff" }}
                         >
                             <span className="relative z-10 flex items-center gap-2">
-                                {t("cta")}
+                                {t("zaloCta")}
                                 <ArrowUpRight size={12} aria-hidden="true" />
                             </span>
                             <span
                                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                 style={{ background: "rgba(255,255,255,0.13)" }}
                             />
-                        </Link>
-                        <button
-                            type="button"
-                            onClick={scrollToPrograms}
-                            className="inline-flex items-center justify-center py-2 text-[11px] font-mono tracking-[0.18em] uppercase text-foreground/45 hover:text-foreground transition-colors duration-300 underline underline-offset-4 decoration-foreground/20"
-                        >
-                            {t("secondary")}
-                        </button>
+                        </a>
+                        <div className="flex items-center justify-center gap-4">
+                            <button
+                                type="button"
+                                onClick={scrollToPrograms}
+                                className="inline-flex items-center justify-center py-2 text-[11px] font-mono tracking-[0.18em] uppercase text-foreground/45 hover:text-foreground transition-colors duration-300 underline underline-offset-4 decoration-foreground/20"
+                            >
+                                {t("secondary")}
+                            </button>
+                            <Link
+                                href="#contact"
+                                onClick={() => trackCTAClick("hero", "primary_inquiry")}
+                                className="inline-flex items-center justify-center py-2 text-[11px] font-mono tracking-[0.18em] uppercase text-foreground/45 hover:text-foreground transition-colors duration-300 underline underline-offset-4 decoration-foreground/20"
+                            >
+                                {t("cta")}
+                            </Link>
+                        </div>
                     </motion.div>
 
                     {/* Credential pills — horizontal scroll, never wraps */}
@@ -388,21 +401,23 @@ export function VanguardHero() {
                                 {t("subtitle")}
                             </p>
                             <div className="flex flex-row gap-3 shrink-0">
-                                <Link
-                                    href="#contact"
-                                    onClick={() => { playSound("click"); trackCTAClick("hero", "primary_inquiry"); }}
+                                <a
+                                    href={ZALO_HREF}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => trackCTAClick("hero", "zalo_primary")}
                                     className="group relative inline-flex items-center justify-center gap-2 px-6 py-4 text-[12px] font-bold tracking-[0.2em] uppercase overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
                                     style={{ background: "#B85337", color: "#fff" }}
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
-                                        {t("cta")}
+                                        {t("zaloCta")}
                                         <ArrowUpRight size={12} aria-hidden="true" />
                                     </span>
                                     <span
                                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                         style={{ background: "rgba(255,255,255,0.13)" }}
                                     />
-                                </Link>
+                                </a>
                                 <button
                                     type="button"
                                     onClick={scrollToPrograms}
@@ -414,6 +429,17 @@ export function VanguardHero() {
                                 >
                                     {t("secondary")}
                                 </button>
+                                <Link
+                                    href="#contact"
+                                    onClick={() => trackCTAClick("hero", "primary_inquiry")}
+                                    className="inline-flex items-center justify-center px-6 py-4 text-[12px] font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:text-foreground"
+                                    style={{
+                                        border: "1px solid hsl(var(--foreground) / 0.15)",
+                                        color: "hsl(var(--foreground) / 0.5)",
+                                    }}
+                                >
+                                    {t("cta")}
+                                </Link>
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-2">
