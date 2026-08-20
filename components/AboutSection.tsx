@@ -5,12 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
 import { SplitHeading } from "@/components/ui/split-heading";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 export function AboutSection() {
   const t       = useTranslations("about");
@@ -140,7 +135,7 @@ export function AboutSection() {
           src="/images/teacher-profile.webp"
           alt="Teacher Bek — English teacher in Ho Chi Minh City"
           width={533} height={800} sizes="100vw"
-          draggable={false} onContextMenu={(e) => e.preventDefault()}
+          draggable={false}
           style={{ width: "100%", height: "auto", display: "block",
             filter: "brightness(0.88) contrast(1.06) saturate(0.82)", WebkitTouchCallout: "none", userSelect: "none" }}
           priority
@@ -239,7 +234,7 @@ export function AboutSection() {
               src="/images/teacher-profile.webp"
               alt="Teacher Bek — English teacher in Ho Chi Minh City"
               width={533} height={800} sizes="36vw"
-              draggable={false} onContextMenu={(e) => e.preventDefault()}
+              draggable={false}
               style={{ width: "100%", height: "auto", display: "block",
                 filter: "brightness(0.85) contrast(1.08) saturate(0.82)", WebkitTouchCallout: "none", userSelect: "none" }}
               priority
@@ -261,7 +256,7 @@ export function AboutSection() {
             alt="The classroom — colourful chairs around a central table, ambient warm lighting"
             fill sizes="100vw"
             className="object-cover"
-            draggable={false} onContextMenu={(e) => e.preventDefault()}
+            draggable={false}
             style={{ objectPosition: "center 45%", filter: "brightness(1.0) contrast(1.05) saturate(1.1)", WebkitTouchCallout: "none", userSelect: "none" }}
           />
         </div>

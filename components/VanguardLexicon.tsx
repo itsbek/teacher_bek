@@ -7,12 +7,7 @@ import { useReducedMotion } from "framer-motion";
 import { ScrollText } from "./ScrollText";
 import { trackCTAClick } from "@/lib/analytics";
 import { PricingGateModal } from "./PricingGateModal";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const PROGRAM_KEYS = ["youngLearners", "teens", "ielts"] as const;
 const PROGRAM_IDS = ["01", "02", "03"] as const;

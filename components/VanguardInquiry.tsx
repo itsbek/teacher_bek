@@ -36,12 +36,7 @@ import { useTranslations } from "next-intl";
 import { SplitHeading } from "@/components/ui/split-heading";
 import { CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
 import { event as trackEvent, trackContactFormSubmit, trackCTAClick } from "@/lib/analytics";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 type FormState = {
   name: string;

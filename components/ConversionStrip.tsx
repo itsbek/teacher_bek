@@ -4,12 +4,7 @@ import { useRef, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { trackCTAClick } from "@/lib/analytics";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 export function ConversionStrip() {
   const t = useTranslations("cta");

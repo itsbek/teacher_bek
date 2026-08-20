@@ -6,12 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const stats = [
     { value: "2,000+", labelKey: "statsStudents" as const },
@@ -204,7 +199,6 @@ export function VanguardHero() {
                         </span>
                     </motion.h1>
                 </div>
-
 
                 {/* ── BOTTOM GROUP: social proof + action anchored to bottom ── */}
                 <div className="flex flex-col gap-4 shrink-0 px-6">

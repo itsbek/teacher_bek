@@ -5,12 +5,7 @@ import Link from "next/link";
 import { ScrollText } from "./ScrollText";
 import { useLocale, useTranslations } from "next-intl";
 import { BlogPost } from "@/lib/blog-types";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost[] }) {
     const locale = useLocale();

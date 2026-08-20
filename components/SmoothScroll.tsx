@@ -2,8 +2,7 @@
 
 import React, { useEffect } from "react";
 import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 /**
  * SmoothScroll — single Lenis instance, driven by GSAP ticker.
@@ -23,8 +22,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         // Lenis on touch devices overrides that with JS scroll, causing lag.
         // Only run Lenis on pointer-fine (mouse) devices.
         if (window.matchMedia("(pointer: coarse)").matches) return;
-
-        gsap.registerPlugin(ScrollTrigger);
 
         const lenis = new Lenis({
             duration: 1.05,

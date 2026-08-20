@@ -3,11 +3,8 @@
 import { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { getVisitorId } from "@/lib/visitor-id";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface TeachEntry {
   id: string;

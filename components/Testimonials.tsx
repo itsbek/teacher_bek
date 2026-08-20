@@ -4,12 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
 import { Star } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 type TestimonialItem = {
   name: string;

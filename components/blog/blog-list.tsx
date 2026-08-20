@@ -6,12 +6,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { BlogPost, categories, Category } from '@/lib/blog-types';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 interface BlogListProps {
   posts: BlogPost[];
