@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import { useAudio } from "./audio-provider";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const stats = [
     { value: "2,000+", labelKey: "statsStudents" as const },
@@ -30,6 +36,8 @@ export function VanguardHero() {
     const { playSound } = useAudio();
     const reduceMotion  = useReducedMotion();
     const [wordIndex, setWordIndex] = useState(0);
+    const heroRef         = useRef<HTMLElement>(null);
+    const headingBlockRef = useRef<HTMLDivElement>(null);
 
     const scrollToPrograms = () => {
         playSound("click");
@@ -54,8 +62,31 @@ export function VanguardHero() {
         return () => clearInterval(id);
     }, [reduceMotion]);
 
+    // Scroll-driven hero exit — heading drifts up as hero leaves viewport
+    useEffect(() => {
+        if (reduceMotion || !heroRef.current || !headingBlockRef.current) return;
+        if (window.innerWidth < 768) return;
+
+        const ctx = gsap.context(() => {
+            gsap.to(headingBlockRef.current, {
+                y: "-12vh",
+                opacity: 0,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: "center top",
+                    end: "bottom top",
+                    scrub: 0.6,
+                },
+            });
+        }, heroRef);
+
+        return () => ctx.revert();
+    }, [reduceMotion]);
+
     return (
         <header
+            ref={heroRef}
             className="relative w-full flex flex-col bg-background"
             style={{ minHeight: "100dvh", paddingTop: "var(--nav-h)" }}
         >
@@ -295,7 +326,7 @@ export function VanguardHero() {
                 </motion.div>
 
                 {/* Heading + content — bottom anchor */}
-                <div className="flex flex-col gap-4 shrink-0">
+                <div ref={headingBlockRef} className="flex flex-col gap-4 shrink-0">
                     <h1 className="font-display text-foreground overflow-visible">
                         <motion.span
                             initial={reduceMotion ? false : { y: 12 }}
@@ -303,7 +334,7 @@ export function VanguardHero() {
                             transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="block font-bold uppercase"
                             style={{
-                                fontSize: "clamp(5.5rem, 22vw, 14rem)",
+                                fontSize: "clamp(6rem, 25vw, 18rem)",
                                 lineHeight: 0.87,
                                 letterSpacing: "-0.04em",
                             }}

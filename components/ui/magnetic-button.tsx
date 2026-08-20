@@ -23,33 +23,42 @@ export function MagneticButton({
 }: MagneticButtonProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current || !contentRef.current) return;
+    if (rafRef.current !== null) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+    const { clientX, clientY } = e;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!containerRef.current || !contentRef.current) return;
 
-    // Move container with magnetic effect
-    gsap.to(containerRef.current, {
-      x: x * strength,
-      y: y * strength,
-      duration: 0.6,
-      ease: 'power3.out',
-    });
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = clientX - rect.left - rect.width / 2;
+      const y = clientY - rect.top - rect.height / 2;
 
-    // Move content slightly more for depth
-    gsap.to(contentRef.current, {
-      x: x * (strength * 0.5),
-      y: y * (strength * 0.5),
-      duration: 0.4,
-      ease: 'power3.out',
+      gsap.to(containerRef.current, {
+        x: x * strength,
+        y: y * strength,
+        duration: 0.6,
+        ease: 'power3.out',
+      });
+
+      gsap.to(contentRef.current, {
+        x: x * (strength * 0.5),
+        y: y * (strength * 0.5),
+        duration: 0.4,
+        ease: 'power3.out',
+      });
     });
   };
 
   const handleMouseLeave = () => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     if (!containerRef.current || !contentRef.current) return;
 
     gsap.to(containerRef.current, {
@@ -147,24 +156,35 @@ export function MagneticText({
   href
 }: MagneticTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (rafRef.current !== null) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+    const { clientX, clientY } = e;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!containerRef.current) return;
 
-    gsap.to(containerRef.current, {
-      x: x * 0.15,
-      y: y * 0.15,
-      duration: 0.5,
-      ease: 'power2.out',
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = clientX - rect.left - rect.width / 2;
+      const y = clientY - rect.top - rect.height / 2;
+
+      gsap.to(containerRef.current, {
+        x: x * 0.15,
+        y: y * 0.15,
+        duration: 0.5,
+        ease: 'power2.out',
+      });
     });
   };
 
   const handleMouseLeave = () => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     if (!containerRef.current) return;
 
     gsap.to(containerRef.current, {

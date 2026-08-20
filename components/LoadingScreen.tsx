@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
+  const t = useTranslations("loadingScreen");
   const [count, setCount] = useState(0);
   const [isDone, setIsDone] = useState(false);
   const [showName, setShowName] = useState(false);
@@ -92,7 +94,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         className="mt-5 text-xs tracking-[0.3em] uppercase opacity-30"
         style={{ fontFamily: "var(--font-sans)" }}
       >
-        Loading Experience
+        {t("status")}
       </p>
     </div>
   );

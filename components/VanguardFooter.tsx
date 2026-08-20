@@ -36,6 +36,7 @@ export function VanguardFooter() {
     const t             = useTranslations("footer");
     const navT          = useTranslations("nav");
     const inquiryT      = useTranslations("inquiry");
+    const tCommon       = useTranslations("common");
     const { playSound } = useAudio();
 
     const footerRef = useRef<HTMLElement>(null);
@@ -130,7 +131,7 @@ export function VanguardFooter() {
                                     onClick={() => playSound("click")}
                                     style={{ textDecoration: "none" }}
                                     className="group flex items-center justify-between py-1.5 text-background border-b border-background/[0.06] last:border-0">
-                                    <span className="font-mono text-[13px] opacity-55 group-hover:opacity-90 transition-opacity duration-200">{item.label}</span>
+                                    <span className="font-mono text-[13px] opacity-70 group-hover:opacity-95 transition-opacity duration-200">{item.label}</span>
                                     <ArrowUpRight size={9} className="opacity-0 group-hover:opacity-40 transition-opacity duration-200 shrink-0" aria-hidden="true" />
                                 </Link>
                             ))}
@@ -152,7 +153,7 @@ export function VanguardFooter() {
                                     <span className="shrink-0 opacity-40 group-hover:opacity-80 transition-opacity duration-200">
                                         {renderIcon(item.icon)}
                                     </span>
-                                    <span className="font-mono text-[13px] opacity-55 group-hover:opacity-90 transition-opacity duration-200">{item.label}</span>
+                                    <span className="font-mono text-[13px] opacity-70 group-hover:opacity-95 transition-opacity duration-200">{item.label}</span>
                                 </a>
                             ))}
                         </div>
@@ -160,7 +161,7 @@ export function VanguardFooter() {
 
                     {/* Col 3 — Follow + info */}
                     <div className="col-span-2 md:col-span-1">
-                        <p className="font-mono text-[11px] uppercase tracking-[0.25em] opacity-35 mb-4">Follow</p>
+                        <p className="font-mono text-[11px] uppercase tracking-[0.25em] opacity-35 mb-4">{t("follow")}</p>
                         <div className="flex flex-wrap gap-2 mb-6">
                             {socialLinks.map((item) => (
                                 <a key={item.href} href={item.href}
@@ -172,13 +173,13 @@ export function VanguardFooter() {
                                     <span className="opacity-50 group-hover:opacity-90 transition-opacity duration-200">
                                         {renderIcon(item.icon)}
                                     </span>
-                                    <span className="font-mono text-[12px] opacity-55 group-hover:opacity-90 transition-opacity duration-200">{item.label}</span>
+                                    <span className="font-mono text-[12px] opacity-70 group-hover:opacity-95 transition-opacity duration-200">{item.label}</span>
                                 </a>
                             ))}
                         </div>
                         <div className="flex flex-col gap-1">
-                            <p className="font-mono text-[12px] opacity-40">{inquiryT("weekdays")} · 19:30–21:00</p>
-                            <p className="font-mono text-[12px] opacity-40">{inquiryT("weekends")} · 14:00–20:00</p>
+                            <p className="font-mono text-[12px] opacity-40">{inquiryT("weekdays")} · {t("weekdayHours")}</p>
+                            <p className="font-mono text-[12px] opacity-40">{inquiryT("weekends")} · {t("weekendHours")}</p>
                             <p className="font-mono text-[12px] opacity-25 mt-1">{t("location")}, {t("city")}</p>
                         </div>
                     </div>
@@ -190,7 +191,7 @@ export function VanguardFooter() {
             <div className="px-6 md:px-10 lg:px-16 py-4">
                 <div className="flex items-center justify-between flex-wrap gap-3 max-w-[1920px] mx-auto">
                     <p className="font-mono text-[11px] opacity-50 tracking-[0.06em]">
-                        © {new Date().getFullYear()} Teacher Bek · {t("tagline").split(".")[0]}
+                        © {new Date().getFullYear()} {tCommon("siteName")} · {t("tagline").split(".")[0]}
                     </p>
                     <div className="flex items-center gap-4">
                         <Link href={`/${locale}/privacy`} style={{ textDecoration: "none" }}

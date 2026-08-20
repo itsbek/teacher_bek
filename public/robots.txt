@@ -1,0 +1,29 @@
+User-agent: *
+Disallow: /api/
+Disallow: /en/about
+Disallow: /vi/about
+Disallow: /zh/about
+Disallow: /ru/about
+Disallow: /en/services
+Disallow: /vi/services
+Disallow: /zh/services
+Disallow: /ru/services
+Disallow: /en/faq
+Disallow: /vi/faq
+Disallow: /zh/faq
+Disallow: /ru/faq
+
+# AI crawlers — allow indexing for AI Overviews and answer engines
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://teacherbek.com/sitemap.xml

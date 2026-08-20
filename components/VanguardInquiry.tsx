@@ -34,7 +34,9 @@ function LazyMap() {
 }
 import { useTranslations } from "next-intl";
 import { useAudio } from "./audio-provider";
+import { SplitHeading } from "@/components/ui/split-heading";
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { event as trackEvent, trackContactFormSubmit } from "@/lib/analytics";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -70,8 +72,8 @@ function PillGroup({
   onChange: (v: string) => void;
 }) {
   return (
-    <div>
-      <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-60 font-light mb-4">
+    <div role="group" aria-label={label}>
+      <p className="font-sans text-[12px] uppercase tracking-[0.2em] opacity-60 font-light mb-4" aria-hidden="true">
         {label}
       </p>
       <div className="flex flex-wrap gap-2">
@@ -79,6 +81,7 @@ function PillGroup({
           <button
             key={opt}
             type="button"
+            aria-pressed={value === opt}
             onClick={() => onChange(opt)}
             className={`font-sans text-[13px] uppercase tracking-[0.14em] font-light px-4 py-2 border transition-all duration-400 ${
               value === opt
@@ -181,6 +184,8 @@ export function VanguardInquiry() {
   const [statusMsg, setStatusMsg] = useState("");
   const [form, setForm]         = useState<FormState>(INITIAL);
   const [formStartedAt]         = useState(() => Date.now());
+  const formTouched             = useRef(false);
+  const formSubmitted           = useRef(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef  = useRef<HTMLDivElement>(null);
@@ -199,6 +204,32 @@ export function VanguardInquiry() {
 
   const set = (field: keyof FormState, value: string | boolean) =>
     setForm((prev) => ({ ...prev, [field]: value }));
+
+  // Form start: fire once on first interaction
+  const handleFormFirstTouch = () => {
+    if (formTouched.current) return;
+    formTouched.current = true;
+    trackEvent({ action: "form_start", category: "conversion", label: "inquiry" });
+  };
+
+  // Abandonment: fire on page hide if form was touched but not submitted
+  useEffect(() => {
+    const onHide = () => {
+      if (formTouched.current && !formSubmitted.current) {
+        const filledFields = Object.entries(form)
+          .filter(([k, v]) => k !== "consent" && String(v).trim().length > 0)
+          .map(([k]) => k)
+          .join(",");
+        trackEvent({
+          action: "form_abandon",
+          category: "conversion",
+          label: filledFields || "untouched",
+        });
+      }
+    };
+    document.addEventListener("visibilitychange", onHide);
+    return () => document.removeEventListener("visibilitychange", onHide);
+  }, [form]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -229,6 +260,8 @@ export function VanguardInquiry() {
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "Failed to send message.");
 
+      formSubmitted.current = true;
+      trackContactFormSubmit(`inquiry_${form.goal}`);
       setStatus("success");
       setStatusMsg(data?.message || "Message sent.");
       setForm(INITIAL);
@@ -287,7 +320,7 @@ export function VanguardInquiry() {
             className="font-display font-bold uppercase leading-[0.9]"
             style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)", letterSpacing: "-0.05em" }}
           >
-            {t("heading")}
+            <SplitHeading delay={0.1} stagger={0.03}>{t("heading")}</SplitHeading>
           </h2>
         </div>
         <p className="font-sans font-light opacity-55 max-w-xs" style={{ fontSize: "clamp(0.875rem, 1.3vw, 0.95rem)" }}>
@@ -299,7 +332,7 @@ export function VanguardInquiry() {
 
         {/* ── Form ──────────────────────────────────────────────────── */}
         <div ref={formRef} className="lg:col-span-7">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <form onSubmit={handleSubmit} onFocus={handleFormFirstTouch} className="flex flex-col gap-6">
             {/* Honeypot */}
             <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
@@ -355,7 +388,7 @@ export function VanguardInquiry() {
               onChange={(v) => set("message", v)}
               optional
               optionalLabel={t("optional")}
-              rows={2}
+              rows={4}
             />
 
             {/* Consent */}
@@ -366,7 +399,7 @@ export function VanguardInquiry() {
                 onChange={(e) => set("consent", e.target.checked)}
                 className="mt-1 w-4 h-4 border border-foreground/30 bg-transparent cursor-pointer"
               />
-              <span className="font-sans text-[13px] uppercase tracking-[0.18em] opacity-50 font-light group-hover:opacity-80 transition-opacity duration-300">
+              <span className="font-sans text-[13px] uppercase tracking-[0.18em] opacity-65 font-light group-hover:opacity-90 transition-opacity duration-300">
                 {t("consentText")}
               </span>
             </label>
@@ -394,13 +427,15 @@ export function VanguardInquiry() {
               </div>
             </button>
 
-            {/* Status */}
+            {/* Status — aria-live region always rendered so screen readers register it */}
+            <div aria-live="polite" aria-atomic="true">
             {status !== "idle" && (
               <div className={`flex items-center gap-3 font-sans text-[13px] ${status === "success" ? "text-green-600" : "text-red-500"}`}>
                 {status === "success" ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
                 <span>{statusMsg}</span>
               </div>
             )}
+            </div>
           </form>
         </div>
 

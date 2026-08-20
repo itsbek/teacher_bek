@@ -308,7 +308,10 @@
     "locationLabel": "地址",
     "city": "胡志明市",
     "country": "越南",
-    "backToTop": "返回顶部"
+    "backToTop": "返回顶部",
+    "follow": "关注",
+    "weekdayHours": "19:30–21:00",
+    "weekendHours": "14:00–20:00"
   },
   "location": {
     "title": "位于胡志明市",
@@ -589,5 +592,11 @@
     "comingSoon1": "录制你的声音（播客）",
     "comingSoon2": "参与故事接龙",
     "comingSoon3": "与同学问答"
+  },
+  "loadingScreen": {
+    "status": "正在加载"
+  },
+  "common": {
+    "siteName": "Teacher Bek"
   }
 }

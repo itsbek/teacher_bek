@@ -87,31 +87,16 @@ export default async function Home({ params }: Props) {
           {/* §4: METHODOLOGY */}
           <section
             id="methodology"
-            className="section-sm border-t border-current/10 px-6 md:px-12 lg:px-20"
+            className="border-t border-current/10 relative overflow-hidden"
             style={{ scrollMarginTop: 'var(--nav-h)' }}
           >
-            <div className="max-w-[1440px] mx-auto grid grid-cols-12 gap-8 items-start">
-              <div className="col-span-12 lg:col-span-4">
-                <div className="flex items-center gap-4 mb-5">
-                  <span className="w-8 h-[1px] bg-current opacity-30 shrink-0" />
-                  <span className="text-[13px] uppercase tracking-[0.22em] opacity-60">[ 04 &mdash; {t('sectionLabel')} ]</span>
-                </div>
-                <h3 className="font-display text-4xl md:text-6xl leading-[0.9] headline-balance">
-                  {t('heading')} <span className="italic">{t('headingItalic')}</span>
-                </h3>
-              </div>
-              <MethodologySteps>
-                {methodSteps.map((item) => (
-                  <article key={item.id} className="bg-card p-8 md:p-10 border border-current/10">
-                    <p className="text-xs uppercase tracking-[0.2em] opacity-60 mb-4">
-                      {t('stepLabel')} {item.id}
-                    </p>
-                    <h4 className="font-display text-3xl mb-3">{item.title}</h4>
-                    <p className="opacity-70 leading-relaxed">{item.description}</p>
-                  </article>
-                ))}
-              </MethodologySteps>
-            </div>
+            <MethodologySteps
+              heading={t('heading')}
+              headingItalic={t('headingItalic')}
+              sectionLabel={t('sectionLabel')}
+              stepLabel={t('stepLabel')}
+              steps={methodSteps}
+            />
           </section>
 
           {/* §5: CREDENTIALS */}

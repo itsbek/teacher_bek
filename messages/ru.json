@@ -317,7 +317,10 @@
     "locationLabel": "Местоположение",
     "city": "Хошимин",
     "country": "Вьетнам",
-    "backToTop": "Наверх"
+    "backToTop": "Наверх",
+    "follow": "Подписаться",
+    "weekdayHours": "19:30–21:00",
+    "weekendHours": "14:00–20:00"
   },
   "location": {
     "title": "В Хошимине",
@@ -598,5 +601,11 @@
     "comingSoon1": "Записать голос (подкаст)",
     "comingSoon2": "Присоединиться к цепочке историй",
     "comingSoon3": "Вопросы и ответы с однокурсниками"
+  },
+  "loadingScreen": {
+    "status": "Загрузка"
+  },
+  "common": {
+    "siteName": "Teacher Bek"
   }
 }

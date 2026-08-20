@@ -10,6 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useAppStore, type FontSize } from "@/lib/store";
 import { useAudio } from "./audio-provider";
 import { Volume2, VolumeX } from "lucide-react";
+import { trackLanguageSwitch } from "@/lib/analytics";
 
 const LANGUAGES = [
     { code: "en", label: "EN", name: "English" },
@@ -27,7 +28,8 @@ const FONT_SIZES: { size: FontSize; px: number; label: string }[] = [
 const SECTION_IDS = ["hero", "about", "programs", "methodology", "credentials", "reads", "faq", "contact"] as const;
 
 export function VanguardNavigation() {
-    const t = useTranslations("nav");
+    const t       = useTranslations("nav");
+    const tCommon = useTranslations("common");
     const locale = useLocale();
     const pathname = usePathname();
     const { fontSize, setFontSize } = useAppStore();
@@ -154,7 +156,7 @@ export function VanguardNavigation() {
                     top: 0,
                     left: 0,
                     right: 0,
-                    zIndex: 10000,
+                    zIndex: 1000,
                     pointerEvents: "none",
                     backdropFilter: "blur(16px) saturate(180%)",
                     WebkitBackdropFilter: "blur(16px) saturate(180%)",
@@ -176,7 +178,7 @@ export function VanguardNavigation() {
                     style={{ pointerEvents: "auto", color: "inherit" }}
                     className="font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.04em] leading-none hover:opacity-70 transition-opacity duration-300"
                 >
-                    Teacher Bek
+                    {tCommon("siteName")}
                 </Link>
 
                 {/* Desktop Nav + Utilities — all in one row, no overlap */}
@@ -340,7 +342,7 @@ export function VanguardNavigation() {
                             href={localizedPath(lang.code)}
                             role="option"
                             aria-selected={locale === lang.code}
-                            onClick={() => setLangOpen(false)}
+                            onClick={() => { setLangOpen(false); if (lang.code !== locale) trackLanguageSwitch(locale, lang.code); }}
                             style={{
                                 display: "flex",
                                 alignItems: "center",

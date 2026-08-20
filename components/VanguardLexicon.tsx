@@ -24,7 +24,9 @@ export function VanguardLexicon() {
   const sectionRef = useRef<HTMLElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
   const bannerTextRef = useRef<HTMLDivElement>(null);
+  const pinWrapRef = useRef<HTMLDivElement>(null);
   const cardsGridRef = useRef<HTMLDivElement>(null);
+  const progressSegRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const ghostRefs = useRef<(HTMLDivElement | null)[]>([]);
   const priceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const bottomCtaRef = useRef<HTMLDivElement>(null);
@@ -65,26 +67,78 @@ export function VanguardLexicon() {
         });
       }
 
-      // Program cards clip-path reveal
+      // Program cards — dramatic 3D entrance stagger
       const cards = cardsGridRef.current?.children;
       if (cards && cards.length > 0) {
         Array.from(cards).forEach((card, i) => {
+          const delay = isMobile ? 0 : i * 0.14;
           gsap.fromTo(
             card,
-            { clipPath: "inset(0 0 100% 0)", opacity: 0 },
             {
-              clipPath: "inset(0 0 0% 0)",
+              opacity: 0,
+              y: isMobile ? 40 : 60,
+              rotateX: isMobile ? 0 : 8,
+              scale: 0.94,
+              transformOrigin: "center bottom",
+            },
+            {
               opacity: 1,
-              duration: 0.8,
-              delay: isMobile ? 0 : i * 0.08,
-              ease: "power3.inOut",
+              y: 0,
+              rotateX: 0,
+              scale: 1,
+              duration: isMobile ? 0.7 : 1.0,
+              delay,
+              ease: "power3.out",
               scrollTrigger: {
                 trigger: card,
-                start: isMobile ? "top 98%" : "top 85%",
+                start: isMobile ? "top 98%" : "top 88%",
+                once: true,
               },
             }
           );
         });
+      }
+
+      // Card grid perspective for 3D effect
+      if (cardsGridRef.current && !isMobile) {
+        gsap.set(cardsGridRef.current, { perspective: 1200, perspectiveOrigin: "50% 80%" });
+      }
+
+      // Pinned showcase — desktop only
+      if (!isMobile && pinWrapRef.current && cardsGridRef.current) {
+        const cards = Array.from(cardsGridRef.current.children) as HTMLElement[];
+        const segs = progressSegRefs.current.filter(Boolean) as HTMLSpanElement[];
+        const PIN_DISTANCE = 560;
+
+        // Initialise dimmed state (applied after entrance anim via delay)
+        gsap.delayedCall(1.2, () => {
+          cards.forEach((c, i) => {
+            if (i > 0) gsap.set(c, { opacity: 0.45 });
+          });
+          if (segs[0]) gsap.set(segs[0], { scaleX: 1 });
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: pinWrapRef.current,
+            pin: true,
+            start: "top top+=72",
+            end: `+=${PIN_DISTANCE}`,
+            scrub: 1,
+            anticipatePin: 1,
+          },
+        });
+
+        // Card 0 → 1 transition at 40% progress
+        tl.to(cards[0], { opacity: 0.45, ease: "power1.inOut" }, 0.3)
+          .to(cards[1], { opacity: 1,    ease: "power1.inOut" }, 0.3)
+          .to(segs[0],  { scaleX: 1,     ease: "none"         }, 0)
+          .to(segs[1],  { scaleX: 1,     ease: "none"         }, 0.35);
+
+        // Card 1 → 2 transition at 70% progress
+        tl.to(cards[1], { opacity: 0.45, ease: "power1.inOut" }, 0.65)
+          .to(cards[2], { opacity: 1,    ease: "power1.inOut" }, 0.65)
+          .to(segs[2],  { scaleX: 1,     ease: "none"         }, 0.68);
       }
 
       // Ghost ID counter - count up from 00 to value
@@ -191,8 +245,8 @@ export function VanguardLexicon() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="px-6 md:px-10 lg:px-16 py-[clamp(3.5rem,7vw,6rem)]">
+      {/* Main Content — pinWrapRef wraps for GSAP pin on desktop */}
+      <div ref={pinWrapRef} className="px-6 md:px-10 lg:px-16 py-[clamp(3.5rem,7vw,6rem)]">
         <div className="max-w-[1920px] mx-auto">
           {/* Section Header */}
           <div className="grid grid-cols-12 gap-8 mb-14 lg:mb-20">
@@ -222,11 +276,25 @@ export function VanguardLexicon() {
             </div>
           </div>
 
+          {/* Scroll-progress bar — desktop only, hidden on mobile */}
+          <div className="hidden md:flex items-center gap-1 mb-5" aria-hidden="true">
+            {PROGRAM_KEYS.map((key, i) => (
+              <span key={key} className="flex-1 h-[2px] bg-foreground/10 relative overflow-hidden">
+                <span
+                  ref={(el) => { progressSegRefs.current[i] = el; }}
+                  className="absolute inset-0 bg-foreground/50 origin-left"
+                  style={{ transform: "scaleX(0)" }}
+                />
+              </span>
+            ))}
+          </div>
+
           {/* Program Grid — 3 equal editorial columns */}
           <div id="programs" ref={cardsGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/10">
             {programs.map((program, index) => (
               <div
                 key={program.id}
+                data-cursor-label="VIEW"
                 className="group relative flex flex-col bg-background p-7 lg:p-10 min-h-0 md:min-h-[480px] hover:bg-foreground/[0.02] transition-colors duration-700"
               >
                 {/* Ghost ID */}

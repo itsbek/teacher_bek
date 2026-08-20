@@ -323,7 +323,10 @@
     "locationLabel": "Location",
     "city": "Ho Chi Minh City",
     "country": "Vietnam",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "follow": "Follow",
+    "weekdayHours": "19:30–21:00",
+    "weekendHours": "14:00–20:00"
   },
   "location": {
     "title": "Based in Ho Chi Minh City",
@@ -605,5 +608,11 @@
     "comingSoon1": "Record your voice (podcast)",
     "comingSoon2": "Join the story chain",
     "comingSoon3": "Q&A with classmates"
+  },
+  "loadingScreen": {
+    "status": "Loading Experience"
+  },
+  "common": {
+    "siteName": "Teacher Bek"
   }
 }

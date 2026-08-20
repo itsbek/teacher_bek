@@ -119,6 +119,7 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                                 <Link
                                     key={article.slug}
                                     href={`/${locale}/blog/${article.slug}`}
+                                    data-cursor-label="READ"
                                     className="group relative h-full py-8 lg:py-10 border-b border-foreground/15 transition-all duration-500 hover:bg-foreground/[0.04] hover:pl-2 block"
                                     onMouseEnter={() => { setHoveredIndex(index); throttledHoverSound(); }}
                                     onMouseLeave={() => setHoveredIndex(null)}

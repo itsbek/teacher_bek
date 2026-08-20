@@ -317,7 +317,10 @@
     "locationLabel": "Địa Điểm",
     "city": "TP. Hồ Chí Minh",
     "country": "Việt Nam",
-    "backToTop": "Về đầu trang"
+    "backToTop": "Về đầu trang",
+    "follow": "Theo dõi",
+    "weekdayHours": "19:30–21:00",
+    "weekendHours": "14:00–20:00"
   },
   "location": {
     "title": "Tại Thành phố Hồ Chí Minh",
@@ -599,5 +602,11 @@
     "comingSoon1": "Ghi âm giọng nói (podcast)",
     "comingSoon2": "Tham gia chuỗi câu chuyện",
     "comingSoon3": "Hỏi đáp với bạn cùng lớp"
+  },
+  "loadingScreen": {
+    "status": "Đang tải trải nghiệm"
+  },
+  "common": {
+    "siteName": "Teacher Bek"
   }
 }

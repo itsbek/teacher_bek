@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 const STORAGE_KEY = "exit-intent-dismissed-at";
@@ -13,6 +13,8 @@ export function ExitIntentModal() {
   const [isOpen, setIsOpen] = useState(false);
   const dismissedRef        = useRef(false);
   const removeListenerRef   = useRef<(() => void) | undefined>(undefined);
+  const dialogRef           = useRef<HTMLDivElement>(null);
+  const previousFocusRef    = useRef<HTMLElement | null>(null);
 
   const shouldShow = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -41,18 +43,60 @@ export function ExitIntentModal() {
     };
   }, [shouldShow]);
 
-  const close = () => {
+  const close = useCallback(() => {
     dismissedRef.current = true;
     removeListenerRef.current?.();
     localStorage.setItem(STORAGE_KEY, String(Date.now()));
     setIsOpen(false);
-  };
+  }, []);
+
+  // Focus trap + Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    const firstFocusable = dialog.querySelector<HTMLElement>(focusableSelector);
+    firstFocusable?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key !== "Tab") return;
+
+      const focusables = dialog.querySelectorAll<HTMLElement>(focusableSelector);
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocusRef.current?.focus();
+    };
+  }, [isOpen, close]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[120] bg-black/80 backdrop-blur-lg p-4 flex items-center justify-center">
-      <div className="w-full max-w-xl border border-white/8 bg-[#0a0a0a] text-white p-10 md:p-14 shadow-2xl relative overflow-hidden">
+    <div className="fixed inset-0 z-[1200] bg-black/80 backdrop-blur-lg p-4 flex items-center justify-center">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="exit-intent-title"
+        className="w-full max-w-xl border border-white/8 bg-[#0a0a0a] text-white p-10 md:p-14 shadow-2xl relative overflow-hidden"
+      >
         {/* Dot grid */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
@@ -67,7 +111,7 @@ export function ExitIntentModal() {
           <p className="text-[13px] tracking-[0.25em] font-medium uppercase text-white/40 mb-6">
             [ {t("tag")} ]
           </p>
-          <h2 className="font-display text-4xl md:text-5xl tracking-tighter mb-5 leading-[0.95]">
+          <h2 id="exit-intent-title" className="font-display text-4xl md:text-5xl tracking-tighter mb-5 leading-[0.95]">
             {t("heading")}
           </h2>
           <p className="text-white/50 text-lg mb-10 font-light leading-relaxed">
