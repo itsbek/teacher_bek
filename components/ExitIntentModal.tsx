@@ -35,7 +35,7 @@ export function ExitIntentModal() {
       };
       document.addEventListener("mouseout", onMouseOut);
       removeListenerRef.current = () => document.removeEventListener("mouseout", onMouseOut);
-    }, 2_000);
+    }, 30_000);
 
     return () => {
       clearTimeout(activateTimer);
