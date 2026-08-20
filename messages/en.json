@@ -344,7 +344,8 @@
     "readyTitle": "One free week to see if it's right.",
     "readyDesc": "Tell me your level and goal. I'll tell you which program fits — and whether I can help.",
     "requestCta": "Book a Free Week",
-    "pricingNote": "Classes from 1,990,000 VND / month (first month trial rate)",
+    "pricingNote": "Pricing is tailored to each program and trial rate. Unlock it in 10 seconds — no obligation.",
+    "pricingCta": "See Pricing",
     "scheduleNote": "Weekdays: 7:30 PM - 9:00 PM · Weekends: 2:00 PM - 8:00 PM",
     "formatNote": "Group classes · Max 10 students",
     "youngLearners": {
@@ -398,6 +399,23 @@
       "outcomes_2": "Meeting and negotiation language",
       "outcomes_3": "Client communication skills"
     }
+  },
+  "pricingGate": {
+    "eyebrow": "Unlock Pricing",
+    "heading": "See pricing in 10 seconds.",
+    "body": "Leave your name and phone number and pricing for all programs unlocks instantly — plus I'll reach out on Zalo to help you pick the right fit.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your full name",
+    "phoneLabel": "Phone / Zalo",
+    "phonePlaceholder": "+84 ...",
+    "submitButton": "Unlock Pricing",
+    "submittingButton": "Unlocking...",
+    "privacyNote": "Used only to send you pricing and follow up about lessons. No spam.",
+    "successEyebrow": "Pricing Unlocked",
+    "successHeading": "Here's what each program costs.",
+    "successBody": "All programs include a free trial week — no payment required, no obligation.",
+    "zaloCta": "Book Free Trial on Zalo",
+    "closeLabel": "Close"
   },
   "methodology": {
     "sectionLabel": "How You Learn",

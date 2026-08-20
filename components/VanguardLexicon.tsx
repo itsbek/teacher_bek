@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { ArrowUpRight } from "lucide-react";
+import React, { useRef, useEffect, useState } from "react";
+import { ArrowUpRight, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
 import { ScrollText } from "./ScrollText";
 import { trackCTAClick } from "@/lib/analytics";
+import { PricingGateModal } from "./PricingGateModal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -20,6 +21,7 @@ const OUTCOMES_COUNT = 4;
 export function VanguardLexicon() {
   const t = useTranslations("programs");
   const reduceMotion = useReducedMotion();
+  const [pricingOpen, setPricingOpen] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +30,6 @@ export function VanguardLexicon() {
   const cardsGridRef = useRef<HTMLDivElement>(null);
   const progressSegRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const ghostRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const priceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const bottomCtaRef = useRef<HTMLDivElement>(null);
 
   const programs = PROGRAM_KEYS.map((key, i) => ({
@@ -207,29 +208,21 @@ export function VanguardLexicon() {
               <span className="text-[13px] uppercase tracking-[0.22em] opacity-60 mb-5 block">
                 {t("sectionLabel")}
               </span>
-              {/* Split pricingNote: main price large, parenthetical qualifier small */}
-              {(() => {
-                const raw = t("pricingNote");
-                const idx = raw.lastIndexOf("(");
-                const main = idx > 0 ? raw.slice(0, idx).trim() : raw;
-                const qualifier = idx > 0 ? raw.slice(idx) : "";
-                return (
-                  <div>
-                    <div
-                      className="font-display font-bold leading-[0.88] tracking-tight"
-                      style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}
-                    >
-                      {main}
-                    </div>
-                    {qualifier && (
-                      <p className="font-sans font-light opacity-40 mt-3 leading-snug"
-                        style={{ fontSize: "clamp(0.8rem, 1.1vw, 0.9rem)" }}>
-                        {qualifier}
-                      </p>
-                    )}
-                  </div>
-                );
-              })()}
+              <div
+                className="font-display font-bold leading-[0.94] tracking-tight max-w-2xl"
+                style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)" }}
+              >
+                {t("pricingNote")}
+              </div>
+              <button
+                type="button"
+                onClick={() => { trackCTAClick("lexicon", "pricing_gate_banner"); setPricingOpen(true); }}
+                className="group mt-6 inline-flex items-center gap-3 px-6 py-3.5 bg-background text-foreground font-mono text-[12px] uppercase tracking-[0.2em] hover:opacity-90 transition-opacity duration-300"
+              >
+                <Lock size={12} aria-hidden="true" />
+                {t("pricingCta")}
+                <ArrowUpRight size={12} aria-hidden="true" />
+              </button>
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-4 font-mono text-sm opacity-60">
@@ -327,18 +320,9 @@ export function VanguardLexicon() {
                     </div>
                   </div>
 
-                  {/* Price block */}
-                  <div
-                    ref={(el) => { priceRefs.current[index] = el; }}
-                    className="border border-foreground/15 px-5 py-4 mb-6"
-                  >
-                    <div
-                      className="font-display font-bold leading-none tracking-tight text-foreground mb-3"
-                      style={{ fontSize: "clamp(1.5rem,2.8vw,2rem)" }}
-                    >
-                      {program.price}
-                    </div>
-                    <div className="flex flex-col gap-1.5 pt-3 border-t border-foreground/10">
+                  {/* Schedule block — pricing lives behind the gate, not on the card */}
+                  <div className="border border-foreground/15 px-5 py-4 mb-6">
+                    <div className="flex flex-col gap-1.5">
                       <p className="font-mono text-[13px] text-foreground/50 leading-snug">
                         {program.schedule}
                       </p>
@@ -346,6 +330,17 @@ export function VanguardLexicon() {
                         {program.format}
                       </p>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => { trackCTAClick("lexicon", `pricing_gate_${program.id}`); setPricingOpen(true); }}
+                      className="group mt-3 pt-3 border-t border-foreground/10 w-full flex items-center justify-between font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/45 hover:text-foreground transition-colors duration-300"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Lock size={11} aria-hidden="true" />
+                        {t("pricingCta")}
+                      </span>
+                      <ArrowUpRight size={11} aria-hidden="true" />
+                    </button>
                   </div>
 
                   {/* Outcomes */}
@@ -406,6 +401,12 @@ export function VanguardLexicon() {
           </div>
         </div>
       </div>
+
+      <PricingGateModal
+        isOpen={pricingOpen}
+        onClose={() => setPricingOpen(false)}
+        programs={programs.map(({ key, title, price }) => ({ key, title, price }))}
+      />
     </section>
   );
 }

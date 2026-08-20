@@ -328,6 +328,23 @@
     "districts": "Cũng dạy tại Gò Vấp & Bình Thạnh",
     "features": "Camera • Thoải mái • Chuyên nghiệp"
   },
+  "pricingGate": {
+    "eyebrow": "Xem Học Phí",
+    "heading": "Xem học phí trong 10 giây.",
+    "body": "Để lại tên và số điện thoại, học phí tất cả chương trình sẽ hiện ra ngay — tôi cũng sẽ nhắn Zalo để giúp bạn chọn chương trình phù hợp.",
+    "nameLabel": "Họ và tên",
+    "namePlaceholder": "Họ và tên đầy đủ",
+    "phoneLabel": "Điện thoại / Zalo",
+    "phonePlaceholder": "+84 ...",
+    "submitButton": "Xem Học Phí",
+    "submittingButton": "Đang mở...",
+    "privacyNote": "Chỉ dùng để gửi học phí và liên hệ về lớp học. Không spam.",
+    "successEyebrow": "Đã Mở Khóa",
+    "successHeading": "Học phí từng chương trình.",
+    "successBody": "Tất cả chương trình đều có 1 tuần học thử miễn phí — không cần thanh toán, không ràng buộc.",
+    "zaloCta": "Đặt Lịch Học Thử Qua Zalo",
+    "closeLabel": "Đóng"
+  },
   "methodology": {
     "sectionLabel": "Cách Bạn Học",
     "heading": "Luyện tập có chủ đích,",
@@ -412,7 +429,8 @@
     "readyTitle": "Một tuần học thử để xem có phù hợp không.",
     "readyDesc": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết chương trình nào phù hợp — và liệu tôi có thể giúp được không.",
     "requestCta": "Đặt Lịch 1 Tuần Miễn Phí",
-    "pricingNote": "Học phí từ 1.990.000 VND / tháng (mức giá học thử tháng đầu tiên)",
+    "pricingNote": "Học phí được tùy chỉnh theo từng chương trình và mức giá học thử. Mở khóa chỉ trong 10 giây — không ràng buộc.",
+    "pricingCta": "Xem Học Phí",
     "scheduleNote": "Ngày thường: 19:30 - 21:00 · Cuối tuần: 14:00 - 20:00",
     "formatNote": "Lớp học nhóm · Tối đa 10 học viên",
     "youngLearners": {

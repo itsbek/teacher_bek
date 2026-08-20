@@ -319,6 +319,23 @@
     "districts": "也在Go Vap和Binh Thanh授课",
     "features": "监控 • 舒适 • 专业"
   },
+  "pricingGate": {
+    "eyebrow": "查看学费",
+    "heading": "10秒查看学费。",
+    "body": "留下姓名和电话，即可立即查看所有课程的学费 — 我也会通过 Zalo 联系你，帮你选择合适的课程。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "请输入姓名",
+    "phoneLabel": "电话 / Zalo",
+    "phonePlaceholder": "+84 ...",
+    "submitButton": "查看学费",
+    "submittingButton": "正在解锁...",
+    "privacyNote": "仅用于发送学费信息和跟进课程咨询，不会发送垃圾信息。",
+    "successEyebrow": "已解锁",
+    "successHeading": "各课程学费如下。",
+    "successBody": "所有课程均包含一周免费试学 — 无需付款，无需承诺。",
+    "zaloCta": "通过 Zalo 预约试学",
+    "closeLabel": "关闭"
+  },
   "methodology": {
     "sectionLabel": "学习路径",
     "heading": "有目的的练习，",
@@ -403,7 +420,8 @@
     "readyTitle": "一周试学，看看是否适合。",
     "readyDesc": "告诉我你的水平和目标。我会告诉你哪个课程适合——以及我能否帮到你。",
     "requestCta": "预约免费一周试学",
-    "pricingNote": "课程起价 1,990,000 越南盾/月（首月试听价）",
+    "pricingNote": "学费根据课程和试学价格量身定制。10秒解锁 — 无需承诺。",
+    "pricingCta": "查看学费",
     "scheduleNote": "工作日：晚上 7:30 - 9:00 · 周末：下午 2:00 - 晚上 8:00",
     "formatNote": "小组课程 · 最多10名学生",
     "youngLearners": {
