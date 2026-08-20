@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { initClarity, GA_MEASUREMENT_ID, trackScrollDepth, event as trackEvent } from '@/lib/analytics';
+import { GA_MEASUREMENT_ID, trackScrollDepth, event as trackEvent } from '@/lib/analytics';
 import { usePathname } from 'next/navigation';
 import { useAppStore, type FontSize } from '@/lib/store';
 
@@ -37,8 +37,6 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   // Initialize analytics
   useEffect(() => {
-    initClarity();
-
     if (typeof window !== 'undefined' && window.gtag && GA_MEASUREMENT_ID) {
       window.gtag('config', GA_MEASUREMENT_ID, {
         page_path: pathname,

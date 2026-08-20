@@ -79,19 +79,5 @@ export const trackNewsletterSubscribe = (subscriberType: string) => {
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
-    clarity?: (...args: any[]) => void;
   }
 }
-
-// Microsoft Clarity
-export const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || '';
-
-export const initClarity = () => {
-  if (typeof window !== 'undefined' && CLARITY_PROJECT_ID && !window.clarity) {
-    (function(c: any,l: any,a: any,r: any,i: any,t: any,y: any){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", CLARITY_PROJECT_ID, null, null);
-  }
-};

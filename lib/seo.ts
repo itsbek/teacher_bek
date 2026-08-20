@@ -240,6 +240,7 @@ export function buildPageMetadata({
       type: "website",
       locale: ogLocale ?? "en_US",
       url: `${SITE_URL}${fullPath}`,
+      siteName: "Teacher Bek",
       title,
       description,
       images: [

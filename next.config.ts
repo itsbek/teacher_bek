@@ -44,11 +44,11 @@ const nextConfig: NextConfig = {
               "default-src 'self'",
               // 'unsafe-eval' is required in dev mode for Next.js webpack HMR and source maps.
               // It is intentionally omitted from production builds.
-              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms`,
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://*.basemaps.cartocdn.com https://img.youtube.com",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms",
+              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com",
               "frame-src https://www.google.com",
             ].join('; '),
           },

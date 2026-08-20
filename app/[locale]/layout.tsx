@@ -224,6 +224,13 @@ export default async function LocaleLayout({
       </head>
 
       <body className="font-sans antialiased" suppressHydrationWarning>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:bg-foreground focus:text-background focus:px-5 focus:py-3 font-sans text-[13px] uppercase tracking-[0.18em]"
+        >
+          Skip to main content
+        </a>
+
         {GA_ID && (
           <>
             <Script
