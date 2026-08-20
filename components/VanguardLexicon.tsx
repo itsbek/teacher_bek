@@ -287,7 +287,6 @@ export function VanguardLexicon() {
             {programs.map((program, index) => (
               <div
                 key={program.id}
-                data-cursor-label="VIEW"
                 className="group relative flex flex-col bg-background p-7 lg:p-10 min-h-0 md:min-h-[480px] hover:bg-foreground/[0.02] transition-colors duration-700"
               >
                 {/* Ghost ID */}

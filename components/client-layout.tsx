@@ -1,16 +1,12 @@
 "use client";
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { initClarity, GA_MEASUREMENT_ID, trackScrollDepth, event as trackEvent } from '@/lib/analytics';
 import { usePathname } from 'next/navigation';
-import { AudioProvider } from '@/components/audio-provider';
 import { useAppStore, type FontSize } from '@/lib/store';
-import type Lenis from 'lenis';
 
 /* Lazy-load non-critical UI — keeps main bundle lean */
-const VanguardCursor     = dynamic(() => import('@/components/VanguardCursor').then(m => ({ default: m.VanguardCursor })));
-const LoadingScreen      = dynamic(() => import('@/components/LoadingScreen').then(m => ({ default: m.LoadingScreen })));
 const ExitIntentModal    = dynamic(() => import('@/components/ExitIntentModal').then(m => ({ default: m.ExitIntentModal })));
 const LanguageSuggestion = dynamic(() => import('@/components/LanguageSuggestion').then(m => ({ default: m.LanguageSuggestion })));
 const ZaloFloat          = dynamic(() => import('@/components/ZaloFloat').then(m => ({ default: m.ZaloFloat })));
@@ -20,22 +16,6 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const themeMode = useAppStore((state) => state.themeMode);
   const { fontSize, setFontSize } = useAppStore();
-  const [shouldUseEnhancedCursor, setShouldUseEnhancedCursor] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasLoadedBefore, setHasLoadedBefore] = useState(false);
-  // lenisRef kept only to satisfy the type reference for anchor navigation
-  const lenisRef = useRef<InstanceType<typeof Lenis> | null>(null);
-
-  // Check if user has already seen loading screen in this session
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const seen = sessionStorage.getItem('loading-seen');
-      if (seen) {
-        setIsLoading(false);
-        setHasLoadedBefore(true);
-      }
-    }
-  }, []);
 
   // Initialise font size from localStorage on first mount
   useEffect(() => {
@@ -107,34 +87,13 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
     return () => obs.disconnect();
   }, [pathname]);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const allowCursor =
-      window.matchMedia('(pointer: fine)').matches &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setShouldUseEnhancedCursor(allowCursor);
-  }, []);
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('loading-seen', '1');
-    }
-  };
-
   return (
     <div className={themeMode === 'inverted' ? 'lie dark' : ''}>
-      <AudioProvider>
-        {isLoading && !hasLoadedBefore && (
-          <LoadingScreen onComplete={handleLoadingComplete} />
-        )}
-        {shouldUseEnhancedCursor ? <VanguardCursor /> : null}
-        <TransitionCurtain />
-        <ExitIntentModal />
-        <LanguageSuggestion />
-        <ZaloFloat />
-        {children}
-      </AudioProvider>
+      <TransitionCurtain />
+      <ExitIntentModal />
+      <LanguageSuggestion />
+      <ZaloFloat />
+      {children}
     </div>
   );
 }

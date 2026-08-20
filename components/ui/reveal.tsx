@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useAudio } from "@/components/audio-provider";
 
 interface RevealProps {
     children: React.ReactNode;
@@ -14,13 +13,6 @@ interface RevealProps {
 export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 0.8 }: RevealProps) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-15% 0px" });
-    const { playSound } = useAudio();
-
-    useEffect(() => {
-        if (isInView) {
-            playSound("reveal");
-        }
-    }, [isInView, playSound]);
 
     return (
         <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>

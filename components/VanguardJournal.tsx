@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ScrollText } from "./ScrollText";
-import { useAudio } from "./audio-provider";
 import { useLocale, useTranslations } from "next-intl";
 import { BlogPost } from "@/lib/blog-types";
 import gsap from "gsap";
@@ -17,21 +16,11 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
     const locale = useLocale();
     const t = useTranslations("journal");
     const articles = initialArticles;
-    const { playSound } = useAudio();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const lastHoverSound = useRef(0);
 
     const sectionRef = useRef<HTMLElement>(null);
     const rowsRef = useRef<HTMLDivElement>(null);
     const viewAllRef = useRef<HTMLDivElement>(null);
-
-    const throttledHoverSound = () => {
-        const now = Date.now();
-        if (now - lastHoverSound.current > 400) {
-            lastHoverSound.current = now;
-            playSound('hover');
-        }
-    };
 
     useEffect(() => {
         if (!sectionRef.current) return;
@@ -101,8 +90,6 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                             <div className="col-span-12 lg:col-span-4 lg:flex lg:justify-end">
                                 <Link
                                     href={`/${locale}/blog`}
-                                    onMouseEnter={() => playSound('hover')}
-                                    onClick={() => playSound('click')}
                                     className="group inline-flex items-center gap-3 px-6 py-4 border border-foreground/20 hover:border-foreground/60 hover:bg-foreground hover:text-background transition-all duration-300"
                                 >
                                     <span className="font-mono text-[11px] uppercase tracking-[0.2em]">{t("visitJournal")}</span>
@@ -119,11 +106,9 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                                 <Link
                                     key={article.slug}
                                     href={`/${locale}/blog/${article.slug}`}
-                                    data-cursor-label="READ"
                                     className="group relative h-full py-8 lg:py-10 border-b border-foreground/15 transition-all duration-500 hover:bg-foreground/[0.04] hover:pl-2 block"
-                                    onMouseEnter={() => { setHoveredIndex(index); throttledHoverSound(); }}
+                                    onMouseEnter={() => setHoveredIndex(index)}
                                     onMouseLeave={() => setHoveredIndex(null)}
-                                    onClick={() => playSound('click')}
                                 >
                                     <div className="grid grid-cols-12 gap-8 items-center h-full relative z-10">
                                         <div className="col-span-2 lg:col-span-1 hidden md:flex flex-col">
@@ -152,8 +137,6 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                         <div ref={viewAllRef} className="mt-12 flex justify-center">
                             <Link
                                 href={`/${locale}/blog`}
-                                onMouseEnter={() => playSound('hover')}
-                                onClick={() => playSound('click')}
                                 className="vanguard-magnetic group flex flex-col items-center gap-4"
                             >
                                 <span className="type-label opacity-75 group-hover:opacity-100 transition-opacity">{t("viewAll")}</span>

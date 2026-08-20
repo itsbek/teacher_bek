@@ -8,8 +8,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAppStore, type FontSize } from "@/lib/store";
-import { useAudio } from "./audio-provider";
-import { Volume2, VolumeX } from "lucide-react";
 import { trackLanguageSwitch } from "@/lib/analytics";
 
 const LANGUAGES = [
@@ -33,8 +31,6 @@ export function VanguardNavigation() {
     const locale = useLocale();
     const pathname = usePathname();
     const { fontSize, setFontSize } = useAppStore();
-
-    const { isMuted, toggleMute } = useAudio();
 
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>("");
@@ -279,28 +275,6 @@ export function VanguardNavigation() {
 
                     {/* Theme toggle */}
                     <ThemeToggle />
-
-                    {/* Mute toggle */}
-                    <button
-                        onClick={toggleMute}
-                        aria-label={isMuted ? "Unmute sounds" : "Mute sounds"}
-                        aria-pressed={isMuted}
-                        style={{
-                            background: "none",
-                            border: "none",
-                            cursor: "pointer",
-                            color: "inherit",
-                            opacity: isMuted ? 0.35 : 0.7,
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "4px",
-                            transition: "opacity 0.2s",
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
-                        onMouseLeave={(e) => (e.currentTarget.style.opacity = isMuted ? "0.35" : "0.7")}
-                    >
-                        {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-                    </button>
                 </div>
 
                 {/* Mobile controls */}
@@ -479,26 +453,9 @@ export function VanguardNavigation() {
                                 </div>
 
                                 <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={toggleMute}
-                                        aria-label={isMuted ? "Unmute sounds" : "Mute sounds"}
-                                        aria-pressed={isMuted}
-                                        style={{
-                                            background: "none",
-                                            border: "none",
-                                            cursor: "pointer",
-                                            color: "hsl(var(--background))",
-                                            opacity: isMuted ? 0.3 : 0.6,
-                                            display: "flex",
-                                            alignItems: "center",
-                                            padding: "4px",
-                                        }}
-                                    >
-                                        {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-                                    </button>
                                     <ThemeToggle />
                                     <p className="font-sans text-[12px] uppercase tracking-[0.15em] opacity-20 text-background">
-                                        © 2025
+                                        © {new Date().getFullYear()}
                                     </p>
                                 </div>
                             </motion.div>

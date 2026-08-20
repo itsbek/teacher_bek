@@ -4,7 +4,6 @@ import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useAudio } from "./audio-provider";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -37,7 +36,6 @@ export function VanguardFooter() {
     const navT          = useTranslations("nav");
     const inquiryT      = useTranslations("inquiry");
     const tCommon       = useTranslations("common");
-    const { playSound } = useAudio();
 
     const footerRef = useRef<HTMLElement>(null);
     const linksRef  = useRef<HTMLDivElement>(null);
@@ -108,8 +106,6 @@ export function VanguardFooter() {
                         {t("ctaHeading")}
                     </h2>
                     <a href="mailto:hello@teacherbek.com"
-                        onMouseEnter={() => playSound("hover")}
-                        onClick={() => playSound("click")}
                         style={{ textDecoration: "none" }}
                         className="group shrink-0 flex items-center gap-2 text-background/70 hover:text-background transition-colors duration-300">
                         <span className="font-mono text-[13px] tracking-[0.04em]">hello@teacherbek.com</span>
@@ -128,8 +124,6 @@ export function VanguardFooter() {
                         <nav aria-label="Footer navigation" className="flex flex-col">
                             {navLinks.map((item) => (
                                 <Link key={item.href} href={item.href}
-                                    onMouseEnter={() => playSound("hover")}
-                                    onClick={() => playSound("click")}
                                     style={{ textDecoration: "none" }}
                                     className="group flex items-center justify-between py-1.5 text-background border-b border-background/[0.06] last:border-0">
                                     <span className="font-mono text-[13px] opacity-70 group-hover:opacity-95 transition-opacity duration-200">{item.label}</span>
@@ -147,8 +141,6 @@ export function VanguardFooter() {
                                 <a key={item.href} href={item.href}
                                     target={item.href.startsWith("http") ? "_blank" : undefined}
                                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                    onMouseEnter={() => playSound("hover")}
-                                    onClick={() => playSound("click")}
                                     style={{ textDecoration: "none" }}
                                     className="group flex items-center gap-2.5 py-1.5 text-background border-b border-background/[0.06] last:border-0">
                                     <span className="shrink-0 opacity-40 group-hover:opacity-80 transition-opacity duration-200">
@@ -167,8 +159,6 @@ export function VanguardFooter() {
                             {socialLinks.map((item) => (
                                 <a key={item.href} href={item.href}
                                     target="_blank" rel="noopener noreferrer"
-                                    onMouseEnter={() => playSound("hover")}
-                                    onClick={() => playSound("click")}
                                     style={{ textDecoration: "none" }}
                                     className="group inline-flex items-center gap-2 px-3 py-2 border border-background/15 hover:border-background/45 transition-colors duration-200">
                                     <span className="opacity-50 group-hover:opacity-90 transition-opacity duration-200">
@@ -204,8 +194,7 @@ export function VanguardFooter() {
                             {t("terms")}
                         </Link>
                         <button type="button"
-                            onMouseEnter={() => playSound("hover")}
-                            onClick={() => { playSound("click"); scrollToTop(); }}
+                            onClick={scrollToTop}
                             aria-label={t("backToTop")}
                             className="group flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.15em] opacity-50 hover:opacity-75 transition-opacity duration-200 text-background">
                             {t("backToTop")}

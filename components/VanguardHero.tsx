@@ -6,7 +6,6 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
-import { useAudio } from "./audio-provider";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -35,14 +34,12 @@ const ZALO_HREF = "https://zalo.me/84353885757?text=Xin%20ch%C3%A0o%2C%20t%C3%B4
 
 export function VanguardHero() {
     const t             = useTranslations("hero");
-    const { playSound } = useAudio();
     const reduceMotion  = useReducedMotion();
     const [wordIndex, setWordIndex] = useState(0);
     const heroRef         = useRef<HTMLElement>(null);
     const headingBlockRef = useRef<HTMLDivElement>(null);
 
     const scrollToPrograms = () => {
-        playSound("click");
         trackCTAClick("hero", "curriculum");
         const el = document.getElementById("programs");
         if (!el) return;

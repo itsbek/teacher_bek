@@ -2,16 +2,10 @@
 
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useAudio } from "@/components/audio-provider";
 
 export function Magnetic({ children, strength = 0.5 }: { children: React.ReactNode; strength?: number }) {
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const { playSound } = useAudio();
-
-    const handleMouseEnter = () => {
-        playSound("hover");
-    };
 
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY } = e;
@@ -33,7 +27,6 @@ export function Magnetic({ children, strength = 0.5 }: { children: React.ReactNo
     return (
         <motion.div
             ref={ref}
-            onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             animate={{ x, y }}

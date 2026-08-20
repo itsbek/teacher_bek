@@ -232,7 +232,6 @@ export function AboutSection() {
         {/* RIGHT — portrait at natural ratio */}
         <div
           ref={imageWrapRef}
-          data-cursor-label="MEET"
           style={{ flexShrink: 0, width: "clamp(260px, 36vw, 480px)", perspective: "800px", overflow: "hidden" }}
         >
           <div ref={imageInnerRef} style={{ willChange: "transform" }}>
