@@ -25,7 +25,7 @@ const FONT_SIZES: { size: FontSize; px: number; label: string }[] = [
     { size: "lg", px: 18, label: "A+" },
 ];
 
-const SECTION_IDS = ["hero", "about", "programs", "methodology", "credentials", "reads", "faq", "contact"] as const;
+const SECTION_IDS = ["hero", "about", "testimonials", "programs", "methodology", "credentials", "reads", "faq", "contact"] as const;
 
 export function VanguardNavigation() {
     const t       = useTranslations("nav");
@@ -127,6 +127,7 @@ export function VanguardNavigation() {
 
     const menuItems = [
         { href: `/${locale}#about`, label: t("about"), section: "about" },
+        { href: `/${locale}#testimonials`, label: t("testimonials"), section: "testimonials" },
         { href: `/${locale}#programs`, label: t("services"), section: "programs" },
         { href: `/${locale}/community`, label: t("community"), section: "" },
         { href: `/${locale}/blog`, label: t("blog_link"), section: "" },

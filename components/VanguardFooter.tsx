@@ -65,8 +65,9 @@ export function VanguardFooter() {
     }, []);
 
     const navLinks = [
-        { href: `/${locale}#about`,    label: navT("about")     },
-        { href: `/${locale}#programs`, label: navT("services")  },
+        { href: `/${locale}#about`,         label: navT("about")        },
+        { href: `/${locale}#testimonials`,  label: navT("testimonials") },
+        { href: `/${locale}#programs`,      label: navT("services")     },
         { href: `/${locale}/blog`,     label: navT("blog_link") },
         { href: `/${locale}#faq`,      label: navT("faq")       },
         { href: `/${locale}#contact`,  label: navT("contact")   },

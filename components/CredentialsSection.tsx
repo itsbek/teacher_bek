@@ -69,7 +69,7 @@ export function CredentialsSection() {
             <div className="flex items-center gap-4 mb-8">
               <span className="w-10 h-[1px] bg-current opacity-30" />
               <span className="text-[13px] uppercase tracking-[0.22em] opacity-60">
-                [ 05 &mdash; {t("title")} ]
+                [ 06 &mdash; {t("title")} ]
               </span>
             </div>
             <h2 className="font-display text-[clamp(2rem,5vw,4rem)] leading-[0.9] tracking-tight">

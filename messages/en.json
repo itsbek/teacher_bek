@@ -176,7 +176,46 @@
   },
   "testimonials": {
     "title": "What Students Say",
-    "subtitle": "From the students, parents, and colleagues who've worked with Teacher Bek."
+    "subtitle": "From the students, parents, and colleagues who've worked with Teacher Bek.",
+    "sectionLabel": "Testimonials",
+    "items": [
+      {
+        "name": "Linh N.",
+        "role": "Parent of an 8-year-old, Phú Nhuận",
+        "quote": "My daughter used to freeze up when a foreigner spoke to her. After a few months of small-group classes, she answers back without thinking twice. The class size is what makes the difference — she actually gets to speak.",
+        "rating": 5
+      },
+      {
+        "name": "Minh T.",
+        "role": "Parent of a 14-year-old, Bình Thạnh",
+        "quote": "My son needed to stop translating in his head before he could speak. Teacher Bek was direct about what was actually holding him back, and his confidence in class presentations has completely changed.",
+        "rating": 5
+      },
+      {
+        "name": "Sarah K.",
+        "role": "IELTS student, adult learner",
+        "quote": "I'd taken IELTS twice before and plateaued. The timed practice and honest feedback on exactly what was costing me points made the difference — no vague encouragement, just what to fix.",
+        "rating": 5
+      },
+      {
+        "name": "Yuki H.",
+        "role": "Parent, expat family in Phú Nhuận",
+        "quote": "We were nervous about finding an English class as a foreign family. Teacher Bek made our son feel comfortable from the first trial lesson, and the classroom itself felt genuinely safe for a young child.",
+        "rating": 5
+      },
+      {
+        "name": "Hoa P.",
+        "role": "Parent of a 7-year-old, Gò Vấp",
+        "quote": "One free trial week was enough to see the difference from her previous class of 25 students. Here she's one of eight, and she's actually excited to go.",
+        "rating": 5
+      },
+      {
+        "name": "David R.",
+        "role": "Work English student, marketing professional",
+        "quote": "I needed to run meetings in English, not just get through them. We worked on the actual language I use at work — presentations, negotiation, client emails — not generic textbook units.",
+        "rating": 5
+      }
+    ]
   },
   "cta": {
     "title": "One week. No commitment.",
@@ -442,7 +481,7 @@
     "stepLabel": "Step"
   },
   "inquiry": {
-    "sectionLabel": "06 — Contact",
+    "sectionLabel": "07 — Contact",
     "heading": "Get in Touch",
     "replyNote": "Usually replies within 24 hours",
     "forWhomLabel": "Who is this for?",

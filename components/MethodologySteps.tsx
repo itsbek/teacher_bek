@@ -116,7 +116,7 @@ export function MethodologySteps({ heading, headingItalic, sectionLabel, stepLab
           <div className="flex items-center gap-4 mb-8">
             <span className="w-8 h-[1px] bg-current opacity-25 shrink-0" aria-hidden="true" />
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] opacity-65">
-              [ 04 &mdash; {sectionLabel} ]
+              [ 05 &mdash; {sectionLabel} ]
             </span>
           </div>
           <h3
@@ -192,7 +192,7 @@ export function MethodologySteps({ heading, headingItalic, sectionLabel, stepLab
         <div className="flex items-center gap-4 mb-6">
           <span className="w-8 h-[1px] bg-current opacity-25 shrink-0" aria-hidden="true" />
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] opacity-65">
-            [ 04 &mdash; {sectionLabel} ]
+            [ 05 &mdash; {sectionLabel} ]
           </span>
         </div>
         <h3 className="font-display font-bold text-4xl md:text-6xl leading-[0.88] tracking-tight mb-10">

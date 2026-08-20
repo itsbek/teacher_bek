@@ -161,7 +161,46 @@
   },
   "testimonials": {
     "title": "Phản hồi từ Cộng đồng",
-    "subtitle": "Câu chuyện thật từ học viên, phụ huynh và đồng nghiệp"
+    "subtitle": "Câu chuyện thật từ học viên, phụ huynh và đồng nghiệp",
+    "sectionLabel": "Đánh giá",
+    "items": [
+      {
+        "name": "Linh N.",
+        "role": "Phụ huynh bé 8 tuổi, Phú Nhuận",
+        "quote": "Con gái tôi trước đây cứ gặp người nước ngoài nói chuyện là ngại không dám trả lời. Sau vài tháng học nhóm nhỏ, bé trả lời tự nhiên không còn ngập ngừng. Lớp ít học viên chính là điểm khác biệt — bé thực sự được nói.",
+        "rating": 5
+      },
+      {
+        "name": "Minh T.",
+        "role": "Phụ huynh bé 14 tuổi, Bình Thạnh",
+        "quote": "Con trai tôi cần bỏ thói quen dịch trong đầu trước khi nói. Thầy Bek nói thẳng vấn đề thật sự đang cản trở con, và sự tự tin của con khi thuyết trình trên lớp đã thay đổi hoàn toàn.",
+        "rating": 5
+      },
+      {
+        "name": "Hoa P.",
+        "role": "Phụ huynh bé 7 tuổi, Gò Vấp",
+        "quote": "Chỉ một tuần học thử miễn phí là đủ để thấy khác biệt so với lớp cũ 25 học viên. Ở đây bé là một trong tám bạn, và bé thực sự háo hức muốn đi học.",
+        "rating": 5
+      },
+      {
+        "name": "Yuki H.",
+        "role": "Phụ huynh gia đình nước ngoài, Phú Nhuận",
+        "quote": "Chúng tôi khá lo lắng khi tìm lớp tiếng Anh với tư cách gia đình nước ngoài. Thầy Bek giúp con trai tôi thoải mái ngay từ buổi học thử đầu tiên, và lớp học thực sự an toàn cho trẻ nhỏ.",
+        "rating": 5
+      },
+      {
+        "name": "Sarah K.",
+        "role": "Học viên IELTS, người lớn",
+        "quote": "Tôi đã thi IELTS hai lần trước đó và bị chững điểm. Luyện đề có giới hạn thời gian và phản hồi thẳng thắn về điều đang khiến tôi mất điểm chính là điều tạo nên khác biệt.",
+        "rating": 5
+      },
+      {
+        "name": "David R.",
+        "role": "Học viên tiếng Anh công việc, ngành marketing",
+        "quote": "Tôi cần điều hành cuộc họp bằng tiếng Anh, không chỉ đơn thuần tham gia cho xong. Chúng tôi luyện đúng ngôn ngữ tôi dùng ở công việc — thuyết trình, đàm phán, email khách hàng.",
+        "rating": 5
+      }
+    ]
   },
   "vault": {
     "subtitle": "Bộ Sưu Tập Được Tuyển Chọn",
@@ -370,7 +409,7 @@
     "stepLabel": "Bước"
   },
   "inquiry": {
-    "sectionLabel": "06 — Liên Hệ",
+    "sectionLabel": "07 — Liên Hệ",
     "heading": "Liên Hệ Với Tôi",
     "replyNote": "Thường phản hồi trong vòng 24 giờ",
     "forWhomLabel": "Đăng ký cho ai?",

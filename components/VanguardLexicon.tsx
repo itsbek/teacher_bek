@@ -247,7 +247,7 @@ export function VanguardLexicon() {
               <div className="flex items-center gap-6 mb-8">
                 <div className="w-12 h-[1px] bg-foreground/30" />
                 <span className="bracket-label">
-                  03 &mdash; {t("sectionLabel")}
+                  04 &mdash; {t("sectionLabel")}
                 </span>
               </div>
               <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.9] tracking-tight mb-8">

@@ -86,7 +86,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   // Section visibility tracking — fires once per section per page load
   useEffect(() => {
-    const SECTIONS = ["hero", "about", "programs", "methodology", "credentials", "reads", "contact"];
+    const SECTIONS = ["hero", "about", "testimonials", "programs", "methodology", "credentials", "reads", "contact"];
     const fired = new Set<string>();
     const obs = new IntersectionObserver(
       (entries) => {
