@@ -51,3 +51,20 @@ export type LeadErrorCode =
 export function isLeadStatus(v: unknown): v is LeadStatus {
   return typeof v === 'string' && (LEAD_STATUSES as readonly string[]).includes(v);
 }
+
+export interface LeadNote {
+  at: string;
+  text: string;
+}
+
+export interface LeadHistoryEntry {
+  status: LeadStatus;
+  at: string;
+}
+
+/** A lead as stored in the Sheet: the submitted fields plus bot-managed data. */
+export interface StoredLead extends Lead {
+  updatedAt?: string;
+  notes: LeadNote[];
+  history: LeadHistoryEntry[];
+}

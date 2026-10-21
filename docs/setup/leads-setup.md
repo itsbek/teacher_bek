@@ -9,8 +9,8 @@ visitor to message you on Zalo instead.
 What you will end up with:
 
 - Every enquiry saved as a row in a Google Sheet.
-- A Telegram message on your phone for every enquiry, with buttons to
-  update the status (Contacted, Trial booked, Enrolled, Lost).
+- A Telegram bot with a menu: a card for every enquiry, status buttons,
+  notes, lists, search and monthly stats.
 - Free spam protection (Cloudflare Turnstile).
 
 You will collect these values and paste them into Vercel at the end:
@@ -57,9 +57,28 @@ letters and numbers. Do not use spaces. Keep them private.
    This is `LEADS_SHEET_WEBHOOK_URL`.
 
 The first lead creates a tab named **Leads** with the column headings
-automatically. If you later change the script, use **Deploy > Manage
-deployments > edit (pencil) > Version: New version > Deploy**. The URL stays
-the same.
+automatically.
+
+### Updating the script later (keeps the same URL)
+
+Do this whenever `docs/setup/google-apps-script.gs` changes (it did when the new
+Telegram bot menu was added; the bot needs the new version for lists, search,
+notes and stats):
+
+1. Open the "Teacher Bek Leads" spreadsheet, then **Extensions > Apps Script**.
+2. Click inside the code editor, press Ctrl+A (Cmd+A on Mac) and delete.
+3. Paste the whole new `docs/setup/google-apps-script.gs`.
+4. Change `var SECRET = '...'` to the SAME password you used before
+   (`LEADS_SHEET_SECRET`). Click the disk icon (Save).
+5. Click the blue **Deploy** button (top right), then **Manage deployments**.
+6. Click the pencil icon (Edit) next to your existing Web app deployment.
+7. Next to **Version**, open the drop-down and choose **New version**.
+8. Leave "Execute as: Me" and "Who has access: Anyone" unchanged. Click **Deploy**
+   and then **Done**.
+
+Do NOT use "New deployment": that creates a different URL and the website would
+stop reaching the Sheet. Existing rows keep working; two new columns, `notes`
+and `history`, are added at the end of the heading row on the first change.
 
 The "Anyone" access only means the link can be called. Without your secret
 password the script refuses every request.
@@ -81,26 +100,43 @@ password the script refuses every request.
    underscore and dash (Telegram rule).
 7. Deploy the website to Vercel with the variables from the last section first.
    Then connect Telegram to the site. On a computer, open Terminal (Mac) or
-   PowerShell and run this, replacing the three capital parts (keep the quotes):
+   PowerShell and run this, replacing the two capital parts (keep the quotes):
 
    ```
    curl -X POST "https://api.telegram.org/botYOUR_BOT_TOKEN/setWebhook" \
      -d "url=https://teacherbek.com/api/telegram" \
-     -d "secret_token=YOUR_WEBHOOK_SECRET"
+     -d "secret_token=YOUR_WEBHOOK_SECRET" \
+     -d 'allowed_updates=["message","callback_query"]'
    ```
 
    The reply should contain `"ok":true`. To check later:
    `curl "https://api.telegram.org/botYOUR_BOT_TOKEN/getWebhookInfo"`.
+8. Set up the bot menu and descriptions. In the project folder, with
+   `TELEGRAM_BOT_TOKEN` and `TELEGRAM_ADMIN_CHAT_IDS` in `.env.local` (or exported
+   in the terminal), run:
 
-Bot commands (type in your bot chat):
+   ```
+   node scripts/telegram-setup.mjs
+   ```
 
-- `/leads` shows the last 10 open leads (new or contacted).
-- `/stats` shows how many leads this month by status.
-- `/help` shows the list.
+   It registers the commands for your chat, the menu button and the bot
+   description (English and Vietnamese). It is safe to run again, and it never
+   prints the token. Then send `/start` to the bot to get the menu keyboard.
 
-Under every new lead message there are buttons: **Zalo** (opens a chat with the
-person), and **Contacted / Trial booked / Enrolled / Lost**. Tapping a status
-updates the Google Sheet and the message itself.
+The bot menu (bottom of the chat): **New, Leads, Stats, Search, Help**.
+
+- **New** / `/new`: leads still waiting for a first contact.
+- **Leads** / `/leads`: all leads with filter tabs (New, Contacted, Trial,
+  Enrolled, Lost, All), 6 per page.
+- `/today`: leads received today.
+- **Stats** / `/stats`: this month vs last month, conversion, programmes,
+  languages, average response time. Buttons switch This month / Last month / All time.
+- **Search** / `/search`: send a name or phone number.
+
+Every new enquiry arrives as a card: phone (tap to copy), Zalo and WhatsApp
+buttons, status buttons (Contacted, Trial, Enrolled, Lost), and **Add note**.
+Tapping a status updates the Google Sheet and the card itself. Full screen
+descriptions are in `docs/telegram/bot-ux.md`.
 
 ## Part 3. Cloudflare Turnstile (spam protection)
 
@@ -133,10 +169,11 @@ For testing on your own computer, put the same names in a file called
    phone number.
 2. Within a few seconds you should see: a new row in the Leads tab, a Telegram
    message with buttons, and an email.
-3. Tap **Contacted** in Telegram. The message header changes and the status
+3. Tap **Contacted** in Telegram. The card changes and the status
    column in the sheet changes to `contacted`.
-4. Send `/stats` to the bot. You should see the counts.
-5. Test the failure path: temporarily remove all three of the Sheet, email and
+4. Tap **Add note**, reply with some text, and check the card shows it.
+5. Send `/stats` to the bot. You should see the counts.
+6. Test the failure path: temporarily remove all three of the Sheet, email and
    Telegram variables in a preview deployment. The form should show a message
    with a "Message on Zalo" button, and the pricing prices must NOT appear.
 
