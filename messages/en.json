@@ -343,6 +343,7 @@
     "contact": "Get in Touch",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
+    "zalo": "Zalo",
     "email": "Email",
     "certifications": "Qualifications",
     "tefl": "TESOL Certified",
@@ -372,7 +373,8 @@
     "title": "Based in Ho Chi Minh City",
     "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
     "districts": "Also teaching in Gò Vấp & Bình Thạnh",
-    "features": "CCTV · Comfortable · Professional"
+    "features": "CCTV · Comfortable · Professional",
+    "openInMaps": "Open in Google Maps"
   },
   "programs": {
     "sectionLabel": "English Classes",
@@ -676,5 +678,17 @@
   },
   "common": {
     "siteName": "Teacher Bek"
+  },
+  "leads": {
+    "contactSuccess": "Thank you! I will be in touch within 24 hours.",
+    "errorDelivery": "Sorry, your message could not be delivered right now. Please contact me directly instead.",
+    "errorRateLimited": "Too many attempts. Please wait a minute and try again.",
+    "errorInvalid": "Some details look incorrect. Please check your name and phone number and try again.",
+    "errorSpam": "Please take a moment to fill in the form, then submit again.",
+    "errorCaptcha": "Security check failed. Please wait for it to complete and try again.",
+    "errorNetwork": "Connection problem. Please check your internet and try again, or contact me directly.",
+    "fallbackHint": "You can reach me right now instead:",
+    "zaloButton": "Message on Zalo",
+    "callLabel": "Call"
   }
 }

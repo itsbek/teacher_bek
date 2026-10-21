@@ -4,16 +4,18 @@ import { getBlogPosts } from '@/lib/blog'
 
 const BASE_URL = 'https://teacherbek.com'
 // Only canonical pages with real content — redirect stubs (/about, /services, /faq) are excluded
-const PRIMARY_ROUTES = ['', '/blog', '/community', '/privacy', '/terms']
+const PRIMARY_ROUTES = ['', '/privacy', '/terms']
+// Fixed date for static pages (not build time) so lastModified stays stable across builds
+const LAST_UPDATED = new Date('2026-10-21')
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Main pages for each locale
   const mainPages = routing.locales.flatMap((locale) =>
     PRIMARY_ROUTES.map((route) => ({
       url: `${BASE_URL}/${locale}${route}`,
-      lastModified: new Date(),
-      changeFrequency: route === '/blog' ? ('daily' as const) : ('weekly' as const),
-      priority: route === '' ? 1.0 : route === '/blog' ? 0.9 : 0.8,
+      lastModified: LAST_UPDATED,
+      changeFrequency: 'weekly' as const,
+      priority: route === '' ? 1.0 : 0.8,
     }))
   )
 

@@ -44,6 +44,9 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
         return () => ctx.revert();
     }, []);
 
+    // Hide the whole band until there is at least one post.
+    if (articles.length === 0) return null;
+
     return (
         <section ref={sectionRef} className="bg-transparent text-foreground px-6 md:px-10 lg:px-16 relative overflow-hidden">
             <div className="max-w-[1920px] mx-auto">
@@ -73,28 +76,7 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                     </div>
                 </div>
 
-                {articles.length === 0 ? (
-                    /* ── Empty state ── */
-                    <div ref={viewAllRef} className="border-t border-foreground/20">
-                        <div className="grid grid-cols-12 gap-8 py-10 lg:py-14 items-end">
-                            <div className="col-span-12 lg:col-span-8">
-                                <p className="font-mono text-foreground/50 leading-relaxed" style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)", maxWidth: "52ch" }}>
-                                    {t("emptyNote")}
-                                </p>
-                            </div>
-                            <div className="col-span-12 lg:col-span-4 lg:flex lg:justify-end">
-                                <Link
-                                    href={`/${locale}/blog`}
-                                    className="group inline-flex items-center gap-3 px-6 py-4 border border-foreground/20 hover:border-foreground/60 hover:bg-foreground hover:text-background transition-all duration-300"
-                                >
-                                    <span className="font-mono text-[11px] uppercase tracking-[0.2em]">{t("visitJournal")}</span>
-                                    <ArrowRightIcon />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <>
+                <>
                         {/* ── Article rows ── */}
                         <div ref={rowsRef} className="flex flex-col border-t border-foreground/20 h-full">
                             {articles.map((article, index) => (
@@ -141,7 +123,6 @@ export function VanguardJournal({ initialArticles }: { initialArticles: BlogPost
                             </Link>
                         </div>
                     </>
-                )}
             </div>
 
             <style jsx>{`

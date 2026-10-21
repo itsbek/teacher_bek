@@ -67,7 +67,7 @@ export function VanguardFooter() {
     ];
 
     const channelLinks = [
-        { href: "https://zalo.me/84353885757",                 label: t("telegram"), icon: "zalo"     },
+        { href: "https://zalo.me/84353885757",                 label: t("zalo"),     icon: "zalo"     },
         { href: "https://wa.me/84353885757",                   label: t("whatsapp"), icon: "whatsapp" },
         { href: "mailto:hello@teacherbek.com",                 label: t("email"),    icon: "email"    },
         { href: "https://www.linkedin.com/in/bek-boymirzaev/", label: t("linkedin"), icon: "linkedin" },

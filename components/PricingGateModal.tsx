@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight, X } from "lucide-react";
 import { trackCTAClick, event as trackEvent } from "@/lib/analytics";
+import { PHONE_DISPLAY, PHONE_TEL, ZALO_URL, errorKeyFor, postLead, useTurnstile } from "@/lib/leads/client";
 
 const UNLOCK_KEY = "pricing-unlocked";
 
@@ -19,11 +20,15 @@ export function PricingGateModal({
   programs: Program[];
 }) {
   const t = useTranslations("pricingGate");
+  const tl = useTranslations("leads");
+  const locale = useLocale();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [revealed, setRevealed] = useState(false);
+  const [website, setWebsite] = useState("");
+  const turnstile = useTurnstile(isOpen && !revealed);
   const [formStartedAt] = useState(() => Date.now());
 
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -73,30 +78,24 @@ export function PricingGateModal({
     setIsSubmitting(true);
     setError("");
 
-    try {
-      const res = await fetch("/api/pricing-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          phone: phone.trim(),
-          website: "",
-          formStartedAt,
-        }),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || "Failed to submit.");
-      }
+    const result = await postLead("/api/pricing-lead", {
+      name: name.trim(),
+      phone: phone.trim(),
+      locale,
+      website,
+      formStartedAt,
+      turnstileToken: turnstile.token || undefined,
+    });
+    if (result.ok) {
       trackEvent({ action: "pricing_unlock", category: "conversion", label: "pricing_gate" });
-      sessionStorage.setItem(UNLOCK_KEY, "1");
+      try { sessionStorage.setItem(UNLOCK_KEY, "1"); } catch { /* storage unavailable */ }
       setRevealed(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      setError(tl(errorKeyFor(result.code)));
+      turnstile.reset();
     }
-  }, [isSubmitting, name, phone, formStartedAt]);
+    setIsSubmitting(false);
+  }, [isSubmitting, name, phone, formStartedAt, website, locale, tl, turnstile]);
 
   if (!isOpen) return null;
 
@@ -141,7 +140,7 @@ export function PricingGateModal({
               </p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" value={website} onChange={(e) => setWebsite(e.target.value)} />
 
                 <div>
                   <label htmlFor="pg-name" className="block font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 mb-2">
@@ -175,7 +174,32 @@ export function PricingGateModal({
                   />
                 </div>
 
-                {error && <p className="text-red-400 text-[13px] font-sans">{error}</p>}
+                {turnstile.enabled && <div ref={turnstile.containerRef} />}
+
+                <div role="status" aria-live="polite">
+                  {error && (
+                    <div className="border border-red-400/40 p-4 flex flex-col gap-3">
+                      <p className="text-red-400 text-[13px] font-sans">{error}</p>
+                      <p className="text-white/60 text-[13px] font-sans">{tl("fallbackHint")}</p>
+                      <div className="flex flex-wrap items-center gap-4">
+                        <a
+                          href={ZALO_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => trackCTAClick("pricing_gate", "zalo_fallback")}
+                          className="inline-flex items-center gap-2 px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase"
+                          style={{ background: "#B85337", color: "#fff" }}
+                        >
+                          {tl("zaloButton")}
+                          <ArrowUpRight size={13} aria-hidden="true" />
+                        </a>
+                        <a href={PHONE_TEL} className="text-white/80 text-[14px] font-sans underline underline-offset-4">
+                          {tl("callLabel")} {PHONE_DISPLAY}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 <button
                   type="submit"

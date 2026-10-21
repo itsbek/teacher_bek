@@ -328,6 +328,7 @@
     "contact": "联系",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
+    "zalo": "Zalo",
     "email": "邮箱",
     "certifications": "资质认证",
     "tefl": "TESOL认证",
@@ -357,7 +358,8 @@
     "title": "位于胡志明市",
     "address": "Golden Mansion 1, 119 Pho Quang, Phu Nhuan",
     "districts": "也在Go Vap和Binh Thanh授课",
-    "features": "监控 • 舒适 • 专业"
+    "features": "监控 • 舒适 • 专业",
+    "openInMaps": "在谷歌地图中打开"
   },
   "pricingGate": {
     "eyebrow": "查看学费",
@@ -660,5 +662,17 @@
   },
   "common": {
     "siteName": "Teacher Bek"
+  },
+  "leads": {
+    "contactSuccess": "谢谢您！我会在 24 小时内与您联系。",
+    "errorDelivery": "抱歉，您的信息暂时无法送达。请直接与我联系。",
+    "errorRateLimited": "尝试次数过多，请等待一分钟后再试。",
+    "errorInvalid": "部分信息似乎有误，请检查姓名和电话号码后重试。",
+    "errorSpam": "请花一点时间填写表单，然后再次提交。",
+    "errorCaptcha": "安全验证未通过，请等待验证完成后重试。",
+    "errorNetwork": "网络连接出现问题，请检查网络后重试，或直接与我联系。",
+    "fallbackHint": "您也可以立即通过以下方式联系我：",
+    "zaloButton": "通过 Zalo 发消息",
+    "callLabel": "致电"
   }
 }

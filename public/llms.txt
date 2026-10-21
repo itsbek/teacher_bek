@@ -1,18 +1,41 @@
 # Teacher Bek
 
-English tutoring and mentorship services in Ho Chi Minh City, Vietnam.
+> Teacher Bek is an English teacher based in Phú Nhuận, Ho Chi Minh City, Vietnam. He teaches small-group English (maximum 10 students per group) for young learners aged 6–10, teens aged 11–17, IELTS preparation, and English for work. Lessons are available in person and online.
 
-## Core Pages
-- https://englishwithconfidence.com/en
-- https://englishwithconfidence.com/en/services
-- https://englishwithconfidence.com/en/about
-- https://englishwithconfidence.com/en/faq
-- https://englishwithconfidence.com/en/blog
+Website: https://teacherbek.com
 
-## Service Summary
-- Private English tutoring for students and professionals
-- Personalized curriculum design
-- Online and in-person sessions (Ho Chi Minh City)
+## Pages
+
+- [Home (Vietnamese)](https://teacherbek.com/vi): Overview of teaching programs and how to book a free trial week
+- [Home (English)](https://teacherbek.com/en): Overview of teaching programs and how to book a free trial week
+- [Home (Chinese)](https://teacherbek.com/zh): Overview of teaching programs and how to book a free trial week
+- [Home (Russian)](https://teacherbek.com/ru): Overview of teaching programs and how to book a free trial week
+- [Privacy Policy (English)](https://teacherbek.com/en/privacy): How personal data submitted through the website is handled
+- [Terms of Service (English)](https://teacherbek.com/en/terms): Terms for using the website and booking lessons
+- [Privacy Policy (Vietnamese)](https://teacherbek.com/vi/privacy): How personal data submitted through the website is handled
+- [Terms of Service (Vietnamese)](https://teacherbek.com/vi/terms): Terms for using the website and booking lessons
+- [Privacy Policy (Chinese)](https://teacherbek.com/zh/privacy): How personal data submitted through the website is handled
+- [Terms of Service (Chinese)](https://teacherbek.com/zh/terms): Terms for using the website and booking lessons
+- [Privacy Policy (Russian)](https://teacherbek.com/ru/privacy): How personal data submitted through the website is handled
+- [Terms of Service (Russian)](https://teacherbek.com/ru/terms): Terms for using the website and booking lessons
+
+## Programs
+
+- Young Learners (ages 6–10): small-group English with speaking from the first session
+- Teens (ages 11–17): small-group English
+- IELTS: small-group preparation for the IELTS exam
+- English for Work: small-group English for professionals
+
+Group size: maximum 10 students per class. Classes are offered in person and online.
 
 ## Contact
+
+- Phone: +84 353 88 5757
+- Zalo: https://zalo.me/84353885757
+- WhatsApp: https://wa.me/84353885757
 - Email: hello@teacherbek.com
+
+## Location
+
+- Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, TP. Hồ Chí Minh, Vietnam
+- Also teaching in Gò Vấp and Bình Thạnh districts

@@ -337,6 +337,7 @@
     "contact": "Liên hệ",
     "whatsapp": "WhatsApp",
     "telegram": "Zalo",
+    "zalo": "Zalo",
     "email": "Email",
     "certifications": "Bằng Cấp",
     "tefl": "Chứng Chỉ TESOL",
@@ -366,7 +367,8 @@
     "title": "Tại Thành phố Hồ Chí Minh",
     "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
     "districts": "Cũng dạy tại Gò Vấp & Bình Thạnh",
-    "features": "Camera • Thoải mái • Chuyên nghiệp"
+    "features": "Camera • Thoải mái • Chuyên nghiệp",
+    "openInMaps": "Mở trên Google Maps"
   },
   "pricingGate": {
     "eyebrow": "Xem Học Phí",
@@ -670,5 +672,17 @@
   },
   "common": {
     "siteName": "Teacher Bek"
+  },
+  "leads": {
+    "contactSuccess": "Cảm ơn bạn! Tôi sẽ liên hệ lại trong vòng 24 giờ.",
+    "errorDelivery": "Rất tiếc, tin nhắn của bạn chưa gửi được lúc này. Vui lòng liên hệ trực tiếp với tôi.",
+    "errorRateLimited": "Bạn đã thử quá nhiều lần. Vui lòng đợi một phút rồi thử lại.",
+    "errorInvalid": "Một số thông tin chưa hợp lệ. Vui lòng kiểm tra họ tên và số điện thoại rồi thử lại.",
+    "errorSpam": "Vui lòng dành một chút thời gian điền biểu mẫu, sau đó gửi lại.",
+    "errorCaptcha": "Xác minh bảo mật chưa hoàn tất. Vui lòng đợi xác minh xong rồi thử lại.",
+    "errorNetwork": "Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại, hoặc liên hệ trực tiếp với tôi.",
+    "fallbackHint": "Bạn có thể liên hệ ngay với tôi qua:",
+    "zaloButton": "Nhắn tin qua Zalo",
+    "callLabel": "Gọi"
   }
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { buildPageMetadata } from "@/lib/seo";
 
 type Props = {
@@ -18,5 +18,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
-  redirect(`/${locale}#about`);
+  permanentRedirect(`/${locale}#about`);
 }

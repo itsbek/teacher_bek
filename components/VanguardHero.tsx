@@ -84,6 +84,9 @@ export function VanguardHero() {
             className="relative w-full flex flex-col bg-background"
             style={{ minHeight: "100dvh", paddingTop: "var(--nav-h)" }}
         >
+            {/* Single page-level heading for assistive tech; both visual headings below are decorative duplicates */}
+            <h1 className="sr-only">{t("badge")}</h1>
+
             {/* ── Copper atmospheric glow ─────────────────────────────────── */}
             <div
                 aria-hidden="true"
@@ -151,12 +154,12 @@ export function VanguardHero() {
                     </motion.div>
 
                     {/* Heading */}
-                    <motion.h1
+                    <motion.p
+                        aria-hidden="true"
                         initial={reduceMotion ? false : { y: 10 }}
                         animate={{ y: 0 }}
                         transition={{ duration: 0.75, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
                         className="font-display text-foreground overflow-visible"
-                        aria-label={`English ${CYCLING_WORDS[wordIndex]}`}
                     >
                         <span
                             className="block font-bold uppercase"
@@ -180,8 +183,6 @@ export function VanguardHero() {
                             that{" "}
                             <span
                                 style={{ display: "inline-grid", gridTemplateAreas: '"word"' }}
-                                aria-live="polite"
-                                aria-atomic="true"
                             >
                                 <AnimatePresence mode="wait" initial={false}>
                                     <motion.span
@@ -197,7 +198,7 @@ export function VanguardHero() {
                                 </AnimatePresence>
                             </span>
                         </span>
-                    </motion.h1>
+                    </motion.p>
                 </div>
 
                 {/* ── BOTTOM GROUP: social proof + action anchored to bottom ── */}
@@ -331,7 +332,7 @@ export function VanguardHero() {
 
                 {/* Heading + content — bottom anchor */}
                 <div ref={headingBlockRef} className="flex flex-col gap-4 shrink-0">
-                    <h1 className="font-display text-foreground overflow-visible">
+                    <p aria-hidden="true" className="font-display text-foreground overflow-visible">
                         <motion.span
                             initial={reduceMotion ? false : { y: 12 }}
                             animate={{ y: 0 }}
@@ -359,8 +360,6 @@ export function VanguardHero() {
                             that{" "}
                             <span
                                 style={{ display: "inline-grid", gridTemplateAreas: '"word"' }}
-                                aria-live="polite"
-                                aria-atomic="true"
                             >
                                 <AnimatePresence mode="wait" initial={false}>
                                     <motion.span
@@ -376,7 +375,7 @@ export function VanguardHero() {
                                 </AnimatePresence>
                             </span>
                         </motion.span>
-                    </h1>
+                    </p>
 
                     <motion.div
                         initial={reduceMotion ? false : { opacity: 0, y: 8 }}

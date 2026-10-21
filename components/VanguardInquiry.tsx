@@ -8,8 +8,7 @@ const LocationMap = dynamic(
   { ssr: false, loading: () => <div className="w-full border border-foreground/15 bg-foreground/[0.03]" style={{ height: "300px" }} /> }
 );
 
-// Only initialise Leaflet + fetch map tiles when the map is near the viewport.
-// This keeps ~100KB of tile requests off the critical path.
+// Defer mounting the static map card until it is near the viewport.
 function LazyMap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -32,11 +31,12 @@ function LazyMap() {
     </div>
   );
 }
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { SplitHeading } from "@/components/ui/split-heading";
 import { CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
 import { event as trackEvent, trackContactFormSubmit, trackCTAClick } from "@/lib/analytics";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { PHONE_DISPLAY, PHONE_TEL, ZALO_URL, errorKeyFor, postLead, useTurnstile } from "@/lib/leads/client";
 
 type FormState = {
   name: string;
@@ -173,6 +173,11 @@ function LineField({
 
 export function VanguardInquiry() {
   const t = useTranslations("inquiry");
+  const tl = useTranslations("leads");
+  const locale = useLocale();
+  const [website, setWebsite] = useState("");
+  const [formVisible, setFormVisible] = useState(false);
+  const turnstile = useTurnstile(formVisible);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus]     = useState<"idle" | "success" | "error">("idle");
   const [statusMsg, setStatusMsg] = useState("");
@@ -231,39 +236,47 @@ export function VanguardInquiry() {
     setStatus("idle");
     setStatusMsg("");
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          phone: form.phone.trim(),
-          email: form.email.trim(),
-          message: form.message.trim(),
-          consent: form.consent,
-          forWhom: form.forWhom,
-          level: form.level,
-          goal: form.goal,
-          website: "",
-          formStartedAt,
-        }),
-      });
+    const result = await postLead("/api/contact", {
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim(),
+      message: form.message.trim(),
+      consent: form.consent,
+      consentText: t("consentText"),
+      forWhom: form.forWhom,
+      level: form.level,
+      goal: form.goal,
+      locale,
+      website,
+      formStartedAt,
+      turnstileToken: turnstile.token || undefined,
+    });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Failed to send message.");
-
+    if (result.ok) {
       formSubmitted.current = true;
       trackContactFormSubmit(`inquiry_${form.goal}`);
       setStatus("success");
-      setStatusMsg(data?.message || "Message sent.");
+      setStatusMsg(tl("contactSuccess"));
       setForm(INITIAL);
-    } catch (err) {
+    } else {
       setStatus("error");
-      setStatusMsg(err instanceof Error ? err.message : "Failed to send.");
-    } finally {
-      setIsSubmitting(false);
+      setStatusMsg(tl(errorKeyFor(result.code)));
     }
+    turnstile.reset();
+    setIsSubmitting(false);
   };
+
+  // Load the Turnstile widget only once the form is near the viewport
+  useEffect(() => {
+    const el = formRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setFormVisible(true); obs.disconnect(); } },
+      { rootMargin: "200px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // GSAP animations
   useEffect(() => {
@@ -345,7 +358,7 @@ export function VanguardInquiry() {
 
           <form onSubmit={handleSubmit} onFocus={handleFormFirstTouch} className="flex flex-col gap-6">
             {/* Honeypot */}
-            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" value={website} onChange={(e) => setWebsite(e.target.value)} />
 
             {/* Name */}
             <LineField
@@ -447,14 +460,36 @@ export function VanguardInquiry() {
               </div>
             </button>
 
-            {/* Status — aria-live region always rendered so screen readers register it */}
-            <div aria-live="polite" aria-atomic="true">
-            {status !== "idle" && (
-              <div className={`flex items-center gap-3 font-sans text-[13px] ${status === "success" ? "text-green-600" : "text-red-500"}`}>
-                {status === "success" ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
-                <span>{statusMsg}</span>
-              </div>
-            )}
+            {turnstile.enabled && <div ref={turnstile.containerRef} />}
+
+            {/* Status — role=status region always rendered so screen readers register it */}
+            <div role="status" aria-live="polite" aria-atomic="true">
+              {status !== "idle" && (
+                <div className={`flex items-center gap-3 font-sans text-[13px] ${status === "success" ? "text-green-600" : "text-red-500"}`}>
+                  {status === "success" ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+                  <span>{statusMsg}</span>
+                </div>
+              )}
+              {status === "error" && (
+                <div className="mt-4 border border-foreground/30 p-4 flex flex-col gap-3">
+                  <p className="font-sans text-[13px] opacity-70 font-light">{tl("fallbackHint")}</p>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <a
+                      href={ZALO_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackCTAClick("inquiry", "zalo_fallback")}
+                      className="inline-flex items-center gap-2 px-5 py-3 border border-foreground bg-foreground text-background font-sans text-[13px] uppercase tracking-[0.18em] font-bold"
+                    >
+                      {tl("zaloButton")}
+                      <ArrowUpRight size={14} aria-hidden="true" />
+                    </a>
+                    <a href={PHONE_TEL} className="font-sans text-[15px] underline underline-offset-4">
+                      {tl("callLabel")} {PHONE_DISPLAY}
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </form>
         </div>
@@ -462,7 +497,7 @@ export function VanguardInquiry() {
         {/* ── Info column ───────────────────────────────────────────── */}
         <div ref={infoRef} className="lg:col-span-5 flex flex-col gap-12">
 
-          {/* Map — Leaflet + OpenStreetMap (no Google, no API key) */}
+          {/* Map — static address card + Google Maps link */}
           <LazyMap />
 
           {/* Hours */}

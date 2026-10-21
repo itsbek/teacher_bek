@@ -40,6 +40,9 @@ export function VanguardNavigation() {
     const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 });
     const langBtnRef = useRef<HTMLButtonElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const hamburgerRef = useRef<HTMLButtonElement>(null);
+    const closeBtnRef = useRef<HTMLButtonElement>(null);
+    const dialogRef = useRef<HTMLDivElement>(null);
 
     const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`;
 
@@ -74,6 +77,40 @@ export function VanguardNavigation() {
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "";
         return () => { document.body.style.overflow = ""; };
+    }, [isOpen]);
+
+    // Escape closes the menu and returns focus to the hamburger; Tab is trapped inside the dialog
+    useEffect(() => {
+        if (!isOpen) return;
+        const hamburger = hamburgerRef.current;
+        closeBtnRef.current?.focus();
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                e.preventDefault();
+                setIsOpen(false);
+                return;
+            }
+            if (e.key !== "Tab" || !dialogRef.current) return;
+            const focusable = Array.from(
+                dialogRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")
+            );
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            const active = document.activeElement;
+            if (e.shiftKey && (active === first || !dialogRef.current.contains(active))) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && (active === last || !dialogRef.current.contains(active))) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
+        document.addEventListener("keydown", onKey);
+        return () => {
+            document.removeEventListener("keydown", onKey);
+            hamburger?.focus();
+        };
     }, [isOpen]);
 
     const localizedPath = (newLocale: string) =>
@@ -284,8 +321,9 @@ export function VanguardNavigation() {
                         type="button"
                         aria-label={isOpen ? "Close menu" : "Open menu"}
                         aria-expanded={isOpen}
+                        ref={hamburgerRef}
                         onClick={() => setIsOpen(!isOpen)}
-                        className="flex flex-col items-end gap-[5px] w-8 h-8 justify-center"
+                        className="flex flex-col items-end gap-[5px] w-11 h-11 -mr-3 pr-3 justify-center"
                         style={{ color: "inherit" }}
                     >
                         <span className={`h-[1px] bg-current transition-all duration-500 ${isOpen ? "w-6 rotate-45 translate-y-[3px]" : "w-7"}`} />
@@ -363,6 +401,7 @@ export function VanguardNavigation() {
                         exit={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
                         transition={{ duration: 0.7, ease: [0.11, 0.82, 0.39, 0.92] }}
                         className="fixed inset-0 z-[9999] bg-foreground text-background flex flex-col overflow-hidden"
+                        ref={dialogRef}
                         role="dialog"
                         aria-label="Navigation menu"
                         aria-modal="true"
@@ -375,9 +414,10 @@ export function VanguardNavigation() {
                         {/* Close button */}
                         <button
                             type="button"
+                            ref={closeBtnRef}
                             aria-label="Close menu"
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-5 right-6 z-10 flex flex-col items-end gap-[5px] w-8 h-8 justify-center"
+                            className="absolute top-[14px] right-3 z-20 flex flex-col items-end gap-[5px] w-11 h-11 pr-3 justify-center"
                         >
                             <span className="h-[1px] w-6 bg-current rotate-45 translate-y-[3px]" />
                             <span className="h-[1px] w-6 bg-current -rotate-45 -translate-y-[3px]" />

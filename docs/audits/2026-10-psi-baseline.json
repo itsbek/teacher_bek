@@ -1,0 +1,34 @@
+{
+  "status": "quota_exceeded",
+  "date": "2026-10-21",
+  "note": "rerun with PSI_API_KEY",
+  "quota_detail": "PageSpeed Insights API returned HTTP 429 for all 4 runs (vi/en x mobile/desktop), plus 2 retries after 60s. Quota metric 'Queries per day' reports limit 0 for the calling project, so retries on the same day will not succeed. Create a key (see docs/setup/phase-0-owner-checklist.md step 6) and rerun.",
+  "runs_attempted": [
+    {"url": "https://teacherbek.com/vi", "strategy": "mobile", "result": "429"},
+    {"url": "https://teacherbek.com/vi", "strategy": "desktop", "result": "429"},
+    {"url": "https://teacherbek.com/en", "strategy": "mobile", "result": "429"},
+    {"url": "https://teacherbek.com/en", "strategy": "desktop", "result": "429"}
+  ],
+  "existing_lab_numbers": {
+    "source": "headless Chromium, mobile Slow 4G + 4x CPU throttling, 2026-10-20",
+    "en_mobile": {
+      "url": "https://teacherbek.com/en",
+      "ttfb_ms": 506,
+      "fcp_ms": 3784,
+      "lcp_ms": 3784,
+      "cls": 0,
+      "total_byte_weight_kb": 758,
+      "js_kb": 272,
+      "font_files": 40
+    },
+    "vi_mobile": {
+      "url": "https://teacherbek.com/vi",
+      "ttfb_ms": 172,
+      "fcp_ms": 2640,
+      "lcp_ms": 2640,
+      "cls": 0,
+      "total_byte_weight_kb": 782,
+      "font_files": 43
+    }
+  }
+}
