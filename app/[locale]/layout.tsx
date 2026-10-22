@@ -173,9 +173,7 @@ export default async function LocaleLayout({
                       description:
                         "English classes for children ages 5–10. Max 10 students per class.",
                     },
-                    price: "2990000",
-                    priceCurrency: "VND",
-                    description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
+                    description: "First week free. Pricing shared after a short form on the site.",
                   },
                   {
                     "@type": "Offer",
@@ -185,9 +183,7 @@ export default async function LocaleLayout({
                       description:
                         "English classes for teenagers ages 11–17. Communicative fluency focus.",
                     },
-                    price: "2990000",
-                    priceCurrency: "VND",
-                    description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
+                    description: "First week free. Pricing shared after a short form on the site.",
                   },
                 ],
               },

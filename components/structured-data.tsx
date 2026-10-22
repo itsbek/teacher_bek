@@ -83,10 +83,7 @@ export function StructuredData() {
       },
       offers: {
         "@type": "Offer",
-        price: "2990000",
-        priceCurrency: "VND",
-        priceSpecification: { "@type": "UnitPriceSpecification", unitText: "MONTH" },
-        description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
+        description: "First week free. Pricing shared after a short form on the site.",
         availability: "https://schema.org/InStock",
       },
       audience: {
@@ -117,10 +114,7 @@ export function StructuredData() {
       },
       offers: {
         "@type": "Offer",
-        price: "2990000",
-        priceCurrency: "VND",
-        priceSpecification: { "@type": "UnitPriceSpecification", unitText: "MONTH" },
-        description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
+        description: "First week free. Pricing shared after a short form on the site.",
         availability: "https://schema.org/InStock",
       },
       audience: {
@@ -166,7 +160,7 @@ export function StructuredData() {
         name: "How much do English lessons cost in Ho Chi Minh City?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "All programs cost 2,990,000 VND per month. The first month is 1,990,000 VND (save 1,000,000) after the free trial week. All programs include 2 sessions per week. One free week of lessons is available to assess level and fit before committing.",
+          text: "The first week of lessons is free, with no commitment, to assess level and fit. Pricing is shared after a short form on the website. All programs include 2 sessions per week.",
         },
       },
       {
