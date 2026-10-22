@@ -1,6 +1,6 @@
 # Teacher Bek
 
-> Teacher Bek is an English teacher based in Phú Nhuận, Ho Chi Minh City, Vietnam. He teaches small-group English (maximum 10 students per group) for young learners aged 6–10, teens aged 11–17, IELTS preparation, and English for work. Lessons are available in person and online.
+> Teacher Bek is an English teacher based in Phú Nhuận, Ho Chi Minh City, Vietnam. He teaches small-group English (maximum 10 students per group) for young learners aged 5–10 and teens aged 11–17 (students aged 5 to 17 only). Lessons are available in person and online.
 
 Website: https://teacherbek.com
 
@@ -21,10 +21,8 @@ Website: https://teacherbek.com
 
 ## Programs
 
-- Young Learners (ages 6–10): small-group English with speaking from the first session
+- Young Learners (ages 5–10): small-group English with speaking from the first session
 - Teens (ages 11–17): small-group English
-- IELTS: small-group preparation for the IELTS exam
-- English for Work: small-group English for professionals
 
 Group size: maximum 10 students per class. Classes are offered in person and online.
 

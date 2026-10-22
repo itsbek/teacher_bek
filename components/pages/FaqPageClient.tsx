@@ -6,7 +6,7 @@ import { VanguardFooter } from "@/components/VanguardFooter";
 import { Plus } from "lucide-react";
 import { KineticText } from "@/components/KineticText";
 
-type FaqTag = "All" | "Price & Value" | "Schedule Fit" | "Current Level" | "Exam Pressure" | "Parent Guidance" | "Getting Started";
+type FaqTag = "All" | "Price & Value" | "Schedule Fit" | "Current Level" | "Parent Guidance" | "Getting Started";
 
 interface FaqItem {
   q: string;
@@ -37,18 +37,8 @@ const faqs: FaqItem[] = [
   },
   {
     tag: "Current Level",
-    q: "Do you teach children, teens, and adults?",
-    a: "Yes. Programs are designed for young learners (ages 6–10), teens (11–17), and adults preparing for IELTS or improving workplace English."
-  },
-  {
-    tag: "Exam Pressure",
-    q: "Can I study IELTS with you?",
-    a: "Yes. IELTS lessons cover all four skills — speaking, writing, reading, and listening — with timed practice tests and clear feedback on what's holding your score back."
-  },
-  {
-    tag: "Exam Pressure",
-    q: "What band score can I realistically reach?",
-    a: "That depends on your starting point and how consistently you practise between lessons. I'll give you an honest assessment in the first session and a realistic timeline based on your goal."
+    q: "What ages do you teach?",
+    a: "Programs are designed for young learners (ages 5–10) and teens (11–17). Classes are for students aged 5 to 17 only."
   },
   {
     tag: "Parent Guidance",
@@ -73,7 +63,6 @@ const ALL_TAGS: FaqTag[] = [
   "Price & Value",
   "Schedule Fit",
   "Current Level",
-  "Exam Pressure",
   "Parent Guidance",
 ];
 
@@ -101,7 +90,7 @@ export function FaqPageClient() {
               </span>
             </h1>
             <p className="type-body-lg max-w-2xl mx-auto text-foreground/75">
-              Direct answers on class format, IELTS preparation, group levels, and enrollment.
+              Direct answers on class format, ages, group levels, and enrollment.
             </p>
           </div>
         </section>

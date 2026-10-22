@@ -55,8 +55,8 @@ export function StructuredData() {
     {
       "@context": "https://schema.org",
       "@type": "Course",
-      name: "Young Learners English (Ages 6–10)",
-      description: "Small-group English for children aged 6–10. Max 10 students. Speaking from session one. Pronunciation, vocabulary, and confidence built through structured practice — not drilling.",
+      name: "Young Learners English (Ages 5–10)",
+      description: "Small-group English for children aged 5–10. Max 10 students. Speaking from session one. Pronunciation, vocabulary, and confidence built through structured practice — not drilling.",
       provider: { "@id": `${SITE}/#organization` },
       instructor: { "@id": `${SITE}/#teacher-bek` },
       educationalLevel: "Beginner to Elementary",
@@ -91,7 +91,7 @@ export function StructuredData() {
       },
       audience: {
         "@type": "EducationalAudience",
-        audienceType: "Children ages 6–10",
+        audienceType: "Children ages 5–10",
         educationalRole: "student",
       },
       inLanguage: "en",
@@ -130,40 +130,6 @@ export function StructuredData() {
       },
       inLanguage: "en",
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      name: "IELTS Preparation",
-      description: "Targeted IELTS prep covering all four skills: Reading, Writing, Listening, Speaking. Timed practice, direct feedback, band score projection. No passive lectures — deliberate exam strategy.",
-      provider: { "@id": `${SITE}/#organization` },
-      instructor: { "@id": `${SITE}/#teacher-bek` },
-      educationalLevel: "Intermediate to Advanced",
-      teaches: "IELTS Examination Preparation",
-      courseWorkload: "PT1H",
-      hasCourseInstance: {
-        "@type": "CourseInstance",
-        courseMode: ["blended", "onsite"],
-        location: {
-          "@type": "Place",
-          name: "Golden Mansion 1",
-          address: "119 Phổ Quang, Phú Nhuận, Ho Chi Minh City, Vietnam",
-        },
-      },
-      offers: {
-        "@type": "Offer",
-        price: "2990000",
-        priceCurrency: "VND",
-        priceSpecification: { "@type": "UnitPriceSpecification", unitText: "MONTH" },
-        description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
-        availability: "https://schema.org/InStock",
-      },
-      audience: {
-        "@type": "EducationalAudience",
-        audienceType: "Adults and students targeting IELTS band scores",
-        educationalRole: "student",
-      },
-      inLanguage: "en",
-    },
   ];
 
   // ── FAQPage — AI Overviews, Perplexity, and ChatGPT pull directly from this
@@ -184,7 +150,7 @@ export function StructuredData() {
         name: "What ages does Teacher Bek teach?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Teacher Bek teaches Young Learners aged 6–10, Teens aged 11–17, and adults preparing for IELTS or professional English. All programs run in small groups of maximum 10 students.",
+          text: "Teacher Bek teaches Young Learners aged 5–10 and Teens aged 11–17. Classes are for students aged 5 to 17 only. All programs run in small groups of maximum 10 students.",
         },
       },
       {

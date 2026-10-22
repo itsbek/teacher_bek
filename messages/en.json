@@ -36,7 +36,7 @@
     "statsSchools": "Schools taught",
     "statusOpen": "Accepting students",
     "photoCaption": "Teacher Bek — Phú Nhuận, HCMC",
-    "tagline": "Small groups · Phú Nhuận · IELTS · Online",
+    "tagline": "Small groups · Phú Nhuận · Ages 5–17 · Online",
     "scrollLabel": "Scroll to explore"
   },
   "about": {
@@ -119,18 +119,14 @@
       "dialect": {
         "title": "Teens English",
         "desc": "Spoken English that keeps pace with real ambitions."
-      },
-      "literacy": {
-        "title": "IELTS Preparation",
-        "desc": "Band scores follow clarity. We train clarity."
       }
     }
   },
   "courses": {
     "title": "Find the Right Program",
-    "subtitle": "Three programs. One method: deliberate practice over passive exposure.",
+    "subtitle": "Two programs. One method: deliberate practice over passive exposure.",
     "youngLearners": {
-      "title": "Young Learners (Ages 6-10)",
+      "title": "Young Learners (Ages 5-10)",
       "tagline": "Small groups. Speaking from session one.",
       "description": "Children learn English when they feel safe enough to try and challenged enough to grow. Sessions are structured around speaking, not textbook repetition. Groups stay small so every child is heard.",
       "outcomes": [
@@ -140,7 +136,7 @@
         "A foundation that compounds through school and beyond"
       ],
       "duration": "2x/week • 90 min",
-      "level": "Ages 6-10",
+      "level": "Ages 5-10",
       "highlight": "A foundation they'll actually use"
     },
     "teens": {
@@ -156,20 +152,6 @@
       "duration": "2x/week • 90 min",
       "level": "Ages 11-17",
       "highlight": "School, university, and every room beyond"
-    },
-    "ielts": {
-      "title": "IELTS & Exam Preparation",
-      "tagline": "Band scores follow clarity. We train clarity.",
-      "description": "All four IELTS skills, timed practice, and direct feedback on what needs work. No padding, no passive lectures. Focused preparation that translates to scores — and more importantly, to actual English ability.",
-      "outcomes": [
-        "All four skills: Reading, Writing, Listening, Speaking",
-        "Test strategy and time management that holds under pressure",
-        "Detailed feedback on timed practice tests",
-        "A clear, honest read on where you stand"
-      ],
-      "duration": "2x/week • 60 min",
-      "level": "All Band Targets",
-      "highlight": "For university applications and immigration"
     }
   },
   "testimonials": {
@@ -190,12 +172,6 @@
         "rating": 5
       },
       {
-        "name": "IELTS student",
-        "role": "Adult learner",
-        "quote": "I'd taken IELTS twice before and plateaued. The timed practice and honest feedback on exactly what was costing me points made the difference — no vague encouragement, just what to fix.",
-        "rating": 5
-      },
-      {
         "name": "Expat parent",
         "role": "Phú Nhuận",
         "quote": "We were nervous about finding an English class as a foreign family. Teacher Bek made our son feel comfortable from the first trial lesson, and the classroom itself felt genuinely safe for a young child.",
@@ -205,12 +181,6 @@
         "name": "Parent of a 7-year-old",
         "role": "Gò Vấp",
         "quote": "One free trial week was enough to see the difference from her previous class of 25 students. Here she's one of eight, and she's actually excited to go.",
-        "rating": 5
-      },
-      {
-        "name": "Work English student",
-        "role": "Marketing professional",
-        "quote": "I needed to run meetings in English, not just get through them. We worked on the actual language I use at work — presentations, negotiation, client emails — not generic textbook units.",
         "rating": 5
       }
     ]
@@ -235,7 +205,7 @@
     },
     "q2": {
       "question": "What ages do you teach?",
-      "answer": "Young Learners (6-10), Teens (11-17), and IELTS/exam prep for all ages."
+      "answer": "Young Learners (5-10) and Teens (11-17). Classes are for students aged 5 to 17 only."
     },
     "q3": {
       "question": "Do I need to commit long-term?",
@@ -337,8 +307,8 @@
     "sectionLabel": "English Classes",
     "heading": "",
     "headingItalic": "Programs",
-    "subtitle": "Young learners, teens, and IELTS.",
-    "subtitleDesc": "Three programs. Each built for a specific stage.",
+    "subtitle": "Young learners and teens.",
+    "subtitleDesc": "Two programs. Each built for a specific stage.",
     "requestDetails": "Request details",
     "readyTitle": "One free week to see if it's right.",
     "readyDesc": "Tell me your level and goal. I'll tell you which program fits — and whether I can help.",
@@ -350,7 +320,7 @@
     "formatNote": "Group classes · Max 10 students",
     "youngLearners": {
       "title": "Young Learners",
-      "subtitle": "Ages 6–10",
+      "subtitle": "Ages 5–10",
       "tagline": "Small groups. Speaking from session one.",
       "format": "2× per week · 90 min + 15 min break",
       "price": "2,990,000 VND / month",
@@ -373,31 +343,6 @@
       "outcomes_2": "Communication skills for real situations",
       "outcomes_3": "Critical thinking in English",
       "method": "Communicative fluency under real pressure — removing the internal translation delay so students can think and respond in English, not about it."
-    },
-    "ielts": {
-      "title": "IELTS Preparation",
-      "subtitle": "All Band Targets",
-      "tagline": "Band scores follow clarity. We train clarity.",
-      "format": "2× per week · 60 min",
-      "price": "2,990,000 VND / month",
-      "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "Strategy lessons, not passive lectures",
-      "outcomes_1": "Active guidance and technique building",
-      "outcomes_2": "Detailed feedback on timed practice tests",
-      "outcomes_3": "A clear, honest read on where you stand",
-      "method": "Examiner-criteria strategy training with timed practice, honest band projection, and targeted work on each of the four skills — no generic test prep."
-    },
-    "workEnglish": {
-      "title": "English for Work",
-      "subtitle": "All Levels",
-      "tagline": "Professional English that earns its place in a room.",
-      "format": "2× per week · 90 min + 15 min break",
-      "price": "2,990,000 VND / month",
-      "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "Interviews and presentations in English",
-      "outcomes_1": "Business email and writing",
-      "outcomes_2": "Meeting and negotiation language",
-      "outcomes_3": "Client communication skills"
     }
   },
   "pricingGate": {
@@ -446,17 +391,15 @@
     "replyNote": "Usually replies within 24 hours",
     "forWhomLabel": "Who is this for?",
     "forWhomChild": "My Child",
-    "forWhomSelf": "Myself",
+    "forWhomSelf": "Me (student)",
     "levelLabel": "Current level?",
     "levelBeginner": "Beginner",
     "levelIntermediate": "Intermediate",
     "levelAdvanced": "Advanced",
     "levelNotSure": "Not Sure",
     "goalLabel": "Main goal?",
-    "goalIelts": "IELTS Score",
     "goalSpeaking": "Speaking Confidence",
     "goalSchool": "School Grades",
-    "goalWork": "Work English",
     "nameLabel": "Full Name",
     "namePlaceholder": "Your full name",
     "phoneLabel": "Phone / Zalo",
@@ -476,7 +419,7 @@
     "phoneChannels": "Zalo · Phone"
   },
   "marquee": {
-    "text": "TESOL Certified · PGCE Qualified · 2,000+ Students · Fluency, Not Just Familiarity · Small Groups · HCMC · Deliberate Practice · IELTS Preparation ·"
+    "text": "TESOL Certified · PGCE Qualified · 2,000+ Students · Fluency, Not Just Familiarity · Small Groups · HCMC · Deliberate Practice · Ages 5–17 ·"
   },
   "exitIntent": {
     "tag": "Before You Leave",

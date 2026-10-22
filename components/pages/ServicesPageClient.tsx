@@ -11,7 +11,7 @@ const programs = [
   {
     id: "01",
     title: "Young Learners",
-    subtitle: "Ages 6–10",
+    subtitle: "Ages 5–10",
     tagline: "Small groups, clear lessons, comfortable pace.",
     format: "2x/week · 90 min · Max 10 students",
     features: [
@@ -35,20 +35,6 @@ const programs = [
       "Communication for real situations",
     ],
     anchor: "teens",
-  },
-  {
-    id: "03",
-    title: "IELTS & Professional English",
-    subtitle: "All Band Targets",
-    tagline: "Structured prep for the exam and the workplace.",
-    format: "2x/week · 60 min · All levels",
-    features: [
-      "Band-focused exam strategy",
-      "Mock speaking drills and feedback",
-      "Business email and writing",
-      "Real-world communication practice",
-    ],
-    anchor: "ielts",
   },
 ];
 
@@ -94,7 +80,7 @@ export function ServicesPageClient() {
                 Real results.
               </p>
               <p className="text-base text-foreground/50 leading-relaxed max-w-sm">
-                Small groups for children, teens, and adults. Practical English — not just textbook English.
+                Small groups for children and teens (ages 5–17). Practical English — not just textbook English.
               </p>
             </div>
           </div>

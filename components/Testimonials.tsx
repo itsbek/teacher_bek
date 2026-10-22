@@ -75,7 +75,7 @@ export function Testimonials() {
         </div>
 
         {/* Testimonial grid */}
-        <div ref={cardsGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/10">
+        <div ref={cardsGridRef} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/10">
           {items.map((item) => (
             <div
               key={item.name}

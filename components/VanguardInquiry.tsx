@@ -393,7 +393,7 @@ export function VanguardInquiry() {
             />
             <PillGroup
               label={t("goalLabel")}
-              options={[t("goalIelts"), t("goalSpeaking"), t("goalSchool"), t("goalWork")]}
+              options={[t("goalSpeaking"), t("goalSchool")]}
               value={form.goal}
               onChange={(v) => set("goal", v)}
             />

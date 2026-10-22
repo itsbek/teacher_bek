@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     title: "English Services",
-    description: "Explore small-group English programs for students, teens, and adults.",
+    description: "Explore small-group English programs for children and teens aged 5–17.",
     path: "/services",
   });
 }

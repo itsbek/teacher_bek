@@ -18,7 +18,7 @@ const CYCLING_WORDS = [
     "finally sticks",
     "opens doors",
     "trains confidence",
-    "travels past IELTS",
+    "travels beyond class",
     "removes the ceiling",
     "becomes you",
 ];

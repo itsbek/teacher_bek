@@ -20,7 +20,7 @@ const localeData: Record<string, {
   en: {
     // Lead with "English classes" — 10× higher search volume than "English teacher"
     title: "English Classes Ho Chi Minh City | Native Teacher | HCMC",
-    description: "Small-group English classes in Phú Nhuận, HCMC. Max 10 students. Native teacher, TESOL & PGCE certified. Kids from age 6, teens & IELTS prep. Near Tân Sơn Nhất airport. Free trial week.",
+    description: "Small-group English classes in Phú Nhuận, HCMC. Max 10 students. Native teacher, TESOL & PGCE certified. Kids and teens aged 5–17. Near Tân Sơn Nhất airport. Free trial week.",
     ogLocale: "en_US",
     keywords: [
       // Primary — highest volume local
@@ -38,10 +38,7 @@ const localeData: Record<string, {
       "English school for kids HCMC",
       "kids English class Phu Nhuan",
       "English lessons for children Ho Chi Minh",
-      // Teens & IELTS
-      "IELTS preparation Ho Chi Minh City",
-      "IELTS classes Saigon",
-      "IELTS tutor HCMC",
+      // Teens
       "English for teenagers HCMC",
       // Native teacher / small group differentiator
       "native English teacher Ho Chi Minh City",
@@ -66,7 +63,7 @@ const localeData: Record<string, {
   vi: {
     // Lead with "lớp tiếng Anh" — what Vietnamese parents actually search
     title: "Lớp Tiếng Anh Phú Nhuận · Giáo Viên Nước Ngoài | TPHCM",
-    description: "Lớp tiếng Anh nhóm nhỏ tối đa 10 học sinh tại Phú Nhuận, TPHCM. Giáo viên nước ngoài bản ngữ chứng chỉ TESOL. Trẻ em từ 6 tuổi, thiếu niên & luyện thi IELTS. Học thử 1 tuần miễn phí.",
+    description: "Lớp tiếng Anh nhóm nhỏ tối đa 10 học sinh tại Phú Nhuận, TPHCM. Giáo viên nước ngoài bản ngữ chứng chỉ TESOL. Học viên từ 5 đến 17 tuổi. Học thử 1 tuần miễn phí.",
     ogLocale: "vi_VN",
     keywords: [
       // HIGH VOLUME — general class searches (most searched terms in VN)
@@ -103,7 +100,7 @@ const localeData: Record<string, {
       "lớp tiếng Anh cho trẻ em TPHCM",
       "học tiếng Anh cho bé",
       "lớp tiếng Anh thiếu nhi TPHCM",
-      "dạy tiếng Anh cho trẻ từ 6 tuổi",
+      "dạy tiếng Anh cho trẻ từ 5 tuổi",
       "lớp tiếng Anh trẻ em Phú Nhuận",
       "lớp tiếng Anh trẻ em Gò Vấp",
       "lớp Anh văn thiếu nhi TPHCM",
@@ -112,12 +109,7 @@ const localeData: Record<string, {
       // TEENS
       "lớp tiếng Anh thiếu niên TPHCM",
       "tiếng Anh cho học sinh trung học",
-      // IELTS
-      "luyện thi IELTS TPHCM",
-      "luyện thi IELTS Phú Nhuận",
-      "khóa học IELTS TPHCM",
-      "ôn thi IELTS Sài Gòn",
-      "lớp IELTS nhóm nhỏ TPHCM",
+      "lớp tiếng Anh cho trẻ 5-17 tuổi TPHCM",
       // NATIVE TEACHER — key differentiator
       "học tiếng Anh với người nước ngoài",
       "giáo viên bản ngữ tiếng Anh TPHCM",
@@ -141,7 +133,7 @@ const localeData: Record<string, {
   zh: {
     // Lead with "英语课程" (English courses) — higher search volume than "英语教师"
     title: "胡志明市英语培训班 · 外籍TESOL教师 · 小班教学 · 富润郡",  // ~30 display chars ✓
-    description: "胡志明市富润郡小班英语课程，最多10名学生。外籍母语教师，TESOL及PGCE认证。儿童（6岁起）、青少年及雅思备考。近新山一机场。免费试课一周。",
+    description: "胡志明市富润郡小班英语课程，最多10名学生。外籍母语教师，TESOL及PGCE认证。面向5至17岁儿童及青少年。近新山一机场。免费试课一周。",
     ogLocale: "zh_CN",
     keywords: [
       // High volume — Chinese speakers in HCMC
@@ -156,9 +148,6 @@ const localeData: Record<string, {
       "胡志明市儿童英语课",
       "越南儿童英语培训",
       "英语幼儿班胡志明",
-      // IELTS
-      "雅思备考胡志明市",
-      "雅思培训越南",
       // Differentiators
       "母语外教英语课越南",
       "最多10人英语小班",
@@ -171,7 +160,7 @@ const localeData: Record<string, {
   ru: {
     // Lead with "курсы английского" (English courses)
     title: "Курсы английского в Хошимине · Малые группы · Фу Ньюан",
-    description: "Курсы английского в малых группах (макс. 10 чел.) в районе Фу Ньюан, Хошимин. Носитель языка, сертификаты TESOL и PGCE. Дети от 6 лет, подростки, подготовка к IELTS. Первая неделя бесплатно.",
+    description: "Курсы английского в малых группах (макс. 10 чел.) в районе Фу Ньюан, Хошимин. Носитель языка, сертификаты TESOL и PGCE. Дети и подростки от 5 до 17 лет. Первая неделя бесплатно.",
     ogLocale: "ru_RU",
     keywords: [
       // High volume — Russian expat community
@@ -184,9 +173,6 @@ const localeData: Record<string, {
       "английский для детей Хошимин",
       "английский для детей Вьетнам",
       "детские курсы английского Сайгон",
-      // IELTS
-      "подготовка к IELTS Хошимин",
-      "курсы IELTS Вьетнам",
       // Differentiators
       "носитель языка английский Вьетнам",
       "малые группы английского Хошимин",

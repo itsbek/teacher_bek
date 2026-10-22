@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: "%s · Teacher Bek · Phú Nhuận",
   },
   description:
-    "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. One free week.",
+    "TESOL & PGCE certified. Max 10 per class. Kids and teens aged 5–17 at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. One free week.",
   robots: {
     index: true,
     follow: true,
@@ -104,7 +104,7 @@ export default async function LocaleLayout({
                 "Teacher Bek Anh Ngữ",
               ],
               description:
-                "Small-group English classes in Ho Chi Minh City. Maximum 10 students per class. Native teacher, TESOL & PGCE certified. Programs for children ages 6+, teens, and IELTS preparation. Located at 119 Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
+                "Small-group English classes in Ho Chi Minh City. Maximum 10 students per class. Native teacher, TESOL & PGCE certified. Programs for children ages 5–10 and teens ages 11–17. Located at 119 Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
               url: "https://teacherbek.com",
               telephone: "+84353885757",
               email: "hello@teacherbek.com",
@@ -171,7 +171,7 @@ export default async function LocaleLayout({
                       "@type": "Course",
                       name: "Young Learners English",
                       description:
-                        "English classes for children ages 6–10. Max 10 students per class.",
+                        "English classes for children ages 5–10. Max 10 students per class.",
                     },
                     price: "2990000",
                     priceCurrency: "VND",
@@ -184,18 +184,6 @@ export default async function LocaleLayout({
                       name: "Teens English",
                       description:
                         "English classes for teenagers ages 11–17. Communicative fluency focus.",
-                    },
-                    price: "2990000",
-                    priceCurrency: "VND",
-                    description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Course",
-                      name: "IELTS Preparation",
-                      description:
-                        "IELTS exam preparation covering all four skills. Small groups, max 10 students.",
                     },
                     price: "2990000",
                     priceCurrency: "VND",

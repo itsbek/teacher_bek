@@ -9,8 +9,8 @@ import { trackCTAClick } from "@/lib/analytics";
 import { PricingGateModal } from "./PricingGateModal";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
-const PROGRAM_KEYS = ["youngLearners", "teens", "ielts"] as const;
-const PROGRAM_IDS = ["01", "02", "03"] as const;
+const PROGRAM_KEYS = ["youngLearners", "teens"] as const;
+const PROGRAM_IDS = ["01", "02"] as const;
 const OUTCOMES_COUNT = 4;
 
 export function VanguardLexicon() {
@@ -104,7 +104,7 @@ export function VanguardLexicon() {
       if (!isMobile && pinWrapRef.current && cardsGridRef.current) {
         const cards = Array.from(cardsGridRef.current.children) as HTMLElement[];
         const segs = progressSegRefs.current.filter(Boolean) as HTMLSpanElement[];
-        const PIN_DISTANCE = 560;
+        const PIN_DISTANCE = 420;
 
         // Initialise dimmed state (applied after entrance anim via delay)
         gsap.delayedCall(1.2, () => {
@@ -125,16 +125,11 @@ export function VanguardLexicon() {
           },
         });
 
-        // Card 0 → 1 transition at 40% progress
-        tl.to(cards[0], { opacity: 0.45, ease: "power1.inOut" }, 0.3)
-          .to(cards[1], { opacity: 1,    ease: "power1.inOut" }, 0.3)
+        // Card 0 → 1 transition at ~50% progress
+        tl.to(cards[0], { opacity: 0.45, ease: "power1.inOut" }, 0.4)
+          .to(cards[1], { opacity: 1,    ease: "power1.inOut" }, 0.4)
           .to(segs[0],  { scaleX: 1,     ease: "none"         }, 0)
-          .to(segs[1],  { scaleX: 1,     ease: "none"         }, 0.35);
-
-        // Card 1 → 2 transition at 70% progress
-        tl.to(cards[1], { opacity: 0.45, ease: "power1.inOut" }, 0.65)
-          .to(cards[2], { opacity: 1,    ease: "power1.inOut" }, 0.65)
-          .to(segs[2],  { scaleX: 1,     ease: "none"         }, 0.68);
+          .to(segs[1],  { scaleX: 1,     ease: "none"         }, 0.45);
       }
 
       // Ghost ID counter - count up from 00 to value
@@ -277,8 +272,8 @@ export function VanguardLexicon() {
             ))}
           </div>
 
-          {/* Program Grid — 3 equal editorial columns */}
-          <div id="programs" ref={cardsGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/10">
+          {/* Program Grid — 2 equal editorial columns */}
+          <div id="programs" ref={cardsGridRef} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/10">
             {programs.map((program, index) => (
               <div
                 key={program.id}

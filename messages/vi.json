@@ -39,7 +39,7 @@
     "statsSchools": "Trường Đã Dạy",
     "statusOpen": "Đang nhận học viên",
     "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM",
-    "tagline": "Nhóm nhỏ · Phú Nhuận · IELTS · Trực tuyến",
+    "tagline": "Nhóm nhỏ · Phú Nhuận · 5–17 tuổi · Trực tuyến",
     "scrollLabel": "Cuộn để khám phá"
   },
   "about": {
@@ -113,9 +113,9 @@
   },
   "courses": {
     "title": "Tìm Chương Trình Phù Hợp",
-    "subtitle": "Ba chương trình. Một phương pháp. Luyện tập có chủ đích — không phải tiếp thu thụ động.",
+    "subtitle": "Hai chương trình. Một phương pháp. Luyện tập có chủ đích — không phải tiếp thu thụ động.",
     "youngLearners": {
-      "title": "Thiếu Nhi (6-10 Tuổi)",
+      "title": "Thiếu Nhi (5-10 Tuổi)",
       "tagline": "Nhóm nhỏ, bài học rõ ràng, nhịp độ phù hợp.",
       "description": "Trẻ em tiến bộ khi cảm thấy thoải mái và hứng thú. Mỗi buổi học dùng hoạt động và trò chơi thực tế — không chỉ học thuộc lòng. Nhóm nhỏ đảm bảo mỗi em đều được chú ý.",
       "outcomes": [
@@ -125,7 +125,7 @@
         "Nền tảng tiếng Anh học đường vững chắc"
       ],
       "duration": "2 buổi/tuần • 90 phút",
-      "level": "6-10 Tuổi",
+      "level": "5-10 Tuổi",
       "highlight": "Nền tảng thực sự có ích"
     },
     "teens": {
@@ -141,20 +141,6 @@
       "duration": "2 buổi/tuần • 90 phút",
       "level": "11-17 Tuổi",
       "highlight": "Học đường, đại học và cuộc sống hàng ngày"
-    },
-    "ielts": {
-      "title": "Luyện Thi IELTS & Chứng Chỉ",
-      "tagline": "Luyện thi có hệ thống, tập trung đúng vào những gì bài thi kiểm tra.",
-      "description": "Cả 4 kỹ năng IELTS, đề thi thực tế và phản hồi cụ thể về điểm yếu cần cải thiện. Không có nội dung thừa — chỉ là chuẩn bị thiết thực cho điểm số thực tế.",
-      "outcomes": [
-        "Cả 4 kỹ năng: Đọc, Viết, Nghe, Nói",
-        "Chiến lược thi và quản lý thời gian thực sự hiệu quả",
-        "Phản hồi chi tiết qua bài thi có tính giờ",
-        "Đánh giá thực tế: bạn đang ở đâu và cần cải thiện gì"
-      ],
-      "duration": "2 buổi/tuần • 60 phút",
-      "level": "Mọi Mức Điểm",
-      "highlight": "Cho du học và định cư"
     }
   },
   "testimonials": {
@@ -184,18 +170,6 @@
         "name": "Phụ huynh gia đình nước ngoài",
         "role": "Phú Nhuận",
         "quote": "Chúng tôi khá lo lắng khi tìm lớp tiếng Anh với tư cách gia đình nước ngoài. Thầy Bek giúp con trai tôi thoải mái ngay từ buổi học thử đầu tiên, và lớp học thực sự an toàn cho trẻ nhỏ.",
-        "rating": 5
-      },
-      {
-        "name": "Học viên IELTS",
-        "role": "Người lớn",
-        "quote": "Tôi đã thi IELTS hai lần trước đó và bị chững điểm. Luyện đề có giới hạn thời gian và phản hồi thẳng thắn về điều đang khiến tôi mất điểm chính là điều tạo nên khác biệt.",
-        "rating": 5
-      },
-      {
-        "name": "Học viên tiếng Anh công việc",
-        "role": "Ngành marketing",
-        "quote": "Tôi cần điều hành cuộc họp bằng tiếng Anh, không chỉ đơn thuần tham gia cho xong. Chúng tôi luyện đúng ngôn ngữ tôi dùng ở công việc — thuyết trình, đàm phán, email khách hàng.",
         "rating": 5
       }
     ]
@@ -229,7 +203,7 @@
     },
     "q2": {
       "question": "Thầy dạy độ tuổi nào?",
-      "answer": "Thiếu nhi (6-10 tuổi), Thanh thiếu niên (11-17 tuổi), và luyện thi IELTS/chứng chỉ cho mọi lứa tuổi."
+      "answer": "Thiếu nhi (5-10 tuổi) và thanh thiếu niên (11-17 tuổi). Lớp học chỉ dành cho học viên từ 5 đến 17 tuổi."
     },
     "q3": {
       "question": "Cần đăng ký theo kỳ không?",
@@ -373,17 +347,15 @@
     "replyNote": "Thường phản hồi trong vòng 24 giờ",
     "forWhomLabel": "Đăng ký cho ai?",
     "forWhomChild": "Con tôi",
-    "forWhomSelf": "Bản thân",
+    "forWhomSelf": "Bản thân (học sinh)",
     "levelLabel": "Trình độ hiện tại?",
     "levelBeginner": "Sơ cấp",
     "levelIntermediate": "Trung cấp",
     "levelAdvanced": "Nâng cao",
     "levelNotSure": "Chưa chắc",
     "goalLabel": "Mục tiêu chính?",
-    "goalIelts": "Điểm IELTS",
     "goalSpeaking": "Tự tin giao tiếp",
     "goalSchool": "Điểm học đường",
-    "goalWork": "Tiếng Anh công việc",
     "nameLabel": "Họ và tên",
     "namePlaceholder": "Họ và tên đầy đủ",
     "phoneLabel": "Điện thoại / Zalo",
@@ -403,14 +375,14 @@
     "phoneChannels": "Zalo · Điện Thoại"
   },
   "marquee": {
-    "text": "Chứng Chỉ TESOL · Bằng PGCE · 2.000+ Học Viên · Nhóm Nhỏ · Tự Tin Giao Tiếp · Luyện Thi IELTS · TP. Hồ Chí Minh ·"
+    "text": "Chứng Chỉ TESOL · Bằng PGCE · 2.000+ Học Viên · Nhóm Nhỏ · Tự Tin Giao Tiếp · Học Viên 5–17 Tuổi · TP. Hồ Chí Minh ·"
   },
   "programs": {
     "sectionLabel": "Lớp Tiếng Anh",
     "heading": "",
     "headingItalic": "Chương Trình",
-    "subtitle": "Thiếu nhi, thiếu niên và IELTS.",
-    "subtitleDesc": "Ba chương trình. Mỗi chương trình dành cho một giai đoạn cụ thể.",
+    "subtitle": "Thiếu nhi và thiếu niên.",
+    "subtitleDesc": "Hai chương trình. Mỗi chương trình dành cho một giai đoạn cụ thể.",
     "requestDetails": "Yêu cầu thông tin",
     "readyTitle": "Một tuần học thử để xem có phù hợp không.",
     "readyDesc": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết chương trình nào phù hợp — và liệu tôi có thể giúp được không.",
@@ -422,7 +394,7 @@
     "formatNote": "Lớp học nhóm · Tối đa 10 học viên",
     "youngLearners": {
       "title": "Thiếu Nhi",
-      "subtitle": "Từ 6–10 tuổi",
+      "subtitle": "Từ 5–10 tuổi",
       "tagline": "Lớp nhỏ, bài học rõ ràng, nhịp độ thoải mái.",
       "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
       "price": "2.990.000đ/tháng",
@@ -445,31 +417,6 @@
       "outcomes_2": "Kỹ năng giao tiếp trong tình huống thực tế",
       "outcomes_3": "Tư duy phản biện bằng tiếng Anh",
       "method": "Phát triển khả năng giao tiếp linh hoạt dưới áp lực thực tế — loại bỏ độ trễ dịch trong đầu để học sinh có thể suy nghĩ và phản hồi bằng tiếng Anh."
-    },
-    "ielts": {
-      "title": "Luyện Thi IELTS",
-      "subtitle": "Mọi Band Điểm",
-      "tagline": "Bài học chiến lược để xây dựng kỹ năng và sự tự tin.",
-      "format": "2× mỗi tuần · 60 phút",
-      "price": "2.990.000đ/tháng",
-      "schedule": "Buổi tối ngày thường · Cuối tuần",
-      "outcomes_0": "Học kỹ năng chiến lược, không phải bài giảng thụ động",
-      "outcomes_1": "Hướng dẫn thực hành và dạy kỹ năng làm bài",
-      "outcomes_2": "Phản hồi chi tiết dựa trên bài làm của học viên",
-      "outcomes_3": "Biết rõ điểm mạnh và điểm cần cải thiện",
-      "method": "Luyện chiến lược theo tiêu chí của giám khảo, thực hành có tính giờ, dự đoán band điểm thực tế và làm việc có mục tiêu trên cả 4 kỹ năng."
-    },
-    "workEnglish": {
-      "title": "Tiếng Anh Công Sở",
-      "subtitle": "Mọi Trình Độ",
-      "tagline": "Tiếng Anh chuyên nghiệp cho phỏng vấn, họp và khách hàng.",
-      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
-      "price": "2.990.000đ/tháng",
-      "schedule": "Buổi tối ngày thường · Cuối tuần",
-      "outcomes_0": "Phỏng vấn và thuyết trình bằng tiếng Anh",
-      "outcomes_1": "Email và viết lách trong công việc",
-      "outcomes_2": "Ngôn ngữ đàm phán và họp hành",
-      "outcomes_3": "Kỹ năng giao tiếp với khách hàng"
     }
   },
   "exitIntent": {

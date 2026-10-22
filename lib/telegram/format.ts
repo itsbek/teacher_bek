@@ -32,7 +32,7 @@ export function statusEmoji(v: string): string {
   return strings.statusEmoji[statusOf(v)];
 }
 
-/** "Young Learners" -> "YL"; "ielts" -> "Ielts". */
+/** "Young Learners" -> "YL"; legacy values such as "ielts" still display as "Ielts". */
 export function programShort(program: string | undefined): string {
   const words = (program ?? '').split(/[^\p{L}\p{N}]+/u).filter(Boolean);
   if (words.length === 0) return '';
