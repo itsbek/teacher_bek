@@ -1,51 +1,59 @@
 # teacherbek.com — Creative Direction, Audit & Build Plan
 
-> v2 · prepared 2026-10-21 · read-only audit of repo (`main` @ `d3f7e81` + 18 uncommitted files) and live https://teacherbek.com.
-> Research by sub-agents (Sonnet/Haiku) on 2026-10-20/21: 7 Awwwards Site-of-the-Year sites + 12 award-winning education/personal/service sites opened, scrolled, screenshotted and measured in headless Chromium; live-site teardown (~70 screenshots); font coverage verified against foundry pages and Google Fonts metadata; package versions via `npm view`. Raw evidence: session scratchpad (`soty/`, `sotd/`, `teardown/`, `type/`).
+> **v3 · 2026-10-22.** Authoritative structure: `design.md`. Research: 13 award sites studied frame by frame (§1), current-site audit (§2), owner story answers (Step 0, answered 2026-10-22). Decisions are made in this document; the owner only approves or overrides the short list in §0.
+
+> **v3 status (2026-10-22).** The "Red Pen" concept is dead (owner: "truly shitty"). Step 0 is **answered**. Steps 3–8 below are now written against the owner's real story. Phases 0–1 (live-site repairs, lead pipeline, owner kits, first copy deck) remain valid but the copy deck and mistake library were written for Red Pen and must be reworked for the new idea (Phase 1, task P1.2b). The Phase 2a Red Pen design folder is archived and is not a starting point. **Scope change from the owner on 2026-10-22:** adult programmes (IELTS, English for Work) are dropped; Bek does not teach children under 5 in private classes. v1 audience = **children 5–17 and their parents**, two programmes: **Young Learners 5–10** and **Teens 11–17**, one price.
 
 ---
 
-> **v3 status (2026-10-22) — Red Pen is SUPERSEDED.** The owner rejected the Phase 2a "Red Pen" design (type-only, cautious, placeholder-heavy) and issued a new brief (`design.md`, the authoritative spec for design/UI/UX). Work proceeds in order: **Step 0** owner story questions (asked, awaiting answers) → **Step 1** frame-by-frame study of winners (done, §1) → **Step 2** audit of the current site (done, §2) → **Steps 3–4** big idea, design bible, scroll storyboard (**PENDING — written only after the owner answers Step 0**) → Steps 5–8 revisited after that. Phases 0–1 (live-site repairs, lead pipeline, owner kits, copy deck) **remain valid**. §0 below still describes the rejected concept and is kept only until the new big idea replaces it; §3–§4 and the Phase 2a design files are archived at the end of this document.
-
 ## 0. One-page summary
 
-### The concept — **"The Red Pen"** (REJECTED 2026-10-22 — kept for reference until the new big idea replaces it)
-The whole site is a teacher's page in the middle of being marked: a real mistake on screen, the teacher's own red-pen handwriting correcting it, and the student's English getting better as you scroll. It sells the one thing parents actually pay for — *the mistake fixed, the confidence gained* — and makes it feel physical, warm and personal rather than "agency dark mode". It is built from type, paper, ink and real classroom photography (no WebGL needed), so it stays fast on a ₫3-million Android phone.
+### The big idea — **"Hello! How are you today?"** (3 sentences)
+Every one of Bek's lessons starts the same way: a greeting, and every child saying how they are today. The website starts the same way: the first screen says hello in Bek's voice and asks the visitor to finish one sentence, "I am ___.", with a feeling word (happy, tired, hungry, excited, shy, okay); the word drops into the sentence, the page takes on that feeling's colour, and Bek answers like a teacher would. Everything after that is the lesson continuing: a circle where every child talks, a ladder of sentences from age 5 to 17, honest proof, a warm room, a free first week, and a final "See you in class" form that is just the next turn in the conversation.
 
-### The 5 biggest problems today
+### The 5 biggest problems with the current site
 | # | Problem | Evidence |
 |---|---|---|
-| 1 | **First 5 seconds sell nothing.** Mobile hero = giant "ENGLISH", a lone grey "that", ~280 px of empty cream, then stats. No face, no child, no age, no price cue. H1 is English on VI/ZH/RU. | `teardown/m-en-00.png`, `m-zh-hero.png` |
-| 2 | **Leads can vanish.** Submissions are only emailed (nothing stored); pricing gate reports "success" even if the email fails; honeypot is wired wrong (`website: ""` hard-coded). | `app/api/pricing-lead/route.ts`; `VanguardInquiry.tsx:247` |
-| 3 | **Things are visibly broken.** Mobile menu **can't be closed** (X is covered by a `z-10` sibling, `VanguardNavigation.tsx:~327`); contact map shows **"API KEY REQUIRED"** watermarks (Carto tiles); the Zalo bubble covers content on every screen; empty "Reads" band. | `teardown/m-en-20.png`, `i-menu*`; Semrush Site Audit corroborates broken links, invalid schema and double h1 (§2.3) |
-| 4 | **Slow on a real phone.** Slow 4G + 4× CPU: LCP **2.6–3.8 s**, ~760 KB, **40–43 font files**, ~270 KB JS, three animation libraries. | throttled run 2026-10-20 |
-| 5 | **Looks like a design-studio portfolio, not a place you'd trust with your 8-year-old.** 11–15 px grey tracked caps everywhere (~2.5–3:1 contrast), only two photos, no children/class in action, jargon ("acquisition through structured play"), programmes arrive at screen 7 of 24. | teardown §Typography/§Imagery |
+| 1 | **No idea, no voice in the first 5 seconds.** Mobile hero = giant "ENGLISH", a faint grey cycling word, ~280 px of empty cream, then a stats box. No face, no child, no age, no price cue, no sound of a teacher. It reads as a design-studio portfolio, not a teacher you would trust with a 7-year-old. | `teardown/m-en-00.png` (§2.1) |
+| 2 | **It sells the wrong audience.** IELTS and English for Work (adults), four languages, an empty blog and a community hub dilute a teacher whose real students are children 5–17 and whose real promise is "speak better, read and listen better, no magic". | Step 0 S2/S4, Q14 |
+| 3 | **The warm part is invisible.** Parents choose Bek for home warmth, more talk time and a fair price (S5). The site shows two photos, no room, no children's voices, a price gate that reads as a paywall, jargon ("acquisition through structured play"). | §2.1 Imagery, Copy, Pricing gate |
+| 4 | **Slow and heavy on a real phone.** Slow 4G + 4x CPU: LCP 2.6-3.8 s, ~760 KB, 40-43 font files, ~270 KB JS, three animation libraries. | §2.2 Core Web Vitals |
+| 5 | **Trust and compliance gaps.** Price gate reads as a paywall; no consent record per lead; GA4 before consent; privacy/terms English-only and silent about children's data (PDPL); invalid schema (44 items, §2.3). Lead loss was fixed in Phase 0; the rest stands. | §2.2, §2.3 |
 
-### Decisions the owner must make
-1. **Approve "The Red Pen"** (or pick B "Ten Seats" / C "Voices", §3).
-2. **Pricing:** show a public "from ₫X/month" and gate the full sheet + booking (recommended) — or gate everything? Real prices per programme (§Questions). Q1 answered: one price for every programme; amount still `[CONFIRM amount]`.
-3. **Content commitments:** a half-day photo/video shoot, 5–10 testimonials with written consent, published anonymised (role + context only), a sample of your handwriting (for the red-pen strokes).
-4. **Seat counts:** are you willing to keep "seats left per group" truthful (update once a week)? It's a signature feature; it must never be fake.
-5. **Platform & budget:** rebuild on Astro + Cloudflare (recommended, ~$1–5/mo) vs. stay on Next.js + Vercel Pro ($20/mo); optional paid font (~$40–150, quote needed).
+### Self-scored (expected jury score /10, before submission; detail in §9)
+| Criterion | Weight | Expected | Weighted | What loses points |
+|---|---|---|---|---|
+| Design | 40% | **7.8** | 3.12 | Photography is owner-shot on a phone: if light/composition are weak, imagery caps the score. Warm/soft style is a risk of looking "kids' app" instead of premium. |
+| Usability | 30% | **8.0** | 2.40 | Any jank on mid-range Android; audio/Flip interaction failing on in-app browsers (Zalo, Facebook); form friction. |
+| Creativity | 20% | **7.6** | 1.52 | The greeting is simple. If the reply copy or the colour/type response feels generic, jurors read it as "a mood picker". Execution must make it feel inevitable. |
+| Content | 10% | **6.8** | 0.68 | Depends on owner supply: recorded voice, real photos, anonymised testimonials, the 5-year-old result told plainly. Placeholders would cost the whole criterion. |
+| **Total** | 100% | | **7.72** | Honorable Mention (>= 6.5) is the realistic floor; Site of the Day (reference SOTDs scored 7.5-8.25, §1.6) is possible, not promised. |
+
+### Decisions the owner must make (plain language)
+1. **Approve the big idea** ("Hello! How are you today?", §3) or say what to change.
+2. **Record your voice once** (about 1 hour, phone, quiet room): "Hello! How are you today?", six feeling words, "See you soon!". The site's signature moment depends on it. If you decline, the site works without sound (§3.8).
+3. **Photos and video** of the room and your hands, children only with written parent consent (otherwise hands, backs, shoes by the door). Shot list in §3.5.
+4. **Confirm facts I cannot invent:** group size (old copy says max 10), what happens in the free week, class times for 5-6 year olds (old weekday slot 19:30-21:00 is late), reply time promise, whether credentials may be named (TESOL, PGCE, DELTA).
+5. **Platform:** move from Next.js on Vercel to Astro on Cloudflare (recommended, $0/month, faster; leads code is reused) or stay (Vercel Pro $20/month). §5.
+6. **Look:** v3 is warm and rounded (pills, soft corners), not the old brutalist square look. Confirm you are happy to retire "no rounded corners" from `CLAUDE.md`.
+7. **Adults:** confirm IELTS / English for Work are gone from the site (done in this plan per your 2026-10-22 message); existing adult enquiries are answered on Zalo, not on the site.
 
 ---
 
 ## Step 0 — Questions for the owner (story)
 
-The big idea must come from your real story, so nothing is invented. Please answer in plain words, voice notes are fine; a few sentences each is enough.
+**Status: Answered 2026-10-22.** The big idea in §3 is built only from these answers.
 
-**Status: Awaiting owner answers (asked 2026-10-22).**
-
-| # | Question | Why it matters for the big idea |
-|---|---|---|
-| S1 | What do you teach: which skills (speaking, IELTS, writing...), which ages, which levels, and which class is your favourite? | The metaphor must come from how you actually teach, not from a template. |
-| S2 | Who are your students? Describe 2–3 real ones (anonymised: age, why they came, what worried them). | Real people become the site's characters and testimonials; invented personas read as fake. |
-| S3 | What does a lesson feel like? Walk me through the first 10 minutes. | The scroll story and the hero interaction are modelled on this moment. |
-| S4 | What changes for a student after 3 months? What can they do that they could not before? | This is the "transformation" the whole site promises and the headline proof. |
-| S5 | Why you, and not other teachers or a big centre like ILA? | The one thing that makes the idea ownable instead of generic. |
-| S6 | What is the best result a student ever got? One real story, with as much detail as you remember. | The single most persuasive proof; usually becomes the signature moment's content. |
-| S7 | What story do you always tell about yourself (for example Tashkent to Ho Chi Minh City)? | Personal-brand winners (Lando, Trevor Noah) are built on the owner's own story. |
-| S8 | Which 2–3 websites do you love, and what exactly do you love in them? | Calibrates taste so the design is one you will be proud of. |
+| # | Question | Owner's answer (verbatim) | Meaning used in this plan |
+|---|---|---|---|
+| S1 | What do you teach? | "English" | One subject, said plainly. No skill menu. |
+| S2 | Who are your students? | "anyone from 2 y.o. to teens" | **Updated by owner, same day:** no private classes under 5. v1 = children **5-17** and their parents. Adult programmes dropped. |
+| S3 | How does a lesson feel / first 10 minutes? | "greet, share how they are etc." | Every lesson starts with a greeting and each child saying how they are. **This is the big idea.** The "etc." (what follows) is not known: marked `[OWNER]` wherever it matters. |
+| S4 | What changes after 3 months? | "speak better, read and listen and understand better — no magic promises" | Three verbs only: speak, read, listen. No guarantees, no band scores, no "fluent in 90 days". |
+| S5 | Why you, not a centre? | "parents requested me a lot, cheaper, home warmth and more talk time for students" | The four reasons on the page (§4, F6). Cheaper = said in words on the page; the figure is revealed only in the personal answer after the form; no competitor prices quoted. |
+| S6 | Best result? | "a 5 y.o. can read basic words, speaks correct English mostly naturally, loves learning" | The proof story (§4, F5), told as one student's result, not a promise. |
+| S7 | Story you always tell? | "skip, I don't tell" | **No personal life story** anywhere (no "Tashkent to HCMC" timeline). Bek is shown by what he does, not where he came from. |
+| S8 | Websites you love? | not answered | Taste calibrated from the studied sites (§1); the owner reviews at Phase 2a. |
 
 ---
 
@@ -55,8 +63,8 @@ The big idea must come from your real story, so nothing is invented. Please answ
 
 | # | Question | Blocks | Answer (2026-10-22) |
 |---|---|---|---|
-| Q1 | Real price per programme (Young Learners 6–10, Teens 11–17, IELTS, English for Work)? Currently all show "from 1,990,000 VND/month"; schema says the same for every course. | Pricing sheet, schema | Same price for every programme. Amount not stated: keep the amount currently shown and mark it [CONFIRM amount]. |
-| Q2 | Trial offer: free **week** or discounted first **month**? (site says both). What happens in the trial, exactly? | Hero, CTA copy | Trial = **1 free week**. |
+| Q1 | Real price per programme? | Pricing sheet, schema | **Same price for every programme: 2,990,000 VND/month regular; first month 1,990,000 VND (1,000,000 off) after a free trial week.** |
+| Q2 | Trial offer? | Hero, CTA copy | **1 free week**, then first month 1,990,000 VND, then 2,990,000 VND/month. What happens in the free week: not stated `[OWNER]`. |
 | Q3 | Schedule per group (site: weekdays 19:30–21:00, weekends 14:00–20:00; schema: Mon/Wed/Sat/Sun). Max per group still 10? How many seats are free per group right now? | Seat map | Weekday classes all at the same time (current 19:30–21:00). Weekend schedule unchanged (14:00–20:00). Seat counts not given. |
 | Q4 | Which claims are provable: "2,000+ students", "15+ schools", "ILA Vietnam", "MBA candidate", TESOL, PGCE, DELTA (credentials list shows 3)? | Proof section, schema | Claims and credentials are provable; documents will not be published. |
 | Q5 | Is `RESEND_API_KEY` set in Vercel, `teacherbek.com` verified in Resend, and does `hello@teacherbek.com` receive mail? Any form leads in the last 3 months? | Phase 0 | No mails needed. Resend not required. |
@@ -64,27 +72,29 @@ The big idea must come from your real story, so nothing is invented. Please answ
 | Q7 | Testimonials: are the 5 current ones (Linh N., Minh T., Sarah K., Hoa P., David R.) real and consented? Can you get photos/video and full first names? Google Business Profile + reviews? | Proof | Testimonials anonymised (role + context only, no names or initials). |
 | Q8 | Photo/video: can we shoot a real class? Parents' written consent for children's faces (PDPL)? Budget for a local photographer (half day)? | Imagery | Owner will make the videos himself, later. Photo and child-consent part not answered. |
 | Q9 | Will you write ~10 words/phrases by hand in red pen on paper (we scan and vectorise)? | Signature interactions | OK (handwriting in red pen). |
-| Q10 | Which languages bring students? Who reviews ZH and RU copy? OK to launch VI + EN first? | Scope | Launch with VI + EN only; ZH/RU deferred. |
+| Q10 | Which languages bring students? Who reviews ZH and RU copy? OK to launch VI + EN first? | Scope | Launch with VI + EN only; ZH/RU deferred (Cyrillic no longer required). |
 | Q11 | Address public & permanent (Golden Mansion 1, 119 Phổ Quang, Phú Nhuận)? Still serving Gò Vấp / Bình Thạnh? | Local SEO | Yes: address public and permanent. |
 | Q12 | Budget: one-off build budget and acceptable monthly cost? Paid font OK? | Stack, type | Budget OK. Paid font not explicitly answered. |
 | Q13 | Brand name: keep "Teacher Bek"? Want a Vietnamese tagline/name? | Identity | Keep "Teacher Bek"; no Vietnamese brand name. |
 | Q14 | Hours/month you can give to content (testimonials, photos, guides)? | Blog decision | 0 hours/month: remove blog, guides and community. |
 | Q15 | Do you use WhatsApp? If not, remove it (the `wa.me/84353885757` link returns 429 in Semrush and sits in footer, form and contact email). | Phase 0 link cleanup | Remove WhatsApp. |
 
-**Implications of the answers (2026-10-22)**
+**Implications of the answers (2026-10-22, incl. the owner update of the same day)**
 
-- **One price:** every programme shows the same price. The pricing gate shows one price with `[CONFIRM amount]`; `Course` schema `offers` use the same price for all four courses.
-- **Trial:** "1 free week" everywhere (hero, CTAs, FAQ, schema, `llms.txt`). The discounted first month is dropped.
-- **Schedule copy:** weekday classes all at one time (current 19:30–21:00); weekends unchanged (14:00–20:00). No seat counts yet, so the seat map shows no live numbers until the owner supplies them.
-- **Credentials:** shown as text, and only claims that are provable (TESOL, PGCE, DELTA and the rest). No document scans or uploads are published.
-- **No email channel:** leads go to Google Sheets and Telegram only. Resend is removed from the contact form, notifications, confirmation emails, env vars and costs.
-- **Testimonials:** anonymised to role + context (no names or initials); quotes unchanged. Reviews on the Google Business Profile follow Google's review policy: do not present site testimonials as Google reviews, and do not offer incentives for reviews.
-- **Videos:** the owner shoots them himself, later. Plan a phone-shot spec (orientation, framing, lighting, audio, consent). Launch must not depend on videos.
-- **Languages:** VI + EN at launch. ZH/RU are removed from v1 scope (deferred, not deleted).
-- **Brand:** keep "Teacher Bek"; no Vietnamese brand name or tagline.
-- **Content:** blog, guides and community are removed (owner has 0 h/month). No `/blog`, `/guides` or `/community` routes, nav or sitemap entries.
-- **WhatsApp:** removed everywhere (all `wa.me` links, footer, form copy, contact details). Zalo and phone stay.
-- **Still open:** paid font not explicitly approved (Q12 "ok" covered the budget); photo and child consent (Q8) not answered; the Q1 amount is missing.
+- **Audience and programmes:** children **5-17** and their parents. Two programmes: **Young Learners 5-10** and **Teens 11-17**. Bek does not teach under 5 in private classes. **IELTS and English for Work (adult programmes) are dropped** from the site, schema, FAQ, forms and `llms.txt`; adult enquiries are answered on Zalo.
+- **One price:** 2,990,000 VND/month for every child and both programmes; **first month 1,990,000 VND** (1,000,000 off) after the **free trial week**. **The price is gated (owner brief, `design.md` Step 4):** visitors learn what, how and who without seeing any price; the figures are revealed only in the personalised answer after the "See you in class" form. The **free week stays public** as the hook (it is not a price). The figures appear in no public HTML, no JSON-LD, no `llms.txt`, no OG image and no sitemap.
+- **Schedule copy:** weekday classes all at one time (current 19:30-21:00; `[OWNER]` confirm for ages 5-6); weekends unchanged (14:00-20:00). No seat counts, so no seat map.
+- **Credentials:** text only, provable claims only (TESOL, PGCE, DELTA); no documents published.
+- **No email channel:** leads go to Google Sheets and Telegram only. Resend removed.
+- **Testimonials:** anonymised to role + context (no names or initials). Reviews on the Google Business Profile follow Google's policy: do not present site testimonials as Google reviews, no incentives.
+- **Videos:** the owner shoots them himself, later, on a phone (spec in §3.5). Launch does not depend on them.
+- **Languages:** VI + EN at launch; ZH/RU deferred (routes 301).
+- **Brand:** keep "Teacher Bek".
+- **Content:** blog, guides and community removed (0 h/month). Telegram bot is also the owner's content tool (§7).
+- **WhatsApp:** removed everywhere; Zalo and phone stay.
+- **Story constraints (Step 0):** no personal life story (S7); no magic promises (S4).
+- **Still open:** paid font not needed (v3 uses OFL fonts); photo and child consent (Q8) not answered; group size, free-week content, times for 5-6 year olds, reply time promise.
+
 
 ---
 
@@ -352,312 +362,646 @@ Report generated 2026-10-21, but all crawl data is from **2026-03-11 13:58**, so
 
 ---
 
-# 3. CREATIVE CONCEPT — SUPERSEDED
-
-SUPERSEDED — rewritten after Step 0 answers (Step 3: three new big ideas, design bible). The rejected Red Pen text is archived at the end of this document.
-
 ---
 
-# 4. STORYTELLING & PAGE-BY-PAGE — SUPERSEDED
+# 3. THE BIG IDEA AND DESIGN BIBLE (Step 3)
 
-SUPERSEDED — rewritten after Step 0 answers (Step 4: frame-by-frame scroll storyboard). The rejected Red Pen text is archived at the end of this document.
+## 3.0 Why "Red Pen" failed (so v3 does not repeat it)
 
----
-
-# 5. STACK (checked 2026-10-20/21)
-
-| Layer | Pick (exact version) | Why | Browser cost | Alternative |
-|---|---|---|---|---|
-| Framework | **Astro 7.4.1** | Static HTML by default, JS only in islands; built-in i18n routing; perfect for a marketing site | ~0 KB baseline | Next.js 16.4.2 + next-intl 4.14.9 (React runtime ~100 KB+) |
-| Adapter/host | **@astrojs/cloudflare 14.4.1** on Cloudflare Workers (static assets + 1 function for the lead API) | Free tier, commercial OK, HCMC + Hanoi PoPs | — | Vercel Pro $20/mo (Hobby is non-commercial) |
-| CSS | **Tailwind CSS 4.3.3** via **@tailwindcss/vite 4.3.3** + CSS custom properties for tokens | No runtime JS | 0 KB | Vanilla CSS |
-| Islands | **Preact 11.0.1** via **@astrojs/preact 6.1.0** — only for the form sheet + Level Ladder | Tiny React-compatible | ~4–5 KB | Vanilla TS custom elements |
-| Animation | **GSAP 3.15.0** (core + ScrollTrigger + SplitText + DrawSVG + Flip — all in the public npm package, verified in tarball; "no charge" standard licence, not MIT) | Industry standard; plugins now free | core 26.7 KB gz + plugins ≈ **45–55 KB, deferred** after LCP | CSS scroll-driven animations (`animation-timeline`, ~88% support) + `motion` 14.4.0 mini `animate()` |
-| Smooth scroll | **Lenis 1.3.27**, fine-pointer desktop only | Matches SOTY feel; native on touch | 5.3 KB, desktop only | None (native) |
-| Page transitions | **Native View Transitions** (cross-document, Chrome 126+/Safari 18.2+, ~89%) | Zero JS | 0 KB | Swup 4.10.0 + @swup/astro 1.8.0 (9 KB) |
-| 3D/shaders | **None** | Measured: WebGL is what makes winners 9–15 MB; nothing here needs it | 0 | ogl 1.0.11 (33 KB) only for a future paper-fold shader, if ever |
-| Lottie/Rive | **None** — handwriting is SVG + DrawSVG | — | 0 | @lottiefiles/dotlottie-web 0.81.0 (32 KB) |
-| Validation | **Valibot 1.5.0** (client + server) | Tree-shakes to ~2–4 KB | ~3 KB | Zod 4.6.7 server-only |
-| Spam | **Cloudflare Turnstile** (free, unlimited) | Invisible for most humans | loaded only when form sheet opens | hCaptcha |
-| Email | **None** (Q5/Q6: no email channel; Resend removed) | — | — | — |
-| Lead storage | **Cloudflare D1** (free tier) as source of truth + **Google Sheet** mirror + **Telegram** bot alerts (owner's choice, Q5/Q6); HubSpot not used | Lead is saved before anything else | server | Airtable |
-| CMS | **Keystatic** (`@keystatic/core` 0.6.9, `@keystatic/astro` 6.0.0) in GitHub mode | Owner edits testimonials, seats, prices in a friendly UI; content stays in git; $0 | 0 KB public | Decap CMS 3.17.1 |
-| Booking | **Cal.com** free (1 user) link from Answer Key | Trial slot in one tap | link-out | Calendly free |
-| Analytics | **Cloudflare Web Analytics** (cookieless) + **GA4 + Consent Mode v2** only after consent, for lead events | Privacy-first baseline + funnel | ~1 KB; GA after consent | Plausible (paid) |
-| Perf monitoring | **web-vitals 6.2.3** → GA4 (after consent) / CF | Field LCP/INP/CLS | 3.3 KB | Vercel Speed Insights |
-| SEO | Hand-written `<head>` component + `schema-dts` 2.1.0 (types only) + **@astrojs/sitemap 3.7.4** | Full control | 0 KB | astro-seo 1.2.0 |
-| Images | Astro `<Picture>` + **sharp 0.35.5** (build) | AVIF/WebP srcset | 0 KB | — |
-
-Dropped deliberately: Framer Motion/`motion` (duplicate of GSAP), split-type (stale 2023), Barba (stale 2024), Howler (stale 2023), curtainsjs (stale 2024), three.js (180 KB).
-
-## 5.1 Performance budget (hard, enforced in CI)
-
-| Metric | Budget (mobile, Slow 4G + 4× CPU lab / field p75) | Today |
+| Why it was "truly shitty" | Evidence in the rejected build | What v3 does instead |
 |---|---|---|
-| LCP | **≤ 1.8 s lab / ≤ 2.5 s field** | 2.6–3.8 s |
-| INP | ≤ 200 ms field (lab TBT ≤ 150 ms) | unknown |
-| CLS | ≤ 0.05 | 0 |
-| JS before LCP | **≤ 15 KB** (Lenis desktop, inline bootstrap) | ~272 KB |
-| JS total home (incl. deferred GSAP + Preact form) | **≤ 90 KB** gz | — |
-| Fonts | ≤ 180 KB per VI/EN page; RU pages add ~83 KB Cyrillic; Playfair italic static | 40–43 files |
-| Home first view weight | **≤ 450 KB** (excl. video) · full scroll ≤ 1.5 MB | 600–780 KB |
-| Video | 0 KB until tapped (A) / ≤ 1.5 MB loop on Wi-Fi only (B) | — |
-| Requests first view | ≤ 25 | 70–74 |
-| Lighthouse mobile | Perf ≥ 95 · A11y 100 · BP 100 · SEO 100 | not measured (PSI quota) |
+| **Cautious, type-only.** Playfair + paper + one red colour: safe, nothing a juror would screenshot. | Phase 2a pages were text on cream | Colour, sound, variable-type motion and the visitor's own input are the material. Lando (§1.3) is a scrapbook of objects; Mana is flat colour moods; DBM is one illustrated gag. Winners commit. |
+| **Doodles instead of a subject.** Red-pen strokes, ticks and arrows decorate; they do not express teaching. | Handwriting overlay on every section | The visitor does what a student does in the first minute of class: answers "how are you?". Interaction **is** the subject (Duck: the mascot shrinks into the headline; Quaker: video into the word "Everyday"). |
+| **Placeholder tags.** `[OWNER: photo]` boxes where people should be. | Hero cut-out "not shot (Q8)" | Launch never depends on a photo that does not exist. Every section has a typographic or sound version that is complete on its own; photography and video upgrade it (§3.5, §4 "launch fallback" column). |
+| **No real people.** Not one face, hand, voice. | Two stock-feeling photos | Bek's real voice is the hero (user-started); real hands and room; anonymised but real parent words. |
+| **No single big idea.** Correction + seat map + level ladder + answer key = four ideas. | §3.7 listed 5 signature interactions | One idea, one signature moment, three supporting moments, all variations of "hello, how are you". |
+| **No moment people remember.** | none | The "I am ___." drop (§3.9). |
 
-**Techniques:** text-based LCP (hero sentence) painted from HTML; handwriting as inline SVG (no request); GSAP loaded via `requestIdleCallback` after LCP; islands `client:visible`; images AVIF with exact `sizes`; one grain texture; no third-party script before consent; fonts subset + preload 1.
+## 3.1 Three big ideas
 
-**Device tiers (decided once at boot, stored on `<html data-tier>`):**
+| | **A. "Hello! How are you today?"** (chosen) | B. "Talk Time" | C. "First Words" |
+|---|---|---|---|
+| One line | The site greets you the way Bek greets every child, and the answer changes the page. | A lesson is an hour in which the children do most of the talking; the page is that hour. | Letters become words become sentences: scroll watches a child grow into English from 5 to 17. |
+| Metaphor | The first ten minutes of class (S3: "greet, share how they are"). | Speech bubbles filling a circle of chairs; the teacher's bubble is the smallest. | The alphabet assembling itself; reading as a finger under a line of words. |
+| Mood | Warm, funny, tactile, sunny; a living room with a window, not a school | Lively, busy, noisy-in-a-good-way | Calm, bookish, proud |
+| Signature interaction | Finish "I am ___." with a feeling word; it flies into the sentence, the page floods with that colour, Bek replies; the sentence later shrinks into the header | Scroll-scrubbed circle: bubbles appear child by child; student bubbles outgrow the teacher's | Scroll-scrubbed type: letters on a baseline arrange into a word, then a sentence that grows with age |
+| Why it fits Bek | It is literally his lesson opening (S3), works for every age 5-17 and the parent holding the phone, needs no personal story (S7), and says "warm home" (S5) before any copy does | Maps to S5 "more talk time for students" | Maps to S6 (the 5-year-old who reads) and S4 (speak, read, listen) |
+| Risks | Looks like a mood-picker gimmick if the reply copy is flat; needs Bek's real voice to feel human; must never block the page | Talk time is a **number claim** the owner has not given (no data); busy visuals invite jank; hard to make SEO-readable; reads as generic "chat bubbles" | Reads as a children's ABC site, which cheapens the Teens programme; the strongest proof (one 5-year-old) is one story only; type-only again = the Red Pen mistake |
+| Award potential | High: one idea, expressed by interaction (the Creativity criterion), cheap to run | Medium: strong concept, but numbers cannot be shown honestly | Medium: pretty, not ownable |
+
+**Chosen: A.** B and C are not discarded: B becomes the supporting moment "The circle" (F3, no numbers, just turns), and C becomes the supporting moment "The ladder" (F4: one sentence grows from age 5 to 17) and the reading-underline in the proof (F5).
+
+## 3.2 Defence of A against the four criteria
+
+| Criterion | Argument | Evidence from §1 |
+|---|---|---|
+| **Design 40%** | Giant soft-serif type (to 176 px) against a calm paper ground, six saturated mood fields that carry every section change (no gradient blobs), one accent word in italic per headline. Tactile because colour and type respond to a touch. | Background colour carries transitions: Lando, Mana, Trevor, Quaker (§1.4). Giant 1-3 words per line: Trevor 361 px, Quaker 226 px, Mana 233 px. Serif/italic accent word: Lando, Namaha, Quaker. One loud accent on calm ground: Lando lime, Duck lime. |
+| **Usability 30%** | The hero is **text in the DOM** (LCP = the h1), the interaction is 6 buttons large enough for a 5-year-old's thumb, no content is gated (only the price sits behind a 3-step, under-a-minute invitation, with a Zalo alternative that gives the same answer), CTA is persistent but never overlaps. The loader is <= 1.6 s and skippable. Mobile is its own composition (words in the thumb zone). | LCP text behind loader: Lusion 0.75 s; CLS 0: Lando, Namaha; loader self-dismisses <2.5 s, not a gate: Lando; mobile redesigned not shrunk: Noomo 1.5 MB, DBM, Namaha "call card first"; persistent single pill CTA: Quaker, Trevor, DBM. Avoid: gate 7.6 s (DBM d), cookie box over hero (Trevor). |
+| **Creativity 20%** | One idea, and the interaction **expresses the subject**: a speaking class begins with a spoken greeting and a sentence the child completes. It is not an effect on top of a service site; it is the service's first minute. The sentence follows the visitor (header chip) and returns on the form, the thank-you page and the 404. | "One idea executed everywhere": Lando scrapbook, DBM play-before-you-enter, Duck mascot into headline, Opal product-as-type (§1.4). Closest cousin: DBM's bounce-the-ball gate (a handshake), minus the gate. |
+| **Content 10%** | Copy has a voice (a teacher at the door: warm, short, no jargon). The voice is Bek's real voice. The proof is one specific, honestly bounded story (the 5-year-old) plus anonymised parent words. No stock, no stat inflation. The owner's own photos and phone videos, dated captions. | Dated captions and real objects: Lando. Named/real people: Duck, Quaker. No-stock rule: §1.5. |
+
+## 3.3 Typography
+
+**Rule (from `type/report.md`, memory):** one family per role, each natively covering Vietnamese; never a per-glyph fallback (it mixed weights inside one word on the old site). Cyrillic is no longer required (launch is VI + EN), which opens the shortlist.
+
+| Role | Font | Verified | Licence / cost | Why |
+|---|---|---|---|---|
+| Display | **Fraunces** (variable: `opsz` 9-144, `wght` 100-900, `SOFT` 0-100, `WONK` 0-1; roman + italic) | Google Fonts metadata 2026-10-22: subsets latin, latin-ext, **vietnamese**; axes as listed | OFL, **$0** | "Soft" old-style serif with a warm, slightly wonky character: warm without being childish, premium without being cold. The `SOFT` and `wght` axes let each feeling word *behave* (see 3.3, type motion). Replaces Barlow Condensed (cold, no personality for this idea). |
+| Text and UI | **Be Vietnam Pro** (static 400, 600; latin + vietnamese) | Google Fonts metadata: subsets latin, latin-ext, vietnamese; designed for Vietnamese | OFL, **$0** | Already the live body font (continuity), best-in-class Vietnamese tone-mark spacing, friendly geometry. Two weights only to stay light. |
+| Option (not default) | **Bricolage Grotesque** variable (`opsz` 12-96, `wdth` 75-100, `wght` 200-800; VN verified) | metadata | OFL, $0 | If Phase 2a shows Fraunces too ornamental in Teens context, swap display to Bricolage (more contemporary), keep Be Vietnam Pro for text. Decide in Phase 2a with real VI headlines, not now. |
+| English "handwriting" | **Bek's real handwriting**, only ~12 English marks/words (see 3.9: reply "Me too!", "See you soon!", his signature) as inline SVG | n/a | free | Used in exactly two places (reply and goodbye). **Never for Vietnamese**, never a script font, no doodles/ticks/arrows (that was Red Pen). Optional: if the owner will not write them, the site loses nothing. |
+| Vietnamese guard | Fraunces headings in VI use `line-height >= 1.08` (EN 0.92-1.0); stacked tone marks clip at 0.92 | design rule | n/a | Verify in Phase 2a with the test string `Tiếng Việt: ặ ẫ ỗ ữ ự ợ đ ế ộ` at every size in both fonts. |
+
+**Files and weight.** Fraunces roman: subset latin + latin-ext (needed for "Phú Nhuận" ranges) + vietnamese, axes limited to `wght` 300-800, `opsz` 24-144 (auto), `SOFT` 0-100, `WONK` 0-1 (instance with fonttools, `pyftsubset`). Fraunces italic: static instance (`opsz` 72, `wght` 400, `SOFT` 100). Be Vietnam Pro 400 and 600. Self-hosted woff2, `font-display: swap`, preload **one** file (Fraunces roman latin+vi), size-adjusted fallbacks (`size-adjust`, `ascent-override`) to keep CLS ~0. **Budget <= 200 KB for the whole family set**; actual Fraunces size must be measured in Phase 2a (not yet measured: the Phase 2a Playfair review got 167 KB for 3 files, a similar target). If roman exceeds 120 KB, drop `WONK` and `opsz` range first, then italic.
+
+**Scale (360 to 1440 px, fluid).**
+| Token | clamp() | Font and settings | Use |
+|---|---|---|---|
+| `display-xl` | `clamp(3.5rem, 15vw, 11rem)` (56 to 176 px) | Fraunces `wght` 600, `SOFT` 100, `opsz` 144, tracking -0.03em, lh 0.92 EN / 1.08 VI | Hero "Hello!", chapter openers, ages on programme pages |
+| `display-l` | `clamp(2.5rem, 9vw, 7rem)` | Fraunces 600, `SOFT` 80, tracking -0.02em, lh 0.98 EN / 1.1 VI | Section headlines |
+| `display-m` | `clamp(2rem, 5vw, 4rem)` | Fraunces 500; accent word Fraunces italic | Quotes, the figures in the personal answer, sub-headlines |
+| `title` | `clamp(1.25rem, 2vw, 1.75rem)` | Be Vietnam Pro 600, lh 1.25 | Card titles, steps |
+| `body-l` | `clamp(1.125rem, 1.4vw, 1.375rem)` | Be Vietnam Pro 400, lh 1.55 | Lead paragraphs |
+| `body` | `1.0625rem` mobile / `1.125rem` desktop | Be Vietnam Pro 400, lh 1.6 | Copy; never < 16 px |
+| `label` | `0.8125rem` (13 px) | Be Vietnam Pro 600, sentence case in VI, uppercase + 0.04em only in EN | Eyebrows, captions; never carry required info |
+| `num` | per context | Fraunces lining figures (`font-variant-numeric: lining-nums`; check `tnum` in Phase 2a) | Prices, ages, times |
+
+Accent rule: one italic word per headline (Lando, Namaha, Quaker, §1.4), e.g. "Every lesson starts with *hello*."
+
+**How the type animates (and never breaks Vietnamese).**
+- Headlines: GSAP **SplitText by lines (mask) and words**; never by characters in Vietnamese (splits stacked diacritics). Each line rises 100% to 0 inside its mask: 800 ms, `--ease-out`, 60 ms word stagger, whole sequence <= 900 ms.
+- **Feeling words are English** (Latin, no stacked marks), so these alone may split by characters. Each word has its own variable-font personality on reveal (all axes animated via `font-variation-settings`, GPU-cheap because only that one word moves):
+  | Word | Personality | Axes and motion |
+  |---|---|---|
+  | happy | lifts | `wght` 400 to 700, `SOFT` 100, y -8 px, `back.out(2)` 600 ms |
+  | tired | sags | `wght` 300, y +6 px, letters drop 2 px each in sequence, 1200 ms slow ease |
+  | hungry | stretches | `wght` 800, letter-spacing +0.04em, 700 ms |
+  | excited | bounces | `wght` 900, `WONK` 1, scale 1.12 and settle, `elastic.out(1, 0.5)` 900 ms |
+  | shy | shrinks then grows | `opsz` 9, scale 0.85 to 1, `wght` 400 to 500, 900 ms |
+  | okay | steady | `wght` 500, no overshoot, 500 ms |
+- Scrubbed paragraph (F2): words go from 18% ink to 100% ink as you scroll (Lusion, Opal, §1.4), CSS `animation-timeline: view()` first, GSAP only as fallback.
+- `prefers-reduced-motion`: final states, no axis animation, instant colour change with a 150 ms cross-fade.
+
+## 3.4 Colour
+
+Verified contrast (computed 2026-10-22, WCAG relative luminance): `ink` on `paper` 15.7:1; `ink-soft` on `paper` 6.2:1; `cta` with white text 5.4:1 and on paper 5.1:1; every mood tint with `ink` text >= 6.7:1; evening text on evening ground 16.0:1.
+
+| Token | Light "Morning" | Dark "Evening lamp" | Rule |
+|---|---|---|---|
+| `--paper` | `#FFF8EA` | `#1E1612` | Page ground (default) |
+| `--paper-2` | `#F6EBD3` | `#2A1F18` | Alternate bands, FAQ rows |
+| `--ink` | `#2A1B14` | `#FFF1DC` | All text |
+| `--ink-soft` | `#6B5A4E` | `#C9B8A6` | Secondary text only |
+| `--cta` | `#C2391F` | `#FF8A6B` (text on it: `#2A1B14`, 7.2:1) | **Only** primary buttons, focus ring, links on hover. <= 5% of a screen |
+| `--mood` (live) | one of six tints, default `sun` | same tints | **Large fields only** (hero ground, chapter bands, active ladder stop, final form ground). Never as text on paper (contrast 1.5-2.3:1). Text on a mood field is always `--ink`. |
+
+| Feeling | `--mood` | Hex | Ink contrast |
+|---|---|---|---|
+| happy (default) | sun | `#FFC83D` | 10.7:1 |
+| tired | dusk | `#9DB4DB` | 7.9:1 |
+| hungry | tangerine | `#F59A5B` | 7.6:1 |
+| excited | berry | `#FF7A9E` | 6.7:1 |
+| shy | lilac | `#C9B8EE` | 9.2:1 |
+| okay | sage | `#A8D5A2` | 10.0:1 |
+
+- **How colour changes the page:** on pick, a circle of `--mood` expands (clip-path) from the word to cover the hero in 700 ms; later chapters use `--mood` on their fields; the mood persists in `sessionStorage` (wrapped in try/catch) and in a header chip. No pick = `sun`. Dark mode uses the same tints on the same fields (ink text), with paper turning to the evening ground between fields.
+- Light is default (parents browse by day, warmth); dark follows `prefers-color-scheme` with a toggle in the menu.
+- Hard rule: **no gradients, no blobs, no glass.** Flat fields with edges that are curved (like Mana's pop-top edge) or straight; the Red Pen's paper grain is dropped (saves a request).
+- Retired from `CLAUDE.md`: "no rounded corners". v3 uses pill buttons (999 px) and 28 px card radius, because the idea is warmth. Update `CLAUDE.md` in Phase 2a.
+
+## 3.5 Imagery (owner-shot, phone-first; no stock, ever)
+
+**Principles.** One light (window daylight), one grade, real hands and real objects (Lando uses real objects with dated captions, §1.3). **Children's faces only with written parent consent** (PDPL, §7); otherwise hands, backs of heads, shoes by the door, drawings, a name card. No AI people, no thumbs-up poses, no blurred faces (reads as a crime report). Launch **never** waits on photos: each frame has a typographic version (§4).
+
+**Phone video spec (owner shoots later; Q8).**
+| Item | Spec |
+|---|---|
+| Orientation | Vertical 9:16 for anything shown on mobile/hero strips; horizontal 16:9 only for the room wide shot |
+| Capture | 1080x1920, 30 fps, phone on a stack of books or cheap tripod, lock exposure/focus, wipe the lens, airplane mode on |
+| Light | Window light from the side, curtains half open, **overhead tubes off**; no flash; no backlit windows behind faces |
+| Sound | Record audio separately for voice (see 3.8); room tone 10 s for each clip |
+| Length | 5-8 s loops (muted); one 20-30 s "a lesson begins" clip (with captions) |
+| Delivery | Original files to the build team; build exports H.264 + AV1, 720 px, <= 1.2 MB per loop, poster AVIF, never autoplay on Save-Data |
+
+**Shot list (half a day; also a photo set of 25+).**
+| # | Shot | Used in |
+|---|---|---|
+| 1 | Bek saying "Hello! How are you today?" to the camera, head and shoulders, smiling, eye-level (audio recorded separately too) | F1 poster, F11 goodbye, OG image |
+| 2 | Hands only: Bek's finger and a child's finger under a line of words | F5 proof |
+| 3 | Backs of heads around the table, one child raising a hand | F3 circle |
+| 4 | Shoes in a row at the door | F7 room (home warmth) |
+| 5 | The table: books, pencils, a name card, tea mug; window in frame | F7 |
+| 6 | Whiteboard/flashcards with today's words, hand writing | F3, F4 |
+| 7 | The building entrance and street (Phổ Quang) | F7 map |
+| 8 | With consent: one child reading aloud, side profile | F5 (only if consent exists) |
+
+**Treatment.** Warm, slightly lifted blacks, +3% grain baked in the export, one LUT for everything; photos set as full-bleed bands or as rectangles with 28 px radius; **captions with date and place** in `label` style ("Thứ Tư · 19:30 · Phú Nhuận"). Image formats: AVIF + WebP via `<Picture>`, widths 480/828/1200/1920, hero poster <= 60 KB mobile.
+
+## 3.6 Grid and rhythm
+
+- **Grid:** desktop 12 columns, 24 px gutter, margin `clamp(20px, 5vw, 80px)`, max 1440 px. Mobile 4 columns, 16 px gutter, 20 px margin.
+- **Spacing:** 4 px base; scale 4/8/12/16/24/32/48/64/96/128/192; section padding `clamp(72px, 12vw, 176px)`.
+- **Rhythm:** loud / quiet alternation (one giant statement, then dense useful content); never two loud in a row. Mood fields (colour) are the "loud" rows.
+- **Where it breaks the grid on purpose:** (1) the hero sentence runs to the right edge on desktop and the feeling words overhang it; (2) the ladder track is full-bleed and out of grid; (3) the "Week 1 free" line spans all 12 columns at `display-xl`; (4) in the room section, one photo bleeds past the margin on the left (Lando's L/R collage offsets).
+- Buttons: pill, 56 px tall mobile; chips 48-56 px; touch targets >= 48 px (children).
+
+## 3.7 Motion language
+
+| Token | Value | Use |
+|---|---|---|
+| `--ease-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | Reveals, entrances |
+| `--ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` | Page transitions, Flip |
+| `--ease-soft` | `cubic-bezier(0.4, 0, 0.2, 1)` | Colour flood, hover |
+| `--ease-pop` | GSAP `back.out(1.6)` / CSS `linear()` approximation | Word dropping into the slot |
+| `--dur-tap` | 120 ms | Press |
+| `--dur-ui` | 240 ms | Hover, menu |
+| `--dur-reveal` | 800 ms | Headline lines |
+| `--dur-flood` | 700 ms | Mood colour circle |
+| `--dur-page` | 500 ms | Page transition |
+| Stagger | words 60 ms, list items 80 ms; **any sequence <= 900 ms** | |
+
+**What moves and why.** (1) the feeling word and the colour (the idea); (2) headline words/lines (rhythm); (3) the ladder track and the circle (scroll story, F3-F4); (4) form steps (state). Body text never animates; it is visible at first paint.
+
+| Behaviour | Spec |
+|---|---|
+| **Hover (fine pointer)** | Links: underline draws left to right 240 ms. Buttons: lift 2 px, background `--cta` to darker. Feeling tiles: tint preview of their mood colour behind the word (150 ms) |
+| **Cursor (fine pointer only)** | 12 px ink dot (lerp 0.18) that grows to a 72 px pill with a one-word label over interactive things: "Say it" (feeling tiles), "Play" (audio), "Drag" (ladder). Off on touch and reduced motion. |
+| **Scroll** | Lenis 1.3.27 on fine-pointer desktop only (`lerp 0.1`, `autoRaf` off, driven by GSAP ticker); native scroll on touch. Two pinned scenes only (F3, F4), each <= 400 vh on desktop. |
+| **Page transitions** | Native cross-document View Transitions (`@view-transition { navigation: auto; }`): old page fades/lifts 4% (250 ms) while a `--mood` coloured sheet wipes up (500 ms, `--ease-in-out`), header and mood chip persist (`view-transition-name`). Shared element: age numeral on programme cards morphs into the programme page hero. Unsupported browsers: instant navigation. |
+| **Preloader (<= 1.6 s, never a gate)** | The h1 is in the DOM and painted behind it. Screen = flat `sun` field, centre "Hello" in `display-l` appears letter by letter (CSS, 60 ms stagger, 0.7 s), then the field wipes up (500 ms) to the hero. Ends on `fonts.ready` or 1.6 s, whichever first; any tap/scroll skips; repeat visits within the session skip it entirely. Lando dismisses in < 2.5 s; Lusion hides the loader behind a text LCP of 0.75 s (§1.3). |
+| **Reduced motion** | No loader (instant), no scrub, no Flip; colour and word change instantly; audio stays user-started. |
+
+## 3.8 Sound
+
+**Yes, as a gift, never as an entry:** muted by default, never autoplays, started by a visible button (Lusion: sound starts after a gesture and has a visible MUTE; KPR/Messenger/Igloo no-mute is the cheap tell, §1.5).
+- **The hero speaker button** ("Hear Bek say hello", label + 44 px icon) plays Bek's recorded "Hello! How are you today?" (about 2 s).
+- Each feeling tile has a tiny speaker: plays the word ("happy") in Bek's voice (children can practise). Optional: the reply line is also spoken.
+- Goodbye "See you soon!" plays on the thank-you page only when the user taps it.
+- **Files:** 8 clips (greeting, six words, goodbye), Opus in `.webm`/`.m4a` fallback, about 8-15 KB each, total <= 120 KB, **not loaded until the first speaker tap/hover/focus**. Web Audio not needed: `new Audio()`.
+- A persistent MUTE/ON toggle appears only after the first play. In-app browsers (Zalo, Facebook) that block audio: the button silently shows captions text instead ("Hello! How are you today?").
+- If the owner does not record: the buttons are hidden, the page loses nothing (the idea is the sentence, sound is the voice).
+
+## 3.9 The signature moment and three supporting moments
+
+### Signature: "I am ___." (the page everyone remembers)
+Frame by frame (desktop; mobile identical but words in the thumb zone):
+| Time | What the visitor sees and hears |
+|---|---|
+| 0.0-1.6 s | Loader: sun-yellow field, "Hello" appears letter by letter, wipes up |
+| 1.6-2.6 s | Hero ground `paper`. Headline words rise one by one: **"Hello!"** (`display-xl`) then **"How are you today?"** (`display-l`). Under it a sentence with a blinking underline slot: **I am ______.** The h1 text is already in the DOM (LCP) |
+| 2.6-3.4 s | Six feeling words rise as large soft pills: happy · tired · hungry · excited · shy · okay (VI gloss under each in `label`). Speaker button "Hear Bek say hello" fades in |
+| idle 6 s | "happy" gives one wiggle (one time only) |
+| tap on a word | 0 ms: 10 ms haptic (`navigator.vibrate`, where supported); the word **FLIPs** from its pill into the slot (600 ms, `--ease-pop`); at the same moment a circle of that mood colour expands from the word and floods the hero (700 ms); the word plays its personality (3.3) |
+| +900-1700 ms | Bek's reply types in under the sentence in Fraunces italic (VI or EN by locale). Examples, EN / VI: happy "Wonderful. Let's start there." / "Tuyệt! Mình bắt đầu từ niềm vui nhé." · tired "That's okay. We'll go slowly today." / "Không sao. Hôm nay mình đi chậm thôi." · hungry "Ha! Then we'll talk about food first." / "Ha! Vậy mình nói về đồ ăn trước." · excited "Great energy. Let's use it." / "Năng lượng tốt đấy. Dùng nó nào!" · shy "That's okay. You can whisper first." / "Không sao. Con thì thầm cũng được." · okay "Okay is a good place to start." / "Bình thường cũng là một khởi đầu tốt." |
+| +1700 ms | One line below: "Parents can answer too, or hand the phone to your child." / "Ba mẹ cứ trả lời, hoặc đưa điện thoại cho con." Then the real hero info appears: **ages 5-17 · Phú Nhuận · "Start the free week" + "Message on Zalo"** |
+| scroll 0-60 vh | The sentence "I am happy." shrinks (Flip, scrubbed) into the sticky header as a **mood chip** (like Duck's mascot shrinking into the headline, Quaker's video into "Everyday", §1.4). Tapping the chip reopens the six words; changing it re-tints every later field |
+| later | The chip persists on every page (View Transitions). The form's last step says "Thanks for saying hello, [mood]" (not stored); the thank-you and 404 pages reuse the sentence ("I am lost." on the 404) |
+
+Why it is the signature: it is the only thing on the page that **requires the visitor to speak English** (for a moment), in the voice and tone the class actually has, and it is unmistakably this teacher's. Fallbacks in 3.10.
+
+### Supporting moments
+1. **The circle (F3).** A table seen from above, six seats; scrub reveals each child's turn as a speech bubble ("I am tired." "I am happy." …); the teacher's bubble stays small. No numbers.
+2. **The ladder (F4).** One sentence grows from age 5 to 16 across a horizontal track; at ages 11+ the colour flips to a new mood and the programme label changes from Young Learners to Teens.
+3. **Reading underline (F5).** An underline moves word by word under "cat · hat · sit" then a short sentence, timed like a finger. It stands in for video until the owner shoots shot #2.
+
+## 3.10 3D / shaders / Rive: decisions and fallbacks
+
+| Tech | Decision | Reason | Fallback |
+|---|---|---|---|
+| three.js (0.186.1, 184.9 KB full) / R3F | **No** | The idea is typographic and vocal; WebGL is what made winners 9-15 MB (§1.4); Mana and Lando use it for one hero object, but Bek's idea has no object | n/a |
+| Shaders (ogl, 34.2 KB, stale since 2025-04) | **No** | The colour flood is a CSS clip-path circle | n/a |
+| Rive (2.45.0; runtimes MIT; Free $0 / Cadet $9 per seat per month) | **No in v1** | The only candidate was an animated waving hand for F11; CSS + SVG does it in 2 KB | If desired later: Rive canvas-lite, lazy on the thank-you page, static SVG fallback |
+| Lottie | **No** | same | |
+
+**Pre-decided fallback ladder for the signature (tiers, §5.3).** Full: Flip + clip-path flood + axis animation + sound. Touch: same but without the cursor; Flip via WAAPI hand-rolled (1 KB), flood via CSS. Lite/reduced-motion: tap sets word and colour instantly with a 150 ms cross-fade; no axis animation. No-JS: the sentence reads "Hello! How are you today? I am ___." and the six words are links to `#start` that work as plain anchors; the page is complete.
+
+---
+
+# 4. THE SCROLL STORY, FRAME BY FRAME (Step 4)
+
+**Programme facts used (owner, 2026-10-22):** two programmes, **Young Learners 5-10** and **Teens 11-17**, one price: free trial week, first month **1,990,000 VND**, then **2,990,000 VND/month**. Weekdays at the same time every day; weekends unchanged. Group size, times for 5-6 year olds, and what "etc." follows the greeting in a lesson are **not known** and are marked `[OWNER]` in the notes column, never written as fact. Vietnamese is the master language (voice: **thầy** for Bek, **ba mẹ** for parents, **con** for the child); EN follows. All English sample headlines can be shortened to the **mobile display budget** of ~7 Vietnamese words.
+
+**Desktop length:** about 15 viewports of normal scroll plus two pins (F3 300 vh, F4 400 vh). **Mobile length:** about 11 screens before the final form (~9,500 px), no pins.
+
+## F0 · Loader (0-1.6 s)
+| | |
+|---|---|
+| Purpose | Brand the first beat while hiding font load; never delay the hero text |
+| Emotion | A small smile |
+| Copy | "Hello" (EN on both locales; it is the lesson) |
+| Layout | Full-screen `sun` field, centred `display-l` |
+| Mechanic | Letters in 60 ms stagger (CSS), field wipes up 500 ms; skip on tap/scroll; skipped on repeat view in session; h1 already painted behind (Lusion pattern) |
+| Mobile | Same, 80 px type |
+| Launch fallback | Complete without any asset; if JS fails the overlay is removed by a 1.6 s CSS animation (`animation-fill-mode: forwards; visibility: hidden`) |
+
+## F1 · Hello (hero, the signature) 
+| | |
+|---|---|
+| Purpose | In 5 seconds: who (Teacher Bek), what (English classes), for whom (children 5-17), where (Phú Nhuận), and the first interaction |
+| Emotion | Delight, then being welcomed |
+| Copy direction | Huge greeting, one question, one sentence to finish. Info line only after the first answer, so the first screen is *only* the greeting. Sample H1 (the real DOM `h1`, visually the greeting): VI **"Xin chào! Hôm nay con thế nào?"** / EN **"Hello! How are you today?"** Below the reply: VI "Lớp tiếng Anh cho bé 5-17 tuổi · Phú Nhuận · Tuần đầu miễn phí" / EN "English classes for ages 5-17 · Phú Nhuận · First week free" |
+| Layout | Desktop: greeting left-aligned across 9 of 12 columns, bleeding off the right edge; sentence slot under it; feeling pills in a row that overhangs the right margin; speaker button bottom-left; header mood chip appears after scroll. Mobile: greeting top (3 lines), sentence, then **six pills in a 2x3 grid in the thumb zone** (each >= 56 px tall), speaker button above them |
+| Mechanic | Signature sequence in §3.9. Pin: none. Scrub: sentence-to-header chip, scroll 0-60 vh, `scrub: 0.6` |
+| Mobile | As above, `100svh` min-height; sticky bottom bar appears after the first scroll (Zalo · Start the free week) |
+| Launch fallback | Works fully without audio, photo or video |
+| Notes | Parents: "you can answer too, or hand your child the phone" line is the bridge between audience (parent) and idea (child) |
+
+## F2 · Every lesson starts with hello (manifesto)
+| | |
+|---|---|
+| Purpose | State the method in one paragraph; connect the greeting to the real lesson (S3) |
+| Emotion | Recognition, relief |
+| Copy | H2 VI **"Mỗi buổi học bắt đầu bằng *xin chào*."** / EN **"Every lesson starts with *hello*."** Paragraph VI "Chào nhau. Mỗi bạn nói hôm nay mình thế nào. Rồi cả lớp học nói, học đọc, học nghe, mỗi tuần tốt hơn một chút." / EN "We say hello. Each child says how they are today. Then we learn to speak, read and listen, a little better every week." (No claim beyond S3/S4.) |
+| Layout | Mood field band (`--mood`) with a 56 px paragraph left-aligned across 9 columns (Opal's 56 px paragraph, §1.3) |
+| Mechanic | No pin. Words scrub 18% to 100% ink as you scroll: `start: "top 80%"`, `end: "bottom 45%"`, `scrub: true`; CSS `animation-timeline: view()` first, GSAP fallback |
+| Mobile | 28 px, same scrub (cheap) |
+| Launch fallback | Complete (type only) |
+
+## F3 · The circle (how a lesson starts, talk time)
+| | |
+|---|---|
+| Purpose | Show *how* it is taught: greeting first, every child speaks, small group (S3, S5 "more talk time") |
+| Emotion | "My child would get a turn here" |
+| Copy | H2 VI **"Bạn nào cũng được *nói*."** / EN **"Everyone gets a *turn*."** Beats: 1 "Hello!" 2 "Each child says how they are." 3 "Then we learn, and everyone keeps talking." Support line: "In a small group every child has more time to talk than in a big class." `[OWNER: group size; what the lesson does after the greeting; confirm "more time than a big class"]` |
+| Layout | Desktop: a table seen from above, six seats around it, drawn as flat shapes in `--mood`/ink; beats as large numerals left. Mobile: a vertical stack of the three beats, the table above as a smaller figure |
+| Mechanic | **Desktop pin 300 vh**, `scrub: 1`: 0-25% beat 1 (teacher's bubble "Hello!" scales in, stays small), 25-80% beat 2 (six child bubbles appear one by one: "I am happy." "I am tired." "I am hungry." …, each bubble larger than the teacher's), 80-100% beat 3 (bubbles stay; text swaps). Bubble text in Fraunces. **Mobile:** no pin; IntersectionObserver plays the same sequence once in 2.4 s via CSS animation-delay |
+| Launch fallback | Typographic bubbles on flat colour; photo #3 (backs of heads) optional as a band after the scene |
+| Notes | No numbers (no "70% talk time"); the picture does the claiming |
+
+## F4 · The ladder, ages 5 to 17 (the programmes)
+| | |
+|---|---|
+| Purpose | What the two programmes are, who they are for, what a sentence sounds like at each age; price is the same |
+| Emotion | "There is a place for my child" |
+| Copy | H2 VI **"Từ 5 đến 17 tuổi. Mỗi lần *một câu*."** / EN **"From 5 to 17. One sentence at a time."** Stops (age numeral at `display-xl`, example sentence, label): **5** "I can read: cat, hat, sit." · **7** "I like to read books with my mum." · **10** "Yesterday I went to the park and saw a big dog." · **13** "I think English is useful because I can talk to more people." · **16** "If I could travel anywhere, I would go to Japan." Caption: VI "Ví dụ một câu ở từng độ tuổi, không phải lời hứa." / EN "Examples of how a sentence can sound at each age. Not a promise." Programme cards after the track: **Young Learners 5-10 · Thiếu nhi** and **Teens 11-17 · Thiếu niên**, each with two lines of plain description `[OWNER: what you teach at each stage, to replace the example sentences if they do not match your classes]`, "Same price for every child" and a link to the programme page |
+| Layout | Full-bleed horizontal track, each stop ~90 vw wide, numeral huge on the left, sentence at `display-m` on the right; the field colour steps through the six moods; at the 10 to 13 boundary the label changes from Young Learners to Teens |
+| Mechanic | **Desktop pin 400 vh**, horizontal translate `xPercent: -(n-1)*100`, `scrub: 0.8`, `snap` to stops (duration 0.3, `ease: power1.inOut`); progress ticks bottom. **Mobile:** native horizontal scroll-snap swipe deck, 85 vw cards with the next one peeking (Duck pinned horizontal cards, Namaha tiles, §1.3), no pin |
+| Launch fallback | Complete (type + colour) |
+
+## F5 · Proof: first words, then reading
+| | |
+|---|---|
+| Purpose | Prove it works without promising it (S4, S6) |
+| Emotion | Trust, a little pride |
+| Copy | H2 VI **"Năm tuổi, đã đọc được những từ đầu tiên."** / EN **"At five, reading real words."** Story (EN): "One of Bek's students began at 5. Today they read basic words, speak correct English that mostly sounds natural, and love learning. It is one child's result, not a promise: every child moves at their own speed." VI: "Một bạn học trò của thầy bắt đầu học từ năm tuổi. Hôm nay bạn đọc được những từ cơ bản, nói tiếng Anh đúng và khá tự nhiên, và rất thích học. Đây là kết quả của một bạn, không phải lời hứa: mỗi bé tiến bộ theo nhịp của riêng mình." `[OWNER: how long they studied; consent to tell it]`. Then 3 anonymised parent quotes (existing quotes, attributed by role and context only, e.g. "Parent of a 7-year-old, Phú Nhuận"; no names or initials, Q7) |
+| Layout | Left 5 columns the story at `body-l` on `paper`; right 7 columns the **reading underline**: "cat · hat · sit" at `display-xl`, an underline moving word by word, then a short sentence; with shot #2 (hands under words) replacing it later. Quotes below as three rows with hairlines, each quote at `display-m` |
+| Mechanic | No pin. Underline `scrub` over 120 vh tied to scroll; quotes reveal by line mask on enter |
+| Mobile | Story first, underline strip 100 vw, quotes as a swipe deck |
+| Launch fallback | Complete (type only) |
+| Notes | Do not use "guarantee", "fluent", band scores, or before/after claims |
+
+## F6 · Why families choose Bek
+| | |
+|---|---|
+| Purpose | Differentiate from centres (S5) in four short reasons |
+| Emotion | Conviction |
+| Copy | H2 VI **"Vì sao ba mẹ chọn thầy Bek"** / EN **"Why families choose Bek"**. Reasons (title + one line): 1 **Families ask for Bek.** "Most new children come because another parent asked for him." `[OWNER: confirm wording]` · 2 **A fair price.** "The same price for every child, and cheaper than a centre. Bek shows you the exact figure after one short form." (no figure on the public page) `[OWNER: confirm the comparison you want to stand behind]` · 3 **A home, not a hall.** "Small, warm, and not rushed." · 4 **More time to talk.** "Every child speaks every lesson." (existing claim, `[CONFIRM]`) Credentials line: "TESOL · PGCE · DELTA" `[OWNER: only if you want them named; documents are not published]` |
+| Layout | Sticky left title, right a list of four giant numerals (1-4) with the reason beside; hairline rules; on hover the numeral takes the `--mood` field |
+| Mechanic | Reveal on enter, 80 ms stagger; no pin |
+| Mobile | Stacked list, numeral above reason |
+| Launch fallback | Complete |
+
+## F7 · The room
+| | |
+|---|---|
+| Purpose | Remove the "is it safe/where" worry; show home warmth |
+| Emotion | Reassurance |
+| Copy | H2 VI **"Một lớp học như ở nhà."** / EN **"A classroom that feels like home."** Address: Golden Mansion 1, 119 Phổ Quang, Phú Nhuận (Q11: public and permanent). Static map image with "Open in Google Maps" (no tile watermark) |
+| Layout | Photo collage (shots 4-7) at offset widths 35-70 % alternating left/right (Lando's collage, §1.3) with dated captions; map card at the end |
+| Mechanic | Parallax at 3 speeds (y -4%/-8%/-12%), clip-path reveal on enter |
+| Mobile | Single column, 2-3 photos |
+| Launch fallback | **Without photos:** the section shows the address as `display-l` type on a `--mood` field with the map card; no placeholders. Photos swap in on the day they exist |
+
+## F8 · The offer: the free week (the price is revealed after the form)
+| | |
+|---|---|
+| Purpose | Convert; the free week is the public hook; the price is the reward for sharing who is coming (an invitation, not a paywall) |
+| Emotion | Easy |
+| Copy | H2 VI **"Tuần đầu *miễn phí*."** / EN **"The first week is *free*."** Two nodes on a line: **Week 1: free** (drawn solid) → **After that: your personal price sheet** (dotted, continues down into F10). Sub VI "Cho thầy biết ai sẽ đến lớp, ba mẹ sẽ thấy học phí ngay trên màn hình. Ba câu hỏi, chưa đến một phút." / EN "Tell Bek who is coming and you'll see the fees right here on screen. Three questions, under a minute." Schedule line: "Weekdays: the same time every day (19:30-21:00 today). Weekends: 14:00-20:00." `[OWNER: times for children aged 5-6; what happens in the free week]`. CTA: "Start the free week and see the fees". Secondary: "Prefer to ask? Message Bek on Zalo" (Bek answers with the same sheet). **No price figure anywhere in this frame or the page HTML.** |
+| Layout | A single 12-column line with "Week 1 free" at `display-xl` (breaks the grid on purpose, §3.6); the dotted continuation points down to the form |
+| Mechanic | SVG stroke draws node 1 scrubbed `start: "top 70%"`, `end: "+=40%"`; the dotted line then scrubs on into F10, where it completes when the answer is revealed. **No count-up** (cheap tell) |
+| Mobile | Vertical timeline, nodes stacked, CTA full-width |
+| Launch fallback | Complete |
+
+**What is behind the form (the gate, designed as an invitation):** the **price** and the personal **class sheet**. After F10 the parent sees, on screen and on Zalo, an answer for their child's age band: *Week 1: free · Month 1: 1,990,000 VND (1,000,000 off) · then 2,990,000 VND/month, the same for every child*, plus the schedule for that age, start dates for the free week, the room map and how to start. It reads as "here is your answer", never as "unlocked". Always visible beside the form: "Prefer to ask? Message Bek on Zalo", which gets the same sheet. Honest framing: the figure is one short form away.
+
+## F9 · Questions parents ask
+| | |
+|---|---|
+| Purpose | Remove last objections |
+| Copy | 8 questions in parent language, 2-4 sentence answers (rewrite `docs/phase-1/copy/faq.md` for v3 in P1.3b). Samples: VI "Con 5 tuổi chưa biết chữ có học được không?" / EN "My child is 5 and doesn't know letters yet. Can they join?" · "Con nhút nhát, không dám nói thì sao?" / "What if my child is shy?" · "Tuần học thử gồm những gì?" / "What happens in the free week?" · "Học ở đâu, giờ nào?" / "Where and when?" `[OWNER supplies the real answers]` |
+| Layout | Accordion rows, 20 px questions, sentence case; the plus turns into a minus |
+| Mechanic | `interpolate-size` / GSAP height; no pin |
+| Mobile | Same |
+| Notes | Visible text only; no FAQPage markup (§6.2) |
+
+## F10 · See you in class (the lead form as the next turn)
+| | |
+|---|---|
+| Purpose | Capture the lead without friction; an invitation, not a paywall |
+| Emotion | Momentum, warmth |
+| Layout | Full `--mood` field (the visitor's own colour). Desktop: form 7 columns on the right, the greeting echo on the left (`display-xl` "See you in class."). Mobile: full-screen bottom sheet when opened from the sticky bar, inline here |
+| Steps (3, progress as three dots; each step is one screen, one question, 48-56 px chips) | 1 **"Hello! Who is coming to class?"** chips: 5-6 · 7-8 · 9-10 · 11-13 · 14-17 (+ "another child") 2 **"How is English for them today?"** chips: Just starting · Knows some, shy to speak · Speaks, wants more · Needs help with school English (+ optional note) 3 **"Where should Bek say hello back?"** parent's name · Zalo or phone · best time to message · optional start day (chips Mon-Sun) · **unticked** consent with the plain-language notice · invisible Turnstile. Button: "Start the free week" (never looks disabled; shows what's missing) |
+| Copy | VI step titles: "Xin chào! Ai sẽ đến lớp?" · "Hôm nay tiếng Anh của con thế nào?" · "Thầy nhắn lại cho ba mẹ ở đâu?" Always visible: "Prefer to chat? Message on Zalo" |
+| Confirmation (instant, on the same screen, no email) | Field collapses; headline "Thank you! I'm happy." in the visitor's mood colour; **the price reveal** (the dotted line from F8 completes and draws the nodes in 900 ms: Week 1 free · Month 1: 1,990,000 VND · then 2,990,000 VND/month; no count-up); Bek's line "I'll message you on Zalo [OWNER: within how many hours]"; the class sheet (schedule for their age band, the room map, "what to bring" `[OWNER]`); the speaker "See you soon!". The figures arrive in the `/api/lead` response and are rendered client-side; they are not in the page HTML |
+| Child data | Age band only. **No child name, no photo, no school.** |
+
+## F11 · Footer: goodbye
+| | |
+|---|---|
+| Purpose | Close the conversation; navigation and legal |
+| Copy | Giant "See you soon!" (`display-xl`, in the visitor's mood) · address, phone **+84 353 88 5757**, Zalo, language switch VI/EN, Privacy, Terms |
+| Mechanic | Bek's handwritten "See you soon!" SVG draws on enter (optional asset) |
+| Mobile | Stacked; phone is a 56 px `tel:` button |
+
+## 4.1 Persistent UI
+- **Header:** wordmark "Teacher Bek" (left), mood chip, VI/EN switch, Menu. On mobile: wordmark + chip + menu (48 px buttons). Header never overlaps focused inputs (WCAG 2.4.11).
+- **Sticky bottom bar (mobile, after the first scroll):** left "Zalo" icon+label, right "Start the free week" pill. Replaces the old floating Zalo bubble; hides while an input is focused and on the form sheet; 64 px + safe-area.
+- **Menu:** full-screen sheet with the same mood field; links in `display-l`; close button top-right 48x48 and Escape; focus trap (already fixed in Phase 0).
+
+## 4.2 Pages
+| Page | Experience |
+|---|---|
+| `/vi/` `/en/` Home | F0-F11 |
+| `/vi/lop-hoc/thieu-nhi` · `/en/classes/young-learners` (5-10) | Hero = the age numeral "5-10" at `display-xl` morphing in from the home card (view transition); one sentence per age with audio; what a lesson looks like (greeting, turn, learn); schedule line; 3 FAQs; form prefilled for 5-6/7-8/9-10 |
+| `/vi/lop-hoc/thieu-nien` · `/en/classes/teens` (11-17) | Same template, `display-xl` "11-17", sample sentences for 13 and 16; teen-friendly copy (no "bé") |
+| `/vi/gioi-thieu` · `/en/about` (optional, Phase 2b) | Not a story page (S7): Bek's method in his words, credentials as text, the room; skip if copy is thin |
+| `/…/welcome` | Thank-you, **price reveal** and class sheet after F10 (noindex, not in sitemap; the figures are served only with a valid lead token, not in static HTML); reachable from the Zalo message too; contains the audio goodbye |
+| `/…/privacy` · `/…/terms` | Plain-language, per shipped locale, >= 300 words each (§2.3 #4) |
+| 404 | "Hello! This page isn't in class today. How are you?" with the six words **plus "lost"**; tapping any word shows "Okay. Let's go home." and the home button turns the page into that mood |
+| Empty / error states | Form error: inline, under the field, human sentence, `aria-live="polite"`; all channels down: "Something went wrong. Message Bek on Zalo" with the Zalo link; offline: "No signal. Call +84 353 88 5757" |
+
+**Removed from v1:** `/blog`, `/guides`, `/community`, ZH/RU, IELTS and English-for-Work pages (301 to home or the matching programme).
+
+## 4.3 Page transitions
+Native cross-document View Transitions only (`@view-transition { navigation: auto; }` in CSS): 500 ms mood sheet wipe + 250 ms fade, header and chip persistent, the programme age numeral shared between card and page. Unsupported browsers: instant navigation. No JS router, no Swup, no Barba. Reduced motion: 150 ms cross-fade.
+
+---
+
+# 5. STACK AND PERFORMANCE (Step 5; versions checked 2026-10-22, `v3/E/report.md`)
+
+## 5.1 Decision: Astro on Cloudflare, not Next
+
+| Question | Decision and reason |
+|---|---|
+| Stay on Next.js 15.5 / Vercel or rebuild? | **Rebuild the front end in Astro 7.4.2; keep the lead code.** The new site is almost entirely static content plus three small pieces of JS (the greeting, the scenes, the form). Next ships a React runtime (>= 100 KB) for pages that need none of it; the budget in §5.2 (<= 10 KB JS before LCP) is not realistic on Next + next-intl + three animation libraries (§2.2). Vercel Hobby is non-commercial; Pro is $20/month. Cloudflare Workers is free for this traffic and has Ho Chi Minh City / Hanoi points of presence (Cloudflare blog, "ten-new-data-centers"). |
+| What is reused? | `lib/leads/{sheet,submit,telegram,types}.ts` and `lib/telegram/*` are `fetch`-based (Google Sheet via webhook URL + secret, Telegram Bot API) and port with small edits: swap `NextRequest/NextResponse` for `Request/Response` in `guard.ts` and the route handlers; replace the in-memory `rateLimit` (does not survive Workers) with Cloudflare's rate-limiting binding or a KV counter; keep `zod` server-side. Env vars: `LEADS_SHEET_WEBHOOK_URL`, `LEADS_SHEET_SECRET`, Telegram token/admin ids, Turnstile secret. |
+| Risk of rebuild | Medium (2-3 weeks); mitigated because the content is small, the lead pipeline is not rewritten, and the old site stays live until the Phase 3 DNS switch. If the owner prefers zero migration risk: stay on Next 15.5, drop framer-motion, split-type and the unused 17 components, accept LCP ~2 s (not recommended; costs Usability points). |
+
+## 5.2 Stack table
+
+| Layer | Pick (exact version) | Why | Browser cost (gz) | One alternative |
+|---|---|---|---|---|
+| Framework | **Astro 7.4.2** (static, i18n routing `vi` default, `en`) | HTML first, JS only where used; native i18n | ~0 KB | Next.js 16.4.2 + next-intl 4.14.9 |
+| Host | **@astrojs/cloudflare 14.4.2** on Workers (static assets + 3 functions: `/api/lead`, `/api/telegram`, `/api/settings`) | Free, commercial OK, fast in VN | server | Vercel Pro ($20/mo) |
+| CSS | **Tailwind CSS 4.3.3** via `@tailwindcss/vite` + CSS variables for tokens | Zero runtime | 0 KB | Plain CSS |
+| Interactive islands | **Preact 11.0.1** + **@astrojs/preact 6.1.0**, only for the form and the mood chooser state | Smallest React-shaped runtime | ~4-5 KB | Vanilla TS custom elements (no runtime) |
+| Animation | **GSAP 3.15.0**: core 27.35 KB + ScrollTrigger + SplitText + Flip (all in the public npm package; "no charge" licence, not MIT) | Industry standard, same stack the winners use (§1) | ~55 KB total, **loaded after LCP via `requestIdleCallback`** | CSS `animation-timeline` (scroll-driven, ~88% support) + WAAPI hand-rolled Flip |
+| Smooth scroll | **Lenis 1.3.27**, fine-pointer desktop only | Lando-grade feel | 5.46 KB | Native scroll |
+| Page transitions | **Native View Transitions** (cross-document; Chrome 126+, Safari 18.2+, ~89%) | 0 KB, no router | 0 KB | Swup 4.10.0 (+9 KB) or @unseenco/taxi 2.0.0 |
+| 3D / shaders / Rive | **None** (§3.10) | Idea is type + colour + voice | 0 | three 0.186.1 (184.9 KB), Rive 2.45.0 |
+| Audio | `HTMLAudioElement`, Opus/m4a, lazy | No library | 0 KB | Howler (stale) |
+| Validation | **Valibot 1.5.0** client, **zod 4.6.7** kept server-side (existing) | Tree-shaken ~3 KB client | ~3 KB | Zod client (larger) |
+| Spam | **Cloudflare Turnstile** (managed/invisible), loaded when the form is first focused | Free, unlimited | loaded on demand | hCaptcha |
+| Lead store | **Google Sheet** (Apps Script webhook, existing) + **Telegram** (existing); no D1, no email | Owner's decision; zero new accounts | server | Airtable |
+| Settings (price, schedule, status) | **Cloudflare KV** `settings` key, edited by the owner via the existing Telegram bot (`/set price 2990000`). Price keys are returned **only** inside the `/api/lead` response; the public `/api/settings` (schedule, status, free-week on/off) never contains them | Owner changes a number in 10 s, no developer, no CMS | 0 KB (`/api/settings` ~300 B, cached 5 min) | Keystatic 0.6.9 (dropped: 0 h/month) |
+| Analytics | **Cloudflare Web Analytics** (cookieless) + **GA4 with Consent Mode v2**, only after consent | Funnel with privacy | ~1 KB; GA after consent | Plausible (paid) |
+| Field perf | **web-vitals 6.2.3** (3.3 KB) to GA4 after consent / CF | Field LCP/INP/CLS | 3.3 KB | Vercel Speed Insights |
+| Images | Astro `<Picture>` + **sharp 0.35.5** at build, AVIF/WebP | Exact `srcset` | 0 | Cloudflare Images |
+| Sitemap/SEO | **@astrojs/sitemap 3.7.4**; hand-written `<head>`; `schema-dts 2.1.0` (types only) | Full control | 0 | astro-seo 1.2.0 |
+
+Dropped on purpose: framer-motion/`motion`, split-type, Barba, Howler (stale), ogl, three.js, Keystatic, Cal.com (booking is done on Zalo, §7), D1, Resend.
+
+## 5.3 Hard budgets (enforced in CI; mobile = Slow 4G + 4x CPU lab, field = p75)
+
+| Metric | Budget | Today |
+|---|---|---|
+| LCP | **<= 1.8 s lab / <= 2.5 s field** (LCP element = the h1 text) | 2.6-3.8 s |
+| INP | **<= 200 ms field** (target 150 ms; lab TBT <= 150 ms) | unmeasured |
+| CLS | **<= 0.05** (target ~0) | 0 |
+| JS before LCP | **<= 10 KB** gz (inline hero script ~2 KB, tier detect < 1 KB, View Transition CSS) | ~272 KB |
+| JS total home | **<= 110 KB** gz (GSAP set ~55, Lenis 5.5 desktop only, Preact form ~5, hero ~3, web-vitals 3.3, rest) | — |
+| Fonts | **<= 200 KB** total (Fraunces roman + italic + Be Vietnam Pro 400/600), 4 files | 40-43 files |
+| First view | **<= 450 KB** excluding video; **<= 25 requests** | 600-780 KB / 70-74 |
+| Full scroll | <= 2.5 MB with photos; video loops <= 1.2 MB each, tier Full on Wi-Fi only | — |
+| Audio | 0 KB until the first speaker interaction; <= 120 KB in total | — |
+| Frame rate | **60 fps scroll and signature animation on a mid-range Android** (<= 4 GB RAM, Chrome 120+); no long task > 50 ms during scroll | — |
+| Lighthouse (mobile, PSI) | Perf >= 95 · A11y 100 · BP 100 · SEO 100 | not measured |
+| Awwwards Mobile Excellence | **>= 80/100** (stated minimum 70-75, unverified, §1.6) | — |
+
+**Techniques:** h1 text painted from HTML; hero script inlined; everything animated is `transform`/`opacity`/`clip-path`, with `will-change` only during the animation; the six colour fields are CSS variables on `<html>` (one repaint, no JS per frame); GSAP and Lenis loaded on idle; islands `client:visible`; images AVIF with exact `sizes`; Turnstile loaded on first form focus; no third-party script before consent; fonts subset and one preload.
+
+**Tiers (decided once at boot, stored on `<html data-tier>`).**
 | Tier | Condition | Experience |
 |---|---|---|
-| **Full** | fine pointer, no reduced motion, no Save-Data, `hardwareConcurrency ≥ 6` | Lenis, cursor, pinned Method, all pen animations, Video B loop |
-| **Touch** (default mobile) | coarse pointer or 4–5 cores | Native scroll, pen animations, Flip, swipe decks; no pin, no cursor, video poster only |
-| **Lite** | `prefers-reduced-motion`, Save-Data, ≤ 4 cores or `deviceMemory ≤ 2` (Chromium hint only) | Final states static, no GSAP loaded at all, no video, no grain; identical content |
+| **Full** | fine pointer, no reduced motion, no Save-Data, `hardwareConcurrency >= 6` | Lenis, cursor, pinned F3/F4, axis animation, video loops |
+| **Touch** (default mobile) | coarse pointer or 4-5 cores | Native scroll, signature with WAAPI Flip + CSS flood, swipe decks, no pins, no video autoplay |
+| **Lite** | `prefers-reduced-motion`, Save-Data, <= 4 cores or `deviceMemory <= 2` | Final states, no GSAP loaded at all, instant colour change, no video, same content |
+
+**Reduced-motion version (WCAG 2.3.3):** the greeting still works (tap, word, colour in 150 ms cross-fade); scenes F3/F4 render as static stacked content; no loader; no cursor; audio still user-started.
+
+## 5.4 Testing devices
+
+Real low-end Android (<= 4 GB RAM, Chrome), mid iPhone (Safari), iPad, **Zalo in-app browser** and **Facebook in-app browser** (where most Vietnamese parents open links; Web Audio/Autoplay/View Transitions differ there), desktop Chrome/Safari/Firefox. The signature must work in the in-app browsers or degrade to the Lite behaviour.
 
 ---
 
-# 6. LEAD CAPTURE · SEO · AI SEARCH
+# 6. LEAD CAPTURE, SEO, AI SEARCH (Step 6)
 
-## 6.1 Lead capture ("Hold a seat")
-**Form = bottom sheet (mobile) / side sheet (desktop), 3 steps, progress shown as pen ticks ✓✓○:**
-1. **Who's learning?** chips: "My child 6–10 / 11–17", "Me (adult)", "IELTS" (pre-selected from context: seat tapped, programme page, Level Ladder).
-2. **What matters most?** chips (speaking confidence / school grades / IELTS band / work) + optional preferred days.
-3. **Where should I send your answer key?** Parent's name, Zalo/phone (`+84` helper, auto-format), no email field (no email channel, Q5/Q6); **unticked** consent checkbox with plain-language PDPL notice per locale; invisible Turnstile.
-- Micro-interactions: chip select = pen circle draws around chip (240 ms); valid field = small ✓ in margin; error = pen writes the hint in the margin + `aria-live`. Submit button: "Get my answer key →" (never looks disabled; shows what's missing instead).
-- Always visible: "Prefer to chat? Zalo me" link.
+## 6.1 Lead capture
 
-**Pipeline (lead API, Cloudflare Worker):**
-```
-POST → Turnstile verify → Valibot validate → origin check → rate limit (D1/KV, per IP+phone)
-     → INSERT lead into D1 (+ consent text version, locale, source, UTM)   ← must succeed, else 503 + Zalo fallback
-     → async: mirror to Google Sheet · notify teacher (Telegram bot ping with one-tap "Zalo this parent" link)
-     → response: token → /answer-key/[token] (localized price sheet + Cal.com trial booking + seat held 48 h)
-     → no email step (no email channel)
-```
-**Follow-up (manual on Zalo first; automate later):** ≤ 1 h personal message/call (business hours) → Day 1 price sheet + map + parking → Day 3 one testimonial/video from a similar family → Day 7 "your seat in [group] is still free — hold it?" → Day 30 check-in, then stop. Lead status tracked in CRM: new → contacted → trial booked → trial done → enrolled / lost (reason).
-
-**Events (GA4 names, after consent; key event ★):** `hero_correction_tap`, `ladder_change` (programme), `seat_tap` (group), `form_open` (source), `form_step` (1–3), `form_error` (field), `generate_lead` ★ (programme, age band, locale), `answer_key_view`, `book_trial_click` ★, `zalo_click` (location), `phone_click`, `video_play` (A/B), `language_switch`.
-
-## 6.2 SEO & AI search
-- **Locales:** `/vi/` (default, `x-default` → `/vi/`), `/en/`, `/zh/`, `/ru/`; 301 all old URLs.
-- **Metadata per page & locale** (title ≤ 60, description ≤ 155), e.g.:
-  - Home VI: "Lớp tiếng Anh nhóm nhỏ Phú Nhuận · Giáo viên nước ngoài | Teacher Bek"
-  - Young Learners VI: "Tiếng Anh cho bé 6–10 tuổi tại Phú Nhuận · Tối đa 10 bé/lớp"
-  - IELTS EN: "IELTS Preparation in Phu Nhuan · Small Groups | Teacher Bek"
-  - Per-locale OG image (corrected sentence on paper).
-- **Schema (one `@graph`, stable `@id`s):** `EducationalOrganization` + `LocalBusiness` (address, geo, `openingHoursSpecification`, telephone, `areaServed` with Wikidata Q1854 HCMC ✓, `sameAs` GBP/FB/IG/TikTok/LinkedIn), `Person` (verified credentials only), `Course` ×4 with real `offers` and `hasCourseInstance` (schedule), `BreadcrumbList`. **No FAQPage** for rich results (Google stopped showing them 2026-05-07) and **no self-serving AggregateRating** (ineligible per Google review-snippet docs, updated 2026-09-08). FAQ stays as visible text.
-- **Entity signals:** identical NAP everywhere; Google Business Profile (category "English language school"), weekly photo, review requests after month 1; Facebook page + Zalo OA linked both ways; local directories.
-- **AI answers:** a "Fast facts" block on home and each programme (who, ages, group size, schedule, area, price range, how to book) in every language.
-- **robots.txt:** allow Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User; training bots (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended — the last unverified) = owner's choice, default allow.
-- **llms.txt:** rewrite with correct domain and real URLs (low priority — no major engine confirmed to use it; Google says it's not needed).
-- **Guides: dropped (Q14: 0 h/month).** No guide articles, `/guides` routes or `Article` schema at launch.
-- **Analytics setup:** Cloudflare Web Analytics; GA4 property with Consent Mode v2 (default denied), key events ★; Search Console + Bing Webmaster owned by the owner; monthly Looker Studio one-pager (visits → form opens → leads → trials → enrolled).
-
----
-
-# 7. WHAT YOU HAVEN'T THOUGHT OF
-
-| Item | What a top agency would include |
+| Item | Decision |
 |---|---|
-| Proof production | Testimonial collection kit (Zalo script + consent form in VI), 3 short parent video clips, before/after work samples (with consent) |
-| Photo/video shoot | Shot list §3.5, consent forms for every child/parent, usage rights from photographer |
-| Handwriting asset | Scan session: owner writes 20 marks/words ×3 takes; vectorised; style sheet |
-| Booking | Cal.com trial slots synced to owner's calendar; reminder SMS/Zalo the day before |
-| Multilingual ops | One translation source; ZH/RU deferred (Q10); per-locale OG images; Vietnamese is primary, not English |
-| Legal | PDPL-compliant privacy notice ×4 languages, consent log, children's data clause, processor list, retention (e.g. 24 months), data request contact; terms for trial/refunds; lawyer review |
-| Cookie consent | Small bottom banner (not a wall), "Accept analytics / Only essential"; GA blocked until accepted; Cloudflare analytics needs no consent |
-| 404 & empty states | Designed (§4.2); "no seats" state; offline state; form failure → Zalo fallback |
-| Accessibility | WCAG 2.2 AA: target size, focus not obscured (sticky bar!), contrast, captions on video, reduced motion, keyboard-operable seat map and slider, accessibility statement |
-| Emails | Dropped (Q5/Q6): no email channel. Lead alerts go to Telegram; no branded email templates. |
-| Monitoring | Uptime check on home + lead API; daily synthetic "test lead" flagged `test=true`; alert to owner's Telegram/Zalo if the lead API fails |
-| Backups | D1 nightly export; CRM monthly CSV; git is the content backup |
-| Ownership | Domain, Cloudflare, Google account (Sheet), Telegram bot, GA, GBP, Search Console under the owner's email with 2FA; a one-page "keys & accounts" doc |
-| Who updates what | Owner via Keystatic: seats (weekly, 1 min), testimonials, prices, schedule. Developer: quarterly dependency update + Lighthouse check (~1–2 h) |
-| Ongoing cost | §8.4 |
-| Launch marketing | Zalo OA broadcast to current parents, GBP post, Facebook groups for Phú Nhuận parents, QR poster at the classroom door |
-| Awwwards submission | Submit after launch with case-study page; fee ~$50–60 per submission (verify on awwwards.com at the time) |
+| Form | The 3-step conversation F10 (age band · how English is today · where to reach). Same markup in the inline form, the sticky-bar sheet, and the programme pages (prefilled). |
+| Spam | Honeypot (fixed), time trap, Cloudflare Turnstile (managed), origin check, rate limit (CF binding). Already built in `lib/leads/guard.ts`; port per §5.1. |
+| Where leads go | `POST /api/lead` → validate → **Google Sheet row** (source of truth; consent text version, locale, UTM, mood picked optional) → **Telegram card** to the owner (existing bot with status buttons, `/leads`, `/stats`). Never reports success unless at least one channel stored it; if both fail: 503 and the Zalo fallback is shown. No email (Q5/Q6), no WhatsApp (Q15). |
+| Instant confirmation and price reveal | On-screen (F10 confirmation, `/welcome?t=token`): the **personalised answer with the price** (1,990,000 VND first month after the free week, then 2,990,000 VND/month), class sheet, "I'll message you on Zalo", and a `zalo.me` deep link. Bek sends the same text on Zalo to parents who message first. Price lives in KV and the lead response only. |
+| Follow-up | Manual, on Zalo: first message within `[OWNER: reply time]` → day 1 class sheet and start day → day 3 one parent quote → day 7 "your free week starts [day], still want it?" → stop. Lead status lives in the Telegram bot buttons (new → contacted → trial booked → enrolled / lost). |
+| Events (GA4, after consent; ★ = key event) | `greeting_pick` (mood), `greeting_audio_play`, `ladder_stop` (age), `form_open` (source), `form_step` (1-3), `form_error` (field), `generate_lead` ★ (age band, locale), `price_reveal_view`, `zalo_click` (location), `phone_click`, `language_switch`, `faq_open`, `scroll_depth` (25/50/75). Cloudflare Web Analytics for the cookieless baseline. |
+
+## 6.2 SEO and AI search (short; the owner has 0 h/month for content)
+
+- **Locales:** `/vi/` default (`x-default`), `/en/`. 301 all old URLs; ZH/RU/blog/community 301 to home. hreflang emitted only for translated pages.
+- **Metadata (title <= 60, description <= 155):** Home VI "Lớp tiếng Anh cho bé 5-17 tuổi ở Phú Nhuận | Teacher Bek"; Young Learners VI "Tiếng Anh cho bé 5-10 tuổi ở Phú Nhuận | Teacher Bek"; Teens VI "Tiếng Anh cho thiếu niên 11-17 tuổi | Teacher Bek"; EN "English Classes for Kids and Teens in Phu Nhuan | Teacher Bek". OG image per locale: the "I am happy." sentence in the mood colour.
+- **Schema (one `@graph`, stable ids):** `EducationalOrganization` + `LocalBusiness` (address, geo, hours, `telephone`, `areaServed` Wikidata Q1854), `Person` (Bek, verified credentials only), `Course` ×2 (Young Learners 5-10, Teens 11-17) with `hasCourseInstance` and **no `offers` and no price anywhere in JSON-LD** (the price is gated; the live site currently exposes it in JSON-LD, which must be removed, task P2b.8b), `BreadcrumbList`. **No FAQPage** (no rich results since 2026-05-07) and **no self-serving AggregateRating** (ineligible; Google review-snippet docs). Only Google-documented fields (§2.3 #1).
+- **Entity signals:** identical NAP everywhere, Google Business Profile (English language school; real photos from the shoot; reviews requested from happy parents without incentives), Facebook/Zalo links both ways.
+- **AI search:** a "Fast facts" block on home and programmes (who, ages, group size [OWNER], schedule, area, the free week, how to start; **no price**) as real text; all AI crawlers allowed (robots.txt); `llms.txt` rewritten with real URLs and the facts (low priority, not used by major engines per Google).
+- **No content cluster**: no blog, no guides.
 
 ---
 
-# 8. EXECUTION
+# 7. WHAT THE OWNER DID NOT THINK OF (Step 7)
 
-## 8.1 Phased roadmap (developer-agent instructions)
-> Rules: branch per phase; never break the live lead flow; each phase ends with acceptance criteria met on a preview URL; Lite tier must always work.
+| Item | Decision |
+|---|---|
+| **Testimonials and video proof, given anonymity** | Text quotes attributed by role + context ("Parent of a 7-year-old, Phú Nhuận"). Video proof without faces: 15-30 s clips of **hands and audio** (a parent's voice-over, a child reading with the camera on the page), each with written consent to use the voice. No fake "student of the month". Unreliable stats are not used. |
+| **Booking** | No calendar tool: Bek confirms the free week on Zalo (he already does). The form's optional "start day" chips give the parent control. Cal.com dropped (owner is reachable on Zalo; fewer accounts). |
+| **Languages** | VI + EN. VI is written first and reviewed by the owner. ZH/RU deferred (routes 301). The English greeting is the same in both locales. |
+| **Legal** | Privacy and terms in VI + EN, plain language, >= 300 words; PDPL (Law 91/2025/QH15, Decree 356/2025, in force 2026-01-01 per §2.2, **confirm with a Vietnamese lawyer**): parental consent for children's data, **collect no child name/photo/school**, consent text stored with each lead, retention period (propose 24 months), processors list (Google, Telegram, Cloudflare), data-request contact. Photos/videos of children only with written consent from a parent (signed form, kept by the owner). |
+| **Cookie consent** | Small bottom banner (not a wall, not over the hero fold on first paint): "Essential only / Accept analytics". GA4 blocked until accepted; Cloudflare analytics needs none. |
+| **404 and empty states** | Designed (§4.2): the "I am lost." 404, form failure to Zalo, offline with phone number. |
+| **Accessibility (WCAG 2.2 AA)** | The six words are a `radiogroup`-style group of buttons with visible names, `aria-live="polite"` announces "You said: happy"; Bek's reply is real text; speaker buttons are labelled "Hear the word happy"; colour is never the only signal (the word is shown); focus visible; target size >= 48 px; sticky bar never covers focused fields (2.4.11); motion off honours `prefers-reduced-motion`; audio never autoplays; contrast verified in CI (existing `design/qa/contrast.mjs`). |
+| **Monitoring** | Uptime check on home + `/api/lead`; a daily synthetic test lead flagged `test=true` (Sheet row marked, Telegram silent); alert to the owner's Telegram if it fails; Cloudflare Web Analytics for traffic. |
+| **Backups and ownership** | Sheet is the lead store (Google's history); monthly CSV copy by the owner; git is the content backup. Domain, Cloudflare, Google account, Telegram bot, GA, GBP, Search Console under the owner's login with 2FA; a one-page "keys & accounts" note. |
+| **Running cost** | $0-2/month (see §8.4). |
+| **Updating without a developer (0 h/month budget)** | The owner changes **only** the price figures (revealed after the form), "free week on/off", schedule text, and "enrolling now / waitlist" by messaging the existing Telegram bot (`/set key value` → KV → `/api/settings`, shown on the site within 5 minutes; the built page already contains the defaults so nothing shifts). Testimonials, FAQ text and photos change quarterly via the developer (git) if ever. |
+| **Launch push** | Message current families on Zalo, post on the Google Business Profile, a QR poster at the classroom door. |
+| **Awwwards submission** | After 2-4 weeks of stable data, with a short case-study page; fee ~$65 (unverified, check at submission). |
 
-**Model allocation rules (owner wants cheaper models; Opus is never used):**
-- Default = **Haiku**. Escalate to **Sonnet** only when a task needs design judgment, multi-file architecture, or debugging.
-- Owner-only tasks (answers, shoot, handwriting, testimonials, approvals) are marked **Owner**; the model that prepares the materials is named in brackets.
-- A **Sonnet reviewer pass** (diff review against the phase's acceptance list) closes every phase.
-- Run independent Haiku tasks in parallel (separate branches/worktrees or disjoint files); Sonnet tasks that touch shared files run sequentially.
-- Every agent must run the phase's acceptance checks relevant to its task and report pass/fail with evidence (command output, URL, screenshot path) before the step is closed.
+---
 
-**Phase 0 — Fix the live site (1–2 days, before anything else)**
-| Step | Task | Model | Why that model |
+# 8. EXECUTION (Step 8)
+
+## 8.1 Phased build
+
+> Rules: branch per phase; never break the live lead flow; each phase ends with acceptance met on a preview URL; the Lite tier must always work. **Models:** default Haiku; Sonnet for design judgment, multi-file architecture, debugging; **Owner** for anything only the owner can do. A Sonnet reviewer pass closes every phase. Opus is not used.
+
+### Phase 0 — Fix the live site · **DONE** (commit `bd33133`, 2026-10)
+Mobile menu closable; single h1; map replaced by address card; `llms.txt` rewritten; sitemap trimmed; lead pipeline rebuilt (Google Sheet + Telegram, honeypot, Turnstile option). **In progress (another agent, 2026-10-22):** the live Next site is being updated to the new scope (adult programmes removed, ages 5-17, price 2,990,000/1,990,000, WhatsApp and blog/community removed). Not part of this plan's build. **Open item for that agent:** the live site's JSON-LD exposes the price; remove it there too (the price is gated).
+- Still open from Phase 0: confirm env vars live (Sheet, Telegram, Turnstile) (Owner, Haiku prepares checklist); fresh Semrush crawl (Haiku).
+
+### Phase 1 — Content and assets · **PARTLY DONE**
+| Step | Task | Model | Status / acceptance |
 |---|---|---|---|
-| P0.1 | Ask owner to commit or discard the 18 uncommitted files | Owner (Haiku prepares `git status` summary) | Only the owner can decide what to keep |
-| P0.2 | Fix mobile menu close (stacking order / z-index of the close button in `components/VanguardNavigation.tsx`; Escape and back close it) | Sonnet | Stacking-context debugging, a11y behaviour |
-| P0.3 | Replace the Carto map with a static image + "Open in Google Maps" link | Haiku | Mechanical swap, well specified |
-| P0.4a | Verify production env for the Google Sheet + Telegram lead channel (Resend dropped, Q5/Q6) | Owner (Haiku prepares checklist) | Needs owner's Vercel, Google and Telegram access |
-| P0.4b | `/api/pricing-lead` must not report success on failure; persist leads (Google Sheet) before the Telegram ping; read the honeypot's real value; add Turnstile | Sonnet | Lead-pipeline logic across several files |
-| P0.5a | Rewrite `public/llms.txt` (correct domain, real URLs) | Haiku | Static text file |
-| P0.5b | Hide empty "Reads" band | Haiku | Remove/conditional render |
-| P0.6 | Run PSI with API key for /vi and /en (mobile + desktop); save to `docs/audits/2026-10-psi-baseline.json` | Haiku | Run tool and report |
-| P0.7 | Semrush fix: remove `wa.me/84353885757` links (`VanguardFooter.tsx:71`, `VanguardInquiry.tsx:515`, `app/api/contact/route.ts:216`) (Q15 answered: remove WhatsApp, so all of them go); fix footer zalo.me link labelled `t("telegram")` (`VanguardFooter.tsx:70`) | Haiku | Link and label fix, file:line known |
-| P0.8 | Semrush fix: exactly one `<h1>`, shared by mobile and desktop hero (`VanguardHero.tsx:116` and `:316`) | Sonnet | Restructures the dual-layout hero without breaking either |
-| P0.9 | Semrush fix: remove `/community` and `/blog` from `app/sitemap.ts` PRIMARY_ROUTES; 301 the `/about`, `/services`, `/faq` stubs | Haiku | Config edit |
-| P0.10 | Re-run Semrush Site Audit after Phase 0 deploy to get a fresh crawl (current data is 2026-03-11); record Site Health, errors, warnings | Haiku | Run and report |
-| P0.11 | Reviewer pass on the Phase 0 diff vs acceptance list | Sonnet | Diff review |
-- **Accept:** menu closes by X, Escape, back; map has no watermark; 4 test leads (one per locale) stored in the Sheet + Telegram ping; forced Sheet/Telegram failure still stores the lead and shows Zalo fallback; PSI baseline saved; no `wa.me` links (Q15: remove WhatsApp); footer label matches its link; exactly one `<h1>` per page on all locales (DOM check); sitemap lists only live indexable routes; fresh Semrush crawl saved with 0 sitemap-orphan and 0 multiple-H1 findings.
+| P1.1 | Owner answers Q1-Q15 and S1-S8 | Owner | **Done 2026-10-22** (S8 not answered) |
+| P1.2 | Copy deck v1 (Red Pen) | Sonnet | Done; **obsolete** (archive) |
+| P1.2b | **Rewrite copy deck for v3** from §3-§4: VI master + EN, every string with ID, max length, flag; no adult programmes, ages 5-17 | Sonnet | Accept: every F0-F11 string present, VI reviewed by owner, no `[CONFIRM]` left on facts that are shown |
+| P1.3 | Mistake library, FAQ drafts v1 | Sonnet | Done; mistake library **not used** in v3; FAQ to be redone in P1.3b |
+| P1.3b | Rewrite FAQ for v3 (8 questions in §4 F9) | Sonnet | Accept: owner answers each factual item |
+| P1.4 | **Record voice** (greeting, 6 words, goodbye) following Haiku's script and checklist | Owner | Accept: 8 clips, quiet room, 48 kHz WAV, 3 takes each |
+| P1.5 | Shoot photos and videos per §3.5 with consent forms (VI template, kit exists from `f00e6d4`) | Owner | Accept: >= 12 usable photos; videos optional (**not a launch blocker**) |
+| P1.6 | Convert audio to Opus/m4a; select, grade and export images to AVIF/WebP | Haiku | Accept: audio <= 120 KB total; hero poster <= 60 KB |
+| P1.7 | Handwriting: owner writes "See you soon!", "Me too!" and a signature ×3 (**optional**), vectorise to SVG | Owner → Haiku | Accept: 3 SVGs < 5 KB each, or skipped |
+| P1.8 | Collect anonymised testimonials with consent | Owner (Haiku prepares Zalo script + consent form) | Accept: >= 3 quotes (role + context) |
+| P1.9 | Tell the 5-year-old story: owner's facts (how long studied, consent) | Owner | Accept: three facts + written parent consent |
+| P1.10 | Reviewer pass: content vs Q/S answers | Sonnet | Accept: every number, claim, credential traceable |
 
-**Phase 1 — Content & assets (owner-heavy, 1–2 weeks; can overlap Phase 2a)**
-| Step | Task | Model | Why that model |
+### Phase 2a — Design v2 and prototypes · **NOT STARTED** (v1 Red Pen rejected)
+| Step | Task | Model | Acceptance |
 |---|---|---|---|
-| P1.1 | Answer Q1–Q15 — **done 2026-10-22** (see table) | Owner (Haiku prepares a one-page answer form) | Only the owner knows |
-| P1.2 | Copy deck (VI master + EN) | Sonnet | Voice, parent-language copywriting |
-| P1.3 | Mistake library (10 sentences per age band) + FAQ drafts | Sonnet | Linguistic judgment |
-| P1.4 | Photo/video shoot per §3.5 with consents | Owner (Haiku prepares shot list + VI consent form template) | Physical task |
-| P1.5 | Select, grade, convert photos to AVIF/WebP at srcset sizes | Haiku | Mechanical image conversion |
-| P1.6 | Handwriting: owner writes 20 marks ×3 takes | Owner (Haiku prepares the sheet) | Owner's hand is the asset |
-| P1.7 | Scan → vectorise to SVG set, optimise paths | Haiku | Scripted trace, spec-driven |
-| P1.8 | Collect testimonials with written consent | Owner (Haiku prepares Zalo script + consent form) | Owner relationship |
-| P1.9 | ZH/RU translation drafts — **deferred post-launch (Q10)** | Sonnet | Nuanced translation |
-| P1.10 | ZH/RU native review and sign-off — **deferred (Q10)** | Owner | Needs a native reviewer |
-| P1.11 | Enter approved content into repo/CMS files | Haiku | Copy-paste from signed-off deck |
-| P1.12 | Reviewer pass: content vs Q answers (§8.2 content truth) | Sonnet | Judgment |
-- **Accept:** signed-off copy in VI/EN (ZH/RU deferred, Q10), 25+ graded photos, 2 videos (owner shoots later; not a launch blocker), 20 SVG marks, ≥ 5 consented testimonials (published anonymised).
+| P2a.1 | Tokens (§3.3-3.7) as CSS variables; subset Fraunces and measure bytes; VI diacritic test | Sonnet | Fonts <= 200 KB; test string renders without clipping at every size |
+| P2a.2 | Contrast check of every token pair (reuse `design/qa/contrast.mjs`) | Haiku | All text pairs >= 4.5:1 |
+| P2a.3 | **Signature prototype** (hero, six words, flood, reply, chip) on a single HTML page | Sonnet | 60 fps on a low-end Android; works in Zalo/Facebook in-app browsers; no-JS and reduced-motion versions |
+| P2a.4 | Hi-fi mobile 390 then desktop 1440 for F0-F11 + programme page + welcome + 404 | Sonnet | Owner approves; no placeholder tags; each frame complete without photos |
+| P2a.5 | Scene prototypes: F3 circle, F4 ladder (pin + snap), F8 price line | Sonnet | 60 fps; pin lengths as §4 |
+| P2a.6 | Run prototypes on devices, report | Haiku (Owner supplies devices) | Report with fps traces |
+| P2a.7 | **Owner approves design** | Owner | Written yes |
+| P2a.8 | Reviewer pass | Sonnet | Matches this document |
 
-**Phase 2a — Design system & prototypes (1–2 weeks)**
-**Phase 2a v1 (Red Pen) rejected by owner 2026-10-22; Phase 2a v2 starts after the new design bible.**
-
-| Step | Task | Model | Why that model |
+### Phase 2b — Build · **NOT STARTED**
+| Step | Task | Model | Acceptance |
 |---|---|---|---|
-| P2a.1 | Tokens (colour, type, spacing, motion) as CSS variables; tune type scale | Sonnet | Design-system judgment |
-| P2a.2 | Contrast check of every token pair; report | Haiku | Script and report |
-| P2a.3 | Font subsetting (Playfair v2, Inter) + fallback metrics (`size-adjust`) | Haiku | Well-specified tooling |
-| P2a.4 | Mobile-first hi-fi designs (390 px): hero, Level Ladder, seat map, form sheet steps, Answer Key, 404; then desktop 1440 | Sonnet | Page composition |
-| P2a.5 | Motion prototypes: hero correction, Level Ladder Flip, seat tap → sheet, Answer Key unfold | Sonnet | Signature interactions |
-| P2a.6 | Test prototypes on low-end Android (60 fps) and render the VI/RU test string in both fonts; report | Haiku | Run checks and report |
-| P2a.7 | Owner approves designs | Owner | Approval |
-| P2a.8 | Reviewer pass on tokens and prototypes | Sonnet | Visual QA vs designs |
-- **Accept:** owner approves designs; prototypes run at 60 fps on a ≤ 4-core Android; VI diacritics and RU render in both fonts with no fallback glyphs (test string: "Tiếng Việt: ặ ẫ ỗ ữ ự ợ đ — Русский: Щёлкнуть").
+| P2b.1 | Scaffold Astro 7.4.2 + Tailwind 4.3.3 + Cloudflare 14.4.2 + Preact + sitemap; i18n | Haiku | Builds; `vi` default |
+| P2b.2 | Tier detect + token CSS + fonts | Sonnet | CLS <= 0.05 |
+| P2b.3 | Static sections F0-F11, one `h1`, VI + EN | Sonnet | No duplicated DOM; text/HTML >= 10% |
+| P2b.4 | Hero island (inline script, WAAPI Flip, flood, audio) | Sonnet | Signature matches §3.9 timings |
+| P2b.5 | Motion layer: GSAP 3.15.0 lazy (+ScrollTrigger, SplitText, Flip), Lenis on Full tier, View Transitions | Sonnet | F2 scrub, F3 and F4 pins per §4 |
+| P2b.6 | Form island (Preact, Valibot), Turnstile on focus, `/welcome` | Sonnet | 3 steps, errors accessible |
+| P2b.7 | Port `lib/leads` and `lib/telegram` to Workers (`/api/lead`, `/api/telegram`, `/api/settings`, `/set` command, KV) | Sonnet | Test lead lands in Sheet + Telegram; both down → 503 + Zalo fallback |
+| P2b.8 | SEO: head, hreflang, sitemap, robots, OG images, 301 map, JSON-LD whitelist | Haiku | Rich Results Test valid; no unlisted fields |
+| P2b.8b | **Remove the price from every public surface** (the live site exposes it in JSON-LD): no figure in static HTML, JSON-LD (`Course.offers`), `llms.txt`, meta/OG, sitemap, FAQ text; price served only via the `/api/lead` response and `/welcome?t=token`; CI greps `dist/` for `2.990.000`, `2,990,000`, `2990000`, `1.990.000`, `1,990,000`, `1990000` | Haiku | Zero matches in `dist/` and rendered HTML of all pages; reveal still works end to end |
+| P2b.9 | Legal pages VI + EN | Sonnet | >= 300 words each |
+| P2b.10 | Lawyer review of notice and consent | Owner | Signed off |
+| P2b.11 | Consent banner + GA4 Consent Mode v2; events §6.1 | Sonnet / Haiku | No GA request before consent |
+| P2b.12 | CI: astro check, lint, Lighthouse CI with §5.3 budgets, axe, link check, title length, text ratio | Haiku | Fails on regression |
+| P2b.13 | Enter approved content | Haiku | Matches deck |
+| P2b.14 | Debug performance until budgets pass | Sonnet | §5.3 green |
+| P2b.15 | Reviewer pass | Sonnet | Diff vs this document |
 
-**Phase 2b — Build (2–3 weeks)**
-| Step | Task | Model | Why that model |
+### Phase 3 — Launch · **NOT STARTED**
+| Step | Task | Model | Acceptance |
 |---|---|---|---|
-| P2b.1a | Scaffold Astro 7.4.1 + Tailwind 4.3.3 + @astrojs/cloudflare 14.4.1 + @astrojs/sitemap 3.7.4 + @astrojs/preact 6.1.0; i18n routes | Haiku | Versions and config fully specified |
-| P2b.1b | Tier detection script (inline, < 1 KB) | Sonnet | Device-capability logic |
-| P2b.2 | Keystatic 0.6.9 collections: programmes, groups (seats, schedule, updatedAt), testimonials, mistakes, FAQs, settings | Sonnet | Schema design across the site |
-| P2b.3 | Build pages §4.2 and sections §4.1 as static components (exactly one `<h1>` per page, no duplicated hero DOM) | Sonnet | Composition and responsive design |
-| P2b.4 | Islands: FormSheet, LevelLadder (Preact) | Sonnet | Interactive UX, accessibility |
-| P2b.5 | Motion layer: GSAP 3.15.0 lazy module (+ScrollTrigger, SplitText, DrawSVG, Flip); Lenis 1.3.27 for Full tier; View Transitions CSS | Sonnet | Animation craft |
-| P2b.6a | Lead API Worker + D1 schema (`leads`, `consents`) + Turnstile + origin check + rate limit + Answer Key route (noindex) | Sonnet | Pipeline architecture, failure modes |
-| P2b.6b | Telegram teacher ping + Google Sheet mirror (no email templates; Resend dropped, Q5/Q6) | Haiku | Fill spec'd message templates with approved copy |
-| P2b.7a | SEO: head component, hreflang + x-default, sitemap with alternates and real lastmod, robots.txt, OG images per locale, 301 map from old URLs | Haiku | Spec'd config |
-| P2b.7b | One JSON-LD `@graph` on the Google-documented field whitelist (see rules below) | Haiku | Field cleanup from a spec |
-| P2b.8 | Legal pages (privacy, terms) per shipped locale, plain language, ≥ 300 words | Sonnet | Legal-adjacent drafting |
-| P2b.9 | Lawyer review of PDPL notice, consent wording, legal pages | Owner | Needs a Vietnamese lawyer |
-| P2b.10a | Consent banner + GA4 Consent Mode v2 architecture | Sonnet | Privacy/analytics architecture |
-| P2b.10b | Wire events §6.1 + web-vitals + Cloudflare Web Analytics | Haiku | Spec'd event list |
-| P2b.11 | CI: `astro check`, lint, Lighthouse CI with §5.1 budgets (fail on regression), link check, axe, plus Semrush-derived gates (rules below) | Haiku | Config from a spec |
-| P2b.12 | Enter approved content into Keystatic | Haiku | Content entry |
-| P2b.13 | Debug performance until budgets pass | Sonnet | Perf debugging |
-| P2b.14 | Reviewer pass on the build diff vs acceptance list | Sonnet | Diff review |
-- **Rules added from Semrush (§2.3), enforced in CI or build:**
-  - **Schema whitelist:** only Google-documented fields (Course + `hasCourseInstance` + `offers`); no `courseWorkload`, `instructor`, `courseSchedule`, `category`, `serviceType`; one compact `@graph`. Rich Results Test + schema validator on every locale; CI fails on any unlisted field.
-  - **robots:** never disallow `/_next/`, `/_astro/`, static assets, JS/CSS or images.
-  - **Legal pages:** ≥ 300 words per shipped locale; no empty or sub-100-word index pages (no blog index without posts).
-  - **hreflang:** emitted only for locales whose page is actually translated; untranslated pages get no hreflang + `noindex`. A locale ships only when its privacy/terms are translated.
-  - **Text/HTML ratio:** CI check ≥ 10% on content pages (compact JSON-LD, no duplicated DOM).
-  - **Title length:** rendered `<title>` ≤ 60 chars including suffix, every locale and page (CI check).
-  - **Link checker:** all internal and external links; treat HTTP 429 as warn-and-retry, not failure.
-  - **Headings:** exactly one `<h1>` per page, same element for mobile and desktop.
-  - **Sitemap:** generated only from live indexable routes.
-- **Accept:** all budgets pass in Lighthouse CI; end-to-end lead test on preview in 4 locales; Lite tier verified; zero axe violations; schema gate, title-length, text/HTML and link-check jobs green; Rich Results Test valid for every shipped locale.
+| P3.1 | DNS to Cloudflare | Owner (Haiku writes the runbook) | Site live |
+| P3.2 | 301 map checked; HSTS | Haiku | No 404 from old sitemap |
+| P3.3 | Search Console + Bing sitemap submit; GBP update | Owner (Haiku prepares) | Submitted |
+| P3.4 | Synthetic lead monitor + uptime | Haiku | Alerts tested |
+| P3.5 | Semrush crawl; design QA §8.2 | Haiku / Sonnet | Site Health >= 95%, 0 errors |
+| P3.6 | First real lead stored + notified | Owner | Seen in Sheet and Telegram |
 
-**Phase 3 — Launch (2–3 days)**
-| Step | Task | Model | Why that model |
-|---|---|---|---|
-| P3.1 | DNS to Cloudflare | Owner (Haiku prepares step-by-step runbook) | Owner holds the registrar |
-| P3.2 | HSTS `includeSubDomains`; verify 301 map from old sitemap, report any 404 | Haiku | Config + scripted check |
-| P3.3 | Submit sitemap to Search Console and Bing | Owner (Haiku prepares instructions) | Owner owns the accounts |
-| P3.4 | Update GBP, Zalo OA, social links | Owner (Haiku prepares the NAP/link list) | Owner owns the accounts |
-| P3.5 | Synthetic test-lead monitor + uptime alerts on | Haiku | Spec'd config |
-| P3.6 | Fresh Semrush Site Audit on production; report vs §8.2 targets | Haiku | Run and report |
-| P3.7 | Reviewer pass: launch checklist | Sonnet | Diff and config review |
-- **Accept:** no 404s from old sitemap; first real lead stored + notified; Search Console clean after 7 days; Semrush Site Health ≥ 95%, 0 errors.
-
-**Phase 4 — Polish & grow (ongoing)**
-| Step | Task | Model | Why that model |
-|---|---|---|---|
-| P4.1 | Monthly: update seats + testimonials | Owner (Haiku prepares reminder + Keystatic checklist) | Truthful seat data is the owner's |
-| P4.2 | **Dropped (Q14: 0 h/month)** — no monthly guide | — | — |
-| P4.3 | Monthly: funnel review report | Haiku | Pull metrics and report |
-| P4.4 | Monthly: one A/B (hero mistake set or CTA copy) | Sonnet | Hypothesis and copy judgment |
-| P4.5 | Quarterly: dependency updates + Lighthouse + Semrush re-crawl | Haiku | Routine, reported |
-| P4.6 | Submit to Awwwards after 2–4 weeks of stable data | Owner (Sonnet writes the case-study page) | Owner's account and fee |
+### Phase 4 — Polish and grow · **ONGOING**
+| Step | Task | Model |
+|---|---|---|
+| P4.1 | Funnel report (visits → greeting → form → lead → enrolled) monthly | Haiku |
+| P4.2 | Quarterly dependency + Lighthouse + Semrush | Haiku |
+| P4.3 | Submit to Awwwards after 2-4 weeks of stable data | Owner (Sonnet writes the case study) |
+| P4.4 | Optional: add video proof, Rive hand, ZH/RU if the owner commits time | Sonnet |
 
 ## 8.2 Design QA checklist
-Tags show who executes each item: [Haiku] runs checks and reports, [Sonnet] judges, [Owner] decides or supplies devices/truth.
-- [ ] **[Sonnet] Motion feel:** every animation uses the motion tokens; no text ever visible half-faded for > 300 ms; sequences ≤ 900 ms; pen strokes look hand-paced (not linear); 60 fps on low-end Android (Chrome Performance panel, no long tasks > 50 ms during scroll).
-- [ ] **[Sonnet] Pixel fidelity:** build overlaid on designs at 390 and 1440 px — type sizes ±1 px, spacing tokens only, margin line aligned, no orphaned words in headlines (use `text-wrap: balance`).
-- [ ] **[Owner] Real devices** (Haiku prepares the test script and logs results): low-end Android (≤ 4 GB RAM, Chrome), mid iPhone (Safari), iPad, Zalo in-app browser, Facebook in-app browser; light + dark; VI/EN/ZH/RU.
-- [ ] **[Haiku] Mobile:** no horizontal scroll at 320/360/390/414; all targets ≥ 44 px; sticky bar never covers focused input (WCAG 2.4.11); safe-area insets respected.
-- [ ] **[Haiku] Lighthouse (PSI, mobile):** Perf ≥ 95, A11y 100, BP 100, SEO 100 on home + one programme page, every locale.
-- [ ] **[Haiku] Throttled lab:** LCP ≤ 1.8 s, JS before LCP ≤ 15 KB, first view ≤ 450 KB.
-- [ ] **[Haiku] Form test:** each locale; each step's errors; invalid phone; Turnstile fail; Google Sheet or Telegram down (lead still stored + fallback); D1 down (503 + Zalo fallback); duplicate submit; rate limit; Answer Key link opens on another phone.
-- [ ] **[Haiku] Tiers:** reduced motion = static complete content; Save-Data = no GSAP/video/grain; keyboard-only can use slider, seat map, sheet, menu.
-- [ ] **[Haiku] SEO:** Rich Results Test valid; hreflang validator clean (only translated locales); one h1 per page; canonical/OG correct per locale.
-- [ ] **[Haiku] Semrush re-crawl:** Site Health ≥ 95%, 0 errors; 0 invalid structured data, 0 blocked internal resources, 0 broken links (429 excluded), 0 orphaned sitemap pages, 0 hreflang mismatches, 0 multiple-H1; every title ≤ 60 chars; no page under 300 words (legal) or 10% text-to-HTML ratio.
-- [ ] **[Haiku] Consent:** no GA request before acceptance (network panel); consent stored with each lead.
-- [ ] **[Owner] Content truth** (Sonnet cross-checks against Q answers): every number, credential and testimonial traceable to owner confirmation.
-- [ ] **[Sonnet] Final visual QA** of all pages vs approved designs, light + dark, VI/EN (+ ZH/RU if shipped).
+- [ ] **[Sonnet] Motion feel:** every animation uses the tokens in §3.7; no text visible half-faded > 300 ms; sequences <= 900 ms; the signature has no dropped frame on a low-end Android (Chrome Performance panel, no long task > 50 ms); reply copy reads naturally in both languages.
+- [ ] **[Sonnet] Pixel fidelity:** build overlaid on designs at 390 and 1440 px; type ±1 px; VI headlines do not clip tone marks (lh >= 1.08); `text-wrap: balance`.
+- [ ] **[Owner + Haiku] Real devices:** low-end Android, iPhone Safari, iPad, **Zalo and Facebook in-app browsers**; light + dark; VI/EN.
+- [ ] **[Haiku] Mobile:** no horizontal scroll at 320/360/390/414; targets >= 48 px; sticky bar never covers focus; safe-area insets.
+- [ ] **[Haiku] Lighthouse mobile:** Perf >= 95, A11y 100, BP 100, SEO 100 on home + both programme pages, both locales.
+- [ ] **[Haiku] Throttled lab:** LCP <= 1.8 s, JS before LCP <= 10 KB, first view <= 450 KB.
+- [ ] **[Haiku] Awwwards Mobile Excellence:** >= 80/100 on the same test used by Awwwards (re-verify the exact tool at submission, §1.6).
+- [ ] **[Haiku] Form:** each locale; each step's errors; invalid phone; Turnstile failure; Sheet down (lead still in Telegram); both down (503 + Zalo link); duplicate submit; rate limit.
+- [ ] **[Haiku] Tiers:** reduced motion = complete static content; Save-Data = no GSAP/video; keyboard-only can use the six words, ladder, accordion, sheet, menu.
+- [ ] **[Haiku] Price gate:** no price figure in any public HTML, JSON-LD, `llms.txt`, OG or sitemap; the reveal appears after a test lead; **SEO:** Rich Results Test valid; hreflang validator clean; one h1; canonical and OG per locale.
+- [ ] **[Haiku] Consent:** no GA request before acceptance; consent stored with each lead.
+- [ ] **[Owner + Sonnet] Content truth:** every number, credential, quote and the 5-year-old story traceable to owner confirmation; no child names or faces without written consent.
+- [ ] **[Sonnet] Final visual QA** of all pages vs approved designs.
 
-## 8.3 Risks & trade-offs
+## 8.3 Risks and trade-offs
+
 | Risk | Mitigation |
 |---|---|
-| Award visuals vs speed | Type/SVG/photo concept, no WebGL; GSAP after LCP; CI budgets block regressions; tiers |
-| Concept feels childish to adults/IELTS | Editorial Playfair at extreme opsz, restraint, adult programme pages use fewer marks |
-| Content bottleneck (photos, consents, handwriting, testimonials) | Phase 1 starts day 1; build with placeholders but **no launch without real proof** |
-| Seat map becomes dishonest | Auto-hide counts if `updatedAt` > 14 days |
-| Gated pricing loses price-shoppers | Public "from" price; gate the full sheet + booking; Zalo alternative always visible |
-| 2 languages at launch (VI + EN) | ZH/RU deferred (Q10) |
-| Rebuild loses rankings | Same domain, 301 map, more indexable pages at launch |
-| Free-tier limits change (Google Sheets, Telegram, Cloudflare) | D1 as source of truth; monthly cost review |
-| PDPL interpretation | Lawyer review of notice + consent wording |
-| GSAP licence is "no charge" proprietary, not MIT | Acceptable for this use; CSS fallback exists for every effect |
+| Award visuals vs speed | Type/colour/sound idea, no WebGL; GSAP after LCP; CI budgets; tiers. The heavy asset is the owner's own photos, optimised |
+| Warm/rounded look reads as "kids' app" for Teens and parents | Fraunces at large scale and flat colour keep it editorial; Teens pages use smaller bubbles, no cartoon shapes; judged at Phase 2a with real VI copy |
+| The greeting is judged "just a mood picker" | Execution: Bek's real voice, the reply copy, the header chip persistence, the 404/form echoes. If the prototype (P2a.3) does not delight in testing with 3 parents, change the reply copy before changing the idea |
+| Sound fails in Zalo/Facebook in-app browsers | Sound is optional; buttons degrade to text; tested in P2a.3 |
+| Owner supplies no voice/photos | Every frame has a complete typographic version (§4); voice and photos are upgrades, not dependencies |
+| Vietnamese diacritics clipped in Fraunces at tight line-height | VI lh >= 1.08, tested with the specimen string |
+| View Transitions unsupported (older Safari/Android WebView) | Instant navigation; no loss of content |
+| Claims: "cheaper than a centre", "families ask for Bek", "more time to talk" are the owner's words | Flagged `[OWNER]` in the copy deck; shown only if the owner confirms; no competitor prices quoted |
+| Gated price loses price-first parents (§2.1: they leave at paywall-style gates) | Gate framed as an invitation: 3 questions, under a minute, answer instantly on screen (no email, no verification); "Prefer to ask? Zalo" returns the same sheet; the free week and "cheaper than a centre" are public hooks; track `form_open` to `generate_lead` and A/B the pitch copy in Phase 4; the owner may later choose to show the figure if drop-off is high |
+| Rebuild loses rankings | Same domain, 301 map, more indexable pages; old site live until DNS switch |
+| PDPL interpretation | Lawyer review; no child name or photo collected |
+| GSAP is "no charge" proprietary, not MIT | Acceptable; CSS/WAAPI fallbacks exist for every effect |
+| Free-tier limits change (Cloudflare, Sheets, Telegram) | Monthly cost check; Sheet is portable |
 
-## 8.4 Effort & running costs
+## 8.4 Effort and running costs
 
-**Effort (agency-equivalent; developer agent + owner):**
 | Phase | Design/dev | Owner |
 |---|---|---|
-| 0 Fix live site | 1–2 days | 1 h |
-| 1 Content & assets | — | 10–20 h + shoot day |
-| 2a Design system & prototypes | 1–2 weeks | 3–5 h reviews |
-| 2b Build | 2–3 weeks | 3–5 h |
-| 3 Launch | 2–3 days | 2 h |
-| **Total** | **~5–7 weeks elapsed** | **~20–30 h** |
+| 0 Fix live site | done | 1 h left |
+| 1 Content and assets | 2-3 days (copy v3, FAQ) | ~8-12 h incl. 1 h voice, 1 shoot afternoon, testimonials |
+| 2a Design v2 and prototypes | 1.5-2 weeks | 3-4 h of reviews |
+| 2b Build | 2.5-3 weeks | 2-3 h |
+| 3 Launch | 2-3 days | 2 h |
+| **Total** | **~6-8 weeks elapsed** | **~15-22 h** |
 
-**Running costs (checked 2026-10-20/21):**
 | Item | Monthly |
 |---|---|
-| Cloudflare Workers/Pages + D1 + Turnstile + Web Analytics (free tiers) | $0 |
-| Domain `.com` (~$10.1–10.5/yr at Cloudflare Registrar, third-party tracker) | ~$1 |
-| Google Sheet | $0 |
-| Cal.com free | $0 |
-| Keystatic (GitHub mode) | $0 |
-| Fonts (Playfair v2 + Inter, OFL) | $0 (optional PP Neue Montreal one-off ~$40–150, quote needed) |
-| Zalo OA (free basic; paid tiers/ZNS pricing unverified) | $0–16 |
-| **Total** | **≈ $1–20 / month** (Vercel Pro alternative adds $20) |
-| One-off, owner to quote | Photographer half-day; lawyer review; optional Awwwards submission fee |
+| Cloudflare Workers + KV + Turnstile + Web Analytics (free tiers) | $0 |
+| Domain `.com` (~$10/yr, unverified third-party tracker) | ~$1 |
+| Google Sheet, Telegram bot | $0 |
+| Fonts (Fraunces, Be Vietnam Pro, OFL) | $0 |
+| Zalo OA (optional, unverified) | $0-16 |
+| **Total** | **~$1-2/month** (Vercel Pro alternative: $20) |
+| One-off, owner to quote | Lawyer review of the privacy/consent text; Awwwards fee (~$65, unverified); optional photographer (not needed if the owner shoots) |
 
 ---
 
-### Appendix — sources (all checked 2026-10-20/21)
-- Awwwards winners 2025: https://www.awwwards.com/annual-awards/winners · SOTY listing: https://www.awwwards.com/websites/sites_of_the_year/ · per-site award pages awwwards.com/sites/<slug> (SOTD/HM dates above).
-- Versions: `npm view` — astro 7.4.1, @astrojs/cloudflare 14.4.1, @astrojs/sitemap 3.7.4, @astrojs/preact 6.1.0, preact 11.0.1, tailwindcss & @tailwindcss/vite 4.3.3, gsap 3.15.0 (plugins verified in tarball), lenis 1.3.27, motion 14.4.0, ogl 1.0.11, three 0.186.1, swup 4.10.0, @swup/astro 1.8.0, @keystatic/core 0.6.9, @keystatic/astro 6.0.0, valibot 1.5.0, zod 4.6.7, resend 6.34.1, web-vitals 6.2.3, sharp 0.35.5, schema-dts 2.1.0, next 16.4.2, next-intl 4.14.9. Sizes: bundlephobia gzip.
-- GSAP licence: https://gsap.com/community/standards-and-licensing/ · Core Web Vitals: https://web.dev/articles/vitals · WCAG 2.2: https://www.w3.org/TR/WCAG22/ · View transitions & scroll-driven support: caniuse.com · Google AI features: https://developers.google.com/search/docs/appearance/ai-features · FAQ rich results: https://developers.google.com/search/docs/appearance/structured-data/faqpage · Review snippets: https://developers.google.com/search/docs/appearance/structured-data/review-snippet · Crawlers: https://developers.openai.com/api/docs/bots, https://docs.perplexity.ai/guides/bots, Anthropic support 8896518 · Turnstile: https://developers.cloudflare.com/turnstile/plans/ · Resend: https://resend.com/pricing · HubSpot: https://www.hubspot.com/pricing/crm · Cal.com: https://cal.com/pricing · Vercel: https://vercel.com/legal/terms, https://vercel.com/pricing · Cloudflare VN PoPs: https://blog.cloudflare.com/ten-new-data-centers/ · PDPL summary: https://www.tilleke.com/insights/vietnams-new-personal-data-protection-law-a-closer-look/ · Fonts: Google Fonts metadata API; Playfair v2 GitHub README; Pangram Pangram PP Neue Montreal spec page.
-- **Unverified (confirm before relying on):** Zalo OA/ZNS official pricing; PP Neue Montreal web licence price; Applebot-Extended docs; 2023–2024 SOTY category assignments; Awwwards submission fee; PDPL penalty figures; production env vars.
+# 9. SELF-SCORING (final, detailed)
+
+Scores are what a jury might give **after build**, assuming this plan is executed and the owner supplies the voice and photos. Weighted total = 0.40·D + 0.30·U + 0.20·C + 0.10·T.
+
+| Criterion (weight) | Expected /10 | What earns points | What would lose points | Mitigation |
+|---|---|---|---|---|
+| **Design (40%)** | **7.8** | Giant soft-serif type with a real accent-word rule (§1.4: Lando, Namaha, Quaker); flat colour fields as the transition engine (Lando, Mana); the visitor's colour carried through the page; consistent grade on owner photos; calm space between loud frames; VI typography done right (rarely seen on award sites) | Weak phone photography; palette tipping into "kids' app"; Vietnamese clipping; rounded shapes overused; sections that feel templated | Photo spec + one LUT (§3.5); Phase 2a tests with Teens copy; VI test string; limit radius to buttons/cards; every frame has a distinct layout (no repeated card grid) |
+| **Usability (30%)** | **8.0** | LCP = h1 text <= 1.8 s; CLS ~0; no content gate (only the price sits behind a 3-step, instant-answer form with a Zalo alternative); persistent but non-overlapping CTA; 48 px targets; the signature is skippable and optional; mobile composed separately; accessible (WCAG 2.2) | Jank on mid-range Android; audio/Flip failing in Zalo/Facebook browsers; a pinned scene trapping scroll; **the price gate or form friction reading as a paywall** | Hard CI budgets (§5.3); tiers; pins desktop only; in-app browser tests (§5.4); 3-step form with always-visible Zalo escape |
+| **Creativity (20%)** | **7.6** | One idea (a lesson starting) expressed by the interaction itself, not added effects (§3.2); a signature moment (§3.9) with voice, colour, type-axis personality; the idea follows through to header chip, form, thank-you, 404 | Judges decide it is "a simple mood picker"; the idea fades after the hero | Reply copy and Bek's voice are the craft; echoes in 5 places; supporting moments F3/F4/F5 are variations, not new ideas; test with parents before building more |
+| **Content (10%)** | **6.8** | Real voice (Bek's), real room, honest bounded proof (the 5-year-old), anonymised but real parent quotes, a clear free-week offer and process, no stock, no placeholders, no fake stats | Thin media at launch; owner declines voice/photos; unsubstantiated claims; copy in VI weaker than EN | Typographic version of every frame; owner decisions in §0 (voice, photos, claims); copy deck reviewed by the owner in VI; add shots after launch |
+| **Weighted total** | | **7.72 / 10** | | Honorable Mention (>= 6.5) is likely; Site of the Day (reference SOTDs 7.5-8.25, §1.6) is possible if media quality is strong; **no award is promised** |
+
+---
+
+### Appendix — sources and versions (checked 2026-10-22 unless stated)
+- Awwwards evaluation (weights, jury, thresholds): https://www.awwwards.com/about-evaluation/ · per-site award pages `awwwards.com/sites/<slug>`.
+- npm (2026-10-22, `v3/E/report.md`): astro 7.4.2, @astrojs/cloudflare 14.4.2, tailwindcss and @tailwindcss/vite 4.3.3, gsap 3.15.0 (27.35 KB gz core), lenis 1.3.27 (5.46 KB), three 0.186.1 (184.9 KB), @rive-app/* 2.45.0, swup 4.10.0, @unseenco/taxi 2.0.0, next 16.4.2; from the 2026-10-20/21 pass: @astrojs/preact 6.1.0, preact 11.0.1, @astrojs/sitemap 3.7.4, valibot 1.5.0, zod 4.6.7, web-vitals 6.2.3, sharp 0.35.5, schema-dts 2.1.0, next-intl 4.14.9, @keystatic/core 0.6.9.
+- Fonts: Google Fonts metadata (`fonts.google.com/metadata/fonts`, 2026-10-22): Fraunces axes SOFT 0-100, WONK 0-1, opsz 9-144, wght 100-900, subsets incl. vietnamese; Bricolage Grotesque opsz 12-96, wdth 75-100, wght 200-800, vietnamese; Be Vietnam Pro latin/latin-ext/vietnamese. Contrast values computed 2026-10-22.
+- GSAP licence: https://gsap.com/community/standards-and-licensing/ · Core Web Vitals: https://web.dev/articles/vitals · WCAG 2.2: https://www.w3.org/TR/WCAG22/ · View Transitions and scroll-driven animation support: caniuse.com · Google AI features: https://developers.google.com/search/docs/appearance/ai-features · FAQ rich results: https://developers.google.com/search/docs/appearance/structured-data/faqpage · Review snippets: https://developers.google.com/search/docs/appearance/structured-data/review-snippet · Turnstile: https://developers.cloudflare.com/turnstile/plans/ · Rive pricing: https://rive.app/pricing · PDPL summary: https://www.tilleke.com/insights/vietnams-new-personal-data-protection-law-a-closer-look/.
+- **Unverified (confirm before relying on):** Mobile Excellence minimum (70 vs 75), Awwwards submission fee, Zalo OA pricing, PDPL penalty figures, production env vars, Fraunces subset byte size (measure in P2a.1).
 
 ---
 
