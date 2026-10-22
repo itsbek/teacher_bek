@@ -36,7 +36,7 @@ export default function PrivacyPage() {
           <section className="panel section-stack">
             <h2 className="type-title-sm">1. Information Collected</h2>
             <p className="type-body text-foreground/75">
-              Information is collected only when a user submits an enquiry or newsletter form.
+              Information is collected only when a user submits the enquiry form.
             </p>
             <ul className="type-body text-foreground/75 list-disc pl-6 space-y-2">
               <li>Name</li>
@@ -66,7 +66,8 @@ export default function PrivacyPage() {
           <section className="panel section-stack">
             <h2 className="type-title-sm">4. Data Sharing</h2>
             <p className="type-body text-foreground/75">
-              Personal data is not sold. Data may be processed by trusted service providers used to operate
+              Personal data is not sold. Enquiries are stored in a Google Sheet and sent to the teacher as Telegram
+              notifications. Data may be processed by trusted service providers used to operate
               contact forms, analytics, and communication tools, strictly for business operations.
             </p>
           </section>

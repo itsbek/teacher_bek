@@ -17,7 +17,6 @@ export default async function NotFound() {
   const links = [
     { href: `/${locale}#about`,    label: nav("about")     },
     { href: `/${locale}#programs`, label: nav("services")  },
-    { href: `/${locale}/blog`,     label: nav("blog_link") },
     { href: `/${locale}#contact`,  label: nav("contact")   },
   ];
 

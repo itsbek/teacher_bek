@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: "%s · Teacher Bek · Phú Nhuận",
   },
   description:
-    "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. Free trial class.",
+    "TESOL & PGCE certified. Max 10 per class. Kids age 6+, teens & IELTS at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. One free week.",
   robots: {
     index: true,
     follow: true,

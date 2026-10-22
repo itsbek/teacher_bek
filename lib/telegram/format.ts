@@ -76,7 +76,6 @@ function buildCard(lead: CardLead, banner: boolean, budget: Budget): string {
   lines.push(`🕒 ${f.received}: ${when(lead.createdAt)}`);
   lines.push('');
   if (lead.phone) lines.push(`📞 <code>${esc(cut(lead.phone, 40))}</code>`);
-  if (lead.email) lines.push(`✉️ ${esc(cut(lead.email, 120))}`);
   if (lead.message && messageBudget > 0) {
     lines.push('', `💬 <b>${f.message}</b>`, `<blockquote expandable>${esc(cut(lead.message, messageBudget))}</blockquote>`);
   }
@@ -111,7 +110,7 @@ export function formatLeadCard(lead: CardLead, opts: CardOptions = {}): string {
   }
   if (text.length > TG_LIMIT) {
     // Pathological input (e.g. every field maxed with "<"): fall back to a minimal card.
-    const min: CardLead = { ...lead, goal: undefined, forWhom: undefined, level: undefined, email: undefined, program: undefined, message: undefined, notes: [], history: [] };
+    const min: CardLead = { ...lead, goal: undefined, forWhom: undefined, level: undefined, program: undefined, message: undefined, notes: [], history: [] };
     text = buildCard(min, banner, { message: 0, noteChars: 0, notes: 0 });
   }
   return text;

@@ -6,10 +6,10 @@ Website: https://teacherbek.com
 
 ## Pages
 
-- [Home (Vietnamese)](https://teacherbek.com/vi): Overview of teaching programs and how to book a free trial week
-- [Home (English)](https://teacherbek.com/en): Overview of teaching programs and how to book a free trial week
-- [Home (Chinese)](https://teacherbek.com/zh): Overview of teaching programs and how to book a free trial week
-- [Home (Russian)](https://teacherbek.com/ru): Overview of teaching programs and how to book a free trial week
+- [Home (Vietnamese)](https://teacherbek.com/vi): Overview of teaching programs and how to book the 1 free week trial
+- [Home (English)](https://teacherbek.com/en): Overview of teaching programs and how to book the 1 free week trial
+- [Home (Chinese)](https://teacherbek.com/zh): Overview of teaching programs and how to book the 1 free week trial
+- [Home (Russian)](https://teacherbek.com/ru): Overview of teaching programs and how to book the 1 free week trial
 - [Privacy Policy (English)](https://teacherbek.com/en/privacy): How personal data submitted through the website is handled
 - [Terms of Service (English)](https://teacherbek.com/en/terms): Terms for using the website and booking lessons
 - [Privacy Policy (Vietnamese)](https://teacherbek.com/vi/privacy): How personal data submitted through the website is handled
@@ -28,11 +28,12 @@ Website: https://teacherbek.com
 
 Group size: maximum 10 students per class. Classes are offered in person and online.
 
+Free trial: 1 free week. Every programme has the same price.
+
 ## Contact
 
 - Phone: +84 353 88 5757
 - Zalo: https://zalo.me/84353885757
-- WhatsApp: https://wa.me/84353885757
 - Email: hello@teacherbek.com
 
 ## Location

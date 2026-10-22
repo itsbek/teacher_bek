@@ -41,7 +41,6 @@ import { PHONE_DISPLAY, PHONE_TEL, ZALO_URL, errorKeyFor, postLead, useTurnstile
 type FormState = {
   name: string;
   phone: string;
-  email: string;
   message: string;
   consent: boolean;
   forWhom: string;
@@ -50,7 +49,7 @@ type FormState = {
 };
 
 const INITIAL: FormState = {
-  name: "", phone: "", email: "", message: "", consent: false,
+  name: "", phone: "", message: "", consent: false,
   forWhom: "", level: "", goal: "",
 };
 
@@ -194,8 +193,7 @@ export function VanguardInquiry() {
   const canSubmit = useMemo(() =>
     form.name.trim().length >= 2 &&
     form.phone.trim().length >= 6 &&
-    form.consent &&
-    (form.email.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)),
+    form.consent,
     [form]
   );
 
@@ -239,7 +237,6 @@ export function VanguardInquiry() {
     const result = await postLead("/api/contact", {
       name: form.name.trim(),
       phone: form.phone.trim(),
-      email: form.email.trim(),
       message: form.message.trim(),
       consent: form.consent,
       consentText: t("consentText"),
@@ -379,18 +376,6 @@ export function VanguardInquiry() {
               value={form.phone}
               onChange={(v) => set("phone", v)}
               required
-            />
-
-            {/* Email */}
-            <LineField
-              id="inq-email"
-              label={t("emailLabel")}
-              type="email"
-              placeholder={t("emailPlaceholder")}
-              value={form.email}
-              onChange={(v) => set("email", v)}
-              optional
-              optionalLabel={t("optional")}
             />
 
             {/* Selectors — optional context, not required to submit */}
@@ -546,11 +531,6 @@ export function VanguardInquiry() {
                 className="link-line font-sans font-light opacity-50 hover:opacity-100 transition-opacity duration-300 flex justify-between"
                 style={{ fontSize: "clamp(0.8rem, 1.2vw, 0.95rem)" }}>
                 <span>Email</span><span>hello@teacherbek.com</span>
-              </a>
-              <a href="https://wa.me/84353885757" target="_blank" rel="noopener noreferrer"
-                className="link-line font-sans font-light opacity-50 hover:opacity-100 transition-opacity duration-300 flex justify-between"
-                style={{ fontSize: "clamp(0.8rem, 1.2vw, 0.95rem)" }}>
-                <span>WhatsApp</span><span>+84 353 88 5757</span>
               </a>
             </div>
           </div>

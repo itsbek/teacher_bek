@@ -9,11 +9,6 @@ export function StructuredData() {
     name: "Teacher Bek",
     url: SITE,
     inLanguage: ["en", "vi", "zh", "ru"],
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE}/en/blog?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 
   // ── Person — Teacher Bek entity (critical for AI search disambiguation) ───
@@ -202,7 +197,7 @@ export function StructuredData() {
         name: "How much do English lessons cost in Ho Chi Minh City?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Programs start from 1,990,000 VND per month for the first trial month. All programs include 2 sessions per week. A free trial week is available to assess level and fit before committing.",
+          text: "Programs start from 1,990,000 VND per month. All programs include 2 sessions per week. One free week of lessons is available to assess level and fit before committing.",
         },
       },
       {
@@ -215,7 +210,7 @@ export function StructuredData() {
       },
       {
         "@type": "Question",
-        name: "Is there a free trial class available?",
+        name: "Is there a free trial week available?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Yes. One free week of lessons is available with no payment required. This is a genuine assessment — Teacher Bek will tell you honestly whether the program is a good fit.",

@@ -2,8 +2,8 @@
 
 This guide is written for the site owner. No coding is needed, only copy and paste.
 Every part is optional and the site keeps working without it. The contact form
-always works as long as at least ONE of these is set up: the Google Sheet,
-email (Resend), or the Telegram bot. If none is set up, the form tells the
+always works as long as at least ONE of these is set up: the Google Sheet
+or the Telegram bot. Leads are not sent by email. If none is set up, the form tells the
 visitor to message you on Zalo instead.
 
 What you will end up with:
@@ -25,8 +25,9 @@ You will collect these values and paste them into Vercel at the end:
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Public key from Cloudflare (Part 3) |
 | `TURNSTILE_SECRET_KEY` | Secret key from Cloudflare (Part 3) |
 
-Already in use: `RESEND_API_KEY` (email sending) and `CONTACT_NOTIFY_EMAIL`
-(the address that receives enquiry emails; defaults to hello@teacherbek.com).
+No longer used: `RESEND_API_KEY` and `CONTACT_NOTIFY_EMAIL`. Enquiries are no
+longer emailed, so you may delete both from Vercel (Settings > Environment
+Variables) once you have confirmed the Sheet or Telegram works.
 
 To invent a password, any long random text works, for example 40 random
 letters and numbers. Do not use spaces. Keep them private.
@@ -133,8 +134,8 @@ The bot menu (bottom of the chat): **New, Leads, Stats, Search, Help**.
   languages, average response time. Buttons switch This month / Last month / All time.
 - **Search** / `/search`: send a name or phone number.
 
-Every new enquiry arrives as a card: phone (tap to copy), Zalo and WhatsApp
-buttons, status buttons (Contacted, Trial, Enrolled, Lost), and **Add note**.
+Every new enquiry arrives as a card: phone (tap to copy), a Zalo
+button, status buttons (Contacted, Trial, Enrolled, Lost), and **Add note**.
 Tapping a status updates the Google Sheet and the card itself. Full screen
 descriptions are in `docs/telegram/bot-ux.md`.
 
@@ -168,22 +169,22 @@ For testing on your own computer, put the same names in a file called
 1. Open the website and submit the contact form with a test name and your own
    phone number.
 2. Within a few seconds you should see: a new row in the Leads tab, a Telegram
-   message with buttons, and an email.
+   message with buttons. No email is sent.
 3. Tap **Contacted** in Telegram. The card changes and the status
    column in the sheet changes to `contacted`.
 4. Tap **Add note**, reply with some text, and check the card shows it.
 5. Send `/stats` to the bot. You should see the counts.
-6. Test the failure path: temporarily remove all three of the Sheet, email and
+6. Test the failure path: temporarily remove both the Sheet and
    Telegram variables in a preview deployment. The form should show a message
    with a "Message on Zalo" button, and the pricing prices must NOT appear.
 
 If something does not arrive, open Vercel > project > **Logs** and search for
-`[leads]`. Each line shows the lead id and which channel (sheet, email,
+`[leads]`. Each line shows the lead id and which channel (sheet or
 telegram) worked or failed. Personal details are never written to logs.
 
 ## Notes
 
-- A lead counts as received when at least one channel (sheet, email, Telegram)
+- A lead counts as received when at least one channel (Sheet or Telegram)
   succeeded. If one fails you still get the others, and the failure is logged.
 - Rate limiting (3 submissions per minute per visitor) is kept in memory per
   server instance, so it resets when Vercel starts a new instance. It is a

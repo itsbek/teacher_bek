@@ -28,7 +28,6 @@ const baseShape = {
 
 const contactSchema = z.object({
   ...baseShape,
-  email: z.string().email().max(200).optional().or(z.literal('')),
   message: z.string().max(2000).optional().default(''),
   consent: z.boolean().refine((v) => v === true),
   consentText: optional(500),
@@ -93,7 +92,6 @@ export async function handleLeadPost(request: NextRequest, source: LeadSource): 
       locale: v.locale && SUPPORTED_LOCALES.includes(v.locale) ? v.locale : 'unknown',
       name: sanitise(v.name),
       phone: sanitise(v.phone),
-      email: opt(contact?.email),
       program: opt(pricing?.program),
       forWhom: opt(contact?.forWhom),
       level: opt(contact?.level),

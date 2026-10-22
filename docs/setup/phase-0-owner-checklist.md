@@ -11,10 +11,9 @@ Follow these steps in order. For each step, send the developer what is listed un
 3. Click **Settings** at the top.
 4. Click **Environment Variables** in the left menu.
 5. Check that these exist for **Production**:
-   - `RESEND_API_KEY`
-   - `CONTACT_NOTIFY_EMAIL` (must be the inbox where you want leads)
    - `NEXT_PUBLIC_GA_MEASUREMENT_ID`
-6. Good: all three are listed. Each shows a value (the value stays hidden, that is normal).
+   - Note: `RESEND_API_KEY` and `CONTACT_NOTIFY_EMAIL` are no longer used for leads (leads go to Google Sheets and Telegram only). You may delete them from Vercel.
+6. Good: the variable is listed. Each shows a value (the value stays hidden, that is normal).
 7. New ones are coming from Phase 0. Do not add them yet. See `docs/setup/leads-setup.md` for them:
    - `LEADS_SHEET_WEBHOOK_URL`, `LEADS_SHEET_SECRET`
    - `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ADMIN_CHAT_IDS`, `TELEGRAM_WEBHOOK_SECRET`
@@ -23,11 +22,13 @@ Follow these steps in order. For each step, send the developer what is listed un
 9. Good: you know if it says **Hobby** or **Pro**.
 10. Note: Hobby is for non-commercial use under Vercel's terms. A paid teaching business should use Pro, which costs about $20 per month.
 
-**Send back:** the three "Production" variable names you see, and the plan name (Hobby or Pro).
+**Send back:** the "Production" variable names you see, and the plan name (Hobby or Pro).
 
 ---
 
-## 2. Resend: check the domain and sends
+## 2. Resend: no longer needed for leads
+
+Leads no longer use email, so you can skip this step. The steps below only matter if you still use Resend for something else.
 
 1. Go to https://resend.com and log in.
 2. Click **Domains** in the left menu.
@@ -41,7 +42,7 @@ Follow these steps in order. For each step, send the developer what is listed un
 
 ---
 
-## 3. Inbox: send a test email
+## 3. Inbox: send a test email (optional)
 
 1. Open your personal email (Gmail, Yahoo, or similar).
 2. Write a new email to **hello@teacherbek.com**.
@@ -69,13 +70,12 @@ Do this once for each language.
    - Fill the other fields with fake but valid data.
 4. Submit the form.
 5. Check where the lead should arrive:
-   - Email in your inbox (`CONTACT_NOTIFY_EMAIL`)
    - A Telegram message
    - A new row in the Google Sheet
-6. Good: each language sends a lead to each channel. The form shows a thank-you message.
+6. Good: each language sends a lead to Telegram and the Sheet. The form shows a thank-you message.
 7. Delete the test rows and messages after you check them.
 
-**Send back:** for each language (vi, en, zh, ru), write "email yes/no, Telegram yes/no, Sheet yes/no". Also write any error message you saw.
+**Send back:** for each language (vi, en, zh, ru), write "Telegram yes/no, Sheet yes/no". Also write any error message you saw.
 
 ---
 

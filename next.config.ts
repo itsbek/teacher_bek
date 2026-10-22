@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      // Blog and community hub removed (2026-10-22): send old URLs to the home page
+      { source: '/:locale(en|vi|zh|ru)/blog', destination: '/:locale', permanent: true },
+      { source: '/:locale(en|vi|zh|ru)/blog/:slug*', destination: '/:locale', permanent: true },
+      { source: '/:locale(en|vi|zh|ru)/community', destination: '/:locale', permanent: true },
+      { source: '/blog/:slug*', destination: '/', permanent: true },
+      { source: '/community', destination: '/', permanent: true },
       // Redirect www → non-www (permanent 301 for SEO canonical consolidation)
       {
         source: '/:path*',
@@ -19,12 +25,6 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
     formats: ['image/avif', 'image/webp'],
   },
   transpilePackages: ['framer-motion'],
@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
               // It is intentionally omitted from production builds.
               `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com`,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://img.youtube.com",
+              "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com",
               "frame-src https://www.google.com https://challenges.cloudflare.com",

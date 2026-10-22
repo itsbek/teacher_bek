@@ -131,7 +131,7 @@ export function mainKeyboard(): ReplyKeyboard {
   };
 }
 
-/** Vietnamese numbers typed as 0xxxxxxxxx become 84xxxxxxxxx for Zalo / WhatsApp. */
+/** Vietnamese numbers typed as 0xxxxxxxxx become 84xxxxxxxxx for Zalo. */
 export function contactDigits(phone: string): string {
   const digits = phone.replace(/\D/g, '');
   return digits.startsWith('0') ? `84${digits.slice(1)}` : digits;
@@ -151,7 +151,6 @@ export function leadKeyboard(
   if (phone && phone.length <= 256) contact.push({ text: strings.btn.copyPhone, copy_text: { text: phone } });
   if (digits.length >= 8) {
     contact.push({ text: strings.btn.zalo, url: `https://zalo.me/${digits}` });
-    contact.push({ text: strings.btn.whatsapp, url: `https://wa.me/${digits}` });
   }
   if (contact.length) rows.push(contact);
 

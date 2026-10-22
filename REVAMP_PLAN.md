@@ -23,8 +23,8 @@ The whole site is a teacher's page in the middle of being marked: a real mistake
 
 ### Decisions the owner must make
 1. **Approve "The Red Pen"** (or pick B "Ten Seats" / C "Voices", §3).
-2. **Pricing:** show a public "from ₫X/month" and gate the full sheet + booking (recommended) — or gate everything? Real prices per programme (§Questions).
-3. **Content commitments:** a half-day photo/video shoot, 5–10 named testimonials with written consent, a sample of your handwriting (for the red-pen strokes).
+2. **Pricing:** show a public "from ₫X/month" and gate the full sheet + booking (recommended) — or gate everything? Real prices per programme (§Questions). Q1 answered: one price for every programme; amount still `[CONFIRM amount]`.
+3. **Content commitments:** a half-day photo/video shoot, 5–10 testimonials with written consent, published anonymised (role + context only), a sample of your handwriting (for the red-pen strokes).
 4. **Seat counts:** are you willing to keep "seats left per group" truthful (update once a week)? It's a signature feature; it must never be fake.
 5. **Platform & budget:** rebuild on Astro + Cloudflare (recommended, ~$1–5/mo) vs. stay on Next.js + Vercel Pro ($20/mo); optional paid font (~$40–150, quote needed).
 
@@ -53,23 +53,38 @@ The big idea must come from your real story, so nothing is invented. Please answ
 
 > Separate from the Step 0 story questions above: these are logistics (prices, schedule, claims, accounts, consent) and still apply.
 
-| # | Question | Blocks |
-|---|---|---|
-| Q1 | Real price per programme (Young Learners 6–10, Teens 11–17, IELTS, English for Work)? Currently all show "from 1,990,000 VND/month"; schema says the same for every course. | Pricing sheet, schema |
-| Q2 | Trial offer: free **week** or discounted first **month**? (site says both). What happens in the trial, exactly? | Hero, CTA copy |
-| Q3 | Schedule per group (site: weekdays 19:30–21:00, weekends 14:00–20:00; schema: Mon/Wed/Sat/Sun). Max per group still 10? How many seats are free per group right now? | Seat map |
-| Q4 | Which claims are provable: "2,000+ students", "15+ schools", "ILA Vietnam", "MBA candidate", TESOL, PGCE, DELTA (credentials list shows 3)? | Proof section, schema |
-| Q5 | Is `RESEND_API_KEY` set in Vercel, `teacherbek.com` verified in Resend, and does `hello@teacherbek.com` receive mail? Any form leads in the last 3 months? | Phase 0 |
-| Q6 | Where should leads reach you first: Zalo, phone call, email? Do you have a Zalo Official Account? Is the business registered in Vietnam (needed for Zalo ZNS messages)? | Lead pipeline |
-| Q7 | Testimonials: are the 5 current ones (Linh N., Minh T., Sarah K., Hoa P., David R.) real and consented? Can you get photos/video and full first names? Google Business Profile + reviews? | Proof |
-| Q8 | Photo/video: can we shoot a real class? Parents' written consent for children's faces (PDPL)? Budget for a local photographer (half day)? | Imagery |
-| Q9 | Will you write ~10 words/phrases by hand in red pen on paper (we scan and vectorise)? | Signature interactions |
-| Q10 | Which languages bring students? Who reviews ZH and RU copy? OK to launch VI + EN first? | Scope |
-| Q11 | Address public & permanent (Golden Mansion 1, 119 Phổ Quang, Phú Nhuận)? Still serving Gò Vấp / Bình Thạnh? | Local SEO |
-| Q12 | Budget: one-off build budget and acceptable monthly cost? Paid font OK? | Stack, type |
-| Q13 | Brand name: keep "Teacher Bek"? Want a Vietnamese tagline/name? | Identity |
-| Q14 | Hours/month you can give to content (testimonials, photos, guides)? | Blog decision |
-| Q15 | Do you use WhatsApp? If not, remove it (the `wa.me/84353885757` link returns 429 in Semrush and sits in footer, form and contact email). | Phase 0 link cleanup |
+| # | Question | Blocks | Answer (2026-10-22) |
+|---|---|---|---|
+| Q1 | Real price per programme (Young Learners 6–10, Teens 11–17, IELTS, English for Work)? Currently all show "from 1,990,000 VND/month"; schema says the same for every course. | Pricing sheet, schema | Same price for every programme. Amount not stated: keep the amount currently shown and mark it [CONFIRM amount]. |
+| Q2 | Trial offer: free **week** or discounted first **month**? (site says both). What happens in the trial, exactly? | Hero, CTA copy | Trial = **1 free week**. |
+| Q3 | Schedule per group (site: weekdays 19:30–21:00, weekends 14:00–20:00; schema: Mon/Wed/Sat/Sun). Max per group still 10? How many seats are free per group right now? | Seat map | Weekday classes all at the same time (current 19:30–21:00). Weekend schedule unchanged (14:00–20:00). Seat counts not given. |
+| Q4 | Which claims are provable: "2,000+ students", "15+ schools", "ILA Vietnam", "MBA candidate", TESOL, PGCE, DELTA (credentials list shows 3)? | Proof section, schema | Claims and credentials are provable; documents will not be published. |
+| Q5 | Is `RESEND_API_KEY` set in Vercel, `teacherbek.com` verified in Resend, and does `hello@teacherbek.com` receive mail? Any form leads in the last 3 months? | Phase 0 | No mails needed. Resend not required. |
+| Q6 | Where should leads reach you first: Zalo, phone call, email? Do you have a Zalo Official Account? Is the business registered in Vietnam (needed for Zalo ZNS messages)? | Lead pipeline | Leads go to Google Sheets and Telegram (no email). |
+| Q7 | Testimonials: are the 5 current ones (Linh N., Minh T., Sarah K., Hoa P., David R.) real and consented? Can you get photos/video and full first names? Google Business Profile + reviews? | Proof | Testimonials anonymised (role + context only, no names or initials). |
+| Q8 | Photo/video: can we shoot a real class? Parents' written consent for children's faces (PDPL)? Budget for a local photographer (half day)? | Imagery | Owner will make the videos himself, later. Photo and child-consent part not answered. |
+| Q9 | Will you write ~10 words/phrases by hand in red pen on paper (we scan and vectorise)? | Signature interactions | OK (handwriting in red pen). |
+| Q10 | Which languages bring students? Who reviews ZH and RU copy? OK to launch VI + EN first? | Scope | Launch with VI + EN only; ZH/RU deferred. |
+| Q11 | Address public & permanent (Golden Mansion 1, 119 Phổ Quang, Phú Nhuận)? Still serving Gò Vấp / Bình Thạnh? | Local SEO | Yes: address public and permanent. |
+| Q12 | Budget: one-off build budget and acceptable monthly cost? Paid font OK? | Stack, type | Budget OK. Paid font not explicitly answered. |
+| Q13 | Brand name: keep "Teacher Bek"? Want a Vietnamese tagline/name? | Identity | Keep "Teacher Bek"; no Vietnamese brand name. |
+| Q14 | Hours/month you can give to content (testimonials, photos, guides)? | Blog decision | 0 hours/month: remove blog, guides and community. |
+| Q15 | Do you use WhatsApp? If not, remove it (the `wa.me/84353885757` link returns 429 in Semrush and sits in footer, form and contact email). | Phase 0 link cleanup | Remove WhatsApp. |
+
+**Implications of the answers (2026-10-22)**
+
+- **One price:** every programme shows the same price. The pricing gate shows one price with `[CONFIRM amount]`; `Course` schema `offers` use the same price for all four courses.
+- **Trial:** "1 free week" everywhere (hero, CTAs, FAQ, schema, `llms.txt`). The discounted first month is dropped.
+- **Schedule copy:** weekday classes all at one time (current 19:30–21:00); weekends unchanged (14:00–20:00). No seat counts yet, so the seat map shows no live numbers until the owner supplies them.
+- **Credentials:** shown as text, and only claims that are provable (TESOL, PGCE, DELTA and the rest). No document scans or uploads are published.
+- **No email channel:** leads go to Google Sheets and Telegram only. Resend is removed from the contact form, notifications, confirmation emails, env vars and costs.
+- **Testimonials:** anonymised to role + context (no names or initials); quotes unchanged. Reviews on the Google Business Profile follow Google's review policy: do not present site testimonials as Google reviews, and do not offer incentives for reviews.
+- **Videos:** the owner shoots them himself, later. Plan a phone-shot spec (orientation, framing, lighting, audio, consent). Launch must not depend on videos.
+- **Languages:** VI + EN at launch. ZH/RU are removed from v1 scope (deferred, not deleted).
+- **Brand:** keep "Teacher Bek"; no Vietnamese brand name or tagline.
+- **Content:** blog, guides and community are removed (owner has 0 h/month). No `/blog`, `/guides` or `/community` routes, nav or sitemap entries.
+- **WhatsApp:** removed everywhere (all `wa.me` links, footer, form copy, contact details). Zalo and phone stay.
+- **Still open:** paid font not explicitly approved (Q12 "ok" covered the budget); photo and child consent (Q8) not answered; the Q1 amount is missing.
 
 ---
 
@@ -310,13 +325,13 @@ Measured insight: JS was **not** what made winners heavy (73–910 KB across the
 |---|---|---|
 | Stack | M | Next 15.5.12 (latest 16.4.2), next-intl 3.26.5 (4.14.9), Tailwind 3.4.19 (4.3.3), framer-motion 11 (motion 14.4.0). **Three animation stacks** (Framer + GSAP + Lenis + unmaintained split-type). Unused deps (react-hook-form, cva, shadcn, leaflet types) and ~17 unused components. Vercel **Hobby is non-commercial** — verify plan. |
 | Core Web Vitals (throttled mobile: Slow 4G, 4× CPU, 2026-10-20) | **H** | LCP 3.78 s (/en), 2.64 s (/vi); FCP = LCP (render-blocked by fonts/CSS); 758–782 KB; 40–43 font files; ~272 KB JS; hero rendered twice (~1,100 DOM nodes). CLS 0 ✓. **Re-verify** after Phase 0 (map/Leaflet dropped, h1 deduped); PSI was over quota — re-run with a key. |
-| Lead form (traced) | M (was **H**) | **Was:** form → email only, nothing stored, pricing route returned success even when the email failed, broken honeypot. **Now:** shared `lib/leads` pipeline → **Google Sheet + Resend email + Telegram** (owner-only bot with lead status buttons, `/leads`, `/stats`), working honeypot, time trap, optional **Turnstile**, origin check, localized errors with Zalo fallback; never reports success when no channel delivered. **Remaining:** confirm env vars live (Q5), no consent record per lead, no confirmation message to the parent, form still ~9 interactions, GA `generate_lead` event. |
+| Lead form (traced) | M (was **H**) | **Was:** form → email only, nothing stored, pricing route returned success even when the email failed, broken honeypot. **Now:** shared `lib/leads` pipeline → **Google Sheet + Telegram** (Resend email removed: Q5/Q6) (owner-only bot with lead status buttons, `/leads`, `/stats`), working honeypot, time trap, optional **Turnstile**, origin check, localized errors with Zalo fallback; never reports success when no channel delivered. **Remaining:** confirm env vars live (Q5), no consent record per lead, no confirmation message to the parent, form still ~9 interactions, GA `generate_lead` event. |
 | SEO | M | Phase 0 fixed llms.txt, sitemap and stubs. **Still open:** duplicate JSON-LD graphs and 44 invalid items (Semrush §2.3), same price on every course, `byDay` contradicts FAQ, no hreflang in sitemap, no x-default in HTML, `/community` and `/blog` thin. ✓ SSR, canonicals, localized home titles. |
 | AI search | M | No plain "fast facts" entity block; FAQ is the only answer source; no Google Business Profile signal. All AI crawlers allowed ✓ (Semrush AI Search Health 100%). Google says no special AI files needed (developers.google.com/search/docs/appearance/ai-features, checked 2026-10-20). |
 | Accessibility | M | Contrast failures (labels at 40–65% opacity); 46 tap targets under 44 px; status not announced; skip-link targets missing on subpages. Menu trap fixed. ✓ reduced-motion mostly respected, focus-visible, font-size toggle. |
 | Security/Privacy | H | GA4 loads without consent; privacy/terms English-only, omit phone, children, processors, retention. Vietnam PDPL (Law 91/2025/QH15, Decree 356/2025) in force since 2026-01-01 — **confirm with a Vietnamese lawyer**. CSP still has `script-src 'unsafe-inline'`. |
-| Blog | **H** | 0 local posts; empty band hidden in Phase 0. **Recommendation:** keep `/blog` out of nav and sitemap until 4–6 real evergreen guides exist (owner's hours: Q14), then ship them as "Guides" under the new design; do not launch an empty blog. |
-| Community | **H** | 5 submission types, all data files `[]`, publishing needs JSON edits and a redeploy; distracting for new parents. **Recommendation:** remove from nav and sitemap now, 301 to home at the rebuild; revive only as a real student-wall if the owner commits weekly time. |
+| Blog | **H** | 0 local posts; empty band hidden in Phase 0. **Decided (Q14: 0 h/month):** blog and guides dropped. Remove `/blog` from nav, sitemap and routes; 301 to the programmes. No empty blog and no guides at launch. |
+| Community | **H** | 5 submission types, all data files `[]`, publishing needs JSON edits and a redeploy; distracting for new parents. **Decided (Q14: 0 h/month):** community dropped. Remove from nav, sitemap and routes now; 301 to home at the rebuild. Not revived unless the owner later commits weekly time. |
 
 ## 2.3 Semrush Site Audit (crawl 2026-03-11, report 2026-10-21)
 
@@ -364,9 +379,9 @@ SUPERSEDED — rewritten after Step 0 answers (Step 4: frame-by-frame scroll sto
 | Lottie/Rive | **None** — handwriting is SVG + DrawSVG | — | 0 | @lottiefiles/dotlottie-web 0.81.0 (32 KB) |
 | Validation | **Valibot 1.5.0** (client + server) | Tree-shakes to ~2–4 KB | ~3 KB | Zod 4.6.7 server-only |
 | Spam | **Cloudflare Turnstile** (free, unlimited) | Invisible for most humans | loaded only when form sheet opens | hCaptcha |
-| Email | **Resend 6.34.1** (free 3,000/mo, 100/day) | Already in use | server only | Brevo |
-| Lead storage | **Cloudflare D1** (free tier) as source of truth + **HubSpot Free CRM** (1,000 contacts) *or* Google Sheet mirror — owner choice (Q6) | Lead is saved before anything else | server | Airtable |
-| CMS | **Keystatic** (`@keystatic/core` 0.6.9, `@keystatic/astro` 6.0.0) in GitHub mode | Owner edits testimonials, seats, prices, guides in a friendly UI; content stays in git; $0 | 0 KB public | Decap CMS 3.17.1 |
+| Email | **None** (Q5/Q6: no email channel; Resend removed) | — | — | — |
+| Lead storage | **Cloudflare D1** (free tier) as source of truth + **Google Sheet** mirror + **Telegram** bot alerts (owner's choice, Q5/Q6); HubSpot not used | Lead is saved before anything else | server | Airtable |
+| CMS | **Keystatic** (`@keystatic/core` 0.6.9, `@keystatic/astro` 6.0.0) in GitHub mode | Owner edits testimonials, seats, prices in a friendly UI; content stays in git; $0 | 0 KB public | Decap CMS 3.17.1 |
 | Booking | **Cal.com** free (1 user) link from Answer Key | Trial slot in one tap | link-out | Calendly free |
 | Analytics | **Cloudflare Web Analytics** (cookieless) + **GA4 + Consent Mode v2** only after consent, for lead events | Privacy-first baseline + funnel | ~1 KB; GA after consent | Plausible (paid) |
 | Perf monitoring | **web-vitals 6.2.3** → GA4 (after consent) / CF | Field LCP/INP/CLS | 3.3 KB | Vercel Speed Insights |
@@ -407,7 +422,7 @@ Dropped deliberately: Framer Motion/`motion` (duplicate of GSAP), split-type (st
 **Form = bottom sheet (mobile) / side sheet (desktop), 3 steps, progress shown as pen ticks ✓✓○:**
 1. **Who's learning?** chips: "My child 6–10 / 11–17", "Me (adult)", "IELTS" (pre-selected from context: seat tapped, programme page, Level Ladder).
 2. **What matters most?** chips (speaking confidence / school grades / IELTS band / work) + optional preferred days.
-3. **Where should I send your answer key?** Parent's name, Zalo/phone (`+84` helper, auto-format), optional email; **unticked** consent checkbox with plain-language PDPL notice per locale; invisible Turnstile.
+3. **Where should I send your answer key?** Parent's name, Zalo/phone (`+84` helper, auto-format), no email field (no email channel, Q5/Q6); **unticked** consent checkbox with plain-language PDPL notice per locale; invisible Turnstile.
 - Micro-interactions: chip select = pen circle draws around chip (240 ms); valid field = small ✓ in margin; error = pen writes the hint in the margin + `aria-live`. Submit button: "Get my answer key →" (never looks disabled; shows what's missing instead).
 - Always visible: "Prefer to chat? Zalo me" link.
 
@@ -415,9 +430,9 @@ Dropped deliberately: Framer Motion/`motion` (duplicate of GSAP), split-type (st
 ```
 POST → Turnstile verify → Valibot validate → origin check → rate limit (D1/KV, per IP+phone)
      → INSERT lead into D1 (+ consent text version, locale, source, UTM)   ← must succeed, else 503 + Zalo fallback
-     → async: mirror to HubSpot/Sheet · notify teacher (Resend email + Telegram/Zalo bot ping with one-tap "Zalo this parent" link)
+     → async: mirror to Google Sheet · notify teacher (Telegram bot ping with one-tap "Zalo this parent" link)
      → response: token → /answer-key/[token] (localized price sheet + Cal.com trial booking + seat held 48 h)
-     → if email given: localized confirmation email (same Answer Key)
+     → no email step (no email channel)
 ```
 **Follow-up (manual on Zalo first; automate later):** ≤ 1 h personal message/call (business hours) → Day 1 price sheet + map + parking → Day 3 one testimonial/video from a similar family → Day 7 "your seat in [group] is still free — hold it?" → Day 30 check-in, then stop. Lead status tracked in CRM: new → contacted → trial booked → trial done → enrolled / lost (reason).
 
@@ -430,12 +445,12 @@ POST → Turnstile verify → Valibot validate → origin check → rate limit (
   - Young Learners VI: "Tiếng Anh cho bé 6–10 tuổi tại Phú Nhuận · Tối đa 10 bé/lớp"
   - IELTS EN: "IELTS Preparation in Phu Nhuan · Small Groups | Teacher Bek"
   - Per-locale OG image (corrected sentence on paper).
-- **Schema (one `@graph`, stable `@id`s):** `EducationalOrganization` + `LocalBusiness` (address, geo, `openingHoursSpecification`, telephone, `areaServed` with Wikidata Q1854 HCMC ✓, `sameAs` GBP/FB/IG/TikTok/LinkedIn), `Person` (verified credentials only), `Course` ×4 with real `offers` and `hasCourseInstance` (schedule), `BreadcrumbList`, `Article` for guides. **No FAQPage** for rich results (Google stopped showing them 2026-05-07) and **no self-serving AggregateRating** (ineligible per Google review-snippet docs, updated 2026-09-08). FAQ stays as visible text.
+- **Schema (one `@graph`, stable `@id`s):** `EducationalOrganization` + `LocalBusiness` (address, geo, `openingHoursSpecification`, telephone, `areaServed` with Wikidata Q1854 HCMC ✓, `sameAs` GBP/FB/IG/TikTok/LinkedIn), `Person` (verified credentials only), `Course` ×4 with real `offers` and `hasCourseInstance` (schedule), `BreadcrumbList`. **No FAQPage** for rich results (Google stopped showing them 2026-05-07) and **no self-serving AggregateRating** (ineligible per Google review-snippet docs, updated 2026-09-08). FAQ stays as visible text.
 - **Entity signals:** identical NAP everywhere; Google Business Profile (category "English language school"), weekly photo, review requests after month 1; Facebook page + Zalo OA linked both ways; local directories.
-- **AI answers:** a "Fast facts" block on home and each programme (who, ages, group size, schedule, area, price range, how to book) in every language; guides answer one question in the first two sentences.
+- **AI answers:** a "Fast facts" block on home and each programme (who, ages, group size, schedule, area, price range, how to book) in every language.
 - **robots.txt:** allow Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User; training bots (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended — the last unverified) = owner's choice, default allow.
 - **llms.txt:** rewrite with correct domain and real URLs (low priority — no major engine confirmed to use it; Google says it's not needed).
-- **Guides (launch 4–6, VI + EN):** "Học tiếng Anh ở Phú Nhuận giá bao nhiêu (2026)?", "Lớp nhóm nhỏ hay học 1 kèm 1 cho bé?", "Bé mấy tuổi nên bắt đầu học IELTS?", "Checklist chọn trung tâm tiếng Anh cho con", "How we report progress to parents", "The 10 mistakes Vietnamese learners make (and how we fix them)" — the last one doubles as the hero mistake library.
+- **Guides: dropped (Q14: 0 h/month).** No guide articles, `/guides` routes or `Article` schema at launch.
 - **Analytics setup:** Cloudflare Web Analytics; GA4 property with Consent Mode v2 (default denied), key events ★; Search Console + Bing Webmaster owned by the owner; monthly Looker Studio one-pager (visits → form opens → leads → trials → enrolled).
 
 ---
@@ -444,20 +459,20 @@ POST → Turnstile verify → Valibot validate → origin check → rate limit (
 
 | Item | What a top agency would include |
 |---|---|
-| Proof production | Testimonial collection kit (WhatsApp/Zalo script + consent form in VI), 3 short parent video clips, before/after work samples (with consent) |
+| Proof production | Testimonial collection kit (Zalo script + consent form in VI), 3 short parent video clips, before/after work samples (with consent) |
 | Photo/video shoot | Shot list §3.5, consent forms for every child/parent, usage rights from photographer |
 | Handwriting asset | Scan session: owner writes 20 marks/words ×3 takes; vectorised; style sheet |
 | Booking | Cal.com trial slots synced to owner's calendar; reminder SMS/Zalo the day before |
-| Multilingual ops | One translation source; native review for ZH/RU; per-locale OG images; Vietnamese is primary, not English |
+| Multilingual ops | One translation source; ZH/RU deferred (Q10); per-locale OG images; Vietnamese is primary, not English |
 | Legal | PDPL-compliant privacy notice ×4 languages, consent log, children's data clause, processor list, retention (e.g. 24 months), data request contact; terms for trial/refunds; lawyer review |
 | Cookie consent | Small bottom banner (not a wall), "Accept analytics / Only essential"; GA blocked until accepted; Cloudflare analytics needs no consent |
 | 404 & empty states | Designed (§4.2); "no seats" state; offline state; form failure → Zalo fallback |
 | Accessibility | WCAG 2.2 AA: target size, focus not obscured (sticky bar!), contrast, captions on video, reduced motion, keyboard-operable seat map and slider, accessibility statement |
-| Emails | Branded notification + confirmation templates in 4 languages |
+| Emails | Dropped (Q5/Q6): no email channel. Lead alerts go to Telegram; no branded email templates. |
 | Monitoring | Uptime check on home + lead API; daily synthetic "test lead" flagged `test=true`; alert to owner's Telegram/Zalo if the lead API fails |
 | Backups | D1 nightly export; CRM monthly CSV; git is the content backup |
-| Ownership | Domain, Cloudflare, Resend, GA, GBP, Search Console under the owner's email with 2FA; a one-page "keys & accounts" doc |
-| Who updates what | Owner via Keystatic: seats (weekly, 1 min), testimonials, prices, schedule, guides. Developer: quarterly dependency update + Lighthouse check (~1–2 h) |
+| Ownership | Domain, Cloudflare, Google account (Sheet), Telegram bot, GA, GBP, Search Console under the owner's email with 2FA; a one-page "keys & accounts" doc |
+| Who updates what | Owner via Keystatic: seats (weekly, 1 min), testimonials, prices, schedule. Developer: quarterly dependency update + Lighthouse check (~1–2 h) |
 | Ongoing cost | §8.4 |
 | Launch marketing | Zalo OA broadcast to current parents, GBP post, Facebook groups for Phú Nhuận parents, QR poster at the classroom door |
 | Awwwards submission | Submit after launch with case-study page; fee ~$50–60 per submission (verify on awwwards.com at the time) |
@@ -482,22 +497,22 @@ POST → Turnstile verify → Valibot validate → origin check → rate limit (
 | P0.1 | Ask owner to commit or discard the 18 uncommitted files | Owner (Haiku prepares `git status` summary) | Only the owner can decide what to keep |
 | P0.2 | Fix mobile menu close (stacking order / z-index of the close button in `components/VanguardNavigation.tsx`; Escape and back close it) | Sonnet | Stacking-context debugging, a11y behaviour |
 | P0.3 | Replace the Carto map with a static image + "Open in Google Maps" link | Haiku | Mechanical swap, well specified |
-| P0.4a | Verify production env (`RESEND_API_KEY`, `CONTACT_NOTIFY_EMAIL`, Resend domain) | Owner (Haiku prepares checklist) | Needs owner's Vercel/Resend access |
-| P0.4b | `/api/pricing-lead` must not report success on failure; persist leads (Sheet/HubSpot) before emailing; read the honeypot's real value; add Turnstile | Sonnet | Lead-pipeline logic across several files |
+| P0.4a | Verify production env for the Google Sheet + Telegram lead channel (Resend dropped, Q5/Q6) | Owner (Haiku prepares checklist) | Needs owner's Vercel, Google and Telegram access |
+| P0.4b | `/api/pricing-lead` must not report success on failure; persist leads (Google Sheet) before the Telegram ping; read the honeypot's real value; add Turnstile | Sonnet | Lead-pipeline logic across several files |
 | P0.5a | Rewrite `public/llms.txt` (correct domain, real URLs) | Haiku | Static text file |
 | P0.5b | Hide empty "Reads" band | Haiku | Remove/conditional render |
 | P0.6 | Run PSI with API key for /vi and /en (mobile + desktop); save to `docs/audits/2026-10-psi-baseline.json` | Haiku | Run tool and report |
-| P0.7 | Semrush fix: remove `wa.me/84353885757` links (`VanguardFooter.tsx:71`, `VanguardInquiry.tsx:515`, `app/api/contact/route.ts:216`) unless Q15 = yes; fix footer zalo.me link labelled `t("telegram")` (`VanguardFooter.tsx:70`) | Haiku | Link and label fix, file:line known |
+| P0.7 | Semrush fix: remove `wa.me/84353885757` links (`VanguardFooter.tsx:71`, `VanguardInquiry.tsx:515`, `app/api/contact/route.ts:216`) (Q15 answered: remove WhatsApp, so all of them go); fix footer zalo.me link labelled `t("telegram")` (`VanguardFooter.tsx:70`) | Haiku | Link and label fix, file:line known |
 | P0.8 | Semrush fix: exactly one `<h1>`, shared by mobile and desktop hero (`VanguardHero.tsx:116` and `:316`) | Sonnet | Restructures the dual-layout hero without breaking either |
 | P0.9 | Semrush fix: remove `/community` and `/blog` from `app/sitemap.ts` PRIMARY_ROUTES; 301 the `/about`, `/services`, `/faq` stubs | Haiku | Config edit |
 | P0.10 | Re-run Semrush Site Audit after Phase 0 deploy to get a fresh crawl (current data is 2026-03-11); record Site Health, errors, warnings | Haiku | Run and report |
 | P0.11 | Reviewer pass on the Phase 0 diff vs acceptance list | Sonnet | Diff review |
-- **Accept:** menu closes by X, Escape, back; map has no watermark; 4 test leads (one per locale) stored + emailed; forced email failure still stores the lead and shows Zalo fallback; PSI baseline saved; no `wa.me` links unless Q15 = yes; footer label matches its link; exactly one `<h1>` per page on all locales (DOM check); sitemap lists only live indexable routes; fresh Semrush crawl saved with 0 sitemap-orphan and 0 multiple-H1 findings.
+- **Accept:** menu closes by X, Escape, back; map has no watermark; 4 test leads (one per locale) stored in the Sheet + Telegram ping; forced Sheet/Telegram failure still stores the lead and shows Zalo fallback; PSI baseline saved; no `wa.me` links (Q15: remove WhatsApp); footer label matches its link; exactly one `<h1>` per page on all locales (DOM check); sitemap lists only live indexable routes; fresh Semrush crawl saved with 0 sitemap-orphan and 0 multiple-H1 findings.
 
 **Phase 1 — Content & assets (owner-heavy, 1–2 weeks; can overlap Phase 2a)**
 | Step | Task | Model | Why that model |
 |---|---|---|---|
-| P1.1 | Answer Q1–Q15 | Owner (Haiku prepares a one-page answer form) | Only the owner knows |
+| P1.1 | Answer Q1–Q15 — **done 2026-10-22** (see table) | Owner (Haiku prepares a one-page answer form) | Only the owner knows |
 | P1.2 | Copy deck (VI master + EN) | Sonnet | Voice, parent-language copywriting |
 | P1.3 | Mistake library (10 sentences per age band) + FAQ drafts | Sonnet | Linguistic judgment |
 | P1.4 | Photo/video shoot per §3.5 with consents | Owner (Haiku prepares shot list + VI consent form template) | Physical task |
@@ -505,11 +520,11 @@ POST → Turnstile verify → Valibot validate → origin check → rate limit (
 | P1.6 | Handwriting: owner writes 20 marks ×3 takes | Owner (Haiku prepares the sheet) | Owner's hand is the asset |
 | P1.7 | Scan → vectorise to SVG set, optimise paths | Haiku | Scripted trace, spec-driven |
 | P1.8 | Collect testimonials with written consent | Owner (Haiku prepares Zalo script + consent form) | Owner relationship |
-| P1.9 | ZH/RU translation drafts | Sonnet | Nuanced translation |
-| P1.10 | ZH/RU native review and sign-off | Owner | Needs a native reviewer |
+| P1.9 | ZH/RU translation drafts — **deferred post-launch (Q10)** | Sonnet | Nuanced translation |
+| P1.10 | ZH/RU native review and sign-off — **deferred (Q10)** | Owner | Needs a native reviewer |
 | P1.11 | Enter approved content into repo/CMS files | Haiku | Copy-paste from signed-off deck |
 | P1.12 | Reviewer pass: content vs Q answers (§8.2 content truth) | Sonnet | Judgment |
-- **Accept:** signed-off copy in VI/EN (ZH/RU or deferred), 25+ graded photos, 2 videos, 20 SVG marks, ≥ 5 consented testimonials.
+- **Accept:** signed-off copy in VI/EN (ZH/RU deferred, Q10), 25+ graded photos, 2 videos (owner shoots later; not a launch blocker), 20 SVG marks, ≥ 5 consented testimonials (published anonymised).
 
 **Phase 2a — Design system & prototypes (1–2 weeks)**
 **Phase 2a v1 (Red Pen) rejected by owner 2026-10-22; Phase 2a v2 starts after the new design bible.**
@@ -531,12 +546,12 @@ POST → Turnstile verify → Valibot validate → origin check → rate limit (
 |---|---|---|---|
 | P2b.1a | Scaffold Astro 7.4.1 + Tailwind 4.3.3 + @astrojs/cloudflare 14.4.1 + @astrojs/sitemap 3.7.4 + @astrojs/preact 6.1.0; i18n routes | Haiku | Versions and config fully specified |
 | P2b.1b | Tier detection script (inline, < 1 KB) | Sonnet | Device-capability logic |
-| P2b.2 | Keystatic 0.6.9 collections: programmes, groups (seats, schedule, updatedAt), testimonials, mistakes, FAQs, guides, settings | Sonnet | Schema design across the site |
+| P2b.2 | Keystatic 0.6.9 collections: programmes, groups (seats, schedule, updatedAt), testimonials, mistakes, FAQs, settings | Sonnet | Schema design across the site |
 | P2b.3 | Build pages §4.2 and sections §4.1 as static components (exactly one `<h1>` per page, no duplicated hero DOM) | Sonnet | Composition and responsive design |
 | P2b.4 | Islands: FormSheet, LevelLadder (Preact) | Sonnet | Interactive UX, accessibility |
 | P2b.5 | Motion layer: GSAP 3.15.0 lazy module (+ScrollTrigger, SplitText, DrawSVG, Flip); Lenis 1.3.27 for Full tier; View Transitions CSS | Sonnet | Animation craft |
 | P2b.6a | Lead API Worker + D1 schema (`leads`, `consents`) + Turnstile + origin check + rate limit + Answer Key route (noindex) | Sonnet | Pipeline architecture, failure modes |
-| P2b.6b | Resend templates ×4 + teacher ping | Haiku | Fill spec'd templates with approved copy |
+| P2b.6b | Telegram teacher ping + Google Sheet mirror (no email templates; Resend dropped, Q5/Q6) | Haiku | Fill spec'd message templates with approved copy |
 | P2b.7a | SEO: head component, hreflang + x-default, sitemap with alternates and real lastmod, robots.txt, OG images per locale, 301 map from old URLs | Haiku | Spec'd config |
 | P2b.7b | One JSON-LD `@graph` on the Google-documented field whitelist (see rules below) | Haiku | Field cleanup from a spec |
 | P2b.8 | Legal pages (privacy, terms) per shipped locale, plain language, ≥ 300 words | Sonnet | Legal-adjacent drafting |
@@ -575,7 +590,7 @@ POST → Turnstile verify → Valibot validate → origin check → rate limit (
 | Step | Task | Model | Why that model |
 |---|---|---|---|
 | P4.1 | Monthly: update seats + testimonials | Owner (Haiku prepares reminder + Keystatic checklist) | Truthful seat data is the owner's |
-| P4.2 | Monthly: write one guide | Sonnet | Editorial quality, SEO |
+| P4.2 | **Dropped (Q14: 0 h/month)** — no monthly guide | — | — |
 | P4.3 | Monthly: funnel review report | Haiku | Pull metrics and report |
 | P4.4 | Monthly: one A/B (hero mistake set or CTA copy) | Sonnet | Hypothesis and copy judgment |
 | P4.5 | Quarterly: dependency updates + Lighthouse + Semrush re-crawl | Haiku | Routine, reported |
@@ -589,7 +604,7 @@ Tags show who executes each item: [Haiku] runs checks and reports, [Sonnet] judg
 - [ ] **[Haiku] Mobile:** no horizontal scroll at 320/360/390/414; all targets ≥ 44 px; sticky bar never covers focused input (WCAG 2.4.11); safe-area insets respected.
 - [ ] **[Haiku] Lighthouse (PSI, mobile):** Perf ≥ 95, A11y 100, BP 100, SEO 100 on home + one programme page, every locale.
 - [ ] **[Haiku] Throttled lab:** LCP ≤ 1.8 s, JS before LCP ≤ 15 KB, first view ≤ 450 KB.
-- [ ] **[Haiku] Form test:** each locale; each step's errors; invalid phone; Turnstile fail; email provider down (lead still stored + fallback); D1 down (503 + Zalo fallback); duplicate submit; rate limit; Answer Key link opens on another phone.
+- [ ] **[Haiku] Form test:** each locale; each step's errors; invalid phone; Turnstile fail; Google Sheet or Telegram down (lead still stored + fallback); D1 down (503 + Zalo fallback); duplicate submit; rate limit; Answer Key link opens on another phone.
 - [ ] **[Haiku] Tiers:** reduced motion = static complete content; Save-Data = no GSAP/video/grain; keyboard-only can use slider, seat map, sheet, menu.
 - [ ] **[Haiku] SEO:** Rich Results Test valid; hreflang validator clean (only translated locales); one h1 per page; canonical/OG correct per locale.
 - [ ] **[Haiku] Semrush re-crawl:** Site Health ≥ 95%, 0 errors; 0 invalid structured data, 0 blocked internal resources, 0 broken links (429 excluded), 0 orphaned sitemap pages, 0 hreflang mismatches, 0 multiple-H1; every title ≤ 60 chars; no page under 300 words (legal) or 10% text-to-HTML ratio.
@@ -605,9 +620,9 @@ Tags show who executes each item: [Haiku] runs checks and reports, [Sonnet] judg
 | Content bottleneck (photos, consents, handwriting, testimonials) | Phase 1 starts day 1; build with placeholders but **no launch without real proof** |
 | Seat map becomes dishonest | Auto-hide counts if `updatedAt` > 14 days |
 | Gated pricing loses price-shoppers | Public "from" price; gate the full sheet + booking; Zalo alternative always visible |
-| 4 languages × every change | VI + EN at launch; ZH/RU when reviewed (Q10) |
+| 2 languages at launch (VI + EN) | ZH/RU deferred (Q10) |
 | Rebuild loses rankings | Same domain, 301 map, more indexable pages at launch |
-| Free-tier limits change (Resend 100/day, HubSpot) | D1 as source of truth; monthly cost review |
+| Free-tier limits change (Google Sheets, Telegram, Cloudflare) | D1 as source of truth; monthly cost review |
 | PDPL interpretation | Lawyer review of notice + consent wording |
 | GSAP licence is "no charge" proprietary, not MIT | Acceptable for this use; CSS fallback exists for every effect |
 
@@ -628,8 +643,7 @@ Tags show who executes each item: [Haiku] runs checks and reports, [Sonnet] judg
 |---|---|
 | Cloudflare Workers/Pages + D1 + Turnstile + Web Analytics (free tiers) | $0 |
 | Domain `.com` (~$10.1–10.5/yr at Cloudflare Registrar, third-party tracker) | ~$1 |
-| Resend free (3,000/mo, 100/day) | $0 |
-| HubSpot Free CRM / Google Sheet | $0 |
+| Google Sheet | $0 |
 | Cal.com free | $0 |
 | Keystatic (GitHub mode) | $0 |
 | Fonts (Playfair v2 + Inter, OFL) | $0 (optional PP Neue Montreal one-off ~$40–150, quote needed) |

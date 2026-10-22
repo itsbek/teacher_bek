@@ -162,8 +162,6 @@ export function VanguardNavigation() {
         { href: `/${locale}#about`, label: t("about"), section: "about" },
         { href: `/${locale}#testimonials`, label: t("testimonials"), section: "testimonials" },
         { href: `/${locale}#programs`, label: t("services"), section: "programs" },
-        { href: `/${locale}/community`, label: t("community"), section: "" },
-        { href: `/${locale}/blog`, label: t("blog_link"), section: "" },
         { href: `/${locale}#faq`, label: t("faq"), section: "faq" },
         { href: `/${locale}#contact`, label: t("contact"), section: "contact" },
     ];

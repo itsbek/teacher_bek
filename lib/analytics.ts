@@ -59,22 +59,6 @@ export const trackScrollDepth = (depth: number) => {
   });
 };
 
-export const trackBlogRead = (slug: string, title: string) => {
-  event({
-    action: 'blog_post_read',
-    category: 'engagement',
-    label: `${slug}: ${title}`,
-  });
-};
-
-export const trackNewsletterSubscribe = (subscriberType: string) => {
-  event({
-    action: 'newsletter_subscribe',
-    category: 'conversion',
-    label: subscriberType,
-  });
-};
-
 // Declare gtag on window object
 declare global {
   interface Window {

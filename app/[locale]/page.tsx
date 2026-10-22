@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { StructuredData } from '@/components/structured-data';
 import { VanguardNavigation } from '@/components/VanguardNavigation';
 import { VanguardHero } from '@/components/VanguardHero';
-import { getBlogPosts } from '@/lib/blog';
 import { buildPageMetadata, getLocaleMetadata } from '@/lib/seo';
 
 /* Below-the-fold sections — loaded after the hero paints */
@@ -14,16 +13,13 @@ const Testimonials      = dynamic(() => import('@/components/Testimonials').then
 const VanguardLexicon   = dynamic(() => import('@/components/VanguardLexicon').then(m => ({ default: m.VanguardLexicon })));
 const MethodologySteps  = dynamic(() => import('@/components/MethodologySteps').then(m => ({ default: m.MethodologySteps })));
 const CredentialsSection = dynamic(() => import('@/components/CredentialsSection').then(m => ({ default: m.CredentialsSection })));
-const VanguardJournal   = dynamic(() => import('@/components/VanguardJournal').then(m => ({ default: m.VanguardJournal })));
 const ConversionStrip   = dynamic(() => import('@/components/ConversionStrip').then(m => ({ default: m.ConversionStrip })));
-const StudentStrip      = dynamic(() => import('@/components/StudentStrip').then(m => ({ default: m.StudentStrip })));
 const FAQ               = dynamic(() => import('@/components/faq').then(m => ({ default: m.FAQ })));
 const VanguardInquiry   = dynamic(() => import('@/components/VanguardInquiry').then(m => ({ default: m.VanguardInquiry })));
 const VanguardMarquee   = dynamic(() => import('@/components/VanguardMarquee').then(m => ({ default: m.VanguardMarquee })));
 const VanguardFooter    = dynamic(() => import('@/components/VanguardFooter').then(m => ({ default: m.VanguardFooter })));
 
-// Regenerate at most once per hour — keeps blog section fresh without a redeploy.
-// On-demand revalidation via /api/revalidate still works instantly.
+// Regenerate at most once per hour.
 export const revalidate = 3600;
 
 type Props = {
@@ -49,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  *
  * Section order:
  * §1 Hero (#hero) — light zone
- * §2-7 Dark Zone: About, Testimonials, Programs, Methodology, Credentials, Journal
+ * §2-7 Dark Zone: About, Testimonials, Programs, Methodology, Credentials
  * §8 ConversionStrip — light zone
  * §9 FAQ (#faq) — light zone
  * §10 Contact (#contact) — light zone
@@ -59,7 +55,6 @@ export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const articles = (await getBlogPosts(locale)).slice(0, 2);
   const t = await getTranslations({ locale, namespace: 'methodology' });
 
   const methodSteps = (t.raw('steps') as Array<{ id: string; title: string; description: string }>);
@@ -106,17 +101,10 @@ export default async function Home({ params }: Props) {
           {/* §6: CREDENTIALS */}
           <CredentialsSection />
 
-          {/* §7: READS */}
-          <section id="reads" className="dark section-sm bg-background text-foreground border-t border-current/10" style={{ scrollMarginTop: 'var(--nav-h)' }}>
-            <VanguardJournal initialArticles={articles} />
-          </section>
         </DarkZoneWrapper>
 
         {/* §8: CONVERSION STRIP — Light zone */}
         <ConversionStrip />
-
-        {/* §8.5: STUDENT STRIP — For existing students */}
-        <StudentStrip />
 
         {/* §9: FAQ — Light zone */}
         <FAQ />

@@ -18,6 +18,7 @@ export interface Lead {
   locale: string;
   name: string;
   phone: string;
+  /** Legacy: no longer collected; only present on old Sheet rows. */
   email?: string;
   program?: string;
   forWhom?: string;
@@ -36,7 +37,7 @@ export type ChannelOutcome = 'ok' | 'failed' | 'skipped';
 
 export interface SubmitResult {
   ok: boolean;
-  channels: { sheet: ChannelOutcome; email: ChannelOutcome; telegram: ChannelOutcome };
+  channels: { sheet: ChannelOutcome; telegram: ChannelOutcome };
 }
 
 /** Machine codes returned to the browser by the lead API routes. */
