@@ -35,7 +35,6 @@ export function VanguardLexicon() {
     tagline: t(`${key}.tagline`),
     method: t(`${key}.method`),
     format: t(`${key}.format`),
-    price: t(`${key}.price`),
     schedule: t(`${key}.schedule`),
     outcomes: Array.from({ length: OUTCOMES_COUNT }, (_, j) =>
       t(`${key}.outcomes_${j}` as Parameters<typeof t>[0])
@@ -394,7 +393,7 @@ export function VanguardLexicon() {
       <PricingGateModal
         isOpen={pricingOpen}
         onClose={() => setPricingOpen(false)}
-        programs={programs.map(({ key, title, price }) => ({ key, title, price }))}
+        programs={programs.map(({ key, title }) => ({ key, title }))}
       />
     </section>
   );

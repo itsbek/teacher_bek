@@ -315,7 +315,6 @@
     "requestCta": "Book a Free Week",
     "pricingNote": "One price for every program. Every program starts with a free trial week. Unlock pricing in 10 seconds — no obligation.",
     "pricingCta": "See Pricing",
-    "introOffer": "First month 1,990,000 VND (save 1,000,000) after your free week",
     "scheduleNote": "Weekdays: 7:30 PM - 9:00 PM · Weekends: 2:00 PM - 8:00 PM",
     "formatNote": "Group classes · Max 10 students",
     "youngLearners": {
@@ -323,7 +322,6 @@
       "subtitle": "Ages 5–10",
       "tagline": "Small groups. Speaking from session one.",
       "format": "2× per week · 90 min + 15 min break",
-      "price": "2,990,000 VND / month",
       "schedule": "Weekday evenings · Weekends",
       "outcomes_0": "Pronunciation built through speaking, not drilling",
       "outcomes_1": "Vocabulary acquired through use, not memorization",
@@ -336,7 +334,6 @@
       "subtitle": "Ages 11–17",
       "tagline": "Spoken English that keeps pace with real ambitions.",
       "format": "2× per week · 90 min + 15 min break",
-      "price": "2,990,000 VND / month",
       "schedule": "Weekday evenings · Weekends",
       "outcomes_0": "Spoken English without the internal translation delay",
       "outcomes_1": "Stronger performance on school assignments and exams",

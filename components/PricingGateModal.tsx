@@ -8,7 +8,19 @@ import { PHONE_DISPLAY, PHONE_TEL, ZALO_URL, errorKeyFor, postLead, useTurnstile
 
 const UNLOCK_KEY = "pricing-unlocked";
 
-type Program = { key: string; title: string; price: string };
+type Program = { key: string; title: string };
+type Pricing = { programs: { id: string; price: string }[]; introOffer: string };
+
+function readStoredPricing(): Pricing | null {
+  try {
+    const raw = sessionStorage.getItem(UNLOCK_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Pricing;
+    return Array.isArray(parsed?.programs) && typeof parsed.introOffer === "string" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
 
 export function PricingGateModal({
   isOpen,
@@ -20,14 +32,14 @@ export function PricingGateModal({
   programs: Program[];
 }) {
   const t = useTranslations("pricingGate");
-  const tp = useTranslations("programs");
   const tl = useTranslations("leads");
   const locale = useLocale();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [revealed, setRevealed] = useState(false);
+  const [pricing, setPricing] = useState<Pricing | null>(null);
+  const revealed = pricing !== null;
   const [website, setWebsite] = useState("");
   const turnstile = useTurnstile(isOpen && !revealed);
   const [formStartedAt] = useState(() => Date.now());
@@ -37,8 +49,9 @@ export function PricingGateModal({
 
   // Skip the gate if this visitor already unlocked pricing this session
   useEffect(() => {
-    if (isOpen && typeof window !== "undefined" && sessionStorage.getItem(UNLOCK_KEY)) {
-      setRevealed(true);
+    if (isOpen && typeof window !== "undefined") {
+      const stored = readStoredPricing();
+      if (stored) setPricing(stored);
     }
   }, [isOpen]);
 
@@ -79,7 +92,7 @@ export function PricingGateModal({
     setIsSubmitting(true);
     setError("");
 
-    const result = await postLead("/api/pricing-lead", {
+    const result = await postLead<Pricing>("/api/pricing-lead", {
       name: name.trim(),
       phone: phone.trim(),
       locale,
@@ -87,12 +100,12 @@ export function PricingGateModal({
       formStartedAt,
       turnstileToken: turnstile.token || undefined,
     });
-    if (result.ok) {
+    if (result.ok && result.data) {
       trackEvent({ action: "pricing_unlock", category: "conversion", label: "pricing_gate" });
-      try { sessionStorage.setItem(UNLOCK_KEY, "1"); } catch { /* storage unavailable */ }
-      setRevealed(true);
+      try { sessionStorage.setItem(UNLOCK_KEY, JSON.stringify(result.data)); } catch { /* storage unavailable */ }
+      setPricing(result.data);
     } else {
-      setError(tl(errorKeyFor(result.code)));
+      setError(tl(errorKeyFor(result.ok ? "DELIVERY_FAILED" : result.code)));
       turnstile.reset();
     }
     setIsSubmitting(false);
@@ -234,8 +247,8 @@ export function PricingGateModal({
                   <div key={p.key} className="flex items-center justify-between py-4">
                     <span className="font-sans text-[13px] uppercase tracking-[0.1em] text-white/70">{p.title}</span>
                     <span className="text-right">
-                      <span className="block font-display font-bold text-lg text-white">{p.price}</span>
-                      <span className="block font-sans text-[12px] text-white/50 mt-1">{tp("introOffer")}</span>
+                      <span className="block font-display font-bold text-lg text-white">{pricing?.programs.find((x) => x.id === p.key)?.price}</span>
+                      <span className="block font-sans text-[12px] text-white/50 mt-1">{pricing?.introOffer}</span>
                     </span>
                   </div>
                 ))}

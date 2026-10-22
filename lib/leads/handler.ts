@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { clientIp, isAllowedOrigin, rateLimit, verifyTurnstile } from './guard';
+import { getPricing } from './pricing';
 import { submitLead } from './submit';
 import type { Lead, LeadErrorCode, LeadSource } from './types';
 
@@ -107,6 +108,9 @@ export async function handleLeadPost(request: NextRequest, source: LeadSource): 
 
     const result = await submitLead(lead);
     if (!result.ok) return fail('DELIVERY_FAILED', 502);
+    if (source === 'pricing') {
+      return NextResponse.json({ ok: true, pricing: getPricing(v.locale) });
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error(`[${source}] unexpected error:`, err instanceof Error ? err.message : 'unknown');

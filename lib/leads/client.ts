@@ -35,17 +35,17 @@ export function collectLeadContext(): { page: string; referrer: string; utm?: Le
   return { page: url.origin + url.pathname, referrer: document.referrer, utm: hasUtm ? utm : undefined };
 }
 
-export type PostLeadResult = { ok: true } | { ok: false; code: ClientErrorCode };
+export type PostLeadResult<T = undefined> = { ok: true; data: T | undefined } | { ok: false; code: ClientErrorCode };
 
-export async function postLead(endpoint: string, payload: Record<string, unknown>): Promise<PostLeadResult> {
+export async function postLead<T = undefined>(endpoint: string, payload: Record<string, unknown>): Promise<PostLeadResult<T>> {
   try {
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...payload, ...collectLeadContext() }),
     });
-    const data = (await res.json().catch(() => ({}))) as { ok?: boolean; code?: ClientErrorCode };
-    if (res.ok && data.ok) return { ok: true };
+    const data = (await res.json().catch(() => ({}))) as { ok?: boolean; code?: ClientErrorCode; pricing?: T };
+    if (res.ok && data.ok) return { ok: true, data: data.pricing };
     return { ok: false, code: data.code ?? 'DELIVERY_FAILED' };
   } catch {
     return { ok: false, code: 'NETWORK' };
