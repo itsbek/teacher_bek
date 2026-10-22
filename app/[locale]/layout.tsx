@@ -173,8 +173,9 @@ export default async function LocaleLayout({
                       description:
                         "English classes for children ages 6–10. Max 10 students per class.",
                     },
-                    price: "1990000",
+                    price: "2990000",
                     priceCurrency: "VND",
+                    description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
                   },
                   {
                     "@type": "Offer",
@@ -184,8 +185,9 @@ export default async function LocaleLayout({
                       description:
                         "English classes for teenagers ages 11–17. Communicative fluency focus.",
                     },
-                    price: "1990000",
+                    price: "2990000",
                     priceCurrency: "VND",
+                    description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
                   },
                   {
                     "@type": "Offer",
@@ -195,8 +197,9 @@ export default async function LocaleLayout({
                       description:
                         "IELTS exam preparation covering all four skills. Small groups, max 10 students.",
                     },
-                    price: "1990000",
+                    price: "2990000",
                     priceCurrency: "VND",
+                    description: "Monthly fee 2,990,000 VND. First month 1,990,000 VND (save 1,000,000) after the free trial week.",
                   },
                 ],
               },

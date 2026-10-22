@@ -20,6 +20,7 @@ export function PricingGateModal({
   programs: Program[];
 }) {
   const t = useTranslations("pricingGate");
+  const tp = useTranslations("programs");
   const tl = useTranslations("leads");
   const locale = useLocale();
   const [name, setName] = useState("");
@@ -232,7 +233,10 @@ export function PricingGateModal({
                 {programs.map((p) => (
                   <div key={p.key} className="flex items-center justify-between py-4">
                     <span className="font-sans text-[13px] uppercase tracking-[0.1em] text-white/70">{p.title}</span>
-                    <span className="font-display font-bold text-lg text-white">{p.price}</span>
+                    <span className="text-right">
+                      <span className="block font-display font-bold text-lg text-white">{p.price}</span>
+                      <span className="block font-sans text-[12px] text-white/50 mt-1">{tp("introOffer")}</span>
+                    </span>
                   </div>
                 ))}
               </div>
