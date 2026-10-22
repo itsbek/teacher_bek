@@ -423,7 +423,7 @@ Dropped deliberately: Framer Motion/`motion` (duplicate of GSAP), split-type (st
 | CLS | ≤ 0.05 | 0 |
 | JS before LCP | **≤ 15 KB** (Lenis desktop, inline bootstrap) | ~272 KB |
 | JS total home (incl. deferred GSAP + Preact form) | **≤ 90 KB** gz | — |
-| Fonts | ≤ 4 files, ≤ 120 KB | 40–43 files |
+| Fonts | ≤ 180 KB per VI/EN page; RU pages add ~83 KB Cyrillic; Playfair italic static | 40–43 files |
 | Home first view weight | **≤ 450 KB** (excl. video) · full scroll ≤ 1.5 MB | 600–780 KB |
 | Video | 0 KB until tapped (A) / ≤ 1.5 MB loop on Wi-Fi only (B) | — |
 | Requests first view | ≤ 25 | 70–74 |

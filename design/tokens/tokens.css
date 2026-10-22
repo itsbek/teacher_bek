@@ -1,0 +1,320 @@
+/* ==========================================================================
+   teacherbek.com — design tokens  ("The Red Pen")
+   Source of truth: REVAMP_PLAN.md §3.2–3.8, §5.1.
+   Naming: --{category}-{role}[-{variant}]. Raw palette = --paper/--ink/...;
+   components must use the semantic aliases (--color-*), never raw hex.
+   Requires ../fonts/fonts.css (Playfair, Inter + "Playfair Fallback",
+   "Inter Fallback").
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- Colour · raw palette · light "Paper" ---------- */
+  --paper:       #F5F0E6;
+  --paper-2:     #ECE4D4;
+  --ink:         #15130F;
+  --ink-soft:    #5E584D;   /* 6.0:1 on paper, 5.2:1 on paper-2 */
+  --red-pen:     #C52019;   /* 5.1:1 on paper, 4.6 on paper-2 (plan #C8231B is 4.48 on paper-2: fails AA) — corrections, handwriting, primary CTA, focus ONLY */
+  --highlight:   #F2DC4B;   /* one word per screen, never under long text */
+  --chalk-green: #22392D;   /* "Method" chapter (dark chapter in light mode) */
+  --rule:        #15130F1F;
+  --chalk:       #EEE9DD;   /* text on chalk-green */
+  --chalk-soft:  #B8B2A4;
+  --chalk-pen:   #FF7366;   /* 4.7:1 on chalk-green (plan #FF6A5C = 4.42) */   /* red pen as seen on chalk-green */
+  --on-red-pen:  #FFFFFF;   /* text on a red-pen fill; 5.8:1 */
+
+  /* ---------- Colour · semantic aliases ---------- */
+  --color-bg:             var(--paper);
+  --color-bg-2:           var(--paper-2);
+  --color-fg:             var(--ink);
+  --color-fg-soft:        var(--ink-soft);
+  --color-accent:         var(--red-pen);
+  --color-on-accent:      var(--on-red-pen);
+  --color-highlight:      var(--highlight);
+  --color-on-highlight:   #15130F;
+  --color-rule:           var(--rule);
+  --color-rule-strong:    #15130F66;
+  --color-chapter-chalk:  var(--chalk-green);
+  --color-chapter-chalk-fg:      var(--chalk);
+  --color-chapter-chalk-fg-soft: var(--chalk-soft);
+  --color-chapter-chalk-accent:  var(--chalk-pen);
+  --color-focus:          var(--red-pen);
+  --color-selection-bg:   var(--highlight);
+  --color-selection-fg:   #15130F;
+  --color-grain-blend:    multiply;
+
+  /* ---------- Typography · families ---------- */
+  --font-display: "Playfair", "Playfair Fallback", "Songti SC", Georgia, "Times New Roman", serif;
+  --font-display-xl: "Playfair", "Playfair Fallback XL", "Songti SC", Georgia, "Times New Roman", serif;
+  --font-text:    "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-cjk-display: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --font-cjk-text:    "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+
+  /* ---------- Typography · fluid sizes (360 → 1440 px viewport) ---------- */
+  --fs-display-xl: clamp(64px, 14vw, 220px);
+  --fs-display-l:  clamp(44px, 8vw, 128px);
+  --fs-display-m:  clamp(32px, 5vw, 72px);
+  --fs-title:      clamp(22px, 2.4vw, 32px);
+  --fs-body-l:     clamp(18px, 1.4vw, 22px);
+  --fs-body:       17px;
+  --fs-label:      13px;
+  --fs-num:        1em;
+
+  /* ---------- Typography · font variation per role ---------- */
+  /* Shipped font files (fonts/README.md):
+     Playfair roman: opsz 5–1200 variable, wdth PINNED 100, wght PINNED 500. Playfair italic: STATIC (opsz 72, wght 400).
+     Inter:    opsz PINNED 14 (no opsz axis), wght 400–600. */
+  --fvs-display-xl: "opsz" 1200, "wght" 500;
+  --fvs-display-l:  "opsz" 400,  "wght" 500;
+  --fvs-display-m:  "opsz" 72,   "wght" 500;
+  --fvs-accent:     normal;                     /* italic accent word = static instance (opsz 72, wght 400): no axes to set */
+  --fw-display: 500;
+  --fw-accent: 400;
+  --fw-title: 600;
+  --fw-body: 400;
+  --fw-label: 600;
+  --fvs-text: normal;         /* Inter opsz pinned 14: no axis to set */
+  --fvs-title: normal;
+
+  /* ---------- Typography · line-height & tracking ---------- */
+  --lh-display-xl: 0.9;
+  --lh-display-l:  0.95;
+  --lh-display-m:  1.1;
+  --lh-title:      1.25;
+  --lh-body-l:     1.55;
+  --lh-body:       1.6;
+  --lh-label:      1.3;
+
+  --tracking-display-xl: -0.03em;
+  --tracking-display-l:  -0.02em;
+  --tracking-display-m:  -0.015em;
+  --tracking-title:      -0.01em;
+  --tracking-body:        0;
+  --tracking-label:       0;          /* :lang(en) raises to 0.04em */
+  --label-transform:      none;       /* :lang(en) sets uppercase */
+  --measure: 62ch;                    /* max line length for body copy */
+
+  /* ---------- Spacing · 4px base ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-48: 192px;
+  --section-pad: clamp(80px, 12vw, 192px);
+  --section-pad-quiet: clamp(64px, 8vw, 128px);
+
+  /* ---------- Grid & layout ---------- */
+  --grid-cols: 4;
+  --gutter: 16px;
+  --page-margin: clamp(20px, 5vw, 80px);
+  --max-w: 1440px;
+  --margin-line-x: 12px;               /* mobile: hairline sits left of text */
+  --margin-col-offset: 0px;            /* set at ≥768px: start of column 2 */
+  --measure-narrow: 38ch;
+
+  /* ---------- Borders (no radii, no shadows) ---------- */
+  --radius: 0;
+  --border-hair: 1px;
+  --border-pen: 1.5px;                 /* icon + handwriting stroke weight */
+  --border-strong: 2px;
+  --shadow: none;
+
+  /* ---------- Motion ---------- */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-pen:    cubic-bezier(0.45, 0.05, 0.25, 1);
+  --dur-tap:     120ms;
+  --dur-ui:      240ms;
+  --dur-image:   600ms;
+  --dur-reveal:  800ms;                /* plan range 700–900 */
+  --dur-reveal-min: 700ms;
+  --dur-reveal-max: 900ms;
+  --dur-settle:  700ms;                /* accent word ink-soak (opacity) after the clip-path write */
+  --dur-transition-out: 300ms;
+  --dur-transition-in:  450ms;
+  --dur-stroke-min: 400ms;
+  --dur-stroke-max: 1100ms;
+  --stroke-speed: 1.2;                 /* px per ms: dur = length / speed, clamped min–max */
+  --stagger-lines: 80ms;
+  --stagger-items: 60ms;
+  --sequence-max:  900ms;
+
+  /* ---------- Z-index ---------- */
+  --z-base: 0;
+  --z-grain: 1;
+  --z-margin-line: 2;
+  --z-raised: 10;
+  --z-sticky: 100;      /* sticky "Hold a seat" bar */
+  --z-header: 200;
+  --z-sheet: 300;       /* lead-form sheet */
+  --z-cursor: 400;
+  --z-toast: 500;
+  --z-skip-link: 1000;
+
+  /* ---------- Focus ---------- */
+  --focus-width: 3px;
+  --focus-offset: 3px;
+  --focus-ring: var(--focus-width) solid var(--color-focus);
+
+  /* ---------- Touch, safe areas, bars ---------- */
+  --tap-min: 44px;
+  --btn-h: 56px;
+  --btn-h-desktop: 52px;
+  --input-h: 52px;
+  --input-fs: 17px;
+  --sticky-bar-h: 64px;
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+
+  /* ---------- Paper grain (4%) ---------- */
+  --grain-opacity: 0.04;
+  --grain-size: 160px;
+}
+
+/* ------------------------------------------------------------------
+   Dark "Blackboard": follows system unless the user chose light.
+   Keep the two blocks below identical.
+   ------------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper:       #14201A;
+    --paper-2:     #1C2B23;
+    --ink:         #EEE9DD;
+    --ink-soft:    #B8B2A4;
+    --red-pen:     #FF6A5C;
+    --highlight:   #E5CE3E;
+    --chalk-green: #22392D;
+    --rule:        #EEE9DD26;
+    --on-red-pen:  #14201A;
+    --color-on-highlight: #14201A;
+    --color-rule-strong: #EEE9DD66;
+    --color-selection-fg: #14201A;
+    --color-grain-blend: screen;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:       #14201A;
+  --paper-2:     #1C2B23;
+  --ink:         #EEE9DD;
+  --ink-soft:    #B8B2A4;
+  --red-pen:     #FF6A5C;
+  --highlight:   #E5CE3E;
+  --chalk-green: #22392D;
+  --rule:        #EEE9DD26;
+  --on-red-pen:  #14201A;
+  --color-on-highlight: #14201A;
+  --color-rule-strong: #EEE9DD66;
+  --color-selection-fg: #14201A;
+  --color-grain-blend: screen;
+}
+
+/* ------------------------------------------------------------------
+   Breakpoints (documented; CSS vars cannot be used in @media):
+   sm 480 · md 768 (12-col grid starts) · lg 1024 · xl 1440 (max width)
+   ------------------------------------------------------------------ */
+@media (min-width: 768px) {
+  :root {
+    --grid-cols: 12;
+    --gutter: 24px;
+    --fs-body: 18px;
+    --fs-label: 14px;
+    --btn-h: var(--btn-h-desktop);
+    /* start of column 2, minus half a gutter, measured inside .container padding box */
+    --margin-col-offset: calc((100% - (2 * var(--page-margin)) - (11 * var(--gutter))) / 12 + (var(--gutter) / 2));
+  }
+}
+
+/* ------------------------------------------------------------------
+   Language tuning
+   ------------------------------------------------------------------ */
+/* Latin labels: uppercase + 0.04em. VI / RU / ZH: sentence case, tracking 0. */
+:lang(en) { --label-transform: uppercase; --tracking-label: 0.04em; }
+
+/* Vietnamese: stacked diacritics (ặ ỗ ữ ự) need headroom → no tight leading, lighter tracking. */
+:lang(vi) {
+  --lh-display-xl: 1.02;
+  --lh-display-l:  1.06;
+  --lh-display-m:  1.18;
+  --lh-title:      1.32;
+  --lh-body:       1.65;
+  --lh-body-l:     1.6;
+  --tracking-display-xl: -0.02em;
+  --tracking-display-l:  -0.015em;
+}
+/* Russian: Cyrillic is wider and has no ascender stacks; slightly looser display tracking. */
+:lang(ru) {
+  --tracking-display-xl: -0.02em;
+  --tracking-display-l:  -0.015em;
+  --tracking-display-m:  -0.01em;
+  --lh-display-xl: 0.95;
+}
+/* Chinese: system CJK stacks for whole runs, tracking 0, tall leading, no optical axes. */
+:lang(zh) {
+  --font-display: var(--font-cjk-display);
+  --font-text: var(--font-cjk-text);
+  --fvs-display-xl: normal;
+  --fvs-display-l: normal;
+  --fvs-display-m: normal;
+  --fvs-accent: normal;
+  --fvs-text: normal;
+  --fvs-title: normal;
+  --fs-display-xl: clamp(52px, 11vw, 168px);
+  --fs-display-l:  clamp(40px, 7vw, 108px);
+  --lh-display-xl: 1.25;
+  --lh-display-l:  1.3;
+  --lh-display-m:  1.35;
+  --lh-title: 1.5;
+  --lh-body-l: 1.7;
+  --lh-body: 1.7;
+  --lh-label: 1.5;
+  --tracking-display-xl: 0;
+  --tracking-display-l: 0;
+  --tracking-display-m: 0;
+  --tracking-title: 0;
+  --fw-display: 700;
+  --fw-accent: 700;
+  --fw-title: 600;
+  --fw-label: 500;
+}
+
+/* ------------------------------------------------------------------
+   Device tiers — set once at boot on <html data-tier>. See §5.1.
+   Components key off these; tokens only handle the CSS-level effects.
+   ------------------------------------------------------------------ */
+html[data-tier="full"]  { --tier-motion: 1; --tier-cursor: 1; --tier-grain: 1; }
+html[data-tier="touch"] { --tier-motion: 1; --tier-cursor: 0; --tier-grain: 1; }
+html[data-tier="lite"] {
+  --tier-motion: 0; --tier-cursor: 0; --tier-grain: 0;
+  --grain-opacity: 0;
+  --dur-tap: 0ms; --dur-ui: 0ms; --dur-image: 0ms; --dur-reveal: 0ms;
+  --dur-reveal-min: 0ms; --dur-reveal-max: 0ms; --dur-settle: 0ms;
+  --dur-transition-out: 150ms; --dur-transition-in: 0ms;
+  --dur-stroke-min: 0ms; --dur-stroke-max: 0ms;
+  --stagger-lines: 0ms; --stagger-items: 0ms;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion: end states immediately; durations zeroed.
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-tap: 0ms; --dur-ui: 0ms; --dur-image: 0ms; --dur-reveal: 0ms;
+    --dur-reveal-min: 0ms; --dur-reveal-max: 0ms; --dur-settle: 0ms;
+    --dur-transition-out: 150ms; --dur-transition-in: 0ms;   /* cross-fade only */
+    --dur-stroke-min: 0ms; --dur-stroke-max: 0ms;
+    --stagger-lines: 0ms; --stagger-items: 0ms;
+    --sequence-max: 0ms;
+    --tier-motion: 0; --tier-cursor: 0;
+  }
+}

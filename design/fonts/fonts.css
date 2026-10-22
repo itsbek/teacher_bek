@@ -1,0 +1,164 @@
+/*
+ * Self-hosted fonts for the teacherbek.com revamp (phase 2a, P2a.3).
+ * Playfair (roman: opsz variable, wght pinned 500; italic: static opsz 72 / wght 400) and Inter (variable roman only; italic is never used).
+ * Both families are SIL Open Font License 1.1 — see OFL-Playfair.txt and OFL-Inter.txt.
+ * Subsets and regeneration commands: ./README.md
+ *
+ * Preload (put in <head>, only the primary display/serif file):
+ *   <link rel="preload" href="/fonts/playfair-latin-vi.woff2" as="font" type="font/woff2" crossorigin>
+ *
+ * Paths below are relative to this file. Copy the woff2 files next to it
+ * (or adjust the url() paths) when wiring into the Next.js public/ folder.
+ */
+
+/* ------------------------------------------------------------------
+ * Playfair — roman: opsz 5–1200 variable, wdth 100, wght PINNED 500. Italic: STATIC (opsz 72, wght 400, wdth 100).
+ * Cyrillic unicode-ranges contain ONLY Cyrillic code points, so VI/EN pages never fetch them.
+ * ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Playfair";
+  src: url("./playfair-latin-vi.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-017F, U+01A0-01B0, U+0300-036F, U+1E00-1EFF,
+    U+2000-206F, U+20AB, U+20AC, U+2190-2199, U+2713, U+2717;
+}
+
+@font-face {
+  font-family: "Playfair";
+  src: url("./playfair-cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "Playfair";
+  src: url("./playfair-italic-latin-vi.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-017F, U+01A0-01B0, U+0300-036F, U+1E00-1EFF,
+    U+2000-206F, U+20AB, U+20AC, U+2190-2199, U+2713, U+2717;
+}
+
+@font-face {
+  font-family: "Playfair";
+  src: url("./playfair-italic-cyrillic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/*
+ * [P2a.8 re-tune] Playfair is now wght 500; display sizes dominate, so the fallback is tuned to opsz ~400 / wght 500:
+ *   roman  avg advance 0.4050 em vs Georgia 0.4391 -> size-adjust 92.2%; asc 88.55%/0.922 = 96.04%, desc 31.45%/0.922 = 34.11%
+ *   italic (static opsz72) 0.3881 em vs Georgia Italic 0.4484 -> size-adjust 86.5%; asc 102.37%, desc 36.36%
+ * (the older numbers below were measured at wght 400 / opsz 16 and are superseded).
+ *
+ * Playfair Fallback — metric-matched to the webfont to minimise CLS.
+ * Reference: Georgia (macOS/Windows system serif), regular weight.
+ *
+ * Measured with fontTools (see README.md, "Metric computation"):
+ *   Playfair (wdth 100, wght 400, opsz 16, instanced):
+ *     english-weighted avg advance = 543.3 / 1240 upm = 0.4381 em
+ *     hhea ascender 1098, descender -390, lineGap 0  (upm 1240)
+ *       -> asc 88.548%, desc 31.452%, gap 0%
+ *   Georgia.ttf (macOS /System/Library/Fonts/Supplemental/Georgia.ttf):
+ *     english-weighted avg advance = 913.2 / 2048 upm = 0.4459 em
+ *     hhea ascender 1878, descender -449, lineGap 0  (upm 2048)
+ *
+ *   size-adjust     = 0.4381 / 0.4459            = 98.25%
+ *   ascent-override = 88.548% / 0.9825           = 90.12%
+ *   descent-override= 31.452% / 0.9825           = 32.01%
+ *   line-gap        = 0%
+ *
+ * Note: the English-weighted average is used instead of OS/2 xAvgCharWidth
+ * because the OS/2 table versions differ (Playfair/Inter are v4, Georgia/Arial are v3)
+ * and xAvgCharWidth is not comparable across versions.
+ * Times New Roman (if Georgia is absent) would be ~7.5% narrower (ratio 0.4052);
+ * this face is therefore tuned for Georgia only.
+ */
+@font-face {
+  font-family: "Playfair Fallback";
+  src: local("Georgia"), local("Times New Roman");
+  font-style: normal;
+  size-adjust: 92.2%;
+  ascent-override: 96.04%;
+  descent-override: 34.11%;
+  line-gap-override: 0%;
+}
+/* Display-XL variant: hero sentence / giant numerals run at opsz 1200 (avg advance 0.3948 em) -> 0.3948 / 0.4391 = 89.9% */
+@font-face {
+  font-family: "Playfair Fallback XL";
+  src: local("Georgia"), local("Times New Roman");
+  font-style: normal;
+  size-adjust: 89.9%;
+  ascent-override: 98.5%;
+  descent-override: 34.99%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Playfair Fallback";
+  src: local("Georgia Italic"), local("Georgia-Italic");
+  font-style: italic;
+  size-adjust: 86.5%;
+  ascent-override: 102.37%;
+  descent-override: 36.36%;
+  line-gap-override: 0%;
+}
+
+/* ------------------------------------------------------------------
+ * Inter — opsz pinned 14, wght 400–600 (limited)
+ * ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter-latin-vi.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-017F, U+01A0-01B0, U+0300-036F, U+1E00-1EFF,
+    U+2000-206F, U+20AB, U+20AC, U+2190-2199, U+2713, U+2717;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter-cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/*
+ * Inter Fallback — metric-matched to the webfont to minimise CLS.
+ * Reference: Arial (macOS/Windows), regular weight.
+ *
+ * Measured with fontTools (see README.md):
+ *   Inter (wght 400, opsz 14 = the pinned value, instanced):
+ *     english-weighted avg advance = 984.0 / 2048 upm = 0.4805 em
+ *     hhea ascender 1984, descender -494, lineGap 0  (upm 2048)
+ *   Arial.ttf (macOS /System/Library/Fonts/Supplemental/Arial.ttf):
+ *     english-weighted avg advance = 915.6 / 2048 upm = 0.4471 em
+ *     hhea ascender 1854, descender -434, lineGap 67 (upm 2048)
+ *
+ *   size-adjust     = 0.4805 / 0.4471            = 107.47%
+ *   ascent-override = 96.875% / 1.0747           = 90.14%
+ *   descent-override= 24.121% / 1.0747           = 22.44%
+ *   line-gap        = 0%  (Inter has no lineGap; Arial's 3.27% is dropped)
+ *
+ * Helvetica Neue (second local() source) has not been measured; it may be off by a few %.
+ */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Helvetica Neue");
+  size-adjust: 107.47%;
+  ascent-override: 90.14%;
+  descent-override: 22.44%;
+  line-gap-override: 0%;
+}

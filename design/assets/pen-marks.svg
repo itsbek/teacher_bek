@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute">
+<!-- TEMP — replace with owner handwriting (REVAMP_PLAN §3.2 "Handwriting", Q9).
+     Hand-drawn-looking strokes authored by the design agent so layouts can be judged.
+     All marks: stroke=currentColor, round caps, no fill. Colour comes from the host (--color-accent). -->
+<symbol id="pen-check" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27 C10 30 15 36 19 44 C25 29 34 15 45 5"/></g></symbol>
+<symbol id="pen-cross" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M7 8 C14 15 24 24 33 33"/><path d="M33 7 C25 15 16 26 7 34"/></g></symbol>
+<symbol id="pen-strike" viewBox="0 0 120 16" preserveAspectRatio="none"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"><path vector-effect="non-scaling-stroke" d="M2 9 C22 4 42 12 62 7 S100 10 118 5"/><path vector-effect="non-scaling-stroke" stroke-width="1.6" d="M6 11.5 C34 8 74 13 112 8.5"/></g></symbol>
+<symbol id="pen-circle" viewBox="0 0 200 80" preserveAspectRatio="none"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path vector-effect="non-scaling-stroke" d="M104 6 C152 2 197 16 195 42 C193 68 142 77 96 75 C48 73 5 62 7 37 C9 13 62 4 114 7 C134 9 152 14 166 22"/></g></symbol>
+<symbol id="pen-caret" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21 C6 15 9 9 12 3 C15 9 18 15 22 21"/></g></symbol>
+<symbol id="pen-arrow" viewBox="0 0 90 56"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 C28 4 62 12 74 44"/><path d="M62 38 L75 47 L82 32"/></g></symbol>
+<symbol id="pen-underline" viewBox="0 0 160 14" preserveAspectRatio="none"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path vector-effect="non-scaling-stroke" d="M3 9 C40 4 80 11 157 5"/></g></symbol>
+<symbol id="pen-good" viewBox="0 0 214 72"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 38 C10 42 14 48 18 57 C24 40 32 24 44 12"/><path d="M92 24 C84 14 68 14 63 30 C58 46 66 60 81 58 C90 56 92 49 91 40 L78 41"/><path d="M110 36 C99 35 95 48 101 56 C107 62 120 57 120 46 C120 37 113 32 107 37"/><path d="M138 36 C127 35 123 48 129 56 C135 62 148 57 148 46 C148 37 141 32 135 37"/><path d="M175 36 C164 34 157 46 161 56 C165 62 177 58 178 45 M179 16 C179 32 177 47 179 60"/><path d="M198 15 C197 30 197 41 198 49"/><path d="M198.5 60 L199 62"/></g></symbol>
+<symbol id="pen-tap" viewBox="0 0 96 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 54 C8 34 22 18 46 12"/><path d="M36 4 L48 12 L38 22"/></g></symbol>
+<symbol id="pen-sign" viewBox="0 0 150 76"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10 C9 28 9 46 11 62"/><path d="M11 12 C34 6 42 24 16 34 C46 32 50 58 13 62"/><path d="M60 42 C78 40 82 30 72 29 C58 28 52 48 63 56 C70 61 79 57 84 52"/><path d="M96 12 C95 32 95 48 96 62"/><path d="M118 30 C108 40 100 44 97 46"/><path d="M102 44 C110 50 114 56 118 62"/><path d="M12 70 C50 64 100 68 142 62"/></g></symbol>
+<symbol id="pen-plus" viewBox="0 0 28 28"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 4 C13.5 11 14.5 17 14 24"/><path d="M4 14 C11 13.5 17 14.5 24 14"/></g></symbol>
+<symbol id="pen-ring" viewBox="0 0 60 60"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M32 4 C48 3 57 16 56 31 C55 47 42 57 27 56 C12 55 3 43 4 28 C5 14 16 5 30 5 C37 5 43 7 47 11"/></g></symbol>
+
+<!-- UI icons: 1.5px stroke, same pen weight, square joins (no rounding of the UI itself) -->
+<symbol id="i-zalo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"><path d="M3 4h18v13H10l-5 4v-4H3z"/><path d="M8 9h7l-7 5h8"/></g></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"><path d="M6 3h4l1.5 5-2.5 1.5a11 11 0 0 0 5.5 5.5L16 12.5l5 1.5v4a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2z"/></g></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><path d="M10 10h4v4h-4z"/></g></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5L5 19"/></g></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h18M3 16h18"/></g></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8h8v8H8z"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></g></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></g></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"><path d="M3 12h17M14 6l6 6-6 6"/></g></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h18v18H3z"/><path d="M12 7v5l4 2"/></g></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 4H4v16h16v-5M13 4h7v7M20 4l-9 9"/></g></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8h12v12H8zM4 16V4h12"/></g></symbol>
+</svg>

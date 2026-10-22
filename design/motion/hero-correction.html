@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hero correction · motion prototype</title>
+<link rel="preload" href="../fonts/playfair-latin-vi.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="../tokens/base.css">
+<link rel="stylesheet" href="motion.css">
+<script src="tier.js"></script>
+<style>
+.hero { padding-block: var(--space-8) var(--space-16); --fs-s: clamp(52px, 14vw, 96px); }
+.sentence { display: grid; width: 100%; text-align: left; background: none; border: 0; padding: 0; margin-top: var(--space-4); cursor: pointer; font: inherit; color: inherit;
+  min-height: calc(var(--fs-s) * 4.65); -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.stage { grid-area: 1 / 1; align-self: start; font: var(--fw-display) var(--fs-s)/1.5 var(--font-display); font-variation-settings: var(--fvs-display-l);
+  letter-spacing: var(--tracking-display-l); text-wrap: balance; padding: .45em 0 1.1em; }
+.hint { margin-top: var(--space-2); }
+.note { min-height: 7.5rem; margin-top: var(--space-4); max-width: 46ch; color: var(--color-fg-soft); opacity: 0; }
+.note.on { opacity: 1; }
+h1 { font-size: var(--fs-display-m); line-height: var(--lh-display-m); letter-spacing: var(--tracking-display-m); font-variation-settings: var(--fvs-display-m); margin-top: var(--space-8); max-width: 18ch; }
+.sub { margin-top: var(--space-4); font-size: var(--fs-body-l); max-width: 44ch; }
+.cta { margin-top: var(--space-8); display: grid; }
+@media (min-width: 640px) { .cta { display: flex; } }
+@media (min-width: 1200px) { .sentence { min-height: calc(var(--fs-s) * 3.2); } }
+</style>
+</head>
+<body>
+<div class="ctl"></div>
+<main class="wrap hero">
+  <p class="label" data-i="eyebrow"></p>
+  <button class="sentence" id="sentence" type="button"><span class="stage" id="stage">I very like English.</span></button>
+  <p class="label hint" data-i="hint"></p>
+  <p class="note" id="note"></p>
+  <h1 data-i="h1"></h1>
+  <p class="sub" data-i="sub"></p>
+  <div class="cta"><a class="btn" href="#" data-i="cta"></a></div>
+  <div class="sr" role="status" aria-live="polite" id="live"></div>
+</main>
+<script type="module" src="hero-correction.js"></script>
+</body>
+</html>

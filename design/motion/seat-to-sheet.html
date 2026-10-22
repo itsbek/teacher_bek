@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ten Seats to sheet · motion prototype</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="../tokens/base.css">
+<link rel="stylesheet" href="motion.css">
+<script src="tier.js"></script>
+<style>
+main { padding-block: var(--space-8) var(--space-16); }
+.intro { min-height: 62dvh; }
+h2 { font-size: var(--fs-display-l); line-height: var(--lh-display-l); letter-spacing: var(--tracking-display-l); font-variation-settings: var(--fvs-display-l); margin: var(--space-3) 0 var(--space-6); }
+.lead { font-size: var(--fs-body-l); max-width: 40ch; }
+.scroll { margin-top: var(--space-12); }
+.grp { margin-top: var(--space-8); font: 500 22px/1.25 var(--font-display); font-variation-settings: var(--fvs-title); }
+.cnt { margin: var(--space-1) 0 var(--space-4); display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: baseline; }
+.cnt b { font-size: 19px; font-variant-numeric: tabular-nums; }
+.room { position: relative; aspect-ratio: 340 / 320; width: 100%; max-width: 560px; border: 0; }
+.room svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.room.pre svg { visibility: hidden; }
+.ln { fill: none; stroke: var(--color-fg); stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
+.ln.soft { stroke: var(--color-rule-strong); stroke-width: 1.5; }
+.seatg { transform-box: fill-box; transform-origin: center; }
+.seatg .fill { fill: var(--color-fg); fill-opacity: 0; }
+.seatg[data-s="taken"] .fill { fill-opacity: 1; }
+.seatg .no { font: 600 15px var(--font-text); font-variant-numeric: tabular-nums; fill: var(--color-fg); text-anchor: middle; }
+.seatg[data-s="taken"] .no { fill: var(--color-bg); }
+.seat { position: absolute; width: 48px; height: 48px; margin: -24px 0 0 -24px; padding: 0; background: transparent; border: 0; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.seat[aria-disabled="true"] { cursor: not-allowed; }
+.seat:focus-visible { outline-offset: 0; }
+.seat[aria-expanded="true"] + * { }
+.note { margin-top: var(--space-6); color: var(--color-fg-soft); max-width: 44ch; }
+.after { min-height: 60dvh; }
+/* bottom sheet */
+.scrim { position: fixed; inset: 0; z-index: var(--z-sheet); background: var(--ink); opacity: 0; visibility: hidden; transition: opacity 450ms var(--ease-out), visibility 0s 450ms; }
+.scrim.on { opacity: .45; visibility: visible; transition-delay: 0s; }
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: calc(var(--z-sheet) + 1); width: min(100%, 560px); margin-inline: auto; max-height: 90dvh; overflow-y: auto; overscroll-behavior: contain;
+  background: var(--color-bg); border-top: var(--border-strong) solid var(--color-fg); padding: 0 var(--page-margin) calc(var(--space-6) + var(--safe-bottom));
+  transform: translateY(100%); visibility: hidden; transition: transform 450ms var(--ease-out), visibility 0s 450ms; will-change: transform; }
+.sheet.on { transform: none; visibility: visible; transition-delay: 0s; }
+.sheet:focus, .sheet h3:focus { outline: none; }
+.head { touch-action: none; cursor: grab; padding-top: var(--space-2); }
+.bar { display: block; width: 44px; height: 4px; background: var(--color-fg); opacity: .35; margin: var(--space-2) auto var(--space-2); }
+.head__row { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); }
+.sheet h3 { font-size: var(--fs-display-m); line-height: var(--lh-display-m); letter-spacing: var(--tracking-display-m); font-variation-settings: var(--fvs-display-m); }
+.x { width: 48px; height: 48px; margin: -6px -10px 0 0; background: none; border: 0; font-size: 28px; line-height: 1; cursor: pointer; }
+.pre-fill { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: var(--space-4) 0; padding: var(--space-4) 0; border-block: 1px solid var(--color-rule); }
+.pre-fill dt { color: var(--color-fg-soft); font-size: var(--fs-label); } .pre-fill dd { font-weight: 600; }
+.sheet label { display: block; font-weight: 600; margin-bottom: var(--space-2); }
+.sheet input { width: 100%; height: var(--input-h); padding: 0 var(--space-4); font-size: var(--input-fs); background: transparent; border: 0; border-bottom: 2px solid var(--color-fg); border-radius: 0; }
+.sheet .btn { width: 100%; margin-top: var(--space-6); }
+.msg { min-height: 1.6em; margin-top: var(--space-3); color: var(--color-fg-soft); }
+</style>
+</head>
+<body>
+<div id="page">
+<div class="ctl"></div>
+<main class="wrap">
+  <section class="intro">
+    <p class="label" data-i="eyebrow"></p>
+    <h2 data-i="h2"></h2>
+    <p class="lead" data-i="sub"></p>
+    <p class="label scroll" data-i="scroll"></p>
+  </section>
+  <section id="room-sec">
+    <p class="grp" id="grp"></p>
+    <p class="cnt"><b id="cnt"></b><span class="label" id="upd"></span></p>
+    <div class="room pre" id="room"></div>
+    <p class="note" data-i="note"></p>
+  </section>
+  <div class="after"></div>
+</main>
+</div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="st" tabindex="-1">
+  <div class="head" id="head"><span class="bar" aria-hidden="true"></span>
+    <div class="head__row"><div><p class="label" id="step"></p><h3 id="st" tabindex="-1"></h3></div><button class="x" id="close" type="button" aria-label="Close">×</button></div></div>
+  <dl class="pre-fill"><div><dt id="lg"></dt><dd id="vg"></dd></div><div><dt id="ls"></dt><dd id="vs"></dd></div></dl>
+  <label for="tel" id="ltel"></label>
+  <input id="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="0xxx xxx xxx">
+  <button class="btn" id="next" type="button"></button>
+  <p class="msg" id="msg" role="status"></p>
+</div>
+<script type="module" src="seat-to-sheet.js"></script>
+</body>
+</html>

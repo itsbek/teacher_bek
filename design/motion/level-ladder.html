@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Level Ladder · motion prototype</title>
+<link rel="preload" href="../fonts/playfair-latin-vi.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="../tokens/base.css">
+<link rel="stylesheet" href="motion.css">
+<script src="tier.js"></script>
+<style>
+main { padding-block: var(--space-6) var(--space-16); }
+h2 { font-size: clamp(28px, 4vw, 48px); line-height: 1.15; letter-spacing: var(--tracking-display-m); margin-bottom: var(--space-4); }
+h3 { font-variant-numeric: lining-nums; }
+.card { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-4) var(--space-4) var(--space-4); background: var(--color-bg-2); border-top: var(--border-strong) solid var(--color-fg); min-height: 700px; }
+.top { display: flex; flex-direction: column; gap: var(--space-3); }
+.chip { align-self: flex-start; padding: 6px 12px; border: 1px solid var(--color-fg); font-weight: 600; font-size: var(--fs-label); }
+.name { font-size: var(--fs-display-m); line-height: var(--lh-display-m); letter-spacing: var(--tracking-display-m); font-variation-settings: var(--fvs-display-m); }
+.sample .label { margin-bottom: var(--space-2); }
+.sample .pen { font: var(--fw-display) 30px/1.55 var(--font-display); font-variation-settings: var(--fvs-display-m); padding-top: .4em; }
+.after { margin-top: var(--space-1); color: var(--color-fg-soft); opacity: 0; font-size: 16px; }
+.facts { display: grid; gap: var(--space-4) var(--space-4); grid-template-columns: 1fr 1fr; }
+.facts dt { color: var(--color-fg-soft); font-size: var(--fs-label); }
+.facts dd { font-size: 16px; line-height: 1.35; font-variant-numeric: tabular-nums; }
+.cta { align-self: flex-start; min-height: var(--tap-min); display: inline-flex; align-items: center; font-weight: 600; color: var(--color-accent); }
+/* layout differs per programme: Flip morphs between these */
+[data-p="1"] .top { flex-direction: row-reverse; justify-content: space-between; align-items: flex-end; }
+[data-p="1"] .name { max-width: 9ch; }
+[data-p="1"] .facts { grid-template-columns: 1fr; gap: var(--space-2); }
+[data-p="1"] .facts div { display: flex; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--color-rule); padding-bottom: var(--space-2); }
+[data-p="1"] .facts dd { text-align: right; }
+[data-p="2"] .sample { order: -1; }
+[data-p="2"] .name { font-size: calc(var(--fs-display-m) * 1.15); }
+[data-p="3"] .top { flex-direction: column-reverse; }
+[data-p="3"] .facts { grid-template-columns: 1fr 1fr; }
+.spacer { flex: 1; }
+/* thumb-zone slider */
+.slider { margin-inline: calc(var(--space-4) * -1); padding: var(--space-4) var(--space-4) calc(var(--space-2) + var(--safe-bottom)); border-top: 1px solid var(--color-rule); }
+.track { position: relative; height: 56px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; padding-inline: 22px; }
+.track::before { content: ""; position: absolute; left: 22px; right: 22px; top: 27px; height: 2px; background: var(--color-fg); }
+.tick { position: absolute; top: 20px; width: 2px; height: 16px; background: var(--color-fg); margin-left: -1px; }
+.thumb { position: absolute; left: 0; top: 6px; width: 44px; height: 44px; background: var(--color-accent); color: var(--color-on-accent); display: grid; place-items: center; font-size: 20px; line-height: 1; will-change: transform; transition: transform var(--dur-ui) var(--ease-out); }
+.track.drag .thumb { transition: none; } .track.drag { cursor: grabbing; }
+.stops { display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; padding: 0; margin: 0 0 0 0; }
+.stops button { width: 100%; min-height: var(--tap-min); background: none; border: 0; cursor: pointer; font-weight: 600; font-size: 14px; padding: 4px 0; color: var(--color-fg-soft); }
+.stops button[aria-current="true"] { color: var(--color-fg); }
+.stops button { grid-row: 2; }
+.adult { grid-row: 1; grid-column: 3 / 5; text-align: center; font-size: var(--fs-label); color: var(--color-fg-soft); border-bottom: 1px solid var(--color-rule); margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div class="ctl"></div>
+<main class="wrap">
+  <h2 id="q"></h2>
+  <section class="card" id="card" data-p="0" aria-live="polite" aria-atomic="false">
+    <div class="top" data-flip="top"><span class="chip" id="chip" data-flip="chip"></span><h3 class="name" id="name" data-flip="name"></h3></div>
+    <div class="sample" data-flip="sample"><p class="label" id="lsample"></p><p id="sample" class="pen"></p><p class="after" id="after"></p></div>
+    <dl class="facts" data-flip="facts" id="facts"></dl>
+    <a class="cta" href="#" id="cta" data-flip="cta"></a>
+    <div class="spacer"></div>
+    <div class="slider">
+      <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span class="thumb" id="thumb" aria-hidden="true">↔</span></div>
+      <div class="stops" id="stops"><span class="adult" id="adult" aria-hidden="true"></span></div>
+    </div>
+  </section>
+</main>
+<script type="module" src="level-ladder.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Motion prototypes · The Red Pen</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="../tokens/base.css">
+<link rel="stylesheet" href="motion.css">
+<script src="tier.js"></script>
+<style>
+main { padding-block: var(--space-12) var(--space-24); }
+h1 { font-size: var(--fs-display-m); line-height: var(--lh-display-m); letter-spacing: var(--tracking-display-m); font-variation-settings: var(--fvs-display-m); max-width: 14ch; }
+.lead { margin-top: var(--space-4); max-width: 46ch; color: var(--color-fg-soft); }
+ol { list-style: none; padding: 0; margin-top: var(--space-12); border-top: 1px solid var(--color-rule-strong); }
+li { border-bottom: 1px solid var(--color-rule-strong); }
+li a { display: grid; gap: var(--space-1); min-height: 88px; padding: var(--space-4) 0; color: inherit; text-decoration: none; }
+li strong { font: 500 var(--fs-title)/1.2 var(--font-display); font-variation-settings: var(--fvs-title); }
+li span { color: var(--color-fg-soft); } li a:hover strong, li a:focus-visible strong { color: var(--color-accent); }
+.vars { margin-top: var(--space-8); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.vars a { min-height: 44px; display: inline-flex; align-items: center; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="label">Phase 2a · P2a.5</p>
+  <h1>Motion prototypes</h1>
+  <p class="lead">Four signature interactions from REVAMP_PLAN §3.7. Open on a phone (390 px) first. Every page has Replay, a tier switch (full / touch / lite), a reduced-motion simulation and VI / EN.</p>
+  <ol>
+    <li><a href="hero-correction.html"><strong>1 · The Correction</strong><span>Hero: the red pen strikes the wrong word, the right one writes in. Tap for the next mistake.</span></a></li>
+    <li><a href="level-ladder.html"><strong>2 · The Level Ladder</strong><span>Age slider morphs one card between four programmes (GSAP Flip).</span></a></li>
+    <li><a href="seat-to-sheet.html"><strong>3 · Ten Seats to sheet</strong><span>The room draws on scroll, tap a free seat, a bottom sheet slides up.</span></a></li>
+    <li><a href="answer-key-unfold.html"><strong>4 · The Answer Key</strong><span>A folded sheet unfolds into the price sheet; the pen circles the plan.</span></a></li>
+  </ol>
+  <p class="label vars">Query switches: <code>?tier=full|touch|lite</code> <code>?rm=1</code> <code>?lang=vi|en</code></p>
+  <p class="label vars" id="tier"></p>
+</main>
+<script>document.getElementById('tier').textContent = 'This device: tier = ' + TB.tier + (TB.rm ? ' (reduced motion)' : '');</script>
+</body>
+</html>

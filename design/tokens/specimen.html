@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Design tokens — specimen</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Specimen-only layout. Everything visual comes from tokens. */
+  .bar { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-bg); border-bottom: var(--border-hair) solid var(--color-rule); }
+  .bar .container { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: var(--sticky-bar-h); }
+  .bar nav { display: none; gap: var(--space-6); }
+  @media (min-width: 900px) { .bar nav { display: flex; } }
+  .bar nav a { font-size: 15px; }
+  .tools { display: flex; gap: var(--space-2); }
+  .tools .btn { min-height: var(--tap-min); padding: 0 var(--space-4); font-size: 14px; }
+  .hero { padding-block: var(--section-pad) var(--section-pad-quiet); }
+  .hero .t-label { margin-bottom: var(--space-8); }
+  .hero h1 { margin-left: calc(var(--margin-line-x) + var(--space-4)); }
+  @media (min-width: 768px) { .hero h1 { margin-left: 0; } }
+  .hero p { margin-top: var(--space-12); }
+  .sec-head { display: grid; gap: var(--space-2); margin-bottom: var(--space-12); }
+  .sec-head .no { color: var(--color-accent); font-variant-numeric: tabular-nums; }
+  .pad-l { padding-left: calc(var(--margin-line-x) + var(--space-4)); }
+  @media (min-width: 768px) { .pad-l { padding-left: 0; } }
+
+  .swatches { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: var(--border-hair) solid var(--color-rule); }
+  @media (min-width: 768px) { .swatches { grid-template-columns: repeat(4, 1fr); } }
+  .sw { min-height: 148px; padding: var(--space-4); display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; border: var(--border-hair) solid var(--color-rule); margin: -1px 0 0 -1px; font-size: 16px; }
+  .sw b { font-weight: 600; font-size: 16px; }
+  .sw code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; letter-spacing: 0; }
+  .sw small { font-size: 14px; opacity: .85; }
+  .pairs { display: grid; gap: var(--space-4); margin-top: var(--space-8); }
+  @media (min-width: 768px) { .pairs { grid-template-columns: repeat(3, 1fr); } }
+  .pair { padding: var(--space-6); min-height: 120px; border: var(--border-hair) solid var(--color-rule); }
+
+  .ts { display: grid; gap: var(--space-2); padding-block: var(--space-6); border-top: var(--border-hair) solid var(--color-rule); }
+  .ts .meta { font-size: 14px; color: var(--color-fg-soft); font-variant-numeric: tabular-nums; }
+  .ts .meta code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; }
+  @media (min-width: 900px) { .ts { grid-template-columns: 220px 1fr; column-gap: var(--gutter); } }
+  .ts .sample { min-width: 0; }
+  .ts .sample > * { max-width: none; }
+  .clip-test { overflow: visible; }
+
+  .lang-grid { display: grid; gap: var(--space-8); }
+  @media (min-width: 900px) { .lang-grid { grid-template-columns: 1fr 1fr; gap: var(--space-12) var(--gutter); } }
+  .lang-card { border-top: var(--border-strong) solid var(--color-fg); padding-top: var(--space-4); min-width: 0; }
+  .lang-card > .t-label { margin-bottom: var(--space-4); color: var(--color-fg-soft); }
+
+  .sp { display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: var(--space-4); padding-block: var(--space-2); font-size: 15px; font-variant-numeric: tabular-nums; }
+  .sp i { display: block; height: 20px; background: var(--color-accent); }
+  .sp span { color: var(--color-fg-soft); }
+
+  .gridbox { position: relative; }
+  .gridbox .cell { background: var(--color-bg-2); border: var(--border-hair) solid var(--color-rule); padding: var(--space-4); min-height: 96px; font-size: 14px; font-variant-numeric: tabular-nums; }
+
+  .states { display: grid; gap: var(--space-8); }
+  @media (min-width: 900px) { .states { grid-template-columns: 1fr 1fr; gap: var(--space-12); } }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+  .row .btn { flex: 0 1 auto; }
+  .force-hover { background-color: var(--color-accent) !important; border-color: var(--color-accent) !important; color: var(--color-on-accent) !important; }
+  .force-focus { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+
+  .motion { display: grid; gap: var(--space-4); }
+  .track { position: relative; height: 56px; border-bottom: var(--border-hair) solid var(--color-rule); display: grid; grid-template-columns: minmax(170px, 230px) 1fr; align-items: center; gap: var(--space-4); }
+  .track .lane { position: relative; height: 100%; }
+  @media (max-width: 599px) { .track { grid-template-columns: 1fr; height: auto; padding-block: var(--space-2); } .track .lane { height: 48px; } }
+  .track .box { position: absolute; top: 12px; left: 0; width: 32px; height: 32px; background: var(--color-accent); transition: transform var(--dur, 800ms) var(--e, var(--ease-out)); }
+  .track .box.go { transform: translateX(calc(var(--lane-w, 240px) - 32px)); }
+  .track .tag { font-size: 14px; font-variant-numeric: tabular-nums; }
+  .pen { width: 100%; height: 72px; overflow: visible; }
+  .pen path { vector-effect: non-scaling-stroke; }
+  .pen path { stroke: var(--color-accent); stroke-width: var(--border-pen); fill: none; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .pen.go path { stroke-dashoffset: 0; transition: stroke-dashoffset var(--dur-stroke-max) var(--ease-pen); }
+  .reduced-note { font-size: 15px; color: var(--color-fg-soft); }
+
+  footer.chapter { padding-block: var(--section-pad-quiet); }
+</style>
+</head>
+<body class="grain">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="container">
+    <strong class="t-label" style="--label-transform:uppercase;--tracking-label:.04em">Teacher Bek · tokens v0.1</strong>
+    <nav aria-label="Specimen sections">
+      <a href="#colour">Colour</a><a href="#type">Type</a><a href="#lang">Languages</a><a href="#space">Space</a><a href="#grid">Grid</a><a href="#controls">Controls</a><a href="#motion">Motion</a>
+    </nav>
+    <div class="tools">
+      <button class="btn btn--ghost" id="theme" type="button" aria-pressed="false">Dark</button>
+      <button class="btn btn--ghost" id="gridtoggle" type="button" aria-pressed="false">Grid</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="chapter chapter--paper hero grain">
+  <div class="container margin-line">
+    <p class="t-label t-soft pad-l">Design system · The Red Pen</p>
+    <h1 class="t-display-xl pad-l">Every mistake is <span class="accent-word">welcome.</span></h1>
+    <p class="t-body-l t-soft pad-l">Paper, ink and one red pen. Playfair for the voice, Inter for the work, a single hairline margin for the exercise-book feel. No radii, no shadows, no gradients that aren’t paper.</p>
+  </div>
+</section>
+
+<section class="chapter chapter--paper-2 chapter--quiet" id="colour">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">01</span><h2 class="t-display-m">Colour <span class="accent-word">tokens</span></h2></div>
+    <div class="swatches" id="swatches" role="list"></div>
+    <div class="pairs">
+      <div class="pair" style="background:var(--color-bg);color:var(--color-fg)"><b>Ink on Paper</b><br><span style="color:var(--color-fg-soft)">Soft ink on Paper — secondary text.</span><br><span style="color:var(--color-accent);font-weight:600">Red pen: corrections only.</span></div>
+      <div class="pair" style="background:var(--color-bg-2);color:var(--color-fg)"><b>Ink on Paper-2</b><br><span style="color:var(--color-fg-soft)">Soft ink on Paper-2.</span><br><span>A <span class="t-highlight">highlighted word</span>, one per screen.</span></div>
+      <div class="pair chapter chapter--chalk" style="padding-block:var(--space-6)"><b>Chalk on Blackboard-green</b><br><span style="color:var(--color-fg-soft)">Method chapter.</span><br><span style="color:var(--color-accent);font-weight:600">Chalk-pen red.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter chapter--paper chapter--quiet" id="type">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">02</span><h2 class="t-display-m">Type <span class="accent-word">scale</span></h2></div>
+    <div class="ts"><div class="meta"><b>display-xl</b><br>clamp(64, 14vw, 220)<br>Playfair 500 · opsz 1200 · wdth pinned 100<br>−0.03em · lh 0.9</div><div class="sample clip-test"><div class="t-display-xl">Hold a <span class="accent-word">seat</span></div></div></div>
+    <div class="ts"><div class="meta"><b>display-l</b><br>clamp(44, 8vw, 128)<br>Playfair 500 · opsz auto<br>−0.02em · lh 0.95</div><div class="sample"><div class="t-display-l">Small groups, <span class="accent-word">real</span> progress</div></div></div>
+    <div class="ts"><div class="meta"><b>display-m</b><br>clamp(32, 5vw, 72)<br>Playfair 500 / italic 400 accent</div><div class="sample"><div class="t-display-m">A room of ten, and a <span class="accent-word">red pen</span></div></div></div>
+    <div class="ts"><div class="meta"><b>title</b><br>clamp(22, 2.4vw, 32)<br>Inter 600 · −0.01em</div><div class="sample"><div class="t-title">Thursday 19:30 — Intermediate group</div></div></div>
+    <div class="ts"><div class="meta"><b>body-l</b><br>clamp(18, 1.4vw, 22)<br>Inter 400 · lh 1.55</div><div class="sample"><p class="t-body-l">Lead paragraph. Your child will say a full sentence by the end of the first month, and you will hear it at home.</p></div></div>
+    <div class="ts"><div class="meta"><b>body</b><br>17px / 18px ≥768<br>Inter 400 · lh 1.6</div><div class="sample"><p class="t-body">Body copy is never below 16 px. “Proper quotes”, en dashes 19:30–20:30, and hanging punctuation where the browser supports it. Seat 7 of 10 · 1,200,000 ₫ · 4 × 60 min.</p></div></div>
+    <div class="ts"><div class="meta"><b>label</b><br>13px / 14px ≥768<br>Inter 600 · EN caps +0.04em<br>VI / RU / ZH sentence case</div><div class="sample"><span class="t-label">Next group starts Monday</span></div></div>
+    <div class="ts"><div class="meta"><b>num</b><br>tabular-nums, lining</div><div class="sample"><div class="t-title t-num" style="line-height:1.5">1,200,000 ₫<br>19:30 – 20:30<br>10 / 10 seats</div></div></div>
+  </div>
+</section>
+
+<section class="chapter chapter--paper-2 chapter--quiet" id="lang">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">03</span><h2 class="t-display-m">Four <span class="accent-word">languages</span></h2></div>
+    <div class="lang-grid">
+      <article class="lang-card" lang="en">
+        <p class="t-label">English</p>
+        <div class="t-display-l">Small-group English in <span class="accent-word">Phú Nhuận</span></div>
+        <p class="t-body" style="margin-top:var(--space-4)">Classes of up to ten. Corrected in red, explained in plain words. Pack: ặ ẫ ỗ ữ ự ợ đ.</p>
+      </article>
+      <article class="lang-card" lang="vi">
+        <p class="t-label">Tiếng Việt</p>
+        <div class="t-display-l">Lớp tiếng Anh nhóm nhỏ ở <span class="accent-word">Phú Nhuận</span></div>
+        <p class="t-display-m" style="margin-top:var(--space-4)">Tiếng Việt: ặ ẫ ỗ ữ ự ợ đ</p>
+        <p class="t-body" style="margin-top:var(--space-4)">Mỗi lớp tối đa mười bạn. Lỗi được sửa bằng bút đỏ, giải thích bằng lời dễ hiểu. Ghế còn lại: 3/10.</p>
+      </article>
+      <article class="lang-card" lang="ru">
+        <p class="t-label">Русский</p>
+        <div class="t-display-l">Английский для <span class="accent-word">детей</span></div>
+        <p class="t-display-m" style="margin-top:var(--space-4)">Русский: Щёлкнуть — Английский для детей</p>
+        <p class="t-body" style="margin-top:var(--space-4)">Небольшие группы до десяти человек. Ошибки исправляются красной ручкой. Свободных мест: 3 из 10.</p>
+      </article>
+      <article class="lang-card" lang="zh">
+        <p class="t-label">中文</p>
+        <div class="t-display-l">胡志明市英语<span class="accent-word">小班课</span></div>
+        <p class="t-body" style="margin-top:var(--space-4)">每班最多十人。错误用红笔订正，用简单的话解释。剩余名额：3／10。系统字体，字距为零，行高 1.7。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="chapter chapter--paper chapter--quiet" id="space">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">04</span><h2 class="t-display-m">Spacing <span class="accent-word">scale</span></h2></div>
+    <div id="spacing"></div>
+    <p class="t-soft" style="margin-top:var(--space-6)">Section padding <code>clamp(80px, 12vw, 192px)</code> — now <b id="secpad" class="t-num"></b></p>
+  </div>
+</section>
+
+<section class="chapter chapter--paper-2 chapter--quiet" id="grid">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">05</span><h2 class="t-display-m">Grid &amp; <span class="accent-word">margin</span> line</h2></div>
+    <p class="t-soft pad-l" style="margin-bottom:var(--space-6)">4 columns / 16 px gutters on mobile, 12 / 24 px from 768 px. Outer margin <code>clamp(20px, 5vw, 80px)</code>, max width 1440. Use the Grid button in the header for the overlay.</p>
+    <div class="gridbox grid-12" id="gridsamples" style="row-gap:var(--gutter)">
+      <div class="cell col-span-4 md:col-span-4">span 4</div>
+      <div class="cell col-span-4 md:col-span-8">span 8 (4 on mobile)</div>
+      <div class="cell col-span-2 md:col-span-3">span 3</div>
+      <div class="cell col-span-2 md:col-span-3">span 3</div>
+      <div class="cell col-span-4 md:col-span-6">span 6</div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter chapter--paper chapter--quiet" id="controls">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">06</span><h2 class="t-display-m">Buttons, inputs, <span class="accent-word">links</span></h2></div>
+    <div class="states">
+      <div>
+        <p class="t-label t-soft" style="margin-bottom:var(--space-4)">Buttons · rest / hover / focus / disabled</p>
+        <div class="row">
+          <button class="btn btn--primary" type="button">Hold a seat <span class="btn__arrow" aria-hidden="true">→</span></button>
+          <button class="btn" type="button">Ink button</button>
+          <button class="btn btn--ghost" type="button">Ghost</button>
+        </div>
+        <div class="row" style="margin-top:var(--space-4)">
+          <button class="btn btn--primary force-hover" type="button">Forced hover</button>
+          <button class="btn btn--primary force-focus" type="button">Forced focus</button>
+          <button class="btn" type="button" disabled>Disabled</button>
+        </div>
+        <div class="row" style="margin-top:var(--space-4)"><button class="btn btn--primary btn--block" type="button">Full width — 56 px on mobile</button></div>
+      </div>
+      <div>
+        <p class="t-label t-soft" style="margin-bottom:var(--space-4)">Inputs · 17 px, ≥ 48 px</p>
+        <div class="field"><label class="field__label" for="n">Parent’s name</label><input id="n" type="text" placeholder="Nguyễn Thị Hương" autocomplete="off"></div>
+        <div class="field" style="margin-top:var(--space-6)"><label class="field__label" for="p">Zalo / phone</label><input id="p" type="tel" aria-invalid="true" value="0353 88"><span class="field__error">Please add the last digits.</span></div>
+        <p style="margin-top:var(--space-8)">Links: <a href="#controls">a quiet inline link</a> draws a red underline on hover; <a href="#controls" class="" style="background-size:100% 1.5px">forced hover state</a>.</p>
+        <p style="margin-top:var(--space-4)"><span class="t-highlight">Highlighter</span> selection — try selecting this sentence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter chapter--chalk chapter--quiet" id="motion">
+  <div class="container margin-line">
+    <div class="sec-head pad-l"><span class="t-label no">07</span><h2 class="t-display-m">Motion <span class="accent-word">tokens</span></h2></div>
+    <p class="pad-l" style="margin-bottom:var(--space-8)"><button class="btn btn--primary" id="play" type="button">Play all</button> <span class="reduced-note" id="rm" style="margin-left:var(--space-3)"></span></p>
+    <div class="motion" id="motion-tracks"></div>
+    <p class="t-label" style="margin-top:var(--space-12);margin-bottom:var(--space-2)">--ease-pen · stroke 1100 ms</p>
+    <svg class="pen" id="pen" viewBox="0 0 600 56" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 40 C 80 6, 140 6, 200 34 S 330 50, 400 18 S 520 10, 596 30"/></svg>
+  </div>
+</section>
+</main>
+
+<footer class="chapter chapter--paper">
+  <div class="container margin-line"><p class="t-soft pad-l">z-index, focus ring, safe-area, tap-min and sticky-bar tokens live in tokens.css. Tier: <b id="tier" class="t-num">—</b></p></div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var cs = function () { return getComputedStyle(root); };
+  var q = function (s, r) { return (r || document).querySelector(s); };
+
+  // Tier hook demo
+  var tier = (matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.hardwareConcurrency || 8) <= 4) ? 'lite'
+    : (matchMedia('(pointer: fine)').matches && (navigator.hardwareConcurrency || 8) >= 6) ? 'full' : 'touch';
+  root.setAttribute('data-tier', tier);
+  q('#tier').textContent = tier;
+
+  // Swatches
+  var names = [['paper','Paper'],['paper-2','Paper-2'],['ink','Ink'],['ink-soft','Ink-soft'],['red-pen','Red pen'],['highlight','Highlight'],['chalk-green','Chalk-green'],['rule','Rule']];
+  var sw = q('#swatches');
+  var fgFor = { 'paper':'ink','paper-2':'ink','ink':'paper','ink-soft':'paper','red-pen':'on-red-pen','highlight':'ink','chalk-green':'chalk','rule':'ink' };
+  function renderSwatches() {
+    var c = cs(); sw.innerHTML = '';
+    names.forEach(function (n) {
+      var v = c.getPropertyValue('--' + n[0]).trim().toUpperCase();
+      var d = document.createElement('div'); d.className = 'sw'; d.setAttribute('role', 'listitem');
+      d.style.background = 'var(--' + n[0] + ')';
+      d.style.color = n[0] === 'highlight' ? 'var(--color-on-highlight)' : 'var(--' + fgFor[n[0]] + ')';
+      if (n[0] === 'rule') { d.style.background = 'var(--color-bg)'; d.style.color = 'var(--color-fg)'; d.innerHTML = '<div style="height:2px;background:var(--rule);margin-bottom:auto;margin-top:20px"></div>'; }
+      if (n[0] === 'ink' || n[0] === 'ink-soft') d.style.color = 'var(--paper)';
+      d.innerHTML += '<b>--' + n[0] + '</b><code>' + v + '</code><small>' + n[1] + '</small>';
+      sw.appendChild(d);
+    });
+  }
+  // Spacing
+  var sp = [4,8,12,16,24,32,48,64,96,128,192], sd = q('#spacing');
+  sp.forEach(function (v) {
+    var r = document.createElement('div'); r.className = 'sp';
+    r.innerHTML = '<span>--space-' + (v/4) + '</span><div style="display:flex;align-items:center;gap:12px"><i style="width:' + v + 'px"></i><span>' + v + ' px</span></div>';
+    sd.appendChild(r);
+  });
+  function secpad() { q('#secpad').textContent = Math.round(parseFloat(getComputedStyle(q('#space')).paddingTop)) + ' px'; }
+  addEventListener('resize', secpad); secpad();
+
+  // Grid overlay
+  var overlay;
+  function buildOverlay() {
+    overlay = document.createElement('div'); overlay.className = 'grid-overlay'; overlay.style.position = 'fixed';
+    var c = document.createElement('div'); c.className = 'container'; var g = document.createElement('div'); g.className = 'grid-12';
+    for (var i = 0; i < 12; i++) { var b = document.createElement('i'); if (i >= 4) b.className = 'md-only'; g.appendChild(b); }
+    c.appendChild(g); overlay.appendChild(c); document.body.appendChild(overlay);
+    var st = document.createElement('style'); st.textContent = '@media(max-width:767px){.grid-overlay .md-only{display:none!important}}'; document.head.appendChild(st);
+  }
+  q('#gridtoggle').addEventListener('click', function () {
+    if (!overlay) buildOverlay();
+    var on = document.body.classList.toggle('show-grid');
+    this.setAttribute('aria-pressed', on);
+  });
+
+  // Theme
+  var tb = q('#theme');
+  function setTheme(t) { root.setAttribute('data-theme', t); tb.textContent = t === 'dark' ? 'Light' : 'Dark'; tb.setAttribute('aria-pressed', t === 'dark'); renderSwatches(); }
+  var q0 = new URLSearchParams(location.search).get('theme');
+  tb.addEventListener('click', function () { setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+  if (q0) setTheme(q0); else renderSwatches();
+
+  // Motion demo
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  q('#rm').textContent = rm ? 'Reduced motion is on: durations are 0, end states shown instantly.' : 'Click a row to play it alone.';
+  var tracks = [
+    ['--ease-out','var(--ease-out)','var(--dur-reveal)','800 ms · reveals'],
+    ['--ease-in-out','var(--ease-in-out)','var(--dur-reveal)','800 ms · transitions'],
+    ['--ease-pen','var(--ease-pen)','var(--dur-stroke-max)','1100 ms · pen draws'],
+    ['--dur-ui','var(--ease-out)','var(--dur-ui)','240 ms · hover, menus'],
+    ['--dur-tap','var(--ease-out)','var(--dur-tap)','120 ms · press']
+  ];
+  var mt = q('#motion-tracks'), boxes = [];
+  tracks.forEach(function (t) {
+    var r = document.createElement('button'); r.type = 'button'; r.className = 'track'; r.style.cssText = 'background:none;border:0;border-bottom:1px solid var(--color-rule);text-align:left;color:inherit;cursor:pointer;min-height:56px';
+    r.innerHTML = '<span class="tag"><b>' + t[0] + '</b><br>' + t[3] + '</span><span class="lane"><span class="box" style="--e:' + t[1] + ';--dur:' + t[2] + '"></span></span>';
+    var box = r.querySelector('.box'); boxes.push(box);
+    r.addEventListener('click', function () { play(box); });
+    mt.appendChild(r);
+  });
+  function lane() { var l = q('.lane'); return l ? l.clientWidth : 240; }
+  function play(box) {
+    box.style.setProperty('--lane-w', lane() + 'px');
+    box.classList.remove('go'); void box.offsetWidth; requestAnimationFrame(function () { box.classList.add('go'); });
+    setTimeout(function () { box.classList.remove('go'); }, 1700);
+  }
+  var pen = q('#pen');
+  q('#play').addEventListener('click', function () {
+    boxes.forEach(play);
+    pen.classList.remove('go'); void pen.getBoundingClientRect(); requestAnimationFrame(function () { pen.classList.add('go'); });
+    setTimeout(function () { pen.classList.remove('go'); }, 2000);
+  });
+})();
+</script>
+</body>
+</html>

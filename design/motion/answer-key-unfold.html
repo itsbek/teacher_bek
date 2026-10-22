@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Answer Key unfold · motion prototype</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="../tokens/base.css">
+<link rel="stylesheet" href="motion.css">
+<script src="tier.js"></script>
+<style>
+main { padding-block: var(--space-6) var(--space-24); --ph: 196px; }
+h2 { font-size: clamp(28px, 4vw, 48px); line-height: 1.15; letter-spacing: var(--tracking-display-m); margin: var(--space-2) 0 var(--space-4); }
+form { display: grid; gap: var(--space-3); max-width: 420px; }
+label { font-weight: 600; }
+input { width: 100%; height: var(--input-h); padding: 0 var(--space-4); font-size: var(--input-fs); background: transparent; border: 0; border-bottom: 2px solid var(--color-fg); border-radius: 0; }
+.stage { position: relative; margin-top: var(--space-8); height: calc(var(--ph) * 3); max-width: 440px; margin-inline: auto; }
+.stage__hint { position: absolute; inset: var(--ph) 0 var(--ph); display: grid; place-items: center; border: 1px dashed var(--color-rule-strong); color: var(--color-fg-soft); font-size: var(--fs-label); }
+.scene { position: absolute; inset: 0; perspective: 1300px; }
+.p2 { position: absolute; left: 0; right: 0; top: var(--ph); height: var(--ph); transform-style: preserve-3d; }
+.fold { position: absolute; left: 0; right: 0; height: var(--ph); transform-style: preserve-3d; }
+.p1 { bottom: 100%; transform-origin: 50% 100%; } .p3 { top: 100%; transform-origin: 50% 0; }
+.face { position: absolute; inset: 0; background: var(--color-bg-2); backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: var(--space-4); overflow: visible; }
+.face--sheet { border: 1px solid var(--color-rule-strong); border-bottom: 0; } .p3 .face--sheet { border-bottom: 1px solid var(--color-rule-strong); border-top: 0; }
+.back { transform: rotateX(180deg); display: grid; place-content: center; text-align: center; background: var(--color-fg); color: var(--color-bg); }
+.back b { font: italic 400 30px/1.1 var(--font-display); } .back span { font-size: var(--fs-label); opacity: .8; }
+.back--plain { background: var(--color-bg-2); border: 1px solid var(--color-rule-strong); }
+.shade { position: absolute; inset: 0; background: var(--ink); opacity: 0; pointer-events: none; }
+.kicker { display: block; margin-bottom: var(--space-2); }
+.who { font: var(--fw-display) 30px/1.1 var(--font-display); font-variation-settings: var(--fvs-display-m); }
+.plans { list-style: none; padding: 0; display: grid; gap: 0; position: relative; }
+.plans li { display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding-inline: var(--space-3); border-bottom: 1px solid var(--color-rule); font-variant-numeric: tabular-nums; }
+.plans li:first-child { border-top: 1px solid var(--color-rule); } .plans b { font-weight: 600; }
+.ov { position: absolute; inset: 0; pointer-events: none; }
+.ov svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.trial { font: italic 400 26px/1.25 var(--font-display); color: var(--color-accent); display: inline-block; margin: var(--space-2) 0 var(--space-4); }
+.p3 .btn { min-height: 52px; }
+.hide { visibility: hidden; }
+</style>
+</head>
+<body>
+<div class="ctl"></div>
+<main class="wrap">
+  <p class="label" data-i="eyebrow"></p>
+  <h2 data-i="h2"></h2>
+  <form id="form" autocomplete="on"><label for="nm" data-i="lname"></label><input id="nm" autocomplete="given-name" value="Linh"><button class="btn" type="submit" data-i="send"></button><p class="label" data-i="fake"></p></form>
+  <section class="stage" id="stage" aria-live="polite">
+    <div class="stage__hint" id="hint" data-i="hint"></div>
+    <div class="scene" id="scene" hidden>
+      <div class="p2" id="p2">
+        <div class="face face--sheet">
+          <span class="label kicker" data-i="plans"></span>
+          <ul class="plans" id="plans"></ul>
+          <div class="ov" id="ov" aria-hidden="true"></div>
+        </div>
+        <div class="fold p1" id="p1">
+          <div class="face face--sheet"><span class="label kicker" data-i="key"></span><p class="who" id="who"></p><p class="label" id="prog"></p><div class="shade"></div></div>
+          <div class="face back"><b data-i="key"></b><span data-i="foldhint"></span><div class="shade"></div></div>
+        </div>
+        <div class="fold p3" id="p3">
+          <div class="face face--sheet"><span class="label kicker" data-i="next"></span><p class="trial" id="trial"></p><br><a class="btn" href="#" data-i="book" id="book"></a><div class="shade"></div></div>
+          <div class="face back back--plain"><div class="shade"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="module" src="answer-key-unfold.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+/* motion.css — shared chrome for the motion prototypes. Tokens: ../tokens/tokens.css, base layer: ../tokens/base.css (both read-only). */
+/* reset, body, focus ring, heading font come from ../tokens/base.css; only prototype-specific bits below */
+body { overflow-x: hidden; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: var(--fw-display); }
+.wrap { width: min(100% - 2 * var(--page-margin), 1100px); margin-inline: auto; }
+.label { font: var(--fw-label) var(--fs-label)/var(--lh-label) var(--font-text); color: var(--color-fg-soft); }
+:lang(en) .label { text-transform: uppercase; letter-spacing: .04em; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: var(--btn-h); padding: 0 var(--space-8); border: 0; cursor: pointer;
+  background: var(--color-accent); color: var(--color-on-accent); font-weight: 600; font-size: 17px; text-decoration: none; touch-action: manipulation; transition: transform var(--dur-tap) var(--ease-out); }
+.btn:active { transform: translateY(1px); }
+.btn--ghost { background: transparent; color: var(--color-fg); border: var(--border-hair) solid var(--color-rule-strong); }
+
+/* control bar (prototype only) */
+.ctl { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-bg); border-bottom: 1px solid var(--color-rule); padding: 6px var(--page-margin) 8px; display: grid; gap: 6px; font-size: 14px; }
+.ctl__row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ctl button { min-height: 44px; min-width: 44px; padding: 0 12px; background: transparent; border: 1px solid var(--color-rule-strong); cursor: pointer; font-weight: 600; touch-action: manipulation; }
+.ctl button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); }
+.ctl__main { background: var(--color-accent) !important; color: var(--color-on-accent) !important; border-color: var(--color-accent) !important; }
+.ctl__seg { display: inline-flex; } .ctl__seg button + button { border-left: 0; }
+.ctl__out { color: var(--color-fg-soft); font-size: 13px; margin-left: auto; }
+
+/* ---------- pen overlay (pen.js) ---------- */
+.pen { position: relative; }
+.pen-x { display: inline; }
+.pen-ov { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.pen-ov svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.pen-s { fill: none; stroke: var(--color-accent); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.pen-w { position: absolute; left: 0; top: 0; font-family: var(--font-display); font-style: italic; color: var(--color-accent); white-space: nowrap; line-height: 1;
+  font-weight: 400; transform: translate(-50%, -100%); will-change: clip-path; }
+.pen-ok { position: absolute; width: 124px; height: 44px; transform: rotate(-6deg); }
+.pen-ok path { fill: none; stroke: var(--color-accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+html[data-tier="lite"] *, html[data-tier="lite"] *::before, html[data-tier="lite"] *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
