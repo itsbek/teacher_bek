@@ -185,8 +185,8 @@ export function initCore(opts: CoreOptions): Core {
         if (!(t instanceof Element)) return;
         let s = "dot",
           label = "";
-        if (t.closest("input,textarea,select")) s = "none";
-        else if (t.closest("[data-cur=drag],[data-drag]")) s = "drag";
+        if (t.closest("[data-cur=drag],[data-drag],input[type=range]")) s = "drag";
+        else if (t.closest("input,textarea,select")) s = "none";
         else if (t.closest("[data-look]")) s = "look";
         else if (t.closest("a,button,[data-cur]")) {
           s = "link";
