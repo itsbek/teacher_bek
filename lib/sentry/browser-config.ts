@@ -16,6 +16,8 @@ export function browserOptions(dsn: string): BrowserOptions {
     // no PII, cookies, headers, bodies or query strings
     dataCollection: { userInfo: false, cookies: false, httpHeaders: false, httpBodies: [], urlQueryParams: false },
     maxBreadcrumbs: 20,
+    // errors only: no release-health session ping on every page view
+    integrations: (defaults) => defaults.filter((i) => i.name !== 'BrowserSession'),
     ignoreErrors: [
       /ResizeObserver loop/,
       /turnstile/i,
