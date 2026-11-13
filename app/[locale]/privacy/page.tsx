@@ -1,94 +1,82 @@
 import type { Metadata } from "next";
-import { buildPageMetadata } from "@/lib/seo";
-import { VanguardNavigation } from "@/components/VanguardNavigation";
-import { VanguardFooter } from "@/components/VanguardFooter";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { buildPageMetadata, getPageSeo } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+const rich = {
+  zalo: (chunks: React.ReactNode) => (
+    <a href="https://zalo.me/84353885757" target="_blank" rel="noopener noreferrer">
+      {chunks}
+    </a>
+  ),
+  phone: (chunks: React.ReactNode) => <a href="tel:+84353885757">{chunks}</a>,
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  return buildPageMetadata({
-    locale,
-    title: "Privacy Policy",
-    description: "How Teacher Bek collects, uses, and protects personal data.",
-    path: "/privacy",
-  });
+  const seo = getPageSeo(locale, "privacy");
+  return buildPageMetadata({ locale, title: seo.title, description: seo.description, path: "/privacy" });
 }
 
-export default function PrivacyPage() {
+export default async function PrivacyPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "privacy" });
   return (
     <>
-      <VanguardNavigation />
-      <main className="page-shell">
-        <div className="page-container section-stack">
-          <header className="section-stack">
-            <p className="type-label text-foreground/45">Legal</p>
-            <h1 className="type-title-lg">Privacy Policy</h1>
-            <p className="type-meta text-foreground/55">Effective date: February 16, 2026</p>
-            <p className="type-body text-foreground/75 max-w-3xl">
-              This policy explains what information is collected through this website, how it is used,
-              and what rights users have regarding their personal data.
-            </p>
+      <main id="main">
+        <div>
+          <header>
+            <p>{t("eyebrow")}</p>
+            <h1>{t("title")}</h1>
+            <p>{t("effective")}</p>
+            <p>{t("intro")}</p>
           </header>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">1. Information Collected</h2>
-            <p className="type-body text-foreground/75">
-              Information is collected only when a user submits the enquiry form.
-            </p>
-            <ul className="type-body text-foreground/75 list-disc pl-6 space-y-2">
-              <li>Name</li>
-              <li>Email address</li>
-              <li>Optional contact details provided by the user</li>
-              <li>Message content</li>
-              <li>Basic technical metadata used for spam prevention and security (for example IP and timestamp)</li>
+          <section>
+            <h2>{t("collected.title")}</h2>
+            <p>{t("collected.lead")}</p>
+            <ul>
+              {(t.raw("collected.items") as string[]).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">2. Purpose of Processing</h2>
-            <p className="type-body text-foreground/75">
-              Personal data is processed only to respond to enquiries, provide lesson-related information,
-              manage scheduling communication, and maintain website security.
-            </p>
+          <section>
+            <h2>{t("purpose.title")}</h2>
+            <p>{t("purpose.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">3. Data Retention</h2>
-            <p className="type-body text-foreground/75">
-              Data is retained only as long as reasonably necessary to handle communication and service requests,
-              or as required by applicable law.
-            </p>
+          <section>
+            <h2>{t("retention.title")}</h2>
+            <p>{t("retention.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">4. Data Sharing</h2>
-            <p className="type-body text-foreground/75">
-              Personal data is not sold. Enquiries are stored in a Google Sheet and sent to the teacher as Telegram
-              notifications. Data may be processed by trusted service providers used to operate
-              contact forms, analytics, and communication tools, strictly for business operations.
-            </p>
+          <section>
+            <h2>{t("sharing.title")}</h2>
+            <p>{t("sharing.lead")}</p>
+            <ul>
+              {(t.raw("sharing.items") as string[]).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">5. User Rights</h2>
-            <p className="type-body text-foreground/75">
-              Users may request access, correction, or deletion of their personal data by contacting:
-              <a className="underline ml-1" href="mailto:hello@teacherbek.com">hello@teacherbek.com</a>.
-            </p>
+          <section>
+            <h2>{t("rights.title")}</h2>
+            <p>{t.rich("rights.text", rich)}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">6. Policy Updates</h2>
-            <p className="type-body text-foreground/75">
-              This policy may be updated periodically. The effective date above reflects the latest revision.
-            </p>
+          <section>
+            <h2>{t("updates.title")}</h2>
+            <p>{t("updates.text")}</p>
           </section>
         </div>
       </main>
-      <VanguardFooter />
     </>
   );
 }

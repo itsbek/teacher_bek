@@ -1,47 +1,81 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Be_Vietnam_Pro } from "next/font/google";
-import Script from "next/script";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import localFont from "next/font/local";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ThemeProvider } from "@/components/theme-provider";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { ClientLayout } from "@/components/client-layout";
+import Script from "next/script";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { ErrorMonitor } from "@/components/monitoring/ErrorMonitor";
+import { NotebookRuntime } from "@/components/notebook/NotebookRuntime";
+import type { CoreStrings, NoteText } from "@/lib/notebook/core";
 import { routing } from "@/i18n/routing";
-import "../globals.css";
+/* Order matters (same cascade as the prototype): brand → pages → story → notebook. story.css only
+   styles story markup, except a few rules scoped with :root:has(#hero). */
+import "../../styles/brand.css";
+import "../../styles/pages.css";
+import "../../styles/story.css";
+import "../../styles/notebook.css";
 
-/* ── Fonts ─────────────────────────────────────────────────────────────────
-   Barlow Condensed: native Vietnamese + Latin Extended coverage.
-   Be Vietnam Pro:   designed for Vietnamese, replaces body mono font.
-   Both declared here so the CSS variables are available everywhere.     */
-
-const display = Barlow_Condensed({
-  subsets: ["latin", "latin-ext", "vietnamese"],
-  variable: "--font-display",
+const archivo = localFont({
+  src: "../../public/fonts/archivo-vf.woff2",
+  weight: "300 800",
+  style: "normal",
   display: "swap",
-  weight: ["400", "600", "700", "800"],
-  style: ["normal", "italic"],
+  preload: true,
+  adjustFontFallback: "Arial",
+  fallback: ["Arial Narrow", "Arial", "sans-serif"],
+  variable: "--font-archivo",
+  declarations: [{ prop: "font-stretch", value: "62% 125%" }],
 });
 
-const sans = Be_Vietnam_Pro({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-sans",
+const newsreader = localFont({
+  src: [
+    { path: "../../public/fonts/newsreader-vf.woff2", weight: "300 500", style: "normal" },
+    { path: "../../public/fonts/newsreader-italic-vf.woff2", weight: "300 500", style: "italic" },
+  ],
   display: "swap",
-  weight: ["300", "400", "600", "700"],
-  style: ["normal", "italic"],
+  preload: true,
+  adjustFontFallback: "Times New Roman",
+  fallback: ["Georgia", "serif"],
+  variable: "--font-newsreader",
 });
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
+const hand = localFont({
+  src: "../../public/fonts/patrickhand.woff2",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+  preload: false,
+  fallback: ["Comic Sans MS", "cursive"],
+  variable: "--font-hand",
+});
+
+/* Runs before first paint (same as the prototype's head script): js / reduced motion / lite tier, the
+   arrival half of a cross-locale page transition, and the preloader — home page only, once per visit. */
+const BOOT = `(function(){var d=document.documentElement,q=location.search,ss;try{ss=sessionStorage}catch(e){}
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches||/[?&]rm\\b/.test(q);
+var c=navigator.connection||{};var lite=/[?&]lite\\b/.test(q)||c.saveData||(navigator.deviceMemory||8)<=4||(navigator.hardwareConcurrency||8)<=4;
+d.classList.add('js');if(rm)d.classList.add('rm');if(lite)d.classList.add('lite');
+var home=/^\\/(en|vi)\\/?$/.test(location.pathname);
+if(ss&&ss.getItem('bek-arrive')){ss.removeItem('bek-arrive');if(!rm)d.classList.add('arriving')}
+else if(home&&!rm&&!(ss&&ss.getItem('bek-loaded'))&&!/[?&]noload\\b/.test(q))d.classList.add('loading');})();`;
+
+const PLAUSIBLE_INIT = `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`;
+
+/* Queues errors from first paint until the lazy Sentry SDK is ready (see components/monitoring/ErrorMonitor).
+   Only emitted when NEXT_PUBLIC_SENTRY_DSN is set. */
+const QUEUE_SCRIPT = `(function(){var q=window.__sq=[];function a(e,m){if(q.length<20)q.push({e:e,m:m})}
+function f(ev){a(ev.error,String(ev.message||'error'))}function r(ev){var x=ev.reason;a(x,String(x&&x.message||x||'unhandledrejection'))}
+addEventListener('error',f);addEventListener('unhandledrejection',r);
+window.__sqOff=function(){removeEventListener('error',f);removeEventListener('unhandledrejection',r)}})();`;
+const SENTRY_ON = Boolean(process.env.NEXT_PUBLIC_SENTRY_DSN);
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://teacherbek.com"),
   title: {
-    default: "English Teacher Phú Nhuận · 2,000+ Students · HCMC",
-    template: "%s · Teacher Bek · Phú Nhuận",
+    default: "Teacher Bek",
+    template: "%s",
   },
-  description:
-    "TESOL & PGCE certified. Max 10 per class. Kids and teens aged 5–17 at Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport. One free week.",
   robots: {
     index: true,
     follow: true,
@@ -68,188 +102,44 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+  if (!routing.locales.some((l) => l === locale)) {
     notFound();
   }
 
-  // Enables static rendering — locale comes from URL params, not request headers
   setRequestLocale(locale);
-
-  const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: "site" });
+  const nb = await getTranslations({ locale, namespace: "notebook" });
+  const strings: CoreStrings = {
+    menu: t("menu.open"),
+    close: t("menu.close"),
+    fieldNote: nb("fieldNote"),
+    cursor: nb.raw("cursor") as Record<string, string>,
+    notes: nb.raw("notes") as Record<string, NoteText>,
+  };
 
   return (
     <html
       lang={locale}
-      className={`${sans.variable} ${display.variable}`}
+      className={`${archivo.variable} ${newsreader.variable} ${hand.variable}`}
       suppressHydrationWarning
     >
       <head>
-        {/* Browser chrome colour matches page background */}
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
-
-
-        {/* LocalBusiness + LanguageSchool structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LanguageSchool",
-              "@id": "https://teacherbek.com/#organization",
-              name: "Teacher Bek English Classes",
-              alternateName: [
-                "Teacher Bek",
-                "Lớp Tiếng Anh Teacher Bek",
-                "Teacher Bek Anh Ngữ",
-              ],
-              description:
-                "Small-group English classes in Ho Chi Minh City. Maximum 10 students per class. Native teacher, TESOL & PGCE certified. Programs for children ages 5–10 and teens ages 11–17. Located at 119 Phổ Quang, Phú Nhuận — near Tân Sơn Nhất airport.",
-              url: "https://teacherbek.com",
-              telephone: "+84353885757",
-              email: "hello@teacherbek.com",
-              priceRange: "$$",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "119 Phổ Quang",
-                addressLocality: "Phú Nhuận",
-                addressRegion: "Ho Chi Minh City",
-                addressCountry: "VN",
-                postalCode: "72411",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 10.8016,
-                longitude: 106.6524,
-              },
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                  ],
-                  opens: "19:30",
-                  closes: "21:00",
-                },
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: ["Saturday", "Sunday"],
-                  opens: "14:00",
-                  closes: "20:00",
-                },
-              ],
-              areaServed: [
-                {
-                  "@type": "City",
-                  name: "Ho Chi Minh City",
-                  sameAs: "https://www.wikidata.org/wiki/Q1854",
-                },
-                {
-                  "@type": "AdministrativeArea",
-                  name: "Phú Nhuận District",
-                },
-                {
-                  "@type": "AdministrativeArea",
-                  name: "Gò Vấp District",
-                },
-                {
-                  "@type": "AdministrativeArea",
-                  name: "Bình Thạnh District",
-                },
-              ],
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "English Language Programs",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Course",
-                      name: "Young Learners English",
-                      description:
-                        "English classes for children ages 5–10. Max 10 students per class.",
-                    },
-                    description: "First week free. Pricing shared after a short form on the site.",
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Course",
-                      name: "Teens English",
-                      description:
-                        "English classes for teenagers ages 11–17. Communicative fluency focus.",
-                    },
-                    description: "First week free. Pricing shared after a short form on the site.",
-                  },
-                ],
-              },
-              contactPoint: {
-                "@type": "ContactPoint",
-                contactType: "customer service",
-                telephone: "+84353885757",
-                email: "hello@teacherbek.com",
-                availableLanguage: [
-                  "English",
-                  "Vietnamese",
-                  "Russian",
-                  "Uzbek",
-                ],
-              },
-              sameAs: [
-                "https://www.linkedin.com/in/bek-boymirzaev/",
-                "https://www.instagram.com/itsteacherbek",
-                "https://www.facebook.com/teacherbek",
-                "https://www.tiktok.com/@itsteacherbek",
-              ],
-            }),
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: BOOT }} />
+        {SENTRY_ON && <script dangerouslySetInnerHTML={{ __html: QUEUE_SCRIPT }} />}
       </head>
-
-      <body className="font-sans antialiased" suppressHydrationWarning>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:bg-foreground focus:text-background focus:px-5 focus:py-3 font-sans text-[13px] uppercase tracking-[0.18em]"
-        >
-          Skip to main content
+      <body>
+        {SENTRY_ON && <ErrorMonitor />}
+        <NotebookRuntime strings={strings} />
+        <a className="vh skip" href="#main">
+          {t("skipLink")}
         </a>
-
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="lazyOnload"
-            />
-            <Script id="google-analytics" strategy="lazyOnload">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                window.gtag = gtag;
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}');
-              `}
-            </Script>
-          </>
-        )}
-
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-        >
-          <NextIntlClientProvider messages={messages}>
-            <SmoothScroll>
-              <ClientLayout>{children}</ClientLayout>
-            </SmoothScroll>
-          </NextIntlClientProvider>
-        </ThemeProvider>
-
-        <SpeedInsights />
+        <Header locale={locale} />
+        {children}
+        <Footer locale={locale} />
+        <Script src="https://plausible.io/js/pa--66ZjSxkfMVKI4WYENIwB.js" strategy="afterInteractive" />
+        <Script id="plausible-init" strategy="afterInteractive">
+          {PLAUSIBLE_INIT}
+        </Script>
       </body>
     </html>
   );

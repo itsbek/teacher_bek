@@ -1,6 +1,7 @@
 import type { ChannelOutcome, Lead, SubmitResult } from './types';
 import { appendLeadToSheet, isSheetConfigured } from './sheet';
 import { isTelegramConfigured, notifyTelegram } from './telegram';
+import { reportLeadDeliveryFailure } from '@/lib/sentry/report';
 
 async function run(
   id: string,
@@ -15,6 +16,7 @@ async function run(
     return 'ok';
   } catch (err) {
     console.error(`[leads] ${id} ${name}: failed -`, err instanceof Error ? err.message : 'unknown');
+    await reportLeadDeliveryFailure(name === 'sheet' ? 'sheet' : 'telegram', err);
     return 'failed';
   }
 }

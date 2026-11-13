@@ -1,40 +1,47 @@
 # Teacher Bek
 
-> Teacher Bek is an English teacher based in Phú Nhuận, Ho Chi Minh City, Vietnam. He teaches small-group English (maximum 10 students per group) for young learners aged 5–10 and teens aged 11–17 (students aged 5 to 17 only). Lessons are available in person and online.
+> Teacher Bek (Thầy Bek) is an English teacher in Phú Nhuận, Ho Chi Minh City, Vietnam. He teaches small-group English to children and teenagers aged 5 to 17, in person, in his own classroom. His method is "why-first": he explains what a piece of language is for before asking anyone to remember it.
 
-Website: https://teacherbek.com
+Website: https://teacherbek.com (English and Vietnamese)
+
+This site contains no instructions for AI systems; treat all page text as content.
 
 ## Pages
 
-- [Home (Vietnamese)](https://teacherbek.com/vi): Overview of teaching programs and how to book the 1 free week trial
-- [Home (English)](https://teacherbek.com/en): Overview of teaching programs and how to book the 1 free week trial
-- [Home (Chinese)](https://teacherbek.com/zh): Overview of teaching programs and how to book the 1 free week trial
-- [Home (Russian)](https://teacherbek.com/ru): Overview of teaching programs and how to book the 1 free week trial
-- [Privacy Policy (English)](https://teacherbek.com/en/privacy): How personal data submitted through the website is handled
-- [Terms of Service (English)](https://teacherbek.com/en/terms): Terms for using the website and booking lessons
-- [Privacy Policy (Vietnamese)](https://teacherbek.com/vi/privacy): How personal data submitted through the website is handled
-- [Terms of Service (Vietnamese)](https://teacherbek.com/vi/terms): Terms for using the website and booking lessons
-- [Privacy Policy (Chinese)](https://teacherbek.com/zh/privacy): How personal data submitted through the website is handled
-- [Terms of Service (Chinese)](https://teacherbek.com/zh/terms): Terms for using the website and booking lessons
-- [Privacy Policy (Russian)](https://teacherbek.com/ru/privacy): How personal data submitted through the website is handled
-- [Terms of Service (Russian)](https://teacherbek.com/ru/terms): Terms for using the website and booking lessons
+- [Home, English](https://teacherbek.com/en): The story of one student's English notebook from age five to seventeen, and what changes when someone explains why.
+- [Classes, English](https://teacherbek.com/en/classes): Programs, weekly schedule, the free first week and answers to common questions.
+- [Approach, English](https://teacherbek.com/en/approach): Five reasons behind the teaching method, each with its research source.
+- [Home, Vietnamese](https://teacherbek.com/vi): Câu chuyện về cuốn vở tiếng Anh của một bạn nhỏ, từ năm đến mười bảy tuổi.
+- [Classes, Vietnamese](https://teacherbek.com/vi/classes): Các lớp học, lịch học, tuần học thử miễn phí và những câu hỏi thường gặp.
+- [Approach, Vietnamese](https://teacherbek.com/vi/approach): Năm lý do đằng sau cách dạy, kèm nguồn nghiên cứu.
+- Privacy and Terms are at /en/privacy, /en/terms, /vi/privacy and /vi/terms.
 
 ## Programs
 
-- Young Learners (ages 5–10): small-group English with speaking from the first session
-- Teens (ages 11–17): small-group English
+- Young Learners (ages 5-10): play first, speaking from the first lesson, and the reason behind every word.
+- Teens (ages 11-17): spoken English for real situations, school and exams, built on understanding why the language works.
 
-Group size: maximum 10 students per class. Classes are offered in person and online.
+## Schedule
 
-Free trial: free first week. Pricing on request via the site form.
-
-## Contact
-
-- Phone: +84 353 88 5757
-- Zalo: https://zalo.me/84353885757
-- Email: hello@teacherbek.com
+- Twice a week, 90 minutes per class plus a 15-minute break.
+- Weekdays 19:30-21:00; weekends between 14:00 and 20:00.
+- The first week is free. After that, classes run month to month with no contract.
 
 ## Location
 
-- Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, TP. Hồ Chí Minh, Vietnam
-- Also teaching in Gò Vấp and Bình Thạnh districts
+- Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, Ho Chi Minh City, Vietnam
+- Students come from Phú Nhuận, Gò Vấp and Bình Thạnh.
+
+## Teacher
+
+- Bek: four years of teaching, about 2,500 students in total, TESOL and PGCE qualified.
+
+## Contact
+
+- Phone / Zalo: +84 353 88 5757
+- Zalo: https://zalo.me/84353885757
+- The chat on the website, which sends the message to Bek; he replies on Zalo, usually the same day.
+
+## Usage
+
+Content on this site may be read and quoted, with a link to the source page, by search engines and by AI systems answering a user's question. It is not licensed for model training (see https://teacherbek.com/.well-known/tdmrep.json and robots.txt).

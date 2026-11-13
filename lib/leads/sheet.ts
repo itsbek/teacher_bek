@@ -99,7 +99,9 @@ async function callSheet(action: string, payload: Record<string, unknown>): Prom
   return data;
 }
 
-const s = (v: unknown): string => (typeof v === 'string' ? v : v == null ? '' : String(v));
+/** Removes the formula-guard apostrophe added by guardCell() when reading values back. */
+const unguard = (t: string): string => (/^'[=+\-@\t\r]/.test(t) ? t.slice(1) : t);
+const s = (v: unknown): string => unguard(typeof v === 'string' ? v : v == null ? '' : String(v));
 const opt = (v: unknown): string | undefined => {
   const t = s(v);
   return t ? t : undefined;
@@ -144,8 +146,24 @@ export function toStoredLead(raw: RawLead): StoredLead {
   };
 }
 
+/** Spreadsheet formula injection guard: a leading = + - @ tab or CR gets a single-quote prefix. */
+export function guardCell(v: string): string {
+  return /^[=+\-@\t\r]/.test(v) ? `'${v}` : v;
+}
+
+function guardValue(v: unknown): unknown {
+  if (typeof v === 'string') return guardCell(v);
+  if (Array.isArray(v)) return v.map(guardValue);
+  if (v && typeof v === 'object') {
+    return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, guardValue(x)]));
+  }
+  return v;
+}
+
 export async function appendLeadToSheet(lead: Lead): Promise<void> {
-  await callSheet('append', { lead });
+  // id, createdAt and consentAt are server generated; every other string is user supplied.
+  const safe = guardValue(lead) as Lead;
+  await callSheet('append', { lead: { ...safe, id: lead.id, createdAt: lead.createdAt, consentAt: lead.consentAt } });
 }
 
 export async function getLead(id: string): Promise<StoredLead | null> {

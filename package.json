@@ -11,42 +11,27 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.2",
-    "@hookform/resolvers": "^5.2.2",
-    "@radix-ui/react-slot": "^1.1.0",
-    "@types/leaflet": "^1.9.21",
-    "@vercel/speed-insights": "^1.3.1",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.15.0",
-    "gsap": "^3.14.2",
-    "leaflet": "^1.9.4",
-    "lenis": "^1.3.17",
-    "lucide-react": "^0.468.0",
-    "next": "^15.1.3",
+    "@sentry/browser": "^11.12.0",
+    "@sentry/nextjs": "^11.12.0",
+    "lenis": "1.1.13",
+    "next": "^15.5.29",
     "next-intl": "^3.26.2",
-    "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.71.1",
-    "react-leaflet": "^5.0.0",
-    "resend": "^6.9.3",
-    "split-type": "^0.3.4",
-    "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^4.3.6",
-    "zustand": "^5.0.11"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.20",
     "eslint": "^9",
-    "eslint-config-next": "^15.1.3",
+    "eslint-config-next": "^15.5.29",
     "postcss": "^8",
-    "shadcn": "^3.7.0",
-    "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "8.5.32"
+    }
   }
 }

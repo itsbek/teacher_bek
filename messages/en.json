@@ -1,454 +1,502 @@
 {
-  "nav": {
-    "home": "Home",
-    "about": "About",
-    "services": "Classes",
-    "courses": "Programs",
-    "testimonials": "Stories",
-    "faq": "FAQ",
-    "contact": "Contact"
+  "site": {
+    "skipLink": "Skip to content",
+    "brand": "Teacher Bek",
+    "homeLabel": "Teacher Bek, home",
+    "navLabel": "Main",
+    "footerNavLabel": "Footer",
+    "nav": {
+      "story": "The story",
+      "classes": "Classes",
+      "approach": "Approach",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "language": {
+      "switchTo": "VI",
+      "switchLabel": "Tiếng Việt",
+      "switchHrefLang": "vi"
+    },
+    "chip": {
+      "page": "Page",
+      "cover": "cover"
+    },
+    "menu": {
+      "open": "Menu",
+      "close": "Close",
+      "label": "Site",
+      "story": {
+        "title": "The story",
+        "text": "Ages 5 to 17, and what changes when someone explains why."
+      },
+      "classes": {
+        "title": "Classes",
+        "text": "Small groups in Phú Nhuận, ages 5–17. The first week is free."
+      },
+      "approach": {
+        "title": "Approach",
+        "text": "Five reasons behind the way I teach, with the research."
+      },
+      "talk": {
+        "title": "Say hello",
+        "text": "A few quick questions, then I reply on Zalo."
+      },
+      "foot": "Teacher Bek · Golden Mansion 1, 119 Phổ Quang, Phú Nhuận · +84 353 88 5757"
+    },
+    "talk": {
+      "label": "Say hello",
+      "heading": "Your turn.",
+      "headingEm": "Ask me anything.",
+      "sub": "A few quick questions, then I reply on Zalo, usually the same day."
+    },
+    "footer": {
+      "description": "English for ages 5–17 in Phú Nhuận, Ho Chi Minh City. Small groups. The reason first, then the rule.",
+      "visit": "Visit",
+      "addressLine1": "Golden Mansion 1",
+      "addressLine2": "119 Phổ Quang, Phú Nhuận",
+      "talk": "Talk",
+      "sendMessage": "Send a message",
+      "zalo": "Zalo",
+      "phone": "+84 353 88 5757",
+      "read": "Read",
+      "copyright": "© 2026 Teacher Bek"
+    }
   },
-  "hero": {
-    "badge": "English Teacher · Ho Chi Minh City",
-    "title": "Communicate Clearly.",
-    "titleLine1": "English is not",
-    "titleLine2": "a language — it is a",
-    "titleAccent": "key",
-    "subtitle": "Not grammar drills. Not passive exposure. Deliberate practice, in a room designed for it.",
-    "cta": "Book a Free Week",
-    "zaloCta": "Message on Zalo",
-    "secondary": "Programs",
-    "headline": "Professional instruction. A comfortable environment.",
-    "subheadline": "TESOL Certified · ILA Vietnam · Ho Chi Minh City",
-    "primaryCTA": "Start Learning",
-    "secondaryCTA": "View Courses",
-    "stats": {
-      "students": "Students Taught",
-      "experience": "Years Teaching",
-      "success": "Languages Spoken"
+  "notebook": {
+    "fieldNote": "Field note",
+    "noteAria": "Field note: {cite}",
+    "cursor": {
+      "home": "home",
+      "open": "open",
+      "note": "note",
+      "pick": "pick",
+      "say hi": "say hi",
+      "send": "send"
     },
-    "badgeTesol": "TESOL + PGCE",
-    "badgePgce": "MBA Candidate",
-    "badgeLocation": "HCMC-Based",
-    "badgeFormat": "In-Person + Online",
-    "statsStudents": "Students taught",
-    "statsYears": "Years in Vietnam",
-    "statsSchools": "Schools taught",
-    "statusOpen": "Accepting students",
-    "photoCaption": "Teacher Bek — Phú Nhuận, HCMC",
-    "tagline": "Small groups · Phú Nhuận · Ages 5–17 · Online",
-    "scrollLabel": "Scroll to explore"
+    "notes": {
+      "sweller": {
+        "title": "Cognitive load",
+        "body": "Working memory is small. Fill it with unconnected items and there is little room left to learn.",
+        "cite": "John Sweller, 1988",
+        "source": "Cognitive load during problem solving. Cognitive Science.",
+        "short": "Sweller, 1988"
+      },
+      "edmondson": {
+        "title": "Psychological safety",
+        "body": "In a study of work teams, the ones where people felt safe to admit mistakes learned more. I see the same thing in my students.",
+        "cite": "Amy Edmondson, 1999",
+        "source": "Administrative Science Quarterly.",
+        "short": "Edmondson, 1999"
+      },
+      "craik": {
+        "title": "Depth of processing",
+        "body": "People remember words far better when they think about what the words mean than when they attend to how they look or sound.",
+        "cite": "Fergus Craik & Endel Tulving, 1975",
+        "source": "Journal of Experimental Psychology: General.",
+        "short": "Craik and Tulving, 1975"
+      },
+      "roediger": {
+        "title": "Retrieval practice",
+        "body": "Students who practised recalling what they had read remembered more a week later than students who read it again.",
+        "cite": "Henry Roediger & Jeffrey Karpicke, 2006",
+        "source": "Psychological Science.",
+        "short": "Roediger and Karpicke, 2006"
+      },
+      "wood": {
+        "title": "Scaffolding",
+        "body": "Good tutoring adjusts the help to what this learner can almost do alone. The researchers called it scaffolding.",
+        "cite": "David Wood, Jerome Bruner & Gail Ross, 1976",
+        "source": "Journal of Child Psychology and Psychiatry.",
+        "short": "Wood, Bruner and Ross, 1976"
+      },
+      "ryan": {
+        "title": "Self-determination",
+        "body": "People keep going when they feel three things: I chose this, I can do this, I belong here.",
+        "cite": "Richard Ryan & Edward Deci, 2000",
+        "source": "American Psychologist.",
+        "short": "Ryan and Deci, 2000"
+      }
+    }
   },
-  "about": {
-    "label": "About",
-    "title": "About Me",
-    "intro": "From boardrooms to classrooms — shaping confidence, one story at a time.",
-    "story": {
-      "hook": "I didn't originally plan to stay in teaching.",
-      "p1": "When I first came to Vietnam, it was to volunteer and experience a different environment. The classroom was meant to be temporary. Over time, however, I began to appreciate the kind of responsibility teaching requires — patience, consistency, and showing up fully for students every day.",
-      "p2": "What kept me here were the small moments of growth that happen quietly. A student speaking a little more confidently. Someone asking a thoughtful question. A child realising they can express an idea that once felt out of reach.",
-      "pull": "From boardrooms to classrooms — shaping confidence, one story at a time.",
-      "p3": "Working with them has reminded me how powerful curiosity and persistence can be. In many ways, they've influenced me as well — even introducing me to things like chess and the discipline that comes with learning it.",
-      "p4": "Outside the classroom, I enjoy reading, training at the gym, and grappling. Those activities keep me grounded and remind me that improvement usually comes from steady effort over time rather than sudden breakthroughs.",
-      "p5": "That mindset is something I try to bring into the classroom too — helping students become a little more confident, capable, and comfortable using English as they grow.",
-      "close": "Teaching, for me, is simply about guiding that process — one student and one story at a time.",
-      "title": "Background"
+  "story": {
+    "cover": {
+      "labelTitle": "English",
+      "labelName": "Name",
+      "labelNameValue": "you",
+      "labelAges": "Ages",
+      "labelTeacher": "Teacher",
+      "eyebrow": "Teacher Bek · English for ages 5–17 · Phú Nhuận, Ho Chi Minh City",
+      "h1Label": "English makes sense when someone tells you why.",
+      "h1Line1": "English makes",
+      "h1Line2": "sense when",
+      "h1Line3": "someone tells you",
+      "why": "why",
+      "voice": "I teach children and teenagers. This page follows one of them, from five to seventeen.",
+      "hint": "grab the <b>why</b> and pull it →",
+      "whyAria": "Pull why to open the notebook"
     },
-    "credentials": {
-      "title": "Qualifications",
-      "tesol": "TESOL Certified",
-      "tesolDesc": "Teaching English to Speakers of Other Languages",
-      "pgce": "PGCE Certified",
-      "pgceDesc": "Graduate Certificate in Education",
-      "delta": "MBA Candidate",
-      "deltaDesc": "Currently pursuing MBA"
+    "wall": {
+      "label": "Age 6",
+      "heading": "At six, English arrives like this.",
+      "line1": "A table.",
+      "line2": "Then another one.",
+      "line3": "Learn it by Friday.",
+      "line4": "Nobody mentions what it’s for.",
+      "count": "Things to memorise",
+      "hesCap": "A six-year-old who knows every row of that table, reaching for Vietnamese to find the words",
+      "hesVh": "The student tries to find the words, switching between English and Vietnamese: my dog is… ờ… nó… is… big?… cái đó tiếng Anh là gì ta… and the sentence never comes."
     },
-    "stats": {
-      "students": "2,000+",
-      "studentsLabel": "Students Taught",
-      "years": "3",
-      "yearsLabel": "Years in Vietnam",
-      "schools": "15+",
-      "schoolsLabel": "Schools Taught"
+    "test": {
+      "label": "Age 9 · In speaking tests I ask one easy question",
+      "taken": "Taken out of the bag",
+      "cap": "A composite of answers I hear, not one student’s words. About eight in ten of my students tell me some version of this. That is not research; it is what I hear in my own classroom.",
+      "rel": "So I don’t add to the bag. <em>I take something out.</em>"
     },
-    "photoCaption": "Teacher Bek — Phú Nhuận, HCMC",
-    "classroom": {
-      "title": "The Classroom",
-      "description": "Group size is capped at 10. In a 25-student class, each student speaks for roughly 3 minutes per session. That is not how fluency forms. My classroom in Phú Nhuận is small by design — CCTV, private restroom, air conditioning. Safe for children. Built for speaking.",
-      "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
-      "features": {
-        "cctv": "CCTV Security",
-        "cctvDesc": "24/7 monitoring for safety",
-        "comfort": "Air Conditioned",
-        "comfortDesc": "Comfortable temperature year-round",
-        "materials": "Fully Equipped",
-        "materialsDesc": "Everything needed to learn effectively",
-        "safety": "Safe Environment",
-        "safetyDesc": "Separate restroom and mosquito control"
+    "turn": {
+      "label": "Age 11 · Here is a rule",
+      "after": "Correct. Also useless to an eleven-year-old.",
+      "a": "<em>a</em> means one of many. I haven’t told you which.",
+      "the": "<em>the</em> means you already know which one I mean.",
+      "dogsAria": "Pick a dog",
+      "pick": "pick a dog. any dog.",
+      "picked": "now it’s <b>the</b> dog. you made it specific."
+    },
+    "guess": {
+      "label": "Age 12",
+      "heading": "Once the why lands, they start guessing. <open>Good.</open>",
+      "resp": "Drag a word into the gap, or tap one.",
+      "note": "We don’t re-read lists. We play them back.",
+      "goed": "<b class=\"no\">Not quite, and a smart mistake.</b> You used the rule for regular verbs. English just forgot to be regular here.",
+      "wented": "<b class=\"no\">Not quite, and even smarter.</b> You knew it was irregular, and added the rule anyway.",
+      "went": "<b class=\"ok\">Yes.</b> And notice you had to pull it out of your head. That pull is the practice."
+    },
+    "six": {
+      "label": "Age 14",
+      "heading": "Same task. Three students. <open>Three ways in.</open>",
+      "task": "The task: <b>{task}</b>",
+      "hint": "keep scrolling →",
+      "who1": "The one who draws",
+      "pv0": "Draw it badly. Then tell me everything I’d get wrong about it.",
+      "who2": "The quiet one",
+      "pv1": "Write three true things and one lie. I’ll try to catch the lie.",
+      "who3": "The one who has to win",
+      "pv2": "Ten seconds. I’m counting your words. Go.",
+      "words": "words"
+    },
+    "dist": {
+      "label": "Age 15",
+      "heading": "Two sentences that look almost the same.",
+      "then": "then",
+      "now": "now",
+      "meanA": "A finished story. It happened then, and that’s all.",
+      "meanB": "Still lost, right now. I can’t get in.",
+      "why": "<b>have</b> is the why: you still <em>have</em> the result now. The past, carried into the present."
+    },
+    "own": {
+      "label": "Age 17 · Same question, eight years later",
+      "cap": "A composite. Every part of it is something a student has said to me."
+    },
+    "about": {
+      "label": "About",
+      "heading": "I’m Bek.",
+      "photoAria": "Bek, smiling, in a dark jacket and light trousers",
+      "voice": "I teach English in Ho Chi Minh City. Four years, about 2,500 students, TESOL and PGCE. My small groups meet in my own classroom in Phú Nhuận.",
+      "n1": "one",
+      "b1": "Learning should feel like play, not like one more task.",
+      "n2": "two",
+      "b2": "Every piece of language exists for a reason. I teach the reason first.",
+      "n3": "three",
+      "b3": "The same lesson should reach different students in different ways.",
+      "caption": "me, in Phú Nhuận"
+    },
+    "room": {
+      "heading": "Learn <hl>this way</hl>, around one long table in Phú Nhuận.",
+      "alt": "Bek’s classroom in Phú Nhuận: one long table with coloured chairs, shelves of books, warm evening light",
+      "voice": "This is the room. Small groups, twice a week, ninety minutes with a break in the middle. The first week is free, so you can see how it feels before deciding anything.",
+      "facts": {
+        "young": [
+          "Young Learners",
+          "ages 5–10"
+        ],
+        "teens": [
+          "Teens",
+          "ages 11–17"
+        ],
+        "weekdays": [
+          "Weekdays",
+          "19:30–21:00"
+        ],
+        "weekends": [
+          "Weekends",
+          "14:00–20:00"
+        ],
+        "where": [
+          "Where",
+          "Golden Mansion 1, 119 Phổ Quang"
+        ]
+      },
+      "ctaTalk": "Send me a message",
+      "ctaClasses": "See the classes"
+    },
+    "door": {
+      "small": "Five reasons behind the way I teach",
+      "strong": "Read the approach"
+    },
+    "pageWord": "page"
+  },
+  "classes": {
+    "label": "Classes",
+    "heroBefore": "English classes in ",
+    "place": "Phú Nhuận",
+    "heroAfter": ", for ages 5 to 17.",
+    "lede": "Small groups, twice a week, ninety minutes with a break in the middle. The first week is free.",
+    "dial": {
+      "label": "How old is the learner?",
+      "ageLabel": "Learner’s age",
+      "years": "years old",
+      "ageValue": "{n} years old",
+      "threeMoves": "A lesson, in three moves"
+    },
+    "programs": {
+      "yl": {
+        "ages": "Ages 5–10",
+        "name": "Young <b>Learners</b>",
+        "text": "Play first, speaking from the first lesson, and the reason behind every word before anyone has to remember it.",
+        "steps": [
+          "A game that needs the word",
+          "We ask why it works",
+          "They use it to talk about themselves"
+        ]
+      },
+      "tn": {
+        "ages": "Ages 11–17",
+        "name": "<b>Teens</b>",
+        "text": "Spoken English for real situations, school and exams, built on understanding why the language works the way it does.",
+        "steps": [
+          "Start from something you want to say",
+          "Find the language for it, and why it works",
+          "Use it under a little pressure: debates, ten-second challenges"
+        ]
       }
     },
-    "philosophy": {
-      "title": "How You'll Learn",
-      "description": "You speak every session. This is not optional. Confidence is trained — not inherited, not found, not waited for. The structure is deliberate. The environment is safe. The speaking is the lesson."
-    },
-    "timeline": {
-      "milestones": [
-        {
-          "year": "2023 — PRESENT",
-          "title": "English Teacher, Ho Chi Minh City",
-          "desc": "Small-group lessons at my own classroom in Golden Mansion, Phú Nhuận. ILA Vietnam, BlueSky Kindergarten, international schools, and kindergartens across the city."
-        },
-        {
-          "year": "THE BEGINNING",
-          "title": "Tashkent, Uzbekistan",
-          "desc": "Grew up speaking Uzbek, Russian, and eventually English. Language was the difference between being understood and being invisible."
-        }
+    "week": {
+      "heading": "When",
+      "note": "times are Ho Chi Minh City time",
+      "live": "It’s {time} in Phú Nhuận. <b>A class is on right now.</b>",
+      "next": "It’s {time} in Phú Nhuận. The next class starts <b>{when} at {at}</b>.",
+      "today": "today",
+      "tomorrow": "tomorrow",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
       ]
     },
-    "locationLabel": "Location",
-    "backgroundLabel": "Background"
-  },
-  "services": {
-    "title": "English Programs",
-    "subtitle": "Built on the science of how fluency actually forms.",
-    "programs": {
-      "mentorship": {
-        "title": "Young Learners",
-        "desc": "Small groups. Speaking from session one."
-      },
-      "dialect": {
-        "title": "Teens English",
-        "desc": "Spoken English that keeps pace with real ambitions."
-      }
+    "ticket": {
+      "admit": "Admit one",
+      "free": "Free",
+      "firstWeek": "first week",
+      "tearHint": "tear me off ↓",
+      "heading": "Try a full week before deciding anything.",
+      "body": "Come to the classes, meet the group, see how it feels. No contract after that; it’s month to month.",
+      "after": "see you around the long table.",
+      "cta": "Send me a message",
+      "tearBtn": "Tear off the ticket"
+    },
+    "faq": {
+      "heading": "Questions people ask",
+      "q1": "Where are the classes held?",
+      "a1": "My classroom is at Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, Ho Chi Minh City. Students come from Phú Nhuận, Gò Vấp and Bình Thạnh.",
+      "q2": "What ages do you teach?",
+      "a2": "Ages 5 to 17, in two groups: Young Learners (5–10) and Teens (11–17).",
+      "q3": "How big are the classes?",
+      "a3": "Small groups, so every student speaks in every lesson.",
+      "q4": "When are classes?",
+      "a4": "Twice a week for 90 minutes plus a 15-minute break. Weekday classes run 19:30–21:00; weekend classes run between 14:00 and 20:00.",
+      "q5": "Can I try a class first?",
+      "a5": "Yes. The first week is free.",
+      "q6": "Is there a contract?",
+      "a6": "No. After the free week, classes run month to month.",
+      "q7": "What are your qualifications?",
+      "a7": "I hold TESOL and PGCE qualifications. I have taught for four years, about 2,500 students in total.",
+      "q8": "What does \"why-first\" teaching mean?",
+      "a8": "I explain what a piece of language is for before asking anyone to remember it, then we use it in games and conversation. <link>Read the approach.</link>"
+    },
+    "door": {
+      "small": "Why I teach this way",
+      "strong": "Read the approach"
     }
   },
-  "courses": {
-    "title": "Find the Right Program",
-    "subtitle": "Two programs. One method: deliberate practice over passive exposure.",
-    "youngLearners": {
-      "title": "Young Learners (Ages 5-10)",
-      "tagline": "Small groups. Speaking from session one.",
-      "description": "Children learn English when they feel safe enough to try and challenged enough to grow. Sessions are structured around speaking, not textbook repetition. Groups stay small so every child is heard.",
-      "outcomes": [
-        "Pronunciation built through speaking, not drilling",
-        "Vocabulary acquired through use, not memorization",
-        "Confidence trained deliberately, session by session",
-        "A foundation that compounds through school and beyond"
-      ],
-      "duration": "2x/week • 90 min",
-      "level": "Ages 5-10",
-      "highlight": "A foundation they'll actually use"
+  "approach": {
+    "label": "Approach",
+    "h1": "<why>Why</why>-first teaching",
+    "lede": "I explain what a piece of language is for before asking anyone to remember it. Here are five reasons, each with the research behind it.",
+    "cue": "scroll through the five →",
+    "r1": {
+      "n": "reason one",
+      "h": "Why explain the <b>reason</b> before the rule?",
+      "lead": "Because meaning is what memory holds on to.",
+      "rest": " When a child knows what “the” is for, the rule stops being a sentence to memorise and becomes something they can work out again on their own.",
+      "cite": "Craik & Tulving, 1975 · Depth of processing"
     },
-    "teens": {
-      "title": "Teens & Pre-Teens (Ages 11-17)",
-      "tagline": "Spoken English that keeps pace with your ambitions.",
-      "description": "Teenagers improve when lessons match what is actually at stake for them. We work on spoken communication, critical thinking in English, and the kind of fluency that shows up in real situations — not just exams.",
-      "outcomes": [
-        "Spoken English without the internal translation delay",
-        "Stronger performance on school assignments and exams",
-        "Communication skills for real situations",
-        "Critical thinking in English"
-      ],
-      "duration": "2x/week • 90 min",
-      "level": "Ages 11-17",
-      "highlight": "School, university, and every room beyond"
+    "r2": {
+      "n": "reason two",
+      "h": "Why keep the <b>load</b> light?",
+      "lead": "Because working memory is small.",
+      "rest": " A wall of tables fills it before anything can be learned. Fewer items, each with a reason, leave room to think.",
+      "cite": "Sweller, 1988 · Cognitive load"
+    },
+    "r3": {
+      "n": "reason three",
+      "h": "Why let <b>wrong answers</b> in?",
+      "lead": "Because people learn more where it is safe to be wrong.",
+      "rest": " In my room a wrong answer is a clue about what the student is thinking, and nobody is embarrassed by one.",
+      "cite": "Edmondson, 1999 · Psychological safety (a study of work teams)"
+    },
+    "r4": {
+      "n": "reason four",
+      "h": "Why <b>play it back</b> instead of re-reading?",
+      "lead": "Because recalling something strengthens it more than reading it again.",
+      "rest": " Games and quick challenges make students pull language out of their heads, which is the practice that sticks.",
+      "cite": "Roediger & Karpicke, 2006 · Retrieval practice"
+    },
+    "r5": {
+      "n": "reason five",
+      "h": "Why teach <b>one task</b> many ways?",
+      "lead": "Because the right help depends on the student.",
+      "rest": " The same task reaches a quiet child, a competitive one and an artist differently, so I change the way in, not the goal.",
+      "cite": "Wood, Bruner & Ross, 1976 · Scaffolding"
+    },
+    "door": {
+      "small": "Small groups in Phú Nhuận",
+      "strong": "See the classes"
     }
-  },
-  "testimonials": {
-    "title": "What Students Say",
-    "subtitle": "From the students, parents, and colleagues who've worked with Teacher Bek.",
-    "sectionLabel": "Testimonials",
-    "items": [
-      {
-        "name": "Parent of an 8-year-old",
-        "role": "Phú Nhuận",
-        "quote": "My daughter used to freeze up when a foreigner spoke to her. After a few months of small-group classes, she answers back without thinking twice. The class size is what makes the difference — she actually gets to speak.",
-        "rating": 5
-      },
-      {
-        "name": "Parent of a 14-year-old",
-        "role": "Bình Thạnh",
-        "quote": "My son needed to stop translating in his head before he could speak. Teacher Bek was direct about what was actually holding him back, and his confidence in class presentations has completely changed.",
-        "rating": 5
-      },
-      {
-        "name": "Expat parent",
-        "role": "Phú Nhuận",
-        "quote": "We were nervous about finding an English class as a foreign family. Teacher Bek made our son feel comfortable from the first trial lesson, and the classroom itself felt genuinely safe for a young child.",
-        "rating": 5
-      },
-      {
-        "name": "Parent of a 7-year-old",
-        "role": "Gò Vấp",
-        "quote": "One free trial week was enough to see the difference from her previous class of 25 students. Here she's one of eight, and she's actually excited to go.",
-        "rating": 5
-      }
-    ]
-  },
-  "cta": {
-    "title": "One week. No commitment.",
-    "subtitle": "A free week of lessons to assess level and fit. If it's not the right match, I'll say so.",
-    "button": "Get in Touch",
-    "heading": "Free Week",
-    "headingItalic": "See if it fits.",
-    "checklist_0": "No payment required",
-    "checklist_1": "1 week of free lessons",
-    "checklist_2": "Honest fit assessment",
-    "phoneLabel": "Zalo / Call",
-    "zaloButton": "Message on Zalo"
-  },
-  "faq": {
-    "title": "Common Questions",
-    "q1": {
-      "question": "Where are classes held?",
-      "answer": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. I also teach at students' homes in Phú Nhuận, Gò Vấp, and Bình Thạnh."
-    },
-    "q2": {
-      "question": "What ages do you teach?",
-      "answer": "Young Learners (5-10) and Teens (11-17). Classes are for students aged 5 to 17 only."
-    },
-    "q3": {
-      "question": "Do I need to commit long-term?",
-      "answer": "No contract. Month-to-month. Start with a free first week — see if it works for you."
-    },
-    "q4": {
-      "question": "Do you teach only group classes?",
-      "answer": "Yes. All classes are group-based (max 10 students), including online sessions, so everyone gets speaking practice every session."
-    },
-    "q5": {
-      "question": "What are your qualifications?",
-      "answer": "TESOL and PGCE certified. Taught at ILA Vietnam, BlueSky Kindergarten, and 15+ schools."
-    },
-    "q6": {
-      "question": "Can I try a class first?",
-      "answer": "Yes. One free week of lessons. Bring your honest level — I'll tell you exactly where you stand."
-    },
-    "q7": {
-      "question": "Why small groups instead of large classes?",
-      "answer": "In a 25-person class, you barely speak. With 10 students, you practice every session."
-    },
-    "q8": {
-      "question": "Is your classroom safe for kids?",
-      "answer": "Yes. CCTV security, private restroom, air conditioning, and mosquito-killing lamps. Safe, comfortable, and parent-approved."
-    },
-    "description": "Common Questions"
-  },
-  "contact": {
-    "title": "Let's Talk",
-    "subtitle": "Tell me the level and the goal. I'll tell you if I can help.",
-    "location": {
-      "title": "Visit My Classroom",
-      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận — small group classroom with CCTV and private facilities"
-    },
-    "form": {
-      "title": "Send a Message",
-      "name": "Your name",
-      "email": "Your email",
-      "phone": "Phone or Zalo (optional)",
-      "message": "What's the gap you're trying to close?",
-      "consent": "I consent to receiving a follow-up about this inquiry.",
-      "submit": "Send Message",
-      "submitting": "Sending...",
-      "success": "Got it. I'll get back to you within 24 hours.",
-      "error": "Something went wrong. Try Zalo instead.",
-      "required": "This field is required",
-      "invalidEmail": "Please enter a valid email"
-    },
-    "or": "Or reach out directly",
-    "availability": {
-      "flexible": "Flexible scheduling — mornings, afternoons, or evenings",
-      "consultation": "Free week of lessons to assess level and fit",
-      "online": "In-person at my classroom or your location"
-    },
-    "trustBadges": {
-      "response": "Same-day replies, usually",
-      "noCommitment": "Honest fit assessment — no sales pitch",
-      "trial": "Free first week of lessons"
-    }
-  },
-  "footer": {
-    "tagline": "English teacher, Ho Chi Minh City. 2,000+ students. TESOL & PGCE certified.",
-    "contact": "Get in Touch",
-    "telegram": "Zalo",
-    "zalo": "Zalo",
-    "email": "Email",
-    "certifications": "Qualifications",
-    "tefl": "TESOL Certified",
-    "tesol": "PGCE Certified",
-    "experience": "2,000+ Students Taught",
-    "legal": "Legal",
-    "privacy": "Privacy",
-    "terms": "Terms",
-    "quickLinks": "Quick Links",
-    "channels": "Channels",
-    "location": "Golden Mansion 1, Phú Nhuận",
-    "ctaHeading": "One free week of lessons to see where you stand.",
-    "linkedin": "LinkedIn",
-    "instagram": "Instagram",
-    "facebook": "Facebook",
-    "tiktok": "TikTok",
-    "mba": "MBA Candidate",
-    "locationLabel": "Location",
-    "city": "Ho Chi Minh City",
-    "country": "Vietnam",
-    "backToTop": "Back to top",
-    "follow": "Follow",
-    "weekdayHours": "19:30–21:00",
-    "weekendHours": "14:00–20:00"
-  },
-  "location": {
-    "title": "Based in Ho Chi Minh City",
-    "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
-    "districts": "Also teaching in Gò Vấp & Bình Thạnh",
-    "features": "CCTV · Comfortable · Professional",
-    "openInMaps": "Open in Google Maps"
-  },
-  "programs": {
-    "sectionLabel": "English Classes",
-    "heading": "",
-    "headingItalic": "Programs",
-    "subtitle": "Young learners and teens.",
-    "subtitleDesc": "Two programs. Each built for a specific stage.",
-    "requestDetails": "Request details",
-    "readyTitle": "One free week to see if it's right.",
-    "readyDesc": "Tell me your level and goal. I'll tell you which program fits — and whether I can help.",
-    "requestCta": "Book a Free Week",
-    "pricingNote": "One price for every program. Every program starts with a free trial week. Unlock pricing in 10 seconds — no obligation.",
-    "pricingCta": "See Pricing",
-    "scheduleNote": "Weekdays: 7:30 PM - 9:00 PM · Weekends: 2:00 PM - 8:00 PM",
-    "formatNote": "Group classes · Max 10 students",
-    "youngLearners": {
-      "title": "Young Learners",
-      "subtitle": "Ages 5–10",
-      "tagline": "Small groups. Speaking from session one.",
-      "format": "2× per week · 90 min + 15 min break",
-      "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "Pronunciation built through speaking, not drilling",
-      "outcomes_1": "Vocabulary acquired through use, not memorization",
-      "outcomes_2": "Confidence trained deliberately, session by session",
-      "outcomes_3": "A foundation that compounds through school",
-      "method": "Acquisition through structured play, spoken production from session one, and deliberate confidence-building — no drilling, no passive listening."
-    },
-    "teens": {
-      "title": "Teens & Pre-Teens",
-      "subtitle": "Ages 11–17",
-      "tagline": "Spoken English that keeps pace with real ambitions.",
-      "format": "2× per week · 90 min + 15 min break",
-      "schedule": "Weekday evenings · Weekends",
-      "outcomes_0": "Spoken English without the internal translation delay",
-      "outcomes_1": "Stronger performance on school assignments and exams",
-      "outcomes_2": "Communication skills for real situations",
-      "outcomes_3": "Critical thinking in English",
-      "method": "Communicative fluency under real pressure — removing the internal translation delay so students can think and respond in English, not about it."
-    }
-  },
-  "pricingGate": {
-    "eyebrow": "Unlock Pricing",
-    "heading": "See pricing in 10 seconds.",
-    "body": "Leave your name and phone number and pricing for all programs unlocks instantly — plus I'll reach out on Zalo to help you pick the right fit.",
-    "nameLabel": "Full Name",
-    "namePlaceholder": "Your full name",
-    "phoneLabel": "Phone / Zalo",
-    "phonePlaceholder": "+84 ...",
-    "submitButton": "Unlock Pricing",
-    "submittingButton": "Unlocking...",
-    "privacyNote": "Used only to send you pricing and follow up about lessons. No spam.",
-    "successEyebrow": "Pricing Unlocked",
-    "successHeading": "Here's what each program costs.",
-    "successBody": "All programs include a free trial week — no payment required, no obligation.",
-    "zaloCta": "Book Your Free Week on Zalo",
-    "closeLabel": "Close"
-  },
-  "methodology": {
-    "sectionLabel": "How You Learn",
-    "heading": "Deliberate practice,",
-    "headingItalic": "not passive exposure.",
-    "steps": [
-      {
-        "id": "01",
-        "title": "Understand",
-        "description": "Assess exactly where you are. Level, goals, and what's actually blocking fluency."
-      },
-      {
-        "id": "02",
-        "title": "Build",
-        "description": "Structured sessions designed to increase fluency, not just familiarity. Every class builds on the last."
-      },
-      {
-        "id": "03",
-        "title": "Use",
-        "description": "You speak. You get direct feedback. You speak again. Fluency isn't taught — it's practiced."
-      }
-    ],
-    "stepLabel": "Step"
-  },
-  "inquiry": {
-    "sectionLabel": "07 — Contact",
-    "heading": "Get in Touch",
-    "replyNote": "Usually replies within 24 hours",
-    "forWhomLabel": "Who is this for?",
-    "forWhomChild": "My Child",
-    "forWhomSelf": "Me (student)",
-    "levelLabel": "Current level?",
-    "levelBeginner": "Beginner",
-    "levelIntermediate": "Intermediate",
-    "levelAdvanced": "Advanced",
-    "levelNotSure": "Not Sure",
-    "goalLabel": "Main goal?",
-    "goalSpeaking": "Speaking Confidence",
-    "goalSchool": "School Grades",
-    "nameLabel": "Full Name",
-    "namePlaceholder": "Your full name",
-    "phoneLabel": "Phone / Zalo",
-    "phonePlaceholder": "+84 ...",
-    "zaloPrimary": "Message on Zalo — fastest reply",
-    "orFormLabel": "Or send an inquiry",
-    "messageLabel": "Anything else?",
-    "messagePlaceholder": "What's the gap you're trying to close?",
-    "optional": "optional",
-    "consentText": "I consent to data processing for inquiry follow-up.",
-    "sendButton": "Send Message",
-    "sendingButton": "Sending...",
-    "hoursLabel": "Teaching Hours (GMT+7)",
-    "weekdays": "Weekdays",
-    "weekends": "Weekends",
-    "connectLabel": "Connect Directly",
-    "phoneChannels": "Zalo · Phone"
-  },
-  "marquee": {
-    "text": "TESOL Certified · PGCE Qualified · 2,000+ Students · Fluency, Not Just Familiarity · Small Groups · HCMC · Deliberate Practice · Ages 5–17 ·"
-  },
-  "exitIntent": {
-    "tag": "Before You Leave",
-    "heading": "Get a Personalized English Plan",
-    "body": "Share your goal and I'll send a short recommended roadmap for your level and timeline.",
-    "zalo": "Message on Zalo",
-    "inquiry": "Start Inquiry",
-    "dismiss": "No Thanks"
   },
   "notFound": {
-    "heading": "404",
-    "label": "Page not found",
-    "body": "The page you're looking for doesn't exist or has been moved.",
-    "cta": "Back to home",
-    "hint": "Or try one of these"
+    "heading": "Page not found",
+    "body": "This page does not exist or has moved.",
+    "cta": "Back to home"
   },
-  "loadingScreen": {
-    "status": "Loading Experience"
-  },
-  "common": {
-    "siteName": "Teacher Bek"
+  "chat": {
+    "hi": "Hi! Who is going to learn?",
+    "who": [
+      "My child",
+      "Me"
+    ],
+    "ageC": "Lovely. How old are they?",
+    "ageS": "Nice. How old are you?",
+    "name": "What should I call you?",
+    "namePh": "Your name",
+    "phone": "And the best number for Zalo?",
+    "phonePh": "e.g. 0912 345 678",
+    "note": "Anything I should know? (optional)",
+    "notePh": "e.g. a bit shy about speaking",
+    "skip": "Skip",
+    "next": "Next",
+    "consent": "I agree that Bek may use these details to reply to me.",
+    "send": "Send to Bek",
+    "done": "Got it, {name}. I’ll message you on Zalo soon.",
+    "zalo": "Open Zalo now",
+    "copy": "Copy my message",
+    "copied": "Copied ✓",
+    "msgChild": "Hi Bek, I’m {name}. I’m asking about classes for my {age}-year-old.",
+    "msgSelf": "Hi Bek, I’m {name}. I’m {age} and I’d like to learn English.",
+    "yrs": "",
+    "bad": "That number looks a little short. Could you check it?",
+    "badName": "Could you give me at least two letters?",
+    "failZalo": "You can also message me straight on Zalo.",
+    "captchaZalo": "The anti-spam check didn't load. You can still message me on Zalo."
   },
   "leads": {
-    "contactSuccess": "Thank you! I will be in touch within 24 hours.",
-    "errorDelivery": "Sorry, your message could not be delivered right now. Please contact me directly instead.",
-    "errorRateLimited": "Too many attempts. Please wait a minute and try again.",
-    "errorInvalid": "Some details look incorrect. Please check your name and phone number and try again.",
-    "errorSpam": "Please take a moment to fill in the form, then submit again.",
-    "errorCaptcha": "Security check failed. Please wait for it to complete and try again.",
-    "errorNetwork": "Connection problem. Please check your internet and try again, or contact me directly.",
-    "fallbackHint": "You can reach me right now instead:",
-    "zaloButton": "Message on Zalo",
-    "callLabel": "Call"
+    "errorDelivery": "Sorry, that did not go through on my side.",
+    "errorRateLimited": "That was a lot of messages in a short time. Please try again in a minute.",
+    "errorInvalid": "Something in the details looks off. Please check your name and number.",
+    "errorSpam": "That was a little too quick. Please try once more.",
+    "errorCaptcha": "The security check did not complete. Please try again.",
+    "errorNetwork": "I could not reach the server. Please check your connection."
+  },
+  "privacy": {
+    "eyebrow": "Legal",
+    "title": "Privacy Policy",
+    "effective": "Effective date: November 12, 2026",
+    "intro": "This policy explains what information is collected through this website, how it is used, and what rights you have over your personal data.",
+    "collected": {
+      "title": "1. Information Collected",
+      "lead": "Information is collected only when you send an enquiry through the chat on this site.",
+      "items": [
+        "Your name (or the name you give me in the chat)",
+        "Your phone number or Zalo details, if you choose to share them",
+        "The content of your messages",
+        "Basic technical data used for spam prevention and security, such as a timestamp and a Cloudflare Turnstile check result"
+      ]
+    },
+    "purpose": {
+      "title": "2. Purpose of Processing",
+      "text": "Your data is used only to reply to your enquiry, give you information about lessons, arrange scheduling, and keep the website secure."
+    },
+    "retention": {
+      "title": "3. Data Retention",
+      "text": "Data is kept only as long as reasonably necessary to handle communication and service requests, or as required by law."
+    },
+    "sharing": {
+      "title": "4. Data Sharing and Services Used",
+      "lead": "Your data is never sold. It is processed only by the services needed to run this site:",
+      "items": [
+        "Chat enquiries are sent to me through a Telegram bot and stored in a Google Sheet that only I can open.",
+        "Cloudflare Turnstile checks that a message comes from a real person and not a bot, to prevent spam.",
+        "Plausible Analytics counts visits without cookies and without collecting personal data.",
+        "Sentry monitors technical errors. Phone numbers and form contents are removed before anything is sent, and IP addresses are not stored."
+      ]
+    },
+    "rights": {
+      "title": "5. Your Rights",
+      "text": "You can ask for access to, correction of, or deletion of your personal data by messaging me on <zalo>Zalo</zalo>, calling <phone>+84 353 88 5757</phone>, or using the chat on this site."
+    },
+    "updates": {
+      "title": "6. Policy Updates",
+      "text": "This policy may be updated from time to time. The effective date above shows the latest revision."
+    }
+  },
+  "terms": {
+    "eyebrow": "Legal",
+    "title": "Terms of Service",
+    "effective": "Effective date: November 12, 2026",
+    "intro": "These terms govern the use of this website and any lesson-related communication or services requested through it.",
+    "scope": {
+      "title": "1. Scope of Services",
+      "text": "Services include English teaching sessions and related communication support. The final lesson format and schedule are confirmed directly with you after your enquiry."
+    },
+    "booking": {
+      "title": "2. Booking and Confirmation",
+      "text": "A place in a class is confirmed only after you and I have agreed directly. Availability is limited and may change without notice until it is confirmed."
+    },
+    "client": {
+      "title": "3. Client Responsibilities",
+      "items": [
+        "Provide accurate contact details.",
+        "Provide accurate information about the learner so I can place them well.",
+        "Respect the agreed schedule and communication timelines."
+      ]
+    },
+    "cancel": {
+      "title": "4. Cancellations and Rescheduling",
+      "text": "Cancellation and rescheduling rules are given when you book. Repeated no-shows or last-minute cancellations may mean losing a reserved place."
+    },
+    "use": {
+      "title": "5. Acceptable Use",
+      "text": "This website may not be used for abuse, spam, scraping, or unlawful activity. I may restrict access or communication to protect my work and the safety of others."
+    },
+    "liability": {
+      "title": "6. Liability and External Services",
+      "text": "I make reasonable efforts to keep the information on this website accurate, but I cannot guarantee that all content is complete or free of errors at all times. Third-party services and links are governed by their own terms and policies."
+    },
+    "contact": {
+      "title": "7. Contact",
+      "text": "For legal or service questions, message me on <zalo>Zalo</zalo>, call <phone>+84 353 88 5757</phone>, or use the chat on this site."
+    }
   }
 }

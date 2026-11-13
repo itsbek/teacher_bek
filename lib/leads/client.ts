@@ -80,6 +80,7 @@ function loadTurnstile(): Promise<void> {
   return scriptPromise;
 }
 
+const NO_TOKEN_MS = 6000;
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 /**
@@ -90,11 +91,15 @@ export function useTurnstile(active: boolean) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | undefined>(undefined);
   const [token, setToken] = useState('');
+  const [timedOut, setTimedOut] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
   const enabled = Boolean(SITE_KEY);
 
   useEffect(() => {
     if (!enabled || !active) return;
     let cancelled = false;
+    // Ad-blocker / offline / blocked iframe: no token within 6 s means the visitor must not be stuck.
+    const timer = setTimeout(() => setTimedOut(true), NO_TOKEN_MS);
     loadTurnstile()
       .then(() => {
         const el = containerRef.current;
@@ -102,14 +107,17 @@ export function useTurnstile(active: boolean) {
         widgetId.current = window.turnstile.render(el, {
           sitekey: SITE_KEY,
           theme: 'auto',
-          callback: (t: string) => setToken(t),
+          callback: (t: string) => { setToken(t); setTimedOut(false); },
           'expired-callback': () => setToken(''),
-          'error-callback': () => setToken(''),
+          'error-callback': () => { setToken(''); setLoadFailed(true); },
         });
       })
-      .catch(() => { /* widget unavailable: server decides whether to accept */ });
+      .catch(() => setLoadFailed(true));
     return () => {
       cancelled = true;
+      clearTimeout(timer);
+      setTimedOut(false);
+      setLoadFailed(false);
       if (widgetId.current && window.turnstile) window.turnstile.remove(widgetId.current);
       widgetId.current = undefined;
       setToken('');
@@ -121,5 +129,8 @@ export function useTurnstile(active: boolean) {
     if (widgetId.current && window.turnstile) window.turnstile.reset(widgetId.current);
   };
 
-  return { containerRef, token, enabled, reset };
+  /** True when the check is enabled but no token has arrived and it failed or timed out: offer Zalo. */
+  const unavailable = enabled && active && !token && (timedOut || loadFailed);
+
+  return { containerRef, token, enabled, unavailable, reset };
 }

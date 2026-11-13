@@ -1,452 +1,502 @@
 {
-  "nav": {
-    "home": "Trang chủ",
-    "about": "Giới thiệu",
-    "services": "Lớp học",
-    "courses": "Chương trình",
-    "testimonials": "Học viên",
-    "faq": "Hỏi đáp",
-    "contact": "Liên hệ"
+  "site": {
+    "skipLink": "Chuyển đến nội dung",
+    "brand": "Thầy Bek",
+    "homeLabel": "Thầy Bek, trang chủ",
+    "navLabel": "Chính",
+    "footerNavLabel": "Chân trang",
+    "nav": {
+      "story": "Câu chuyện",
+      "classes": "Các lớp học",
+      "approach": "Phương pháp",
+      "privacy": "Bảo mật",
+      "terms": "Điều khoản"
+    },
+    "language": {
+      "switchTo": "EN",
+      "switchLabel": "English",
+      "switchHrefLang": "en"
+    },
+    "chip": {
+      "page": "Trang",
+      "cover": "bìa"
+    },
+    "menu": {
+      "open": "Menu",
+      "close": "Đóng",
+      "label": "Trang web",
+      "story": {
+        "title": "Câu chuyện",
+        "text": "Từ 5 đến 17 tuổi, và điều thay đổi khi có người giải thích why."
+      },
+      "classes": {
+        "title": "Các lớp học",
+        "text": "Lớp nhỏ ở Phú Nhuận, 5–17 tuổi. Tuần đầu miễn phí."
+      },
+      "approach": {
+        "title": "Phương pháp",
+        "text": "Năm lý do đằng sau cách mình dạy, kèm nghiên cứu."
+      },
+      "talk": {
+        "title": "Chào bạn",
+        "text": "Vài câu hỏi nhanh, rồi mình trả lời qua Zalo."
+      },
+      "foot": "Thầy Bek · Golden Mansion 1, 119 Phổ Quang, Phú Nhuận · +84 353 88 5757"
+    },
+    "talk": {
+      "label": "Chào bạn",
+      "heading": "Đến lượt bạn.",
+      "headingEm": "Hỏi mình bất cứ điều gì.",
+      "sub": "Vài câu hỏi nhanh, rồi mình trả lời qua Zalo, thường là trong ngày."
+    },
+    "footer": {
+      "description": "Tiếng Anh cho các bạn 5–17 tuổi ở Phú Nhuận, TP. Hồ Chí Minh. Lớp nhỏ. Lý do trước, quy tắc sau.",
+      "visit": "Ghé thăm",
+      "addressLine1": "Golden Mansion 1",
+      "addressLine2": "119 Phổ Quang, Phú Nhuận",
+      "talk": "Liên hệ",
+      "sendMessage": "Gửi tin nhắn",
+      "zalo": "Zalo",
+      "phone": "+84 353 88 5757",
+      "read": "Đọc",
+      "copyright": "© 2026 Thầy Bek"
+    }
   },
-  "hero": {
-    "badge": "Giáo viên tiếng Anh tại TP.HCM",
-    "title": "Học tiếng Anh như một cuộc phiêu lưu",
-    "titleLine1": "Tiếng Anh không chỉ là",
-    "titleLine2": "một ngôn ngữ — đó là",
-    "titleAccent": "chìa khóa",
-    "subtitle": "Không phải bài tập ngữ pháp. Không phải tiếp nhận thụ động. Luyện tập có chủ đích, trong một lớp học được thiết kế cho điều đó.",
-    "cta": "Đặt Lịch Học Miễn Phí 1 Tuần",
-    "zaloCta": "Nhắn Tin Zalo",
-    "secondary": "Chương trình",
-    "headline": "Tiếng Anh không phải là ngôn ngữ—đó là chìa khóa",
-    "subheadline": "Chứng Chỉ TESOL • ILA Vietnam • TP. Hồ Chí Minh",
-    "primaryCTA": "Bắt Đầu Học",
-    "secondaryCTA": "Xem Khóa Học",
-    "title_part1": "Nâng Tầm",
-    "title_part2": "Sự Tự Tin",
-    "description": "Lộ trình tiếng Anh thực tế cho hội thoại, thi cử và giao tiếp công việc.",
-    "stats": {
-      "students": "Học viên đã dạy",
-      "experience": "Năm giảng dạy",
-      "success": "Chứng chỉ TESOL & PGCE"
+  "notebook": {
+    "fieldNote": "Ghi chú",
+    "noteAria": "Ghi chú: {cite}",
+    "cursor": {
+      "home": "trang chủ",
+      "open": "mở",
+      "note": "ghi chú",
+      "pick": "chọn",
+      "say hi": "nhắn tin",
+      "send": "gửi"
     },
-    "badgeTesol": "TESOL + PGCE",
-    "badgePgce": "Ứng viên MBA",
-    "badgeLocation": "Tại TP.HCM",
-    "badgeFormat": "Trực tiếp + Trực tuyến",
-    "statsStudents": "Học viên đã dạy",
-    "statsYears": "Năm tại Việt Nam",
-    "statsSchools": "Trường Đã Dạy",
-    "statusOpen": "Đang nhận học viên",
-    "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM",
-    "tagline": "Nhóm nhỏ · Phú Nhuận · 5–17 tuổi · Trực tuyến",
-    "scrollLabel": "Cuộn để khám phá"
+    "notes": {
+      "sweller": {
+        "title": "Gánh nặng nhận thức",
+        "body": "Trí nhớ làm việc rất nhỏ. Nhét vào đó những thứ rời rạc, không liên quan nhau thì sẽ chẳng còn chỗ để học.",
+        "cite": "John Sweller, 1988",
+        "source": "Cognitive load during problem solving. Cognitive Science.",
+        "short": "Sweller, 1988"
+      },
+      "edmondson": {
+        "title": "An toàn tâm lý",
+        "body": "Trong một nghiên cứu về các nhóm làm việc, những nhóm mà mọi người thấy an toàn khi thừa nhận sai sót thì học được nhiều hơn. Mình thấy điều tương tự ở các bạn học của mình.",
+        "cite": "Amy Edmondson, 1999",
+        "source": "Administrative Science Quarterly.",
+        "short": "Edmondson, 1999"
+      },
+      "craik": {
+        "title": "Độ sâu xử lý thông tin",
+        "body": "Người ta nhớ từ tốt hơn nhiều khi nghĩ về ý nghĩa của từ so với khi chỉ để ý đến hình dạng hay âm thanh của nó.",
+        "cite": "Fergus Craik & Endel Tulving, 1975",
+        "source": "Journal of Experimental Psychology: General.",
+        "short": "Craik and Tulving, 1975"
+      },
+      "roediger": {
+        "title": "Luyện tập truy xuất",
+        "body": "Những bạn luyện nhớ lại điều đã đọc thì một tuần sau nhớ được nhiều hơn những bạn chỉ đọc lại lần nữa.",
+        "cite": "Henry Roediger & Jeffrey Karpicke, 2006",
+        "source": "Psychological Science.",
+        "short": "Roediger and Karpicke, 2006"
+      },
+      "wood": {
+        "title": "Giàn giáo hỗ trợ",
+        "body": "Người dạy giỏi điều chỉnh sự giúp đỡ theo điều mà bạn học gần như tự làm được. Các nhà nghiên cứu gọi đó là giàn giáo hỗ trợ (scaffolding).",
+        "cite": "David Wood, Jerome Bruner & Gail Ross, 1976",
+        "source": "Journal of Child Psychology and Psychiatry.",
+        "short": "Wood, Bruner and Ross, 1976"
+      },
+      "ryan": {
+        "title": "Tự quyết",
+        "body": "Người ta tiếp tục cố gắng khi cảm thấy ba điều: mình đã chọn việc này, mình làm được, và mình thuộc về nơi này.",
+        "cite": "Richard Ryan & Edward Deci, 2000",
+        "source": "American Psychologist.",
+        "short": "Ryan and Deci, 2000"
+      }
+    }
   },
-  "about": {
-    "label": "Về Tôi",
-    "title": "Về Tôi",
-    "intro": "Từ phòng họp đến lớp học — xây dựng sự tự tin, từng câu chuyện một.",
-    "story": {
-      "hook": "Ban đầu tôi không có kế hoạch gắn bó lâu dài với việc dạy học.",
-      "p1": "Khi lần đầu đến Việt Nam, tôi đến để tình nguyện và trải nghiệm môi trường mới. Lớp học chỉ là tạm thời. Nhưng theo thời gian, tôi bắt đầu nhận ra giá trị của trách nhiệm mà nghề dạy học đòi hỏi — sự kiên nhẫn, nhất quán và tận tâm với học sinh mỗi ngày.",
-      "p2": "Điều giữ tôi lại là những khoảnh khắc tiến bộ nhỏ xảy ra một cách lặng lẽ. Một học sinh tự tin hơn khi nói. Ai đó đặt ra một câu hỏi sâu sắc. Một đứa trẻ nhận ra mình có thể diễn đạt ý tưởng mà trước đây còn khó nắm bắt.",
-      "pull": "Từ phòng họp đến lớp học — xây dựng sự tự tin, từng câu chuyện một.",
-      "p3": "Làm việc cùng các em đã nhắc nhở tôi về sức mạnh của sự tò mò và kiên trì. Theo nhiều cách, các em cũng ảnh hưởng đến tôi — thậm chí giới thiệu cho tôi những thứ như cờ vua và sự kỷ luật đi kèm với việc học nó.",
-      "p4": "Ngoài giờ dạy, tôi thích đọc sách, tập gym và grappling. Những hoạt động đó giúp tôi có nền tảng vững chắc và nhắc nhở rằng sự tiến bộ thường đến từ nỗ lực bền vững theo thời gian.",
-      "p5": "Đó là tư duy tôi cố gắng mang vào lớp học — giúp học sinh trở nên tự tin, có năng lực và thoải mái hơn khi sử dụng tiếng Anh trong quá trình trưởng thành.",
-      "close": "Với tôi, dạy học đơn giản là hướng dẫn quá trình đó — từng học sinh và từng câu chuyện một.",
-      "title": "Giới thiệu"
+  "story": {
+    "cover": {
+      "labelTitle": "Tiếng Anh",
+      "labelName": "Họ và tên",
+      "labelNameValue": "em",
+      "labelAges": "Tuổi",
+      "labelTeacher": "Giáo viên",
+      "eyebrow": "Thầy Bek · Tiếng Anh cho các bạn 5–17 tuổi · Phú Nhuận, TP. Hồ Chí Minh",
+      "h1Label": "Tiếng Anh trở nên dễ hiểu khi có người cho bạn biết why.",
+      "h1Line1": "Tiếng Anh trở nên",
+      "h1Line2": "dễ hiểu khi có người",
+      "h1Line3": "cho bạn biết",
+      "why": "why",
+      "voice": "Mình dạy trẻ em và thanh thiếu niên. Trang này theo chân một bạn nhỏ, từ năm tuổi đến mười bảy tuổi.",
+      "hint": "nắm lấy chữ <b>why</b> và kéo →",
+      "whyAria": "Kéo chữ why để mở cuốn vở"
     },
-    "credentials": {
-      "title": "Bằng Cấp",
-      "tesol": "Chứng Chỉ TESOL",
-      "tesolDesc": "Dạy tiếng Anh cho người nói ngôn ngữ khác",
-      "pgce": "Chứng Chỉ PGCE",
-      "pgceDesc": "Chứng chỉ Sau đại học về Giáo dục",
-      "delta": "Ứng viên MBA",
-      "deltaDesc": "Hiện đang theo học MBA"
+    "wall": {
+      "label": "6 tuổi",
+      "heading": "Năm sáu tuổi, tiếng Anh đến như thế này.",
+      "line1": "Một cái bảng.",
+      "line2": "Rồi thêm một cái nữa.",
+      "line3": "Học thuộc trước thứ Sáu.",
+      "line4": "Không ai nói học để làm gì.",
+      "count": "Những thứ phải học thuộc",
+      "hesCap": "Một bạn sáu tuổi thuộc từng dòng của cái bảng đó, phải chuyển sang tiếng Việt để tìm chữ",
+      "hesVh": "Bạn nhỏ cố tìm chữ, chuyển qua lại giữa tiếng Anh và tiếng Việt: my dog is… ờ… nó… is… big?… cái đó tiếng Anh là gì ta… và câu nói không bao giờ thành."
     },
-    "stats": {
-      "students": "gần 2.000",
-      "studentsLabel": "Học viên đã dạy",
-      "years": "3",
-      "yearsLabel": "Năm tại Việt Nam",
-      "schools": "15+",
-      "schoolsLabel": "Trường Đã Dạy"
+    "test": {
+      "label": "9 tuổi · Trong bài kiểm tra nói, mình hỏi một câu rất dễ",
+      "taken": "Đã lấy ra khỏi cặp",
+      "cap": "Đây là tổng hợp những câu trả lời mình hay nghe, không phải lời của riêng một bạn nào. Khoảng tám trong mười bạn học của mình kể với mình một phiên bản nào đó của chuyện này. Đó không phải nghiên cứu; chỉ là điều mình nghe thấy trong chính lớp học của mình.",
+      "rel": "Nên mình không bỏ thêm vào cặp. <em>Mình lấy bớt ra.</em>"
     },
-    "photoCaption": "Teacher Bek — Phú Nhuận, TP.HCM",
-    "classroom": {
-      "title": "Lớp Học",
-      "description": "Mỗi lớp tối đa 10 người. Lớp 25 người thì mỗi bạn nói chừng 3 phút một buổi — không ai luyện được gì cả. Lớp ở Phú Nhuận của tôi nhỏ theo chủ ý: camera CCTV, nhà vệ sinh riêng, máy lạnh. An toàn cho trẻ. Làm sẵn để nói tiếng Anh.",
-      "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
-      "features": {
-        "cctv": "Có Camera An Ninh",
-        "cctvDesc": "Phụ huynh có thể yên tâm",
-        "comfort": "Môi Trường Thoải Mái",
-        "comfortDesc": "Thiết kế phù hợp cho việc học",
-        "materials": "Tài Liệu Học Tập",
-        "materialsDesc": "Tất cả tài liệu được cung cấp",
-        "safety": "Môi Trường An Toàn",
-        "safetyDesc": "Nhà vệ sinh riêng, kiểm soát muỗi"
+    "turn": {
+      "label": "11 tuổi · Đây là một quy tắc",
+      "after": "Đúng. Nhưng chẳng giúp gì cho một bạn mười một tuổi.",
+      "a": "<em>a</em> nghĩa là một trong nhiều. Mình chưa nói là cái nào.",
+      "the": "<em>the</em> nghĩa là bạn đã biết mình đang nói đến cái nào.",
+      "dogsAria": "Chọn một chú chó",
+      "pick": "chọn một chú chó. chú nào cũng được.",
+      "picked": "bây giờ là <b>the</b> dog. bạn đã làm cho nó cụ thể."
+    },
+    "guess": {
+      "label": "12 tuổi",
+      "heading": "Khi đã hiểu why, các bạn bắt đầu đoán. <open>Tốt.</open>",
+      "resp": "Kéo một từ vào chỗ trống, hoặc chạm vào một từ.",
+      "note": "Chúng mình không đọc lại danh sách. Chúng mình chơi lại nó.",
+      "goed": "<b class=\"no\">Chưa đúng, nhưng là một lỗi thông minh.</b> Bạn đã áp dụng quy tắc của động từ thường. Chỉ là ở chỗ này tiếng Anh quên không theo quy tắc.",
+      "wented": "<b class=\"no\">Chưa đúng, và còn thông minh hơn nữa.</b> Bạn biết đây là động từ bất quy tắc, rồi vẫn thêm quy tắc vào.",
+      "went": "<b class=\"ok\">Đúng rồi.</b> Và hãy để ý là bạn đã phải tự lôi nó ra từ trong đầu. Chính việc lôi ra ấy là luyện tập."
+    },
+    "six": {
+      "label": "14 tuổi",
+      "heading": "Cùng một bài. Ba bạn. <open>Ba lối vào.</open>",
+      "task": "Bài tập: <b>{task}</b> (Hãy tả căn phòng của bạn.)",
+      "hint": "cuộn tiếp →",
+      "who1": "Bạn thích vẽ",
+      "pv0": "Vẽ xấu cũng được. Rồi kể mình nghe tất cả những chỗ mình sẽ hiểu sai.",
+      "who2": "Bạn ít nói",
+      "pv1": "Viết ba điều thật và một điều nói dối. Mình sẽ cố bắt ra điều nói dối.",
+      "who3": "Bạn luôn muốn thắng",
+      "pv2": "Mười giây. Mình đếm số từ của bạn. Bắt đầu.",
+      "words": "từ"
+    },
+    "dist": {
+      "label": "Tuổi 15",
+      "heading": "Hai câu nhìn gần như giống nhau.",
+      "then": "lúc đó",
+      "now": "bây giờ",
+      "meanA": "Một chuyện đã xong. Nó xảy ra lúc đó, vậy thôi.",
+      "meanB": "Vẫn đang mất, ngay bây giờ. Giờ vẫn chưa vào nhà được.",
+      "why": "<b>have</b> chính là lý do: kết quả vẫn còn <em>đến bây giờ</em>. Quá khứ được mang vào hiện tại."
+    },
+    "own": {
+      "label": "17 tuổi · Vẫn câu hỏi ấy, tám năm sau",
+      "cap": "Đây là tổng hợp. Mỗi phần trong đó đều là điều một bạn học trò từng nói với mình."
+    },
+    "about": {
+      "label": "Giới thiệu",
+      "heading": "Mình là Bek.",
+      "photoAria": "Bek, đang mỉm cười, mặc áo khoác tối màu và quần sáng màu",
+      "voice": "Mình dạy tiếng Anh ở TP. Hồ Chí Minh. Bốn năm, khoảng 2.500 học sinh, có chứng chỉ TESOL và PGCE. Các lớp nhỏ của mình học ngay tại lớp học của mình ở Phú Nhuận.",
+      "n1": "một",
+      "b1": "Học nên giống như chơi, chứ không phải thêm một việc phải làm.",
+      "n2": "hai",
+      "b2": "Mỗi mẩu ngôn ngữ đều có lý do để tồn tại. Mình dạy lý do trước.",
+      "n3": "ba",
+      "b3": "Cùng một bài học nên đến được với mỗi bạn theo một cách khác nhau.",
+      "caption": "thầy Bek, Phú Nhuận"
+    },
+    "room": {
+      "heading": "Học <hl>theo cách này</hl>, quanh một chiếc bàn dài ở Phú Nhuận.",
+      "alt": "Lớp học của Bek ở Phú Nhuận: một chiếc bàn dài với những chiếc ghế nhiều màu, kệ sách và ánh đèn buổi tối ấm áp",
+      "voice": "Đây là căn phòng của mình. Lớp nhỏ, mỗi tuần hai buổi, chín mươi phút và có nghỉ giải lao ở giữa. Tuần đầu miễn phí, để ba mẹ và các bạn xem thử cảm giác thế nào trước khi quyết định gì.",
+      "facts": {
+        "young": [
+          "Các bạn nhỏ",
+          "5–10 tuổi"
+        ],
+        "teens": [
+          "Thiếu niên",
+          "11–17 tuổi"
+        ],
+        "weekdays": [
+          "Ngày thường",
+          "19:30–21:00"
+        ],
+        "weekends": [
+          "Cuối tuần",
+          "14:00–20:00"
+        ],
+        "where": [
+          "Địa điểm",
+          "Golden Mansion 1, 119 Phổ Quang"
+        ]
+      },
+      "ctaTalk": "Nhắn tin cho mình",
+      "ctaClasses": "Xem các lớp học"
+    },
+    "door": {
+      "small": "Năm lý do đằng sau cách mình dạy",
+      "strong": "Đọc về phương pháp"
+    },
+    "pageWord": "trang"
+  },
+  "classes": {
+    "label": "Các lớp học",
+    "heroBefore": "Lớp tiếng Anh ở ",
+    "place": "Phú Nhuận",
+    "heroAfter": ", cho các bạn từ 5 đến 17 tuổi.",
+    "lede": "Lớp nhỏ, mỗi tuần hai buổi, chín mươi phút và có nghỉ giải lao ở giữa. Tuần đầu miễn phí.",
+    "dial": {
+      "label": "Bạn học mấy tuổi?",
+      "ageLabel": "Tuổi của bạn học",
+      "years": "tuổi",
+      "ageValue": "{n} tuổi",
+      "threeMoves": "Một buổi học, ba bước"
+    },
+    "programs": {
+      "yl": {
+        "ages": "Tuổi 5–10",
+        "name": "Young <b>Learners</b>",
+        "text": "Chơi trước, nói ngay từ buổi đầu, và hiểu lý do của từng từ trước khi phải nhớ.",
+        "steps": [
+          "Một trò chơi cần dùng từ đó",
+          "Cùng hỏi vì sao nó như vậy",
+          "Các bạn dùng nó để nói về chính mình"
+        ]
+      },
+      "tn": {
+        "ages": "Tuổi 11–17",
+        "name": "<b>Teens</b>",
+        "text": "Tiếng Anh nói cho tình huống thật, cho trường lớp và kỳ thi, dựa trên việc hiểu vì sao ngôn ngữ vận hành như vậy.",
+        "steps": [
+          "Bắt đầu từ điều bạn muốn nói",
+          "Tìm cách nói, và hiểu vì sao",
+          "Dùng nó dưới chút áp lực: tranh luận, thử thách mười giây"
+        ]
       }
     },
-    "philosophy": {
-      "title": "Cách Bạn Học",
-      "description": "Mỗi buổi bạn đều sẽ nói. Không phải tuỳ chọn. Sự tự tin là thứ rèn được — không phải bẩm sinh, không phải chờ đợi. Có cấu trúc. Môi trường an toàn. Nói chính là bài học."
-    },
-    "timeline": {
-      "milestones": [
-        {
-          "year": "2023 — HIỆN TẠI",
-          "title": "Giáo Viên Tiếng Anh, TP.HCM",
-          "desc": "Dạy lớp nhỏ tại lớp học riêng ở Golden Mansion, Phú Nhuận. ILA Vietnam, BlueSky Kindergarten, trường quốc tế và mầm non khắp thành phố."
-        },
-        {
-          "year": "KHỞI ĐẦU",
-          "title": "Tashkent, Uzbekistan",
-          "desc": "Lớn lên nói tiếng Uzbek, tiếng Nga, và sau đó là tiếng Anh. Ngôn ngữ là sự khác biệt giữa được hiểu và bị bỏ qua."
-        }
+    "week": {
+      "heading": "Lịch học",
+      "note": "giờ theo múi giờ TP. Hồ Chí Minh",
+      "live": "Bây giờ là {time} ở Phú Nhuận. <b>Lớp đang học.</b>",
+      "next": "Bây giờ là {time} ở Phú Nhuận. Lớp tiếp theo bắt đầu <b>{when} lúc {at}</b>.",
+      "today": "hôm nay",
+      "tomorrow": "ngày mai",
+      "days": [
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "CN"
       ]
     },
-    "locationLabel": "Địa Điểm",
-    "backgroundLabel": "Tiểu Sử"
-  },
-  "courses": {
-    "title": "Tìm Chương Trình Phù Hợp",
-    "subtitle": "Hai chương trình. Một phương pháp. Luyện tập có chủ đích — không phải tiếp thu thụ động.",
-    "youngLearners": {
-      "title": "Thiếu Nhi (5-10 Tuổi)",
-      "tagline": "Nhóm nhỏ, bài học rõ ràng, nhịp độ phù hợp.",
-      "description": "Trẻ em tiến bộ khi cảm thấy thoải mái và hứng thú. Mỗi buổi học dùng hoạt động và trò chơi thực tế — không chỉ học thuộc lòng. Nhóm nhỏ đảm bảo mỗi em đều được chú ý.",
-      "outcomes": [
-        "Phát âm và kỹ năng nghe qua luyện tập thực tế",
-        "Vốn từ xây dựng qua hoạt động, không phải ghi nhớ",
-        "Tự tin nói trong môi trường không áp lực",
-        "Nền tảng tiếng Anh học đường vững chắc"
-      ],
-      "duration": "2 buổi/tuần • 90 phút",
-      "level": "5-10 Tuổi",
-      "highlight": "Nền tảng thực sự có ích"
+    "ticket": {
+      "admit": "Một vé vào lớp",
+      "free": "Miễn phí",
+      "firstWeek": "tuần đầu",
+      "tearHint": "xé mình ra ↓",
+      "heading": "Học thử trọn một tuần rồi hẵng quyết định.",
+      "body": "Cứ đến lớp, làm quen với nhóm, xem cảm giác thế nào. Sau đó không có hợp đồng ràng buộc; học theo từng tháng.",
+      "after": "hẹn gặp quanh chiếc bàn dài.",
+      "cta": "Nhắn tin cho mình",
+      "tearBtn": "Xé vé"
     },
-    "teens": {
-      "title": "Thanh Thiếu Niên (11-17 Tuổi)",
-      "tagline": "Tiếng Anh phù hợp với thanh thiếu niên — trường học, giao tiếp và cuộc sống.",
-      "description": "Thanh thiếu niên tiến bộ hơn khi bài học gắn với nhu cầu thực tế của các em. Chúng tôi tập trung vào tiếng Anh học đường, giao tiếp khẩu ngữ và những kỹ năng có ích ngoài sách giáo khoa.",
-      "outcomes": [
-        "Nói tiếng Anh tự nhiên, không gượng gạo",
-        "Kết quả học tập và bài kiểm tra tốt hơn",
-        "Kỹ năng giao tiếp trong tình huống thực tế",
-        "Luyện tư duy phản biện bằng tiếng Anh"
-      ],
-      "duration": "2 buổi/tuần • 90 phút",
-      "level": "11-17 Tuổi",
-      "highlight": "Học đường, đại học và cuộc sống hàng ngày"
+    "faq": {
+      "heading": "Những câu ba mẹ hay hỏi",
+      "q1": "Lớp học ở đâu?",
+      "a1": "Lớp học của mình ở Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, TP. Hồ Chí Minh. Các bạn học đến từ Phú Nhuận, Gò Vấp và Bình Thạnh.",
+      "q2": "Mình dạy các bạn bao nhiêu tuổi?",
+      "a2": "Từ 5 đến 17 tuổi, chia làm hai nhóm: các bạn nhỏ (5–10 tuổi) và thiếu niên (11–17 tuổi).",
+      "q3": "Mỗi lớp có bao nhiêu bạn?",
+      "a3": "Lớp nhỏ, nên bạn nào cũng được nói trong mỗi buổi học.",
+      "q4": "Lớp học vào lúc nào?",
+      "a4": "Mỗi tuần hai buổi, mỗi buổi 90 phút cộng 15 phút nghỉ giải lao. Lớp ngày thường học 19:30–21:00; lớp cuối tuần học trong khoảng 14:00 đến 20:00.",
+      "q5": "Cho bé học thử trước được không?",
+      "a5": "Được. Tuần đầu miễn phí.",
+      "q6": "Có phải ký hợp đồng không?",
+      "a6": "Không. Sau tuần học thử, lớp học theo từng tháng.",
+      "q7": "Trình độ của giáo viên là gì?",
+      "a7": "Mình có chứng chỉ TESOL và PGCE. Mình đã dạy bốn năm, tổng cộng khoảng 2.500 học sinh.",
+      "q8": "Dạy theo cách \"why-first\" nghĩa là gì?",
+      "a8": "Mình giải thích một mẩu ngôn ngữ dùng để làm gì trước khi bảo ai nhớ nó, rồi cả lớp dùng nó trong trò chơi và hội thoại. <link>Đọc về phương pháp.</link>"
+    },
+    "door": {
+      "small": "Vì sao mình dạy như vậy",
+      "strong": "Đọc về phương pháp"
     }
   },
-  "testimonials": {
-    "title": "Phản hồi từ Cộng đồng",
-    "subtitle": "Câu chuyện thật từ học viên, phụ huynh và đồng nghiệp",
-    "sectionLabel": "Đánh giá",
-    "items": [
-      {
-        "name": "Phụ huynh bé 8 tuổi",
-        "role": "Phú Nhuận",
-        "quote": "Con gái tôi trước đây cứ gặp người nước ngoài nói chuyện là ngại không dám trả lời. Sau vài tháng học nhóm nhỏ, bé trả lời tự nhiên không còn ngập ngừng. Lớp ít học viên chính là điểm khác biệt — bé thực sự được nói.",
-        "rating": 5
-      },
-      {
-        "name": "Phụ huynh bé 14 tuổi",
-        "role": "Bình Thạnh",
-        "quote": "Con trai tôi cần bỏ thói quen dịch trong đầu trước khi nói. Thầy Bek nói thẳng vấn đề thật sự đang cản trở con, và sự tự tin của con khi thuyết trình trên lớp đã thay đổi hoàn toàn.",
-        "rating": 5
-      },
-      {
-        "name": "Phụ huynh bé 7 tuổi",
-        "role": "Gò Vấp",
-        "quote": "Chỉ một tuần học thử miễn phí là đủ để thấy khác biệt so với lớp cũ 25 học viên. Ở đây bé là một trong tám bạn, và bé thực sự háo hức muốn đi học.",
-        "rating": 5
-      },
-      {
-        "name": "Phụ huynh gia đình nước ngoài",
-        "role": "Phú Nhuận",
-        "quote": "Chúng tôi khá lo lắng khi tìm lớp tiếng Anh với tư cách gia đình nước ngoài. Thầy Bek giúp con trai tôi thoải mái ngay từ buổi học thử đầu tiên, và lớp học thực sự an toàn cho trẻ nhỏ.",
-        "rating": 5
-      }
-    ]
-  },
-  "vault": {
-    "subtitle": "Bộ Sưu Tập Được Tuyển Chọn",
-    "title": "Kho Tàng Kiến Thức",
-    "description": "Mỗi chương trình là một hành trình riêng biệt hướng tới sự tinh thông và rõ ràng."
-  },
-  "archive": {
-    "label": "Đánh giá từ Học viên",
-    "title": "Lưu Trữ Sự Thành Công"
-  },
-  "cta": {
-    "title": "Một tuần. Không ràng buộc.",
-    "subtitle": "Một tuần học thử miễn phí để đánh giá trình độ và sự phù hợp. Nếu không phù hợp, tôi sẽ nói thẳng.",
-    "button": "Gửi tin nhắn",
-    "heading": "1 Tuần Miễn Phí",
-    "headingItalic": "Không ràng buộc.",
-    "checklist_0": "Không cần thanh toán",
-    "checklist_1": "1 tuần học miễn phí",
-    "checklist_2": "Đánh giá trung thực",
-    "phoneLabel": "Zalo / Gọi điện",
-    "zaloButton": "Nhắn Tin Zalo"
-  },
-  "faq": {
-    "title": "Câu Hỏi Thường Gặp",
-    "q1": {
-      "question": "Thầy dạy ở đâu?",
-      "answer": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận. Tôi cũng dạy tại nhà học viên ở Phú Nhuận, Gò Vấp và Bình Thạnh."
+  "approach": {
+    "label": "Phương pháp",
+    "h1": "Dạy theo cách <why>Why</why>-first",
+    "lede": "Mình giải thích một mẩu ngôn ngữ dùng để làm gì trước khi bảo ai nhớ nó. Đây là năm lý do, mỗi lý do đều có nghiên cứu phía sau.",
+    "cue": "cuộn qua năm lý do →",
+    "r1": {
+      "n": "lý do một",
+      "h": "Vì sao nên giải thích <b>lý do</b> trước khi dạy quy tắc?",
+      "lead": "Vì trí nhớ bám vào ý nghĩa.",
+      "rest": " Khi một bạn nhỏ biết “the” dùng để làm gì, quy tắc không còn là một câu phải học thuộc, mà là điều bạn ấy có thể tự suy ra lại.",
+      "cite": "Craik & Tulving, 1975 · Độ sâu xử lý thông tin"
     },
-    "q2": {
-      "question": "Thầy dạy độ tuổi nào?",
-      "answer": "Thiếu nhi (5-10 tuổi) và thanh thiếu niên (11-17 tuổi). Lớp học chỉ dành cho học viên từ 5 đến 17 tuổi."
+    "r2": {
+      "n": "lý do hai",
+      "h": "Vì sao nên giữ <b>gánh nặng</b> nhẹ?",
+      "lead": "Vì trí nhớ làm việc rất nhỏ.",
+      "rest": " Một bức tường toàn bảng biểu làm nó đầy trước khi kịp học được gì. Ít thứ hơn, mỗi thứ có lý do, sẽ chừa chỗ để suy nghĩ.",
+      "cite": "Sweller, 1988 · Gánh nặng nhận thức"
     },
-    "q3": {
-      "question": "Cần đăng ký theo kỳ không?",
-      "answer": "Không hợp đồng. Tháng nào tính tháng đó. Bắt đầu bằng học thử miễn phí 1 tuần, tự đánh giá lấy."
+    "r3": {
+      "n": "lý do ba",
+      "h": "Vì sao cho phép <b>câu trả lời sai</b>?",
+      "lead": "Vì người ta học được nhiều hơn ở nơi được phép sai một cách an toàn.",
+      "rest": " Trong lớp của mình, một câu trả lời sai là manh mối cho biết bạn ấy đang nghĩ gì, và không ai phải xấu hổ vì nó.",
+      "cite": "Edmondson, 1999 · An toàn tâm lý (nghiên cứu về các nhóm làm việc)"
     },
-    "q4": {
-      "question": "Thầy dạy nhóm hay 1-1?",
-      "answer": "Chỉ dạy nhóm (tối đa 10 học viên). Kể cả lớp online cũng theo nhóm để mọi người đều được thực hành nói."
+    "r4": {
+      "n": "lý do bốn",
+      "h": "Vì sao nên <b>chơi lại</b> thay vì đọc lại?",
+      "lead": "Vì nhớ lại một điều củng cố nó nhiều hơn đọc lại lần nữa.",
+      "rest": " Trò chơi và những thử thách nhanh giúp các bạn tự lôi ngôn ngữ ra từ trong đầu, và đó là cách luyện tập còn đọng lại lâu.",
+      "cite": "Roediger & Karpicke, 2006 · Luyện tập truy xuất"
     },
-    "q5": {
-      "question": "Thầy có bằng cấp gì?",
-      "answer": "Chứng chỉ TESOL và PGCE. Đã dạy tại ILA Vietnam, BlueSky Kindergarten và 15+ trường."
+    "r5": {
+      "n": "lý do năm",
+      "h": "Vì sao dạy <b>một bài</b> theo nhiều cách?",
+      "lead": "Vì sự giúp đỡ đúng còn tùy từng bạn.",
+      "rest": " Cùng một bài đến với một bạn ít nói, một bạn thích thắng và một bạn thích vẽ theo những cách khác nhau, nên mình đổi lối vào chứ không đổi mục tiêu.",
+      "cite": "Wood, Bruner & Ross, 1976 · Giàn giáo hỗ trợ"
     },
-    "q6": {
-      "question": "Có thể học thử trước không?",
-      "answer": "Được. Một tuần học thử miễn phí. Cứ mang trình độ thật — tôi đánh giá thẳng thắn."
-    },
-    "q7": {
-      "question": "Tại sao lớp nhỏ thay vì lớp đông?",
-      "answer": "Lớp 25 người, mỗi bạn nói chưa đầy 3 phút một buổi. Lớp 10 người, bạn nói suốt tiết. Đó là sự khác biệt."
-    },
-    "q8": {
-      "question": "Lớp học có an toàn cho trẻ không?",
-      "answer": "Hoàn toàn. Camera an ninh CCTV, nhà vệ sinh riêng, phòng máy lạnh và đèn diệt muỗi. An toàn, thoải mái và được phụ huynh tin tưởng."
-    },
-    "description": "Câu Hỏi Thường Gặp"
-  },
-  "contact": {
-    "title": "Kết Nối",
-    "subtitle": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết liệu tôi có thể giúp được không.",
-    "location": {
-      "title": "Ghé Thăm Lớp Học",
-      "description": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận - Có camera an ninh, môi trường học tập thoải mái"
-    },
-    "form": {
-      "title": "Gửi Tin Nhắn",
-      "name": "Tên của bạn",
-      "email": "Email của bạn",
-      "phone": "Số điện thoại hoặc Zalo (tùy chọn)",
-      "message": "Bạn muốn biết điều gì?",
-      "consent": "Tôi sẵn sàng nhận phản hồi cho tin nhắn này.",
-      "submit": "Gửi tin nhắn",
-      "submitting": "Đang gửi...",
-      "success": "Cảm ơn! Tôi sẽ phản hồi sớm.",
-      "error": "Có lỗi xảy ra. Thử Zalo nhé?",
-      "required": "Trường này bắt buộc",
-      "invalidEmail": "Vui lòng nhập email hợp lệ"
-    },
-    "or": "Hoặc liên hệ trực tiếp",
-    "availability": {
-      "flexible": "Lịch linh hoạt - sáng, chiều hoặc tối",
-      "consultation": "1 tuần học miễn phí để đánh giá trình độ và sự phù hợp",
-      "online": "Trực tiếp tại lớp học hoặc địa điểm của bạn"
-    },
-    "trustBadges": {
-      "response": "Thường phản hồi trong vài giờ",
-      "noCommitment": "Không áp lực, chỉ là trò chuyện",
-      "trial": "1 tuần học miễn phí"
+    "door": {
+      "small": "Lớp nhỏ ở Phú Nhuận",
+      "strong": "Xem các lớp học"
     }
-  },
-  "footer": {
-    "tagline": "Giáo viên tiếng Anh tại TP.HCM. Chứng chỉ TESOL & PGCE. Giảng dạy từ năm 2023.",
-    "contact": "Liên hệ",
-    "telegram": "Zalo",
-    "zalo": "Zalo",
-    "email": "Email",
-    "certifications": "Bằng Cấp",
-    "tefl": "Chứng Chỉ TESOL",
-    "tesol": "Chứng Chỉ PGCE",
-    "experience": "Gần 2.000 Học Viên Đã Dạy",
-    "legal": "Pháp Lý",
-    "privacy": "Quyền Riêng Tư",
-    "terms": "Điều Khoản",
-    "quickLinks": "Liên Kết Nhanh",
-    "channels": "Kênh Liên Hệ",
-    "location": "Golden Mansion 1, Phú Nhuận",
-    "ctaHeading": "1 tuần học miễn phí để biết bạn đang ở đâu.",
-    "linkedin": "LinkedIn",
-    "instagram": "Instagram",
-    "facebook": "Facebook",
-    "tiktok": "TikTok",
-    "mba": "Ứng Viên MBA",
-    "locationLabel": "Địa Điểm",
-    "city": "TP. Hồ Chí Minh",
-    "country": "Việt Nam",
-    "backToTop": "Về đầu trang",
-    "follow": "Theo dõi",
-    "weekdayHours": "19:30–21:00",
-    "weekendHours": "14:00–20:00"
-  },
-  "location": {
-    "title": "Tại Thành phố Hồ Chí Minh",
-    "address": "Golden Mansion 1, 119 Phổ Quang, Phú Nhuận",
-    "districts": "Cũng dạy tại Gò Vấp & Bình Thạnh",
-    "features": "Camera • Thoải mái • Chuyên nghiệp",
-    "openInMaps": "Mở trên Google Maps"
-  },
-  "pricingGate": {
-    "eyebrow": "Xem Học Phí",
-    "heading": "Xem học phí trong 10 giây.",
-    "body": "Để lại tên và số điện thoại, học phí tất cả chương trình sẽ hiện ra ngay — tôi cũng sẽ nhắn Zalo để giúp bạn chọn chương trình phù hợp.",
-    "nameLabel": "Họ và tên",
-    "namePlaceholder": "Họ và tên đầy đủ",
-    "phoneLabel": "Điện thoại / Zalo",
-    "phonePlaceholder": "+84 ...",
-    "submitButton": "Xem Học Phí",
-    "submittingButton": "Đang mở...",
-    "privacyNote": "Chỉ dùng để gửi học phí và liên hệ về lớp học. Không spam.",
-    "successEyebrow": "Đã Mở Khóa",
-    "successHeading": "Học phí từng chương trình.",
-    "successBody": "Tất cả chương trình đều có 1 tuần học thử miễn phí — không cần thanh toán, không ràng buộc.",
-    "zaloCta": "Đặt Lịch 1 Tuần Miễn Phí Qua Zalo",
-    "closeLabel": "Đóng"
-  },
-  "methodology": {
-    "sectionLabel": "Cách Bạn Học",
-    "heading": "Luyện tập có chủ đích,",
-    "headingItalic": "không phải tiếp nhận thụ động.",
-    "steps": [
-      {
-        "id": "01",
-        "title": "Đánh Giá",
-        "description": "Xác định chính xác bạn đang ở đâu. Trình độ, mục tiêu và điều gì thực sự cản trở kỹ năng nói."
-      },
-      {
-        "id": "02",
-        "title": "Xây Dựng",
-        "description": "Các buổi học có cấu trúc được thiết kế để tăng kỹ năng nói, không chỉ là sự quen thuộc. Mỗi buổi học xây dựng trên buổi trước."
-      },
-      {
-        "id": "03",
-        "title": "Sử Dụng",
-        "description": "Bạn nói. Nhận phản hồi trực tiếp. Nói lại. Kỹ năng nói không được dạy — nó được thực hành."
-      }
-    ],
-    "stepLabel": "Bước"
-  },
-  "inquiry": {
-    "sectionLabel": "07 — Liên Hệ",
-    "heading": "Liên Hệ Với Tôi",
-    "replyNote": "Thường phản hồi trong vòng 24 giờ",
-    "forWhomLabel": "Đăng ký cho ai?",
-    "forWhomChild": "Con tôi",
-    "forWhomSelf": "Bản thân (học sinh)",
-    "levelLabel": "Trình độ hiện tại?",
-    "levelBeginner": "Sơ cấp",
-    "levelIntermediate": "Trung cấp",
-    "levelAdvanced": "Nâng cao",
-    "levelNotSure": "Chưa chắc",
-    "goalLabel": "Mục tiêu chính?",
-    "goalSpeaking": "Tự tin giao tiếp",
-    "goalSchool": "Điểm học đường",
-    "nameLabel": "Họ và tên",
-    "namePlaceholder": "Họ và tên đầy đủ",
-    "phoneLabel": "Điện thoại / Zalo",
-    "phonePlaceholder": "+84 ...",
-    "zaloPrimary": "Nhắn tin Zalo — phản hồi nhanh nhất",
-    "orFormLabel": "Hoặc gửi yêu cầu",
-    "messageLabel": "Có thêm gì không?",
-    "messagePlaceholder": "Bạn đang mắc kẹt ở điểm nào?",
-    "optional": "tùy chọn",
-    "consentText": "Tôi đồng ý nhận phản hồi từ Teacher Bek.",
-    "sendButton": "Gửi tin nhắn",
-    "sendingButton": "Đang gửi...",
-    "hoursLabel": "Giờ dạy (GMT+7)",
-    "weekdays": "Ngày thường",
-    "weekends": "Cuối tuần",
-    "connectLabel": "Liên hệ trực tiếp",
-    "phoneChannels": "Zalo · Điện Thoại"
-  },
-  "marquee": {
-    "text": "Chứng Chỉ TESOL · Bằng PGCE · 2.000+ Học Viên · Nhóm Nhỏ · Tự Tin Giao Tiếp · Học Viên 5–17 Tuổi · TP. Hồ Chí Minh ·"
-  },
-  "programs": {
-    "sectionLabel": "Lớp Tiếng Anh",
-    "heading": "",
-    "headingItalic": "Chương Trình",
-    "subtitle": "Thiếu nhi và thiếu niên.",
-    "subtitleDesc": "Hai chương trình. Mỗi chương trình dành cho một giai đoạn cụ thể.",
-    "requestDetails": "Yêu cầu thông tin",
-    "readyTitle": "Một tuần học thử để xem có phù hợp không.",
-    "readyDesc": "Cho tôi biết trình độ và mục tiêu. Tôi sẽ cho bạn biết chương trình nào phù hợp — và liệu tôi có thể giúp được không.",
-    "requestCta": "Đặt Lịch 1 Tuần Miễn Phí",
-    "pricingNote": "Mọi chương trình đều cùng một mức học phí. Mọi chương trình đều bắt đầu bằng 1 tuần học thử miễn phí. Mở khóa học phí chỉ trong 10 giây — không ràng buộc.",
-    "pricingCta": "Xem Học Phí",
-    "scheduleNote": "Ngày thường: 19:30 - 21:00 · Cuối tuần: 14:00 - 20:00",
-    "formatNote": "Lớp học nhóm · Tối đa 10 học viên",
-    "youngLearners": {
-      "title": "Thiếu Nhi",
-      "subtitle": "Từ 5–10 tuổi",
-      "tagline": "Lớp nhỏ, bài học rõ ràng, nhịp độ thoải mái.",
-      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
-      "schedule": "Buổi tối ngày thường · Cuối tuần",
-      "outcomes_0": "Phát âm tự nhiên qua luyện tập",
-      "outcomes_1": "Từ vựng qua hoạt động thực tế",
-      "outcomes_2": "Sự tự tin được rèn luyện có chủ đích, từng buổi học",
-      "outcomes_3": "Nền tảng vững chắc cho tiếng Anh học đường",
-      "method": "Tiếp thu ngôn ngữ qua hoạt động vui chơi có cấu trúc, luyện nói từ buổi đầu tiên và xây dựng sự tự tin một cách có chủ đích."
-    },
-    "teens": {
-      "title": "Thiếu Niên",
-      "subtitle": "Từ 11–17 tuổi",
-      "tagline": "Tiếng Anh phù hợp cho học đường và cuộc sống.",
-      "format": "2× mỗi tuần · 90 phút + 15 phút nghỉ",
-      "schedule": "Buổi tối ngày thường · Cuối tuần",
-      "outcomes_0": "Tiếng Anh giao tiếp tự nhiên",
-      "outcomes_1": "Kết quả học tập và thi cử tốt hơn",
-      "outcomes_2": "Kỹ năng giao tiếp trong tình huống thực tế",
-      "outcomes_3": "Tư duy phản biện bằng tiếng Anh",
-      "method": "Phát triển khả năng giao tiếp linh hoạt dưới áp lực thực tế — loại bỏ độ trễ dịch trong đầu để học sinh có thể suy nghĩ và phản hồi bằng tiếng Anh."
-    }
-  },
-  "exitIntent": {
-    "tag": "Trước khi rời đi",
-    "heading": "Nhận lộ trình tiếng Anh phù hợp với bạn",
-    "body": "Cho tôi biết mục tiêu của bạn — tôi sẽ gửi gợi ý phù hợp với trình độ và thời gian của bạn.",
-    "zalo": "Nhắn tin qua Zalo",
-    "inquiry": "Gửi yêu cầu",
-    "dismiss": "Thôi, cảm ơn"
   },
   "notFound": {
-    "heading": "404",
-    "label": "Không tìm thấy trang",
-    "body": "Trang bạn đang tìm không tồn tại hoặc đã được di chuyển.",
-    "cta": "Về trang chủ",
-    "hint": "Hoặc thử một trong các trang sau"
+    "heading": "Không tìm thấy trang",
+    "body": "Trang này không tồn tại hoặc đã được chuyển.",
+    "cta": "Về trang chủ"
   },
-  "loadingScreen": {
-    "status": "Đang tải trải nghiệm"
-  },
-  "common": {
-    "siteName": "Teacher Bek"
+  "chat": {
+    "hi": "Chào bạn! Ai sẽ là người học?",
+    "who": [
+      "Con của mình",
+      "Chính mình"
+    ],
+    "ageC": "Bé bao nhiêu tuổi rồi?",
+    "ageS": "Bạn bao nhiêu tuổi?",
+    "name": "Mình nên gọi bạn là gì?",
+    "namePh": "Tên của bạn",
+    "phone": "Số điện thoại hoặc Zalo tốt nhất?",
+    "phonePh": "Ví dụ 0912 345 678",
+    "note": "Có điều gì mình nên biết không? (không bắt buộc)",
+    "notePh": "Ví dụ: con hơi ngại nói",
+    "skip": "Bỏ qua",
+    "next": "Tiếp",
+    "consent": "Mình đồng ý để thầy Bek dùng thông tin này để trả lời mình.",
+    "send": "Gửi cho thầy Bek",
+    "done": "Đã nhận, {name}. Mình sẽ nhắn bạn qua Zalo sớm thôi.",
+    "zalo": "Mở Zalo ngay",
+    "copy": "Chép tin nhắn",
+    "copied": "Đã chép ✓",
+    "msgChild": "Chào thầy Bek, mình là {name}. Mình hỏi lớp cho con {age} tuổi.",
+    "msgSelf": "Chào thầy Bek, mình là {name}. Mình {age} tuổi, muốn học tiếng Anh.",
+    "yrs": " tuổi",
+    "bad": "Số này hơi ngắn, bạn kiểm tra lại giúp mình nhé.",
+    "badName": "Bạn cho mình tên ít nhất hai chữ cái nhé.",
+    "failZalo": "Bạn cũng có thể nhắn mình thẳng qua Zalo.",
+    "captchaZalo": "Phần kiểm tra chống spam không tải được. Bạn vẫn có thể nhắn mình qua Zalo nhé."
   },
   "leads": {
-    "contactSuccess": "Cảm ơn bạn! Tôi sẽ liên hệ lại trong vòng 24 giờ.",
-    "errorDelivery": "Rất tiếc, tin nhắn của bạn chưa gửi được lúc này. Vui lòng liên hệ trực tiếp với tôi.",
-    "errorRateLimited": "Bạn đã thử quá nhiều lần. Vui lòng đợi một phút rồi thử lại.",
-    "errorInvalid": "Một số thông tin chưa hợp lệ. Vui lòng kiểm tra họ tên và số điện thoại rồi thử lại.",
-    "errorSpam": "Vui lòng dành một chút thời gian điền biểu mẫu, sau đó gửi lại.",
-    "errorCaptcha": "Xác minh bảo mật chưa hoàn tất. Vui lòng đợi xác minh xong rồi thử lại.",
-    "errorNetwork": "Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại, hoặc liên hệ trực tiếp với tôi.",
-    "fallbackHint": "Bạn có thể liên hệ ngay với tôi qua:",
-    "zaloButton": "Nhắn tin qua Zalo",
-    "callLabel": "Gọi"
+    "errorDelivery": "Xin lỗi, tin nhắn chưa gửi được ở phía mình.",
+    "errorRateLimited": "Bạn gửi hơi nhiều lần trong thời gian ngắn. Vui lòng thử lại sau một phút.",
+    "errorInvalid": "Có thông tin chưa ổn. Bạn kiểm tra lại tên và số điện thoại giúp mình nhé.",
+    "errorSpam": "Bạn gửi hơi nhanh. Vui lòng thử lại một lần nữa.",
+    "errorCaptcha": "Bước kiểm tra bảo mật chưa hoàn tất. Vui lòng thử lại.",
+    "errorNetwork": "Mình không kết nối được tới máy chủ. Bạn kiểm tra mạng giúp mình nhé."
+  },
+  "privacy": {
+    "eyebrow": "Pháp lý",
+    "title": "Chính sách bảo mật",
+    "effective": "Có hiệu lực từ: 12 tháng 11 năm 2026",
+    "intro": "Chính sách này giải thích trang web thu thập những thông tin nào, mình dùng chúng ra sao và bạn có những quyền gì đối với dữ liệu cá nhân của mình.",
+    "collected": {
+      "title": "1. Thông tin được thu thập",
+      "lead": "Thông tin chỉ được thu thập khi bạn gửi câu hỏi qua khung chat trên trang web này.",
+      "items": [
+        "Tên của bạn (hoặc tên bạn muốn mình gọi trong chat)",
+        "Số điện thoại hoặc thông tin Zalo, nếu bạn muốn chia sẻ",
+        "Nội dung tin nhắn",
+        "Một số dữ liệu kỹ thuật cơ bản để chống spam và bảo mật, như thời điểm gửi và kết quả kiểm tra của Cloudflare Turnstile"
+      ]
+    },
+    "purpose": {
+      "title": "2. Mục đích sử dụng",
+      "text": "Dữ liệu của bạn chỉ được dùng để trả lời câu hỏi, cung cấp thông tin về lớp học, sắp xếp lịch học và giữ cho trang web an toàn."
+    },
+    "retention": {
+      "title": "3. Thời gian lưu trữ",
+      "text": "Dữ liệu chỉ được lưu trong thời gian cần thiết để trao đổi và xử lý yêu cầu của bạn, hoặc theo quy định của pháp luật."
+    },
+    "sharing": {
+      "title": "4. Chia sẻ dữ liệu và các dịch vụ được sử dụng",
+      "lead": "Dữ liệu của bạn không bao giờ bị bán. Chỉ những dịch vụ cần thiết để vận hành trang web này mới xử lý dữ liệu:",
+      "items": [
+        "Câu hỏi trong chat được gửi đến thầy Bek qua một bot Telegram và lưu trong một Google Sheet mà chỉ mình thầy mở được.",
+        "Cloudflare Turnstile kiểm tra tin nhắn đến từ người thật chứ không phải bot, để chống spam.",
+        "Plausible Analytics đếm lượt truy cập mà không dùng cookie và không thu thập dữ liệu cá nhân.",
+        "Sentry theo dõi lỗi kỹ thuật. Số điện thoại và nội dung biểu mẫu được xóa trước khi gửi đi, và địa chỉ IP không được lưu."
+      ]
+    },
+    "rights": {
+      "title": "5. Quyền của bạn",
+      "text": "Bạn có thể yêu cầu xem, chỉnh sửa hoặc xóa dữ liệu cá nhân bằng cách nhắn cho mình qua <zalo>Zalo</zalo>, gọi <phone>+84 353 88 5757</phone> hoặc dùng khung chat trên trang web này."
+    },
+    "updates": {
+      "title": "6. Cập nhật chính sách",
+      "text": "Chính sách này có thể được cập nhật theo thời gian. Ngày có hiệu lực ở trên cho biết bản sửa đổi mới nhất."
+    }
+  },
+  "terms": {
+    "eyebrow": "Pháp lý",
+    "title": "Điều khoản dịch vụ",
+    "effective": "Có hiệu lực từ: 12 tháng 11 năm 2026",
+    "intro": "Các điều khoản này áp dụng khi bạn sử dụng trang web và khi yêu cầu bất kỳ dịch vụ hay trao đổi nào về lớp học thông qua trang web.",
+    "scope": {
+      "title": "1. Phạm vi dịch vụ",
+      "text": "Dịch vụ gồm các buổi dạy tiếng Anh và hỗ trợ trao đổi liên quan. Hình thức và lịch học cụ thể sẽ được xác nhận trực tiếp với bạn sau khi bạn gửi câu hỏi."
+    },
+    "booking": {
+      "title": "2. Đăng ký và xác nhận",
+      "text": "Một chỗ trong lớp chỉ được xem là đã giữ khi bạn và mình đã thống nhất trực tiếp. Số chỗ có hạn và có thể thay đổi mà không báo trước cho đến khi được xác nhận."
+    },
+    "client": {
+      "title": "3. Trách nhiệm của phụ huynh và học viên",
+      "items": [
+        "Cung cấp thông tin liên hệ chính xác.",
+        "Cung cấp thông tin chính xác về bạn học để mình xếp lớp phù hợp.",
+        "Tuân thủ lịch học và thời gian phản hồi đã thống nhất."
+      ]
+    },
+    "cancel": {
+      "title": "4. Hủy và đổi lịch",
+      "text": "Quy định về hủy và đổi lịch sẽ được thông báo khi bạn đăng ký. Việc vắng mặt nhiều lần hoặc hủy sát giờ có thể khiến chỗ đã giữ không còn."
+    },
+    "use": {
+      "title": "5. Sử dụng hợp lệ",
+      "text": "Không được dùng trang web này để quấy rối, gửi spam, thu thập dữ liệu tự động hoặc làm điều trái pháp luật. Mình có thể hạn chế quyền truy cập hoặc trao đổi để bảo vệ công việc và sự an toàn của mọi người."
+    },
+    "liability": {
+      "title": "6. Trách nhiệm và dịch vụ bên ngoài",
+      "text": "Mình cố gắng giữ thông tin trên trang web chính xác, nhưng không thể bảo đảm mọi nội dung luôn đầy đủ và không có sai sót. Các dịch vụ và liên kết của bên thứ ba tuân theo điều khoản và chính sách riêng của họ."
+    },
+    "contact": {
+      "title": "7. Liên hệ",
+      "text": "Nếu có câu hỏi về pháp lý hoặc dịch vụ, bạn nhắn cho mình qua <zalo>Zalo</zalo>, gọi <phone>+84 353 88 5757</phone> hoặc dùng khung chat trên trang web này."
+    }
   }
 }

@@ -43,6 +43,7 @@ const pricingSchema = z.object({
 });
 
 const MIN_FILL_MS: Record<LeadSource, number> = { contact: 1500, pricing: 1000 };
+const MAX_BODY_BYTES = 10 * 1024;
 const SUPPORTED_LOCALES = ['en', 'vi', 'zh', 'ru'];
 
 function fail(code: LeadErrorCode, status: number) {
@@ -67,7 +68,17 @@ export async function handleLeadPost(request: NextRequest, source: LeadSource): 
     const ip = clientIp(request);
     if (!rateLimit(source, ip)) return fail('RATE_LIMITED', 429);
 
-    const body: unknown = await request.json();
+    // Bound the body before parsing (a real lead is well under 4 KB).
+    const declared = Number(request.headers.get('content-length') ?? '0');
+    if (declared > MAX_BODY_BYTES) return fail('INVALID', 413);
+    const raw = await request.text();
+    if (raw.length > MAX_BODY_BYTES) return fail('INVALID', 413);
+    let body: unknown;
+    try {
+      body = JSON.parse(raw);
+    } catch {
+      return fail('INVALID', 400);
+    }
     const parsed = source === 'contact' ? contactSchema.safeParse(body) : pricingSchema.safeParse(body);
     if (!parsed.success) return fail('INVALID', 400);
     const v = parsed.data;

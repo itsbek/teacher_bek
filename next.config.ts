@@ -1,20 +1,51 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { withSentryConfig } from '@sentry/nextjs/config';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const isDev = process.env.NODE_ENV === 'development';
 
+/* Direct ingest (no tunnel route): the tunnel would be a rewrite under the i18n middleware matcher and
+   buys little for a low-traffic site. connect-src gets exactly the DSN's own host, and only when a DSN is set. */
+function sentryHost(): string {
+  try {
+    const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+    return dsn ? ` https://${new URL(dsn).host}` : '';
+  } catch {
+    return '';
+  }
+}
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    '/[locale]/opengraph-image': ['./lib/og/archivo-og-800.ttf'],
+    '/[locale]/twitter-image': ['./lib/og/archivo-og-800.ttf'],
+    '/[locale]/classes/opengraph-image': ['./lib/og/archivo-og-800.ttf'],
+    '/[locale]/classes/twitter-image': ['./lib/og/archivo-og-800.ttf'],
+    '/[locale]/approach/opengraph-image': ['./lib/og/archivo-og-800.ttf'],
+    '/[locale]/approach/twitter-image': ['./lib/og/archivo-og-800.ttf'],
+  },
+  env: {
+    NEXT_PUBLIC_SENTRY_RELEASE: process.env.VERCEL_GIT_COMMIT_SHA ?? '',
+    NEXT_PUBLIC_SENTRY_ENV: process.env.VERCEL_ENV ?? '',
+  },
   async redirects() {
     return [
+      { source: '/zh', destination: '/en', permanent: true },
+      { source: '/ru', destination: '/en', permanent: true },
+      { source: '/zh/:path*', destination: '/en/:path*', permanent: true },
+      { source: '/ru/:path*', destination: '/en/:path*', permanent: true },
+      { source: '/:locale(en|vi)/services', destination: '/:locale/classes', permanent: true },
+      { source: '/:locale(en|vi)/about', destination: '/:locale#about', permanent: true },
+      { source: '/:locale(en|vi)/faq', destination: '/:locale/classes#faq', permanent: true },
       // Blog and community hub removed (2026-10-22): send old URLs to the home page
       { source: '/:locale(en|vi|zh|ru)/blog', destination: '/:locale', permanent: true },
       { source: '/:locale(en|vi|zh|ru)/blog/:slug*', destination: '/:locale', permanent: true },
       { source: '/:locale(en|vi|zh|ru)/community', destination: '/:locale', permanent: true },
-      { source: '/blog/:slug*', destination: '/', permanent: true },
-      { source: '/community', destination: '/', permanent: true },
+      { source: '/blog/:slug*', destination: '/en', permanent: true },
+      { source: '/community', destination: '/en', permanent: true },
       // Redirect www → non-www (permanent 301 for SEO canonical consolidation)
       {
         source: '/:path*',
@@ -27,7 +58,6 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  transpilePackages: ['framer-motion'],
   async headers() {
     return [
       // ── Security headers — all routes ────────────────────────────────────
@@ -38,18 +68,27 @@ const nextConfig: NextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
           {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // 'unsafe-eval' is required in dev mode for Next.js webpack HMR and source maps.
-              // It is intentionally omitted from production builds.
-              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com`,
+              // 'unsafe-inline' must stay in script-src: pages are statically rendered and Next.js inlines
+              // its RSC payload scripts, so a per-request nonce would force every page to render dynamically.
+              // 'unsafe-eval' is required in dev mode for Next.js webpack HMR and source maps and is
+              // intentionally omitted from production builds.
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://challenges.cloudflare.com https://plausible.io`,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
+              "img-src 'self' data: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com",
-              "frame-src https://www.google.com https://challenges.cloudflare.com",
+              `connect-src 'self' https://plausible.io${sentryHost()}`,
+              "frame-src https://challenges.cloudflare.com",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'self'",
+              'upgrade-insecure-requests',
             ].join('; '),
           },
         ],
@@ -79,4 +118,22 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withSentryConfig(withNextIntl(nextConfig), {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  telemetry: false,
+  routeManifestInjection: false,
+  release: { name: process.env.VERCEL_GIT_COMMIT_SHA },
+  // Source maps: uploaded only with an auth token, then deleted from the build output so they are never public.
+  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN, deleteSourcemapsAfterUpload: true },
+  // The browser SDK is loaded lazily by components/monitoring/ErrorMonitor; no automatic instrumentation.
+  webpack: {
+    autoInstrumentMiddleware: false,
+    autoInstrumentAppDirectory: false,
+    autoInstrumentServerFunctions: false,
+    treeshake: { removeDebugLogging: true },
+  },
+  // No tunnelRoute: see sentryHost().
+});

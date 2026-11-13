@@ -1,98 +1,81 @@
 import type { Metadata } from "next";
-import { buildPageMetadata } from "@/lib/seo";
-import { VanguardNavigation } from "@/components/VanguardNavigation";
-import { VanguardFooter } from "@/components/VanguardFooter";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { buildPageMetadata, getPageSeo } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+const rich = {
+  zalo: (chunks: React.ReactNode) => (
+    <a href="https://zalo.me/84353885757" target="_blank" rel="noopener noreferrer">
+      {chunks}
+    </a>
+  ),
+  phone: (chunks: React.ReactNode) => <a href="tel:+84353885757">{chunks}</a>,
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  return buildPageMetadata({
-    locale,
-    title: "Terms of Service",
-    description: "Terms governing tutoring sessions and communications with Teacher Bek.",
-    path: "/terms",
-  });
+  const seo = getPageSeo(locale, "terms");
+  return buildPageMetadata({ locale, title: seo.title, description: seo.description, path: "/terms" });
 }
 
-export default function TermsPage() {
+export default async function TermsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "terms" });
   return (
     <>
-      <VanguardNavigation />
-      <main className="page-shell">
-        <div className="page-container section-stack">
-          <header className="section-stack">
-            <p className="type-label text-foreground/45">Legal</p>
-            <h1 className="type-title-lg">Terms of Service</h1>
-            <p className="type-meta text-foreground/55">Effective date: February 16, 2026</p>
-            <p className="type-body text-foreground/75 max-w-3xl">
-              These terms govern use of this website and any lesson-related communication or services
-              requested through this website.
-            </p>
+      <main id="main">
+        <div>
+          <header>
+            <p>{t("eyebrow")}</p>
+            <h1>{t("title")}</h1>
+            <p>{t("effective")}</p>
+            <p>{t("intro")}</p>
           </header>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">1. Scope of Services</h2>
-            <p className="type-body text-foreground/75">
-              Services include English teaching sessions and related communication support.
-              Final lesson format, schedule, and pricing are confirmed directly after enquiry.
-            </p>
+          <section>
+            <h2>{t("scope.title")}</h2>
+            <p>{t("scope.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">2. Booking and Confirmation</h2>
-            <p className="type-body text-foreground/75">
-              A session is considered confirmed only after direct agreement between teacher and client.
-              Availability is limited and may change without notice until confirmation.
-            </p>
+          <section>
+            <h2>{t("booking.title")}</h2>
+            <p>{t("booking.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">3. Client Responsibilities</h2>
-            <ul className="type-body text-foreground/75 list-disc pl-6 space-y-2">
-              <li>Provide accurate contact details.</li>
-              <li>Provide accurate learner information for placement.</li>
-              <li>Respect agreed schedules and communication timelines.</li>
+          <section>
+            <h2>{t("client.title")}</h2>
+            <ul>
+              {(t.raw("client.items") as string[]).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">4. Cancellations and Rescheduling</h2>
-            <p className="type-body text-foreground/75">
-              Cancellation and rescheduling rules are provided at time of booking.
-              Repeated no-shows or last-minute cancellations may result in loss of reserved slots.
-            </p>
+          <section>
+            <h2>{t("cancel.title")}</h2>
+            <p>{t("cancel.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">5. Acceptable Use</h2>
-            <p className="type-body text-foreground/75">
-              This website may not be used for abuse, spam, scraping, or unlawful activity.
-              The operator may restrict access or communication to protect business operations and safety.
-            </p>
+          <section>
+            <h2>{t("use.title")}</h2>
+            <p>{t("use.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">6. Liability and External Services</h2>
-            <p className="type-body text-foreground/75">
-              While reasonable efforts are made to keep website information accurate, no guarantee is made that
-              all content is complete or error-free at all times. Third-party services and links are governed
-              by their own terms and policies.
-            </p>
+          <section>
+            <h2>{t("liability.title")}</h2>
+            <p>{t("liability.text")}</p>
           </section>
 
-          <section className="panel section-stack">
-            <h2 className="type-title-sm">7. Contact</h2>
-            <p className="type-body text-foreground/75">
-              For legal or service questions, contact:
-              <a className="underline ml-1" href="mailto:hello@teacherbek.com">hello@teacherbek.com</a>.
-            </p>
+          <section>
+            <h2>{t("contact.title")}</h2>
+            <p>{t.rich("contact.text", rich)}</p>
           </section>
         </div>
       </main>
-      <VanguardFooter />
     </>
   );
 }

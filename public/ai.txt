@@ -1,5 +1,0 @@
-Site: Teacher Bek
-Primary language support: English, Vietnamese, Chinese, Russian
-Primary intent: English tutoring service inquiries
-Canonical home: https://englishwithconfidence.com/en
-Contact email: hello@teacherbek.com
