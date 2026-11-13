@@ -20,8 +20,6 @@ export interface StoryStrings {
   chipCover: string;
   /** "page" — the handwritten page number word */
   pageWord: string;
-  /** caption under the portrait */
-  abCap: string;
 }
 
 type Timer = ReturnType<typeof setTimeout>;
@@ -253,21 +251,29 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
 
   /* ───────── 3 · test: the bag ───────── */
   const bagIll = need("#bagIll");
-  bagIll.innerHTML = INK.backpack();
+  bagIll.innerHTML = INK.desk();
   emptied.push(bagIll);
   const bag = need("#bag");
   const takenEl = need("#taken");
   const rel = need("#rel");
   const tags = $$(".tag");
-  /* the week piles up in the bag: first things at the bottom, two loose columns, nothing quite straight.
-     Each tag falls from its own side, at its own moment, spinning a little (seeded, so it is the same every visit). */
+  /* the week piles up on the study desk: sticky notes tossed on, first things at the bottom, a heap that
+     rises above the desktop. Four rows of three (in desk-drawing units: the desktop is at y = 92, centre x = 160).
+     Each note is tossed from its own side, at its own moment, spinning a little (seeded: same every visit). */
   const NW = tags.length;
   const pr = rng(21);
-  const REST: [number, number, number][] = tags.map((_, i) => {
-    const row = Math.floor(i / 2),
-      side = (i + row) % 2 ? 1 : -1;
-    return [side * (36 + pr() * 10), 204 - row * (150 / Math.max(1, Math.ceil(NW / 2))) - pr() * 6, (pr() - 0.5) * 14];
-  });
+  const PILE = [3, 3, 3, 3, 2, 2];
+  const DESK_W = 320,
+    DESK_TOP = -70;
+  const REST: [number, number, number][] = [];
+  for (let row = 0, i = 0; i < NW; row++) {
+    const n = Math.min(PILE[row] ?? 2, NW - i);
+    const step = 58,
+      span = step * (n - 1);
+    for (let c = 0; c < n; c++, i++) {
+      REST.push([-span / 2 + c * step + (pr() - 0.5) * 8 + (row % 2 ? 12 : -12), 46 - row * 33 - pr() * 3, (pr() - 0.5) * 14]);
+    }
+  }
   const FALL = tags.map(() => [(pr() - 0.5) * 220, (pr() - 0.5) * 120] as [number, number]);
   let acc = 0;
   const DELAY = tags.map(() => (acc += 0.5 + pr() * 0.9));
@@ -299,13 +305,13 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
     s.setProperty("--o", a.o.toFixed(2));
   };
   const restOf = (i: number): [number, number, number] => {
-    const bh = bag.offsetWidth / 200;
-    return [REST[i][0] * bh, (REST[i][1] - 20) * bh, REST[i][2]];
+    const u = bag.offsetWidth / DESK_W;
+    return [REST[i][0] * u, (REST[i][1] - DESK_TOP) * u, REST[i][2]];
   };
   function sagSet(): void {
     const inBag = A.filter((a) => !a.out).length * dropK;
     css(bag, "--sag", (inBag / NW).toFixed(2));
-    css(bag, "--tk", (bag.offsetWidth / 340).toFixed(3));
+    css(bag, "--tk", (bag.offsetWidth / 360).toFixed(3));
     takenEl.textContent = takenN + " / " + NW;
     rel.classList.toggle("on", takenN >= 2);
   }
@@ -701,9 +707,9 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   const room = need("#room");
   const roomPhoto = need(".room-photo", room);
   /** the pencil drawing takes its time, holds, then the photograph develops over it */
-  const ROOM_DRAW = 3200,
-    ROOM_HOLD = 700,
-    ROOM_FADE = 1600;
+  const ROOM_DRAW = 1800,
+    ROOM_HOLD = 250,
+    ROOM_FADE = 900;
   let roomT0 = -1,
     roomDone = false;
   const turnStage = need(".stage", need("#turn"));
@@ -939,11 +945,6 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   const turnStages = turnEls.map((el) => el.querySelector<HTMLElement>(":scope > .stage") ?? el);
   const underEls = TURNS.filter(([a]) => $("#" + a)).map(([, b]) => $("#" + b));
   const TW = 0.55;
-  const cap = document.createElement("p");
-  cap.className = "ab-cap";
-  cap.textContent = S.abCap;
-  need(".ab-art").appendChild(cap);
-  created.push(cap);
   const chip = $(".age-chip");
   const pageEls = PAGES.map((id) => $("#" + id));
   hook(() => {

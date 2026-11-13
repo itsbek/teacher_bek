@@ -57,7 +57,6 @@ export default async function Page({ params }: Props) {
     },
     chipCover: site("chip.cover"),
     pageWord: t("pageWord"),
-    abCap: t("about.caption"),
   };
 
   const timeline = (arc: boolean) => (
@@ -181,7 +180,7 @@ export default async function Page({ params }: Props) {
               <p className="t-label">{t("test.label")}</p>
               <p className="test-q">{N.question}</p>
             </div>
-            <div className="bag" id="bag">
+            <div className="bag desk" id="bag">
               <div className="bag-ill" id="bagIll" />
               <div className="tags" id="tags">
                 {N.week.map((w) => (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata, getPageSeo } from "@/lib/seo";
+import { LegalPage } from "@/components/site/LegalPage";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -26,56 +27,22 @@ export default async function TermsPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "terms" });
   return (
-    <>
-      <main id="main">
-        <div>
-          <header>
-            <p>{t("eyebrow")}</p>
-            <h1>{t("title")}</h1>
-            <p>{t("effective")}</p>
-            <p>{t("intro")}</p>
-          </header>
-
-          <section>
-            <h2>{t("scope.title")}</h2>
-            <p>{t("scope.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("booking.title")}</h2>
-            <p>{t("booking.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("client.title")}</h2>
-            <ul>
-              {(t.raw("client.items") as string[]).map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <h2>{t("cancel.title")}</h2>
-            <p>{t("cancel.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("use.title")}</h2>
-            <p>{t("use.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("liability.title")}</h2>
-            <p>{t("liability.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("contact.title")}</h2>
-            <p>{t.rich("contact.text", rich)}</p>
-          </section>
-        </div>
-      </main>
-    </>
+    <LegalPage
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      effective={t("effective")}
+      intro={t("intro")}
+      shortTitle={t("shortTitle")}
+      short={[t("short.0"), t("short.1"), t("short.2"), t.rich("short.3", rich)]}
+      sections={[
+        { title: t("scope.title"), text: t("scope.text") },
+        { title: t("booking.title"), text: t("booking.text") },
+        { title: t("client.title"), items: t.raw("client.items") as string[] },
+        { title: t("cancel.title"), text: t("cancel.text") },
+        { title: t("use.title"), text: t("use.text") },
+        { title: t("liability.title"), text: t("liability.text") },
+        { title: t("contact.title"), text: t.rich("contact.text", rich) },
+      ]}
+    />
   );
 }

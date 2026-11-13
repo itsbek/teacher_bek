@@ -148,13 +148,13 @@
     },
     "test": {
       "label": "Age 9 · In speaking tests I ask one easy question",
-      "taken": "Taken out of the bag",
+      "taken": "Taken off the desk",
       "cap": "A composite of answers I hear, not one student’s words. About eight in ten of my students tell me some version of this. That is not research; it is what I hear in my own classroom.",
-      "rel": "So I don’t add to the bag. <em>I take something out.</em>"
+      "rel": "So I don’t pile on more. <em>I take something off.</em>"
     },
     "turn": {
       "label": "Age 11 · Here is a rule",
-      "after": "Correct. Also useless to an eleven-year-old.",
+      "after": "The rule on the door is true. To an eleven-year-old, it means nothing yet.",
       "a": "<em>a</em> means one of many. I haven’t told you which.",
       "the": "<em>the</em> means you already know which one I mean.",
       "dogsAria": "Pick a dog",
@@ -462,7 +462,14 @@
     "updates": {
       "title": "6. Policy Updates",
       "text": "This policy may be updated from time to time. The effective date above shows the latest revision."
-    }
+    },
+    "shortTitle": "The short version",
+    "short": [
+      "I only collect what you type into the chat or a student note, plus basic device details that stop spam.",
+      "Your messages reach me on Telegram and are kept in a private Google Sheet. Nothing is sold or used for ads.",
+      "Google Analytics counts visits. It never gets your name, phone number or messages.",
+      "Ask me any time to see, correct or delete your data: <zalo>Zalo</zalo> or <phone>+84 353 88 5757</phone>."
+    ]
   },
   "terms": {
     "eyebrow": "Legal",
@@ -500,7 +507,14 @@
     "contact": {
       "title": "7. Contact",
       "text": "For legal or service questions, message me on <zalo>Zalo</zalo>, call <phone>+84 353 88 5757</phone>, or use the chat on this site."
-    }
+    },
+    "shortTitle": "The short version",
+    "short": [
+      "A place in a class is confirmed only when we have agreed on it directly.",
+      "Cancellation rules are given when you book. Repeated no-shows can lose the place.",
+      "Please do not use this site or its forms for spam, abuse or anything unlawful.",
+      "Questions about lessons or these terms: <zalo>Zalo</zalo> or <phone>+84 353 88 5757</phone>."
+    ]
   },
   "students": {
     "label": "For my students",

@@ -148,13 +148,13 @@
     },
     "test": {
       "label": "9 tuổi · Trong bài kiểm tra nói, mình hỏi một câu rất dễ",
-      "taken": "Đã lấy ra khỏi cặp",
+      "taken": "Đã dọn khỏi bàn",
       "cap": "Đây là tổng hợp những câu trả lời mình hay nghe, không phải lời của riêng một bạn nào. Khoảng tám trong mười bạn học của mình kể với mình một phiên bản nào đó của chuyện này. Đó không phải nghiên cứu; chỉ là điều mình nghe thấy trong chính lớp học của mình.",
-      "rel": "Nên mình không bỏ thêm vào cặp. <em>Mình lấy bớt ra.</em>"
+      "rel": "Nên mình không chất thêm lên bàn. <em>Mình dọn bớt đi.</em>"
     },
     "turn": {
       "label": "11 tuổi · Đây là một quy tắc",
-      "after": "Đúng. Nhưng chẳng giúp gì cho một bạn mười một tuổi.",
+      "after": "Quy tắc trên cánh cửa là đúng. Nhưng với một bạn mười một tuổi, nó chưa có nghĩa gì cả.",
       "a": "<em>a</em> nghĩa là một trong nhiều. Mình chưa nói là cái nào.",
       "the": "<em>the</em> nghĩa là bạn đã biết mình đang nói đến cái nào.",
       "dogsAria": "Chọn một chú chó",
@@ -462,7 +462,14 @@
     "updates": {
       "title": "6. Cập nhật chính sách",
       "text": "Chính sách này có thể được cập nhật theo thời gian. Ngày có hiệu lực ở trên cho biết bản sửa đổi mới nhất."
-    }
+    },
+    "shortTitle": "Tóm tắt ngắn",
+    "short": [
+      "Mình chỉ thu thập những gì bạn nhập vào khung chat hoặc lời nhắn học trò, cùng vài thông tin thiết bị cơ bản để chống spam.",
+      "Tin nhắn của bạn đến mình qua Telegram và được lưu trong một Google Sheet riêng. Không bán, không dùng cho quảng cáo.",
+      "Google Analytics chỉ đếm lượt truy cập, không bao giờ nhận tên, số điện thoại hay nội dung tin nhắn của bạn.",
+      "Bạn có thể yêu cầu xem, sửa hoặc xóa dữ liệu bất cứ lúc nào: <zalo>Zalo</zalo> hoặc <phone>+84 353 88 5757</phone>."
+    ]
   },
   "terms": {
     "eyebrow": "Pháp lý",
@@ -500,7 +507,14 @@
     "contact": {
       "title": "7. Liên hệ",
       "text": "Nếu có câu hỏi về pháp lý hoặc dịch vụ, bạn nhắn cho mình qua <zalo>Zalo</zalo>, gọi <phone>+84 353 88 5757</phone> hoặc dùng khung chat trên trang web này."
-    }
+    },
+    "shortTitle": "Tóm tắt ngắn",
+    "short": [
+      "Chỗ trong lớp chỉ được xác nhận khi hai bên đã thống nhất trực tiếp.",
+      "Quy định hủy và đổi lịch được báo khi đăng ký. Vắng mặt nhiều lần có thể mất chỗ.",
+      "Vui lòng không dùng trang web hay các biểu mẫu để spam, quấy rối hoặc làm điều trái pháp luật.",
+      "Câu hỏi về lớp học hoặc các điều khoản: <zalo>Zalo</zalo> hoặc <phone>+84 353 88 5757</phone>."
+    ]
   },
   "students": {
     "label": "Dành cho học trò",

@@ -66,11 +66,11 @@ export const NOTEBOOK = {
   },
   question: "Tell me about your week.",
   /** a Vietnamese nine-year-old's week, as they say it in an English speaking test: school, extra classes,
-      the after-school activities parents book, food, family, phone, and the sleep that is left over */
+      the after-school activities parents book, food, family, phone, tests, and the sleep that is left over.
+      Each one is a sticky note tossed onto the study desk. */
   week: [
     "School at 7.",
     "Extra maths.",
-    "Extra English.",
     "Homework.",
     "Piano.",
     "Swimming.",
@@ -79,6 +79,7 @@ export const NOTEBOOK = {
     "Milk tea.",
     "Phone games.",
     "Grandma's on Sunday.",
+    "Maths test Friday.",
     "Sleep, I think.",
   ],
   rule: { before: "Use ", a: "a", mid: " before singular countable nouns. Use ", the: "the", after: " for specific nouns." },

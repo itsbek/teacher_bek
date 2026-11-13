@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata, getPageSeo } from "@/lib/seo";
+import { LegalPage } from "@/components/site/LegalPage";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -26,57 +27,21 @@ export default async function PrivacyPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "privacy" });
   return (
-    <>
-      <main id="main">
-        <div>
-          <header>
-            <p>{t("eyebrow")}</p>
-            <h1>{t("title")}</h1>
-            <p>{t("effective")}</p>
-            <p>{t("intro")}</p>
-          </header>
-
-          <section>
-            <h2>{t("collected.title")}</h2>
-            <p>{t("collected.lead")}</p>
-            <ul>
-              {(t.raw("collected.items") as string[]).map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <h2>{t("purpose.title")}</h2>
-            <p>{t("purpose.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("retention.title")}</h2>
-            <p>{t("retention.text")}</p>
-          </section>
-
-          <section>
-            <h2>{t("sharing.title")}</h2>
-            <p>{t("sharing.lead")}</p>
-            <ul>
-              {(t.raw("sharing.items") as string[]).map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <h2>{t("rights.title")}</h2>
-            <p>{t.rich("rights.text", rich)}</p>
-          </section>
-
-          <section>
-            <h2>{t("updates.title")}</h2>
-            <p>{t("updates.text")}</p>
-          </section>
-        </div>
-      </main>
-    </>
+    <LegalPage
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      effective={t("effective")}
+      intro={t("intro")}
+      shortTitle={t("shortTitle")}
+      short={[t("short.0"), t("short.1"), t("short.2"), t.rich("short.3", rich)]}
+      sections={[
+        { title: t("collected.title"), lead: t("collected.lead"), items: t.raw("collected.items") as string[] },
+        { title: t("purpose.title"), text: t("purpose.text") },
+        { title: t("retention.title"), text: t("retention.text") },
+        { title: t("sharing.title"), lead: t("sharing.lead"), items: t.raw("sharing.items") as string[] },
+        { title: t("rights.title"), text: t.rich("rights.text", rich) },
+        { title: t("updates.title"), text: t("updates.text") },
+      ]}
+    />
   );
 }
