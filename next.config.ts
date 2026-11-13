@@ -78,11 +78,11 @@ const nextConfig: NextConfig = {
               // its RSC payload scripts, so a per-request nonce would force every page to render dynamically.
               // 'unsafe-eval' is required in dev mode for Next.js webpack HMR and source maps and is
               // intentionally omitted from production builds.
-              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://challenges.cloudflare.com https://plausible.io`,
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://challenges.cloudflare.com https://www.googletagmanager.com`,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob:",
+              "img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com",
               "font-src 'self' data:",
-              `connect-src 'self' https://plausible.io${sentryHost()}`,
+              `connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com${sentryHost()}`,
               "frame-src https://challenges.cloudflare.com",
               "object-src 'none'",
               "base-uri 'self'",

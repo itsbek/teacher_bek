@@ -10,6 +10,8 @@ import {
 import { strings } from './strings';
 import type { TgCallbackQuery, TgMessage, View } from './types';
 import { cardView, leadCardView, listView, statsView } from './views';
+import { noteText, setNoteStatus } from '../students/notes';
+import { revalidatePath } from 'next/cache';
 
 const ALL: ListScope = { kind: 'status', status: 'all' };
 const NEW: ListScope = { kind: 'status', status: 'new' };
@@ -201,6 +203,29 @@ export async function handleCallback(cb: TgCallbackQuery, parsed: Callback): Pro
     case 'stats': {
       const [view] = await Promise.all([statsView(parsed.period), answerCallback(cb.id)]);
       return present(chat, messageId, view);
+    }
+    case 'wall': {
+      if (!(await sheetGuard(chat))) return void (await answerCallback(cb.id));
+      const status = parsed.show ? 'shown' : 'hidden';
+      const note = await setNoteStatus(parsed.id, status);
+      if (!note) return void (await answerCallback(cb.id, strings.leadMissing, true));
+      try {
+        revalidatePath('/en/students');
+        revalidatePath('/vi/students');
+      } catch {
+        /* the page also refreshes itself every few minutes */
+      }
+      // the card keeps one button to undo the decision
+      const undo = parsed.show
+        ? { text: '🔒 Take it down', callback_data: `w:${parsed.id}:x` }
+        : { text: '📌 Put on the wall', callback_data: `w:${parsed.id}:w` };
+      await Promise.all([
+        answerCallback(cb.id, parsed.show ? 'On the wall' : 'Kept private'),
+        messageId !== undefined
+          ? editHtml(chat, messageId, noteText({ ...note, status: 'pending' }, status), { inline_keyboard: [[undo]] })
+          : Promise.resolve(),
+      ]);
+      return;
     }
   }
 }

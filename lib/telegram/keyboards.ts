@@ -20,6 +20,7 @@ export type Callback =
   | { t: 'status'; id: string; status: LeadStatus; scope: ListScope; page: number }
   | { t: 'note'; id: string; scope: ListScope; page: number }
   | { t: 'stats'; period: StatsPeriod }
+  | { t: 'wall'; id: string; show: boolean }
   | { t: 'noop' };
 
 export const CALLBACK_MAX_BYTES = 64;
@@ -114,6 +115,11 @@ export function parseCallback(data: string | undefined): Callback | null {
     }
     case 'm':
       return a === 't' || a === 'p' || a === 'a' ? { t: 'stats', period: a } : null;
+    case 'w': {
+      // student note: w:<id>:w (put on the wall) | w:<id>:x (keep private)
+      if (!a || !ID_RE.test(a) || (b !== 'w' && b !== 'x')) return null;
+      return { t: 'wall', id: a, show: b === 'w' };
+    }
     default:
       return null;
   }

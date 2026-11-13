@@ -79,9 +79,12 @@ interface SheetReply {
   total?: number;
   lead?: RawLead;
   stats?: Partial<SheetStats>;
+  /** student notes (see lib/students) */
+  note?: unknown;
+  notes?: unknown;
 }
 
-async function callSheet(action: string, payload: Record<string, unknown>): Promise<SheetReply> {
+export async function callSheet(action: string, payload: Record<string, unknown>): Promise<SheetReply> {
   const url = process.env.LEADS_SHEET_WEBHOOK_URL;
   const secret = process.env.LEADS_SHEET_SECRET;
   if (!url || !secret) throw new Error('sheet not configured');

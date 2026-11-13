@@ -34,7 +34,7 @@ export function browserOptions(dsn: string): BrowserOptions {
       /extensions\//i,
       /^webkit-masked-url:/i,
       /challenges\.cloudflare\.com/i,
-      /plausible\.io/i,
+      /googletagmanager\.com/i,
     ],
     beforeBreadcrumb: (b) => scrubBreadcrumb(b),
     beforeSend: (event) => {
@@ -48,7 +48,7 @@ export function browserOptions(dsn: string): BrowserOptions {
       const msg = event.exception?.values?.[0]?.value ?? event.message ?? '';
       if (NETWORK_MSG.test(msg)) {
         const last = [...(event.breadcrumbs ?? [])].reverse().find((b) => b.category === 'fetch' || b.category === 'xhr');
-        if (typeof last?.data?.url === 'string' && last.data.url.includes('plausible.io')) return null;
+        if (typeof last?.data?.url === 'string' && /google-analytics\.com|googletagmanager\.com/.test(last.data.url)) return null;
       }
       return scrubEvent(event);
     },

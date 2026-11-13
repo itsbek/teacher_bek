@@ -56,7 +56,7 @@ export const NOTEBOOK = {
   hesAsk: "“Okay. Tell me one sentence about your dog.”",
   /** handwritten page headings: [text, hand, jitter] — the hand grows up with the student */
   heads: {
-    wall: ["Unit 1 · to be", "print", 0.9],
+    wall: ["learn by friday!", "print", 0.9],
     test: ["My week", "print", 0.6],
     turn: ["a / an / the", "casual", 0.45],
     wrong: ["Past simple", "casual", 0.35],
@@ -64,9 +64,6 @@ export const NOTEBOOK = {
     dist: ["Present perfect", "cursive", 0.2],
     own: ["Free writing", "cursive", 0.12],
   },
-  /** the school label on the cover: ages and teacher are the same in both locales; the name is not */
-  labelAges: "5 - 17",
-  labelTeacher: "Bek",
   question: "Tell me about your week.",
   week: ["School.", "Extra maths.", "Extra English.", "Homework.", "Sleep, I think."],
   rule: { before: "Use ", a: "a", mid: " before singular countable nouns. Use ", the: "the", after: " for specific nouns." },

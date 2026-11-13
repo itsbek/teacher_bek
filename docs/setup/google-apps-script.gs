@@ -14,6 +14,9 @@
  *   list      { statuses?, from?, to?, offset?, limit? } -> { leads, total }  (newest first)
  *   search    { query, offset?, limit? }              -> { leads, total }
  *   stats     { from?, to?, all? }                    -> { stats }
+ *   noteAppend { note }                               (student notes, tab "Student notes")
+ *   noteSet    { id, status, at? }                    -> { note }   status: shown | hidden
+ *   notesShown { limit? }                             -> { notes }  (approved for the wall, newest first)
  * Responses are JSON: { ok: true, ... } or { ok: false, error: '...' }
  *
  * Backward compatible: existing rows keep working. Two columns, "notes" and
@@ -75,6 +78,9 @@ function doPost(e) {
       case 'list':    return json_(list_(body));
       case 'search':  return json_(search_(body));
       case 'stats':   return json_(stats_(body));
+      case 'noteAppend': return json_(noteAppend_(body.note));
+      case 'noteSet':    return json_(noteSet_(body.id, body.status, body.at));
+      case 'notesShown': return json_(notesShown_(body));
       default:        return json_({ ok: false, error: 'unknown action' });
     }
   } catch (err) {
@@ -360,4 +366,83 @@ function stats_(body) {
       responseSamples: respN
     }
   };
+}
+
+
+// ---------- student notes (the "For my students" page) ----------
+// status: private (just for the teacher) | pending (asked for the wall) | shown | hidden
+
+var NOTES_SHEET = 'Student notes';
+var NOTE_HEADERS = ['id', 'createdAt', 'status', 'name', 'studied', 'message', 'locale', 'decidedAt'];
+var NOTE_STATUSES = ['private', 'pending', 'shown', 'hidden'];
+
+function notesSheet_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(NOTES_SHEET);
+  if (!sheet) sheet = ss.insertSheet(NOTES_SHEET);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, NOTE_HEADERS.length).setValues([NOTE_HEADERS]).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+function noteRow_(r) {
+  return {
+    id: str_(r[0]), createdAt: str_(r[1]), status: str_(r[2]), name: str_(r[3]),
+    studied: str_(r[4]), message: str_(r[5]), locale: str_(r[6]), decidedAt: str_(r[7])
+  };
+}
+
+function noteAppend_(note) {
+  if (!note || !note.id) return { ok: false, error: 'missing note' };
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var status = NOTE_STATUSES.indexOf(note.status) === -1 ? 'private' : note.status;
+    notesSheet_().appendRow([
+      str_(note.id), str_(note.createdAt), status, str_(note.name),
+      str_(note.studied), str_(note.message), str_(note.locale), ''
+    ]);
+    return { ok: true };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function noteSet_(id, status, at) {
+  if (status !== 'shown' && status !== 'hidden') return { ok: false, error: 'bad status' };
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var sheet = notesSheet_();
+    var last = sheet.getLastRow();
+    if (last < 2) return { ok: false, error: 'note not found' };
+    var ids = sheet.getRange(2, 1, last - 1, 1).getValues();
+    for (var i = 0; i < ids.length; i++) {
+      if (str_(ids[i][0]) === str_(id)) {
+        var row = i + 2;
+        sheet.getRange(row, 3).setValue(status);
+        sheet.getRange(row, 8).setValue(at || new Date().toISOString());
+        return { ok: true, note: noteRow_(sheet.getRange(row, 1, 1, NOTE_HEADERS.length).getValues()[0]) };
+      }
+    }
+    return { ok: false, error: 'note not found' };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function notesShown_(body) {
+  var limit = Math.min(Math.max(parseInt(body && body.limit, 10) || 60, 1), 200);
+  var sheet = notesSheet_();
+  var last = sheet.getLastRow();
+  if (last < 2) return { ok: true, notes: [] };
+  var rows = sheet.getRange(2, 1, last - 1, NOTE_HEADERS.length).getValues().map(noteRow_);
+  var shown = rows.filter(function (n) { return n.status === 'shown'; });
+  shown.sort(function (a, b) { return ts_(b.createdAt) - ts_(a.createdAt); });
+  // only what the wall needs: never the status history or anything else
+  return { ok: true, notes: shown.slice(0, limit).map(function (n) {
+    return { id: n.id, createdAt: n.createdAt, name: n.name, studied: n.studied, message: n.message, locale: n.locale };
+  }) };
 }

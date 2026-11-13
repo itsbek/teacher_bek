@@ -5,6 +5,7 @@
 import type { Core } from "./core";
 import { make as write, type Written } from "./write";
 import { $, clamp, seg, settle } from "./util";
+import { holdUnder, peel, unpeel } from "./peel";
 
 const NS = "http://www.w3.org/2000/svg";
 
@@ -79,6 +80,8 @@ export function mountPaper(B: Core): () => void {
       const to = left < vh * 0.55 && left > -vh ? settle(clamp(1 - left / (vh * 0.55))) : left <= -vh ? 1 : 0;
       el.style.setProperty("--to", to.toFixed(3));
       el.classList.toggle("gone", to > 0.995);
+      peel(el.querySelector<HTMLElement>(":scope > .stage") ?? el, to);
+      holdUnder(el.nextElementSibling as HTMLElement | null, to > 0 && to < 1);
     }
   });
 
@@ -87,6 +90,8 @@ export function mountPaper(B: Core): () => void {
     unhook();
     created.forEach((el) => el.parentNode?.removeChild(el));
     for (const el of turns) {
+      unpeel(el.querySelector<HTMLElement>(":scope > .stage") ?? el);
+      holdUnder(el.nextElementSibling as HTMLElement | null, false);
       el.style.removeProperty("--to");
       el.classList.remove("gone");
     }

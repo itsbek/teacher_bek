@@ -24,7 +24,8 @@ export async function Header({ locale }: HeaderProps) {
     { href: `/${locale}`, n: "01", key: "story" },
     { href: `/${locale}/classes`, n: "02", key: "classes" },
     { href: `/${locale}/approach`, n: "03", key: "approach" },
-    { href: "#talk", n: "04", key: "talk" },
+    { href: `/${locale}/students`, n: "04", key: "students" },
+    { href: "#talk", n: "05", key: "talk" },
   ] as const;
 
   return (
@@ -40,6 +41,9 @@ export async function Header({ locale }: HeaderProps) {
           </NavLink>
           <NavLink href={`/${locale}/approach`} className="hide-m">
             {t("nav.approach")}
+          </NavLink>
+          <NavLink href={`/${locale}/students`} className="hide-m">
+            {t("nav.students")}
           </NavLink>
           <LanguageSwitch
             locale={locale}

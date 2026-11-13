@@ -14,9 +14,10 @@ main>section,main>div{position:relative}
 .turns.paper{background:transparent!important}
 .turns .stage{transform-origin:0 50%;transform:perspective(2400px) rotateY(calc(var(--to,0) * -96deg));backface-visibility:hidden;will-change:transform}
 .turns .stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgb(0 0 0/0) 40%,rgb(0 0 0/.22));opacity:calc(var(--to,0) * 1.6);z-index:20}
-.under{margin-top:-100svh;position:relative;z-index:0}
+/* lvh, not dvh: a fixed offset, so the document height does not jump when the iOS toolbar shows or hides */
+.under{margin-top:-100vh;margin-top:-100lvh;position:relative;z-index:0}
 .cover{height:190vh}
-.cover>.stage{position:sticky;top:0;height:100svh;min-height:0}
+.cover>.stage{position:sticky;top:0;height:100vh;height:100dvh;min-height:0}
 html.rm .cover{height:auto}html.rm .cover>.stage{position:relative;height:auto;transform:none}html.rm .under{margin-top:0}
 /* handwriting */
 .kid path{fill:none;stroke:var(--pencil);stroke-linecap:round;stroke-linejoin:round}
@@ -57,3 +58,10 @@ html.rm .cover>.stage{overflow:clip}
 .ill path.ink{opacity:clamp(0,calc((var(--k,0) - var(--s,0)) * 400),1)}
 .ill .ink.ghost{opacity:clamp(0,calc((var(--k,0) - var(--s,0)) * 400),.38)}
 .pghead .pg-u,.write-line .uline{opacity:clamp(0,calc(var(--k,0) * 400),1)}
+
+/* ═══ page turn: paper, not a hinge (lib/notebook/peel.ts cuts the page along a fold and lays the back over it) ═══ */
+.turns .stage,.cover.turns .hero.stage{transform:none!important;will-change:clip-path}
+.turns .stage::after,.cover.turns .hero.stage::after{display:none!important}
+.peel{position:absolute;display:none;transform-origin:100% 0;pointer-events:none;z-index:40;filter:drop-shadow(-8px 6px 12px rgb(0 0 0/calc(.12 + var(--pk,0) * .16)))}
+.peel-back{position:absolute;inset:0;background-color:#EFE9DC;background-image:linear-gradient(to left,rgb(0 0 0/.2) 0,rgb(0 0 0/.05) 2.5%,rgb(255 255 255/calc(.25 + var(--pk,0) * .35)) 12%,rgb(255 255 255/0) 38%,rgb(0 0 0/.04) 80%,rgb(0 0 0/.08) 100%)}
+html.rm .peel{display:none!important}

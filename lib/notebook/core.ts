@@ -234,7 +234,8 @@ export function initCore(opts: CoreOptions): Core {
     if (root.classList.contains("menu-open")) t = "dark";
     if (t !== tone) {
       tone = t;
-      root.dataset.tone = t;
+      /* the header's own attribute: [data-tone=dark] on <html> would turn the whole page's ink white */
+      root.dataset.hdrTone = t;
     }
     root.style.setProperty("--hb", y > 40 && !root.classList.contains("menu-open") ? "1" : "0");
   });

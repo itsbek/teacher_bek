@@ -7,6 +7,7 @@ import { INK } from "./ink";
 import { make as write, type Written, type WriteOptions } from "./write";
 import { $, $$, need, clamp, seg, release, settle, pop, rng } from "./util";
 import { NOTEBOOK, type HeadId } from "./content";
+import { holdUnder, peel, unpeel } from "./peel";
 
 export interface StoryStrings {
   /** aria-label of the draggable "why" */
@@ -907,6 +908,8 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
     $("#" + b)?.classList.add("under");
   });
   const turnEls = TURNS.map(([a]) => $("#" + a)).filter((x): x is HTMLElement => x !== null);
+  const turnStages = turnEls.map((el) => el.querySelector<HTMLElement>(":scope > .stage") ?? el);
+  const underEls = TURNS.filter(([a]) => $("#" + a)).map(([, b]) => $("#" + b));
   const TW = 0.55;
   const cap = document.createElement("p");
   cap.className = "ab-cap";
@@ -918,13 +921,15 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   hook(() => {
     if (RM) return;
     const vh = innerHeight;
-    for (const el of turnEls) {
+    turnEls.forEach((el, i) => {
       const r = el.getBoundingClientRect(),
         left = r.bottom - vh,
         to = left < vh * TW && left > -vh ? settle(clamp(1 - left / (vh * TW))) : left <= -vh ? 1 : 0;
       el.style.setProperty("--to", to.toFixed(3));
       el.classList.toggle("gone", to > 0.995);
-    }
+      peel(turnStages[i], to);
+      holdUnder(underEls[i], to > 0 && to < 1);
+    });
     let pg = 0;
     pageEls.forEach((el, i) => {
       if (el && el.getBoundingClientRect().top <= vh * 0.5) pg = i + 1;
@@ -988,37 +993,6 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
     }
   });
 
-  /* ───────── PLAN 5.1 · the cover's school label fills itself in ───────── */
-  function writeLabel(): void {
-    const ws = $$<SVGSVGElement>("#label svg[data-w]");
-    let at = 500;
-    ws.forEach((svg, i) => {
-      svg.innerHTML = "";
-      const text = svg.dataset.w ?? "";
-      const size = mob ? 24 : 30,
-        wr = write(svg, text, { font: "print", size, x: 4, y: size * 0.9, jitter: 0.8, seed: 70 + i, cls: "kid", press: 1 });
-      const wd = Math.ceil(wr.width()) + 10;
-      svg.setAttribute("viewBox", `0 0 ${wd} ${Math.ceil(size * 1.2)}`);
-      svg.style.width = wd + "px";
-      svg.style.height = Math.ceil(size * 1.2) + "px";
-      if (RM) {
-        wr.set(1);
-        return;
-      }
-      wr.set(0);
-      const dur = 380 + text.length * 120,
-        t0 = performance.now() + at;
-      at += dur + 160;
-      const f = (): void => {
-        if (!alive) return;
-        const k = clamp((performance.now() - t0) / dur);
-        wr.set(k);
-        if (k < 1) requestAnimationFrame(f);
-      };
-      f();
-    });
-  }
-
   /* ───────── PLAN 9.3 · the rule on the door appears word by word, left to right ───────── */
   const rule = $(".rule");
   if (rule && !$(".rw", rule)) {
@@ -1049,7 +1023,6 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   void B.ready.then(() => {
     if (!alive) return;
     layout();
-    writeLabel();
     later(2600, demo);
     const t0 = performance.now();
     const f = (): void => {
@@ -1067,16 +1040,31 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
     GH.forEach((g) => g.classList.add("on"));
   }
   let rz: Timer | undefined;
-  on(window, "resize", () => {
+  const relayout = (): void => {
     clearTimeout(rz);
     rz = setTimeout(() => {
       if (alive) layout();
     }, 160);
-  });
+  };
+  on(window, "resize", relayout);
+  /* on phones the notebook takes the height the copy leaves, which settles after fonts load: redraw when it changes */
+  if ("ResizeObserver" in window) {
+    let nbSize = `${nb.clientWidth}x${nb.clientHeight}`;
+    const ro = new ResizeObserver(() => {
+      const s = `${nb.clientWidth}x${nb.clientHeight}`;
+      if (s === nbSize) return;
+      nbSize = s;
+      relayout();
+    });
+    ro.observe(nb);
+    ac.signal.addEventListener("abort", () => ro.disconnect());
+  }
   /* new drawings were injected: let the runtime watch them */
   B.watchIll();
 
   return () => {
+    turnStages.forEach(unpeel);
+    underEls.forEach((u) => holdUnder(u, false));
     alive = false;
     ac.abort();
     unhooks.forEach((u) => u());

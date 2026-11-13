@@ -9,7 +9,6 @@ import { breadcrumbNode, organizationNode, personNode, websiteNode } from "@/com
 import { Mark } from "@/components/notebook/Mark";
 import { StoryRuntime } from "@/components/notebook/StoryRuntime";
 import { NOTEBOOK } from "@/lib/notebook/content";
-import { MARK } from "@/lib/notebook/util";
 import type { StoryStrings } from "@/lib/notebook/story";
 
 type Props = {
@@ -106,25 +105,6 @@ export default async function Page({ params }: Props) {
         {/* 1 · HERO — the headline splits apart as you scroll; "why" can be pulled */}
         <div className="pin cover" id="cover">
           <section className="hero stage" id="hero" data-tone="light" data-age="5">
-            <div className="label" id="label" aria-hidden="true">
-              <svg className="lb-mark" viewBox="12 6 42 80">
-                <path pathLength={1} d={MARK} />
-                <circle cx="33" cy="78" r="4.4" />
-              </svg>
-              <p className="lb-t">{t("cover.labelTitle")}</p>
-              <p>
-                <span>{t("cover.labelName")}</span>
-                <svg data-w={t("cover.labelNameValue")} />
-              </p>
-              <p>
-                <span>{t("cover.labelAges")}</span>
-                <svg data-w={N.labelAges} />
-              </p>
-              <p>
-                <span>{t("cover.labelTeacher")}</span>
-                <svg data-w={N.labelTeacher} />
-              </p>
-            </div>
             <p className="t-label hero-eyebrow">{t("cover.eyebrow")}</p>
             <h1 className="hero-h" aria-label={t("cover.h1Label")}>
               <span className="hx" data-dir="-1">

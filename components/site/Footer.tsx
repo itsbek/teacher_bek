@@ -94,6 +94,7 @@ export async function Footer({ locale }: FooterProps) {
             <Link href={`/${locale}`}>{t("nav.story")}</Link>
             <Link href={`/${locale}/classes`}>{t("nav.classes")}</Link>
             <Link href={`/${locale}/approach`}>{t("nav.approach")}</Link>
+            <Link href={`/${locale}/students`}>{t("nav.students")}</Link>
           </div>
         </div>
         <div className="foot-small">

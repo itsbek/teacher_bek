@@ -6,6 +6,8 @@ import Script from "next/script";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ErrorMonitor } from "@/components/monitoring/ErrorMonitor";
+import { Analytics } from "@/components/monitoring/Analytics";
+import { GA_ID } from "@/lib/analytics";
 import { NotebookRuntime } from "@/components/notebook/NotebookRuntime";
 import type { CoreStrings, NoteText } from "@/lib/notebook/core";
 import { routing } from "@/i18n/routing";
@@ -60,7 +62,14 @@ var home=/^\\/(en|vi)\\/?$/.test(location.pathname);
 if(ss&&ss.getItem('bek-arrive')){ss.removeItem('bek-arrive');if(!rm)d.classList.add('arriving')}
 else if(home&&!rm&&!(ss&&ss.getItem('bek-loaded'))&&!/[?&]noload\\b/.test(q))d.classList.add('loading');})();`;
 
-const PLAUSIBLE_INIT = `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`;
+/* Google Analytics 4. Page views are sent by <Analytics /> on each route change (send_page_view: false), so
+   client navigations count once, with the right title. Google signals and ad personalisation are off.
+   Hits from localhost and Vercel previews carry debug_mode: they show in DebugView, never in reports. */
+const gaInit = (locale: string) =>
+  `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;gtag('js',new Date());` +
+  `var h=location.hostname,dev=h==='localhost'||h==='127.0.0.1'||/\\.vercel\\.app$/.test(h);` +
+  `var c={send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,site_language:'${locale}'};if(dev)c.debug_mode=true;` +
+  `gtag('config','${GA_ID}',c);`;
 
 /* Queues errors from first paint until the lazy Sentry SDK is ready (see components/monitoring/ErrorMonitor).
    Only emitted when NEXT_PUBLIC_SENTRY_DSN is set. */
@@ -136,10 +145,11 @@ export default async function LocaleLayout({
         <Header locale={locale} />
         {children}
         <Footer locale={locale} />
-        <Script src="https://plausible.io/js/pa--66ZjSxkfMVKI4WYENIwB.js" strategy="afterInteractive" />
-        <Script id="plausible-init" strategy="afterInteractive">
-          {PLAUSIBLE_INIT}
+        <Script id="ga-init" strategy="afterInteractive">
+          {gaInit(locale)}
         </Script>
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Analytics locale={locale} />
       </body>
     </html>
   );

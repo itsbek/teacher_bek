@@ -4,7 +4,7 @@ export const SITE_URL = "https://teacherbek.com";
 
 type SeoLocale = "en" | "vi";
 
-export type PageKey = "home" | "classes" | "approach" | "privacy" | "terms";
+export type PageKey = "home" | "classes" | "approach" | "students" | "privacy" | "terms";
 
 interface PageSeo {
   title: string;
@@ -29,6 +29,11 @@ const PAGES: Record<SeoLocale, Record<PageKey, PageSeo>> = {
       title: "Why-First English Teaching: The Method | Teacher Bek",
       description:
         "How I teach English: the reason before the rule, light cognitive load, safe mistakes and recall through play, each with its research. Classes in Phú Nhuận.",
+    },
+    students: {
+      title: "For My Students: Write to Me | Teacher Bek",
+      description:
+        "A page for Teacher Bek's students, past and present: send a note about an exam, a question or some news, and read the student wall.",
     },
     privacy: {
       title: "Privacy Policy | Teacher Bek",
@@ -56,6 +61,11 @@ const PAGES: Record<SeoLocale, Record<PageKey, PageSeo>> = {
       title: "Dạy tiếng Anh bằng câu hỏi “vì sao” | Thầy Bek",
       description:
         "Cách thầy Bek dạy tiếng Anh: hiểu lý do trước khi học quy tắc, học nhẹ nhàng, được phép sai và ôn bằng trò chơi, kèm nghiên cứu. Lớp học tại Phú Nhuận, TP.HCM.",
+    },
+    students: {
+      title: "Dành cho học trò: viết cho thầy | Thầy Bek",
+      description:
+        "Trang dành cho học trò của thầy Bek, cả bây giờ lẫn trước đây: gửi lời nhắn về kỳ thi, câu hỏi hay tin vui, và đọc bảng học trò.",
     },
     privacy: {
       title: "Chính sách bảo mật | Thầy Bek",

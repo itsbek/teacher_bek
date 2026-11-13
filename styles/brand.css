@@ -34,7 +34,8 @@ img{display:block;max-width:100%}
 @media (pointer:fine){html.js:not(.rm) body,html.js:not(.rm) a,html.js:not(.rm) button{cursor:none}}
 [data-tone=dark]{--ink:#F5F5F7;--ink-2:#D2D2D7;--grey:#AEAEB2;--line:#3A3A3C;color:var(--ink)}
 .pin{position:relative}
-.stage{position:sticky;top:0;height:100svh;overflow:clip}
+/* a pinned page always covers the screen that is actually visible (dvh follows the iOS toolbar), so the next page never shows underneath */
+.stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:clip}
 
 /* ink: every illustration is one stroke style */
 .ink{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
@@ -56,7 +57,7 @@ img{display:block;max-width:100%}
 .logo .lg-b svg{height:1em;width:auto;overflow:visible;vertical-align:-.25em;margin-right:-.03em}
 .logo .lm-p{fill:none;stroke:currentColor;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
 .logo .lm-d{fill:var(--blue)}
-[data-tone=dark] .logo .lm-d,html[data-tone=dark] .hdr .lm-d{fill:var(--sun)}
+[data-tone=dark] .logo .lm-d,html[data-hdr-tone=dark] .hdr .lm-d{fill:var(--sun)}
 .logo .lw{display:grid;line-height:.86}
 .logo .lw i{font:italic 300 15px/1 var(--serif);letter-spacing:.01em}
 .logo .lw b{font:800 26px/.9 var(--sans);letter-spacing:-.01em;font-stretch:62%;letter-spacing:-.01em}
@@ -67,9 +68,9 @@ img{display:block;max-width:100%}
 
 /* header */
 .hdr{position:fixed;inset:0 0 auto;z-index:50;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--m);color:var(--ink);transition:color .4s var(--settle)}
-html[data-tone=dark] .hdr{color:#F5F5F7}
+html[data-hdr-tone=dark] .hdr{color:#F5F5F7}
 .hdr::before{content:"";position:absolute;inset:0;background:rgb(255 255 255/.72);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px);opacity:var(--hb,0);transition:opacity .4s}
-html[data-tone=dark] .hdr::before{background:rgb(0 0 0/.4)}
+html[data-hdr-tone=dark] .hdr::before{background:rgb(0 0 0/.4)}
 .hdr>*{position:relative}
 .hdr nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px);font:600 14px/1 var(--sans);letter-spacing:.04em}
 .hdr nav a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;position:relative}
@@ -120,7 +121,7 @@ html.menu-open .menu .menu-mark .lm-d{transform:none;opacity:1}
 .cur[data-s=text] .c-dot{transform:scale(.55)}
 .cur[data-s=none]{opacity:0!important}
 .cur.down .c-ring,.cur.down .c-grip{transform:scale(.86)}
-html[data-tone=dark] .cur .c-dot{background:#fff;box-shadow:0 0 0 2px #000}
+html[data-hdr-tone=dark] .cur .c-dot{background:#fff;box-shadow:0 0 0 2px #000}
 /* the cursor must stay visible on every ground: a white edge always, ink instead of blue over blue */
 .cur .c-ring{box-shadow:0 0 0 2px #fff,0 8px 22px -6px rgb(0 0 0/.35)}
 .cur .c-grip{background:rgb(255 255 255/.92);box-shadow:0 6px 18px -6px rgb(0 0 0/.3)}

@@ -10,7 +10,8 @@
       "classes": "Classes",
       "approach": "Approach",
       "privacy": "Privacy",
-      "terms": "Terms"
+      "terms": "Terms",
+      "students": "Students"
     },
     "language": {
       "switchTo": "VI",
@@ -36,6 +37,10 @@
       "approach": {
         "title": "Approach",
         "text": "Five reasons behind the way I teach, with the research."
+      },
+      "students": {
+        "title": "For my students",
+        "text": "Write to me, and read what other students wrote."
       },
       "talk": {
         "title": "Say hello",
@@ -120,11 +125,6 @@
   },
   "story": {
     "cover": {
-      "labelTitle": "English",
-      "labelName": "Name",
-      "labelNameValue": "you",
-      "labelAges": "Ages",
-      "labelTeacher": "Teacher",
       "eyebrow": "Teacher Bek · English for ages 5–17 · Phú Nhuận, Ho Chi Minh City",
       "h1Label": "English makes sense when someone tells you why.",
       "h1Line1": "English makes",
@@ -422,15 +422,16 @@
   "privacy": {
     "eyebrow": "Legal",
     "title": "Privacy Policy",
-    "effective": "Effective date: November 12, 2026",
+    "effective": "Effective date: November 13, 2026",
     "intro": "This policy explains what information is collected through this website, how it is used, and what rights you have over your personal data.",
     "collected": {
       "title": "1. Information Collected",
-      "lead": "Information is collected only when you send an enquiry through the chat on this site.",
+      "lead": "Information is collected when you send an enquiry through the chat or a note through the “For my students” page.",
       "items": [
         "Your name (or the name you give me in the chat)",
         "Your phone number or Zalo details, if you choose to share them",
         "The content of your messages",
+        "On the “For my students” page: the name you give, when you studied with me (if you say), your note, and whether I may show it on the student wall. Only notes you allow, and only your first name with them, ever appear on the site.",
         "Basic technical data used for spam prevention and security, such as a timestamp and a Cloudflare Turnstile check result"
       ]
     },
@@ -447,8 +448,9 @@
       "lead": "Your data is never sold. It is processed only by the services needed to run this site:",
       "items": [
         "Chat enquiries are sent to me through a Telegram bot and stored in a Google Sheet that only I can open.",
+        "Student notes are sent to me through the same Telegram bot and stored in the same Google Sheet.",
         "Cloudflare Turnstile checks that a message comes from a real person and not a bot, to prevent spam.",
-        "Plausible Analytics counts visits without cookies and without collecting personal data.",
+        "Google Analytics 4 measures how the site is used (pages visited, rough location by city, device type, and actions such as sending a message). It sets first-party cookies (_ga) and does not receive your name, phone number or messages. Google signals and advertising features are switched off, and the data is kept for 14 months. You can block it with the Google Analytics opt-out add-on or any content blocker.",
         "Sentry monitors technical errors. Phone numbers and form contents are removed before anything is sent, and IP addresses are not stored."
       ]
     },
@@ -498,5 +500,28 @@
       "title": "7. Contact",
       "text": "For legal or service questions, message me on <zalo>Zalo</zalo>, call <phone>+84 353 88 5757</phone>, or use the chat on this site."
     }
+  },
+  "students": {
+    "label": "For my students",
+    "h1": "Still learning? <em>Tell me.</em>",
+    "lede": "This page is for my students, now and from before. Write to me about anything: an exam you passed, a word that finally made sense, a question you were too shy to ask in class. I read every note.",
+    "formTitle": "Write to me",
+    "name": "Your name",
+    "namePh": "Your first name is enough",
+    "studied": "When did you study with me?",
+    "studiedPh": "For example: Teens, 2025",
+    "optional": "optional",
+    "message": "Your message",
+    "messagePh": "Write in English or Vietnamese, whatever is easier.",
+    "wall": "Bek can put this on the student wall. Only your first name and your message are shown.",
+    "send": "Send to Bek",
+    "sending": "Sending…",
+    "sent": "Thank you! I read every note and I will write back if you left a way to reach you.",
+    "sentWall": "Thank you! If it goes on the wall, you will see it here soon.",
+    "error": "That did not send. Please try again, or message me on Zalo.",
+    "wallTitle": "The student wall",
+    "wallSub": "Notes students said I could share.",
+    "empty": "Nothing on the wall yet. Yours could be the first.",
+    "cue": "write me a line ↓"
   }
 }

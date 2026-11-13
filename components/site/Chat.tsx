@@ -324,7 +324,7 @@ export function Chat({ locale, strings: S }: ChatProps) {
     if (!alive.current) return;
     setFlying(false);
     if (res.ok) {
-      track("Lead Sent", { locale });
+      track("generate_lead", { lead_source: "chat", site_language: locale });
       setPending(null);
       await bek(S.done.replace("{name}", d.name));
       if (!alive.current) return;
@@ -333,7 +333,7 @@ export function Chat({ locale, strings: S }: ChatProps) {
       return;
     }
     const code: ClientErrorCode = res.code;
-    track("Lead Failed", { code });
+    track("lead_error", { error_code: code });
     ts.reset();
     setFailed(true);
     await bek(S.errors[errorKeyFor(code)] ?? S.errors.errorNetwork);

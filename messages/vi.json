@@ -10,7 +10,8 @@
       "classes": "Các lớp học",
       "approach": "Phương pháp",
       "privacy": "Bảo mật",
-      "terms": "Điều khoản"
+      "terms": "Điều khoản",
+      "students": "Học trò"
     },
     "language": {
       "switchTo": "EN",
@@ -36,6 +37,10 @@
       "approach": {
         "title": "Phương pháp",
         "text": "Năm lý do đằng sau cách mình dạy, kèm nghiên cứu."
+      },
+      "students": {
+        "title": "Dành cho học trò",
+        "text": "Viết cho mình, và đọc lời nhắn của các bạn khác."
       },
       "talk": {
         "title": "Chào bạn",
@@ -120,11 +125,6 @@
   },
   "story": {
     "cover": {
-      "labelTitle": "Tiếng Anh",
-      "labelName": "Họ và tên",
-      "labelNameValue": "em",
-      "labelAges": "Tuổi",
-      "labelTeacher": "Giáo viên",
       "eyebrow": "Thầy Bek · Tiếng Anh cho các bạn 5–17 tuổi · Phú Nhuận, TP. Hồ Chí Minh",
       "h1Label": "Tiếng Anh trở nên dễ hiểu khi có người cho bạn biết why.",
       "h1Line1": "Tiếng Anh trở nên",
@@ -422,15 +422,16 @@
   "privacy": {
     "eyebrow": "Pháp lý",
     "title": "Chính sách bảo mật",
-    "effective": "Có hiệu lực từ: 12 tháng 11 năm 2026",
+    "effective": "Ngày hiệu lực: 13 tháng 11, 2026",
     "intro": "Chính sách này giải thích trang web thu thập những thông tin nào, mình dùng chúng ra sao và bạn có những quyền gì đối với dữ liệu cá nhân của mình.",
     "collected": {
       "title": "1. Thông tin được thu thập",
-      "lead": "Thông tin chỉ được thu thập khi bạn gửi câu hỏi qua khung chat trên trang web này.",
+      "lead": "Thông tin chỉ được thu thập khi bạn gửi câu hỏi qua khung chat hoặc gửi lời nhắn ở trang “Dành cho học trò”.",
       "items": [
         "Tên của bạn (hoặc tên bạn muốn mình gọi trong chat)",
         "Số điện thoại hoặc thông tin Zalo, nếu bạn muốn chia sẻ",
         "Nội dung tin nhắn",
+        "Ở trang “Dành cho học trò”: tên bạn ghi, thời gian bạn học với mình (nếu bạn ghi), lời nhắn, và việc bạn có cho phép đưa lên bảng học trò hay không. Chỉ những lời nhắn bạn cho phép, kèm tên gọi, mới xuất hiện trên trang.",
         "Một số dữ liệu kỹ thuật cơ bản để chống spam và bảo mật, như thời điểm gửi và kết quả kiểm tra của Cloudflare Turnstile"
       ]
     },
@@ -447,8 +448,9 @@
       "lead": "Dữ liệu của bạn không bao giờ bị bán. Chỉ những dịch vụ cần thiết để vận hành trang web này mới xử lý dữ liệu:",
       "items": [
         "Câu hỏi trong chat được gửi đến thầy Bek qua một bot Telegram và lưu trong một Google Sheet mà chỉ mình thầy mở được.",
+        "Lời nhắn của học trò được gửi đến mình qua cùng bot Telegram và lưu trong cùng Google Sheet.",
         "Cloudflare Turnstile kiểm tra tin nhắn đến từ người thật chứ không phải bot, để chống spam.",
-        "Plausible Analytics đếm lượt truy cập mà không dùng cookie và không thu thập dữ liệu cá nhân.",
+        "Google Analytics 4 đo cách trang web được sử dụng (các trang đã xem, vị trí ước lượng theo thành phố, loại thiết bị và các thao tác như gửi tin nhắn). Dịch vụ này đặt cookie của chính trang (_ga) và không nhận tên, số điện thoại hay nội dung tin nhắn của bạn. Google signals và các tính năng quảng cáo đã được tắt, dữ liệu được lưu 14 tháng. Bạn có thể chặn bằng tiện ích chặn Google Analytics hoặc bất kỳ trình chặn nội dung nào.",
         "Sentry theo dõi lỗi kỹ thuật. Số điện thoại và nội dung biểu mẫu được xóa trước khi gửi đi, và địa chỉ IP không được lưu."
       ]
     },
@@ -498,5 +500,28 @@
       "title": "7. Liên hệ",
       "text": "Nếu có câu hỏi về pháp lý hoặc dịch vụ, bạn nhắn cho mình qua <zalo>Zalo</zalo>, gọi <phone>+84 353 88 5757</phone> hoặc dùng khung chat trên trang web này."
     }
+  },
+  "students": {
+    "label": "Dành cho học trò",
+    "h1": "Vẫn đang học? <em>Kể mình nghe.</em>",
+    "lede": "Trang này dành cho học trò của mình, cả bây giờ lẫn trước đây. Viết cho mình bất cứ điều gì: một kỳ thi vừa qua, một từ cuối cùng cũng hiểu, một câu hỏi ngại hỏi trong lớp. Mình đọc hết từng lời nhắn.",
+    "formTitle": "Viết cho mình",
+    "name": "Tên của bạn",
+    "namePh": "Tên gọi là đủ",
+    "studied": "Bạn học với mình khi nào?",
+    "studiedPh": "Ví dụ: lớp Teens, 2025",
+    "optional": "không bắt buộc",
+    "message": "Lời nhắn",
+    "messagePh": "Viết bằng tiếng Anh hay tiếng Việt đều được.",
+    "wall": "Thầy Bek có thể đưa lời nhắn này lên bảng học trò. Chỉ hiện tên gọi và lời nhắn của bạn.",
+    "send": "Gửi cho thầy Bek",
+    "sending": "Đang gửi…",
+    "sent": "Cảm ơn bạn! Mình đọc hết từng lời nhắn và sẽ trả lời nếu bạn để lại cách liên lạc.",
+    "sentWall": "Cảm ơn bạn! Nếu lời nhắn được đưa lên bảng, bạn sẽ thấy nó ở đây sớm thôi.",
+    "error": "Chưa gửi được. Bạn thử lại nhé, hoặc nhắn mình qua Zalo.",
+    "wallTitle": "Bảng học trò",
+    "wallSub": "Những lời nhắn học trò cho phép mình chia sẻ.",
+    "empty": "Bảng còn trống. Lời nhắn của bạn có thể là cái đầu tiên.",
+    "cue": "viết cho mình một dòng ↓"
   }
 }
