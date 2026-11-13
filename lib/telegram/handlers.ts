@@ -212,8 +212,9 @@ export async function handleCallback(cb: TgCallbackQuery, parsed: Callback): Pro
       try {
         revalidatePath('/en/students');
         revalidatePath('/vi/students');
-      } catch {
-        /* the page also refreshes itself every few minutes */
+      } catch (err) {
+        // the page also refreshes itself every 5 minutes
+        console.warn('[telegram] wall refresh failed:', err instanceof Error ? err.message : 'unknown');
       }
       // the card keeps one button to undo the decision
       const undo = parsed.show

@@ -24,7 +24,10 @@ export async function POST(request: NextRequest) {
 
   try {
     const update = (await request.json()) as TgUpdate;
-    await defer(() => handleUpdate(update));
+    // Student-wall buttons run inside the request: they refresh the /students page (revalidatePath),
+    // which Next.js does not allow from after(). The sheet call takes a second or two, well within Telegram's limit.
+    if (update.callback_query?.data?.startsWith('w:')) await handleUpdate(update);
+    else await defer(() => handleUpdate(update));
   } catch (err) {
     console.error('[telegram] webhook:', err instanceof Error ? err.message : 'unknown');
   }
