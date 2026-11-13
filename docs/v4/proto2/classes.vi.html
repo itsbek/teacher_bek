@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lớp tiếng Anh ở Phú Nhuận cho 5–17 tuổi — Thầy Bek</title>
+<link rel="alternate" hreflang="en" href="classes.html">
+<link rel="preload" href="../../../public/fonts/archivo-vf.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/brand.css"><link rel="stylesheet" href="css/pages.css"><link rel="stylesheet" href="css/notebook.css">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<script>
+(function(){var d=document.documentElement,q=location.search,ss;try{ss=sessionStorage}catch(e){}
+ var rm=matchMedia('(prefers-reduced-motion: reduce)').matches||/[?&]rm\b/.test(q);
+ var c=navigator.connection||{};var lite=/[?&]lite\b/.test(q)||c.saveData||(navigator.deviceMemory||8)<=4||(navigator.hardwareConcurrency||8)<=4;
+ d.classList.add('js');if(rm)d.classList.add('rm');if(lite)d.classList.add('lite');
+ if(ss&&ss.getItem('bek-arrive')){ss.removeItem('bek-arrive');if(!rm)d.classList.add('arriving')}
+ else if(d.hasAttribute('data-loader')&&!rm&&!(ss&&ss.getItem('bek-loaded'))&&!/[?&]noload\b/.test(q))d.classList.add('loading');})();
+</script>
+</head>
+<body>
+<div class="cur" aria-hidden="true"><span class="c-dot"></span><span class="c-ring"></span><span class="c-grip"></span><span class="c-lens"></span></div>
+<a class="vh" href="#main">Chuyển đến nội dung</a>
+<header class="hdr">
+  <a href="index.vi.html" class="logo mag" data-cur="home" aria-label="Thầy Bek, trang chủ"><span class="lw"><i>teacher</i><b><span class="lg-b" data-mark></span>ek</b></span></a>
+  <span></span>
+  <nav aria-label="Chính">
+    <a href="classes.vi.html" class="hide-m" aria-current="page">Các lớp học</a>
+    <a href="approach.vi.html" class="hide-m" >Phương pháp</a>
+    <a href="classes.html" lang="en" hreflang="en" data-cur="English">EN</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu"><span>Menu</span><i aria-hidden="true"></i></button>
+  </nav>
+</header>
+<nav class="menu" id="menu" aria-label="Trang web">
+  <ol>
+    <li><a href="index.vi.html" style="--i:0"><small>01</small>Câu chuyện<em>Từ 5 đến 17 tuổi, và điều thay đổi khi có người giải thích why.</em></a></li>
+    <li><a href="classes.vi.html" style="--i:1"><small>02</small>Các lớp học<em>Lớp nhỏ ở Phú Nhuận, 5–17 tuổi. Tuần đầu miễn phí.</em></a></li>
+    <li><a href="approach.vi.html" style="--i:2"><small>03</small>Phương pháp<em>Năm lý do đằng sau cách mình dạy, kèm nghiên cứu.</em></a></li>
+    <li><a href="#talk" style="--i:3"><small>04</small>Chào bạn<em>Vài câu hỏi nhanh, rồi mình trả lời qua Zalo.</em></a></li>
+  </ol>
+  <svg class="menu-mark" viewBox="0 0 64 84" aria-hidden="true"><path class="lm-p" pathLength="1" d="M16 66 V10 H30 C42 10 47 16 47 23 C47 31 41 36 30 36 H22 C40 36 51 42 51 51 C51 60 44 66 33 66 H16"/><circle class="lm-d" cx="33" cy="78" r="4.4"/></svg>
+  <div class="menu-foot"><span>Thầy Bek · Golden Mansion 1, 119 Phổ Quang, Phú Nhuận · +84 353 88 5757</span><a href="classes.html" lang="en" hreflang="en">English</a></div>
+</nav>
+
+<main id="main">
+<section class="c-hero" data-tone="light">
+  <p class="t-label">Các lớp học</p>
+  <h1 class="t-xl">Lớp tiếng Anh ở <span class="t-open u-draw">Phú Nhuận<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 20 C60 8 140 26 200 14 C240 6 270 12 296 18"/></svg></span>, cho các bạn từ 5 đến 17 tuổi.</h1>
+  <p class="t-voice lede">Lớp nhỏ, mỗi tuần hai buổi, chín mươi phút và có nghỉ giải lao ở giữa. Tuần đầu miễn phí.</p>
+</section>
+
+<section class="dial" data-tone="light">
+  <div class="dial-l">
+    <p class="t-label">Bạn học mấy tuổi?</p>
+    <p class="dial-n" id="dialN" aria-hidden="true">8</p>
+    <p class="t-hand dial-y" id="dialY">tuổi</p>
+    <div class="ruler"><div class="ruler-ill" id="ruler"></div><div class="ruler-nums" aria-hidden="true"></div><div class="pencil" id="pencil"></div>
+      <label class="vh" for="age2">Tuổi của bạn học</label><input class="ruler-in" id="age2" type="range" min="5" max="17" value="8" data-drag aria-valuetext="8 tuổi"></div>
+  </div>
+  <div class="prog-card" id="progCard" aria-live="polite"></div>
+</section>
+
+<section class="week" id="week" data-tone="light">
+  <h2 class="t-l">Lịch học</h2>
+  <p class="now t-voice" id="now"></p>
+  <div class="cal" id="cal"></div>
+  <p class="t-hand cal-note">giờ theo múi giờ TP. Hồ Chí Minh</p>
+</section>
+
+<section class="tk" data-tone="light">
+  <div class="tk-card" id="tk">
+    <div class="tk-ill" id="tkIll"></div>
+    <div class="tk-stub" id="stub" data-drag><span class="t-label">Một vé vào lớp</span><b>Miễn phí</b><span class="t-hand">tuần đầu</span><span class="tear-hint t-hand">xé mình ra ↓</span></div>
+    <div class="tk-body"><h2>Học thử trọn một tuần rồi hẵng quyết định.</h2><p class="t-voice">Cứ đến lớp, làm quen với nhóm, xem cảm giác thế nào. Sau đó không có hợp đồng ràng buộc; học theo từng tháng.</p>
+      <div class="tk-after"><p class="t-hand">hẹn gặp quanh chiếc bàn dài.</p><a class="btn mag" href="#talk" data-cur="say hi">Nhắn tin cho mình</a></div>
+      <button class="btn ghost tear-btn" id="tearBtn">Xé vé</button></div>
+  </div>
+</section>
+
+<section class="faq" data-tone="light"><div class="faq-in">
+  <h2 class="t-l">Những câu ba mẹ hay hỏi</h2>
+  <details><summary><i class="t-hand">1</i>Lớp học ở đâu?</summary><p>Lớp học của mình ở Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, TP. Hồ Chí Minh. Các bạn học đến từ Phú Nhuận, Gò Vấp và Bình Thạnh.</p></details>
+  <details><summary><i class="t-hand">2</i>Mình dạy các bạn bao nhiêu tuổi?</summary><p>Từ 5 đến 17 tuổi, chia làm hai nhóm: các bạn nhỏ (5–10 tuổi) và thiếu niên (11–17 tuổi).</p></details>
+  <details><summary><i class="t-hand">3</i>Mỗi lớp có bao nhiêu bạn?</summary><p>Lớp nhỏ, nên bạn nào cũng được nói trong mỗi buổi học.</p></details>
+  <details><summary><i class="t-hand">4</i>Lớp học vào lúc nào?</summary><p>Mỗi tuần hai buổi, mỗi buổi 90 phút cộng 15 phút nghỉ giải lao. Lớp ngày thường học 19:30–21:00; lớp cuối tuần học trong khoảng 14:00 đến 20:00.</p></details>
+  <details><summary><i class="t-hand">5</i>Cho bé học thử trước được không?</summary><p>Được. Tuần đầu miễn phí.</p></details>
+  <details><summary><i class="t-hand">6</i>Có phải ký hợp đồng không?</summary><p>Không. Sau tuần học thử, lớp học theo từng tháng.</p></details>
+  <details><summary><i class="t-hand">7</i>Trình độ của giáo viên là gì?</summary><p>Mình có chứng chỉ TESOL và PGCE. Mình đã dạy bốn năm, tổng cộng khoảng 2.500 học sinh.</p></details>
+  <details><summary><i class="t-hand">8</i>Dạy theo cách "why-first" nghĩa là gì?</summary><p>Mình giải thích một mẩu ngôn ngữ dùng để làm gì trước khi bảo ai nhớ nó, rồi cả lớp dùng nó trong trò chơi và hội thoại. <a href="approach.vi.html">Đọc về phương pháp.</a></p></details>
+</div></section>
+
+<div class="door-wrap"><a class="door mag" href="approach.vi.html" data-cur="open"><span><small class="t-label">Vì sao mình dạy như vậy</small><strong>Đọc về phương pháp</strong></span><span class="arr" aria-hidden="true">→</span></a></div>
+</main>
+<section class="talk" id="talk" data-tone="light">
+  <div class="talk-head"><p class="t-label">Chào bạn</p><h2>Đến lượt bạn.<em>Hỏi mình bất cứ điều gì.</em></h2><p class="talk-sub">Vài câu hỏi nhanh, rồi mình trả lời qua Zalo, thường là trong ngày.</p></div>
+  <div class="chat" id="chat" aria-live="polite"></div>
+  <div class="chat-in" id="chatIn"></div>
+</section>
+<footer class="foot" data-tone="dark">
+  <a class="logo" href="index.vi.html" aria-label="Thầy Bek"><span class="lw"><i>teacher</i><b><span class="lg-b" data-mark></span>ek</b></span></a>
+  <div class="foot-grid">
+    <div><h3>Thầy Bek</h3><p>Tiếng Anh cho các bạn 5–17 tuổi ở Phú Nhuận, TP. Hồ Chí Minh. Lớp nhỏ. Lý do trước, quy tắc sau.</p></div>
+    <div><h3>Ghé thăm</h3><p>Golden Mansion 1<br>119 Phổ Quang, Phú Nhuận</p></div>
+    <div><h3>Liên hệ</h3><a href="#talk">Gửi tin nhắn</a><a href="https://zalo.me/84353885757">Zalo</a><a href="tel:+84353885757">+84 353 88 5757</a></div>
+    <div><h3>Đọc</h3><a href="index.vi.html">Câu chuyện</a><a href="classes.vi.html">Các lớp học</a><a href="approach.vi.html">Phương pháp</a></div>
+  </div>
+  <div class="foot-small"><span>© 2026 Thầy Bek</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/ink.js"></script><script src="js/strokes.js"></script><script src="js/write.js"></script><script src="js/i18n.vi.js"></script><script src="js/core.js"></script><script src="js/talk.js"></script><script src="js/classes.js"></script><script src="js/notebook.js"></script>
+
+</body>
+</html>

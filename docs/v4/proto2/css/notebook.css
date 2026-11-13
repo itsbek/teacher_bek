@@ -1,0 +1,59 @@
+/* ═══ The notebook world, shared by Classes and Approach (the story page has the same rules in story.css) ═══ */
+:root{--nb-paper:#FFFDF8;--pencil:#4A4A52;--pen:#2B47B5;--accent:var(--blue);--sun:#BFDBFE;--sun-soft:#EEF5FF;
+  --paper-img:
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .25  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+  linear-gradient(90deg,transparent calc(var(--mg,72px) - 1px),rgb(229 115 115/.55) calc(var(--mg,72px) - 1px),rgb(229 115 115/.55) calc(var(--mg,72px) + 1px),transparent calc(var(--mg,72px) + 1px)),
+  repeating-linear-gradient(transparent 0 39px,rgb(118 160 224/.2) 39px 40px)}
+@media (max-width:700px){:root{--mg:18px}}
+.paper{background-color:var(--nb-paper)!important;background-image:var(--paper-img)!important}
+.paper .stage{background-color:var(--nb-paper);background-image:var(--paper-img)}
+main>section,main>div{position:relative}
+.pgno{position:absolute;right:var(--m);bottom:18px;font:400 22px/1 var(--hand);color:var(--ink-2);z-index:6;pointer-events:none}
+/* page turns */
+.turns{pointer-events:none}.turns .stage{pointer-events:auto}.turns.gone .stage{visibility:hidden}
+.turns.paper{background:transparent!important}
+.turns .stage{transform-origin:0 50%;transform:perspective(2400px) rotateY(calc(var(--to,0) * -96deg));backface-visibility:hidden;will-change:transform}
+.turns .stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgb(0 0 0/0) 40%,rgb(0 0 0/.22));opacity:calc(var(--to,0) * 1.6);z-index:20}
+.under{margin-top:-100svh;position:relative;z-index:0}
+.cover{height:190vh}
+.cover>.stage{position:sticky;top:0;height:100svh;min-height:0}
+html.rm .cover{height:auto}html.rm .cover>.stage{position:relative;height:auto;transform:none}html.rm .under{margin-top:0}
+/* handwriting */
+.kid path{fill:none;stroke:var(--pencil);stroke-linecap:round;stroke-linejoin:round}
+.grown path{fill:none;stroke:var(--pen);stroke-linecap:round;stroke-linejoin:round}
+.pghead{position:absolute;right:var(--m);top:clamp(64px,9vh,84px);z-index:7;overflow:visible;pointer-events:none}
+.pghead .pg-u{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--k,0));stroke:var(--pen)}
+@media (max-width:999px){.pghead{top:80px}}
+html:not(.lite) .ill.live,html:not(.lite) .pghead{filter:url(#inkf)}
+/* drawings wobble only on screen */
+.ill{animation:none}.ill.live{animation:boil .42s steps(1) infinite}
+@keyframes boil{0%{transform:translate(.4px,-.3px) rotate(.25deg)}33%{transform:translate(-.3px,.4px) rotate(-.25deg)}66%{transform:translate(.2px,.3px) rotate(.12deg)}}
+html.rm .ill.live,html.lite .ill.live{animation:none}
+/* progress */
+.prog{position:fixed;right:0;top:0;bottom:0;width:3px;z-index:60;pointer-events:none;background:var(--blue);transform-origin:50% 0;transform:scaleY(var(--p,0))}
+html.rm .prog{display:none}
+/* frozen → open */
+.t-l .fo,.t-xl .fo{font-weight:calc(800 - 500 * var(--fo,1));font-stretch:calc(62% + 63% * var(--fo,1));letter-spacing:calc(-.03em + .015em * var(--fo,1))}
+/* field notes */
+.foot-notes{border-top:1px solid rgb(255 255 255/.14);padding-top:28px;margin-top:28px;display:grid;gap:10px}
+.foot-notes h3{margin:0}.foot-notes>p{color:rgb(255 255 255/.7)}
+.foot-notes ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 24px}
+.foot-notes .nm-l{all:unset;cursor:pointer;display:grid;gap:2px;padding:8px 0;border-bottom:1px solid rgb(255 255 255/.1);width:100%;box-sizing:border-box}
+.foot-notes .nm-l b{font:500 16px/1.3 var(--sans);color:#fff}.foot-notes .nm-l span{font:400 14px/1.3 var(--sans);color:rgb(255 255 255/.6)}
+.foot-notes .nm-l:hover b,.foot-notes .nm-l:focus-visible b{color:#6CB2FF;text-decoration:underline}
+.foot-notes .nm-l:focus-visible{outline:2px solid #6CB2FF;outline-offset:2px}
+
+/* Classes + Approach on paper */
+.dial,.tk,.reasons,.week,.faq,.c-hero,.a-hero{background:transparent}
+.ruler-ill svg{background:transparent}
+.tk-card{border-radius:3px;rotate:-.6deg}
+.tk-card::before{content:"";position:absolute;left:38%;top:-13px;width:110px;height:26px;rotate:-3deg;background:rgb(250 246 232/.88);box-shadow:0 1px 2px rgb(0 0 0/.1);z-index:3}
+/* sections that are not pinned have their own top padding: the heading sits in the top margin */
+.dial>.pghead,.week>.pghead,.tk>.pghead,.faq>.pghead{top:22px}
+/* 3.4 · a second, lighter pass of the pen: drawn, not plotted */
+.ill .ink.ghost{opacity:.38;stroke-width:calc(var(--sw,2) * .6)}
+html.rm .cover>.stage{overflow:clip}
+/* an undrawn line must not leave its round cap behind as a dot */
+.ill path.ink{opacity:clamp(0,calc((var(--k,0) - var(--s,0)) * 400),1)}
+.ill .ink.ghost{opacity:clamp(0,calc((var(--k,0) - var(--s,0)) * 400),.38)}
+.pghead .pg-u,.write-line .uline{opacity:clamp(0,calc(var(--k,0) * 400),1)}

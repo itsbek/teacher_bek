@@ -1,0 +1,9 @@
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<script>
+(function(){var d=document.documentElement,q=location.search,ss;try{ss=sessionStorage}catch(e){}
+ var rm=matchMedia('(prefers-reduced-motion: reduce)').matches||/[?&]rm\b/.test(q);
+ var c=navigator.connection||{};var lite=/[?&]lite\b/.test(q)||c.saveData||(navigator.deviceMemory||8)<=4||(navigator.hardwareConcurrency||8)<=4;
+ d.classList.add('js');if(rm)d.classList.add('rm');if(lite)d.classList.add('lite');
+ if(ss&&ss.getItem('bek-arrive')){ss.removeItem('bek-arrive');if(!rm)d.classList.add('arriving')}
+ else if(d.hasAttribute('data-loader')&&!rm&&!(ss&&ss.getItem('bek-loaded'))&&!/[?&]noload\b/.test(q))d.classList.add('loading');})();
+</script>

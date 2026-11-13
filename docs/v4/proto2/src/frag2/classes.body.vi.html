@@ -1,0 +1,53 @@
+%CHROME%
+<main id="main">
+<section class="c-hero" data-tone="light">
+  <p class="t-label">Các lớp học</p>
+  <h1 class="t-xl">Lớp tiếng Anh ở <span class="t-open u-draw">Phú Nhuận<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 20 C60 8 140 26 200 14 C240 6 270 12 296 18"/></svg></span>, cho các bạn từ 5 đến 17 tuổi.</h1>
+  <p class="t-voice lede">Lớp nhỏ, mỗi tuần hai buổi, chín mươi phút và có nghỉ giải lao ở giữa. Tuần đầu miễn phí.</p>
+</section>
+
+<section class="dial" data-tone="light">
+  <div class="dial-l">
+    <p class="t-label">Bạn học mấy tuổi?</p>
+    <p class="dial-n" id="dialN" aria-hidden="true">8</p>
+    <p class="t-hand dial-y" id="dialY">tuổi</p>
+    <div class="ruler"><div class="ruler-ill" id="ruler"></div><div class="ruler-nums" aria-hidden="true"></div><div class="pencil" id="pencil"></div>
+      <label class="vh" for="age2">Tuổi của bạn học</label><input class="ruler-in" id="age2" type="range" min="5" max="17" value="8" data-drag aria-valuetext="8 tuổi"></div>
+  </div>
+  <div class="prog-card" id="progCard" aria-live="polite"></div>
+</section>
+
+<section class="week" id="week" data-tone="light">
+  <h2 class="t-l">Lịch học</h2>
+  <p class="now t-voice" id="now"></p>
+  <div class="cal" id="cal"></div>
+  <p class="t-hand cal-note">giờ theo múi giờ TP. Hồ Chí Minh</p>
+</section>
+
+<section class="tk" data-tone="light">
+  <div class="tk-card" id="tk">
+    <div class="tk-ill" id="tkIll"></div>
+    <div class="tk-stub" id="stub" data-drag><span class="t-label">Một vé vào lớp</span><b>Miễn phí</b><span class="t-hand">tuần đầu</span><span class="tear-hint t-hand">xé mình ra ↓</span></div>
+    <div class="tk-body"><h2>Học thử trọn một tuần rồi hẵng quyết định.</h2><p class="t-voice">Cứ đến lớp, làm quen với nhóm, xem cảm giác thế nào. Sau đó không có hợp đồng ràng buộc; học theo từng tháng.</p>
+      <div class="tk-after"><p class="t-hand">hẹn gặp quanh chiếc bàn dài.</p><a class="btn mag" href="#talk" data-cur="say hi">Nhắn tin cho mình</a></div>
+      <button class="btn ghost tear-btn" id="tearBtn">Xé vé</button></div>
+  </div>
+</section>
+
+<section class="faq" data-tone="light"><div class="faq-in">
+  <h2 class="t-l">Những câu ba mẹ hay hỏi</h2>
+  <details><summary><i class="t-hand">1</i>Lớp học ở đâu?</summary><p>Lớp học của mình ở Golden Mansion 1, 119 Phổ Quang, Phú Nhuận, TP. Hồ Chí Minh. Các bạn học đến từ Phú Nhuận, Gò Vấp và Bình Thạnh.</p></details>
+  <details><summary><i class="t-hand">2</i>Mình dạy các bạn bao nhiêu tuổi?</summary><p>Từ 5 đến 17 tuổi, chia làm hai nhóm: các bạn nhỏ (5–10 tuổi) và thiếu niên (11–17 tuổi).</p></details>
+  <details><summary><i class="t-hand">3</i>Mỗi lớp có bao nhiêu bạn?</summary><p>Lớp nhỏ, nên bạn nào cũng được nói trong mỗi buổi học.</p></details>
+  <details><summary><i class="t-hand">4</i>Lớp học vào lúc nào?</summary><p>Mỗi tuần hai buổi, mỗi buổi 90 phút cộng 15 phút nghỉ giải lao. Lớp ngày thường học 19:30–21:00; lớp cuối tuần học trong khoảng 14:00 đến 20:00.</p></details>
+  <details><summary><i class="t-hand">5</i>Cho bé học thử trước được không?</summary><p>Được. Tuần đầu miễn phí.</p></details>
+  <details><summary><i class="t-hand">6</i>Có phải ký hợp đồng không?</summary><p>Không. Sau tuần học thử, lớp học theo từng tháng.</p></details>
+  <details><summary><i class="t-hand">7</i>Trình độ của giáo viên là gì?</summary><p>Mình có chứng chỉ TESOL và PGCE. Mình đã dạy bốn năm, tổng cộng khoảng 2.500 học sinh.</p></details>
+  <details><summary><i class="t-hand">8</i>Dạy theo cách "why-first" nghĩa là gì?</summary><p>Mình giải thích một mẩu ngôn ngữ dùng để làm gì trước khi bảo ai nhớ nó, rồi cả lớp dùng nó trong trò chơi và hội thoại. <a href="approach.vi.html">Đọc về phương pháp.</a></p></details>
+</div></section>
+
+<div class="door-wrap"><a class="door mag" href="approach.vi.html" data-cur="open"><span><small class="t-label">Vì sao mình dạy như vậy</small><strong>Đọc về phương pháp</strong></span><span class="arr" aria-hidden="true">→</span></a></div>
+</main>
+%FOOT%
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/ink.js"></script><script src="js/strokes.js"></script><script src="js/write.js"></script><script src="js/core.js"></script><script src="js/talk.js"></script><script src="js/classes.js"></script><script src="js/notebook.js"></script>

@@ -1,0 +1,556 @@
+/* ═══ Story page — one signature per scene ═══ */
+.send svg{fill:#fff}
+
+/* 1 hero: the headline splits sideways as you leave; "why" stretches when pulled */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:110px var(--m) clamp(36px,6vh,72px);overflow:clip}
+.hero-eyebrow{margin-bottom:clamp(20px,4vh,40px)}
+.hero-h{font-size:clamp(54px,10.8vw,200px);line-height:.9;font-weight:800;font-stretch:62%;letter-spacing:-.035em}
+.hx{display:block;white-space:nowrap;transform:translate3d(calc(var(--split,0) * var(--d,0) * 60vw),0,0);opacity:calc(1 - var(--split,0) * .8);will-change:transform}
+.hx-why{position:relative;width:fit-content}
+.why{display:inline-block;color:var(--blue);font-weight:calc(800 - 400 * var(--o,0));font-stretch:calc(62% + 63% * var(--o,0));letter-spacing:calc(var(--pull,0) * .5em);touch-action:none;user-select:none;transition:letter-spacing .05s linear}
+.why-curve{position:absolute;left:0;bottom:-.28em;width:calc(3.2em + var(--pull,0) * 2em);height:.5em;overflow:visible;pointer-events:none}
+.why-curve path{fill:none;stroke:var(--sun);stroke-width:8;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--wc,0))}
+.hero-foot{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-top:clamp(28px,6vh,64px)}
+.hero-foot .t-voice{max-width:30ch}
+.hero-hint{color:var(--blue);white-space:nowrap;transform:rotate(-3deg)}
+@media (max-width:700px){.hero-foot{flex-direction:column;align-items:flex-start}.hx{white-space:normal}}
+
+/* bridges: a door-frame height chart, a new pencil mark at every age */
+.bridge{height:86vh;display:grid;grid-template-columns:auto auto;justify-content:center;align-items:center;gap:clamp(28px,6vw,96px);overflow:clip}
+.chart{position:relative;width:120px;height:70vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink);background:repeating-linear-gradient(transparent 0 23px,rgb(29 29 31/.06) 23px 24px)}
+.chart .mk{position:absolute;left:-3px;height:2.5px;background:var(--grey);width:56px;border-radius:2px}
+.chart .mk span{position:absolute;left:66px;top:-14px;font:22px/1 var(--hand);color:var(--grey);white-space:nowrap}
+.chart .mk.now{background:var(--blue);width:calc(var(--k,0) * 76px)}
+.chart .mk.now span{color:var(--blue);opacity:var(--k,0)}
+.br-age{display:grid;gap:6px}
+.br-n{display:block;height:1em;overflow:hidden;font-size:clamp(140px,26vw,400px);line-height:1;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.br-n span{display:block;height:1em;transform:translateY(calc(var(--k,0) * var(--steps,0) * -1em));font-weight:calc(800 - 500 * var(--k,0));font-stretch:calc(62% + 63% * var(--k,0))}
+.br-n span:last-child{color:var(--blue)}
+
+/* 2 wall: a notebook fills, then the ink takes over */
+.wall{height:440vh}
+.wall .stage{display:grid;grid-template-columns:1fr;align-items:center;padding:96px var(--m) 32px;gap:24px}
+@media (min-width:1000px){.wall .stage{grid-template-columns:5fr 6fr}}
+.wall-copy{display:grid;gap:18px;align-content:center;z-index:2}
+.wall-copy .t-l{max-width:11ch}
+.wall-lines{list-style:none;padding:0;display:grid;gap:6px}
+.wall-lines li{opacity:var(--a,0);transform:translateY(calc((1 - var(--a,0)) * 16px))}
+.wall-lines b{font-weight:400;font-style:italic;color:var(--blue)}
+.nb-wrap{position:relative;justify-self:center;width:min(620px,100%);z-index:1}
+.nb{position:relative;aspect-ratio:4/5;background:var(--paper);border-radius:6px 18px 18px 6px;box-shadow:0 30px 70px -30px rgb(0 0 0/.3),0 0 0 1px rgb(0 0 0/.06);overflow:hidden;transform:rotate(-2deg)}
+.nb-svg{position:absolute;inset:0;width:100%;height:100%}
+.nb-svg .rule{stroke:#C9DCF5;stroke-width:1.2}
+.nb-svg .margin{stroke:#F2A7A7;stroke-width:1.5}
+.nb-svg .rule,.nb-svg .margin{stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--rk,0))}
+.nb-rows{position:absolute;left:17%;right:5%;top:8.4%;font-size:clamp(13px,1.35vw,20px);line-height:var(--lh,26px);color:#2B3A67}
+.nb-rows p{white-space:nowrap;overflow:hidden;clip-path:inset(0 calc((1 - var(--w,0)) * 100%) 0 0);height:var(--lh,26px)}
+.nb-pen{position:absolute;left:0;top:0;width:34px;transform:translate3d(var(--px,0),var(--py,0),0) rotate(var(--pr,24deg));transform-origin:50% 92%;color:var(--ink);opacity:var(--po,0);pointer-events:none}
+.nb-count{position:absolute;right:-8px;bottom:-26px;background:var(--blue);color:#fff;border-radius:18px;padding:12px 18px;display:grid;gap:2px;transform:rotate(3deg);box-shadow:0 14px 30px -12px rgb(0 113 227/.6)}
+.nb-count .t-label{color:rgb(255 255 255/.85)}
+.nb-count b{font:800 clamp(48px,5vw,76px)/.9 var(--sans);font-stretch:62%;font-variant-numeric:tabular-nums}
+.blot{position:absolute;left:var(--bx,60%);top:var(--by,60%);width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:46% 54% 51% 49%/52% 45% 55% 48%;background:#000;transform:scale(var(--bs,0));z-index:3;pointer-events:none}
+.hes{position:absolute;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;text-align:center;padding:0 var(--m);color:#F5F5F7;opacity:var(--ho,0);pointer-events:none}
+.hes-ask{position:absolute;top:clamp(100px,16vh,170px);left:var(--m);right:var(--m);color:#AEAEB2;opacity:0;transform:translateY(10px);transition:opacity .6s var(--release),transform .6s var(--release)}
+.hes.ask .hes-ask{opacity:1;transform:none}
+.hes-line{font:italic 300 clamp(34px,6vw,104px)/1.1 var(--serif);max-width:min(15ch,90vw)}
+.caret{display:inline-block;width:3px;height:.9em;background:var(--sun);margin-left:.08em;vertical-align:-.1em;animation:caret 1s steps(2) infinite}
+@keyframes caret{50%{opacity:0}}
+.ghosts{position:absolute;inset:0}
+.ghosts span{position:absolute;color:#8E8E93;white-space:nowrap;opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) scale(.85);transition:opacity .9s var(--release),transform 1.2s var(--pop)}
+.ghosts span.on{opacity:var(--go,.8);transform:translate(-50%,-50%) rotate(var(--r))}
+.hes-cap{position:absolute;bottom:clamp(28px,7vh,80px);left:var(--m);right:var(--m);color:#AEAEB2;opacity:0;transition:opacity .8s}
+.hes.done .hes-cap{opacity:1}
+
+/* 3 test: answers fall into a school bag; drag them back out */
+.test{height:260vh;background:var(--mist)}
+.test .stage{display:grid;grid-template-rows:auto 1fr auto;padding:100px var(--m) 28px;gap:12px}
+.test-q{font-size:clamp(40px,6vw,104px);line-height:.95;font-weight:300;font-stretch:125%;letter-spacing:-.02em}
+.bag{position:relative;justify-self:center;align-self:center;width:min(300px,62vw);transform:translateY(calc(var(--sag,0) * 26px)) scaleY(calc(1 - var(--sag,0) * .06)) scaleX(calc(1 + var(--sag,0) * .05));transform-origin:50% 100%;transition:transform .6s var(--pop)}
+.bag-ill svg{width:100%;height:auto;color:var(--ink)}
+.tags{position:absolute;inset:0}
+.tag{position:absolute;left:50%;top:0;font:700 clamp(16px,1.5vw,22px)/1 var(--sans);font-stretch:80%;text-transform:uppercase;padding:10px 14px;border-radius:10px;background:var(--paper);box-shadow:0 8px 20px -10px rgb(0 0 0/.35),0 0 0 1.5px var(--ink);white-space:nowrap;touch-action:none;user-select:none;transform:translate3d(calc(-50% + var(--x,0px)),var(--y,0px),0) rotate(var(--r,0deg));opacity:var(--o,1)}
+.test-foot{display:grid;gap:8px}
+.taken{display:flex;gap:10px;align-items:baseline}
+.taken b{font:800 34px/1 var(--sans);font-stretch:62%;color:var(--blue);letter-spacing:0}
+.test-foot .cap{font:400 16px/1.55 var(--sans);color:var(--ink-2);max-width:66ch}
+.rel{opacity:0;transform:translateY(12px);transition:opacity .6s var(--release),transform .6s var(--release)}
+.rel.on{opacity:1;transform:none}
+.rel em{color:var(--blue)}
+
+/* 4 turn: the rule is written on a door; the handle says why? */
+.turn{height:300vh}
+.turn .stage{display:grid;align-items:center;justify-items:center;padding:96px var(--m) 32px}
+.light{position:absolute;inset:0;background:radial-gradient(circle at var(--lx,62%) var(--ly,52%),var(--sun) 0,var(--sun-soft) calc(var(--lr,0) * 50%),var(--paper) calc(var(--lr,0) * 100%));opacity:var(--lo,0)}
+.turn-copy{position:absolute;left:var(--m);top:clamp(96px,14vh,150px);display:grid;gap:10px;z-index:3;opacity:calc(1 - var(--f,0))}
+.door3d{position:relative;width:min(380px,70vw);aspect-ratio:3/5;perspective:1400px;z-index:2;transform:translateX(calc(var(--f,0) * 30vw)) scale(calc(1 - var(--f,0) * .3));opacity:calc(1 - var(--f,0) * 1.2)}
+.frame{position:absolute;inset:-14px -14px 0;border:3px solid var(--ink);border-bottom:0;border-radius:4px 4px 0 0}
+.door-panel{position:absolute;inset:0;background:var(--paper);border:3px solid var(--ink);border-radius:2px;transform-origin:0 50%;transform:rotateY(calc(var(--open,0) * -108deg));transition:transform .2s linear;display:grid;align-content:center;padding:28px;backface-visibility:hidden;box-shadow:calc(var(--open,0) * 40px) 0 60px -30px rgb(0 0 0/.3)}
+.rule{font-size:clamp(22px,2.4vw,36px);line-height:1;font-weight:800;font-stretch:62%;text-transform:uppercase;color:var(--grey)}
+.rule u{text-decoration:none;color:var(--ink)}
+.knob{position:absolute;right:18px;top:52%;font:italic 400 20px/1 var(--serif);background:var(--blue);color:#fff;border-radius:999px;padding:12px 16px;box-shadow:0 0 0 0 rgb(0 113 227/.5);animation:knob 2s var(--settle) infinite}
+@keyframes knob{50%{box-shadow:0 0 0 12px rgb(0 113 227/0)}}
+.explain{position:absolute;inset:0;z-index:3;display:grid;align-content:center;padding:96px var(--m) 40px;gap:clamp(12px,2.6vh,26px);pointer-events:none;opacity:var(--f,0)}
+.explain .big{font-size:clamp(32px,5.4vw,92px);line-height:1;font-weight:300;font-stretch:125%;letter-spacing:-.02em;max-width:15ch;transform:translateY(calc((1 - var(--f,0)) * 6vh))}
+.explain em{font-style:normal;font-weight:800;font-stretch:62%;color:var(--blue);font-size:1.15em}
+.dogs{display:flex;flex-wrap:wrap;gap:clamp(8px,2vw,24px);pointer-events:auto;opacity:var(--dg,0);margin-top:8px}
+.dog{display:grid;justify-items:center;gap:2px;color:var(--ink);transition:transform .5s var(--pop),color .3s}
+.dog svg{width:clamp(56px,7vw,96px);height:auto}
+.dog b{font:400 18px/1 var(--hand)}
+.dog:hover{transform:translateY(-6px)}
+.dog .tail{transform-box:fill-box;transform-origin:100% 0}
+.dog.chosen{color:var(--blue);transform:scale(1.25)}
+.dog.chosen .tail{animation:wag .35s ease-in-out infinite alternate}
+@keyframes wag{to{transform:rotate(-24deg)}}
+.dogs.picked .dog:not(.chosen){opacity:.3}
+.pick{color:var(--blue);opacity:var(--dg,0)}
+
+/* 5 guess: drag into the gap, marked by hand */
+.guess{padding:clamp(80px,12vh,128px) var(--m);display:grid;gap:clamp(18px,3vh,30px)}
+.sent{font-size:clamp(40px,7.4vw,130px);line-height:1.02;font-weight:300;font-stretch:125%;letter-spacing:-.02em}
+.gap{position:relative;display:inline-block;min-width:3.2em;text-align:center;border-bottom:.04em solid var(--ink)}
+.gap-w{display:inline-block}
+.gap-w.ok{color:var(--ok)} .gap-w.no{color:var(--no);font-weight:800;font-stretch:62%}
+.gap-w.land{animation:land .6s var(--pop)}
+@keyframes land{from{transform:translateY(-60%) scale(.6);opacity:0}}
+.gap.hot{background:var(--sky)}
+.mark{position:absolute;right:-.7em;top:-.55em;width:.8em;height:.8em}
+.mark svg{width:100%;height:100%}
+.mark .ok path{stroke:var(--ok)} .mark .no path{stroke:var(--no)}
+.mark svg path.ink{transition:none;stroke-width:6}
+.opts{display:flex;flex-wrap:wrap;gap:12px}
+.opt{font:500 clamp(18px,1.6vw,24px)/1 var(--sans);padding:16px 28px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--ink);background:var(--paper);touch-action:none;user-select:none;transition:background .2s,color .2s,box-shadow .2s}
+.opt.is-ok{background:var(--ok);color:#fff;box-shadow:none}.opt.is-no{background:var(--no);color:#fff;box-shadow:none}
+.opt.drag{position:relative;z-index:5;transition:none}
+.resp{min-height:2.8em;max-width:40ch}
+.resp b{font-style:normal;font-weight:500}
+.resp .ok{color:var(--ok)} .resp .no{color:var(--no)}
+.guess-note{color:var(--blue);transform:rotate(-1.5deg);width:fit-content}
+
+/* 6 three ways: sideways, an object per student */
+.six{height:440vh}
+.track{display:flex;height:100%;width:400vw;transform:translate3d(calc(var(--hx,0) * -300vw),0,0);will-change:transform}
+.panel{flex:0 0 100vw;height:100%;padding:clamp(96px,14vh,140px) var(--m) clamp(40px,8vh,80px);display:grid;align-content:center;gap:clamp(20px,4vh,40px)}
+@media (min-width:1000px){.panel.p1,.panel.p2,.panel.p3{grid-template-columns:6fr 5fr;align-items:center}}
+.panel.p1,.panel.p3{background:var(--mist)}
+.panel .t-l{max-width:13ch}
+.who{color:var(--blue);margin-bottom:14px}
+.pv{font-size:clamp(32px,4.6vw,80px);line-height:1;letter-spacing:-.015em;max-width:16ch}
+.pv0{font-weight:300;font-stretch:125%} .pv1{font-family:var(--serif);font-style:italic;font-weight:300} .pv2{font-weight:800;font-stretch:62%;text-transform:uppercase}
+.pill svg{width:100%;height:auto;max-height:52vh;color:var(--ink)}
+.folded{position:relative;width:min(420px,80vw);perspective:900px;justify-self:center}
+.folded .lies{list-style:none;padding:26px 30px;background:var(--paper);border-radius:6px;box-shadow:0 20px 50px -24px rgb(0 0 0/.3),0 0 0 1px rgb(0 0 0/.06);display:grid;gap:8px;font-size:clamp(20px,1.8vw,27px);transform-origin:50% 0;transform:rotateX(calc((1 - var(--uf,0)) * -88deg))}
+.folded .flap{position:absolute;left:0;right:0;top:0;height:50%;background:#FBFBFD;border-radius:6px 6px 0 0;box-shadow:0 0 0 1px rgb(0 0 0/.06);transform-origin:50% 100%;transform:rotateX(calc(var(--uf,0) * 180deg));backface-visibility:hidden;z-index:2}
+.lies .lie{position:relative;color:var(--ink);transition:color .4s}
+.folded.caught .lie{color:var(--no)}
+.folded.caught .lie::after{content:"← caught it";position:absolute;right:0;font-size:.8em;color:var(--no);animation:land .6s var(--pop)}
+.sw{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;justify-self:center;width:min(520px,90vw)}
+.sw .pill{width:clamp(130px,14vw,200px)}
+.sw-hand{transform-box:view-box;transform-origin:110px 130px;transform:rotate(var(--sa,0deg))}
+.wc{font:400 16px/1.2 var(--sans);color:var(--grey)}
+.wc b{display:block;font:800 clamp(56px,6vw,96px)/.9 var(--sans);font-stretch:62%;color:var(--ink)}
+.spoken{grid-column:1/-1;min-height:2.6em;font-size:clamp(20px,1.8vw,27px);color:var(--blue)}
+
+/* 7 distance: three chapters in depth, collapsing into one word */
+.distance{height:340vh;background:var(--mist)}
+.dist-q{position:absolute;left:var(--m);right:var(--m);top:clamp(96px,14vh,150px);max-width:16ch;opacity:calc(1 - var(--wo,0))}
+.depth{position:absolute;inset:0;perspective:900px;perspective-origin:50% 50%}
+.chap{position:absolute;left:50%;top:50%;width:min(340px,70vw);padding:22px 24px;border-radius:22px;background:var(--paper);box-shadow:0 30px 60px -30px rgb(0 0 0/.3);display:grid;gap:8px;transform:translate3d(calc(-50% + var(--x)),calc(-50% + var(--y)),var(--z,0px)) rotateY(var(--ry,0deg));opacity:var(--a,0)}
+.chap .pill svg{height:110px;width:auto}
+.chap p{font-size:clamp(22px,2.2vw,32px);line-height:1;font-weight:800;font-stretch:62%;text-transform:uppercase}
+.word{position:absolute;left:var(--m);right:var(--m);top:50%;transform:translateY(-60%);white-space:nowrap;font-size:clamp(56px,13vw,240px);line-height:1.05;color:var(--blue);opacity:var(--wo,0)}
+.word span{display:inline-block;font-weight:calc(800 - 500 * var(--t,0));font-stretch:calc(62% + 63% * var(--t,0));letter-spacing:calc(var(--ls,0px) * var(--t,0) - .02em)}
+.lines3{position:absolute;left:var(--m);right:var(--m);top:calc(50% + clamp(50px,8vw,150px));display:grid;grid-template-columns:repeat(3,1fr);gap:24px;font:300 clamp(20px,1.9vw,30px)/1.3 var(--serif)}
+.lines3 p{opacity:var(--la,0);transform:translateY(calc((1 - var(--la,0)) * 16px))}
+.lines3 b{font:800 1em var(--sans);font-stretch:62%;color:var(--blue)}
+@media (max-width:700px){.lines3{grid-template-columns:1fr;gap:8px}}
+
+/* 8 own words: a pen line writes the sentence */
+.own{height:240vh}
+.own .stage{display:grid;align-content:center;padding:96px var(--m) 40px;gap:clamp(14px,2.6vh,26px)}
+.write{position:relative}
+.write-line{position:absolute;left:-2%;top:-10%;width:104%;height:120%;overflow:visible;pointer-events:none}
+.write-line path{fill:none;stroke:var(--sun);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.say{position:relative;font:italic 300 clamp(36px,5.8vw,104px)/1.08 var(--serif);letter-spacing:-.01em;max-width:18ch;clip-path:inset(0 calc((1 - var(--wr,0)) * 100%) 0 0)}
+.say .u{background:linear-gradient(var(--blue),var(--blue)) no-repeat 0 92%/var(--ul,0%) .06em;color:var(--blue);font-style:normal;font-weight:400}
+.own .cap{font:400 16px/1.55 var(--sans);color:var(--ink-2)}
+
+/* 9 about: the full portrait, layered */
+.about{position:relative;padding:clamp(90px,14vh,150px) var(--m);display:grid;gap:clamp(36px,6vw,96px);align-items:center;overflow:clip}
+@media (min-width:1000px){.about{grid-template-columns:5fr 6fr}}
+.ab-art{position:relative;justify-self:center;width:min(500px,74vw,56svh);aspect-ratio:2/3;margin:6vh 0}
+.ab-name{position:absolute;left:-28%;bottom:-6%;transform:translateY(var(--ny,0px));font-size:clamp(150px,24vw,400px);line-height:.8;font-weight:800;font-stretch:62%;letter-spacing:-.05em;color:var(--sky);white-space:nowrap;z-index:0;pointer-events:none}
+.ab-mark{position:absolute;left:30%;right:-62%;top:-14%;bottom:-4%;z-index:1;pointer-events:none}
+.ab-mark svg{width:100%;height:100%;overflow:visible}
+.ab-mark .am-p{fill:none;stroke:var(--blue);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--am,0));opacity:.85}
+.ab-mark .am-d{fill:var(--sun);transform:scale(var(--ad,0));transform-origin:33px 78px;transform-box:view-box}
+.ab-photo{position:absolute;inset:0;z-index:2;border-radius:28px;overflow:hidden;box-shadow:0 40px 80px -40px rgb(0 0 0/.45);transform:translateY(var(--py,0px));-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.ab-photo i{position:absolute;inset:0;background-size:cover;background-position:50% 30%;pointer-events:none}
+.ab-photo::after{content:"";position:absolute;inset:0}
+@media print{.ab-photo{visibility:hidden}}
+.ab-text{display:grid;gap:18px;align-content:center;max-width:620px}
+.beliefs{list-style:none;padding:0;display:grid;gap:0;margin-top:8px}
+.beliefs li{display:grid;grid-template-columns:3.4em 1fr;gap:10px;align-items:baseline;padding:16px 0;border-top:1.5px solid var(--line);font:400 clamp(18px,1.5vw,23px)/1.4 var(--sans);background:linear-gradient(var(--sun-soft),var(--sun-soft)) no-repeat 0 0/0% 100%;transition:background-size .6s var(--release)}
+.beliefs li:hover{background-size:100% 100%}
+.beliefs li span{color:var(--blue);font-size:24px}
+
+/* 10 room: drawn first, then the photograph */
+.room{padding:clamp(80px,12vh,128px) var(--m);display:grid;gap:clamp(28px,5vh,56px);background:var(--mist)}
+@media (min-width:1000px){.room{grid-template-columns:7fr 5fr;align-items:start}.room h2{grid-column:1/-1;max-width:18ch}}
+.room-photo{position:relative;aspect-ratio:3/2;border-radius:24px;overflow:hidden;background:var(--paper)}
+.room-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:var(--rp,0);filter:none}
+.room-trace{position:absolute;inset:0;width:100%;height:100%;opacity:calc(1 - var(--rp,0) * .85)}
+.room-trace path{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - clamp(0,(var(--rt,0) - var(--s)) / (var(--e) - var(--s)),1))}
+.room-text{display:grid;gap:20px;align-content:start}
+.facts{list-style:none;padding:0;border-top:1.5px solid var(--ink)}
+.facts li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font:400 17px/1.3 var(--sans)}
+.facts li span:first-child{color:var(--ink-2)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+/* reduced motion: everything resolved and still */
+html.rm .hx{transform:none;opacity:1}
+html.rm .wall .stage,html.rm .test .stage,html.rm .turn .stage,html.rm .own .stage,html.rm .distance .stage{padding-top:80px}
+html.rm .wall-lines li,html.rm .lines3 p{--a:1;--la:1}
+html.rm .nb-rows p{--w:1}
+html.rm .hes,html.rm .explain{position:relative;opacity:1;inset:auto;pointer-events:auto}
+html.rm .hes{background:#000;padding:60px var(--m)}
+html.rm .blot{display:none}
+html.rm .light{display:none}
+html.rm .door3d{display:none}
+html.rm .track{width:auto;display:block;transform:none}
+html.rm .panel{height:auto}
+html.rm .depth,html.rm .word,html.rm .dist-q,html.rm .lines3{position:relative;inset:auto;transform:none}
+html.rm .chap{position:relative;left:auto;top:auto;transform:none;margin:0 auto 16px}
+html.rm .say{clip-path:none}
+html.rm .room-photo img{opacity:1}
+html.rm .room-trace{display:none}
+
+@media (max-width:999px){
+  .wall .stage{grid-template-rows:auto 1fr;align-content:start;padding-top:84px;gap:14px}
+  .wall-copy{gap:8px}
+  .wall-copy .t-l{font-size:clamp(32px,8.6vw,56px)}
+  .wall-lines{font-size:19px;gap:2px}
+  .nb-wrap{width:min(300px,70vw);align-self:start}
+  .nb-count{right:-14px;bottom:-14px;padding:8px 12px}
+  .nb-count b{font-size:40px}
+  .about .ab-art{width:min(380px,72vw)}
+}
+
+/* ═══ fixes + life ═══ */
+/* hero: the mark draws itself big on the right; its dot keeps dropping in */
+.hero{position:relative}
+.hero-art{position:absolute;right:calc(var(--m) * .6);top:50%;height:min(76vh,720px);transform:translateY(-46%) translateX(calc(var(--split,0) * 30vw));opacity:calc(1 - var(--split,0));pointer-events:none}
+.hero-art svg{height:100%;overflow:visible}
+.ha-p{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--wc,0))}
+.ha-d{fill:var(--blue);transform-box:fill-box;transform-origin:50% 100%;animation:hop 3.2s 1.6s var(--settle) infinite}
+@keyframes hop{0%,62%,100%{transform:none}70%{transform:translateY(-18px) scale(.9,1.1)}78%{transform:translateY(0) scale(1.2,.8)}84%{transform:translateY(-5px)}90%{transform:none}}
+.hero-h,.hero-foot,.hero-eyebrow{position:relative;z-index:1}
+@media (max-width:999px){.hero-art{right:-14vw;height:46vh;top:26%;opacity:calc(.35 - var(--split,0) * .35)}}
+/* stop-motion life on every drawing */
+.ill{animation:boil .42s steps(1) infinite}
+@keyframes boil{0%{transform:translate(.4px,-.3px) rotate(.25deg)}33%{transform:translate(-.3px,.4px) rotate(-.25deg)}66%{transform:translate(.2px,.3px) rotate(.12deg)}}
+html.rm .ill,html.lite .ill{animation:none}
+.dog .tail{animation:wag 1.6s ease-in-out infinite alternate}
+.dog:nth-child(2n) .tail{animation-delay:-.6s}.dog:nth-child(3n) .tail{animation-delay:-1.1s}
+.dog.chosen .tail{animation:wag .3s ease-in-out infinite alternate}
+.bag-ill{animation:sway 4s var(--settle) infinite;transform-origin:50% 0}
+@keyframes sway{50%{transform:rotate(1.2deg)}}
+.nb-pen svg{animation:none}
+/* notebook: rows sit on the lines */
+.nb-rows{left:0;right:0;top:0;bottom:0}
+.nb-rows p{position:absolute;left:17%;right:5%;top:var(--ty);height:auto;line-height:1;font-size:var(--fs,16px)}
+/* bag: bigger, tags packed neatly inside */
+.bag{width:min(360px,70vw)}
+.tag{font-size:clamp(13px,1.1vw,16px);padding:8px 12px;border-radius:8px}
+/* door: knob below the rule, door to the right, never under the heading */
+.turn .stage{justify-items:end;padding-right:clamp(20px,12vw,200px)}
+.door3d{width:min(340px,62vw);aspect-ratio:auto;height:min(64vh,560px);margin-top:12vh}
+.door-panel{align-content:start;padding:36px 26px}
+.rule{max-width:100%;font-size:clamp(22px,2.3vw,34px)}
+.knob{right:auto;left:26px;top:auto;bottom:34%}
+@media (max-width:999px){.turn .stage{justify-items:center;padding-right:var(--m)}.door3d{margin-top:22vh;height:56vh}}
+/* distance: cards sit below the heading */
+.depth{top:16vh}
+.dist-q{font-size:clamp(28px,4.4vw,72px);max-width:20ch}
+/* about: the drawn mark stays inside the art column */
+.ab-mark{left:24%;right:-16%;top:-9%;bottom:2%}
+.ab-name{left:-16%;top:-10%;bottom:auto}
+@media (min-width:1000px){.about{column-gap:clamp(64px,8vw,140px)}}
+.ab-mark{left:52%;right:-36%;top:34%;bottom:-14%;z-index:3}
+.ab-mark .am-p{stroke-width:2;opacity:1}
+.hero-h{font-size:clamp(52px,9.6vw,184px)}
+
+@media (max-width:999px){.hero-art{top:auto;bottom:5vh;right:var(--m);height:22vh;transform:translateX(calc(var(--split,0) * 30vw));opacity:calc(1 - var(--split,0))}.hero-hint{max-width:58%}}
+
+/* ═══ round 3: readable, plain, clear ═══ */
+.cap,.test-foot .cap,.own .cap{font:400 clamp(17px,1.4vw,20px)/1.55 var(--sans)!important;color:var(--ink)!important}
+.hero-foot .t-voice{max-width:34ch}
+.wall-lines{font-size:clamp(24px,2.4vw,36px)}
+/* bridges: just the age, rolling over */
+.bridge{height:64vh;grid-template-columns:auto}
+.br-age{justify-items:center}
+/* dogs: words, not drawings */
+.dogs{gap:clamp(10px,2.4vw,28px) clamp(18px,3vw,40px);align-items:baseline}
+.dog{font:300 clamp(30px,3.6vw,58px)/1 var(--sans);font-stretch:125%;color:var(--ink);opacity:.55;transition:opacity .3s,transform .5s var(--pop),color .3s}
+.dog i{font-style:normal;font-weight:800;font-stretch:62%;margin-right:.18em}
+.dog:hover{opacity:1;transform:translateY(-4px)}
+.dog.chosen{opacity:1;color:var(--blue);transform:scale(1.15)}
+.dogs.picked .dog:not(.chosen){opacity:.18}
+/* notebook: big writing */
+.nb-wrap{width:min(720px,100%)}
+/* distance: no 3D; three cards in a row, each gets its meaning, then the one word */
+.depth{position:absolute;inset:auto var(--m);top:clamp(190px,27vh,260px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,28px);perspective:none}
+.chap{position:relative;left:auto;top:auto;width:auto;transform:translateY(calc((1 - var(--a,0)) * 40px));opacity:var(--a,0);transition:none}
+.chap .pill svg{height:90px}
+.chap .dz{font:400 clamp(18px,1.5vw,22px)/1.35 var(--serif);border-top:1.5px solid var(--line);padding-top:10px;margin-top:4px;opacity:var(--dz,0);transform:translateY(calc((1 - var(--dz,0)) * 10px))}
+.chap .dz b{font:800 1em var(--sans);font-stretch:62%;color:var(--blue)}
+.word{top:auto;bottom:clamp(40px,9vh,110px);transform:none}
+.word-say{position:absolute;left:var(--m);right:var(--m);bottom:calc(clamp(40px,9vh,110px) + clamp(60px,12vw,230px));font:400 clamp(22px,2.2vw,34px)/1.3 var(--serif);opacity:var(--wo,0)}
+.lines3{display:none}
+@media (max-width:999px){.depth{grid-template-columns:1fr;top:150px;gap:10px}.chap{padding:14px 16px}.chap .pill{display:none}.word-say{bottom:calc(40px + 70px)}}
+
+.chap .dz{text-transform:none;font-weight:400;font-stretch:100%;font-size:clamp(18px,1.5vw,22px)}
+.dog{display:inline-flex;align-items:baseline;gap:0}
+
+/* age 15: two sentences, one 'have' — a timeline draws the difference */
+.keys{height:300vh;background:var(--mist)}
+.keys .stage{display:grid;align-content:center;gap:clamp(18px,3vh,34px);padding:96px var(--m) 40px}
+.k-pair{display:grid;grid-template-columns:1fr;gap:clamp(14px,2vw,28px)}
+@media (min-width:1000px){.k-pair{grid-template-columns:1fr 1fr}}
+.k-s{background:var(--paper);border-radius:22px;padding:clamp(20px,2.4vw,34px);display:grid;gap:12px;box-shadow:0 24px 50px -30px rgb(0 0 0/.25);opacity:var(--a,0);transform:translateY(calc((1 - var(--a,0)) * 40px))}
+.k-ill{width:120px;color:var(--ink)}
+.k-en{font:300 clamp(32px,3.6vw,60px)/1 var(--sans);font-stretch:125%;letter-spacing:-.015em}
+.k-en b{font-weight:800;font-stretch:62%;color:var(--blue)}
+.tl svg{width:100%;height:auto;overflow:visible}
+.tl .axis{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.tl .cut{fill:none;stroke:var(--grey);stroke-width:3;stroke-dasharray:5 6}
+.tl .arc{fill:none;stroke:var(--blue);stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--arc,0))}
+.tl .past{fill:var(--ink)} .tl .nowd{fill:var(--paper);stroke:var(--ink);stroke-width:3}
+.kb .tl .nowd{fill:var(--blue);stroke:var(--blue);transform-box:fill-box;transform-origin:center;transform:scale(calc(1 + var(--arc,0) * .35))}
+.tl-l{display:flex;justify-content:space-between;padding:0 12% 0 12%;font:400 22px/1 var(--hand);color:var(--ink-2);margin-top:-4px}
+.k-mean{opacity:var(--m,0)}
+.k-why{max-width:40ch;opacity:var(--w,0);transform:translateY(calc((1 - var(--w,0)) * 16px))}
+.k-why b{font:800 1.1em var(--sans);font-stretch:62%;color:var(--blue)}
+html.rm .k-s,html.rm .k-mean,html.rm .k-why{--a:1;--m:1;--w:1;--arc:1}
+/* no yellow anywhere: the 'aha' becomes a soft blue light */
+:root{--sun:#BFDBFE;--sun-soft:#EEF5FF}
+.hl{background-image:linear-gradient(#CFE3FD,#CFE3FD)}
+.why-curve path,.write-line path,.u-draw path{stroke:var(--blue)!important}
+.logo .lm-d,.ld .lm-d,.foot .logo .lm-d,.ha-d,.menu .menu-mark .lm-d{fill:var(--blue)!important}
+.menu .menu-mark .lm-d{fill:#fff!important}
+@media (min-width:1000px){.hero-art{height:min(64vh,600px);transform:translateY(-58%) translateX(calc(var(--split,0) * 30vw))}}
+@media (max-width:999px){.keys .stage{padding-top:76px;gap:12px}.k-ill{display:none}.k-en{font-size:30px}.keys .t-l{font-size:30px}.k-s{padding:16px 18px;gap:8px}.k-mean{font-size:20px}.k-why{font-size:20px}}
+
+/* ═══ round 4 ═══ */
+/* notebook always fits the screen */
+.nb-wrap{width:min(620px,100%,calc((100svh - 190px) * .8))}
+.nb-count{right:14px;bottom:14px}
+@media (max-width:999px){.nb-wrap{width:min(300px,70vw,calc((100svh - 400px) * .8))}}
+/* dogs: drawn again, properly */
+.dogs{gap:clamp(6px,2vw,24px);align-items:end}
+.dog{display:grid;justify-items:center;gap:4px;font:inherit;opacity:1;color:var(--ink)}
+.dog svg{width:clamp(90px,10vw,150px);height:auto}
+.dog b{font:400 22px/1 var(--hand);color:var(--ink-2)}
+.dog:nth-child(2) svg{transform:scaleX(-1)} .dog:nth-child(3) svg{width:clamp(70px,8vw,110px)} .dog:nth-child(4) svg{transform:scaleX(-1);width:clamp(110px,12vw,170px)}
+.dog .tail{transform-box:fill-box;transform-origin:0% 100%}
+.dog.chosen{color:var(--blue)} .dog.chosen b{color:var(--blue)}
+.dogs.picked .dog:not(.chosen){opacity:.25}
+/* each scene arrives its own way */
+.bag{translate:0 calc(var(--fall,0) * -70vh)}
+.door3d{translate:calc(var(--slide,0) * 45vw) 0;rotate:calc(var(--slide,0) * 8deg)}
+.rule{clip-path:inset(0 0 calc((1 - var(--wr2,1)) * 100%) 0)}
+.k-s{transform:perspective(1100px) rotateY(calc((1 - var(--a,0)) * 88deg));transform-origin:0 50%}
+.kb{transform-origin:100% 50%}
+.ab-photo{clip-path:inset(calc((1 - var(--cv,1)) * 50%) 0 calc((1 - var(--cv,1)) * 50%) 0 round 28px)}
+.sent .wd{display:inline-block;transform:translateY(calc((1 - var(--d,1)) * -90px)) rotate(calc((1 - var(--d,1)) * var(--rz,8deg)));opacity:var(--d,1)}
+/* things lean toward the pointer */
+.tilt{transform-style:preserve-3d;transition:transform .6s var(--release)}
+
+.dog svg{width:clamp(120px,13vw,200px)!important}
+.dog:nth-child(3) svg{width:clamp(96px,10vw,150px)!important}
+@media (max-width:700px){.dog svg{width:80px!important}}
+
+@media (max-width:999px){.nb-count{position:relative;right:auto;bottom:auto;margin:12px 0 0 auto;width:fit-content;transform:rotate(2deg)}}
+
+/* ═══ PLAN 1 · one notebook ═══ */
+/* paper: warm sheet, faint blue ruling, red margin, fibre grain generated as SVG noise */
+:root{--paper-img:
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .25  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+  linear-gradient(90deg,transparent calc(var(--mg,72px) - 1px),rgb(229 115 115/.55) calc(var(--mg,72px) - 1px),rgb(229 115 115/.55) calc(var(--mg,72px) + 1px),transparent calc(var(--mg,72px) + 1px)),
+  repeating-linear-gradient(transparent 0 39px,rgb(118 160 224/.2) 39px 40px)}
+.paper{background-color:#FFFDF8;background-image:var(--paper-img)}
+.paper .stage{background-color:#FFFDF8;background-image:var(--paper-img)}
+.turns.paper{background:transparent}
+@media (max-width:700px){.paper{--mg:18px}}
+.pgno{position:absolute;right:var(--m);bottom:18px;font:400 22px/1 var(--hand);color:var(--ink-2);z-index:6;pointer-events:none}
+/* the page turn: the current page lifts from its right edge and turns over, revealing the next one underneath */
+.turns{z-index:var(--z,1)}
+.turns .stage{transform-origin:0 50%;transform:perspective(2400px) rotateY(calc(var(--to,0) * -96deg));backface-visibility:hidden;will-change:transform}
+.turns .stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgb(0 0 0/0) 40%,rgb(0 0 0/.22));opacity:calc(var(--to,0) * 1.6);z-index:20}
+.under{margin-top:-100svh;position:relative;z-index:0}
+main>section,main>div{position:relative}
+/* age 6: the page itself is the notebook — big handwriting, no small card */
+.wall .nb-wrap{position:absolute;right:var(--m);top:84px;bottom:28px;width:min(56%,760px);margin:0}
+.wall .nb{position:absolute;inset:0;aspect-ratio:auto;background:transparent;box-shadow:none;transform:none;border-radius:0}
+.wall .nb-svg .margin{display:none}
+.wall .nb-rows p{left:4%;right:2%;color:#24306B}
+.wall .nb-count{right:0;bottom:0}
+@media (max-width:999px){.wall .nb-wrap{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:46svh}}
+/* portrait: taped in like a school photo, uncropped, caption beside it */
+.ab-photo{border-radius:4px;box-shadow:0 18px 40px -18px rgb(0 0 0/.35);outline:10px solid #fff;rotate:-1.5deg}
+.ab-art::before,.ab-art::after{content:"";position:absolute;z-index:4;width:110px;height:30px;background:rgb(255 247 210/.75);box-shadow:0 1px 2px rgb(0 0 0/.08);pointer-events:none}
+.ab-art::before{left:-28px;top:12px;rotate:-38deg}
+.ab-art::after{right:-28px;bottom:16px;rotate:-38deg}
+.ab-cap{position:absolute;left:0;right:0;bottom:-56px;text-align:center;font:400 24px/1 var(--hand);color:var(--ink-2);rotate:-1.5deg}
+
+html.rm .under{margin-top:0}
+html.rm .turns .stage{transform:none}
+
+@media (max-width:999px){.wall .nb-count{top:-6px;bottom:auto;right:0}}
+
+/* ═══ PLAN 1.2 / 3.3 · real handwriting ═══ */
+.kid path{fill:none;stroke:#4A4A52;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+.grown path{fill:none;stroke:#1C2A5E;stroke-linecap:round;stroke-linejoin:round}
+.write-line{position:relative;inset:auto;width:100%;display:block;overflow:visible}
+.write-line .uline{fill:none;stroke:var(--blue);stroke-width:4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--k,0))}
+.say{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.write{position:relative}
+.own-pen{position:absolute;left:0;top:0;width:34px;transform:translate3d(var(--px,0),var(--py,0),0) rotate(24deg);transform-origin:50% 92%;opacity:var(--po,0);pointer-events:none;color:var(--ink);transition:opacity .2s}
+.nb-pen{transition:opacity .2s}
+
+.write-line .grown path,.kid path{stroke-width:inherit;opacity:1}
+
+/* ═══ PLAN round 2 ═══ */
+/* 6.3 · provisional notebook palette: swap these four and the world follows */
+:root{--nb-paper:#FFFDF8;--pencil:#4A4A52;--pen:#2B47B5;--accent:var(--blue)}
+.kid path{stroke:var(--pencil)}
+.grown path,.write-line .grown path{stroke:var(--pen)!important}
+
+/* 4.1 · shorter scenes */
+.wall{height:330vh}.test{height:250vh}.turn{height:250vh}.six{height:340vh}.keys{height:230vh}.own{height:200vh}
+.cover{height:200vh}.guess.pin{height:190vh}
+
+/* 1.1 / 5.1 · the hero is the notebook's cover; it opens like the first page */
+.cover .hero.stage{position:sticky;top:0;height:100svh;min-height:0;background-color:#F4F1EA;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .27  0 0 0 0 .22  0 0 0 .1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");box-shadow:inset 18px 0 0 #1D1D1F,inset 21px 0 0 rgb(255 255 255/.25)}
+.cover.turns .hero.stage{transform-origin:0 50%;transform:perspective(2400px) rotateY(calc(var(--to,0) * -96deg));backface-visibility:hidden}
+.cover.turns .hero.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgb(0 0 0/0) 40%,rgb(0 0 0/.22));opacity:calc(var(--to,0) * 1.6);z-index:20}
+.label{position:absolute;right:calc(var(--m) + 10px);top:50%;translate:0 -46%;width:clamp(300px,25vw,380px);padding:26px 28px 22px;background:#fff;border:1.5px solid var(--ink);outline:5px solid #fff;box-shadow:0 0 0 6.5px var(--ink),0 22px 40px -24px rgb(0 0 0/.35);rotate:2deg;display:grid;gap:4px;z-index:2;opacity:calc(1 - var(--split,0) * 1.4)}
+.label p{display:flex;align-items:flex-end;gap:10px;min-height:44px;border-bottom:1.5px dotted rgb(29 29 31/.45);font:400 20px/1 var(--hand);color:var(--ink-2)}
+.label p span{padding-bottom:7px;white-space:nowrap}
+.label svg[data-w]{display:block;overflow:visible;margin-bottom:-2px}
+.label .lb-t{border:0;justify-content:center;font:800 40px/1 var(--sans);font-stretch:62%;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);min-height:0;padding-bottom:8px}
+.lb-mark{position:absolute;right:14px;top:12px;width:20px;height:auto;overflow:visible}
+.lb-mark path{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.lb-mark circle{fill:var(--blue)}
+.hero-h,.hero-eyebrow,.hero-foot{max-width:calc(100% - clamp(330px,28vw,420px))}
+.hx{white-space:nowrap}
+@media (max-width:999px){
+  .hero-h,.hero-eyebrow,.hero-foot{max-width:none}
+  .label{position:relative;right:auto;top:auto;translate:none;width:min(300px,78vw);padding:16px 18px 12px;margin:18px 0 0 auto;rotate:2.5deg;opacity:1}
+  .label p{min-height:34px;font-size:17px}.label .lb-t{font-size:30px}
+  .cover .hero.stage{padding-top:84px;justify-content:flex-start}
+  .hero-foot{margin-top:18px}
+}
+.cover .hero.stage{box-shadow:inset 14px 0 0 #1D1D1F}
+.age-chip.is-cover b{min-width:0;font-size:18px;font-weight:600;font-stretch:100%;font-family:var(--hand)}
+
+/* 5.2 · the why is focusable; the hint points at it */
+.why:focus-visible{outline:3px solid var(--blue);outline-offset:6px;border-radius:6px}
+
+/* 1.1 · age 12 is a page of its own */
+.guess.pin .stage{display:grid;align-content:center;gap:clamp(14px,2.6vh,28px);padding:clamp(84px,12vh,120px) var(--m) clamp(40px,6vh,64px)}
+.guess.pin{padding:0}
+
+/* 1.2 · handwritten page headings, the hand grows up page by page */
+.pghead{position:absolute;right:var(--m);top:clamp(64px,9vh,84px);z-index:7;overflow:visible;pointer-events:none}
+.pghead .pg-u{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--k,0))}
+.pghead .pg-u.ruler{stroke:var(--pencil);opacity:.7}.pghead .pg-u.pen{stroke:var(--pen)}
+.wall .nb-wrap .pghead{right:auto;left:4%;top:calc(var(--nbl,40px) * .1)}
+@media (max-width:999px){.pghead{top:58px}.wall .nb-wrap .pghead{top:-6px;left:2%}}
+
+/* 9.1 · phone notebook: fewer rows, bigger writing, a taller page */
+@media (max-width:999px){.wall .nb-wrap{height:50svh}}
+
+/* 1.3 · scenes become things in the notebook */
+/* the bag is taped onto the page once it lands */
+.bag::before,.bag::after{content:"";position:absolute;z-index:3;width:96px;height:28px;background:rgb(250 246 232/.82);box-shadow:0 1px 2px rgb(0 0 0/.1);opacity:calc(1 - var(--fall,1) * 4);pointer-events:none}
+.bag::before{left:-18px;top:16%;rotate:-28deg}.bag::after{right:-18px;top:18%;rotate:24deg}
+/* the door is a flap cut into the page: dashed cut line, paper flap */
+.frame{inset:-3px;border:2px dashed rgb(29 29 31/.55);border-radius:0}
+.door-panel{border:0;border-radius:0;background-color:var(--nb-paper);background-image:repeating-linear-gradient(transparent 0 39px,rgb(118 160 224/.22) 39px 40px);box-shadow:0 0 0 1px rgb(0 0 0/.08),calc(var(--open,0) * 40px) 0 60px -30px rgb(0 0 0/.3),inset -6px 0 10px -8px rgb(0 0 0/.25)}
+.rule{clip-path:none!important;color:var(--ink-2)}
+.rule .rw{display:inline-block;opacity:clamp(0,calc(var(--wr2,1) * (var(--n,10) + 2) - var(--i,0)),1);translate:calc((1 - clamp(0,calc(var(--wr2,1) * (var(--n,10) + 2) - var(--i,0)),1)) * -10px) 0}
+/* the dogs are margin doodles in pencil */
+.dog{color:var(--pencil)}.dog:nth-child(1){rotate:-3deg}.dog:nth-child(2){rotate:2deg}.dog:nth-child(3){rotate:-1deg}.dog:nth-child(4){rotate:3deg}
+.dog.chosen{color:var(--pen)}
+/* 3.5 · flips live in `scale`, so the wobble's transform can't undo them */
+.dog:nth-child(2) svg,.dog:nth-child(4) svg{transform:none;scale:-1 1}
+/* the two sentences are index cards taped to the page */
+.k-s{border-radius:2px;background-color:#fff;background-image:linear-gradient(transparent 62px,rgb(229 115 115/.6) 62px 64px,transparent 64px),repeating-linear-gradient(transparent 0 33px,rgb(118 160 224/.22) 33px 34px);background-position:0 0,0 64px;background-repeat:no-repeat,repeat;box-shadow:0 14px 30px -18px rgb(0 0 0/.35),0 0 0 1px rgb(0 0 0/.05);position:relative}
+.k-s::before{content:"";position:absolute;left:50%;top:-12px;width:90px;height:24px;translate:-50% 0;rotate:-3deg;background:rgb(250 246 232/.85);box-shadow:0 1px 2px rgb(0 0 0/.1)}
+.ka{rotate:-.8deg}.kb{rotate:.9deg}
+/* three ways: the panels sit on the same paper, the objects are inserts */
+.panel.p1,.panel.p3{background:transparent}
+.pill{position:relative}
+.p1 .pill::before,.p3 .sw::before{content:"";position:absolute;left:50%;top:-6px;width:100px;height:26px;translate:-50% 0;rotate:3deg;background:rgb(250 246 232/.85);box-shadow:0 1px 2px rgb(0 0 0/.1);z-index:2}
+.sw{position:relative}
+/* the room photo is pinned in */
+.room-photo{border-radius:3px;outline:10px solid #fff;box-shadow:0 22px 46px -22px rgb(0 0 0/.4);rotate:.8deg;overflow:visible}
+.room-photo img,.room-trace{border-radius:3px}
+.room-photo::before{content:"";position:absolute;left:50%;top:-18px;width:26px;height:26px;translate:-50% 0;border-radius:50%;z-index:3;background:radial-gradient(circle at 35% 35%,#6CB2FF 0 18%,var(--blue) 40%,#003F80 100%);box-shadow:3px 6px 6px -2px rgb(0 0 0/.35)}
+.room-trace path{stroke:var(--pencil);stroke-width:3}
+
+/* 9.4 · dogs in a 2 × 2 grid on phones */
+@media (max-width:700px){.dogs{display:grid;grid-template-columns:repeat(2,auto);justify-content:start;gap:4px 28px}.dog svg{width:96px!important}}
+
+/* 3.1 / 3.2 · ink bleeds slightly into the paper */
+html:not(.lite) .ill.live,html:not(.lite) .pghead,html:not(.lite) .label svg[data-w]{filter:url(#inkf)}
+/* 3.5 · wobble only while on screen */
+.ill{animation:none}
+.ill.live{animation:boil .42s steps(1) infinite}
+html.rm .ill.live,html.lite .ill.live{animation:none}
+
+/* 4.2 · progress on the page edge */
+.prog{position:fixed;right:0;top:0;bottom:0;width:3px;z-index:60;pointer-events:none;background:var(--blue);transform-origin:50% 0;transform:scaleY(var(--p,0))}
+
+/* 2 · frozen → open */
+.t-l .fo,.t-xl .fo{font-weight:calc(800 - 500 * var(--fo,1));font-stretch:calc(62% + 63% * var(--fo,1));letter-spacing:calc(-.03em + .015em * var(--fo,1))}
+
+/* 11.3 · field notes in the footer */
+.foot-notes{grid-column:1/-1;border-top:1px solid rgb(255 255 255/.14);padding-top:28px;margin-top:8px;display:grid;gap:10px}
+.foot-notes h3{margin:0}
+.foot-notes p{color:rgb(255 255 255/.7)}
+.foot-notes ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 24px}
+.nm-l{all:unset;cursor:pointer;display:grid;gap:2px;padding:8px 0;border-bottom:1px solid rgb(255 255 255/.1);width:100%;box-sizing:border-box}
+.nm-l b{font:500 16px/1.3 var(--sans);color:#fff}.nm-l span{font:400 14px/1.3 var(--sans);color:rgb(255 255 255/.6)}
+.nm-l:hover b,.nm-l:focus-visible b{color:#6CB2FF;text-decoration:underline}
+.nm-l:focus-visible{outline:2px solid #6CB2FF;outline-offset:2px}
+
+/* reduced motion for the new parts */
+html.rm .cover{height:auto}html.rm .cover .hero.stage{position:relative;height:auto;min-height:100svh;transform:none}
+html.rm .guess.pin{height:auto}
+html.rm .prog{display:none}
+
+/* a page that has turned over no longer catches clicks meant for the page under it */
+.turns{pointer-events:none}.turns .stage{pointer-events:auto}.turns.gone .stage{visibility:hidden}
+
+/* phone fixes, round 2 */
+@media (max-width:999px){
+  .label{order:9;margin-top:14px;width:min(270px,72vw)}
+  .label p{min-height:30px;font-size:16px}.label .lb-t{font-size:26px;padding-bottom:4px}
+  .cover .hero.stage{padding-top:96px}
+  .pghead{top:80px}
+  .test .stage,.turn .stage,.guess.pin .stage,.keys .stage,.own .stage{padding-top:122px!important}
+  .panel{padding-top:122px}.turn-copy{top:122px}
+  .wall .stage{padding-top:84px}
+  .wall .nb-count{top:auto;bottom:-8px;right:-4px}
+  .wall .nb-wrap .pghead{top:-2px}
+}
+@media (max-width:999px){.wall .nb-count{position:absolute;margin:0;right:-6px;bottom:-18px;top:auto;z-index:8}}/* 10.2 · reduced motion: finished states, nothing stacked */
+html.rm .ghosts{display:none}
+html.rm .hes{display:grid;gap:18px;place-content:start;text-align:left;justify-items:start;padding:56px var(--m)}
+html.rm .hes-ask,html.rm .hes-cap{position:relative;inset:auto;top:auto;bottom:auto;opacity:1;transform:none}
+html.rm .dogs,html.rm .pick{opacity:1}
+html.rm .nb-pen,html.rm .own-pen{display:none}
+html.rm .wall .nb-wrap{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:min(70svh,640px)}
+html.rm .wall .nb-wrap{margin-bottom:76px}html.rm .wall .nb-count{top:auto;bottom:-66px;right:0}
+.tl .arc{opacity:clamp(0,calc(var(--arc,0) * 400),1)}
