@@ -69,7 +69,8 @@ export default async function Page({ params }: Props) {
               sent: t("sent"),
               sentWall: t("sentWall"),
               error: t("error"),
-              cooldown: t("cooldown"),
+              // {hours} is filled in by the form with the time left
+              cooldown: t("cooldown", { hours: "{hours}" }),
               words: t("words"),
             }}
           />
