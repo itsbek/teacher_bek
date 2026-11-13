@@ -10,11 +10,28 @@ import {
 import { strings } from './strings';
 import type { TgCallbackQuery, TgMessage, View } from './types';
 import { cardView, leadCardView, listView, statsView } from './views';
-import { noteText, setNoteStatus } from '../students/notes';
+import { blockNoteDevice, setNoteStatus } from '../students/notes';
 import { revalidatePath } from 'next/cache';
 
 const ALL: ListScope = { kind: 'status', status: 'all' };
 const NEW: ListScope = { kind: 'status', status: 'new' };
+
+/** The card as it was (sender details included), with the decision as its last line. */
+function cardWithStatus(cb: TgCallbackQuery, status: string): string {
+  const before = (cb.message?.text ?? '').replace(/\n\n(📌|🔒|🚫) [^\n]*$/u, '');
+  return `${esc(before)}\n\n<i>${esc(status)}</i>`;
+}
+
+/** The student wall shows approved notes: refresh it now (runs inside the webhook request, see the route). */
+function refreshWall(): void {
+  try {
+    revalidatePath('/en/students');
+    revalidatePath('/vi/students');
+  } catch (err) {
+    // the page also refreshes itself every 5 minutes
+    console.warn('[telegram] wall refresh failed:', err instanceof Error ? err.message : 'unknown');
+  }
+}
 
 /** Edits the message in place; if Telegram refuses (message gone/too old) sends a fresh one. */
 async function present(chatId: number, messageId: number | undefined, view: View): Promise<void> {
@@ -209,21 +226,35 @@ export async function handleCallback(cb: TgCallbackQuery, parsed: Callback): Pro
       const status = parsed.show ? 'shown' : 'hidden';
       const note = await setNoteStatus(parsed.id, status);
       if (!note) return void (await answerCallback(cb.id, strings.leadMissing, true));
-      try {
-        revalidatePath('/en/students');
-        revalidatePath('/vi/students');
-      } catch (err) {
-        // the page also refreshes itself every 5 minutes
-        console.warn('[telegram] wall refresh failed:', err instanceof Error ? err.message : 'unknown');
-      }
-      // the card keeps one button to undo the decision
+      refreshWall();
+      // the card keeps one button to undo the decision, and the block button
       const undo = parsed.show
         ? { text: '🔒 Take it down', callback_data: `w:${parsed.id}:x` }
         : { text: '📌 Put on the wall', callback_data: `w:${parsed.id}:w` };
       await Promise.all([
         answerCallback(cb.id, parsed.show ? 'On the wall' : 'Kept private'),
         messageId !== undefined
-          ? editHtml(chat, messageId, noteText({ ...note, status: 'pending' }, status), { inline_keyboard: [[undo]] })
+          ? editHtml(chat, messageId, cardWithStatus(cb, parsed.show ? '📌 On the wall now.' : '🔒 Kept private.'), {
+              inline_keyboard: [[undo], [{ text: '🚫 Block this device', callback_data: `k:${parsed.id}`, style: 'danger' }]],
+            })
+          : Promise.resolve(),
+      ]);
+      return;
+    }
+    case 'block': {
+      if (!(await sheetGuard(chat))) return void (await answerCallback(cb.id));
+      const ok = await blockNoteDevice(parsed.id);
+      if (!ok) return void (await answerCallback(cb.id, strings.leadMissing, true));
+      refreshWall();
+      await Promise.all([
+        answerCallback(cb.id, 'Device blocked'),
+        messageId !== undefined
+          ? editHtml(
+              chat,
+              messageId,
+              cardWithStatus(cb, '🚫 Device blocked. Its notes no longer reach you. Unblock: delete its row in the "Blocked devices" tab.'),
+              { inline_keyboard: [] },
+            )
           : Promise.resolve(),
       ]);
       return;

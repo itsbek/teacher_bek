@@ -432,6 +432,7 @@
         "Your phone number or Zalo details, if you choose to share them",
         "The content of your messages",
         "On the “For my students” page: the name you give, when you studied with me (if you say), your note, and whether I may show it on the student wall. Only notes you allow, and only your first name with them, ever appear on the site.",
+        "For notes on the “For my students” page, also: your IP address and approximate place (city), browser and device type, language, time zone and screen size, and a random device ID kept in a cookie. These are used only to stop spam and abuse (one note per device every few hours, and blocking a device that misuses the form), are seen only by me, and never appear on the site.",
         "Basic technical data used for spam prevention and security, such as a timestamp and a Cloudflare Turnstile check result"
       ]
     },
@@ -522,6 +523,8 @@
     "wallTitle": "The student wall",
     "wallSub": "Notes students said I could share.",
     "empty": "Nothing on the wall yet. Yours could be the first.",
-    "cue": "write me a line ↓"
+    "cue": "write me a line ↓",
+    "cooldown": "Thank you for your note! You can send the next one in about {hours} hours.",
+    "words": "Please keep it kind: this note has words I can't accept. Try saying it another way."
   }
 }

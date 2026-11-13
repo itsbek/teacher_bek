@@ -65,3 +65,15 @@ html.rm .cover>.stage{overflow:clip}
 .peel{position:absolute;display:none;transform-origin:100% 0;pointer-events:none;z-index:40;filter:drop-shadow(-8px 6px 12px rgb(0 0 0/calc(.12 + var(--pk,0) * .16)))}
 .peel-back{position:absolute;inset:0;background-color:#EFE9DC;background-image:linear-gradient(to left,rgb(0 0 0/.2) 0,rgb(0 0 0/.05) 2.5%,rgb(255 255 255/calc(.25 + var(--pk,0) * .35)) 12%,rgb(255 255 255/0) 38%,rgb(0 0 0/.04) 80%,rgb(0 0 0/.08) 100%)}
 html.rm .peel{display:none!important}
+
+/* ═══ tape: real masking tape, visible on cream paper (warm tan, a little see-through, torn ends, a soft shadow) ═══ */
+:root{--tape:rgb(222 196 138/.86);--tape-edge:rgb(160 128 70/.28)}
+.ab-art::before,.ab-art::after,.bag::before,.bag::after,.k-s::before,.p1 .pill::before,.p3 .sw::before,
+.tk-card::before,.s-card::before,.s-notes li::before{
+  background:
+    repeating-linear-gradient(90deg,rgb(255 255 255/.10) 0 2px,transparent 2px 5px),
+    linear-gradient(180deg,rgb(255 255 255/.22),rgb(0 0 0/.04)),
+    var(--tape)!important;
+  box-shadow:inset 0 -2px 0 var(--tape-edge),inset 0 1px 0 rgb(255 255 255/.35)!important;
+  clip-path:polygon(0 4%,4% 0,9% 6%,14% 1%,86% 1%,91% 7%,96% 0,100% 5%,98% 22%,100% 40%,97% 60%,100% 78%,98% 100%,92% 95%,86% 100%,14% 99%,8% 94%,3% 100%,0 96%,2% 76%,0 55%,3% 34%)!important;
+}

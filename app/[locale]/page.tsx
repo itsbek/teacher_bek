@@ -194,7 +194,7 @@ export default async function Page({ params }: Props) {
             <div className="test-foot">
               <p className="taken t-label">
                 {`${t("test.taken")} `}
-                <b id="taken">0 / 5</b>
+                <b id="taken">{`0 / ${N.week.length}`}</b>
               </p>
               <p className="cap">{t("test.cap")}</p>
               <p className="rel t-voice" id="rel">

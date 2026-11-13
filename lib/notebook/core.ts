@@ -225,6 +225,8 @@ export function initCore(opts: CoreOptions): Core {
   hooks.push((y) => {
     let t = "light";
     for (const s of $$("[data-tone]")) {
+      // a page that has turned over is no longer under the header
+      if (s.closest(".gone")) continue;
       const r = s.getBoundingClientRect();
       if (r.top <= 36 && r.bottom > 36) {
         t = s.dataset.toneNow || s.dataset.tone || "light";

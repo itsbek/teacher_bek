@@ -84,6 +84,22 @@ interface SheetReply {
   notes?: unknown;
 }
 
+/** Like callSheet, but hands back the reply even when the script answers ok:false (e.g. a refused note). */
+export async function callSheetRaw(action: string, payload: Record<string, unknown>): Promise<SheetReply & Record<string, unknown>> {
+  const url = process.env.LEADS_SHEET_WEBHOOK_URL;
+  const secret = process.env.LEADS_SHEET_SECRET;
+  if (!url || !secret) throw new Error('sheet not configured');
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ secret, action, ...payload }),
+    redirect: 'follow',
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`sheet HTTP ${res.status}`);
+  return (await res.json()) as SheetReply & Record<string, unknown>;
+}
+
 export async function callSheet(action: string, payload: Record<string, unknown>): Promise<SheetReply> {
   const url = process.env.LEADS_SHEET_WEBHOOK_URL;
   const secret = process.env.LEADS_SHEET_SECRET;

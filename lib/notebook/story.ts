@@ -259,13 +259,19 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   const takenEl = need("#taken");
   const rel = need("#rel");
   const tags = $$(".tag");
-  const REST: [number, number, number][] = [
-    [-10, 100, -3],
-    [12, 124, 2.5],
-    [-12, 148, -2],
-    [10, 172, 3],
-    [-4, 196, -1.5],
-  ];
+  /* the week piles up in the bag: first things at the bottom, two loose columns, nothing quite straight.
+     Each tag falls from its own side, at its own moment, spinning a little (seeded, so it is the same every visit). */
+  const NW = tags.length;
+  const pr = rng(21);
+  const REST: [number, number, number][] = tags.map((_, i) => {
+    const row = Math.floor(i / 2),
+      side = (i + row) % 2 ? 1 : -1;
+    return [side * (36 + pr() * 10), 204 - row * (150 / Math.max(1, Math.ceil(NW / 2))) - pr() * 6, (pr() - 0.5) * 14];
+  });
+  const FALL = tags.map(() => [(pr() - 0.5) * 220, (pr() - 0.5) * 120] as [number, number]);
+  let acc = 0;
+  const DELAY = tags.map(() => (acc += 0.5 + pr() * 0.9));
+  const DROP_SPAN = acc + 1;
   interface Tag {
     el: HTMLElement;
     i: number;
@@ -294,12 +300,13 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   };
   const restOf = (i: number): [number, number, number] => {
     const bh = bag.offsetWidth / 200;
-    return [REST[i][0] * bh, (REST[i][1] - 14) * bh, REST[i][2]];
+    return [REST[i][0] * bh, (REST[i][1] - 20) * bh, REST[i][2]];
   };
   function sagSet(): void {
     const inBag = A.filter((a) => !a.out).length * dropK;
-    css(bag, "--sag", (inBag / 5).toFixed(2));
-    takenEl.textContent = takenN + " / 5";
+    css(bag, "--sag", (inBag / NW).toFixed(2));
+    css(bag, "--tk", (bag.offsetWidth / 340).toFixed(3));
+    takenEl.textContent = takenN + " / " + NW;
     rel.classList.toggle("on", takenN >= 2);
   }
   function takeOut(a: Tag, vx?: number, vy?: number): void {
@@ -373,10 +380,10 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
       if (a.drag) return;
       if (!a.fly) {
         const [rx, ry, rr] = restOf(a.i),
-          k = pop(clamp(dropK * 5 - a.i * 0.9, 0, 1));
-        a.x = rx;
+          k = pop(clamp(dropK * DROP_SPAN - DELAY[a.i], 0, 1));
+        a.x = rx + (1 - k) * FALL[a.i][0];
         a.y = ry - (1 - k) * innerHeight * 0.7;
-        a.r = rr;
+        a.r = rr + (1 - k) * FALL[a.i][1];
         a.o = k > 0 ? 1 : 0;
         applyA(a);
         return;
@@ -692,6 +699,13 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
   const abImg = need(".ab-photo i");
   const abName = need(".ab-name");
   const room = need("#room");
+  const roomPhoto = need(".room-photo", room);
+  /** the pencil drawing takes its time, holds, then the photograph develops over it */
+  const ROOM_DRAW = 3200,
+    ROOM_HOLD = 700,
+    ROOM_FADE = 1600;
+  let roomT0 = -1,
+    roomDone = false;
   const turnStage = need(".stage", need("#turn"));
   const door3d = need(".door3d");
   hook((y, t) => {
@@ -758,8 +772,8 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
       }
       if (g.id === "test") {
         css(bag, "--fall", (1 - pop(seg(p, 0, 0.1))).toFixed(3));
-        dropK = seg(p, 0.08, 0.26);
-        const auto = Math.floor(seg(p, 0.36, 0.6) * 5);
+        dropK = seg(p, 0.06, 0.34);
+        const auto = Math.floor(seg(p, 0.4, 0.68) * NW);
         while (autoN < auto) {
           const a = A.find((a) => !a.out);
           if (!a) {
@@ -848,12 +862,26 @@ export function mountStory(B: Core, S: StoryStrings): () => void {
       css(ab, "--am", release(seg(k, 0.12, 0.55)).toFixed(3));
       css(ab, "--ad", pop(seg(k, 0.5, 0.62)).toFixed(3));
     }
-    /* room: drawn, then photographed */
+    /* room: drawn, then photographed. Played on its own clock once the drawing is in view (a scroll-linked
+       drawing finished in one trackpad flick, too fast to notice); scrolling away before the end restarts it. */
     const rr = room.getBoundingClientRect();
-    if (rr.bottom > 0 && rr.top < vh) {
-      const k = clamp((vh - rr.top) / (vh * 1.1));
-      css(room, "--rt", seg(k, 0.1, 0.6).toFixed(3));
-      css(room, "--rp", settle(seg(k, 0.55, 0.85)).toFixed(3));
+    const photo = roomPhoto.getBoundingClientRect();
+    const seen = photo.top < vh * 0.8 && photo.bottom > vh * 0.15;
+    if (seen && roomT0 < 0) {
+      roomT0 = performance.now();
+      const tick = (): void => {
+        if (!alive || roomT0 < 0) return;
+        const t = performance.now() - roomT0;
+        css(room, "--rt", (1 - Math.pow(1 - clamp(t / ROOM_DRAW), 2)).toFixed(3));
+        css(room, "--rp", settle(clamp((t - ROOM_DRAW - ROOM_HOLD) / ROOM_FADE)).toFixed(3));
+        if (t < ROOM_DRAW + ROOM_HOLD + ROOM_FADE) requestAnimationFrame(tick);
+        else roomDone = true;
+      };
+      requestAnimationFrame(tick);
+    } else if (!roomDone && roomT0 >= 0 && (rr.top > vh || rr.bottom < 0)) {
+      roomT0 = -1;
+      css(room, "--rt", "0");
+      css(room, "--rp", "0");
     }
   });
 

@@ -69,6 +69,8 @@ export default async function Page({ params }: Props) {
               sent: t("sent"),
               sentWall: t("sentWall"),
               error: t("error"),
+              cooldown: t("cooldown"),
+              words: t("words"),
             }}
           />
         </section>

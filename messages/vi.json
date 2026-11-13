@@ -432,6 +432,7 @@
         "Số điện thoại hoặc thông tin Zalo, nếu bạn muốn chia sẻ",
         "Nội dung tin nhắn",
         "Ở trang “Dành cho học trò”: tên bạn ghi, thời gian bạn học với mình (nếu bạn ghi), lời nhắn, và việc bạn có cho phép đưa lên bảng học trò hay không. Chỉ những lời nhắn bạn cho phép, kèm tên gọi, mới xuất hiện trên trang.",
+        "Với lời nhắn ở trang “Dành cho học trò”, còn có: địa chỉ IP và vị trí ước lượng (thành phố), loại trình duyệt và thiết bị, ngôn ngữ, múi giờ, kích thước màn hình, và một mã thiết bị ngẫu nhiên lưu trong cookie. Các thông tin này chỉ dùng để chống spam và lạm dụng (mỗi thiết bị một lời nhắn trong vài giờ, và chặn thiết bị dùng biểu mẫu sai mục đích), chỉ mình xem được, và không bao giờ hiện trên trang web.",
         "Một số dữ liệu kỹ thuật cơ bản để chống spam và bảo mật, như thời điểm gửi và kết quả kiểm tra của Cloudflare Turnstile"
       ]
     },
@@ -522,6 +523,8 @@
     "wallTitle": "Bảng học trò",
     "wallSub": "Những lời nhắn học trò cho phép mình chia sẻ.",
     "empty": "Bảng còn trống. Lời nhắn của bạn có thể là cái đầu tiên.",
-    "cue": "viết cho mình một dòng ↓"
+    "cue": "viết cho mình một dòng ↓",
+    "cooldown": "Cảm ơn lời nhắn của bạn! Bạn có thể gửi lời nhắn tiếp theo sau khoảng {hours} giờ nữa.",
+    "words": "Bạn viết lịch sự nhé: lời nhắn này có từ ngữ mình không thể nhận. Bạn thử nói cách khác xem."
   }
 }

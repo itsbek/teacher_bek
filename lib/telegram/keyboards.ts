@@ -21,6 +21,7 @@ export type Callback =
   | { t: 'note'; id: string; scope: ListScope; page: number }
   | { t: 'stats'; period: StatsPeriod }
   | { t: 'wall'; id: string; show: boolean }
+  | { t: 'block'; id: string }
   | { t: 'noop' };
 
 export const CALLBACK_MAX_BYTES = 64;
@@ -120,6 +121,9 @@ export function parseCallback(data: string | undefined): Callback | null {
       if (!a || !ID_RE.test(a) || (b !== 'w' && b !== 'x')) return null;
       return { t: 'wall', id: a, show: b === 'w' };
     }
+    case 'k':
+      // student note: k:<id> blocks the device that sent it
+      return a && ID_RE.test(a) ? { t: 'block', id: a } : null;
     default:
       return null;
   }

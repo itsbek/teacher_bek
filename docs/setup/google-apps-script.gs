@@ -14,9 +14,10 @@
  *   list      { statuses?, from?, to?, offset?, limit? } -> { leads, total }  (newest first)
  *   search    { query, offset?, limit? }              -> { leads, total }
  *   stats     { from?, to?, all? }                    -> { stats }
- *   noteAppend { note }                               (student notes, tab "Student notes")
+ *   noteAppend { note, cooldownHours? }               -> { previous } | error 'cooldown' (retryAt) | 'blocked'
  *   noteSet    { id, status, at? }                    -> { note }   status: shown | hidden
  *   notesShown { limit? }                             -> { notes }  (approved for the wall, newest first)
+ *   noteBlock  { id, at? }                            -> { note }   blocks the note's device (tab "Blocked devices")
  * Responses are JSON: { ok: true, ... } or { ok: false, error: '...' }
  *
  * Backward compatible: existing rows keep working. Two columns, "notes" and
@@ -78,9 +79,10 @@ function doPost(e) {
       case 'list':    return json_(list_(body));
       case 'search':  return json_(search_(body));
       case 'stats':   return json_(stats_(body));
-      case 'noteAppend': return json_(noteAppend_(body.note));
+      case 'noteAppend': return json_(noteAppend_(body.note, body.cooldownHours));
       case 'noteSet':    return json_(noteSet_(body.id, body.status, body.at));
       case 'notesShown': return json_(notesShown_(body));
+      case 'noteBlock':  return json_(noteBlock_(body.id, body.at));
       default:        return json_({ ok: false, error: 'unknown action' });
     }
   } catch (err) {
@@ -371,17 +373,36 @@ function stats_(body) {
 
 // ---------- student notes (the "For my students" page) ----------
 // status: private (just for the teacher) | pending (asked for the wall) | shown | hidden
+// One note per device per cooldown window. A device is the same deviceId, or the same IP AND same browser (uaKey):
+// IP alone would block a whole school wifi. Blocked devices are listed in the "Blocked devices" tab;
+// delete a row there to unblock.
 
 var NOTES_SHEET = 'Student notes';
-var NOTE_HEADERS = ['id', 'createdAt', 'status', 'name', 'studied', 'message', 'locale', 'decidedAt'];
+var NOTE_HEADERS = ['id', 'createdAt', 'status', 'name', 'studied', 'message', 'locale', 'decidedAt',
+  'deviceId', 'ip', 'uaKey', 'device', 'browser', 'place', 'details'];
 var NOTE_STATUSES = ['private', 'pending', 'shown', 'hidden'];
+var BLOCK_SHEET = 'Blocked devices';
+var BLOCK_HEADERS = ['blockedAt', 'deviceId', 'ip', 'uaKey', 'noteId', 'name', 'device'];
+var COL = {}; NOTE_HEADERS.forEach(function (h, i) { COL[h] = i; });
 
 function notesSheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(NOTES_SHEET);
   if (!sheet) sheet = ss.insertSheet(NOTES_SHEET);
-  if (sheet.getLastRow() === 0) {
+  // first run, or a sheet made by the previous version: (re)write the full header row
+  if (sheet.getLastColumn() < NOTE_HEADERS.length || sheet.getLastRow() === 0) {
     sheet.getRange(1, 1, 1, NOTE_HEADERS.length).setValues([NOTE_HEADERS]).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+function blockSheet_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(BLOCK_SHEET);
+  if (!sheet) sheet = ss.insertSheet(BLOCK_SHEET);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, BLOCK_HEADERS.length).setValues([BLOCK_HEADERS]).setFontWeight('bold');
     sheet.setFrozenRows(1);
   }
   return sheet;
@@ -390,24 +411,73 @@ function notesSheet_() {
 function noteRow_(r) {
   return {
     id: str_(r[0]), createdAt: str_(r[1]), status: str_(r[2]), name: str_(r[3]),
-    studied: str_(r[4]), message: str_(r[5]), locale: str_(r[6]), decidedAt: str_(r[7])
+    studied: str_(r[4]), message: str_(r[5]), locale: str_(r[6]), decidedAt: str_(r[7]),
+    deviceId: str_(r[COL.deviceId]), ip: str_(r[COL.ip]), uaKey: str_(r[COL.uaKey])
   };
 }
 
-function noteAppend_(note) {
+function allNotes_(sheet) {
+  var last = sheet.getLastRow();
+  if (last < 2) return [];
+  return sheet.getRange(2, 1, last - 1, NOTE_HEADERS.length).getValues();
+}
+
+/** same device: same deviceId, or same IP with the same browser */
+function sameDevice_(a, b) {
+  if (a.deviceId && b.deviceId && a.deviceId === b.deviceId) return true;
+  return !!(a.ip && b.ip && a.uaKey && b.uaKey && a.ip === b.ip && a.uaKey === b.uaKey);
+}
+
+function isBlocked_(note) {
+  var sheet = blockSheet_();
+  var last = sheet.getLastRow();
+  if (last < 2) return false;
+  var rows = sheet.getRange(2, 1, last - 1, BLOCK_HEADERS.length).getValues();
+  for (var i = 0; i < rows.length; i++) {
+    if (sameDevice_(note, { deviceId: str_(rows[i][1]), ip: str_(rows[i][2]), uaKey: str_(rows[i][3]) })) return true;
+  }
+  return false;
+}
+
+function noteAppend_(note, cooldownHours) {
   if (!note || !note.id) return { ok: false, error: 'missing note' };
   var lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
+    var sheet = notesSheet_();
+    var who = { deviceId: str_(note.deviceId), ip: str_(note.ip), uaKey: str_(note.uaKey) };
+    if (isBlocked_(who)) return { ok: false, error: 'blocked' };
+    var hours = Math.max(0, Number(cooldownHours) || 0);
+    var since = Date.now() - hours * 3600 * 1000;
+    var rows = allNotes_(sheet);
+    var previous = 0, latest = 0;
+    for (var i = 0; i < rows.length; i++) {
+      var n = noteRow_(rows[i]);
+      if (!sameDevice_(who, n)) continue;
+      previous++;
+      latest = Math.max(latest, ts_(n.createdAt));
+    }
+    if (hours > 0 && latest > since) {
+      return { ok: false, error: 'cooldown', retryAt: new Date(latest + hours * 3600 * 1000).toISOString() };
+    }
     var status = NOTE_STATUSES.indexOf(note.status) === -1 ? 'private' : note.status;
-    notesSheet_().appendRow([
+    sheet.appendRow([
       str_(note.id), str_(note.createdAt), status, str_(note.name),
-      str_(note.studied), str_(note.message), str_(note.locale), ''
+      str_(note.studied), str_(note.message), str_(note.locale), '',
+      who.deviceId, who.ip, who.uaKey, str_(note.device), str_(note.browser), str_(note.place), str_(note.details)
     ]);
-    return { ok: true };
+    return { ok: true, previous: previous };
   } finally {
     lock.releaseLock();
   }
+}
+
+function findNote_(sheet, id) {
+  var last = sheet.getLastRow();
+  if (last < 2) return 0;
+  var ids = sheet.getRange(2, 1, last - 1, 1).getValues();
+  for (var i = 0; i < ids.length; i++) if (str_(ids[i][0]) === str_(id)) return i + 2;
+  return 0;
 }
 
 function noteSet_(id, status, at) {
@@ -416,18 +486,30 @@ function noteSet_(id, status, at) {
   lock.waitLock(10000);
   try {
     var sheet = notesSheet_();
-    var last = sheet.getLastRow();
-    if (last < 2) return { ok: false, error: 'note not found' };
-    var ids = sheet.getRange(2, 1, last - 1, 1).getValues();
-    for (var i = 0; i < ids.length; i++) {
-      if (str_(ids[i][0]) === str_(id)) {
-        var row = i + 2;
-        sheet.getRange(row, 3).setValue(status);
-        sheet.getRange(row, 8).setValue(at || new Date().toISOString());
-        return { ok: true, note: noteRow_(sheet.getRange(row, 1, 1, NOTE_HEADERS.length).getValues()[0]) };
-      }
-    }
-    return { ok: false, error: 'note not found' };
+    var row = findNote_(sheet, id);
+    if (!row) return { ok: false, error: 'note not found' };
+    sheet.getRange(row, 3).setValue(status);
+    sheet.getRange(row, 8).setValue(at || new Date().toISOString());
+    return { ok: true, note: noteRow_(sheet.getRange(row, 1, 1, NOTE_HEADERS.length).getValues()[0]) };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function noteBlock_(id, at) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var sheet = notesSheet_();
+    var row = findNote_(sheet, id);
+    if (!row) return { ok: false, error: 'note not found' };
+    var values = sheet.getRange(row, 1, 1, NOTE_HEADERS.length).getValues()[0];
+    var n = noteRow_(values);
+    blockSheet_().appendRow([at || new Date().toISOString(), n.deviceId, n.ip, n.uaKey, n.id, n.name, str_(values[COL.device])]);
+    sheet.getRange(row, 3).setValue('hidden');
+    sheet.getRange(row, 8).setValue(at || new Date().toISOString());
+    n.status = 'hidden';
+    return { ok: true, note: n };
   } finally {
     lock.releaseLock();
   }
@@ -435,13 +517,10 @@ function noteSet_(id, status, at) {
 
 function notesShown_(body) {
   var limit = Math.min(Math.max(parseInt(body && body.limit, 10) || 60, 1), 200);
-  var sheet = notesSheet_();
-  var last = sheet.getLastRow();
-  if (last < 2) return { ok: true, notes: [] };
-  var rows = sheet.getRange(2, 1, last - 1, NOTE_HEADERS.length).getValues().map(noteRow_);
+  var rows = allNotes_(notesSheet_()).map(noteRow_);
   var shown = rows.filter(function (n) { return n.status === 'shown'; });
   shown.sort(function (a, b) { return ts_(b.createdAt) - ts_(a.createdAt); });
-  // only what the wall needs: never the status history or anything else
+  // only what the wall needs: never the device, IP or anything else
   return { ok: true, notes: shown.slice(0, limit).map(function (n) {
     return { id: n.id, createdAt: n.createdAt, name: n.name, studied: n.studied, message: n.message, locale: n.locale };
   }) };
