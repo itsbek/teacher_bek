@@ -195,6 +195,17 @@ export function initCore(opts: CoreOptions): Core {
         } else if (t.closest("h1,h2,p,li")) s = "text";
         cur.dataset.s = s;
         ring.textContent = label;
+        /* over anything blue (buttons, the ticket, the menu, the veil) the cursor turns ink so it stays visible */
+        let bg = "";
+        for (let x: Element | null = t; x; x = x.parentElement) {
+          const c = getComputedStyle(x).backgroundColor;
+          const m = c.match(/\d+(\.\d+)?/g);
+          if (!m || (m.length === 4 && +m[3] === 0)) continue;
+          const [r, g, b] = m.map(Number);
+          bg = b > 150 && r < 90 && b - r > 90 && g < 170 ? "blue" : "";
+          break;
+        }
+        if (cur.dataset.bg !== bg) cur.dataset.bg = bg;
       },
       { signal },
     );

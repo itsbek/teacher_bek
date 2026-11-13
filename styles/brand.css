@@ -121,6 +121,14 @@ html.menu-open .menu .menu-mark .lm-d{transform:none;opacity:1}
 .cur[data-s=none]{opacity:0!important}
 .cur.down .c-ring,.cur.down .c-grip{transform:scale(.86)}
 html[data-tone=dark] .cur .c-dot{background:#fff;box-shadow:0 0 0 2px #000}
+/* the cursor must stay visible on every ground: a white edge always, ink instead of blue over blue */
+.cur .c-ring{box-shadow:0 0 0 2px #fff,0 8px 22px -6px rgb(0 0 0/.35)}
+.cur .c-grip{background:rgb(255 255 255/.92);box-shadow:0 6px 18px -6px rgb(0 0 0/.3)}
+.cur[data-bg=blue] .c-ring{background:var(--ink)}
+.cur[data-bg=blue] .c-grip{border-color:var(--ink)}.cur[data-bg=blue] .c-grip::before{color:var(--ink)}
+.cur[data-bg=blue] .c-dot{background:#fff;box-shadow:0 0 0 2px var(--ink)}
+html.leaving .cur .c-dot,html.arriving .cur .c-dot,html.menu-open .cur .c-dot{background:#fff;box-shadow:0 0 0 2px var(--ink)}
+html.menu-open .cur .c-ring{background:var(--ink)}
 .mag{display:inline-flex;transform:translate3d(var(--mx,0),var(--my,0),0);transition:transform .6s var(--release)}
 
 /* preloader: the mark draws itself, the dot drops, the name appears, then it all flies to the header */
