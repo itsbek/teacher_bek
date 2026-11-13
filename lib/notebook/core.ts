@@ -396,7 +396,13 @@ export function initCore(opts: CoreOptions): Core {
           if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
           else scrollTo(0, y);
           arriveIn();
-        } else opts.navigate(to);
+        } else {
+          opts.navigate(to);
+          /* safety net: if the client navigation never lands (slow or failed fetch), the veil must not stay up */
+          later(2500, () => {
+            if (root.classList.contains("leaving")) location.href = to;
+          });
+        }
       });
     },
     { capture: true, signal },
